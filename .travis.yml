@@ -1,0 +1,5 @@
+os: osx
+language: c++
+
+script:
+    - xcodebuild clean build -project padamose.xcodeproj -configuration Debug -scheme padamose-all -quiet

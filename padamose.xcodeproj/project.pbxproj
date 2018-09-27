@@ -6,6 +6,22 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		CD2D3BFE215C9B2E0000A22E /* padamose-all */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = CD2D3C01215C9B2E0000A22E /* Build configuration list for PBXAggregateTarget "padamose-all" */;
+			buildPhases = (
+			);
+			dependencies = (
+				CD2D3C03215C9B370000A22E /* PBXTargetDependency */,
+				CD2D3C05215C9B370000A22E /* PBXTargetDependency */,
+				CD2D3C07215C9B370000A22E /* PBXTargetDependency */,
+			);
+			name = "padamose-all";
+			productName = "padamose-all";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		CD240D2821327F6600FF8812 /* VersionedValueIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = CD240D2721327F6600FF8812 /* VersionedValueIterator.h */; };
 		CD240D3121363CE000FF8812 /* VersionedStoreIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD240D2F21363CE000FF8812 /* VersionedStoreIterator.cpp */; };
@@ -51,6 +67,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CD2D3C02215C9B370000A22E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD4E8131210579C8007DA585;
+			remoteInfo = gtest;
+		};
+		CD2D3C04215C9B370000A22E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD4E80F1210577FF007DA585;
+			remoteInfo = "lib-gtest";
+		};
+		CD2D3C06215C9B370000A22E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD4E817521059316007DA585;
+			remoteInfo = "lib-padamose";
+		};
 		CD4E816F21057E4F007DA585 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
@@ -372,6 +409,10 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Patrick Meehan";
 				TargetAttributes = {
+					CD2D3BFE215C9B2E0000A22E = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
 					CD4E80F1210577FF007DA585 = {
 						ProvisioningStyle = Automatic;
 					};
@@ -398,6 +439,7 @@
 				CD4E8131210579C8007DA585 /* gtest */,
 				CD4E80F1210577FF007DA585 /* lib-gtest */,
 				CD4E817521059316007DA585 /* lib-padamose */,
+				CD2D3BFE215C9B2E0000A22E /* padamose-all */,
 			);
 		};
 /* End PBXProject section */
@@ -462,6 +504,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CD2D3C03215C9B370000A22E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD4E8131210579C8007DA585 /* gtest */;
+			targetProxy = CD2D3C02215C9B370000A22E /* PBXContainerItemProxy */;
+		};
+		CD2D3C05215C9B370000A22E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD4E80F1210577FF007DA585 /* lib-gtest */;
+			targetProxy = CD2D3C04215C9B370000A22E /* PBXContainerItemProxy */;
+		};
+		CD2D3C07215C9B370000A22E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD4E817521059316007DA585 /* lib-padamose */;
+			targetProxy = CD2D3C06215C9B370000A22E /* PBXContainerItemProxy */;
+		};
 		CD4E817021057E4F007DA585 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CD4E80F1210577FF007DA585 /* lib-gtest */;
@@ -475,6 +532,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		CD2D3BFF215C9B2E0000A22E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CD2D3C00215C9B2E0000A22E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		CD4E8103210577FF007DA585 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -708,6 +781,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CD2D3C01215C9B2E0000A22E /* Build configuration list for PBXAggregateTarget "padamose-all" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD2D3BFF215C9B2E0000A22E /* Debug */,
+				CD2D3C00215C9B2E0000A22E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CD4E8102210577FF007DA585 /* Build configuration list for PBXNativeTarget "lib-gtest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
