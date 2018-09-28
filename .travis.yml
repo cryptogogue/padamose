@@ -1,5 +1,26 @@
 os: osx
 language: c++
 
+branches:
+  except:
+    - gh-pages
+
+env:
+  global:
+    - GH_REPO_NAME: padamose
+    - DOXYFILE: $TRAVIS_BUILD_DIR/scripts/doxyfile
+    - GH_REPO_REF: github.com/cryptogogue/padamose.git
+
+addons:
+  homebrew:
+    packages:
+      - doxygen
+      - graphviz
+
 script:
     - xcodebuild clean build -project padamose.xcodeproj -configuration Debug -scheme padamose-all -quiet
+
+after_success:
+  - cd $TRAVIS_BUILD_DIR/scripts
+  - chmod +x deploy-docs.sh
+  - ./deploy-docs.sh
