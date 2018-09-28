@@ -4,7 +4,7 @@
 #ifndef PADAMOSE_VERSIONEDSTORE_H
 #define PADAMOSE_VERSIONEDSTORE_H
 
-#include <padamose/common.h>
+#include <padamose/padamose-common.h>
 #include <padamose/VersionedStoreSnapshot.h>
 
 // TODO: this is all placeholder stuff, to get the algorithm working. will need to

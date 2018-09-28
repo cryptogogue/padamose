@@ -4,7 +4,7 @@
 #ifndef PADAMOSE_VERSIONEDVALUEITERATOR_H
 #define PADAMOSE_VERSIONEDVALUEITERATOR_H
 
-#include <padamose/common.h>
+#include <padamose/padamose-common.h>
 #include <padamose/VersionedStoreSnapshot.h>
 
 namespace Padamose {

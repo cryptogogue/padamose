@@ -4,7 +4,7 @@
 #ifndef PADAMOSE_ABSTRACTVERSIONEDBRANCHCLIENT_H
 #define PADAMOSE_ABSTRACTVERSIONEDBRANCHCLIENT_H
 
-#include <padamose/common.h>
+#include <padamose/padamose-common.h>
 
 namespace Padamose {
 

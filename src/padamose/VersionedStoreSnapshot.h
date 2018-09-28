@@ -4,7 +4,7 @@
 #ifndef PADAMOSE_VERSIONEDSTORESNAPSHOT_H
 #define PADAMOSE_VERSIONEDSTORESNAPSHOT_H
 
-#include <padamose/common.h>
+#include <padamose/padamose-common.h>
 #include <padamose/AbstractVersionedBranchClient.h>
 #include <padamose/VersionedBranch.h>
 

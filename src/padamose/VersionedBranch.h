@@ -4,7 +4,7 @@
 #ifndef PADAMOSE_VERSIONEDBRANCH_H
 #define PADAMOSE_VERSIONEDBRANCH_H
 
-#include <padamose/common.h>
+#include <padamose/padamose-common.h>
 #include <padamose/AbstractVersionedBranchClient.h>
 #include <padamose/ValueStack.h>
 

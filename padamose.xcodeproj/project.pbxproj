@@ -130,14 +130,14 @@
 		CD4E8124210578FF007DA585 /* gtest-test-part.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtest-test-part.h"; path = "3rd-party/googletest/googletest/include/gtest/gtest-test-part.h"; sourceTree = "<group>"; };
 		CD4E8125210578FF007DA585 /* gtest-typed-test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtest-typed-test.h"; path = "3rd-party/googletest/googletest/include/gtest/gtest-typed-test.h"; sourceTree = "<group>"; };
 		CD4E8126210578FF007DA585 /* gtest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gtest.h; path = "3rd-party/googletest/googletest/include/gtest/gtest.h"; sourceTree = "<group>"; };
-		CD4E8161210579C8007DA585 /* gtest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gtest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD4E8161210579C8007DA585 /* padamose-gtest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "padamose-gtest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4E816B21057DD1007DA585 /* main-gtest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "main-gtest.cpp"; path = "src/padamose/gtest/main-gtest.cpp"; sourceTree = "<group>"; };
 		CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStore.cpp; path = src/padamose/gtest/TestVersionedStore.cpp; sourceTree = "<group>"; };
 		CD4E818F21059316007DA585 /* libpadamose.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpadamose.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD561DB9210730E5008B06C7 /* ValueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValueStack.h; path = src/padamose/ValueStack.h; sourceTree = "<group>"; };
 		CD561DBB210730ED008B06C7 /* VersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedBranch.cpp; path = src/padamose/VersionedBranch.cpp; sourceTree = "<group>"; };
 		CD561DBC210730ED008B06C7 /* VersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedBranch.h; path = src/padamose/VersionedBranch.h; sourceTree = "<group>"; };
-		CD5C62FA20B4F7B10038EE98 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = src/padamose/common.h; sourceTree = "<group>"; };
+		CD5C62FA20B4F7B10038EE98 /* padamose-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "padamose-common.h"; path = "src/padamose/padamose-common.h"; sourceTree = "<group>"; };
 		CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStoreIterators.cpp; path = src/padamose/gtest/TestVersionedStoreIterators.cpp; sourceTree = "<group>"; };
 		CDA06FE42155C4CF003FA0C3 /* loguru.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = loguru.hpp; path = "3rd-party/loguru/loguru.hpp"; sourceTree = "<group>"; };
 		CDA06FE62155C57F003FA0C3 /* loguru.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = loguru.cpp; path = src/padamose/loguru.cpp; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				CD4E80E821040051007DA585 /* store */,
-				CD5C62FA20B4F7B10038EE98 /* common.h */,
+				CD5C62FA20B4F7B10038EE98 /* padamose-common.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				CD4E8105210577FF007DA585 /* libgtest.a */,
-				CD4E8161210579C8007DA585 /* gtest */,
+				CD4E8161210579C8007DA585 /* padamose-gtest */,
 				CD4E818F21059316007DA585 /* libpadamose.a */,
 			);
 			name = Products;
@@ -364,9 +364,9 @@
 			productReference = CD4E8105210577FF007DA585 /* libgtest.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		CD4E8131210579C8007DA585 /* gtest */ = {
+		CD4E8131210579C8007DA585 /* padamose-gtest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD4E815E210579C8007DA585 /* Build configuration list for PBXNativeTarget "gtest" */;
+			buildConfigurationList = CD4E815E210579C8007DA585 /* Build configuration list for PBXNativeTarget "padamose-gtest" */;
 			buildPhases = (
 				CD4E8134210579C8007DA585 /* Sources */,
 				CD4E814F210579C8007DA585 /* Frameworks */,
@@ -378,9 +378,9 @@
 				CD4E817021057E4F007DA585 /* PBXTargetDependency */,
 				CD4E81D32105942B007DA585 /* PBXTargetDependency */,
 			);
-			name = gtest;
+			name = "padamose-gtest";
 			productName = consensus;
-			productReference = CD4E8161210579C8007DA585 /* gtest */;
+			productReference = CD4E8161210579C8007DA585 /* padamose-gtest */;
 			productType = "com.apple.product-type.tool";
 		};
 		CD4E817521059316007DA585 /* lib-padamose */ = {
@@ -436,7 +436,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CD4E8131210579C8007DA585 /* gtest */,
+				CD4E8131210579C8007DA585 /* padamose-gtest */,
 				CD4E80F1210577FF007DA585 /* lib-gtest */,
 				CD4E817521059316007DA585 /* lib-padamose */,
 				CD2D3BFE215C9B2E0000A22E /* padamose-all */,
@@ -506,7 +506,7 @@
 /* Begin PBXTargetDependency section */
 		CD2D3C03215C9B370000A22E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CD4E8131210579C8007DA585 /* gtest */;
+			target = CD4E8131210579C8007DA585 /* padamose-gtest */;
 			targetProxy = CD2D3C02215C9B370000A22E /* PBXContainerItemProxy */;
 		};
 		CD2D3C05215C9B370000A22E /* PBXTargetDependency */ = {
@@ -799,7 +799,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD4E815E210579C8007DA585 /* Build configuration list for PBXNativeTarget "gtest" */ = {
+		CD4E815E210579C8007DA585 /* Build configuration list for PBXNativeTarget "padamose-gtest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD4E815F210579C8007DA585 /* Debug */,

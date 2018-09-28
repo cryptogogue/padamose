@@ -4,7 +4,7 @@
 #ifndef PADAMOSE_ABSTRACTVALUESTACK_H
 #define PADAMOSE_ABSTRACTVALUESTACK_H
 
-#include <padamose/common.h>
+#include <padamose/padamose-common.h>
 
 namespace Padamose {
 

@@ -2,7 +2,7 @@
 // http://cryptogogue.com
 
 #include <gtest/gtest.h>
-#include <padamose/common.h>
+#include <padamose/padamose-common.h>
 
 //----------------------------------------------------------------//
 int main ( int argc, char **argv ) {
