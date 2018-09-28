@@ -1,0 +1,7 @@
+<map id="Padamose::VersionedStoreSnapshot" name="Padamose::VersionedStoreSnapshot">
+<area shape="rect" id="node3" href="$d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions..." alt="" coords="486,5,670,31"/>
+<area shape="rect" id="node4" href="$d9/d05/class_padamose_1_1_versioned_store_iterator.html" title="Implements a version&#45;by&#45;version iterator of a value store. " alt="" coords="486,55,670,93"/>
+<area shape="rect" id="node5" href="$df/d69/class_padamose_1_1_versioned_value.html" title="Lightweight handle intended to safely reference a value held in a versioned store. Useful for large values that would be cumbersome to copy. " alt="" coords="486,117,671,156"/>
+<area shape="rect" id="node6" href="$d8/ddf/class_padamose_1_1_versioned_value_iterator.html" title="Implements a sparse version iterator of a specific value in a store. " alt="" coords="486,180,671,219"/>
+<area shape="rect" id="node2" href="$d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html" title="Base class for VersionedBranch clients. Branch client types include branches (parent&#45;to&#45;child) as wel..." alt="" coords="5,87,206,125"/>
+</map>

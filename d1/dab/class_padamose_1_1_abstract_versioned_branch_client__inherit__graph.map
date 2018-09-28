@@ -1,0 +1,8 @@
+<map id="Padamose::AbstractVersionedBranchClient" name="Padamose::AbstractVersionedBranchClient">
+<area shape="rect" id="node2" href="$d4/da9/class_padamose_1_1_versioned_branch.html" title="VersionedBranch is an internal data structure used to store a contiguous block of versioned values..." alt="" coords="254,37,448,63"/>
+<area shape="rect" id="node3" href="$d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read&#45;only methods and getters..." alt="" coords="259,87,443,125"/>
+<area shape="rect" id="node4" href="$d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions..." alt="" coords="497,5,680,31"/>
+<area shape="rect" id="node5" href="$d9/d05/class_padamose_1_1_versioned_store_iterator.html" title="Implements a version&#45;by&#45;version iterator of a value store. " alt="" coords="497,55,680,93"/>
+<area shape="rect" id="node6" href="$df/d69/class_padamose_1_1_versioned_value.html" title="Lightweight handle intended to safely reference a value held in a versioned store. Useful for large values that would be cumbersome to copy. " alt="" coords="496,117,681,156"/>
+<area shape="rect" id="node7" href="$d8/ddf/class_padamose_1_1_versioned_value_iterator.html" title="Implements a sparse version iterator of a specific value in a store. " alt="" coords="496,180,681,219"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Padamose::VersionedStore" name="Padamose::VersionedStore">
+<area shape="rect" id="node2" href="$d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read&#45;only methods and getters..." alt="" coords="14,92,198,131"/>
+<area shape="rect" id="node3" href="$d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html" title="Base class for VersionedBranch clients. Branch client types include branches (parent&#45;to&#45;child) as wel..." alt="" coords="5,5,206,44"/>
+</map>
