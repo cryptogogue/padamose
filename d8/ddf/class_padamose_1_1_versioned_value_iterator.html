@@ -161,6 +161,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a690692aae7aff014426c6577f6a8e766"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a690692aae7aff014426c6577f6a8e766">prev</a> ()</td></tr>
 <tr class="memdesc:a690692aae7aff014426c6577f6a8e766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates backward by one version.  <a href="#a690692aae7aff014426c6577f6a8e766">More...</a><br /></td></tr>
 <tr class="separator:a690692aae7aff014426c6577f6a8e766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c483ba1e8386d87de9b0b1fb83bbbd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a1c483ba1e8386d87de9b0b1fb83bbbd8">seekLower</a> (size_t version)</td></tr>
+<tr class="memdesc:a1c483ba1e8386d87de9b0b1fb83bbbd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the position where the value version is equal to or less than the given version.  <a href="#a1c483ba1e8386d87de9b0b1fb83bbbd8">More...</a><br /></td></tr>
+<tr class="separator:a1c483ba1e8386d87de9b0b1fb83bbbd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe627def54c16406f8ca51a8f9395693"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#afe627def54c16406f8ca51a8f9395693">seekUpper</a> (size_t version)</td></tr>
+<tr class="memdesc:afe627def54c16406f8ca51a8f9395693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the position where the value version is equal to or greater than the given version.  <a href="#afe627def54c16406f8ca51a8f9395693">More...</a><br /></td></tr>
+<tr class="separator:afe627def54c16406f8ca51a8f9395693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6342403e9e6846ce53a69730b8f34086"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a6342403e9e6846ce53a69730b8f34086">setDebugName</a> (string debugName)</td></tr>
 <tr class="memdesc:a6342403e9e6846ce53a69730b8f34086"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the debug name. Implemented in _DEBUG builds only. Otehrwise a no-op.  <a href="#a6342403e9e6846ce53a69730b8f34086">More...</a><br /></td></tr>
 <tr class="separator:a6342403e9e6846ce53a69730b8f34086"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1285,6 +1291,37 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
+<a id="a1c483ba1e8386d87de9b0b1fb83bbbd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c483ba1e8386d87de9b0b1fb83bbbd8">&#9670;&nbsp;</a></span>seekLower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html">Padamose::VersionedValueIterator</a>&lt; TYPE &gt;::seekLower </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>version</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find the position where the value version is equal to or less than the given version. </p>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000003">Todo:</a></b></dt><dd>This implementation is pretty inefficient in that every value is visited. </dd></dl>
+
+</div>
+</div>
 <a id="a1cb846ffac04e52d645afac6ceee5c95"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1cb846ffac04e52d645afac6ceee5c95">&#9670;&nbsp;</a></span>seekNext()</h2>
 
@@ -1366,6 +1403,37 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="afe627def54c16406f8ca51a8f9395693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe627def54c16406f8ca51a8f9395693">&#9670;&nbsp;</a></span>seekUpper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html">Padamose::VersionedValueIterator</a>&lt; TYPE &gt;::seekUpper </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>version</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find the position where the value version is equal to or greater than the given version. </p>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000004">Todo:</a></b></dt><dd>This implementation is pretty inefficient in that every value is visited. </dd></dl>
 
 </div>
 </div>
@@ -1838,7 +1906,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html">VersionedValueIterator</a></li>
-    <li class="footer">Generated on Fri Sep 28 2018 21:24:38 for Padamose by
+    <li class="footer">Generated on Mon Oct 1 2018 19:24:06 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>
