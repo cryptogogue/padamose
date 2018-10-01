@@ -289,6 +289,35 @@ public:
     }
 
     //----------------------------------------------------------------//
+    /** \brief Find the position where the value version is equal to
+        or less than the given version.
+
+        \todo This implementation is pretty inefficient in that every value is visited.
+    */
+    void seekLower ( size_t version ) {
+    
+        assert ( this->mAnchor.mSourceBranch );
+    
+        this->seekPrev ( this->mAnchor.mSourceBranch, this->mAnchor.mVersion + 1 );
+        for ( ; this->isValid () && ( this->mVersion > version ); this->prev ());
+        // iterator will now be <= version, or nil
+    }
+    
+    //----------------------------------------------------------------//
+    /** \brief Find the position where the value version is equal to
+        or greater than the given version.
+
+        \todo This implementation is pretty inefficient in that every value is visited.
+    */
+    void seekUpper ( size_t version ) {
+    
+        this->seekLower ();
+        if ( this->isValid () && ( this->mVersion < version )) {
+            this->next ();
+        }
+    }
+
+    //----------------------------------------------------------------//
     /** \brief Returns a const reference to the current value being iterated.
 
         \return     The current value of the iterator.
