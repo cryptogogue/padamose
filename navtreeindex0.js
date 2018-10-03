@@ -67,6 +67,7 @@ var NAVTREEINDEX0 =
 "d2/dae/_test_versioned_store_8cpp.html#a2a418b2143be68d0e5a2a2f25a0a9b65":[3,0,0,0,0,1,10],
 "d2/dae/_test_versioned_store_8cpp.html#a2c4a9c21a8c955b684083e69c347f0c3":[3,0,0,0,0,1,7],
 "d2/dae/_test_versioned_store_8cpp.html#a31000a7781b24b77ee9c87cad203d707":[3,0,0,0,0,1,17],
+"d2/dae/_test_versioned_store_8cpp.html#a42131ed8a49262c9b38d018d6ac8f218":[3,0,0,0,0,1,27],
 "d2/dae/_test_versioned_store_8cpp.html#a46e8acaae85416f65bcaa9272f30678e":[3,0,0,0,0,1,3],
 "d2/dae/_test_versioned_store_8cpp.html#a50099b32d0e4f0f475c39b95227f077d":[3,0,0,0,0,1,11],
 "d2/dae/_test_versioned_store_8cpp.html#a57fbae95da1b334b77a1b7f7722b1846":[3,0,0,0,0,1,22],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "d9/d05/class_padamose_1_1_versioned_store_iterator.html#a204e62db33566625f9bb2bf3abf9a77b":[2,0,0,5,42],
 "d9/d05/class_padamose_1_1_versioned_store_iterator.html#a259c2ef979c4596e19a57a76909220eb":[2,0,0,5,8],
 "d9/d05/class_padamose_1_1_versioned_store_iterator.html#a27a351eedec84aaa51ea41498116acc9":[2,0,0,5,15],
-"d9/d05/class_padamose_1_1_versioned_store_iterator.html#a315856da5e2fdfddadfd3942a0849726":[2,0,0,5,37],
-"d9/d05/class_padamose_1_1_versioned_store_iterator.html#a31d251e088e9918a2a6d344559ee539e":[2,0,0,5,26]
+"d9/d05/class_padamose_1_1_versioned_store_iterator.html#a315856da5e2fdfddadfd3942a0849726":[2,0,0,5,37]
 };
