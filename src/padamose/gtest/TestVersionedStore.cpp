@@ -7,12 +7,141 @@
 using namespace Padamose;
 
 static const string KEY     = "test";
+static const string KEY2    = "test2";
 static const string STR0    = "abc";
 static const string STR1    = "def";
 static const string STR2    = "ghi";
 static const string STR3    = "jkl";
-static const string STR4    = "mno";
 
+//----- Let's start with some simple tests -----/
+//----- Set/Get Values -----/
+
+TEST ( VersionedStore, test_hasValue_returns_false_if_value_was_not_set ) {
+    VersionedStore store;
+    ASSERT_FALSE ( store.hasValue < string >( KEY ) );
+}
+
+TEST ( VersionedStore, test_hasValue_returns_true_if_value_was_set ) {
+    VersionedStore store;
+    store.setValue< string >( KEY, STR0);
+    ASSERT_TRUE ( store.hasValue < string >( KEY ) );
+}
+
+TEST ( VersionedStore, test_hasValue_if_value_was_set_with_different_type_assert_failed ) {
+    VersionedStore store;
+    store.setValue< string >( KEY, STR0);
+    ASSERT_DEATH ( store.hasValue < int >( KEY ), "Assertion `valueStack' failed" );
+
+}
+
+TEST ( VersionedStore, test_setValue_for_string_type ) {
+    VersionedStore store;
+    store.setValue < string >(KEY, STR0);
+    ASSERT_TRUE ( store.getValue < string >( KEY ) == STR0 );
+}
+
+TEST ( VersionedStore, test_setValue_for_int_type ) {
+    const int value = 1;
+    VersionedStore store;
+    store.setValue < int >(KEY, value);
+    ASSERT_TRUE ( store.getValue < int >( KEY ) == value );
+}
+
+TEST ( VersionedStore, test_setValue_for_float_type ){
+    const float value = 1.f;
+    VersionedStore store;
+    store.setValue < float >(KEY, value);
+    ASSERT_TRUE ( store.getValue < float >( KEY ) == value );
+}
+
+TEST ( VersionedStore, test_setValue_for_bool_type ){
+    const bool value = false;
+    VersionedStore store;
+    store.setValue < int >(KEY, value);
+    ASSERT_TRUE ( store.getValue < int >( KEY ) == value );
+}
+
+TEST ( VersionedStore, test_getValue_key_does_not_exists_assert_fails ){
+    VersionedStore store;
+    ASSERT_DEATH(store.getValue < string >( KEY ), "Assertion .* failed.");
+}
+
+TEST ( VersionedStore, test_getValue_missmatch_type_assert_fails ){
+    const string value = "sample string";
+    VersionedStore store;
+    store.setValue < string >(KEY, value);
+    ASSERT_DEATH(store.getValue < int >( KEY ), "Assertion .* failed.");
+}
+
+TEST ( VersionedStore, test_setValue_different_type_for_the_same_key_assert_fails ){
+    const string str_value = "sample string";
+    const int int_value = 1;
+    VersionedStore store;
+    store.setValue < string >(KEY, str_value);
+    ASSERT_DEATH(store.setValue < int >(KEY, int_value), "Assertion `valueStack' failed.");
+}
+
+TEST ( VersionedStore, test_setValue_different_type_with_different_keys ){
+    const int int_value = 1;
+    VersionedStore store;
+    store.setValue < string >(KEY, STR0);
+    store.setValue < int >(KEY2, int_value);
+
+    ASSERT_TRUE(store.getValue < string >(KEY) == STR0);
+    ASSERT_TRUE(store.getValue < int >(KEY2) == int_value);
+}
+
+//-------------- Let's make some snapshots -----------------------//
+TEST ( VersionedStore, test_assign_operator_copy_store_state ) {
+    VersionedStore store;
+    store.setValue < string > (KEY, STR0);
+    VersionedStore store1 = store;
+    
+    ASSERT_TRUE(store1.getValue < string >(KEY) == STR0);
+}
+
+TEST ( VersionedStore, test_getSnapshot_copy_store_state ) {
+    VersionedStore store;
+    store.setValue < string > (KEY, STR0);
+    VersionedStore store1;
+    store1.takeSnapshot(store);
+    
+    ASSERT_TRUE(store1.getValue < string >(KEY) == STR0);
+}
+
+TEST ( VersionedStore, test_getSnapshot_not_preserve_current_store_state ) {
+    VersionedStore store;
+    store.setValue < string >(KEY, STR0);
+    VersionedStore store1;
+    store1.setValue < int >(KEY, 1);
+    store1.setValue < string >(KEY2, STR1);
+    store1.takeSnapshot(store);
+    
+    ASSERT_TRUE(store1.getValue < string >(KEY) == STR0);
+    ASSERT_FALSE(store1.hasValue < string >(KEY2));
+}
+
+TEST ( VersionedStore, test_adding_value_to_snapshoot_does_not_affect_original ) {
+    VersionedStore store;
+    store.setValue < string >(KEY, STR0);
+    VersionedStore store1;
+    store1.takeSnapshot(store);
+    store1.setValue < string >(KEY2, STR1);
+    
+    ASSERT_TRUE(store1.hasValue< string >(KEY2));
+    ASSERT_FALSE(store.hasValue< string >(KEY2));
+}
+
+TEST ( VersionedStore, test_changing_value_to_snapshoot_does_not_affect_original ) {
+    VersionedStore store;
+    store.setValue < string >(KEY, STR0);
+    VersionedStore store1;
+    store1.takeSnapshot(store);
+    store1.setValue < string >(KEY, STR1);
+    
+    ASSERT_TRUE(store1.getValue< string >(KEY) == STR1);
+    ASSERT_TRUE(store.getValue< string >(KEY) == STR0);
+}
 //----------------------------------------------------------------//
 TEST ( VersionedStore, test0 ) {
 
@@ -200,109 +329,4 @@ TEST ( VersionedStore, test4 ) {
     store1.popVersion ();
     ASSERT_TRUE ( store0.getValue < string >( KEY ) == "c" );
     ASSERT_TRUE ( store1.getValue < string >( KEY ) == "c" );
-}
-
-//----------------------------------------------------------------//
-TEST ( VersionedStore, test5 ) {
-
-    VersionedStore store0;
- 
-    store0.setValue < string >( KEY, STR0 );
-    ASSERT_TRUE ( store0.hasValue < string >( KEY ) == true );
- 
-    store0.clearVersion ();
-    
-    ASSERT_TRUE ( store0.hasValue < string >( KEY ) == false );
- 
-    store0.setValue < string >( KEY, STR0 ); // 0
-    store0.pushVersion ();
-    store0.setValue < string >( KEY, STR1 ); // 1
-    store0.pushVersion ();
-    store0.setValue < string >( KEY, STR2 ); // 2
-    
-    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR2 );
-    ASSERT_TRUE ( store0.getVersion () == 2 );
-    
-    store0.clearVersion ();
-    
-    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR1 );
-    ASSERT_TRUE ( store0.getVersion () == 2 );
-}
-
-//----------------------------------------------------------------//
-TEST ( VersionedStore, test6 ) {
-
-    VersionedStore store0;
- 
-    store0.setValue < string >( KEY, STR0 ); // 0
-    store0.pushVersion ();
-    store0.setValue < string >( KEY, STR1 ); // 1
-    store0.pushVersion ();
-    store0.setValue < string >( KEY, STR2 ); // 2
-    
-    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR2 );
-    ASSERT_TRUE ( store0.getVersion () == 2 );
-    
-    VersionedStore store1 ( store0 );
-    
-    store0.clearVersion ();
-    
-    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR1 );
-    ASSERT_TRUE ( store0.getVersion () == 2 );
-    
-    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR2 );
-    ASSERT_TRUE ( store1.getVersion () == 2 );
-    
-    store0.setValue < string >( KEY, STR3 );
-    
-    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR3 );
-    ASSERT_TRUE ( store0.getVersion () == 2 );
-    
-    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR2 );
-    ASSERT_TRUE ( store1.getVersion () == 2 );
-}
-
-//----------------------------------------------------------------//
-TEST ( VersionedStore, test7 ) {
-
-    VersionedStore store0;
- 
-    store0.setValue < string >( KEY, STR0 ); // 0
-    store0.pushVersion ();
-    store0.setValue < string >( KEY, STR1 ); // 1
-    
-    VersionedStore store1 ( store0 );
-    
-    store0.pushVersion ();
-    store0.setValue < string >( KEY, STR2 ); // 2
-    
-    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR2 );
-    ASSERT_TRUE ( store0.getVersion () == 2 );
-    
-    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR1 );
-    ASSERT_TRUE ( store1.getVersion () == 1 );
-    
-    store0.clearVersion ();
-    
-    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR1 );
-    ASSERT_TRUE ( store0.getVersion () == 2 );
-    
-    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR1 );
-    ASSERT_TRUE ( store1.getVersion () == 1 );
-    
-    store0.setValue < string >( KEY, STR3 );
-    
-    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR3 );
-    ASSERT_TRUE ( store0.getVersion () == 2 );
-    
-    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR1 );
-    ASSERT_TRUE ( store1.getVersion () == 1 );
-    
-    store1.setValue < string >( KEY, STR4 );
-    
-    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR3 );
-    ASSERT_TRUE ( store0.getVersion () == 2 );
-    
-    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR4 );
-    ASSERT_TRUE ( store1.getVersion () == 1 );
 }
