@@ -108,9 +108,8 @@ shared_ptr < VersionedBranch > VersionedBranch::fork ( size_t baseVersion ) {
     
     assert (( this->mVersion <= baseVersion ) && ( baseVersion <= this->getTopVersion ()));
 
-    child->setBranch ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch );
-    child->mVersion = baseVersion;
-    
+    child->setBranch ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
+
     map < size_t, Layer >::const_iterator layerIt = this->mLayers.find ( baseVersion );
     if ( layerIt != this->mLayers.cend ()) {
     
@@ -204,6 +203,9 @@ void VersionedBranch::optimize () {
         // the immutable top is the *highest* client version dependency. update it if and only it
         // a client with a higher depenency is found.
         if ( immutableTop < clientVersion ) {
+        
+            LOG_F ( INFO, "found new immutable top: %d -> %d", ( int )immutableTop, ( int )clientVersion );
+        
             immutableTop = clientVersion;
             
             // if we've found a more recent client, invalidate any candidate for joining.
@@ -213,8 +215,9 @@ void VersionedBranch::optimize () {
         }
         
         // if nothing is preventing a join, check to see if we can (and should) select
-        // the current client as our new candidate for join.
-        if (( !preventJoin ) && client->canJoin ()) {
+        // the current client as our new candidate for join. only conder client if dependency
+        // is greater or equal to the current immutable top.
+        if (( !preventJoin ) && client->canJoin () && ( client->getVersionDependency () >= immutableTop )) {
 
             // a client branch with direct refereces will prevent any join.
             if ( client->preventJoin ()) {
@@ -227,7 +230,8 @@ void VersionedBranch::optimize () {
                 // candidate, pick the current client. if we already have a candidate, pick the
                 // one with the higher join score.
                 if (( !bestJoin ) || ( bestJoin->getJoinScore () < client->getJoinScore ())) {
-                    LOG_F ( INFO, "found a client that can join" );
+                    LOG_F ( INFO, "found a client that can join!" );
+                    LOG_F ( INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
                     bestJoin = client;
                 }
             }

@@ -10,6 +10,24 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
+/** \brief Creates a new branch if there are any dependencies above
+    the current version.
+
+    \todo Internally implemented as a pop followed by a push. Look into
+    a more efficient implementation.
+*/
+void VersionedStore::clearVersion () {
+
+    LOG_SCOPE_F ( INFO, "VersionedStore::clearVersion ()" );
+
+    size_t version = this->mVersion;
+    this->popVersion ();
+    if ( version > 0 ) {
+        this->pushVersion ();
+    }
+}
+
+//----------------------------------------------------------------//
 /** \brief Pop the top version and revert to the version before it.
 */
 void VersionedStore::popVersion () {
@@ -39,7 +57,7 @@ void VersionedStore::popVersion () {
 }
 
 //----------------------------------------------------------------//
-/** \brief Make sure a branch exists to hodl the value. If a branch already exists,
+/** \brief Make sure a branch exists to hold the value. If a branch already exists,
     create a new branch if setting a value for a version with dependencies.
  
     This function find the top version in the store below which all other versions

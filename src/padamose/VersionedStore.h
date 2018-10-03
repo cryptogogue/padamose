@@ -66,6 +66,7 @@ protected:
 public:
 
     //----------------------------------------------------------------//
+    void            clearVersion                    ();
     void            popVersion                      ();
     void            pushVersion                     ();
     void            revert                          ( size_t version );

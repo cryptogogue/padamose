@@ -52,7 +52,7 @@ protected:
     */
     template < typename TYPE >
     const TYPE* getValueOrNil ( string key, size_t version ) const {
-        return this->mSourceBranch ? this->mSourceBranch->getValueOrNil < TYPE >( version < this->mVersion ? version : this->mVersion, key ) : NULL;
+        return this->mSourceBranch ? this->mSourceBranch->getValueOrNil < TYPE >( version <= this->mVersion ? version : this->mVersion, key ) : NULL;
     }
     
     //----------------------------------------------------------------//

@@ -116,6 +116,7 @@ protected:
             else {
             
                 if ( valueIt->first > version ) {
+                    if ( valueIt == this->mValuesByVersion.cbegin ()) return NULL;
                     valueIt--;
                 }
                 return &valueIt->second;

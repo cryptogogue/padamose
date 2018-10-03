@@ -80,6 +80,7 @@ public:
     }
     
     //----------------------------------------------------------------//
+    bool                isCurrent                           () const;
     bool                isValid                             () const;
     bool                next                                ();
     bool                prev                                ();

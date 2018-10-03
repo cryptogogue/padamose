@@ -10,6 +10,15 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
+/** \brief Returns true if iterator is at current version of store.
+
+    \return     True if iterator is at current version of store.
+*/
+bool VersionedStoreIterator::isCurrent () const {
+    return ( this->isValid () && ( this->getVersion () == this->mAnchor.getVersion ()));
+}
+
+//----------------------------------------------------------------//
 /** \brief Returns true if iterator is in the valid range for iteration.
 
     \return     True if iteration is in the valid range.

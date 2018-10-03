@@ -11,6 +11,7 @@ static const string STR0    = "abc";
 static const string STR1    = "def";
 static const string STR2    = "ghi";
 static const string STR3    = "jkl";
+static const string STR4    = "mno";
 
 //----------------------------------------------------------------//
 TEST ( VersionedStore, test0 ) {
@@ -199,4 +200,109 @@ TEST ( VersionedStore, test4 ) {
     store1.popVersion ();
     ASSERT_TRUE ( store0.getValue < string >( KEY ) == "c" );
     ASSERT_TRUE ( store1.getValue < string >( KEY ) == "c" );
+}
+
+//----------------------------------------------------------------//
+TEST ( VersionedStore, test5 ) {
+
+    VersionedStore store0;
+ 
+    store0.setValue < string >( KEY, STR0 );
+    ASSERT_TRUE ( store0.hasValue < string >( KEY ) == true );
+ 
+    store0.clearVersion ();
+    
+    ASSERT_TRUE ( store0.hasValue < string >( KEY ) == false );
+ 
+    store0.setValue < string >( KEY, STR0 ); // 0
+    store0.pushVersion ();
+    store0.setValue < string >( KEY, STR1 ); // 1
+    store0.pushVersion ();
+    store0.setValue < string >( KEY, STR2 ); // 2
+    
+    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR2 );
+    ASSERT_TRUE ( store0.getVersion () == 2 );
+    
+    store0.clearVersion ();
+    
+    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR1 );
+    ASSERT_TRUE ( store0.getVersion () == 2 );
+}
+
+//----------------------------------------------------------------//
+TEST ( VersionedStore, test6 ) {
+
+    VersionedStore store0;
+ 
+    store0.setValue < string >( KEY, STR0 ); // 0
+    store0.pushVersion ();
+    store0.setValue < string >( KEY, STR1 ); // 1
+    store0.pushVersion ();
+    store0.setValue < string >( KEY, STR2 ); // 2
+    
+    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR2 );
+    ASSERT_TRUE ( store0.getVersion () == 2 );
+    
+    VersionedStore store1 ( store0 );
+    
+    store0.clearVersion ();
+    
+    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR1 );
+    ASSERT_TRUE ( store0.getVersion () == 2 );
+    
+    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR2 );
+    ASSERT_TRUE ( store1.getVersion () == 2 );
+    
+    store0.setValue < string >( KEY, STR3 );
+    
+    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR3 );
+    ASSERT_TRUE ( store0.getVersion () == 2 );
+    
+    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR2 );
+    ASSERT_TRUE ( store1.getVersion () == 2 );
+}
+
+//----------------------------------------------------------------//
+TEST ( VersionedStore, test7 ) {
+
+    VersionedStore store0;
+ 
+    store0.setValue < string >( KEY, STR0 ); // 0
+    store0.pushVersion ();
+    store0.setValue < string >( KEY, STR1 ); // 1
+    
+    VersionedStore store1 ( store0 );
+    
+    store0.pushVersion ();
+    store0.setValue < string >( KEY, STR2 ); // 2
+    
+    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR2 );
+    ASSERT_TRUE ( store0.getVersion () == 2 );
+    
+    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR1 );
+    ASSERT_TRUE ( store1.getVersion () == 1 );
+    
+    store0.clearVersion ();
+    
+    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR1 );
+    ASSERT_TRUE ( store0.getVersion () == 2 );
+    
+    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR1 );
+    ASSERT_TRUE ( store1.getVersion () == 1 );
+    
+    store0.setValue < string >( KEY, STR3 );
+    
+    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR3 );
+    ASSERT_TRUE ( store0.getVersion () == 2 );
+    
+    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR1 );
+    ASSERT_TRUE ( store1.getVersion () == 1 );
+    
+    store1.setValue < string >( KEY, STR4 );
+    
+    ASSERT_TRUE ( store0.getValue < string >( KEY ) == STR3 );
+    ASSERT_TRUE ( store0.getVersion () == 2 );
+    
+    ASSERT_TRUE ( store1.getValue < string >( KEY ) == STR4 );
+    ASSERT_TRUE ( store1.getVersion () == 1 );
 }
