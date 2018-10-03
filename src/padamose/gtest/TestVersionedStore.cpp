@@ -12,6 +12,7 @@ static const string STR0    = "abc";
 static const string STR1    = "def";
 static const string STR2    = "ghi";
 static const string STR3    = "jkl";
+static const string STR4    = "mno";
 
 //----- Let's start with some simple tests -----/
 //----- Set/Get Values -----/
