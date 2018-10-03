@@ -5,9 +5,13 @@ var _test_versioned_store_8cpp =
     [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#a7205537374c48d7a1b0eb1d0fef95ab2", null ],
     [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#aaad0371fcf9ba4181357137c4b86b30c", null ],
     [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#ad65b15f400ce874f1ec9fd4b5297b388", null ],
+    [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#ad73710dba81365c0398fa6574e35ae05", null ],
+    [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#a6b9ec24ad80a568446f9e2e7d42dc149", null ],
+    [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#ac845223954495ecbb2aa4ce087c2f36b", null ],
     [ "KEY", "d2/dae/_test_versioned_store_8cpp.html#a0d8c46e8b02fbd19a524c25f0ae0226f", null ],
     [ "STR0", "d2/dae/_test_versioned_store_8cpp.html#aa7e09434964a2ca87632e93562ae4890", null ],
     [ "STR1", "d2/dae/_test_versioned_store_8cpp.html#ae38e41efe14de78ac01007a26a74edef", null ],
     [ "STR2", "d2/dae/_test_versioned_store_8cpp.html#a1a4aadd79488349c1e8eb955e9ac26d3", null ],
-    [ "STR3", "d2/dae/_test_versioned_store_8cpp.html#abf37003ee8e805b286f8f6e9dde8578e", null ]
+    [ "STR3", "d2/dae/_test_versioned_store_8cpp.html#abf37003ee8e805b286f8f6e9dde8578e", null ],
+    [ "STR4", "d2/dae/_test_versioned_store_8cpp.html#a42131ed8a49262c9b38d018d6ac8f218", null ]
 ];

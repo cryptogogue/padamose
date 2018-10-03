@@ -11,6 +11,7 @@ var class_padamose_1_1_versioned_store =
     [ "affirmBranch", "d2/d73/class_padamose_1_1_versioned_store.html#acf5cbbfca4abe4107a43d0917908552b", null ],
     [ "canJoin", "d2/d73/class_padamose_1_1_versioned_store.html#ad5f088510f8e8f3472326a08b1045552", null ],
     [ "clear", "d2/d73/class_padamose_1_1_versioned_store.html#a1d71e92079c2c7bf075cb8db620c2a40", null ],
+    [ "clearVersion", "d2/d73/class_padamose_1_1_versioned_store.html#adc27d88a681e38799298f872fac44fe7", null ],
     [ "getJoinScore", "d2/d73/class_padamose_1_1_versioned_store.html#a27a351eedec84aaa51ea41498116acc9", null ],
     [ "getRaw", "d2/d73/class_padamose_1_1_versioned_store.html#a088b030bf7726e27d710d087221b8408", null ],
     [ "getValue", "d2/d73/class_padamose_1_1_versioned_store.html#a9fe97ffdd3d2a841f9482049d252f538", null ],

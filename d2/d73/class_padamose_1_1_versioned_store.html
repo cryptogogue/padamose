@@ -120,6 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1d71e92079c2c7bf075cb8db620c2a40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a1d71e92079c2c7bf075cb8db620c2a40">clear</a> ()</td></tr>
 <tr class="memdesc:a1d71e92079c2c7bf075cb8db620c2a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abandons branch and sets version to 0.  <a href="#a1d71e92079c2c7bf075cb8db620c2a40">More...</a><br /></td></tr>
 <tr class="separator:a1d71e92079c2c7bf075cb8db620c2a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc27d88a681e38799298f872fac44fe7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html#adc27d88a681e38799298f872fac44fe7">clearVersion</a> ()</td></tr>
+<tr class="memdesc:adc27d88a681e38799298f872fac44fe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new branch if there are any dependencies above the current version.  <a href="#adc27d88a681e38799298f872fac44fe7">More...</a><br /></td></tr>
+<tr class="separator:adc27d88a681e38799298f872fac44fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fe97ffdd3d2a841f9482049d252f538"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
 <tr class="memitem:a9fe97ffdd3d2a841f9482049d252f538"><td class="memTemplItemLeft" align="right" valign="top">const TYPE&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a9fe97ffdd3d2a841f9482049d252f538">getValue</a> (string key) const</td></tr>
 <tr class="memdesc:a9fe97ffdd3d2a841f9482049d252f538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the value for a key. Throws an exception if the value cannot be found.  <a href="#a9fe97ffdd3d2a841f9482049d252f538">More...</a><br /></td></tr>
@@ -201,7 +204,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a31d251e088e9918a2a6d344559ee539e"><td class="mdescLeft">&#160;</td><td class="mdescRight">If a client supports the join operation (i.e. client is a branch), appends the contents of the client to the given branch.  <a href="#a31d251e088e9918a2a6d344559ee539e">More...</a><br /></td></tr>
 <tr class="separator:a31d251e088e9918a2a6d344559ee539e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25245522d4e89e114a4f0bb67e15b56f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html#a25245522d4e89e114a4f0bb67e15b56f">prepareForSetValue</a> ()</td></tr>
-<tr class="memdesc:a25245522d4e89e114a4f0bb67e15b56f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make sure a branch exists to hodl the value. If a branch already exists, create a new branch if setting a value for a version with dependencies.  <a href="#a25245522d4e89e114a4f0bb67e15b56f">More...</a><br /></td></tr>
+<tr class="memdesc:a25245522d4e89e114a4f0bb67e15b56f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make sure a branch exists to hold the value. If a branch already exists, create a new branch if setting a value for a version with dependencies.  <a href="#a25245522d4e89e114a4f0bb67e15b56f">More...</a><br /></td></tr>
 <tr class="separator:a25245522d4e89e114a4f0bb67e15b56f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a189402403b5278feb24366c8edf499ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#a189402403b5278feb24366c8edf499ed">preventJoin</a> () const</td></tr>
 <tr class="memdesc:a189402403b5278feb24366c8edf499ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by client to prevent a join from happening. Only considered is <a class="el" href="../../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#ad5f088510f8e8f3472326a08b1045552" title="Returns true if client supports the join operation. ">canJoin()</a> returns true.  <a href="#a189402403b5278feb24366c8edf499ed">More...</a><br /></td></tr>
@@ -231,8 +234,8 @@ Protected Attributes</h2></td></tr>
 <p>Two iterator implementations are provided: <a class="el" href="../../d9/d05/class_padamose_1_1_versioned_store_iterator.html" title="Implements a version-by-version iterator of a value store. ">VersionedStoreIterator</a> and <a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html" title="Implements a sparse version iterator of a specific value in a store. ">VersionedValueIterator</a>. <a class="el" href="../../d9/d05/class_padamose_1_1_versioned_store_iterator.html" title="Implements a version-by-version iterator of a value store. ">VersionedStoreIterator</a> iterates through versions sequentially. <a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html" title="Implements a sparse version iterator of a specific value in a store. ">VersionedValueIterator</a> only visits versions where the value being iterated was set of changed. Both iterators inherit from <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a> and thus give access to any value in the store.</p>
 <p>Iterators are faster moving backward through the version history. Due to the branching nature of the store, iterating forward may incur additional overhead when a fork in a branch is reached. To navigate the fork, the iterator must restart at the end of the branch and search bakward through branches until the correct side of the fork is found.</p>
 <p>A versioned store is interesting for blockchain implementation because it can represent both the blockchain itself (each version contains a block) and the overall "state" of the ledger. This state can be rewound and branched as new blocks are evaluated for addition to the chain.</p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000001">Todo:</a></b></dt><dd>The current implementation heavily uses STL maps. During the optimization step, branches are combined through concatenation. We'll eventually want an implementation that can do this operation quickly.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000002">Todo:</a></b></dt><dd>The current implementation exists only as a local in-memory data structure. We'll need a way to back it to an in-memory database server backed by storage media, such as Redis. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000002">Todo:</a></b></dt><dd>The current implementation heavily uses STL maps. During the optimization step, branches are combined through concatenation. We'll eventually want an implementation that can do this operation quickly.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000003">Todo:</a></b></dt><dd>The current implementation exists only as a local in-memory data structure. We'll need a way to back it to an in-memory database server backed by storage media, such as Redis. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae29030c67efbdd202aa0ecb6f642a03c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae29030c67efbdd202aa0ecb6f642a03c">&#9670;&nbsp;</a></span>VersionedStore() <span class="overload">[1/2]</span></h2>
@@ -517,6 +520,26 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Abandons branch and sets version to 0. </p>
+
+</div>
+</div>
+<a id="adc27d88a681e38799298f872fac44fe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc27d88a681e38799298f872fac44fe7">&#9670;&nbsp;</a></span>clearVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Padamose::VersionedStore::clearVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new branch if there are any dependencies above the current version. </p>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000001">Todo:</a></b></dt><dd>Internally implemented as a pop followed by a push. Look into a more efficient implementation. </dd></dl>
 
 </div>
 </div>
@@ -970,7 +993,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Make sure a branch exists to hodl the value. If a branch already exists, create a new branch if setting a value for a version with dependencies. </p>
+<p>Make sure a branch exists to hold the value. If a branch already exists, create a new branch if setting a value for a version with dependencies. </p>
 <p>This function find the top version in the store below which all other versions should be considered immutable. The immutable top is simply the highest version returned by <a class="el" href="../../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#ab11d914b80c025e428d2e3e5da672747" title="Returns the version below which all verions are depended on (to not change) by client. If any version below the dependent verion is changed, the branch must be forked and the change applied to the new branch. ">getVersionDependency()</a> for each cursor and branch other than the current cursor.</p>
 <p>If the current cursor's version is below the immutable top, then a new branch must be created. The new branch will become a child of the original branch and the cursor will be moved to this new branch. </p>
 
@@ -1307,7 +1330,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">VersionedStore</a></li>
-    <li class="footer">Generated on Mon Oct 1 2018 19:24:06 for Padamose by
+    <li class="footer">Generated on Wed Oct 3 2018 07:57:51 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

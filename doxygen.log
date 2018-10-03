@@ -2,8 +2,8 @@
 /Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h:63: warning: The following parameters of Padamose::ValueStack::AbstractValueStack_join(AbstractValueStack &to) const are not documented:
   parameter 'to'
 /Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h:97: warning: argument 'key' of command @param is not found in the argument list of Padamose::ValueStack< TYPE >::getValueOrNil(size_t version) const
-/Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h:128: warning: argument 'key' of command @param is not found in the argument list of Padamose::ValueStack< TYPE >::setValue(size_t version, const TYPE &value)
-/Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h:134: warning: The following parameters of Padamose::ValueStack::setValue(size_t version, const TYPE &value) are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h:129: warning: argument 'key' of command @param is not found in the argument list of Padamose::ValueStack< TYPE >::setValue(size_t version, const TYPE &value)
+/Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h:135: warning: The following parameters of Padamose::ValueStack::setValue(size_t version, const TYPE &value) are not documented:
   parameter 'version'
 /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBranch.cpp:87: warning: argument 'parent' of command @param is not found in the argument list of Padamose::VersionedBranch::fork(size_t baseVersion)
 /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:140: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
@@ -263,5 +263,5 @@ Patching output file 29/32
 Patching output file 30/32
 Patching output file 31/32
 Patching output file 32/32
-lookup cache used 412/65536 hits=1855 misses=421
+lookup cache used 415/65536 hits=1879 misses=424
 finished...

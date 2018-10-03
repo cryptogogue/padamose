@@ -90,13 +90,15 @@ $(document).ready(function(){initNavTree('dd/da0/todo.html','../../');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000001"></a>Class <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">Padamose::VersionedStore</a>  </dt>
+<dt><a class="anchor" id="_todo000002"></a>Class <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">Padamose::VersionedStore</a>  </dt>
 <dd><p class="startdd">The current implementation heavily uses STL maps. During the optimization step, branches are combined through concatenation. We'll eventually want an implementation that can do this operation quickly.</p>
 <p class="enddd">The current implementation exists only as a local in-memory data structure. We'll need a way to back it to an in-memory database server backed by storage media, such as Redis.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a1c483ba1e8386d87de9b0b1fb83bbbd8">Padamose::VersionedValueIterator&lt; TYPE &gt;::seekLower</a>  (size_t version)</dt>
+<dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html#adc27d88a681e38799298f872fac44fe7">Padamose::VersionedStore::clearVersion</a>  ()</dt>
+<dd>Internally implemented as a pop followed by a push. Look into a more efficient implementation.  </dd>
+<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a1c483ba1e8386d87de9b0b1fb83bbbd8">Padamose::VersionedValueIterator&lt; TYPE &gt;::seekLower</a>  (size_t version)</dt>
 <dd>This implementation is pretty inefficient in that every value is visited.  </dd>
-<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#afe627def54c16406f8ca51a8f9395693">Padamose::VersionedValueIterator&lt; TYPE &gt;::seekUpper</a>  (size_t version)</dt>
+<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="../../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#afe627def54c16406f8ca51a8f9395693">Padamose::VersionedValueIterator&lt; TYPE &gt;::seekUpper</a>  (size_t version)</dt>
 <dd>This implementation is pretty inefficient in that every value is visited. </dd>
 </dl>
 </div></div><!-- contents -->
@@ -104,7 +106,7 @@ $(document).ready(function(){initNavTree('dd/da0/todo.html','../../');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Oct 1 2018 19:24:06 for Padamose by
+    <li class="footer">Generated on Wed Oct 3 2018 07:57:50 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>
