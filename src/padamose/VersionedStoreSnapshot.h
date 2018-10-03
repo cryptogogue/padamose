@@ -68,9 +68,9 @@ public:
     void            clear                           ();
     size_t          getVersion                      () const;
     void            setDebugName                    ( string debugName );
-    void            takeSnapshot                    ( VersionedStoreSnapshot& other );
+    void            takeSnapshot                    ( const VersionedStoreSnapshot& other );
                     VersionedStoreSnapshot          ();
-                    VersionedStoreSnapshot          ( VersionedStoreSnapshot& other );
+                    VersionedStoreSnapshot          ( const VersionedStoreSnapshot& other );
     virtual         ~VersionedStoreSnapshot         ();
     
     //----------------------------------------------------------------//

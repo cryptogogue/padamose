@@ -59,7 +59,7 @@ void VersionedStoreSnapshot::setDebugName ( string debugName ) {
  
     \param  other   The snapshot to copy.
 */
-void VersionedStoreSnapshot::takeSnapshot ( VersionedStoreSnapshot& other ) {
+void VersionedStoreSnapshot::takeSnapshot ( const VersionedStoreSnapshot& other ) {
 
     this->setBranch ( other.mSourceBranch, other.mVersion );
 }
@@ -73,7 +73,7 @@ VersionedStoreSnapshot::VersionedStoreSnapshot () {
  
     \param  other   The snapshot to copy.
 */
-VersionedStoreSnapshot::VersionedStoreSnapshot ( VersionedStoreSnapshot& other ) {
+VersionedStoreSnapshot::VersionedStoreSnapshot ( const VersionedStoreSnapshot& other ) {
 
     this->takeSnapshot ( other );
 }

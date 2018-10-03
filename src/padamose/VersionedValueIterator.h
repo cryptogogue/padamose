@@ -335,7 +335,7 @@ public:
         \param  versionedStore  Snapshot to use as the upper bound for iteration.
         \param  key             Key of the value to be iterated.
     */
-    VersionedValueIterator ( VersionedStoreSnapshot& versionedStore, string key ) :
+    VersionedValueIterator ( const VersionedStoreSnapshot& versionedStore, string key ) :
         mAnchor ( versionedStore ),
         mKey ( key ) {
         

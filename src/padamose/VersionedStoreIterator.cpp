@@ -119,7 +119,7 @@ void VersionedStoreIterator::seek ( size_t version ) {
 
     \param  versionedStore  Snapshot to use as the upper bound for iteration.
 */
-VersionedStoreIterator::VersionedStoreIterator ( VersionedStoreSnapshot& versionedStore ) :
+VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreSnapshot& versionedStore ) :
     mAnchor ( versionedStore ) {
 
     if ( this->mAnchor.mSourceBranch && ( this->mAnchor.mSourceBranch->getTopVersion () > 0 )) {
@@ -137,7 +137,7 @@ VersionedStoreIterator::VersionedStoreIterator ( VersionedStoreSnapshot& version
     \param  versionedStore  Snapshot to use as the upper bound for iteration.
     \param  version         Version to seek back to. Must be equal to or less than the upper bound.
 */
-VersionedStoreIterator::VersionedStoreIterator ( VersionedStoreSnapshot& versionedStore, size_t version ) :
+VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreSnapshot& versionedStore, size_t version ) :
     VersionedStoreIterator ( versionedStore ) {
 
     this->seek ( version );
