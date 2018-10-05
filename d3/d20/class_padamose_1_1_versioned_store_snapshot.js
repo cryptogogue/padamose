@@ -1,7 +1,7 @@
 var class_padamose_1_1_versioned_store_snapshot =
 [
     [ "VersionedStoreSnapshot", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#aca773f48dba0b4a7f529faf4d84c6999", null ],
-    [ "VersionedStoreSnapshot", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#ae241797de30d736ee890f987f3f37a6d", null ],
+    [ "VersionedStoreSnapshot", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#ae5eaa607dbfdd92ae1766e41a2c8c8c8", null ],
     [ "~VersionedStoreSnapshot", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#acf973da1e4681073042675f8abd02d14", null ],
     [ "AbstractVersionedStoreClient_canJoin", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a7ccdc873aa45afc10c4cf01115c3304a", null ],
     [ "AbstractVersionedStoreClient_getJoinScore", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a259c2ef979c4596e19a57a76909220eb", null ],
@@ -26,7 +26,7 @@ var class_padamose_1_1_versioned_store_snapshot =
     [ "setBranch", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a624e5cb9ba0bb6e4b0b1fcca8907a14f", null ],
     [ "setBranch", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#af10c293db1a78375feeb4029ec8d35fb", null ],
     [ "setDebugName", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a6342403e9e6846ce53a69730b8f34086", null ],
-    [ "takeSnapshot", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a315856da5e2fdfddadfd3942a0849726", null ],
+    [ "takeSnapshot", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#aca5c80f7a11aae570f496da68bfacce5", null ],
     [ "AbstractVersionedValueIterator", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a1cc4013865430c75cd75b8725372fb10", null ],
     [ "VersionedBranch", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#af8ad0ab9ead942b58c655c08c2a3723b", null ],
     [ "VersionedStoreIterator", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a01e2f00133a6acd7e2675637b8e2c231", null ],

@@ -263,5 +263,5 @@ Patching output file 29/32
 Patching output file 30/32
 Patching output file 31/32
 Patching output file 32/32
-lookup cache used 416/65536 hits=1995 misses=425
+lookup cache used 415/65536 hits=1879 misses=424
 finished...

@@ -143,7 +143,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a39297fe4875ab85e0725aedb0a72c33f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check to see if the value can be found for the given version.  <a href="#a39297fe4875ab85e0725aedb0a72c33f">More...</a><br /></td></tr>
 <tr class="separator:a39297fe4875ab85e0725aedb0a72c33f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1128794d4bb84dbc894594efced863ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">VersionedStore</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html#a1128794d4bb84dbc894594efced863ca">operator=</a> (<a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;other)</td></tr>
-<tr class="memdesc:a1128794d4bb84dbc894594efced863ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements assignment by calling <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a315856da5e2fdfddadfd3942a0849726" title="Copy a snapshot. ">takeSnapshot()</a>.  <a href="#a1128794d4bb84dbc894594efced863ca">More...</a><br /></td></tr>
+<tr class="memdesc:a1128794d4bb84dbc894594efced863ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements assignment by calling <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#aca5c80f7a11aae570f496da68bfacce5" title="Copy a snapshot. ">takeSnapshot()</a>.  <a href="#a1128794d4bb84dbc894594efced863ca">More...</a><br /></td></tr>
 <tr class="separator:a1128794d4bb84dbc894594efced863ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe0570ae741f0bd5dfab33e287a8b483"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html#abe0570ae741f0bd5dfab33e287a8b483">popVersion</a> ()</td></tr>
 <tr class="memdesc:abe0570ae741f0bd5dfab33e287a8b483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop the top version and revert to the version before it.  <a href="#abe0570ae741f0bd5dfab33e287a8b483">More...</a><br /></td></tr>
@@ -161,9 +161,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afbea59a33d3db31f6fabc18e0ed48363"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html#afbea59a33d3db31f6fabc18e0ed48363">setValue</a> (string key, const TYPE &amp;value)</td></tr>
 <tr class="memdesc:afbea59a33d3db31f6fabc18e0ed48363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets or overwrites the value for the corresponding key at the current version.  <a href="#afbea59a33d3db31f6fabc18e0ed48363">More...</a><br /></td></tr>
 <tr class="separator:afbea59a33d3db31f6fabc18e0ed48363"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a315856da5e2fdfddadfd3942a0849726"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a315856da5e2fdfddadfd3942a0849726">takeSnapshot</a> (<a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;other)</td></tr>
-<tr class="memdesc:a315856da5e2fdfddadfd3942a0849726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a snapshot.  <a href="#a315856da5e2fdfddadfd3942a0849726">More...</a><br /></td></tr>
-<tr class="separator:a315856da5e2fdfddadfd3942a0849726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca5c80f7a11aae570f496da68bfacce5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#aca5c80f7a11aae570f496da68bfacce5">takeSnapshot</a> (const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;other)</td></tr>
+<tr class="memdesc:aca5c80f7a11aae570f496da68bfacce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a snapshot.  <a href="#aca5c80f7a11aae570f496da68bfacce5">More...</a><br /></td></tr>
+<tr class="separator:aca5c80f7a11aae570f496da68bfacce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -941,7 +941,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implements assignment by calling <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a315856da5e2fdfddadfd3942a0849726" title="Copy a snapshot. ">takeSnapshot()</a>. </p>
+<p>Implements assignment by calling <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#aca5c80f7a11aae570f496da68bfacce5" title="Copy a snapshot. ">takeSnapshot()</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td>The version to snapshot. </td></tr>
@@ -1064,7 +1064,7 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Revert to a previous version. </p>
-<p>This method may trigger branch optimizations and deletions. Once reverted, there is no way to seek forward again. Use <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a315856da5e2fdfddadfd3942a0849726" title="Copy a snapshot. ">takeSnapshot()</a> before calling <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html#ac1792614ea0f8c6b16905d17af4cf7da" title="Revert to a previous version. ">revert()</a> if it's important to be able to return to the current version.</p>
+<p>This method may trigger branch optimizations and deletions. Once reverted, there is no way to seek forward again. Use <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#aca5c80f7a11aae570f496da68bfacce5" title="Copy a snapshot. ">takeSnapshot()</a> before calling <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html#ac1792614ea0f8c6b16905d17af4cf7da" title="Revert to a previous version. ">revert()</a> if it's important to be able to return to the current version.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">version</td><td>The version to revert to. </td></tr>
@@ -1236,8 +1236,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a315856da5e2fdfddadfd3942a0849726"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a315856da5e2fdfddadfd3942a0849726">&#9670;&nbsp;</a></span>takeSnapshot()</h2>
+<a id="aca5c80f7a11aae570f496da68bfacce5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca5c80f7a11aae570f496da68bfacce5">&#9670;&nbsp;</a></span>takeSnapshot()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1248,7 +1248,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="memname">void Padamose::VersionedStoreSnapshot::takeSnapshot </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1330,7 +1330,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">VersionedStore</a></li>
-    <li class="footer">Generated on Fri Oct 5 2018 21:55:31 for Padamose by
+    <li class="footer">Generated on Fri Oct 5 2018 23:09:21 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>
