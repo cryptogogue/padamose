@@ -200,7 +200,7 @@ void VersionedBranch::optimize () {
         
         size_t clientVersion = client->getVersionDependency (); // store the client's version dependency to avoid extra function calls.
         
-        // the immutable top is the *highest* client version dependency. update it if and only it
+        // the immutable top is the *highest* client version dependency. update it if and only if
         // a client with a higher depenency is found.
         if ( immutableTop < clientVersion ) {
         
