@@ -277,8 +277,99 @@ TEST ( VersionedStore, test_multiple_setValue_without_pushVersion_will_override_
     ASSERT_EQ ( store.getValue < string >( KEY ), STR0 );
 }
 
+TEST ( VersionedStore, test_clearVerion_will_remove_all_changes_made_for_that_version_and_version_is_0 ){
+    VersionedStore store;
+
+    // setValue for version 0
+    store.setValue < string >( KEY, STR0 );
+    ASSERT_TRUE ( store.hasValue < string > ( KEY ));
+    
+    store.clearVersion ();
+    
+    ASSERT_EQ ( store.getVersion (), 0 );
+    ASSERT_FALSE ( store.hasValue < string > ( KEY ));
+}
 
 
+TEST ( VersionedStore, test_clearVerion_will_remove_all_changes_made_for_that_version_but_vesion_number_will_not_be_altered ){
+    VersionedStore store;
+
+    // setValue for version 0
+    store.setValue < string >( KEY, STR0 );
+    store.pushVersion ();
+    store.setValue < string >( KEY, STR1 );
+
+    ASSERT_EQ ( store.getVersion (), 1 );
+    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    
+    store.clearVersion ();
+    ASSERT_EQ ( store.getVersion (), 1 );
+    ASSERT_EQ ( store.getValue < string > ( KEY ), STR0 );
+}
+
+TEST ( VersionedStore, test_revert_to_current_version_doesnt_make_any_changes ){
+    VersionedStore store;
+
+    // setValue for version 0
+    store.setValue < string >( KEY, STR0 );
+    store.pushVersion ();
+    store.setValue < string >( KEY, STR1 );
+
+    ASSERT_EQ ( store.getVersion (), 1 );
+    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    
+    store.revert( store.getVersion ());
+    ASSERT_EQ ( store.getVersion (), 1 );
+    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+}
+
+TEST ( VersionedStore, test_revert_to_non_existing_future_version_assert_fails ){
+    VersionedStore store;
+
+    // setValue for version 0
+    store.setValue < string >( KEY, STR0 );
+    store.pushVersion ();
+    store.setValue < string >( KEY, STR1 );
+
+    ASSERT_EQ ( store.getVersion (), 1 );
+    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    
+    ASSERT_DEATH ( store.revert( store.getVersion () + 10 ), "Assertion `version <= this->mVersion' failed." );
+}
+
+TEST ( VersionedStore, test_revert_to_negative_version_assert_fails ){
+    VersionedStore store;
+
+    store.setValue < string >( KEY, STR0 );
+    store.pushVersion ();
+    store.setValue < string >( KEY, STR1 );
+
+    ASSERT_EQ ( store.getVersion (), 1 );
+    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+   
+    // size_t is unsigned so in fact this will end in large possitive number
+    ASSERT_DEATH ( store.revert( -1 ), "Assertion `version <= this->mVersion' failed." );
+}
+
+TEST ( VersionedStore, test_revert_to_specific_version_will_restore_value_set_in_that_version ){
+    VersionedStore store;
+
+    store.setValue < string >( KEY, STR0 );
+    store.pushVersion (); // version 1 
+    store.setValue < string >( KEY, STR1 );
+    store.pushVersion (); // version 2
+    store.setValue < string >( KEY, STR2 );
+    store.pushVersion (); // version 3
+    store.setValue < string >( KEY, STR3 );
+
+    ASSERT_EQ ( store.getVersion (), 3 );
+    ASSERT_EQ ( store.getValue < string > ( KEY ), STR3 );
+   
+    // size_t is unsigned so in fact this will end in large possitive number
+    store.revert( 1 );
+    ASSERT_EQ ( store.getVersion (), 1 );
+    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+}
 //----------------------------------------------------------------//
 TEST ( VersionedStore, test0 ) {
 
