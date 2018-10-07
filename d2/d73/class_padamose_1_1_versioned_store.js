@@ -32,7 +32,7 @@ var class_padamose_1_1_versioned_store =
     [ "setBranch", "d2/d73/class_padamose_1_1_versioned_store.html#af10c293db1a78375feeb4029ec8d35fb", null ],
     [ "setDebugName", "d2/d73/class_padamose_1_1_versioned_store.html#a6342403e9e6846ce53a69730b8f34086", null ],
     [ "setValue", "d2/d73/class_padamose_1_1_versioned_store.html#afbea59a33d3db31f6fabc18e0ed48363", null ],
-    [ "takeSnapshot", "d2/d73/class_padamose_1_1_versioned_store.html#aca5c80f7a11aae570f496da68bfacce5", null ],
+    [ "takeSnapshot", "d2/d73/class_padamose_1_1_versioned_store.html#a315856da5e2fdfddadfd3942a0849726", null ],
     [ "mSourceBranch", "d2/d73/class_padamose_1_1_versioned_store.html#a8420a0e79a7c70d074d4040bc9f182b2", null ],
     [ "mVersion", "d2/d73/class_padamose_1_1_versioned_store.html#a204e62db33566625f9bb2bf3abf9a77b", null ]
 ];
