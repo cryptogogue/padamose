@@ -26,6 +26,7 @@ var _test_versioned_store_8cpp =
     [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#aee2ad5c5c184911ced098f28bd70787f", null ],
     [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#a1c690f95455ce76c381d02e0ad0eb088", null ],
     [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#ae99b9000b08544ed73a2c37e0674d11b", null ],
+    [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#a767a51094006f75cb1aba94898410643", null ],
     [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#a985257020999ec6be0ac8a02a7bdff39", null ],
     [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#ad9f604c327ab5eefbee565491d08f76e", null ],
     [ "TEST", "d2/dae/_test_versioned_store_8cpp.html#a529b7ddb8b50a04f4b97da1fb925969f", null ],
