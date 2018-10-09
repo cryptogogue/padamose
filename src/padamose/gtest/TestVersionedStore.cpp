@@ -276,6 +276,21 @@ TEST ( VersionedStore, test_multiple_setValue_without_pushVersion_will_override_
     ASSERT_TRUE ( store.hasValue < string >( KEY ) );
     ASSERT_EQ ( store.getValue < string >( KEY ), STR0 );
 }
+TEST ( VersionedStore, test_clear_will_remove_all_changes_made_for_that_version_and_set_version_0 ){
+    VersionedStore store;
+    
+    // setValue for version 0
+    store.setValue < string >( KEY, STR0 );
+    store.pushVersion ();
+    store.setValue < string >( KEY, STR1 );
+
+    ASSERT_EQ ( store.getVersion (), 1 );
+    ASSERT_TRUE ( store.hasValue < string > ( KEY ) );
+    
+    store.clear ();
+    ASSERT_EQ ( store.getVersion (), 0 );
+    ASSERT_FALSE ( store.hasValue < string > ( KEY ) );
+}
 
 TEST ( VersionedStore, test_clearVerion_will_remove_all_changes_made_for_that_version_and_version_is_0 ){
     VersionedStore store;
