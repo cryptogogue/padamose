@@ -6,6 +6,7 @@
 
 #include <assert.h>
 #include <cmath>
+#include <exception>
 #include <fstream>
 #include <functional>
 #include <inttypes.h>
@@ -24,5 +25,7 @@
 #include <loguru.hpp>
 
 using namespace std;
+
+#include <padamose/Exception.h>
 
 #endif

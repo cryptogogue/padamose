@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <gtest/gtest.h>
+#include <gtest-helpers.h>
 #include <padamose/VersionedStore.h>
 
 using namespace Padamose;
@@ -30,11 +30,11 @@ TEST ( VersionedStore, test_hasValue_returns_true_if_value_was_set ) {
     ASSERT_TRUE ( store.hasValue < string >( KEY ) );
 }
 
-TEST ( VersionedStore, test_hasValue_if_value_was_set_with_different_type_assert_failed ) {
+TEST ( VersionedStore, test_hasValue_if_value_was_set_with_different_type_fails ) {
     VersionedStore store;
     store.setValue < string >( KEY, STR0 );
 
-    ASSERT_DEATH ( store.hasValue < int >( KEY ), "Assertion `valueStack' failed" );
+    ASSERT_FALSE ( store.hasValue < int >( KEY ));
 
 }
 
@@ -69,27 +69,27 @@ TEST ( VersionedStore, test_setValue_for_bool_type ){
     ASSERT_EQ ( store.getValue < bool >( KEY ), value );
 }
 
-TEST ( VersionedStore, test_getValue_key_does_not_exists_assert_fails ){
+TEST ( VersionedStore, test_getValue_key_does_not_exists_exception_fails ){
     VersionedStore store;
     
-    ASSERT_DEATH(store.getValue < string >( KEY ), "Assertion .* failed.");
+    ASSERT_EXCEPTION_CAUGHT ( store.getValue < string >( KEY ), KeyNotFoundException );
 }
 
-TEST ( VersionedStore, test_getValue_missmatch_type_assert_fails ){
+TEST ( VersionedStore, test_getValue_missmatch_type_exception_fails ){
     const string value = "sample string";
     VersionedStore store;
     store.setValue < string >( KEY, value );
     
-    ASSERT_DEATH ( store.getValue < int >( KEY ), "Assertion .* failed.");
+    ASSERT_EXCEPTION_CAUGHT ( store.getValue < int >( KEY ), KeyNotFoundException );
 }
 
-TEST ( VersionedStore, test_setValue_different_type_for_the_same_key_assert_fails ){
+TEST ( VersionedStore, test_setValue_different_type_for_the_same_key_exception_fails ){
     const string str_value = "sample string";
     const int int_value = 1;
     VersionedStore store;
     store.setValue < string >( KEY, str_value );
-
-    ASSERT_DEATH ( store.setValue < int >( KEY, int_value ), "Assertion `valueStack' failed.");
+    
+    ASSERT_EXCEPTION_CAUGHT ( store.setValue < int >( KEY, int_value ), TypeMismatchOnAssignException );
 }
 
 TEST ( VersionedStore, test_setValue_different_type_with_different_keys ){
@@ -338,7 +338,7 @@ TEST ( VersionedStore, test_revert_to_current_version_doesnt_make_any_changes ){
     ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
 }
 
-TEST ( VersionedStore, test_revert_to_non_existing_future_version_assert_fails ){
+TEST ( VersionedStore, test_revert_to_non_existing_future_version_exception_fails ){
     VersionedStore store;
 
     // setValue for version 0
@@ -349,10 +349,10 @@ TEST ( VersionedStore, test_revert_to_non_existing_future_version_assert_fails )
     ASSERT_EQ ( store.getVersion (), 1 );
     ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
     
-    ASSERT_DEATH ( store.revert( store.getVersion () + 10 ), "Assertion `version <= this->mVersion' failed." );
+    ASSERT_EXCEPTION_CAUGHT ( store.revert ( store.getVersion () + 10 ), VersionOutOfBoundsException );
 }
 
-TEST ( VersionedStore, test_revert_to_negative_version_assert_fails ){
+TEST ( VersionedStore, test_revert_to_negative_version_exception_fails ){
     VersionedStore store;
 
     store.setValue < string >( KEY, STR0 );
@@ -363,7 +363,7 @@ TEST ( VersionedStore, test_revert_to_negative_version_assert_fails ){
     ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
    
     // size_t is unsigned so in fact this will end in large possitive number
-    ASSERT_DEATH ( store.revert( -1 ), "Assertion `version <= this->mVersion' failed." );
+    ASSERT_EXCEPTION_CAUGHT ( store.revert ( -1 ), VersionOutOfBoundsException );
 }
 
 TEST ( VersionedStore, test_revert_to_specific_version_will_restore_value_set_in_that_version ){

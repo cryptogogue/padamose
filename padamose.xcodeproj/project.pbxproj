@@ -64,6 +64,7 @@
 		CDA06FFE2159A79C003FA0C3 /* AbstractValueStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FFC2159A79B003FA0C3 /* AbstractValueStack.cpp */; };
 		CDA06FFF2159A79C003FA0C3 /* AbstractValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FFD2159A79C003FA0C3 /* AbstractValueStack.h */; };
 		CDD36CC9215DA1DA004FC222 /* loguru.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FE62155C57F003FA0C3 /* loguru.cpp */; };
+		CDF903A9219E2D1400C1930B /* Exception.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF903A8219E2D1400C1930B /* Exception.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,8 @@
 		CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedBranchClient.cpp; path = src/padamose/AbstractVersionedBranchClient.cpp; sourceTree = "<group>"; };
 		CDA06FFC2159A79B003FA0C3 /* AbstractValueStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractValueStack.cpp; path = src/padamose/AbstractValueStack.cpp; sourceTree = "<group>"; };
 		CDA06FFD2159A79C003FA0C3 /* AbstractValueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractValueStack.h; path = src/padamose/AbstractValueStack.h; sourceTree = "<group>"; };
+		CDF903A8219E2D1400C1930B /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exception.h; path = src/padamose/Exception.h; sourceTree = "<group>"; };
+		CDF903AA219F99D400C1930B /* gtest-helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtest-helpers.h"; path = "src/padamose/gtest/gtest-helpers.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,7 @@
 		CD4E816621057ADF007DA585 /* gtest */ = {
 			isa = PBXGroup;
 			children = (
+				CDF903AA219F99D400C1930B /* gtest-helpers.h */,
 				CD4E816B21057DD1007DA585 /* main-gtest.cpp */,
 				CDA06FE62155C57F003FA0C3 /* loguru.cpp */,
 				CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */,
@@ -237,6 +241,7 @@
 				CDA06FFD2159A79C003FA0C3 /* AbstractValueStack.h */,
 				CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */,
 				CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */,
+				CDF903A8219E2D1400C1930B /* Exception.h */,
 				CD561DB9210730E5008B06C7 /* ValueStack.h */,
 				CD561DBB210730ED008B06C7 /* VersionedBranch.cpp */,
 				CD561DBC210730ED008B06C7 /* VersionedBranch.h */,
@@ -332,6 +337,7 @@
 				CDA06FF321570FDF003FA0C3 /* VersionedStore.h in Headers */,
 				CD240D2821327F6600FF8812 /* VersionedValueIterator.h in Headers */,
 				CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchClient.h in Headers */,
+				CDF903A9219E2D1400C1930B /* Exception.h in Headers */,
 				CD561DBA210730E5008B06C7 /* ValueStack.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

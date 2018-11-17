@@ -84,34 +84,36 @@ public:
     }
     
     //----------------------------------------------------------------//
-    /** \brief  Return a copy of the value for a key. Throws an exception if the
-                value cannot be found.
+    /** \brief  Return a copy of the value for a key. Throws a KeyNotFoundException exception
+                if the key does not exist.
      
-        \param  key     The key.
-        \return         A copy of the value.
+        \param  key                     The key.
+        \return                         A copy of the value.
+        \throws KeyNotFoundException    No value was be found for the given key.
     */
     template < typename TYPE >
     const TYPE getValue ( string key ) const {
         const TYPE* value = this->getValueOrNil < TYPE >( key, this->mVersion );
-        assert ( value );
+        if ( !value ) throw KeyNotFoundException ();
         return *value;
     }
 
     //----------------------------------------------------------------//
-    /** \brief  Return a copy of the value for a key at a given version.
-                Throws an exception if the value cannot be found.
+    /** \brief  Return a copy of the value for a key at a given version. Throws a
+                KeyNotFoundException exception if the key does not exist.
      
                 Returns the value for the most recent version equal to or less than
                 the given version.
      
-        \param  key         The key.
-        \param  version     The version.
-        \return             A copy of the value.
+        \param  key                     The key.
+        \param  version                 The version.
+        \return                         A copy of the value.
+        \throws KeyNotFoundException    No value was be found for the given key.
     */
     template < typename TYPE >
     const TYPE getValue ( string key, size_t version ) const {
         const TYPE* value = this->getValueOrNil < TYPE >( key, version );
-        assert ( value );
+        if ( !value ) throw KeyNotFoundException ();
         return *value;
     }
 
@@ -119,7 +121,7 @@ public:
     /** \brief  Check to see if the value can be found.
      
         \param  key     The key.
-        \return         True if the value exists. False if it cant.
+        \return         True if the value exists. False if it doesn't.
     */
     template < typename TYPE >
     bool hasValue ( string key ) const {
@@ -134,7 +136,7 @@ public:
                 the given version.
      
         \param  key     The key.
-        \return         True if the value exists. False if it cant.
+        \return         True if the value exists. False if it doesn't.
     */
     template < typename TYPE >
     bool hasValue ( string key, size_t version ) const {

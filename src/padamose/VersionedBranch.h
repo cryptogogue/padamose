@@ -88,7 +88,9 @@ private:
                 
                     // we can optimize this later if we need to.
                     const ValueStack < TYPE >* valueStack = dynamic_cast < const ValueStack < TYPE >* >( abstractValueStack );
-                    assert ( valueStack );
+                    if ( !valueStack ) {
+                        return NULL; // value exists, but is wrong type.
+                    }
                     
                     // check if value stack contains an ID for a matching or most recent lesser version.
                     // it's possible that all values are more recent than the version, in which case
@@ -109,11 +111,15 @@ private:
 
     //----------------------------------------------------------------//
     /** \brief Sets a value at the given version. If the version doesn't exist,
-        a new layer will be created. Also creates a value stack if none exists.
+        a new layer will be created. Also creates a value stack if none exists. Throws
+        a TypeMismatchOnAssignException if a value of a different type has already been
+        addigned to the key.
      
         \param      version     The version to set the value at. Must be equal to or greater than the branch's base version.
         \param      key         Key of the value to set.
         \param      value       Raw pointer to value to set.
+     
+        \throws     TypeMismatchOnAssignException
     */
     template < typename TYPE >
     void setValue ( size_t version, string key, const TYPE& value ) {
@@ -129,7 +135,7 @@ private:
         
         // we can optimize this later if we need to.
         ValueStack < TYPE >* valueStack = dynamic_cast < ValueStack < TYPE >* >( abstractValueStack.get ());
-        assert ( valueStack );
+        if ( !valueStack ) throw TypeMismatchOnAssignException ();
 
         valueStack->setValue ( version, value );
         

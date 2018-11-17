@@ -134,13 +134,14 @@ void VersionedStore::pushVersion () {
     before calling revert() if it's important to be able to return
     to the current version.
  
-    \param  version     The version to revert to.
+    \param  version                         he version to revert to.
+    \throws VersionOutOfBoundsException
 */
 void VersionedStore::revert ( size_t version ) {
 
     LOG_SCOPE_F ( INFO, "VersionedStore::rewind ( %d )", ( int )version );
 
-    assert ( version <= this->mVersion );
+    if ( version > this->mVersion ) throw VersionOutOfBoundsException ();
     
     if (( this->mSourceBranch ) && ( version < this->mVersion )) {
     
