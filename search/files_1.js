@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loguru_2ecpp',['loguru.cpp',['../df/d02/loguru_8cpp.html',1,'']]]
+  ['exception_2eh',['Exception.h',['../df/d98/_exception_8h.html',1,'']]]
 ];

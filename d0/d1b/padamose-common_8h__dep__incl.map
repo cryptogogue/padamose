@@ -1,15 +1,16 @@
 <map id="/Users/travis/build/cryptogogue/padamose/src/padamose/padamose&#45;common.h" name="/Users/travis/build/cryptogogue/padamose/src/padamose/padamose&#45;common.h">
-<area shape="rect" id="node2" href="$de/de3/_abstract_value_stack_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/AbstractValueStack.h" alt="" coords="511,125,750,177"/>
-<area shape="rect" id="node4" href="$db/de1/_value_stack_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/ValueStack.h" alt="" coords="611,239,801,291"/>
-<area shape="rect" id="node5" href="$dc/d7d/_versioned_branch_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedBranch.h" alt="" coords="647,345,872,397"/>
+<area shape="rect" id="node2" href="$de/de3/_abstract_value_stack_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/AbstractValueStack.h" alt="" coords="638,125,877,177"/>
+<area shape="rect" id="node4" href="$db/de1/_value_stack_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/ValueStack.h" alt="" coords="662,239,852,291"/>
+<area shape="rect" id="node5" href="$dc/d7d/_versioned_branch_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedBranch.h" alt="" coords="642,345,867,397"/>
 <area shape="rect" id="node8" href="$d1/dc8/_versioned_store_snapshot_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedStore\lSnapshot.h" alt="" coords="649,445,852,511"/>
 <area shape="rect" id="node9" href="$d6/d12/_versioned_store_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedStore.h" alt="" coords="139,565,354,617"/>
 <area shape="rect" id="node13" href="$d1/daf/_versioned_store_iterator_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedStore\lIterator.h" alt="" coords="1337,559,1540,624"/>
 <area shape="rect" id="node16" href="$dc/d0b/_versioned_value_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedValue.h" alt="" coords="1097,565,1313,617"/>
 <area shape="rect" id="node17" href="$d9/dec/_versioned_value_iterator_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedValue\lIterator.h" alt="" coords="868,559,1073,624"/>
 <area shape="rect" id="node18" href="$da/d56/_abstract_versioned_branch_client_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/AbstractVersioned\lBranchClient.h" alt="" coords="876,232,1097,297"/>
-<area shape="rect" id="node19" href="$d9/d15/main-gtest_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/gtest/main\l&#45;gtest.cpp" alt="" coords="1273,119,1447,184"/>
-<area shape="rect" id="node3" href="$d3/dae/_abstract_value_stack_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/AbstractValueStack.cpp" alt="" coords="335,239,588,291"/>
+<area shape="rect" id="node19" href="$df/d98/_exception_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/Exception.h" alt="" coords="1273,125,1455,177"/>
+<area shape="rect" id="node20" href="$d9/d15/main-gtest_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/gtest/main\l&#45;gtest.cpp" alt="" coords="1479,119,1653,184"/>
+<area shape="rect" id="node3" href="$d3/dae/_abstract_value_stack_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/AbstractValueStack.cpp" alt="" coords="385,239,638,291"/>
 <area shape="rect" id="node6" href="$d7/d44/_abstract_versioned_branch_client_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/AbstractVersioned\lBranchClient.cpp" alt="" coords="876,445,1097,511"/>
 <area shape="rect" id="node7" href="$da/d92/_versioned_branch_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedBranch.cpp" alt="" coords="377,565,617,617"/>
 <area shape="rect" id="node15" href="$d8/d18/_versioned_store_snapshot_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedStore\lSnapshot.cpp" alt="" coords="641,559,844,624"/>

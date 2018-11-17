@@ -3,6 +3,11 @@ var hierarchy =
     [ "enable_shared_from_this", null, [
       [ "Padamose::VersionedBranch", "d4/da9/class_padamose_1_1_versioned_branch.html", null ]
     ] ],
+    [ "logic_error", null, [
+      [ "Padamose::KeyNotFoundException", "d5/d87/class_padamose_1_1_key_not_found_exception.html", null ],
+      [ "Padamose::TypeMismatchOnAssignException", "db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html", null ],
+      [ "Padamose::VersionOutOfBoundsException", "d1/dcb/class_padamose_1_1_version_out_of_bounds_exception.html", null ]
+    ] ],
     [ "Padamose::AbstractValueStack", "d2/d67/class_padamose_1_1_abstract_value_stack.html", [
       [ "Padamose::ValueStack< TYPE >", "dd/d4c/class_padamose_1_1_value_stack.html", null ]
     ] ],

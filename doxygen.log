@@ -6,15 +6,15 @@
 /Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h:135: warning: The following parameters of Padamose::ValueStack::setValue(size_t version, const TYPE &value) are not documented:
   parameter 'version'
 /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBranch.cpp:87: warning: argument 'parent' of command @param is not found in the argument list of Padamose::VersionedBranch::fork(size_t baseVersion)
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:140: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:142: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:140: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:142: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:140: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:142: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:140: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:142: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:140: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:142: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
 Searching for include files...
 Searching for example files...
@@ -37,6 +37,10 @@ Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVers
 Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedBranchClient.cpp...
 Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedBranchClient.h...
 Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedBranchClient.h...
+Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/Exception.h...
+Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/Exception.h...
+Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/gtest-helpers.h...
+Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/gtest-helpers.h...
 Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/main-gtest.cpp...
 Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/main-gtest.cpp...
 Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/TestVersionedStore.cpp...
@@ -123,6 +127,8 @@ Generating example documentation...
 Generating file sources...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractValueStack.h...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedBranchClient.h...
+Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/Exception.h...
+Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/gtest-helpers.h...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/padamose-common.h...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBranch.h...
@@ -136,6 +142,8 @@ Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/A
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractValueStack.h...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedBranchClient.cpp...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedBranchClient.h...
+Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/Exception.h...
+Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/gtest-helpers.h...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/main-gtest.cpp...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/TestVersionedStore.cpp...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/TestVersionedStoreIterators.cpp...
@@ -160,6 +168,8 @@ Generating namespace index...
 Generating docs for namespace Padamose
 Generating docs for compound Padamose::AbstractValueStack...
 Generating docs for compound Padamose::AbstractVersionedBranchClient...
+Generating docs for compound Padamose::KeyNotFoundException...
+Generating docs for compound Padamose::TypeMismatchOnAssignException...
 Generating docs for compound Padamose::ValueStack...
 Generating docs for compound Padamose::VersionedBranch...
 Generating docs for compound Padamose::VersionedStore...
@@ -167,6 +177,7 @@ Generating docs for compound Padamose::VersionedStoreIterator...
 Generating docs for compound Padamose::VersionedStoreSnapshot...
 Generating docs for compound Padamose::VersionedValue...
 Generating docs for compound Padamose::VersionedValueIterator...
+Generating docs for compound Padamose::VersionOutOfBoundsException...
 Generating graph info page...
 Generating directory documentation...
 Generating dependency graph for directory /Users/travis/build/cryptogogue/padamose/src/padamose/gtest
@@ -188,80 +199,93 @@ finalizing index lists...
 writing tag file...
 Running dot...
 Generating dot graphs using 3 parallel threads...
-Running dot for graph 1/43
-Running dot for graph 2/43
-Running dot for graph 3/43
-Running dot for graph 4/43
-Running dot for graph 5/43
-Running dot for graph 6/43
-Running dot for graph 7/43
-Running dot for graph 8/43
-Running dot for graph 9/43
-Running dot for graph 10/43
-Running dot for graph 11/43
-Running dot for graph 12/43
-Running dot for graph 13/43
-Running dot for graph 14/43
-Running dot for graph 15/43
-Running dot for graph 16/43
-Running dot for graph 17/43
-Running dot for graph 18/43
-Running dot for graph 19/43
-Running dot for graph 20/43
-Running dot for graph 21/43
-Running dot for graph 22/43
-Running dot for graph 23/43
-Running dot for graph 24/43
-Running dot for graph 25/43
-Running dot for graph 26/43
-Running dot for graph 27/43
-Running dot for graph 28/43
-Running dot for graph 29/43
-Running dot for graph 30/43
-Running dot for graph 31/43
-Running dot for graph 32/43
-Running dot for graph 33/43
-Running dot for graph 34/43
-Running dot for graph 35/43
-Running dot for graph 36/43
-Running dot for graph 37/43
-Running dot for graph 38/43
-Running dot for graph 39/43
-Running dot for graph 40/43
-Running dot for graph 41/43
-Running dot for graph 42/43
-Running dot for graph 43/43
-Patching output file 1/32
-Patching output file 2/32
-Patching output file 3/32
-Patching output file 4/32
-Patching output file 5/32
-Patching output file 6/32
-Patching output file 7/32
-Patching output file 8/32
-Patching output file 9/32
-Patching output file 10/32
-Patching output file 11/32
-Patching output file 12/32
-Patching output file 13/32
-Patching output file 14/32
-Patching output file 15/32
-Patching output file 16/32
-Patching output file 17/32
-Patching output file 18/32
-Patching output file 19/32
-Patching output file 20/32
-Patching output file 21/32
-Patching output file 22/32
-Patching output file 23/32
-Patching output file 24/32
-Patching output file 25/32
-Patching output file 26/32
-Patching output file 27/32
-Patching output file 28/32
-Patching output file 29/32
-Patching output file 30/32
-Patching output file 31/32
-Patching output file 32/32
-lookup cache used 416/65536 hits=2030 misses=425
+Running dot for graph 1/51
+Running dot for graph 2/51
+Running dot for graph 3/51
+Running dot for graph 4/51
+Running dot for graph 5/51
+Running dot for graph 6/51
+Running dot for graph 7/51
+Running dot for graph 8/51
+Running dot for graph 9/51
+Running dot for graph 10/51
+Running dot for graph 11/51
+Running dot for graph 12/51
+Running dot for graph 13/51
+Running dot for graph 14/51
+Running dot for graph 15/51
+Running dot for graph 16/51
+Running dot for graph 17/51
+Running dot for graph 18/51
+Running dot for graph 19/51
+Running dot for graph 20/51
+Running dot for graph 21/51
+Running dot for graph 22/51
+Running dot for graph 23/51
+Running dot for graph 24/51
+Running dot for graph 25/51
+Running dot for graph 26/51
+Running dot for graph 27/51
+Running dot for graph 28/51
+Running dot for graph 29/51
+Running dot for graph 30/51
+Running dot for graph 31/51
+Running dot for graph 32/51
+Running dot for graph 33/51
+Running dot for graph 34/51
+Running dot for graph 35/51
+Running dot for graph 36/51
+Running dot for graph 37/51
+Running dot for graph 38/51
+Running dot for graph 39/51
+Running dot for graph 40/51
+Running dot for graph 41/51
+Running dot for graph 42/51
+Running dot for graph 43/51
+Running dot for graph 44/51
+Running dot for graph 45/51
+Running dot for graph 46/51
+Running dot for graph 47/51
+Running dot for graph 48/51
+Running dot for graph 49/51
+Running dot for graph 50/51
+Running dot for graph 51/51
+Patching output file 1/37
+Patching output file 2/37
+Patching output file 3/37
+Patching output file 4/37
+Patching output file 5/37
+Patching output file 6/37
+Patching output file 7/37
+Patching output file 8/37
+Patching output file 9/37
+Patching output file 10/37
+Patching output file 11/37
+Patching output file 12/37
+Patching output file 13/37
+Patching output file 14/37
+Patching output file 15/37
+Patching output file 16/37
+Patching output file 17/37
+Patching output file 18/37
+Patching output file 19/37
+Patching output file 20/37
+Patching output file 21/37
+Patching output file 22/37
+Patching output file 23/37
+Patching output file 24/37
+Patching output file 25/37
+Patching output file 26/37
+Patching output file 27/37
+Patching output file 28/37
+Patching output file 29/37
+Patching output file 30/37
+Patching output file 31/37
+Patching output file 32/37
+Patching output file 33/37
+Patching output file 34/37
+Patching output file 35/37
+Patching output file 36/37
+Patching output file 37/37
+lookup cache used 434/65536 hits=2071 misses=443
 finished...

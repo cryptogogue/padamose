@@ -207,7 +207,7 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a5ec0e705e6208dc4ac21cbd15fd756ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1e9f378f77a8da5c2f75068df8f3c90"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
 <tr class="memitem:af1e9f378f77a8da5c2f75068df8f3c90"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/da9/class_padamose_1_1_versioned_branch.html#af1e9f378f77a8da5c2f75068df8f3c90">setValue</a> (size_t version, string key, const TYPE &amp;value)</td></tr>
-<tr class="memdesc:af1e9f378f77a8da5c2f75068df8f3c90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a value at the given version. If the version doesn't exist, a new layer will be created. Also creates a value stack if none exists.  <a href="#af1e9f378f77a8da5c2f75068df8f3c90">More...</a><br /></td></tr>
+<tr class="memdesc:af1e9f378f77a8da5c2f75068df8f3c90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a value at the given version. If the version doesn't exist, a new layer will be created. Also creates a value stack if none exists. Throws a <a class="el" href="../../db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html">TypeMismatchOnAssignException</a> if a value of a different type has already been addigned to the key.  <a href="#af1e9f378f77a8da5c2f75068df8f3c90">More...</a><br /></td></tr>
 <tr class="separator:af1e9f378f77a8da5c2f75068df8f3c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbb55b59474680677faafd7e53d03728"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da9/class_padamose_1_1_versioned_branch.html#abbb55b59474680677faafd7e53d03728">truncate</a> (size_t topVersion)</td></tr>
 <tr class="memdesc:abbb55b59474680677faafd7e53d03728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discards all layers and values with versions greater than or equal to the given version.  <a href="#abbb55b59474680677faafd7e53d03728">More...</a><br /></td></tr>
@@ -1085,12 +1085,18 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Sets a value at the given version. If the version doesn't exist, a new layer will be created. Also creates a value stack if none exists. </p>
+<p>Sets a value at the given version. If the version doesn't exist, a new layer will be created. Also creates a value stack if none exists. Throws a <a class="el" href="../../db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html">TypeMismatchOnAssignException</a> if a value of a different type has already been addigned to the key. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">version</td><td>The version to set the value at. Must be equal to or greater than the branch's base version. </td></tr>
     <tr><td class="paramname">key</td><td>Key of the value to set. </td></tr>
-    <tr><td class="paramname">value</td><td>Raw pointer to value to set. </td></tr>
+    <tr><td class="paramname">value</td><td>Raw pointer to value to set.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="../../db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html">TypeMismatchOnAssignException</a></td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -1445,7 +1451,7 @@ template&lt;typename &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d4/da9/class_padamose_1_1_versioned_branch.html">VersionedBranch</a></li>
-    <li class="footer">Generated on Tue Oct 9 2018 11:07:52 for Padamose by
+    <li class="footer">Generated on Sat Nov 17 2018 17:12:22 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

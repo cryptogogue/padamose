@@ -1,8 +1,9 @@
 <map id="/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedValueIterator.h" name="/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedValueIterator.h">
-<area shape="rect" id="node2" href="$de/d05/padamose-common_8h.html" title="padamose/padamose&#45;common.h" alt="" coords="632,425,848,451"/>
-<area shape="rect" id="node20" href="$d1/dc8/_versioned_store_snapshot_8h.html" title="padamose/VersionedStoreSnapshot.h" alt="" coords="502,119,748,144"/>
-<area shape="rect" id="node21" href="$da/d56/_abstract_versioned_branch_client_8h.html" title="padamose/AbstractVersioned\lBranchClient.h" alt="" coords="542,265,737,304"/>
-<area shape="rect" id="node22" href="$dc/d7d/_versioned_branch_8h.html" title="padamose/VersionedBranch.h" alt="" coords="670,192,870,217"/>
-<area shape="rect" id="node23" href="$db/de1/_value_stack_8h.html" title="padamose/ValueStack.h" alt="" coords="812,272,977,297"/>
-<area shape="rect" id="node24" href="$de/de3/_abstract_value_stack_8h.html" title="padamose/AbstractValueStack.h" alt="" coords="862,352,1076,377"/>
+<area shape="rect" id="node2" href="$de/d05/padamose-common_8h.html" title="padamose/padamose&#45;common.h" alt="" coords="780,425,996,451"/>
+<area shape="rect" id="node22" href="$d1/dc8/_versioned_store_snapshot_8h.html" title="padamose/VersionedStoreSnapshot.h" alt="" coords="650,119,896,144"/>
+<area shape="rect" id="node21" href="$df/d98/_exception_8h.html" title="padamose/Exception.h" alt="" coords="1587,499,1744,524"/>
+<area shape="rect" id="node23" href="$da/d56/_abstract_versioned_branch_client_8h.html" title="padamose/AbstractVersioned\lBranchClient.h" alt="" coords="690,265,885,304"/>
+<area shape="rect" id="node24" href="$dc/d7d/_versioned_branch_8h.html" title="padamose/VersionedBranch.h" alt="" coords="818,192,1018,217"/>
+<area shape="rect" id="node25" href="$db/de1/_value_stack_8h.html" title="padamose/ValueStack.h" alt="" coords="960,272,1125,297"/>
+<area shape="rect" id="node26" href="$de/de3/_abstract_value_stack_8h.html" title="padamose/AbstractValueStack.h" alt="" coords="1010,352,1224,377"/>
 </map>

@@ -125,11 +125,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1d71e92079c2c7bf075cb8db620c2a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fe97ffdd3d2a841f9482049d252f538"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
 <tr class="memitem:a9fe97ffdd3d2a841f9482049d252f538"><td class="memTemplItemLeft" align="right" valign="top">const TYPE&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a9fe97ffdd3d2a841f9482049d252f538">getValue</a> (string key) const</td></tr>
-<tr class="memdesc:a9fe97ffdd3d2a841f9482049d252f538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the value for a key. Throws an exception if the value cannot be found.  <a href="#a9fe97ffdd3d2a841f9482049d252f538">More...</a><br /></td></tr>
+<tr class="memdesc:a9fe97ffdd3d2a841f9482049d252f538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the value for a key. Throws a <a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a> exception if the key does not exist.  <a href="#a9fe97ffdd3d2a841f9482049d252f538">More...</a><br /></td></tr>
 <tr class="separator:a9fe97ffdd3d2a841f9482049d252f538"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7b8ab7d13eefa90a44a3c9d7d5d3c94"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
 <tr class="memitem:ab7b8ab7d13eefa90a44a3c9d7d5d3c94"><td class="memTemplItemLeft" align="right" valign="top">const TYPE&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#ab7b8ab7d13eefa90a44a3c9d7d5d3c94">getValue</a> (string key, size_t version) const</td></tr>
-<tr class="memdesc:ab7b8ab7d13eefa90a44a3c9d7d5d3c94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the value for a key at a given version. Throws an exception if the value cannot be found.  <a href="#ab7b8ab7d13eefa90a44a3c9d7d5d3c94">More...</a><br /></td></tr>
+<tr class="memdesc:ab7b8ab7d13eefa90a44a3c9d7d5d3c94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the value for a key at a given version. Throws a <a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a> exception if the key does not exist.  <a href="#ab7b8ab7d13eefa90a44a3c9d7d5d3c94">More...</a><br /></td></tr>
 <tr class="separator:ab7b8ab7d13eefa90a44a3c9d7d5d3c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3fcb6c8e24b115722a150ee68dc8f05"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#ab3fcb6c8e24b115722a150ee68dc8f05">getVersion</a> () const</td></tr>
 <tr class="memdesc:ab3fcb6c8e24b115722a150ee68dc8f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current version.  <a href="#ab3fcb6c8e24b115722a150ee68dc8f05">More...</a><br /></td></tr>
@@ -701,7 +701,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Return a copy of the value for a key. Throws an exception if the value cannot be found. </p>
+<p>Return a copy of the value for a key. Throws a <a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a> exception if the key does not exist. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>The key. </td></tr>
@@ -709,6 +709,12 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A copy of the value. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a></td><td>No value was be found for the given key. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -748,7 +754,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Return a copy of the value for a key at a given version. Throws an exception if the value cannot be found. </p>
+<p>Return a copy of the value for a key at a given version. Throws a <a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a> exception if the key does not exist. </p>
 <p>Returns the value for the most recent version equal to or less than the given version.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -758,6 +764,12 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A copy of the value. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a></td><td>No value was be found for the given key. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -899,7 +911,7 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the value exists. False if it cant. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the value exists. False if it doesn't. </dd></dl>
 
 </div>
 </div>
@@ -947,7 +959,7 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the value exists. False if it cant. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the value exists. False if it doesn't. </dd></dl>
 
 </div>
 </div>
@@ -1475,7 +1487,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d9/d05/class_padamose_1_1_versioned_store_iterator.html">VersionedStoreIterator</a></li>
-    <li class="footer">Generated on Tue Oct 9 2018 11:07:52 for Padamose by
+    <li class="footer">Generated on Sat Nov 17 2018 17:12:22 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>
