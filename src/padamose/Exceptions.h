@@ -1,12 +1,25 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_EXCEPTION_H
-#define PADAMOSE_EXCEPTION_H
+#ifndef PADAMOSE_EXCEPTIONS_H
+#define PADAMOSE_EXCEPTIONS_H
 
 #include <padamose/padamose-common.h>
 
 namespace Padamose {
+
+//================================================================//
+// InvalidMapNameException
+//================================================================//
+class InvalidMapNameException :
+    public logic_error {
+public:
+
+    //----------------------------------------------------------------//
+    InvalidMapNameException () :
+        logic_error ( "Map name contains illegal characters." ) {
+    }
+};
 
 //================================================================//
 // KeyNotFoundException
@@ -22,6 +35,19 @@ public:
 };
 
 //================================================================//
+// OverwriteException
+//================================================================//
+class OverwriteException :
+    public logic_error {
+public:
+
+    //----------------------------------------------------------------//
+    OverwriteException () :
+        logic_error ( "Existing value would be overwtieen." ) {
+    }
+};
+
+//================================================================//
 // TypeMismatchOnAssignException
 //================================================================//
 class TypeMismatchOnAssignException :
@@ -31,6 +57,19 @@ public:
     //----------------------------------------------------------------//
     TypeMismatchOnAssignException () :
         logic_error ( "Type mismatch on assign to key; key value was already declared as another type." ) {
+    }
+};
+
+//================================================================//
+// VersionedSetNotFoundException
+//================================================================//
+class VersionedSetNotFoundException :
+    public logic_error {
+public:
+
+    //----------------------------------------------------------------//
+    VersionedSetNotFoundException () :
+        logic_error ( "Versioned set not found for given name." ) {
     }
 };
 

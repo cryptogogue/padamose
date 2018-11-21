@@ -146,6 +146,39 @@ size_t VersionedBranch::getTopVersion () const {
 }
 
 //----------------------------------------------------------------//
+/** \brief Recursively searches the branch to see if a the given key exists.
+
+    \param      version     Search this version or the most recent lesser version for the key.
+    \param      key         The key.
+    \return                 TRUE if the key is found. FALSE if not.
+*/
+bool VersionedBranch::hasKey ( size_t version, string key ) const {
+
+    // start searching at the current branch.
+    const VersionedBranch* branch = this;
+    
+    // iterate through parent branches.
+    for ( ; branch; branch = branch->mSourceBranch.get ()) {
+    
+        // ignore branches above the version we're searching for.
+        if ( branch->mVersion <= version ) {
+        
+            // check for a value stack without recursion.
+            const AbstractValueStack* abstractValueStack = branch->findValueStack ( key );
+            
+            if ( abstractValueStack ) {
+                return true;
+            }
+        }
+        
+        // cap the version at the base version before moving to the parent branch.
+        // necessary because branches don't always emerge from the top.
+        version = branch->mVersion;
+    }
+    return false;
+}
+
+//----------------------------------------------------------------//
 /** \brief Inserts a client into the branch's client set. Inserting a client
     adds a dependency on a specific layer in the branch.
 */

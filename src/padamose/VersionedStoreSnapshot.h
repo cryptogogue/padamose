@@ -26,6 +26,7 @@ protected:
 
     friend class AbstractVersionedValueIterator;
     friend class VersionedBranch;
+    friend class VersionedSet;
     friend class VersionedStoreIterator;
     
     template < typename > friend class VersionedValue;
@@ -39,6 +40,20 @@ protected:
     //----------------------------------------------------------------//
     void            affirmBranch                    ();
     const void*     getRaw                          ( string key, size_t version, size_t typeID ) const;
+    
+    //----------------------------------------------------------------//
+    /** \brief Recursively searches the branch to find the value for the key. The most recent version
+        equal to or earlier will be returned.
+
+        A pointer to the value or NULL is returned.
+
+        \param      key         The key.
+        \return                 A raw pointer to the value for the key or NULL.
+    */
+    template < typename TYPE >
+    const TYPE* getValueOrNil ( string key ) const {
+        return this->getValueOrNil < TYPE >( key, this->mVersion );
+    }
     
     //----------------------------------------------------------------//
     /** \brief Recursively searches the branch to find the value for the key. The most recent version
@@ -67,6 +82,7 @@ public:
     //----------------------------------------------------------------//
     void            clear                           ();
     size_t          getVersion                      () const;
+    bool            hasKey                          ( string key ) const;
     void            setDebugName                    ( string debugName );
     void            takeSnapshot                    ( const VersionedStoreSnapshot& other );
                     VersionedStoreSnapshot          ();
@@ -92,7 +108,7 @@ public:
         \throws KeyNotFoundException    No value was be found for the given key.
     */
     template < typename TYPE >
-    const TYPE getValue ( string key ) const {
+    TYPE getValue ( string key ) const {
         const TYPE* value = this->getValueOrNil < TYPE >( key, this->mVersion );
         if ( !value ) throw KeyNotFoundException ();
         return *value;
@@ -111,7 +127,7 @@ public:
         \throws KeyNotFoundException    No value was be found for the given key.
     */
     template < typename TYPE >
-    const TYPE getValue ( string key, size_t version ) const {
+    TYPE getValue ( string key, size_t version ) const {
         const TYPE* value = this->getValueOrNil < TYPE >( key, version );
         if ( !value ) throw KeyNotFoundException ();
         return *value;

@@ -39,6 +39,17 @@ size_t VersionedStoreSnapshot::getVersion () const {
 }
 
 //----------------------------------------------------------------//
+/** \brief Recursively searches the branch to see if a the given key exists.
+
+    \param      key         The key.
+    \return                 TRUE if the key is found. FALSE if not.
+*/
+bool VersionedStoreSnapshot::hasKey ( string key ) const {
+
+    return this->mSourceBranch ? this->mSourceBranch->hasKey ( this->mVersion, key ) : false;
+}
+
+//----------------------------------------------------------------//
 /** \brief Set the debug name. Implemented in _DEBUG builds only. Otehrwise a no-op.
  
     \param  debugName   The debug name.

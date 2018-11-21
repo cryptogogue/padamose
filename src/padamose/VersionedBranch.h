@@ -65,7 +65,7 @@ private:
 
         A pointer to the value or NULL is returned.
 
-        \param      version     Search for this version of the most recent lesser version of the value;
+        \param      version     Search for this version or the most recent lesser version of the value.
         \param      key         The key.
         \return                 A raw pointer to the value for the key or NULL.
     */
@@ -153,6 +153,7 @@ private:
     shared_ptr < VersionedBranch >  fork                        ( size_t baseVersion );
     const void*                     getRaw                      ( size_t version, string key, size_t typeID ) const;
     size_t                          getTopVersion               () const;
+    bool                            hasKey                      ( size_t version, string key ) const;
     void                            insertClient                ( AbstractVersionedBranchClient& client );
     void                            optimize                    ();
     void                            truncate                    ( size_t topVersion );

@@ -26,6 +26,6 @@
 
 using namespace std;
 
-#include <padamose/Exception.h>
+#include <padamose/Exceptions.h>
 
 #endif
