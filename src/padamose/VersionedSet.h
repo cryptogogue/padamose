@@ -47,7 +47,7 @@ public:
     template < typename TYPE >
     void setValue ( string key, const TYPE& value ) {
     
-        this->setValue < TYPE >( this->mValuePrefix + key, value );
+        this->mStore.setValue < TYPE >( this->mValuePrefix + key, value );
     }
 };
 

@@ -66,7 +66,7 @@ protected:
     void            setName                     ( string name );
     
     //----------------------------------------------------------------//
-    virtual const VersionedStoreSnapshot&       AbstractVersionedSetSnapshot_getSnapshot        () const;
+    virtual const VersionedStoreSnapshot&       AbstractVersionedSetSnapshot_getSnapshot        () const = 0;
     
 public:
 

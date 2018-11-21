@@ -36,6 +36,7 @@ void VersionedSet::deleteKey ( string key ) {
     }
 
     node.mPrev = this->mState.mFreeStack;
+    node.mNext = INVALID_NODE_INDEX;
     this->mState.mFreeStack = node.mID;
     node.mID = INVALID_NODE_INDEX;
     
@@ -73,20 +74,20 @@ string VersionedSet::provisionKey () {
     node.mID = nodeID;
     node.mPrev = INVALID_NODE_INDEX;
     node.mNext = nextID;
-    this->setValue < VersionedSetNode >( nodeKey, node );
+    this->mStore.setValue < VersionedSetNode >( nodeKey, node );
 
     // if there is a next node, update that node's prev.
     if ( nextID != INVALID_NODE_INDEX ) {
-        string nextnodeKey = this->mNodePrefix + to_string ( nextID );
-        VersionedSetNode nextnode = this->mStore.getValue < VersionedSetNode >( nextnodeKey );
-        nextnode.mPrev = nodeID;
-        this->setValue < VersionedSetNode >( nextnodeKey, nextnode );
+        string nextNodeKey = this->mNodePrefix + to_string ( nextID );
+        VersionedSetNode nextNode = this->mStore.getValue < VersionedSetNode >( nextNodeKey );
+        nextNode.mPrev = nodeID;
+        this->mStore.setValue < VersionedSetNode >( nextNodeKey, nextNode );
     }
 
     // update the list.
     this->mState.mList = nodeID;
     this->mState.mSize++;
-    this->setValue < VersionedSetState >( this->mMapName, this->mState );
+    this->mStore.setValue < VersionedSetState >( this->mMapName, this->mState );
 
     return key;
 }
@@ -95,6 +96,8 @@ string VersionedSet::provisionKey () {
 // TODO: doxygen
 VersionedSet::VersionedSet ( VersionedStore& store, string mapName ) :
     mStore ( store ) {
+
+    this->setName ( mapName );
 
     if ( this->mStore.hasKey ( this->mMapName )) {
         this->mState = this->mStore.getValue < VersionedSetState >( this->mMapName );
