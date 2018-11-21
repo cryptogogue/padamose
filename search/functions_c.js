@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['popversion',['popVersion',['../d2/d73/class_padamose_1_1_versioned_store.html#abe0570ae741f0bd5dfab33e287a8b483',1,'Padamose::VersionedStore']]],
-  ['prepareforsetvalue',['prepareForSetValue',['../d2/d73/class_padamose_1_1_versioned_store.html#a25245522d4e89e114a4f0bb67e15b56f',1,'Padamose::VersionedStore']]],
-  ['prev',['prev',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a4a519d1fdb0c001a3e2c2df138b8c511',1,'Padamose::VersionedStoreIterator::prev()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a690692aae7aff014426c6577f6a8e766',1,'Padamose::VersionedValueIterator::prev()']]],
-  ['preventjoin',['preventJoin',['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#a189402403b5278feb24366c8edf499ed',1,'Padamose::AbstractVersionedBranchClient']]],
-  ['pushversion',['pushVersion',['../d2/d73/class_padamose_1_1_versioned_store.html#a5db8c2e129a022fcce01d0ce79bdb1b5',1,'Padamose::VersionedStore']]]
+  ['operator_20bool',['operator bool',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a38d84d566709adae05ce8fee4f49901b',1,'Padamose::VersionedStoreIterator::operator bool()'],['../df/d69/class_padamose_1_1_versioned_value.html#abab9713c347d22c43ab4a57bcc5af272',1,'Padamose::VersionedValue::operator bool()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a041afac51d280f78dca1a3d5901d0eb9',1,'Padamose::VersionedValueIterator::operator bool()']]],
+  ['operator_20const_20type_20_2a',['operator const TYPE *',['../df/d69/class_padamose_1_1_versioned_value.html#a6d9be6621f2eccba75776572c0c215e1',1,'Padamose::VersionedValue']]],
+  ['operator_2a',['operator*',['../df/d69/class_padamose_1_1_versioned_value.html#aa7df08b375fb740ef34fed694ae13565',1,'Padamose::VersionedValue::operator*()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a3e2aec4b770d395f5be4c9531a7a3e08',1,'Padamose::VersionedValueIterator::operator*()']]],
+  ['operator_2b_2b',['operator++',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a19ef95945fcc69ea53ad22858a37edae',1,'Padamose::VersionedStoreIterator::operator++()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a5d01b9b80493be71ad4ee98c5643050d',1,'Padamose::VersionedValueIterator::operator++()']]],
+  ['operator_2d_2d',['operator--',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a8086201763c583844df82a644deb89c1',1,'Padamose::VersionedStoreIterator::operator--()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a00de837e25d05feee149ad28141943c2',1,'Padamose::VersionedValueIterator::operator--()']]],
+  ['operator_2d_3e',['operator-&gt;',['../df/d69/class_padamose_1_1_versioned_value.html#a43ac8fe27bf135a0869f4da1c6a5585b',1,'Padamose::VersionedValue']]],
+  ['operator_3d',['operator=',['../d2/d73/class_padamose_1_1_versioned_store.html#a1128794d4bb84dbc894594efced863ca',1,'Padamose::VersionedStore::operator=()'],['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#adc6022b9aa1a124fcdd824f7cc140a69',1,'Padamose::VersionedStoreSnapshot::operator=()'],['../df/d69/class_padamose_1_1_versioned_value.html#a9ad8a71dc86dd0b7b0cfd50c107e6a48',1,'Padamose::VersionedValue::operator=()']]],
+  ['optimize',['optimize',['../d4/da9/class_padamose_1_1_versioned_branch.html#a5ec0e705e6208dc4ac21cbd15fd756ff',1,'Padamose::VersionedBranch']]],
+  ['overwriteexception',['OverwriteException',['../d0/d81/class_padamose_1_1_overwrite_exception.html#a5a945a309df5703575bc848568b4b8d0',1,'Padamose::OverwriteException']]]
 ];

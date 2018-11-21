@@ -199,6 +199,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a4418f27da57b9c66732b6cbef4984357"><td class="memTemplItemLeft" align="right" valign="top">const TYPE *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/da9/class_padamose_1_1_versioned_branch.html#a4418f27da57b9c66732b6cbef4984357">getValueOrNil</a> (size_t version, string key) const</td></tr>
 <tr class="memdesc:a4418f27da57b9c66732b6cbef4984357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively searches the branch to find the value for the key. The most recent version equal to or earlier will be returned.  <a href="#a4418f27da57b9c66732b6cbef4984357">More...</a><br /></td></tr>
 <tr class="separator:a4418f27da57b9c66732b6cbef4984357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b60f6cccdac8ab5dc51a46b8ea61465"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da9/class_padamose_1_1_versioned_branch.html#a3b60f6cccdac8ab5dc51a46b8ea61465">hasKey</a> (size_t version, string key) const</td></tr>
+<tr class="memdesc:a3b60f6cccdac8ab5dc51a46b8ea61465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively searches the branch to see if a the given key exists.  <a href="#a3b60f6cccdac8ab5dc51a46b8ea61465">More...</a><br /></td></tr>
+<tr class="separator:a3b60f6cccdac8ab5dc51a46b8ea61465"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6977bbc67cacd6fe97d0a49e219b23d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/da9/class_padamose_1_1_versioned_branch.html#a6977bbc67cacd6fe97d0a49e219b23d5">insertClient</a> (<a class="el" href="../../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html">AbstractVersionedBranchClient</a> &amp;client)</td></tr>
 <tr class="memdesc:a6977bbc67cacd6fe97d0a49e219b23d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts a client into the branch's client set. Inserting a client adds a dependency on a specific layer in the branch.  <a href="#a6977bbc67cacd6fe97d0a49e219b23d5">More...</a><br /></td></tr>
 <tr class="separator:a6977bbc67cacd6fe97d0a49e219b23d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -809,7 +812,7 @@ template&lt;typename TYPE &gt; </div>
 <p>A pointer to the value or NULL is returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">version</td><td>Search for this version of the most recent lesser version of the value; </td></tr>
+    <tr><td class="paramname">version</td><td>Search for this version or the most recent lesser version of the value. </td></tr>
     <tr><td class="paramname">key</td><td>The key. </td></tr>
   </table>
   </dd>
@@ -843,6 +846,52 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Returns the version below which all verions are depended on (to not change) by client. If any version below the dependent verion is changed, the branch must be forked and the change applied to the new branch. </p>
 <dl class="section return"><dt>Returns</dt><dd>The version below which no other version should be changed. </dd></dl>
+
+</div>
+</div>
+<a id="a3b60f6cccdac8ab5dc51a46b8ea61465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b60f6cccdac8ab5dc51a46b8ea61465">&#9670;&nbsp;</a></span>hasKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Padamose::VersionedBranch::hasKey </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>version</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Recursively searches the branch to see if a the given key exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">version</td><td>Search this version or the most recent lesser version for the key. </td></tr>
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the key is found. FALSE if not. </dd></dl>
 
 </div>
 </div>
@@ -1451,7 +1500,7 @@ template&lt;typename &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d4/da9/class_padamose_1_1_versioned_branch.html">VersionedBranch</a></li>
-    <li class="footer">Generated on Sat Nov 17 2018 17:12:22 for Padamose by
+    <li class="footer">Generated on Wed Nov 21 2018 19:55:30 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

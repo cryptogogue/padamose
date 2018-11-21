@@ -33,7 +33,7 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ],
@@ -56,7 +56,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d8/ddf/class_padamose_1_1_versioned_value_iterator.html#ab3fcb6c8e24b115722a150ee68dc8f05"
+"d6/db4/class_padamose_1_1_versioned_set_snapshot.html#a866b9567df66618fd80d42d408617d15",
+"functions_d.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

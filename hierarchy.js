@@ -4,8 +4,11 @@ var hierarchy =
       [ "Padamose::VersionedBranch", "d4/da9/class_padamose_1_1_versioned_branch.html", null ]
     ] ],
     [ "logic_error", null, [
+      [ "Padamose::InvalidMapNameException", "d3/d9c/class_padamose_1_1_invalid_map_name_exception.html", null ],
       [ "Padamose::KeyNotFoundException", "d5/d87/class_padamose_1_1_key_not_found_exception.html", null ],
+      [ "Padamose::OverwriteException", "d0/d81/class_padamose_1_1_overwrite_exception.html", null ],
       [ "Padamose::TypeMismatchOnAssignException", "db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html", null ],
+      [ "Padamose::VersionedSetNotFoundException", "d0/d60/class_padamose_1_1_versioned_set_not_found_exception.html", null ],
       [ "Padamose::VersionOutOfBoundsException", "d1/dcb/class_padamose_1_1_version_out_of_bounds_exception.html", null ]
     ] ],
     [ "Padamose::AbstractValueStack", "d2/d67/class_padamose_1_1_abstract_value_stack.html", [
@@ -19,5 +22,11 @@ var hierarchy =
         [ "Padamose::VersionedValue< TYPE >", "df/d69/class_padamose_1_1_versioned_value.html", null ],
         [ "Padamose::VersionedValueIterator< TYPE >", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html", null ]
       ] ]
-    ] ]
+    ] ],
+    [ "Padamose::AbstractVersionedSetSnapshot", "d3/d67/class_padamose_1_1_abstract_versioned_set_snapshot.html", [
+      [ "Padamose::VersionedSet", "de/daa/class_padamose_1_1_versioned_set.html", null ],
+      [ "Padamose::VersionedSetSnapshot", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html", null ]
+    ] ],
+    [ "Padamose::VersionedSetNode", "dc/dea/class_padamose_1_1_versioned_set_node.html", null ],
+    [ "Padamose::VersionedSetState", "dd/dc8/class_padamose_1_1_versioned_set_state.html", null ]
 ];

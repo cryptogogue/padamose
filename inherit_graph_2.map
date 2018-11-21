@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$d5/d87/class_padamose_1_1_key_not_found_exception.html" title="Padamose::KeyNotFoundException" alt="" coords="138,5,370,31"/>
-<area shape="rect" id="node3" href="$db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html" title="Padamose::TypeMismatchOn\lAssignException" alt="" coords="156,55,352,93"/>
-<area shape="rect" id="node4" href="$d1/dcb/class_padamose_1_1_version_out_of_bounds_exception.html" title="Padamose::VersionOutOfBounds\lException" alt="" coords="145,117,363,156"/>
+<area shape="rect" id="node1" href="$d3/d67/class_padamose_1_1_abstract_versioned_set_snapshot.html" title="Padamose::AbstractVersioned\lSetSnapshot" alt="" coords="5,24,206,63"/>
+<area shape="rect" id="node2" href="$de/daa/class_padamose_1_1_versioned_set.html" title="Padamose::VersionedSet" alt="" coords="282,5,454,31"/>
+<area shape="rect" id="node3" href="$d6/db4/class_padamose_1_1_versioned_set_snapshot.html" title="Padamose::VersionedSetSnapshot" alt="" coords="254,55,482,80"/>
 </map>

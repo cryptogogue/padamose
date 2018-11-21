@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['_7eabstractvaluestack',['~AbstractValueStack',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#a74d853a7a9dbd3582c6dca86a3c2c7c0',1,'Padamose::AbstractValueStack']]],
-  ['_7eabstractversionedbranchclient',['~AbstractVersionedBranchClient',['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#a20696e4be64b04d8067e1be0dcaf25be',1,'Padamose::AbstractVersionedBranchClient']]],
-  ['_7eversionedbranch',['~VersionedBranch',['../d4/da9/class_padamose_1_1_versioned_branch.html#a8223595abbec33103857f51e211f4014',1,'Padamose::VersionedBranch']]],
-  ['_7eversionedstore',['~VersionedStore',['../d2/d73/class_padamose_1_1_versioned_store.html#ab22a13339e11d8942e035d097633d4e1',1,'Padamose::VersionedStore']]],
-  ['_7eversionedstoreiterator',['~VersionedStoreIterator',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#ad16544f5f368c462eb1473e078fa72cb',1,'Padamose::VersionedStoreIterator']]],
-  ['_7eversionedstoresnapshot',['~VersionedStoreSnapshot',['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#acf973da1e4681073042675f8abd02d14',1,'Padamose::VersionedStoreSnapshot']]],
-  ['_7eversionedvalue',['~VersionedValue',['../df/d69/class_padamose_1_1_versioned_value.html#a47c6f9f9d3a3920ea8bbe447dbfa3093',1,'Padamose::VersionedValue']]],
-  ['_7eversionedvalueiterator',['~VersionedValueIterator',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#ad9ecd10baf631c567c2159ff3d2bbaa9',1,'Padamose::VersionedValueIterator']]]
+  ['value',['value',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a8c9f3a9d815502fce3a6d244d1ea27e0',1,'Padamose::VersionedValueIterator']]],
+  ['valuestack',['ValueStack',['../dd/d4c/class_padamose_1_1_value_stack.html#a99bff6baede6f85fd9a43bf5eccdc869',1,'Padamose::ValueStack']]],
+  ['versionedbranch',['VersionedBranch',['../d4/da9/class_padamose_1_1_versioned_branch.html#a398735af7f249890be82ddb4b8d71560',1,'Padamose::VersionedBranch']]],
+  ['versionedset',['VersionedSet',['../de/daa/class_padamose_1_1_versioned_set.html#aa9e382525cc78f4aace9b72e87be7842',1,'Padamose::VersionedSet']]],
+  ['versionedsetnotfoundexception',['VersionedSetNotFoundException',['../d0/d60/class_padamose_1_1_versioned_set_not_found_exception.html#a008fa35ecacff708ddbc22e501d75fd2',1,'Padamose::VersionedSetNotFoundException']]],
+  ['versionedsetsnapshot',['VersionedSetSnapshot',['../d6/db4/class_padamose_1_1_versioned_set_snapshot.html#aaa062c3ba6aed3f35fc160e81bc096dc',1,'Padamose::VersionedSetSnapshot']]],
+  ['versionedstore',['VersionedStore',['../d2/d73/class_padamose_1_1_versioned_store.html#ae29030c67efbdd202aa0ecb6f642a03c',1,'Padamose::VersionedStore::VersionedStore()'],['../d2/d73/class_padamose_1_1_versioned_store.html#a6981fe109a078a6712621c6dabbcb572',1,'Padamose::VersionedStore::VersionedStore(VersionedStoreSnapshot &amp;other)']]],
+  ['versionedstoreiterator',['VersionedStoreIterator',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a3289b05a2ab4cc01085534f4b6fe09ca',1,'Padamose::VersionedStoreIterator::VersionedStoreIterator(const VersionedStoreSnapshot &amp;versionedStore)'],['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#ae127a62d63701b7463123dcb6bff6cbd',1,'Padamose::VersionedStoreIterator::VersionedStoreIterator(const VersionedStoreSnapshot &amp;versionedStore, size_t version)']]],
+  ['versionedstoresnapshot',['VersionedStoreSnapshot',['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#aca773f48dba0b4a7f529faf4d84c6999',1,'Padamose::VersionedStoreSnapshot::VersionedStoreSnapshot()'],['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#ae5eaa607dbfdd92ae1766e41a2c8c8c8',1,'Padamose::VersionedStoreSnapshot::VersionedStoreSnapshot(const VersionedStoreSnapshot &amp;other)']]],
+  ['versionedvalue',['VersionedValue',['../df/d69/class_padamose_1_1_versioned_value.html#af42fcf6cd5d4212b95b634aabfe7412c',1,'Padamose::VersionedValue::VersionedValue()'],['../df/d69/class_padamose_1_1_versioned_value.html#a00db618b799f0a3b352f486f3ca68386',1,'Padamose::VersionedValue::VersionedValue(const VersionedValue&lt; TYPE &gt; &amp;other)'],['../df/d69/class_padamose_1_1_versioned_value.html#a8e193240af6c3efa4f5a69559ac99527',1,'Padamose::VersionedValue::VersionedValue(const VersionedStoreSnapshot &amp;versionedStore, string key)']]],
+  ['versionedvalueiterator',['VersionedValueIterator',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#ab1eab8046c6813ead7736f0e50ceacc9',1,'Padamose::VersionedValueIterator']]],
+  ['versionoutofboundsexception',['VersionOutOfBoundsException',['../d1/dcb/class_padamose_1_1_version_out_of_bounds_exception.html#a2f2ce0d75a35b033e281eaa2042e6e28',1,'Padamose::VersionOutOfBoundsException']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['typemismatchonassignexception',['TypeMismatchOnAssignException',['../db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html',1,'Padamose']]]
+  ['keynotfoundexception',['KeyNotFoundException',['../d5/d87/class_padamose_1_1_key_not_found_exception.html',1,'Padamose']]]
 ];

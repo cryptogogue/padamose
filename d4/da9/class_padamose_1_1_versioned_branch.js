@@ -19,6 +19,7 @@ var class_padamose_1_1_versioned_branch =
     [ "getTopVersion", "d4/da9/class_padamose_1_1_versioned_branch.html#afcacd0f30a882f72656758eb91f17e85", null ],
     [ "getValueOrNil", "d4/da9/class_padamose_1_1_versioned_branch.html#a4418f27da57b9c66732b6cbef4984357", null ],
     [ "getVersionDependency", "d4/da9/class_padamose_1_1_versioned_branch.html#ab11d914b80c025e428d2e3e5da672747", null ],
+    [ "hasKey", "d4/da9/class_padamose_1_1_versioned_branch.html#a3b60f6cccdac8ab5dc51a46b8ea61465", null ],
     [ "insertClient", "d4/da9/class_padamose_1_1_versioned_branch.html#a6977bbc67cacd6fe97d0a49e219b23d5", null ],
     [ "joinBranch", "d4/da9/class_padamose_1_1_versioned_branch.html#a31d251e088e9918a2a6d344559ee539e", null ],
     [ "optimize", "d4/da9/class_padamose_1_1_versioned_branch.html#a5ec0e705e6208dc4ac21cbd15fd756ff", null ],

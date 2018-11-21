@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['insertclient',['insertClient',['../d4/da9/class_padamose_1_1_versioned_branch.html#a6977bbc67cacd6fe97d0a49e219b23d5',1,'Padamose::VersionedBranch']]],
-  ['iscurrent',['isCurrent',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a9a8f427adb94ce1f0b3427796100e0c3',1,'Padamose::VersionedStoreIterator']]],
-  ['isvalid',['isValid',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a3388690d1b6f0544068ac85d4b6d5fe9',1,'Padamose::VersionedStoreIterator::isValid()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#ac2a2f03219c55d87eedabd34dad05534',1,'Padamose::VersionedValueIterator::isValid()']]]
+  ['haskey',['hasKey',['../d4/da9/class_padamose_1_1_versioned_branch.html#a3b60f6cccdac8ab5dc51a46b8ea61465',1,'Padamose::VersionedBranch::hasKey()'],['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a37fe8db030516158b1476996a9c401ef',1,'Padamose::VersionedStoreSnapshot::hasKey()']]],
+  ['hasvalue',['hasValue',['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a7368ed4ac1cd3f464274d8115c6c716a',1,'Padamose::VersionedStoreSnapshot::hasValue(string key) const'],['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a39297fe4875ab85e0725aedb0a72c33f',1,'Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const']]]
 ];
