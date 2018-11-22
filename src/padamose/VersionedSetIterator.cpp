@@ -16,6 +16,12 @@ bool VersionedSetIterator::isValid () const {
 }
 
 //----------------------------------------------------------------//
+string VersionedSetIterator::key () const {
+
+    return this->mKey;
+}
+
+//----------------------------------------------------------------//
 bool VersionedSetIterator::next () {
     
     return this->step ( this->mIteratorNode.mNext, NO_NEXT, NO_PREV );
@@ -34,7 +40,8 @@ void VersionedSetIterator::seek ( size_t nodeID ) {
         this->mIteratorState = EMPTY;
         return;
     }
-    this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mNodePrefix + to_string ( nodeID ));
+    this->mKey = this->mNodePrefix + to_string ( nodeID );
+    this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mKey );
     this->mIteratorState = VALID;
 }
 
@@ -64,7 +71,8 @@ bool VersionedSetIterator::step ( size_t nextNodeID, int blockingState, int unbl
             this->mIteratorState = blockingState;
         }
         else {
-            this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mNodePrefix + to_string ( nextNodeID ));
+            this->mKey = this->mNodePrefix + to_string ( nextNodeID );
+            this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mKey );
         }
     }
     return ( this->mIteratorState != blockingState );

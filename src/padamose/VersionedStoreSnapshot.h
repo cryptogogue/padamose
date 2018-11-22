@@ -26,6 +26,7 @@ protected:
 
     friend class AbstractVersionedValueIterator;
     friend class VersionedBranch;
+    friend class VersionedMap;
     friend class VersionedSet;
     friend class VersionedSetIterator;
     friend class VersionedStoreIterator;

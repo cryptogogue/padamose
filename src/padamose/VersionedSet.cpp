@@ -40,11 +40,12 @@ void VersionedSet::deleteKey ( string key ) {
     node.mNext = INVALID_NODE_INDEX;
     this->mState.mFreeStack = node.mID;
     node.mID = INVALID_NODE_INDEX;
+    node.mKey.clear ();
     
     this->mStore.setValue < VersionedSetNode >( nodeKey, node );
     
     this->mState.mSize--;
-    this->setValue < VersionedSetState >( this->mMapName, this->mState );
+    this->mStore.setValue < VersionedSetState >( this->mMapName, this->mState );
 }
 
 //----------------------------------------------------------------//
@@ -72,9 +73,10 @@ string VersionedSet::provisionKey () {
     size_t prevID = this->mState.mTail;
     
     VersionedSetNode node;
-    node.mID = nodeID;
-    node.mPrev = prevID;
-    node.mNext = INVALID_NODE_INDEX;
+    node.mID    = nodeID;
+    node.mKey   = key;
+    node.mPrev  = prevID;
+    node.mNext  = INVALID_NODE_INDEX;
     this->mStore.setValue < VersionedSetNode >( nodeKey, node );
 
     this->mState.mTail = nodeID;

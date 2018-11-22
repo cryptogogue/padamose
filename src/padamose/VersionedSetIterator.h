@@ -27,8 +27,7 @@ protected:
         NO_NEXT,
     };
 
-
-    
+    string              mKey;
     VersionedSetNode    mIteratorNode;
     int                 mIteratorState;
     
@@ -64,6 +63,7 @@ public:
 
     //----------------------------------------------------------------//
     bool                isValid                             () const;
+    string              key                                 () const;
     bool                next                                ();
     bool                prev                                ();
     void                seekBack                            ();
@@ -77,7 +77,7 @@ public:
     template < typename TYPE >
     const TYPE& value () const {
         
-        const TYPE* value = this->mSnapshot.getValueOrNil < TYPE >( this->mValuePrefix + to_string ( this->mIteratorNode.mID ));
+        const TYPE* value = this->mSnapshot.getValueOrNil < TYPE >( this->mValuePrefix + this->mIteratorNode.mKey );
         assert ( value );
         return *value;
     }

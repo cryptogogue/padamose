@@ -17,6 +17,7 @@ class VersionedSetState {
 private:
 
     friend class AbstractVersionedSet;
+    friend class VersionedMap;
     friend class VersionedSet;
     friend class VersionedSetSnapshot;
     friend class VersionedSetIterator;
@@ -37,11 +38,13 @@ class VersionedSetNode {
 private:
 
     friend class AbstractVersionedSet;
+    friend class VersionedMap;
     friend class VersionedSet;
     friend class VersionedSetSnapshot;
     friend class VersionedSetIterator;
     
     size_t      mID;
+    string      mKey;
     size_t      mPrev;              // ID of prev node in the list (active or free)
     size_t      mNext;              // ID of next node in the list (active or free)
 };
@@ -66,6 +69,7 @@ protected:
     VersionedSetState           mState;
     
     //----------------------------------------------------------------//
+    void            pushNode                    ( size_t nodeID, string nodeKey );
     void            setName                     ( string name );
     
     //----------------------------------------------------------------//
