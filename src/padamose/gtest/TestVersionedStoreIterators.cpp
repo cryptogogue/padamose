@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <gtest-helpers.h>
+#include <padamose/gtest/gtest-helpers.h>
 #include <padamose/VersionedStore.h>
 #include <padamose/VersionedStoreIterator.h>
 #include <padamose/VersionedValueIterator.h>

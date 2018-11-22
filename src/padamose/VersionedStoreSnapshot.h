@@ -25,10 +25,11 @@ class VersionedStoreSnapshot :
 protected:
 
     friend class AbstractVersionedValueIterator;
+    friend class MutableVersionedCollection;
     friend class VersionedBranch;
     friend class VersionedMap;
     friend class VersionedSet;
-    friend class VersionedSetIterator;
+    friend class VersionedCollectionIterator;
     friend class VersionedStoreIterator;
     
     template < typename > friend class VersionedValue;

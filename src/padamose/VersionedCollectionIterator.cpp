@@ -1,40 +1,40 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/VersionedSetIterator.h>
+#include <padamose/VersionedCollectionIterator.h>
 
 namespace Padamose {
 
 //================================================================//
-// VersionedSetSnapshot
+// VersionedCollectionSnapshot
 //================================================================//
 
 //----------------------------------------------------------------//
-bool VersionedSetIterator::isValid () const {
+bool VersionedCollectionIterator::isValid () const {
 
     return ( this->mIteratorState == VALID );
 }
 
 //----------------------------------------------------------------//
-string VersionedSetIterator::key () const {
+string VersionedCollectionIterator::key () const {
 
     return this->mKey;
 }
 
 //----------------------------------------------------------------//
-bool VersionedSetIterator::next () {
+bool VersionedCollectionIterator::next () {
     
     return this->step ( this->mIteratorNode.mNext, NO_NEXT, NO_PREV );
 }
 
 //----------------------------------------------------------------//
-bool VersionedSetIterator::prev () {
+bool VersionedCollectionIterator::prev () {
     
     return this->step ( this->mIteratorNode.mPrev, NO_PREV, NO_NEXT );
 }
 
 //----------------------------------------------------------------//
-void VersionedSetIterator::seek ( size_t nodeID ) {
+void VersionedCollectionIterator::seek ( size_t nodeID ) {
 
     if ( this->mState.mSize == 0 ) {
         this->mIteratorState = EMPTY;
@@ -46,19 +46,19 @@ void VersionedSetIterator::seek ( size_t nodeID ) {
 }
 
 //----------------------------------------------------------------//
-void VersionedSetIterator::seekBack () {
+void VersionedCollectionIterator::seekBack () {
     
     this->seek ( this->mState.mTail );
 }
 
 //----------------------------------------------------------------//
-void VersionedSetIterator::seekFront () {
+void VersionedCollectionIterator::seekFront () {
 
     this->seek ( this->mState.mHead );
 }
 
 //----------------------------------------------------------------//
-bool VersionedSetIterator::step ( size_t nextNodeID, int blockingState, int unblockingState ) {
+bool VersionedCollectionIterator::step ( size_t nextNodeID, int blockingState, int unblockingState ) {
 
     if ( this->mIteratorState == EMPTY ) return false;
 
@@ -79,21 +79,21 @@ bool VersionedSetIterator::step ( size_t nextNodeID, int blockingState, int unbl
 }
 
 //----------------------------------------------------------------//
-VersionedSetIterator::VersionedSetIterator ( const AbstractVersionedSet& versionedSet ) :
-    VersionedSetSnapshot ( versionedSet, versionedSet.getName ()) {
+VersionedCollectionIterator::VersionedCollectionIterator ( const AbstractVersionedCollection& versionedSet ) :
+    VersionedCollectionSnapshot ( versionedSet, versionedSet.getName ()) {
     
     this->seekFront ();
 }
 
 //----------------------------------------------------------------//
-VersionedSetIterator::VersionedSetIterator ( const VersionedStoreSnapshot& snapshot, string mapName ) :
-    VersionedSetSnapshot ( snapshot, mapName ) {
+VersionedCollectionIterator::VersionedCollectionIterator ( const VersionedStoreSnapshot& snapshot, string mapName ) :
+    VersionedCollectionSnapshot ( snapshot, mapName ) {
     
     this->seekFront ();
 }
 
 //----------------------------------------------------------------//
-VersionedSetIterator::~VersionedSetIterator () {
+VersionedCollectionIterator::~VersionedCollectionIterator () {
 }
 
 } // namespace Padamose

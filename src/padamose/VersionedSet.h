@@ -5,25 +5,38 @@
 #define PADAMOSE_VERSIONEDSET_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractVersionedSet.h>
+#include <padamose/MutableVersionedCollection.h>
 
 namespace Padamose {
+
+//================================================================//
+// VersionedSetState
+//================================================================//
+// TODO: doxygen
+class VersionedSetFreeStack {
+private:
+
+    friend class VersionedSet;
+    
+    size_t      mTop;               // top of key free stack
+    size_t      mTotalNodes;        // total nodes created
+};
 
 //================================================================//
 // VersionedSet
 //================================================================//
 // TODO: doxygen
 class VersionedSet :
-    public AbstractVersionedSet {
+    public MutableVersionedCollection {
 private:
-
-    VersionedStore&             mStore;
+    
+    static constexpr const char* SET_FREE_STACK_POSTFIX     = ".free";
+    
+    string                  mFreeStackKey;
+    VersionedSetFreeStack   mFreeStack;
     
     //----------------------------------------------------------------//
     string          provisionKey                ();
-    
-    //----------------------------------------------------------------//
-    const VersionedStoreSnapshot&       AbstractVersionedSet_getSnapshot        () const override;
     
 public:
 

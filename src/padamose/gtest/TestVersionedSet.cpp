@@ -1,9 +1,9 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <gtest-helpers.h>
+#include <padamose/gtest/gtest-helpers.h>
 #include <padamose/VersionedSet.h>
-#include <padamose/VersionedSetIterator.h>
+#include <padamose/VersionedCollectionIterator.h>
 
 using namespace Padamose;
 
@@ -120,7 +120,7 @@ TEST ( VersionedSet, test_iterator ) {
     // this iterator test relies on keys being provisioned in a specific order
     // and always added to the *back* of the key list.
     
-    VersionedSetIterator setIt ( versionedSet );
+    VersionedCollectionIterator setIt ( versionedSet );
     
     ASSERT_TRUE ( setIt == true );
     ASSERT_TRUE ( setIt.value < int >() == 0 );

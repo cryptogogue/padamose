@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/VersionedSetSnapshot.h>
+#include <padamose/VersionedCollectionSnapshot.h>
 
 namespace Padamose {
 
@@ -11,18 +11,18 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-VersionedSetSnapshot::VersionedSetSnapshot ( const VersionedStoreSnapshot& snapshot, string mapName ) :
+VersionedCollectionSnapshot::VersionedCollectionSnapshot ( const VersionedStoreSnapshot& snapshot, string mapName ) :
     mSnapshot ( snapshot ) {
 
     if ( !this->mSnapshot.hasKey ( mapName )) throw VersionedSetNotFoundException ();
 
     this->setName ( mapName );
-    this->mState = this->mSnapshot.getValue < VersionedSetState >( this->mMapName );
+    this->mState = this->mSnapshot.getValue < VersionedCollectionState >( this->mMapName );
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-VersionedSetSnapshot::~VersionedSetSnapshot () {
+VersionedCollectionSnapshot::~VersionedCollectionSnapshot () {
 }
 
 //================================================================//
@@ -30,7 +30,7 @@ VersionedSetSnapshot::~VersionedSetSnapshot () {
 //================================================================//
 
 //----------------------------------------------------------------//
-const VersionedStoreSnapshot& VersionedSetSnapshot::AbstractVersionedSet_getSnapshot () const {
+const VersionedStoreSnapshot& VersionedCollectionSnapshot::AbstractVersionedCollection_getSnapshot () const {
 
     return this->mSnapshot;
 }

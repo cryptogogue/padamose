@@ -1,32 +1,32 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_VERSIONEDSETSNAPSHOT_H
-#define PADAMOSE_VERSIONEDSETSNAPSHOT_H
+#ifndef PADAMOSE_VERSIONEDCOLLECTIONSNAPSHOT_H
+#define PADAMOSE_VERSIONEDCOLLECTIONSNAPSHOT_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractVersionedSet.h>
+#include <padamose/AbstractVersionedCollection.h>
 
 namespace Padamose {
 
 //================================================================//
-// VersionedSetSnapshot
+// VersionedCollectionSnapshot
 //================================================================//
 // TODO: doxygen
-class VersionedSetSnapshot :
-    public AbstractVersionedSet {
+class VersionedCollectionSnapshot :
+    public AbstractVersionedCollection {
 protected:
 
     VersionedStoreSnapshot      mSnapshot;
     
     //----------------------------------------------------------------//
-    const VersionedStoreSnapshot&       AbstractVersionedSet_getSnapshot        () const override;
+    const VersionedStoreSnapshot&       AbstractVersionedCollection_getSnapshot         () const override;
     
 public:
 
     //----------------------------------------------------------------//
-                    VersionedSetSnapshot        ( const VersionedStoreSnapshot& snapshot, string mapName );
-                    ~VersionedSetSnapshot       ();
+                    VersionedCollectionSnapshot         ( const VersionedStoreSnapshot& snapshot, string mapName );
+                    ~VersionedCollectionSnapshot        ();
 };
 
 } // namespace Padamose

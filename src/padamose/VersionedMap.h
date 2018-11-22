@@ -5,7 +5,7 @@
 #define PADAMOSE_VERSIONEDMAP_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractVersionedSet.h>
+#include <padamose/MutableVersionedCollection.h>
 
 namespace Padamose {
 
@@ -14,18 +14,13 @@ namespace Padamose {
 //================================================================//
 // TODO: doxygen
 class VersionedMap :
-    public AbstractVersionedSet {
+    public MutableVersionedCollection {
 private:
-
-    VersionedStore&             mStore;
     
     //----------------------------------------------------------------//
     size_t          affirmKey                   ( string key );
     static size_t   getNodeID                   ( string key );
     string          provisionKey                ();
-    
-    //----------------------------------------------------------------//
-    const VersionedStoreSnapshot&       AbstractVersionedSet_getSnapshot        () const override;
     
 public:
 

@@ -1,20 +1,20 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_VERSIONEDSETITERATOR_H
-#define PADAMOSE_VERSIONEDSETITERATOR_H
+#ifndef PADAMOSE_VERSIONEDCOLLECTIONITERATOR_H
+#define PADAMOSE_VERSIONEDCOLLECTIONITERATOR_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/VersionedSetSnapshot.h>
+#include <padamose/VersionedCollectionSnapshot.h>
 
 namespace Padamose {
 
 //================================================================//
-// VersionedSetIterator
+// VersionedCollectionIterator
 //================================================================//
 // TODO: doxygen
-class VersionedSetIterator :
-    public VersionedSetSnapshot {
+class VersionedCollectionIterator :
+    public VersionedCollectionSnapshot {
 protected:
     
     enum {
@@ -48,7 +48,7 @@ public:
     //----------------------------------------------------------------//
     /** \brief Prefix increment operator. Calls next() internally.
     */
-    VersionedSetIterator& operator++ () {
+    VersionedCollectionIterator& operator++ () {
         this->next ();
         return *this;
     }
@@ -56,7 +56,7 @@ public:
     //----------------------------------------------------------------//
     /** \brief Prefix decrement operator. Calls prev() internally.
     */
-    VersionedSetIterator& operator-- () {
+    VersionedCollectionIterator& operator-- () {
         this->prev ();
         return *this;
     }
@@ -68,9 +68,9 @@ public:
     bool                prev                                ();
     void                seekBack                            ();
     void                seekFront                           ();
-                        VersionedSetIterator                ( const AbstractVersionedSet& versionedSet );
-                        VersionedSetIterator                ( const VersionedStoreSnapshot& snapshot, string mapName );
-                        ~VersionedSetIterator               ();
+                        VersionedCollectionIterator         ( const AbstractVersionedCollection& versionedSet );
+                        VersionedCollectionIterator         ( const VersionedStoreSnapshot& snapshot, string mapName );
+                        ~VersionedCollectionIterator        ();
     
     //----------------------------------------------------------------//
     // TODO: doxygen

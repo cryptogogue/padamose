@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/AbstractVersionedSet.h>
+#include <padamose/AbstractVersionedCollection.h>
 
 namespace Padamose {
 
@@ -11,28 +11,36 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-AbstractVersionedSet::AbstractVersionedSet () {
+AbstractVersionedCollection::AbstractVersionedCollection () {
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-AbstractVersionedSet::~AbstractVersionedSet () {
+AbstractVersionedCollection::~AbstractVersionedCollection () {
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-size_t AbstractVersionedSet::getSize () const {
+size_t AbstractVersionedCollection::getSize () const {
     return this->mState.mSize;
 }
 
 //----------------------------------------------------------------//
-string AbstractVersionedSet::getName () const {
+const VersionedStoreSnapshot& AbstractVersionedCollection::getSnapshot () const {
+
+    return AbstractVersionedCollection_getSnapshot ();
+}
+
+//----------------------------------------------------------------//
+string AbstractVersionedCollection::getName () const {
 
     return this->mMapName;
 }
 
 //----------------------------------------------------------------//
-void AbstractVersionedSet::setName ( string name ) {
+void AbstractVersionedCollection::setName ( string name ) {
+
+    if ( this->mMapName.find ( ':' ) != string::npos ) throw InvalidMapNameException ();
 
     this->mMapName = name;
     this->mNodePrefix = this->mMapName + SET_NODES_POSTFIX;
