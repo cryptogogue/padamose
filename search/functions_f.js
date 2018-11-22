@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['seek',['seek',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a569f99442d90df8d8dd3ec3f5e033bde',1,'Padamose::VersionedSetIterator::seek()'],['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a356a43b7881a35cc26a151f50acbf759',1,'Padamose::VersionedStoreIterator::seek()']]],
-  ['seekback',['seekBack',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a0b8831999c12f8a5fef4233b0307bb44',1,'Padamose::VersionedSetIterator']]],
-  ['seekfront',['seekFront',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#af468b2fdff2e70a382bf4e1d3c4f1613',1,'Padamose::VersionedSetIterator']]],
+  ['seek',['seek',['../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#af9b9de7ac0a6ce83c97899a261d883a2',1,'Padamose::VersionedCollectionIterator::seek()'],['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a356a43b7881a35cc26a151f50acbf759',1,'Padamose::VersionedStoreIterator::seek()']]],
+  ['seekback',['seekBack',['../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a16fb2a118805a16fbae67774801e1b06',1,'Padamose::VersionedCollectionIterator']]],
+  ['seekfront',['seekFront',['../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#ad958d434b59ec782712774a6afc8878b',1,'Padamose::VersionedCollectionIterator']]],
   ['seeklower',['seekLower',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a1c483ba1e8386d87de9b0b1fb83bbbd8',1,'Padamose::VersionedValueIterator']]],
   ['seeknext',['seekNext',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a1cb846ffac04e52d645afac6ceee5c95',1,'Padamose::VersionedValueIterator']]],
   ['seekprev',['seekPrev',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#af03a14f2095f3bbc07d6a6cb84410124',1,'Padamose::VersionedValueIterator']]],
@@ -10,8 +10,8 @@ var searchData=
   ['setbranch',['setBranch',['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#a624e5cb9ba0bb6e4b0b1fcca8907a14f',1,'Padamose::AbstractVersionedBranchClient::setBranch(shared_ptr&lt; VersionedBranch &gt; branch)'],['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#af10c293db1a78375feeb4029ec8d35fb',1,'Padamose::AbstractVersionedBranchClient::setBranch(shared_ptr&lt; VersionedBranch &gt; branch, size_t version)']]],
   ['setdebugname',['setDebugName',['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a6342403e9e6846ce53a69730b8f34086',1,'Padamose::VersionedStoreSnapshot']]],
   ['setextents',['setExtents',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#ad72a35b9b7faad3524c3c8b77592eae7',1,'Padamose::VersionedValueIterator']]],
-  ['setname',['setName',['../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a231138a510b6c6f9a74930d9177d4321',1,'Padamose::AbstractVersionedSet']]],
+  ['setname',['setName',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a2c45acd9e8ffbd77aac2c2c693a408b9',1,'Padamose::AbstractVersionedCollection']]],
   ['setvalue',['setValue',['../dd/d4c/class_padamose_1_1_value_stack.html#ab93b029ba1154379f47636fa9ad1ae2c',1,'Padamose::ValueStack::setValue()'],['../d4/da9/class_padamose_1_1_versioned_branch.html#af1e9f378f77a8da5c2f75068df8f3c90',1,'Padamose::VersionedBranch::setValue()'],['../dd/dad/class_padamose_1_1_versioned_map.html#a1cb80d97b4554d803a99797a5539f62e',1,'Padamose::VersionedMap::setValue()'],['../de/daa/class_padamose_1_1_versioned_set.html#a8c859e9bbd61906ff733b7dbc900a521',1,'Padamose::VersionedSet::setValue()'],['../d2/d73/class_padamose_1_1_versioned_store.html#afbea59a33d3db31f6fabc18e0ed48363',1,'Padamose::VersionedStore::setValue()'],['../df/d69/class_padamose_1_1_versioned_value.html#a75aa73e7bb7d55f03bde3d8d5816d889',1,'Padamose::VersionedValue::setValue(const VersionedStoreSnapshot &amp;versionedStore, const TYPE *value)'],['../df/d69/class_padamose_1_1_versioned_value.html#a237afb8570dc7fb1aa68ef9db7136581',1,'Padamose::VersionedValue::setValue(const VersionedStoreSnapshot &amp;versionedStore, string key)']]],
   ['size',['size',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#ab28e779fab2568f87f7bb9ec491fceff',1,'Padamose::AbstractValueStack']]],
-  ['step',['step',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a579506dce71a42d37c92fda62d0621fb',1,'Padamose::VersionedSetIterator']]]
+  ['step',['step',['../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a7b397a0cac43f65286b0b1f9696b830e',1,'Padamose::VersionedCollectionIterator']]]
 ];

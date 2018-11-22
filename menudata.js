@@ -80,6 +80,7 @@ var menudata={children:[
 {text:"Enumerator",url:"functions_eval.html"},
 {text:"Related Functions",url:"functions_rela.html",children:[
 {text:"a",url:"functions_rela.html#index_a"},
+{text:"m",url:"functions_rela.html#index_m"},
 {text:"v",url:"functions_rela.html#index_v"}]}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"},

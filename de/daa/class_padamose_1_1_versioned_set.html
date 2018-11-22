@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('de/daa/class_padamose_1_1_versioned_se
 <a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="../../db/d70/class_padamose_1_1_versioned_set-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Padamose::VersionedSet Class Reference</div>  </div>
@@ -104,7 +105,8 @@ Inheritance diagram for Padamose::VersionedSet:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dc/d12/class_padamose_1_1_versioned_set__inherit__graph.png" border="0" usemap="#_padamose_1_1_versioned_set_inherit__map" alt="Inheritance graph"/></div>
 <map name="_padamose_1_1_versioned_set_inherit__map" id="_padamose_1_1_versioned_set_inherit__map">
-<area shape="rect" id="node2" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html" title="Padamose::AbstractVersionedSet" alt="" coords="5,5,226,31"/>
+<area shape="rect" id="node2" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Padamose::MutableVersioned\lCollection" alt="" coords="6,92,205,131"/>
+<area shape="rect" id="node3" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Padamose::AbstractVersioned\lCollection" alt="" coords="5,5,206,44"/>
 </map>
 <center><span class="legend">[<a target="top" href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -116,60 +118,77 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a41c12c45d0658099582750cdb298b4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abda7e9f3cfd6bfe48fde51ab20edeb43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#abda7e9f3cfd6bfe48fde51ab20edeb43">deleteKey</a> (string key)</td></tr>
 <tr class="separator:abda7e9f3cfd6bfe48fde51ab20edeb43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32fc6864b0a23cf4a4875cf1cdde45b0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a32fc6864b0a23cf4a4875cf1cdde45b0">getName</a> () const</td></tr>
-<tr class="separator:a32fc6864b0a23cf4a4875cf1cdde45b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06a45e1f20733929e3acfe2c2ce4d9a6"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a06a45e1f20733929e3acfe2c2ce4d9a6">getSize</a> () const</td></tr>
-<tr class="separator:a06a45e1f20733929e3acfe2c2ce4d9a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebe0ae54745cd0466ce5d8a56003a5ff"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:aebe0ae54745cd0466ce5d8a56003a5ff"><td class="memTemplItemLeft" align="right" valign="top">TYPE&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#aebe0ae54745cd0466ce5d8a56003a5ff">getValue</a> (string key) const</td></tr>
-<tr class="separator:aebe0ae54745cd0466ce5d8a56003a5ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8d0d908d7c4d7b8f4ec5ef0bca40121"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#ac8d0d908d7c4d7b8f4ec5ef0bca40121">getName</a> () const</td></tr>
+<tr class="separator:ac8d0d908d7c4d7b8f4ec5ef0bca40121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8144a9a36e8de89f708a96ce5f057aea"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a8144a9a36e8de89f708a96ce5f057aea">getSize</a> () const</td></tr>
+<tr class="separator:a8144a9a36e8de89f708a96ce5f057aea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e09b7b7b50365b2fb44ab9097e38368"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a5e09b7b7b50365b2fb44ab9097e38368"><td class="memTemplItemLeft" align="right" valign="top">TYPE&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a5e09b7b7b50365b2fb44ab9097e38368">getValue</a> (string key) const</td></tr>
+<tr class="separator:a5e09b7b7b50365b2fb44ab9097e38368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07455a035b3b80d68f5e1e43f8bbc3c1"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
 <tr class="memitem:a07455a035b3b80d68f5e1e43f8bbc3c1"><td class="memTemplItemLeft" align="right" valign="top">string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#a07455a035b3b80d68f5e1e43f8bbc3c1">insertValue</a> (const TYPE &amp;value)</td></tr>
 <tr class="separator:a07455a035b3b80d68f5e1e43f8bbc3c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2897eee1858db0e9926521ca5488486b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a2897eee1858db0e9926521ca5488486b">operator const VersionedStoreSnapshot &amp;</a> () const</td></tr>
-<tr class="separator:a2897eee1858db0e9926521ca5488486b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a656a4890d17c4a7d4a24cf4d613b0394"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a656a4890d17c4a7d4a24cf4d613b0394">operator const VersionedStoreSnapshot &amp;</a> () const</td></tr>
+<tr class="separator:a656a4890d17c4a7d4a24cf4d613b0394"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c859e9bbd61906ff733b7dbc900a521"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
 <tr class="memitem:a8c859e9bbd61906ff733b7dbc900a521"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#a8c859e9bbd61906ff733b7dbc900a521">setValue</a> (string key, const TYPE &amp;value)</td></tr>
 <tr class="separator:a8c859e9bbd61906ff733b7dbc900a521"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a759faa7f8ce473e35ef252b035350066"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a759faa7f8ce473e35ef252b035350066">pushNode</a> (size_t nodeID, string nodeKey)</td></tr>
-<tr class="separator:a759faa7f8ce473e35ef252b035350066"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a231138a510b6c6f9a74930d9177d4321"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a231138a510b6c6f9a74930d9177d4321">setName</a> (string name)</td></tr>
-<tr class="separator:a231138a510b6c6f9a74930d9177d4321"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71eef8ec17a302ef86a962d4839a8599"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a71eef8ec17a302ef86a962d4839a8599">AbstractVersionedCollection_getSnapshot</a> () const override</td></tr>
+<tr class="separator:a71eef8ec17a302ef86a962d4839a8599"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a236f29eb0e29dc30c1ed09807e6ec51c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a236f29eb0e29dc30c1ed09807e6ec51c">affirmState</a> ()</td></tr>
+<tr class="separator:a236f29eb0e29dc30c1ed09807e6ec51c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a616dd2fa3dc98ed87d63a76897f027f8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a616dd2fa3dc98ed87d63a76897f027f8">getSnapshot</a> () const</td></tr>
+<tr class="separator:a616dd2fa3dc98ed87d63a76897f027f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae82777a3a1367024a14aafc474531844"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#ae82777a3a1367024a14aafc474531844">insertNode</a> (size_t nodeID, string key, string nodeKey)</td></tr>
+<tr class="separator:ae82777a3a1367024a14aafc474531844"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6406d5a8ed217a188d581b0d9753ce4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#ac6406d5a8ed217a188d581b0d9753ce4">pushNode</a> (size_t nodeID, string nodeKey)</td></tr>
+<tr class="separator:ac6406d5a8ed217a188d581b0d9753ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a883a7c368b53a187bbc8a361a64ca656"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a883a7c368b53a187bbc8a361a64ca656">removeNode</a> (string key, size_t prevID=<a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a72d95902d53faa132a39ad1a1966a3f2">INVALID_NODE_INDEX</a>)</td></tr>
+<tr class="separator:a883a7c368b53a187bbc8a361a64ca656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a2c45acd9e8ffbd77aac2c2c693a408b9">setName</a> (string name)</td></tr>
+<tr class="separator:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a263b2fee21fbdd884604b2e5f2a609fc"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a263b2fee21fbdd884604b2e5f2a609fc">mMapName</a></td></tr>
-<tr class="separator:a263b2fee21fbdd884604b2e5f2a609fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1b92d89507dcfbdb007778663c1d109"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#af1b92d89507dcfbdb007778663c1d109">mNodePrefix</a></td></tr>
-<tr class="separator:af1b92d89507dcfbdb007778663c1d109"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6955fc193c1d075589749aec3027c69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/dc8/class_padamose_1_1_versioned_set_state.html">VersionedSetState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#aa6955fc193c1d075589749aec3027c69">mState</a></td></tr>
-<tr class="separator:aa6955fc193c1d075589749aec3027c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae601ceafe03b274b73004d122828683b"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#ae601ceafe03b274b73004d122828683b">mValuePrefix</a></td></tr>
-<tr class="separator:ae601ceafe03b274b73004d122828683b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc7f6563253dac2cbcddacdb8b81180"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a1dc7f6563253dac2cbcddacdb8b81180">mMapName</a></td></tr>
+<tr class="separator:a1dc7f6563253dac2cbcddacdb8b81180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39759dbf94a8860a9bf1573507421a8a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a39759dbf94a8860a9bf1573507421a8a">mNodePrefix</a></td></tr>
+<tr class="separator:a39759dbf94a8860a9bf1573507421a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45ec00dd0fb3568e57245fab386bc6e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html">VersionedCollectionState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a45ec00dd0fb3568e57245fab386bc6e8">mState</a></td></tr>
+<tr class="separator:a45ec00dd0fb3568e57245fab386bc6e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8f953dfb1a732440559154dbd448fdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">VersionedStore</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#ab8f953dfb1a732440559154dbd448fdc">mStore</a></td></tr>
+<tr class="separator:ab8f953dfb1a732440559154dbd448fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b350c4eb26cbeb6b9d08e14d71087f6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a8b350c4eb26cbeb6b9d08e14d71087f6">mValuePrefix</a></td></tr>
+<tr class="separator:a8b350c4eb26cbeb6b9d08e14d71087f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
-<tr class="memitem:a88a8aaa1b9a06eb54d6f3194b2937ab8"><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a88a8aaa1b9a06eb54d6f3194b2937ab8">INVALID_NODE_INDEX</a> = ( size_t )-1</td></tr>
-<tr class="separator:a88a8aaa1b9a06eb54d6f3194b2937ab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad66985c3f2a7c7c72ee9a55c32086ae9"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#ad66985c3f2a7c7c72ee9a55c32086ae9">SET_NODES_POSTFIX</a> = &quot;.nodes.&quot;</td></tr>
-<tr class="separator:ad66985c3f2a7c7c72ee9a55c32086ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8002667399ed27e1e6792f6dea432492"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a8002667399ed27e1e6792f6dea432492">SET_VALUES_POSTFIX</a> = &quot;.values.&quot;</td></tr>
-<tr class="separator:a8002667399ed27e1e6792f6dea432492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72d95902d53faa132a39ad1a1966a3f2"><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a72d95902d53faa132a39ad1a1966a3f2">INVALID_NODE_INDEX</a> = ( size_t )-1</td></tr>
+<tr class="separator:a72d95902d53faa132a39ad1a1966a3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41932776a7eef5258bc47cb742a66936"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a41932776a7eef5258bc47cb742a66936">SET_NODES_POSTFIX</a> = &quot;.nodes.&quot;</td></tr>
+<tr class="separator:a41932776a7eef5258bc47cb742a66936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a9a8b0e0bd5fea1170d1871551d13f90c">SET_VALUES_POSTFIX</a> = &quot;.values.&quot;</td></tr>
+<tr class="separator:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a68dc195a64961f1ff299b7983b917ab1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#a68dc195a64961f1ff299b7983b917ab1">AbstractVersionedSet_getSnapshot</a> () const override</td></tr>
-<tr class="separator:a68dc195a64961f1ff299b7983b917ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a216f8cba4e3acc6fa95d84fe37d6a986"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#a216f8cba4e3acc6fa95d84fe37d6a986">provisionKey</a> ()</td></tr>
 <tr class="separator:a216f8cba4e3acc6fa95d84fe37d6a986"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:adceb99565c937d2ad9017bb0566273d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">VersionedStore</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#adceb99565c937d2ad9017bb0566273d1">mStore</a></td></tr>
-<tr class="separator:adceb99565c937d2ad9017bb0566273d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae127e8990f92d2cb99ac79083a03444d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dd5/class_padamose_1_1_versioned_set_free_stack.html">VersionedSetFreeStack</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#ae127e8990f92d2cb99ac79083a03444d">mFreeStack</a></td></tr>
+<tr class="separator:ae127e8990f92d2cb99ac79083a03444d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30b677c2760eba5b72226e2b1df987a4"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#a30b677c2760eba5b72226e2b1df987a4">mFreeStackKey</a></td></tr>
+<tr class="separator:a30b677c2760eba5b72226e2b1df987a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a75f61d66ff44e6329158b7f176a0f1fc"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#a75f61d66ff44e6329158b7f176a0f1fc">SET_FREE_STACK_POSTFIX</a> = &quot;.free&quot;</td></tr>
+<tr class="separator:a75f61d66ff44e6329158b7f176a0f1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa9e382525cc78f4aace9b72e87be7842"></a>
@@ -218,8 +237,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a68dc195a64961f1ff299b7983b917ab1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68dc195a64961f1ff299b7983b917ab1">&#9670;&nbsp;</a></span>AbstractVersionedSet_getSnapshot()</h2>
+<a id="a71eef8ec17a302ef86a962d4839a8599"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71eef8ec17a302ef86a962d4839a8599">&#9670;&nbsp;</a></span>AbstractVersionedCollection_getSnapshot()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,7 +247,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp; Padamose::VersionedSet::AbstractVersionedSet_getSnapshot </td>
+          <td class="memname">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp; Padamose::MutableVersionedCollection::AbstractVersionedCollection_getSnapshot </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -236,12 +255,37 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a30c72cb8bb60c76bf8dd04c57851215c">Padamose::AbstractVersionedSet</a>.</p>
+<p>Implements <a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#abc6bf5c27709e7ff4baaffc44a129f2b">Padamose::AbstractVersionedCollection</a>.</p>
+
+</div>
+</div>
+<a id="a236f29eb0e29dc30c1ed09807e6ec51c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a236f29eb0e29dc30c1ed09807e6ec51c">&#9670;&nbsp;</a></span>affirmState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Padamose::MutableVersionedCollection::affirmState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -263,8 +307,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a32fc6864b0a23cf4a4875cf1cdde45b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32fc6864b0a23cf4a4875cf1cdde45b0">&#9670;&nbsp;</a></span>getName()</h2>
+<a id="ac8d0d908d7c4d7b8f4ec5ef0bca40121"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8d0d908d7c4d7b8f4ec5ef0bca40121">&#9670;&nbsp;</a></span>getName()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -273,7 +317,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Padamose::AbstractVersionedSet::getName </td>
+          <td class="memname">string Padamose::AbstractVersionedCollection::getName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -288,8 +332,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a06a45e1f20733929e3acfe2c2ce4d9a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06a45e1f20733929e3acfe2c2ce4d9a6">&#9670;&nbsp;</a></span>getSize()</h2>
+<a id="a8144a9a36e8de89f708a96ce5f057aea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8144a9a36e8de89f708a96ce5f057aea">&#9670;&nbsp;</a></span>getSize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -298,7 +342,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t Padamose::AbstractVersionedSet::getSize </td>
+          <td class="memname">size_t Padamose::AbstractVersionedCollection::getSize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -313,8 +357,33 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aebe0ae54745cd0466ce5d8a56003a5ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebe0ae54745cd0466ce5d8a56003a5ff">&#9670;&nbsp;</a></span>getValue()</h2>
+<a id="a616dd2fa3dc98ed87d63a76897f027f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a616dd2fa3dc98ed87d63a76897f027f8">&#9670;&nbsp;</a></span>getSnapshot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp; Padamose::AbstractVersionedCollection::getSnapshot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e09b7b7b50365b2fb44ab9097e38368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e09b7b7b50365b2fb44ab9097e38368">&#9670;&nbsp;</a></span>getValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -325,7 +394,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TYPE Padamose::AbstractVersionedSet::getValue </td>
+          <td class="memname">TYPE Padamose::AbstractVersionedCollection::getValue </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
@@ -335,6 +404,48 @@ template&lt;typename TYPE &gt; </div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae82777a3a1367024a14aafc474531844"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae82777a3a1367024a14aafc474531844">&#9670;&nbsp;</a></span>insertNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Padamose::MutableVersionedCollection::insertNode </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nodeID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -369,8 +480,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a2897eee1858db0e9926521ca5488486b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2897eee1858db0e9926521ca5488486b">&#9670;&nbsp;</a></span>operator const VersionedStoreSnapshot &amp;()</h2>
+<a id="a656a4890d17c4a7d4a24cf4d613b0394"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a656a4890d17c4a7d4a24cf4d613b0394">&#9670;&nbsp;</a></span>operator const VersionedStoreSnapshot &amp;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -379,7 +490,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Padamose::AbstractVersionedSet::operator const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp; </td>
+          <td class="memname">Padamose::AbstractVersionedCollection::operator const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp; </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -419,8 +530,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a759faa7f8ce473e35ef252b035350066"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a759faa7f8ce473e35ef252b035350066">&#9670;&nbsp;</a></span>pushNode()</h2>
+<a id="ac6406d5a8ed217a188d581b0d9753ce4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6406d5a8ed217a188d581b0d9753ce4">&#9670;&nbsp;</a></span>pushNode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -429,7 +540,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Padamose::AbstractVersionedSet::pushNode </td>
+          <td class="memname">void Padamose::AbstractVersionedCollection::pushNode </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>nodeID</em>, </td>
@@ -455,8 +566,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a231138a510b6c6f9a74930d9177d4321"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a231138a510b6c6f9a74930d9177d4321">&#9670;&nbsp;</a></span>setName()</h2>
+<a id="a883a7c368b53a187bbc8a361a64ca656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a883a7c368b53a187bbc8a361a64ca656">&#9670;&nbsp;</a></span>removeNode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -465,7 +576,43 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Padamose::AbstractVersionedSet::setName </td>
+          <td class="memname">size_t Padamose::MutableVersionedCollection::removeNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>prevID</em> = <code><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a72d95902d53faa132a39ad1a1966a3f2">INVALID_NODE_INDEX</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c45acd9e8ffbd77aac2c2c693a408b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c45acd9e8ffbd77aac2c2c693a408b9">&#9670;&nbsp;</a></span>setName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Padamose::AbstractVersionedCollection::setName </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
@@ -520,8 +667,8 @@ template&lt;typename TYPE &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a88a8aaa1b9a06eb54d6f3194b2937ab8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88a8aaa1b9a06eb54d6f3194b2937ab8">&#9670;&nbsp;</a></span>INVALID_NODE_INDEX</h2>
+<a id="a72d95902d53faa132a39ad1a1966a3f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72d95902d53faa132a39ad1a1966a3f2">&#9670;&nbsp;</a></span>INVALID_NODE_INDEX</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -530,7 +677,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const size_t Padamose::AbstractVersionedSet::INVALID_NODE_INDEX = ( size_t )-1</td>
+          <td class="memname">const size_t Padamose::AbstractVersionedCollection::INVALID_NODE_INDEX = ( size_t )-1</td>
         </tr>
       </table>
   </td>
@@ -542,8 +689,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a263b2fee21fbdd884604b2e5f2a609fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a263b2fee21fbdd884604b2e5f2a609fc">&#9670;&nbsp;</a></span>mMapName</h2>
+<a id="ae127e8990f92d2cb99ac79083a03444d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae127e8990f92d2cb99ac79083a03444d">&#9670;&nbsp;</a></span>mFreeStack</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -552,73 +699,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Padamose::AbstractVersionedSet::mMapName</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af1b92d89507dcfbdb007778663c1d109"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1b92d89507dcfbdb007778663c1d109">&#9670;&nbsp;</a></span>mNodePrefix</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Padamose::AbstractVersionedSet::mNodePrefix</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa6955fc193c1d075589749aec3027c69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6955fc193c1d075589749aec3027c69">&#9670;&nbsp;</a></span>mState</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../dd/dc8/class_padamose_1_1_versioned_set_state.html">VersionedSetState</a> Padamose::AbstractVersionedSet::mState</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="adceb99565c937d2ad9017bb0566273d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adceb99565c937d2ad9017bb0566273d1">&#9670;&nbsp;</a></span>mStore</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">VersionedStore</a>&amp; Padamose::VersionedSet::mStore</td>
+          <td class="memname"><a class="el" href="../../d9/dd5/class_padamose_1_1_versioned_set_free_stack.html">VersionedSetFreeStack</a> Padamose::VersionedSet::mFreeStack</td>
         </tr>
       </table>
   </td>
@@ -630,8 +711,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="ae601ceafe03b274b73004d122828683b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae601ceafe03b274b73004d122828683b">&#9670;&nbsp;</a></span>mValuePrefix</h2>
+<a id="a30b677c2760eba5b72226e2b1df987a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30b677c2760eba5b72226e2b1df987a4">&#9670;&nbsp;</a></span>mFreeStackKey</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -640,7 +721,29 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Padamose::AbstractVersionedSet::mValuePrefix</td>
+          <td class="memname">string Padamose::VersionedSet::mFreeStackKey</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1dc7f6563253dac2cbcddacdb8b81180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc7f6563253dac2cbcddacdb8b81180">&#9670;&nbsp;</a></span>mMapName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Padamose::AbstractVersionedCollection::mMapName</td>
         </tr>
       </table>
   </td>
@@ -652,8 +755,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="ad66985c3f2a7c7c72ee9a55c32086ae9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad66985c3f2a7c7c72ee9a55c32086ae9">&#9670;&nbsp;</a></span>SET_NODES_POSTFIX</h2>
+<a id="a39759dbf94a8860a9bf1573507421a8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39759dbf94a8860a9bf1573507421a8a">&#9670;&nbsp;</a></span>mNodePrefix</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -662,7 +765,117 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr const char* Padamose::AbstractVersionedSet::SET_NODES_POSTFIX = &quot;.nodes.&quot;</td>
+          <td class="memname">string Padamose::AbstractVersionedCollection::mNodePrefix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a45ec00dd0fb3568e57245fab386bc6e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45ec00dd0fb3568e57245fab386bc6e8">&#9670;&nbsp;</a></span>mState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html">VersionedCollectionState</a> Padamose::AbstractVersionedCollection::mState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab8f953dfb1a732440559154dbd448fdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8f953dfb1a732440559154dbd448fdc">&#9670;&nbsp;</a></span>mStore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">VersionedStore</a>&amp; Padamose::MutableVersionedCollection::mStore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b350c4eb26cbeb6b9d08e14d71087f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b350c4eb26cbeb6b9d08e14d71087f6">&#9670;&nbsp;</a></span>mValuePrefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Padamose::AbstractVersionedCollection::mValuePrefix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a75f61d66ff44e6329158b7f176a0f1fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75f61d66ff44e6329158b7f176a0f1fc">&#9670;&nbsp;</a></span>SET_FREE_STACK_POSTFIX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const char* Padamose::VersionedSet::SET_FREE_STACK_POSTFIX = &quot;.free&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41932776a7eef5258bc47cb742a66936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41932776a7eef5258bc47cb742a66936">&#9670;&nbsp;</a></span>SET_NODES_POSTFIX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const char* Padamose::AbstractVersionedCollection::SET_NODES_POSTFIX = &quot;.nodes.&quot;</td>
         </tr>
       </table>
   </td>
@@ -674,8 +887,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a8002667399ed27e1e6792f6dea432492"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8002667399ed27e1e6792f6dea432492">&#9670;&nbsp;</a></span>SET_VALUES_POSTFIX</h2>
+<a id="a9a8b0e0bd5fea1170d1871551d13f90c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a8b0e0bd5fea1170d1871551d13f90c">&#9670;&nbsp;</a></span>SET_VALUES_POSTFIX</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -684,7 +897,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr const char* Padamose::AbstractVersionedSet::SET_VALUES_POSTFIX = &quot;.values.&quot;</td>
+          <td class="memname">constexpr const char* Padamose::AbstractVersionedCollection::SET_VALUES_POSTFIX = &quot;.values.&quot;</td>
         </tr>
       </table>
   </td>
@@ -706,7 +919,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html">VersionedSet</a></li>
-    <li class="footer">Generated on Thu Nov 22 2018 19:13:26 for Padamose by
+    <li class="footer">Generated on Thu Nov 22 2018 21:40:59 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

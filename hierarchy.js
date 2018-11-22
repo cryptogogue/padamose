@@ -24,13 +24,16 @@ var hierarchy =
         [ "Padamose::VersionedValueIterator< TYPE >", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html", null ]
       ] ]
     ] ],
-    [ "Padamose::AbstractVersionedSet", "dd/dd3/class_padamose_1_1_abstract_versioned_set.html", [
-      [ "Padamose::VersionedMap", "dd/dad/class_padamose_1_1_versioned_map.html", null ],
-      [ "Padamose::VersionedSet", "de/daa/class_padamose_1_1_versioned_set.html", null ],
-      [ "Padamose::VersionedSetSnapshot", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html", [
-        [ "Padamose::VersionedSetIterator", "de/d66/class_padamose_1_1_versioned_set_iterator.html", null ]
+    [ "Padamose::AbstractVersionedCollection", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html", [
+      [ "Padamose::MutableVersionedCollection", "de/dfd/class_padamose_1_1_mutable_versioned_collection.html", [
+        [ "Padamose::VersionedMap", "dd/dad/class_padamose_1_1_versioned_map.html", null ],
+        [ "Padamose::VersionedSet", "de/daa/class_padamose_1_1_versioned_set.html", null ]
+      ] ],
+      [ "Padamose::VersionedCollectionSnapshot", "d3/da8/class_padamose_1_1_versioned_collection_snapshot.html", [
+        [ "Padamose::VersionedCollectionIterator", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html", null ]
       ] ]
     ] ],
-    [ "Padamose::VersionedSetNode", "dc/dea/class_padamose_1_1_versioned_set_node.html", null ],
-    [ "Padamose::VersionedSetState", "dd/dc8/class_padamose_1_1_versioned_set_state.html", null ]
+    [ "Padamose::VersionedCollectionState", "d9/dbb/class_padamose_1_1_versioned_collection_state.html", null ],
+    [ "Padamose::VersionedSetFreeStack", "d9/dd5/class_padamose_1_1_versioned_set_free_stack.html", null ],
+    [ "Padamose::VersionedSetNode", "dc/dea/class_padamose_1_1_versioned_set_node.html", null ]
 ];

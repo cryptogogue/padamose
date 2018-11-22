@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['invalid_5fnode_5findex',['INVALID_NODE_INDEX',['../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a88a8aaa1b9a06eb54d6f3194b2937ab8',1,'Padamose::AbstractVersionedSet']]]
+  ['invalid_5fnode_5findex',['INVALID_NODE_INDEX',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a72d95902d53faa132a39ad1a1966a3f2',1,'Padamose::AbstractVersionedCollection']]]
 ];
