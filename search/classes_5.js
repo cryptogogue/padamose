@@ -2,6 +2,8 @@ var searchData=
 [
   ['valuestack',['ValueStack',['../dd/d4c/class_padamose_1_1_value_stack.html',1,'Padamose']]],
   ['versionedbranch',['VersionedBranch',['../d4/da9/class_padamose_1_1_versioned_branch.html',1,'Padamose']]],
+  ['versionedmap',['VersionedMap',['../dd/dad/class_padamose_1_1_versioned_map.html',1,'Padamose']]],
+  ['versionedmapkeycollisionexception',['VersionedMapKeyCollisionException',['../db/de5/class_padamose_1_1_versioned_map_key_collision_exception.html',1,'Padamose']]],
   ['versionedset',['VersionedSet',['../de/daa/class_padamose_1_1_versioned_set.html',1,'Padamose']]],
   ['versionedsetiterator',['VersionedSetIterator',['../de/d66/class_padamose_1_1_versioned_set_iterator.html',1,'Padamose']]],
   ['versionedsetnode',['VersionedSetNode',['../dc/dea/class_padamose_1_1_versioned_set_node.html',1,'Padamose']]],

@@ -20,6 +20,7 @@ var dir_53205d729e2de803411098b876920811 =
       [ "KeyNotFoundException", "d5/d87/class_padamose_1_1_key_not_found_exception.html", "d5/d87/class_padamose_1_1_key_not_found_exception" ],
       [ "OverwriteException", "d0/d81/class_padamose_1_1_overwrite_exception.html", "d0/d81/class_padamose_1_1_overwrite_exception" ],
       [ "TypeMismatchOnAssignException", "db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html", "db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception" ],
+      [ "VersionedMapKeyCollisionException", "db/de5/class_padamose_1_1_versioned_map_key_collision_exception.html", "db/de5/class_padamose_1_1_versioned_map_key_collision_exception" ],
       [ "VersionedSetNotFoundException", "d0/d60/class_padamose_1_1_versioned_set_not_found_exception.html", "d0/d60/class_padamose_1_1_versioned_set_not_found_exception" ],
       [ "VersionOutOfBoundsException", "d1/dcb/class_padamose_1_1_version_out_of_bounds_exception.html", "d1/dcb/class_padamose_1_1_version_out_of_bounds_exception" ]
     ] ],
@@ -32,6 +33,10 @@ var dir_53205d729e2de803411098b876920811 =
     [ "VersionedBranch.cpp", "da/d92/_versioned_branch_8cpp.html", null ],
     [ "VersionedBranch.h", "dc/d7d/_versioned_branch_8h.html", [
       [ "VersionedBranch", "d4/da9/class_padamose_1_1_versioned_branch.html", "d4/da9/class_padamose_1_1_versioned_branch" ]
+    ] ],
+    [ "VersionedMap.cpp", "d0/d9f/_versioned_map_8cpp.html", null ],
+    [ "VersionedMap.h", "da/de9/_versioned_map_8h.html", [
+      [ "VersionedMap", "dd/dad/class_padamose_1_1_versioned_map.html", "dd/dad/class_padamose_1_1_versioned_map" ]
     ] ],
     [ "VersionedSet.cpp", "dc/d1e/_versioned_set_8cpp.html", null ],
     [ "VersionedSet.h", "da/d94/_versioned_set_8h.html", [

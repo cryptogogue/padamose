@@ -102,9 +102,10 @@ Inheritance diagram for Padamose::AbstractVersionedSet:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d8b/class_padamose_1_1_abstract_versioned_set__inherit__graph.png" border="0" usemap="#_padamose_1_1_abstract_versioned_set_inherit__map" alt="Inheritance graph"/></div>
 <map name="_padamose_1_1_abstract_versioned_set_inherit__map" id="_padamose_1_1_abstract_versioned_set_inherit__map">
-<area shape="rect" id="node2" href="../../de/daa/class_padamose_1_1_versioned_set.html" title="Padamose::VersionedSet" alt="" coords="5,79,177,104"/>
-<area shape="rect" id="node3" href="../../d6/db4/class_padamose_1_1_versioned_set_snapshot.html" title="Padamose::VersionedSetSnapshot" alt="" coords="201,79,429,104"/>
-<area shape="rect" id="node4" href="../../de/d66/class_padamose_1_1_versioned_set_iterator.html" title="Padamose::VersionedSetIterator" alt="" coords="208,152,422,177"/>
+<area shape="rect" id="node2" href="../../dd/dad/class_padamose_1_1_versioned_map.html" title="Padamose::VersionedMap" alt="" coords="5,79,183,104"/>
+<area shape="rect" id="node3" href="../../de/daa/class_padamose_1_1_versioned_set.html" title="Padamose::VersionedSet" alt="" coords="207,79,379,104"/>
+<area shape="rect" id="node4" href="../../d6/db4/class_padamose_1_1_versioned_set_snapshot.html" title="Padamose::VersionedSetSnapshot" alt="" coords="403,79,631,104"/>
+<area shape="rect" id="node5" href="../../de/d66/class_padamose_1_1_versioned_set_iterator.html" title="Padamose::VersionedSetIterator" alt="" coords="410,152,624,177"/>
 </map>
 <center><span class="legend">[<a target="top" href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -128,6 +129,8 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a30c72cb8bb60c76bf8dd04c57851215c"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a30c72cb8bb60c76bf8dd04c57851215c">AbstractVersionedSet_getSnapshot</a> () const =0</td></tr>
 <tr class="separator:a30c72cb8bb60c76bf8dd04c57851215c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a759faa7f8ce473e35ef252b035350066"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a759faa7f8ce473e35ef252b035350066">pushNode</a> (size_t nodeID, string nodeKey)</td></tr>
+<tr class="separator:a759faa7f8ce473e35ef252b035350066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a231138a510b6c6f9a74930d9177d4321"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a231138a510b6c6f9a74930d9177d4321">setName</a> (string name)</td></tr>
 <tr class="separator:a231138a510b6c6f9a74930d9177d4321"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -218,7 +221,7 @@ Static Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#a68dc195a64961f1ff299b7983b917ab1">Padamose::VersionedSet</a>, and <a class="el" href="../../d6/db4/class_padamose_1_1_versioned_set_snapshot.html#aa8032824b3e1685d3e0fd6c7fc7985e6">Padamose::VersionedSetSnapshot</a>.</p>
+<p>Implemented in <a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a13c4c44422e27d16e6734e9c16d070f7">Padamose::VersionedMap</a>, <a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html#a68dc195a64961f1ff299b7983b917ab1">Padamose::VersionedSet</a>, and <a class="el" href="../../d6/db4/class_padamose_1_1_versioned_set_snapshot.html#aa8032824b3e1685d3e0fd6c7fc7985e6">Padamose::VersionedSetSnapshot</a>.</p>
 
 </div>
 </div>
@@ -303,6 +306,42 @@ template&lt;typename TYPE &gt; </div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a759faa7f8ce473e35ef252b035350066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a759faa7f8ce473e35ef252b035350066">&#9670;&nbsp;</a></span>pushNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Padamose::AbstractVersionedSet::pushNode </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nodeID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -500,7 +539,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html">AbstractVersionedSet</a></li>
-    <li class="footer">Generated on Thu Nov 22 2018 00:54:21 for Padamose by
+    <li class="footer">Generated on Thu Nov 22 2018 19:13:26 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

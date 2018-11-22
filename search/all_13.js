@@ -4,6 +4,7 @@ var searchData=
   ['_7eabstractversionedbranchclient',['~AbstractVersionedBranchClient',['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#a20696e4be64b04d8067e1be0dcaf25be',1,'Padamose::AbstractVersionedBranchClient']]],
   ['_7eabstractversionedset',['~AbstractVersionedSet',['../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a96bfd851e491b0f5897725fa47d18c36',1,'Padamose::AbstractVersionedSet']]],
   ['_7eversionedbranch',['~VersionedBranch',['../d4/da9/class_padamose_1_1_versioned_branch.html#a8223595abbec33103857f51e211f4014',1,'Padamose::VersionedBranch']]],
+  ['_7eversionedmap',['~VersionedMap',['../dd/dad/class_padamose_1_1_versioned_map.html#afde286df1de7ee05acc8beba00c011e2',1,'Padamose::VersionedMap']]],
   ['_7eversionedset',['~VersionedSet',['../de/daa/class_padamose_1_1_versioned_set.html#a41c12c45d0658099582750cdb298b4b5',1,'Padamose::VersionedSet']]],
   ['_7eversionedsetiterator',['~VersionedSetIterator',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a6c61182a20c18a432574a72f02fba885',1,'Padamose::VersionedSetIterator']]],
   ['_7eversionedsetsnapshot',['~VersionedSetSnapshot',['../d6/db4/class_padamose_1_1_versioned_set_snapshot.html#a8e200cec78736be9b928275d9f46e326',1,'Padamose::VersionedSetSnapshot']]],

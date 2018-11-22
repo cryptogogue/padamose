@@ -3,6 +3,8 @@ var searchData=
   ['valuestack_2eh',['ValueStack.h',['../db/de1/_value_stack_8h.html',1,'']]],
   ['versionedbranch_2ecpp',['VersionedBranch.cpp',['../da/d92/_versioned_branch_8cpp.html',1,'']]],
   ['versionedbranch_2eh',['VersionedBranch.h',['../dc/d7d/_versioned_branch_8h.html',1,'']]],
+  ['versionedmap_2ecpp',['VersionedMap.cpp',['../d0/d9f/_versioned_map_8cpp.html',1,'']]],
+  ['versionedmap_2eh',['VersionedMap.h',['../da/de9/_versioned_map_8h.html',1,'']]],
   ['versionedset_2ecpp',['VersionedSet.cpp',['../dc/d1e/_versioned_set_8cpp.html',1,'']]],
   ['versionedset_2eh',['VersionedSet.h',['../da/d94/_versioned_set_8h.html',1,'']]],
   ['versionedsetiterator_2ecpp',['VersionedSetIterator.cpp',['../de/d6b/_versioned_set_iterator_8cpp.html',1,'']]],

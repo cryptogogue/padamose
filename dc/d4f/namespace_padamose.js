@@ -9,6 +9,8 @@ var namespace_padamose =
     [ "TypeMismatchOnAssignException", "db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html", "db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception" ],
     [ "ValueStack", "dd/d4c/class_padamose_1_1_value_stack.html", "dd/d4c/class_padamose_1_1_value_stack" ],
     [ "VersionedBranch", "d4/da9/class_padamose_1_1_versioned_branch.html", "d4/da9/class_padamose_1_1_versioned_branch" ],
+    [ "VersionedMap", "dd/dad/class_padamose_1_1_versioned_map.html", "dd/dad/class_padamose_1_1_versioned_map" ],
+    [ "VersionedMapKeyCollisionException", "db/de5/class_padamose_1_1_versioned_map_key_collision_exception.html", "db/de5/class_padamose_1_1_versioned_map_key_collision_exception" ],
     [ "VersionedSet", "de/daa/class_padamose_1_1_versioned_set.html", "de/daa/class_padamose_1_1_versioned_set" ],
     [ "VersionedSetIterator", "de/d66/class_padamose_1_1_versioned_set_iterator.html", "de/d66/class_padamose_1_1_versioned_set_iterator" ],
     [ "VersionedSetNode", "dc/dea/class_padamose_1_1_versioned_set_node.html", "dc/dea/class_padamose_1_1_versioned_set_node" ],

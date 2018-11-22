@@ -7,6 +7,7 @@ var class_padamose_1_1_versioned_set_snapshot =
     [ "getSize", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html#a06a45e1f20733929e3acfe2c2ce4d9a6", null ],
     [ "getValue", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html#aebe0ae54745cd0466ce5d8a56003a5ff", null ],
     [ "operator const VersionedStoreSnapshot &", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html#a2897eee1858db0e9926521ca5488486b", null ],
+    [ "pushNode", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html#a759faa7f8ce473e35ef252b035350066", null ],
     [ "setName", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html#a231138a510b6c6f9a74930d9177d4321", null ],
     [ "INVALID_NODE_INDEX", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html#a88a8aaa1b9a06eb54d6f3194b2937ab8", null ],
     [ "mMapName", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html#a263b2fee21fbdd884604b2e5f2a609fc", null ],

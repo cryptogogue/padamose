@@ -1,6 +1,7 @@
 var class_padamose_1_1_versioned_set_state =
 [
     [ "AbstractVersionedSet", "dd/dc8/class_padamose_1_1_versioned_set_state.html#a3cc2a938fba7127e6bd1524b6682524d", null ],
+    [ "VersionedMap", "dd/dc8/class_padamose_1_1_versioned_set_state.html#a66f893ff403727f78a6a41d9f133c4e2", null ],
     [ "VersionedSet", "dd/dc8/class_padamose_1_1_versioned_set_state.html#a7a4930dc3f267e231ef6a56fd4b5e45f", null ],
     [ "VersionedSetIterator", "dd/dc8/class_padamose_1_1_versioned_set_state.html#ae5dafa43fe64e8b932fa5d304585a512", null ],
     [ "VersionedSetSnapshot", "dd/dc8/class_padamose_1_1_versioned_set_state.html#ac7f31d7b90cdefbd822e524434c750c7", null ],

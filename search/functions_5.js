@@ -2,6 +2,7 @@ var searchData=
 [
   ['getjoinscore',['getJoinScore',['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#a27a351eedec84aaa51ea41498116acc9',1,'Padamose::AbstractVersionedBranchClient']]],
   ['getname',['getName',['../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a32fc6864b0a23cf4a4875cf1cdde45b0',1,'Padamose::AbstractVersionedSet']]],
+  ['getnodeid',['getNodeID',['../dd/dad/class_padamose_1_1_versioned_map.html#abf87e042f08c53934c8427124dcd1ce9',1,'Padamose::VersionedMap']]],
   ['getraw',['getRaw',['../d4/da9/class_padamose_1_1_versioned_branch.html#a93a3e84ba26aa417153c7a32c4612eb2',1,'Padamose::VersionedBranch::getRaw()'],['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a088b030bf7726e27d710d087221b8408',1,'Padamose::VersionedStoreSnapshot::getRaw()']]],
   ['getsize',['getSize',['../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a06a45e1f20733929e3acfe2c2ce4d9a6',1,'Padamose::AbstractVersionedSet']]],
   ['gettopversion',['getTopVersion',['../d4/da9/class_padamose_1_1_versioned_branch.html#afcacd0f30a882f72656758eb91f17e85',1,'Padamose::VersionedBranch']]],
