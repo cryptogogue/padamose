@@ -17,64 +17,57 @@ bool VersionedSetIterator::isValid () const {
 
 //----------------------------------------------------------------//
 bool VersionedSetIterator::next () {
-
-    if ( this->mIteratorState == EMPTY ) return false;
-
-    if ( this->mIteratorState == NO_PREV ) {
-        this->mIteratorState = VALID;
-    }
-    else if ( this->mIteratorState != NO_NEXT ) {
-
-        if ( this->mIteratorNode.mNext == INVALID_NODE_INDEX ) {
-            this->mIteratorState = NO_NEXT;
-        }
-        else {
-            this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mNodePrefix + to_string ( this->mIteratorNode.mNext ));
-        }
-    }
-    return ( this->mIteratorState != NO_NEXT );
+    
+    return this->step ( this->mIteratorNode.mNext, NO_NEXT, NO_PREV );
 }
 
 //----------------------------------------------------------------//
 bool VersionedSetIterator::prev () {
-
-    if ( this->mIteratorState == EMPTY ) return false;
-
-    if ( this->mIteratorState == NO_NEXT ) {
-        this->mIteratorState = VALID;
-    }
-    else if ( this->mIteratorState != NO_PREV ) {
-
-        if ( this->mIteratorNode.mPrev == INVALID_NODE_INDEX ) {
-            this->mIteratorState = NO_PREV;
-        }
-        else {
-            this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mNodePrefix + to_string ( this->mIteratorNode.mPrev ));
-        }
-    }
-    return ( this->mIteratorState != NO_PREV );
+    
+    return this->step ( this->mIteratorNode.mPrev, NO_PREV, NO_NEXT );
 }
 
 //----------------------------------------------------------------//
-void VersionedSetIterator::seekBack () {
+void VersionedSetIterator::seek ( size_t nodeID ) {
 
     if ( this->mState.mSize == 0 ) {
         this->mIteratorState = EMPTY;
         return;
     }
-    this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mNodePrefix + to_string ( this->mState.mTail ));
+    this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mNodePrefix + to_string ( nodeID ));
     this->mIteratorState = VALID;
+}
+
+//----------------------------------------------------------------//
+void VersionedSetIterator::seekBack () {
+    
+    this->seek ( this->mState.mTail );
 }
 
 //----------------------------------------------------------------//
 void VersionedSetIterator::seekFront () {
 
-    if ( this->mState.mSize == 0 ) {
-        this->mIteratorState = EMPTY;
-        return;
+    this->seek ( this->mState.mHead );
+}
+
+//----------------------------------------------------------------//
+bool VersionedSetIterator::step ( size_t nextNodeID, int blockingState, int unblockingState ) {
+
+    if ( this->mIteratorState == EMPTY ) return false;
+
+    if ( this->mIteratorState == unblockingState ) {
+        this->mIteratorState = VALID;
     }
-    this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mNodePrefix + to_string ( this->mState.mHead ));
-    this->mIteratorState = VALID;
+    else if ( this->mIteratorState != blockingState ) {
+
+        if ( nextNodeID == INVALID_NODE_INDEX ) {
+            this->mIteratorState = blockingState;
+        }
+        else {
+            this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mNodePrefix + to_string ( nextNodeID ));
+        }
+    }
+    return ( this->mIteratorState != blockingState );
 }
 
 //----------------------------------------------------------------//

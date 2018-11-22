@@ -32,6 +32,10 @@ protected:
     VersionedSetNode    mIteratorNode;
     int                 mIteratorState;
     
+    //----------------------------------------------------------------//
+    bool                step            ( size_t nextNodeID, int blockingState, int unblockingState );
+    void                seek            ( size_t nodeID );
+    
 public:
 
     //----------------------------------------------------------------//
