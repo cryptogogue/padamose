@@ -5,7 +5,7 @@
 #define PADAMOSE_VERSIONEDSETSNAPSHOT_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractVersionedSetSnapshot.h>
+#include <padamose/AbstractVersionedSet.h>
 
 namespace Padamose {
 
@@ -14,13 +14,13 @@ namespace Padamose {
 //================================================================//
 // TODO: doxygen
 class VersionedSetSnapshot :
-    public AbstractVersionedSetSnapshot {
+    public AbstractVersionedSet {
 protected:
 
     VersionedStoreSnapshot      mSnapshot;
     
     //----------------------------------------------------------------//
-    const VersionedStoreSnapshot&       AbstractVersionedSetSnapshot_getSnapshot        () const override;
+    const VersionedStoreSnapshot&       AbstractVersionedSet_getSnapshot        () const override;
     
 public:
 

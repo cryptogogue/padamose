@@ -23,9 +23,7 @@ void VersionedSet::deleteKey ( string key ) {
         this->mStore.setValue < VersionedSetNode >( prevNodeKey, prevNode );
     }
     else {
-    
-        // this is the first node, so we need tp update the list head.
-        this->mState.mList = node.mNext;
+        this->mState.mHead = node.mNext;
     }
     
     if ( node.mNext != INVALID_NODE_INDEX ) {
@@ -33,6 +31,9 @@ void VersionedSet::deleteKey ( string key ) {
         VersionedSetNode nextNode = this->mStore.getValue < VersionedSetNode >( nextNodeKey );
         nextNode.mPrev = node.mPrev;
         this->mStore.setValue < VersionedSetNode >( nextNodeKey, nextNode );
+    }
+    else {
+        this->mState.mTail = node.mPrev;
     }
 
     node.mPrev = this->mState.mFreeStack;
@@ -68,25 +69,28 @@ string VersionedSet::provisionKey () {
         this->mState.mFreeStack = node.mPrev;
     }
     
-    size_t nextID = this->mState.mList;
+    size_t prevID = this->mState.mTail;
     
     VersionedSetNode node;
     node.mID = nodeID;
-    node.mPrev = INVALID_NODE_INDEX;
-    node.mNext = nextID;
+    node.mPrev = prevID;
+    node.mNext = INVALID_NODE_INDEX;
     this->mStore.setValue < VersionedSetNode >( nodeKey, node );
 
-    // if there is a next node, update that node's prev.
-    if ( nextID != INVALID_NODE_INDEX ) {
-        string nextNodeKey = this->mNodePrefix + to_string ( nextID );
-        VersionedSetNode nextNode = this->mStore.getValue < VersionedSetNode >( nextNodeKey );
-        nextNode.mPrev = nodeID;
-        this->mStore.setValue < VersionedSetNode >( nextNodeKey, nextNode );
-    }
-
-    // update the list.
-    this->mState.mList = nodeID;
+    this->mState.mTail = nodeID;
     this->mState.mSize++;
+
+    // if there is a next node, update that node's prev.
+    if ( prevID == INVALID_NODE_INDEX ) {
+        this->mState.mHead = nodeID;
+    }
+    else {
+        string prevNodeKey = this->mNodePrefix + to_string ( prevID );
+        VersionedSetNode prevNode = this->mStore.getValue < VersionedSetNode >( prevNodeKey );
+        prevNode.mNext = nodeID;
+        this->mStore.setValue < VersionedSetNode >( prevNodeKey, prevNode );
+    }
+    
     this->mStore.setValue < VersionedSetState >( this->mMapName, this->mState );
 
     return key;
@@ -105,7 +109,8 @@ VersionedSet::VersionedSet ( VersionedStore& store, string mapName ) :
     else {
         if ( this->mMapName.find ( ':' ) != string::npos ) throw InvalidMapNameException ();
         
-        this->mState.mList = INVALID_NODE_INDEX;
+        this->mState.mHead = INVALID_NODE_INDEX;
+        this->mState.mTail = INVALID_NODE_INDEX;
         this->mState.mSize = 0;
         this->mState.mFreeStack = INVALID_NODE_INDEX;
         this->mState.mTotalNodes = 0;
@@ -127,7 +132,7 @@ VersionedSet::~VersionedSet () {
 //================================================================//
 
 //----------------------------------------------------------------//
-const VersionedStoreSnapshot& VersionedSet::AbstractVersionedSetSnapshot_getSnapshot () const {
+const VersionedStoreSnapshot& VersionedSet::AbstractVersionedSet_getSnapshot () const {
 
     return this->mStore;
 }

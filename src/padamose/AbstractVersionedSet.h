@@ -1,8 +1,8 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_ABSTRACTVERSIONEDSETSNAPSHOT_H
-#define PADAMOSE_ABSTRACTVERSIONEDSETSNAPSHOT_H
+#ifndef PADAMOSE_ABSTRACTVERSIONEDSET_H
+#define PADAMOSE_ABSTRACTVERSIONEDSET_H
 
 #include <padamose/padamose-common.h>
 #include <padamose/VersionedStore.h>
@@ -16,11 +16,13 @@ namespace Padamose {
 class VersionedSetState {
 private:
 
-    friend class AbstractVersionedSetSnapshot;
+    friend class AbstractVersionedSet;
     friend class VersionedSet;
     friend class VersionedSetSnapshot;
+    friend class VersionedSetIterator;
     
-    size_t      mList;              // ID of head of active list
+    size_t      mHead;              // ID of head of active list
+    size_t      mTail;              // ID of tail of active list
     size_t      mSize;              // total nodes in active list
     
     size_t      mFreeStack;         // top of key free stack
@@ -34,9 +36,10 @@ private:
 class VersionedSetNode {
 private:
 
-    friend class AbstractVersionedSetSnapshot;
+    friend class AbstractVersionedSet;
     friend class VersionedSet;
     friend class VersionedSetSnapshot;
+    friend class VersionedSetIterator;
     
     size_t      mID;
     size_t      mPrev;              // ID of prev node in the list (active or free)
@@ -44,10 +47,10 @@ private:
 };
 
 //================================================================//
-// AbstractVersionedSetSnapshot
+// AbstractVersionedSet
 //================================================================//
 // TODO: doxygen
-class AbstractVersionedSetSnapshot {
+class AbstractVersionedSet {
 protected:
 
     static constexpr const char* SET_NODES_POSTFIX      = ".nodes.";
@@ -66,21 +69,28 @@ protected:
     void            setName                     ( string name );
     
     //----------------------------------------------------------------//
-    virtual const VersionedStoreSnapshot&       AbstractVersionedSetSnapshot_getSnapshot        () const = 0;
+    virtual const VersionedStoreSnapshot&       AbstractVersionedSet_getSnapshot        () const = 0;
     
 public:
 
     //----------------------------------------------------------------//
-                    AbstractVersionedSetSnapshot        ();
-    virtual         ~AbstractVersionedSetSnapshot       ();
-    size_t          getSize                             () const;
+    operator const VersionedStoreSnapshot& () const {
+    
+        return this->AbstractVersionedSet_getSnapshot ();
+    }
+
+    //----------------------------------------------------------------//
+                    AbstractVersionedSet        ();
+    virtual         ~AbstractVersionedSet       ();
+    string          getName                     () const;
+    size_t          getSize                     () const;
     
     //----------------------------------------------------------------//
     // TODO: doxygen
     template < typename TYPE >
     TYPE getValue ( string key ) const {
         
-        return this->AbstractVersionedSetSnapshot_getSnapshot ().getValue < TYPE >( this->mValuePrefix + key );
+        return this->AbstractVersionedSet_getSnapshot ().getValue < TYPE >( this->mValuePrefix + key );
     }
 };
 

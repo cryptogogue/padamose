@@ -30,7 +30,7 @@ VersionedSetSnapshot::~VersionedSetSnapshot () {
 //================================================================//
 
 //----------------------------------------------------------------//
-const VersionedStoreSnapshot& VersionedSetSnapshot::AbstractVersionedSetSnapshot_getSnapshot () const {
+const VersionedStoreSnapshot& VersionedSetSnapshot::AbstractVersionedSet_getSnapshot () const {
 
     return this->mSnapshot;
 }

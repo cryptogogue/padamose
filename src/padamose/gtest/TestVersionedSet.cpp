@@ -3,6 +3,7 @@
 
 #include <gtest-helpers.h>
 #include <padamose/VersionedSet.h>
+#include <padamose/VersionedSetIterator.h>
 
 using namespace Padamose;
 
@@ -103,4 +104,48 @@ TEST ( VersionedSet, test_element_count_is_updated_correctly ) {
     versionedSet.deleteKey ( key5 );
     
     ASSERT_TRUE ( versionedSet.getSize () == 0 );
+}
+
+//----------------------------------------------------------------//
+TEST ( VersionedSet, test_iterator ) {
+
+    VersionedStore store;
+    
+    VersionedSet versionedSet ( store, "test" );
+
+    string key0 = versionedSet.insertValue < int >( 0 );
+    string key1 = versionedSet.insertValue < int >( 1 );
+    string key2 = versionedSet.insertValue < int >( 2 );
+    
+    // this iterator test relies on keys being provisioned in a specific order
+    // and always added to the *back* of the key list.
+    
+    VersionedSetIterator setIt ( versionedSet );
+    
+    ASSERT_TRUE ( setIt == true );
+    ASSERT_TRUE ( setIt.value < int >() == 0 );
+    
+    setIt.next ();
+    ASSERT_TRUE ( setIt.value < int >() == 1 );
+    
+    setIt.next ();
+    ASSERT_TRUE ( setIt.value < int >() == 2 );
+    
+    setIt.next ();
+    ASSERT_TRUE ( setIt == false );
+    
+    setIt.prev ();
+    
+    ASSERT_TRUE ( setIt == true );
+    ASSERT_TRUE ( setIt.value < int >() == 2 );
+    
+    setIt.seekFront ();
+    
+    ASSERT_TRUE ( setIt == true );
+    ASSERT_TRUE ( setIt.value < int >() == 0 );
+    
+    setIt.seekBack ();
+    
+    ASSERT_TRUE ( setIt == true );
+    ASSERT_TRUE ( setIt.value < int >() == 2 );
 }

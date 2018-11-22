@@ -56,7 +56,7 @@ protected:
     /// Key of the value being iterated.
     string                      mKey;
     
-    /// Internal iterator of undersling value stack.
+    /// Internal iterator of underlying value stack.
     ValueIterator               mIterator;
     
     /// Internal state of the iterator.

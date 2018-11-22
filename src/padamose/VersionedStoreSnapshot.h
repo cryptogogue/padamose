@@ -27,6 +27,7 @@ protected:
     friend class AbstractVersionedValueIterator;
     friend class VersionedBranch;
     friend class VersionedSet;
+    friend class VersionedSetIterator;
     friend class VersionedStoreIterator;
     
     template < typename > friend class VersionedValue;
