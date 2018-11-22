@@ -1,13 +1,15 @@
 <map id="/Users/travis/build/cryptogogue/padamose/src/padamose/gtest/TestVersionedSet.cpp" name="/Users/travis/build/cryptogogue/padamose/src/padamose/gtest/TestVersionedSet.cpp">
-<area shape="rect" id="node2" href="$d0/d6a/gtest-helpers_8h.html" title="gtest&#45;helpers.h" alt="" coords="509,119,618,144"/>
-<area shape="rect" id="node4" href="$da/d94/_versioned_set_8h.html" title="padamose/VersionedSet.h" alt="" coords="643,119,821,144"/>
-<area shape="rect" id="node5" href="$de/d05/padamose-common_8h.html" title="padamose/padamose&#45;common.h" alt="" coords="780,659,996,684"/>
-<area shape="rect" id="node25" href="$d6/de3/_abstract_versioned_set_snapshot_8h.html" title="padamose/AbstractVersioned\lSetSnapshot.h" alt="" coords="726,192,921,231"/>
-<area shape="rect" id="node24" href="$d7/d2f/_exceptions_8h.html" title="padamose/Exceptions.h" alt="" coords="1587,732,1751,757"/>
-<area shape="rect" id="node26" href="$d6/d12/_versioned_store_8h.html" title="padamose/VersionedStore.h" alt="" coords="777,279,967,304"/>
-<area shape="rect" id="node27" href="$d1/dc8/_versioned_store_snapshot_8h.html" title="padamose/VersionedStoreSnapshot.h" alt="" coords="838,352,1084,377"/>
-<area shape="rect" id="node28" href="$da/d56/_abstract_versioned_branch_client_8h.html" title="padamose/AbstractVersioned\lBranchClient.h" alt="" coords="878,499,1073,537"/>
-<area shape="rect" id="node29" href="$dc/d7d/_versioned_branch_8h.html" title="padamose/VersionedBranch.h" alt="" coords="1006,425,1206,451"/>
-<area shape="rect" id="node30" href="$db/de1/_value_stack_8h.html" title="padamose/ValueStack.h" alt="" coords="1148,505,1313,531"/>
-<area shape="rect" id="node31" href="$de/de3/_abstract_value_stack_8h.html" title="padamose/AbstractValueStack.h" alt="" coords="1198,585,1412,611"/>
+<area shape="rect" id="node2" href="$d0/d6a/gtest-helpers_8h.html" title="gtest&#45;helpers.h" alt="" coords="552,119,661,144"/>
+<area shape="rect" id="node4" href="$da/d94/_versioned_set_8h.html" title="padamose/VersionedSet.h" alt="" coords="643,192,821,217"/>
+<area shape="rect" id="node32" href="$d1/d34/_versioned_set_iterator_8h.html" title="padamose/VersionedSetIterator.h" alt="" coords="851,119,1071,144"/>
+<area shape="rect" id="node5" href="$de/d05/padamose-common_8h.html" title="padamose/padamose&#45;common.h" alt="" coords="780,732,996,757"/>
+<area shape="rect" id="node25" href="$db/df8/_abstract_versioned_set_8h.html" title="padamose/AbstractVersioned\lSet.h" alt="" coords="809,265,1004,304"/>
+<area shape="rect" id="node24" href="$d7/d2f/_exceptions_8h.html" title="padamose/Exceptions.h" alt="" coords="1587,805,1751,831"/>
+<area shape="rect" id="node26" href="$d6/d12/_versioned_store_8h.html" title="padamose/VersionedStore.h" alt="" coords="788,352,977,377"/>
+<area shape="rect" id="node27" href="$d1/dc8/_versioned_store_snapshot_8h.html" title="padamose/VersionedStoreSnapshot.h" alt="" coords="567,425,813,451"/>
+<area shape="rect" id="node28" href="$da/d56/_abstract_versioned_branch_client_8h.html" title="padamose/AbstractVersioned\lBranchClient.h" alt="" coords="491,572,687,611"/>
+<area shape="rect" id="node29" href="$dc/d7d/_versioned_branch_8h.html" title="padamose/VersionedBranch.h" alt="" coords="676,499,876,524"/>
+<area shape="rect" id="node30" href="$db/de1/_value_stack_8h.html" title="padamose/ValueStack.h" alt="" coords="711,579,875,604"/>
+<area shape="rect" id="node31" href="$de/de3/_abstract_value_stack_8h.html" title="padamose/AbstractValueStack.h" alt="" coords="611,659,825,684"/>
+<area shape="rect" id="node33" href="$d5/d9a/_versioned_set_snapshot_8h.html" title="padamose/VersionedSetSnapshot.h" alt="" coords="844,192,1078,217"/>
 </map>

@@ -32,6 +32,7 @@ var class_padamose_1_1_versioned_store_snapshot =
     [ "AbstractVersionedValueIterator", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a1cc4013865430c75cd75b8725372fb10", null ],
     [ "VersionedBranch", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#af8ad0ab9ead942b58c655c08c2a3723b", null ],
     [ "VersionedSet", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a7a4930dc3f267e231ef6a56fd4b5e45f", null ],
+    [ "VersionedSetIterator", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#ae5dafa43fe64e8b932fa5d304585a512", null ],
     [ "VersionedStoreIterator", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a01e2f00133a6acd7e2675637b8e2c231", null ],
     [ "VersionedValue", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#afae7059494f6f48f735123c1ab81a88c", null ],
     [ "VersionedValueIterator", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a1f398bf9c15eda5fea8ea77812ce8251", null ],

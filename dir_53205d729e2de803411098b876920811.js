@@ -9,9 +9,9 @@ var dir_53205d729e2de803411098b876920811 =
     [ "AbstractVersionedBranchClient.h", "da/d56/_abstract_versioned_branch_client_8h.html", [
       [ "AbstractVersionedBranchClient", "d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html", "d6/d41/class_padamose_1_1_abstract_versioned_branch_client" ]
     ] ],
-    [ "AbstractVersionedSetSnapshot.cpp", "d5/dc1/_abstract_versioned_set_snapshot_8cpp.html", null ],
-    [ "AbstractVersionedSetSnapshot.h", "d6/de3/_abstract_versioned_set_snapshot_8h.html", [
-      [ "AbstractVersionedSetSnapshot", "d3/d67/class_padamose_1_1_abstract_versioned_set_snapshot.html", "d3/d67/class_padamose_1_1_abstract_versioned_set_snapshot" ],
+    [ "AbstractVersionedSet.cpp", "d8/de3/_abstract_versioned_set_8cpp.html", null ],
+    [ "AbstractVersionedSet.h", "db/df8/_abstract_versioned_set_8h.html", [
+      [ "AbstractVersionedSet", "dd/dd3/class_padamose_1_1_abstract_versioned_set.html", "dd/dd3/class_padamose_1_1_abstract_versioned_set" ],
       [ "VersionedSetNode", "dc/dea/class_padamose_1_1_versioned_set_node.html", "dc/dea/class_padamose_1_1_versioned_set_node" ],
       [ "VersionedSetState", "dd/dc8/class_padamose_1_1_versioned_set_state.html", "dd/dc8/class_padamose_1_1_versioned_set_state" ]
     ] ],
@@ -36,6 +36,10 @@ var dir_53205d729e2de803411098b876920811 =
     [ "VersionedSet.cpp", "dc/d1e/_versioned_set_8cpp.html", null ],
     [ "VersionedSet.h", "da/d94/_versioned_set_8h.html", [
       [ "VersionedSet", "de/daa/class_padamose_1_1_versioned_set.html", "de/daa/class_padamose_1_1_versioned_set" ]
+    ] ],
+    [ "VersionedSetIterator.cpp", "de/d6b/_versioned_set_iterator_8cpp.html", null ],
+    [ "VersionedSetIterator.h", "d1/d34/_versioned_set_iterator_8h.html", [
+      [ "VersionedSetIterator", "de/d66/class_padamose_1_1_versioned_set_iterator.html", "de/d66/class_padamose_1_1_versioned_set_iterator" ]
     ] ],
     [ "VersionedSetSnapshot.cpp", "d1/d60/_versioned_set_snapshot_8cpp.html", null ],
     [ "VersionedSetSnapshot.h", "d5/d9a/_versioned_set_snapshot_8h.html", [

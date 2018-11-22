@@ -2,9 +2,10 @@ var searchData=
 [
   ['_7eabstractvaluestack',['~AbstractValueStack',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#a74d853a7a9dbd3582c6dca86a3c2c7c0',1,'Padamose::AbstractValueStack']]],
   ['_7eabstractversionedbranchclient',['~AbstractVersionedBranchClient',['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#a20696e4be64b04d8067e1be0dcaf25be',1,'Padamose::AbstractVersionedBranchClient']]],
-  ['_7eabstractversionedsetsnapshot',['~AbstractVersionedSetSnapshot',['../d3/d67/class_padamose_1_1_abstract_versioned_set_snapshot.html#a8e8cc8f9f5a10783981501fdf65c0814',1,'Padamose::AbstractVersionedSetSnapshot']]],
+  ['_7eabstractversionedset',['~AbstractVersionedSet',['../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a96bfd851e491b0f5897725fa47d18c36',1,'Padamose::AbstractVersionedSet']]],
   ['_7eversionedbranch',['~VersionedBranch',['../d4/da9/class_padamose_1_1_versioned_branch.html#a8223595abbec33103857f51e211f4014',1,'Padamose::VersionedBranch']]],
   ['_7eversionedset',['~VersionedSet',['../de/daa/class_padamose_1_1_versioned_set.html#a41c12c45d0658099582750cdb298b4b5',1,'Padamose::VersionedSet']]],
+  ['_7eversionedsetiterator',['~VersionedSetIterator',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a6c61182a20c18a432574a72f02fba885',1,'Padamose::VersionedSetIterator']]],
   ['_7eversionedsetsnapshot',['~VersionedSetSnapshot',['../d6/db4/class_padamose_1_1_versioned_set_snapshot.html#a8e200cec78736be9b928275d9f46e326',1,'Padamose::VersionedSetSnapshot']]],
   ['_7eversionedstore',['~VersionedStore',['../d2/d73/class_padamose_1_1_versioned_store.html#ab22a13339e11d8942e035d097633d4e1',1,'Padamose::VersionedStore']]],
   ['_7eversionedstoreiterator',['~VersionedStoreIterator',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#ad16544f5f368c462eb1473e078fa72cb',1,'Padamose::VersionedStoreIterator']]],

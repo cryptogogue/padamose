@@ -2,7 +2,7 @@ var namespace_padamose =
 [
     [ "AbstractValueStack", "d2/d67/class_padamose_1_1_abstract_value_stack.html", "d2/d67/class_padamose_1_1_abstract_value_stack" ],
     [ "AbstractVersionedBranchClient", "d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html", "d6/d41/class_padamose_1_1_abstract_versioned_branch_client" ],
-    [ "AbstractVersionedSetSnapshot", "d3/d67/class_padamose_1_1_abstract_versioned_set_snapshot.html", "d3/d67/class_padamose_1_1_abstract_versioned_set_snapshot" ],
+    [ "AbstractVersionedSet", "dd/dd3/class_padamose_1_1_abstract_versioned_set.html", "dd/dd3/class_padamose_1_1_abstract_versioned_set" ],
     [ "InvalidMapNameException", "d3/d9c/class_padamose_1_1_invalid_map_name_exception.html", "d3/d9c/class_padamose_1_1_invalid_map_name_exception" ],
     [ "KeyNotFoundException", "d5/d87/class_padamose_1_1_key_not_found_exception.html", "d5/d87/class_padamose_1_1_key_not_found_exception" ],
     [ "OverwriteException", "d0/d81/class_padamose_1_1_overwrite_exception.html", "d0/d81/class_padamose_1_1_overwrite_exception" ],
@@ -10,6 +10,7 @@ var namespace_padamose =
     [ "ValueStack", "dd/d4c/class_padamose_1_1_value_stack.html", "dd/d4c/class_padamose_1_1_value_stack" ],
     [ "VersionedBranch", "d4/da9/class_padamose_1_1_versioned_branch.html", "d4/da9/class_padamose_1_1_versioned_branch" ],
     [ "VersionedSet", "de/daa/class_padamose_1_1_versioned_set.html", "de/daa/class_padamose_1_1_versioned_set" ],
+    [ "VersionedSetIterator", "de/d66/class_padamose_1_1_versioned_set_iterator.html", "de/d66/class_padamose_1_1_versioned_set_iterator" ],
     [ "VersionedSetNode", "dc/dea/class_padamose_1_1_versioned_set_node.html", "dc/dea/class_padamose_1_1_versioned_set_node" ],
     [ "VersionedSetNotFoundException", "d0/d60/class_padamose_1_1_versioned_set_not_found_exception.html", "d0/d60/class_padamose_1_1_versioned_set_not_found_exception" ],
     [ "VersionedSetSnapshot", "d6/db4/class_padamose_1_1_versioned_set_snapshot.html", "d6/db4/class_padamose_1_1_versioned_set_snapshot" ],

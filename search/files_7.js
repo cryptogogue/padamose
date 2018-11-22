@@ -5,6 +5,8 @@ var searchData=
   ['versionedbranch_2eh',['VersionedBranch.h',['../dc/d7d/_versioned_branch_8h.html',1,'']]],
   ['versionedset_2ecpp',['VersionedSet.cpp',['../dc/d1e/_versioned_set_8cpp.html',1,'']]],
   ['versionedset_2eh',['VersionedSet.h',['../da/d94/_versioned_set_8h.html',1,'']]],
+  ['versionedsetiterator_2ecpp',['VersionedSetIterator.cpp',['../de/d6b/_versioned_set_iterator_8cpp.html',1,'']]],
+  ['versionedsetiterator_2eh',['VersionedSetIterator.h',['../d1/d34/_versioned_set_iterator_8h.html',1,'']]],
   ['versionedsetsnapshot_2ecpp',['VersionedSetSnapshot.cpp',['../d1/d60/_versioned_set_snapshot_8cpp.html',1,'']]],
   ['versionedsetsnapshot_2eh',['VersionedSetSnapshot.h',['../d5/d9a/_versioned_set_snapshot_8h.html',1,'']]],
   ['versionedstore_2ecpp',['VersionedStore.cpp',['../dc/de3/_versioned_store_8cpp.html',1,'']]],

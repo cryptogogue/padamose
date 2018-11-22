@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['value',['value',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a8c9f3a9d815502fce3a6d244d1ea27e0',1,'Padamose::VersionedValueIterator']]],
+  ['value',['value',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a6e370150f594c30c161b1bbc95dd23a9',1,'Padamose::VersionedSetIterator::value()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a8c9f3a9d815502fce3a6d244d1ea27e0',1,'Padamose::VersionedValueIterator::value()']]],
   ['valuestack',['ValueStack',['../dd/d4c/class_padamose_1_1_value_stack.html#a99bff6baede6f85fd9a43bf5eccdc869',1,'Padamose::ValueStack']]],
   ['versionedbranch',['VersionedBranch',['../d4/da9/class_padamose_1_1_versioned_branch.html#a398735af7f249890be82ddb4b8d71560',1,'Padamose::VersionedBranch']]],
   ['versionedset',['VersionedSet',['../de/daa/class_padamose_1_1_versioned_set.html#aa9e382525cc78f4aace9b72e87be7842',1,'Padamose::VersionedSet']]],
+  ['versionedsetiterator',['VersionedSetIterator',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a861bf89384952081387d58ac36694d9e',1,'Padamose::VersionedSetIterator::VersionedSetIterator(const AbstractVersionedSet &amp;versionedSet)'],['../de/d66/class_padamose_1_1_versioned_set_iterator.html#ab39a0288c5f8748f696b0f2d0f327f88',1,'Padamose::VersionedSetIterator::VersionedSetIterator(const VersionedStoreSnapshot &amp;snapshot, string mapName)']]],
   ['versionedsetnotfoundexception',['VersionedSetNotFoundException',['../d0/d60/class_padamose_1_1_versioned_set_not_found_exception.html#a008fa35ecacff708ddbc22e501d75fd2',1,'Padamose::VersionedSetNotFoundException']]],
   ['versionedsetsnapshot',['VersionedSetSnapshot',['../d6/db4/class_padamose_1_1_versioned_set_snapshot.html#aaa062c3ba6aed3f35fc160e81bc096dc',1,'Padamose::VersionedSetSnapshot']]],
   ['versionedstore',['VersionedStore',['../d2/d73/class_padamose_1_1_versioned_store.html#ae29030c67efbdd202aa0ecb6f642a03c',1,'Padamose::VersionedStore::VersionedStore()'],['../d2/d73/class_padamose_1_1_versioned_store.html#a6981fe109a078a6712621c6dabbcb572',1,'Padamose::VersionedStore::VersionedStore(VersionedStoreSnapshot &amp;other)']]],
