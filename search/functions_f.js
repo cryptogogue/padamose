@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['seek',['seek',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a356a43b7881a35cc26a151f50acbf759',1,'Padamose::VersionedStoreIterator']]],
+  ['seek',['seek',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a569f99442d90df8d8dd3ec3f5e033bde',1,'Padamose::VersionedSetIterator::seek()'],['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a356a43b7881a35cc26a151f50acbf759',1,'Padamose::VersionedStoreIterator::seek()']]],
   ['seekback',['seekBack',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a0b8831999c12f8a5fef4233b0307bb44',1,'Padamose::VersionedSetIterator']]],
   ['seekfront',['seekFront',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#af468b2fdff2e70a382bf4e1d3c4f1613',1,'Padamose::VersionedSetIterator']]],
   ['seeklower',['seekLower',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a1c483ba1e8386d87de9b0b1fb83bbbd8',1,'Padamose::VersionedValueIterator']]],
@@ -12,5 +12,6 @@ var searchData=
   ['setextents',['setExtents',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#ad72a35b9b7faad3524c3c8b77592eae7',1,'Padamose::VersionedValueIterator']]],
   ['setname',['setName',['../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a231138a510b6c6f9a74930d9177d4321',1,'Padamose::AbstractVersionedSet']]],
   ['setvalue',['setValue',['../dd/d4c/class_padamose_1_1_value_stack.html#ab93b029ba1154379f47636fa9ad1ae2c',1,'Padamose::ValueStack::setValue()'],['../d4/da9/class_padamose_1_1_versioned_branch.html#af1e9f378f77a8da5c2f75068df8f3c90',1,'Padamose::VersionedBranch::setValue()'],['../de/daa/class_padamose_1_1_versioned_set.html#a8c859e9bbd61906ff733b7dbc900a521',1,'Padamose::VersionedSet::setValue()'],['../d2/d73/class_padamose_1_1_versioned_store.html#afbea59a33d3db31f6fabc18e0ed48363',1,'Padamose::VersionedStore::setValue()'],['../df/d69/class_padamose_1_1_versioned_value.html#a75aa73e7bb7d55f03bde3d8d5816d889',1,'Padamose::VersionedValue::setValue(const VersionedStoreSnapshot &amp;versionedStore, const TYPE *value)'],['../df/d69/class_padamose_1_1_versioned_value.html#a237afb8570dc7fb1aa68ef9db7136581',1,'Padamose::VersionedValue::setValue(const VersionedStoreSnapshot &amp;versionedStore, string key)']]],
-  ['size',['size',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#ab28e779fab2568f87f7bb9ec491fceff',1,'Padamose::AbstractValueStack']]]
+  ['size',['size',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#ab28e779fab2568f87f7bb9ec491fceff',1,'Padamose::AbstractValueStack']]],
+  ['step',['step',['../de/d66/class_padamose_1_1_versioned_set_iterator.html#a579506dce71a42d37c92fda62d0621fb',1,'Padamose::VersionedSetIterator']]]
 ];

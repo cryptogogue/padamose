@@ -161,8 +161,12 @@ Protected Types</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:aa8032824b3e1685d3e0fd6c7fc7985e6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/class_padamose_1_1_versioned_set_snapshot.html#aa8032824b3e1685d3e0fd6c7fc7985e6">AbstractVersionedSet_getSnapshot</a> () const override</td></tr>
 <tr class="separator:aa8032824b3e1685d3e0fd6c7fc7985e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a569f99442d90df8d8dd3ec3f5e033bde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d66/class_padamose_1_1_versioned_set_iterator.html#a569f99442d90df8d8dd3ec3f5e033bde">seek</a> (size_t nodeID)</td></tr>
+<tr class="separator:a569f99442d90df8d8dd3ec3f5e033bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a231138a510b6c6f9a74930d9177d4321"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd3/class_padamose_1_1_abstract_versioned_set.html#a231138a510b6c6f9a74930d9177d4321">setName</a> (string name)</td></tr>
 <tr class="separator:a231138a510b6c6f9a74930d9177d4321"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a579506dce71a42d37c92fda62d0621fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d66/class_padamose_1_1_versioned_set_iterator.html#a579506dce71a42d37c92fda62d0621fb">step</a> (size_t nextNodeID, int blockingState, int unblockingState)</td></tr>
+<tr class="separator:a579506dce71a42d37c92fda62d0621fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -546,6 +550,32 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
+<a id="a569f99442d90df8d8dd3ec3f5e033bde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a569f99442d90df8d8dd3ec3f5e033bde">&#9670;&nbsp;</a></span>seek()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Padamose::VersionedSetIterator::seek </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nodeID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0b8831999c12f8a5fef4233b0307bb44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0b8831999c12f8a5fef4233b0307bb44">&#9670;&nbsp;</a></span>seekBack()</h2>
 
@@ -600,6 +630,48 @@ template&lt;typename TYPE &gt; </div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a579506dce71a42d37c92fda62d0621fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a579506dce71a42d37c92fda62d0621fb">&#9670;&nbsp;</a></span>step()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Padamose::VersionedSetIterator::step </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nextNodeID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>blockingState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>unblockingState</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -864,7 +936,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../de/d66/class_padamose_1_1_versioned_set_iterator.html">VersionedSetIterator</a></li>
-    <li class="footer">Generated on Thu Nov 22 2018 00:47:14 for Padamose by
+    <li class="footer">Generated on Thu Nov 22 2018 00:54:21 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>
