@@ -108,6 +108,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html">MutableVersionedCollection</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for mutable collections referencing a <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>.  <a href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d81/class_padamose_1_1_overwrite_exception.html">OverwriteException</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,11 +121,15 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d4/da9/class_padamose_1_1_versioned_branch.html" title="VersionedBranch is an internal data structure used to store a contiguous block of versioned values...">VersionedBranch</a> is an internal data structure used to store a contiguous block of versioned values.  <a href="../../d4/da9/class_padamose_1_1_versioned_branch.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html">VersionedCollectionIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements an interator of the collection. The iterator is also a snapshot of the collection, so the iteration will persist even if the associated collection is changed.  <a href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html">VersionedCollectionNode</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linked list node containing a key and its ID. Nodes are addressed by ID, which may be assigned and reused (as in <a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html">VersionedSet</a>) or derived from hashing heys (as in <a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html">VersionedMap</a>).  <a href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d02/class_padamose_1_1_versioned_collection_not_found_exception.html">VersionedCollectionNotFoundException</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html">VersionedCollectionSnapshot</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of versioned collection as an immutable snapshot.  <a href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html">VersionedCollectionState</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Persistent state object common to all collections. It tracks the head and tail of the doubly linked list of active key nodes (<a class="el" href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html" title="Linked list node containing a key and its ID. Nodes are addressed by ID, which may be assigned and re...">VersionedCollectionNode</a>). It also tracks the size of the list.  <a href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html#details">More...</a><br /></td></tr>
@@ -134,8 +139,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html">VersionedSet</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dd5/class_padamose_1_1_versioned_set_free_stack.html">VersionedSetFreeStack</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d60/class_padamose_1_1_versioned_set_not_found_exception.html">VersionedSetNotFoundException</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">VersionedStore</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a> is a key/value store that can be rewound and branched into multiple versions.  <a href="../../d2/d73/class_padamose_1_1_versioned_store.html#details">More...</a><br /></td></tr>
@@ -161,7 +164,7 @@ Classes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 05:59:09 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 06:44:53 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

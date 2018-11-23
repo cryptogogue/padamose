@@ -106,12 +106,12 @@ Inheritance diagram for Padamose::AbstractVersionedCollection:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d69/class_padamose_1_1_abstract_versioned_collection__inherit__graph.png" border="0" usemap="#_padamose_1_1_abstract_versioned_collection_inherit__map" alt="Inheritance graph"/></div>
 <map name="_padamose_1_1_abstract_versioned_collection_inherit__map" id="_padamose_1_1_abstract_versioned_collection_inherit__map">
-<area shape="rect" id="node2" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Padamose::MutableVersioned\lCollection" alt="" coords="260,44,459,83"/>
-<area shape="rect" id="node6" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Padamose::VersionedCollection\lSnapshot" alt="" coords="254,107,464,145"/>
+<area shape="rect" id="node2" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Base class for mutable collections referencing a VersionedStore. " alt="" coords="260,44,459,83"/>
+<area shape="rect" id="node6" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Implementation of versioned collection as an immutable snapshot. " alt="" coords="254,107,464,145"/>
 <area shape="rect" id="node3" href="../../dd/dad/class_padamose_1_1_versioned_map.html" title="Padamose::VersionedMap" alt="" coords="529,5,706,31"/>
 <area shape="rect" id="node5" href="../../de/daa/class_padamose_1_1_versioned_set.html" title="Padamose::VersionedSet" alt="" coords="532,55,703,80"/>
 <area shape="rect" id="node4" href="../../dc/d41/class_versioned_map_collision_tester.html" title="VersionedMapCollisionTester" alt="" coords="771,5,964,31"/>
-<area shape="rect" id="node7" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Padamose::VersionedCollection\lIterator" alt="" coords="512,107,723,145"/>
+<area shape="rect" id="node7" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Implements an interator of the collection. The iterator is also a snapshot of the collection..." alt="" coords="512,107,723,145"/>
 </map>
 <center><span class="legend">[<a target="top" href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -279,6 +279,12 @@ Static Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>String encoding for node IDs. This is an ad hoc 64-bit encoding; it is not base64 encoding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodeID</td><td>A numeric node ID.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>The encoded node ID. </dd></dl>
 
 </div>
@@ -484,6 +490,12 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Sets the name of the collection and generates the cached lookup prefixes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the collection. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -666,7 +678,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html">AbstractVersionedCollection</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 05:59:09 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 06:44:53 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

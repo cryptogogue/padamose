@@ -1,4 +1,4 @@
 <map id="Padamose::VersionedCollectionSnapshot" name="Padamose::VersionedCollectionSnapshot">
-<area shape="rect" id="node3" href="$d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Padamose::VersionedCollection\lIterator" alt="" coords="5,179,216,217"/>
+<area shape="rect" id="node3" href="$d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Implements an interator of the collection. The iterator is also a snapshot of the collection..." alt="" coords="5,179,216,217"/>
 <area shape="rect" id="node2" href="$dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="10,5,211,44"/>
 </map>

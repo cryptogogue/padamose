@@ -1,5 +1,6 @@
 var class_padamose_1_1_versioned_collection_snapshot =
 [
+    [ "VersionedCollectionSnapshot", "d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#a158792fc87ca5dce3f31c646e5c53632", null ],
     [ "VersionedCollectionSnapshot", "d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#a228303b1e16386566532f059f453768a", null ],
     [ "~VersionedCollectionSnapshot", "d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#a08ec2cb4ba8828d7cdfd64981514a461", null ],
     [ "AbstractVersionedCollection_getSnapshot", "d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#ae3c7881290e6f433a960b24c20ab8de4", null ],

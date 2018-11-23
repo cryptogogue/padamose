@@ -98,13 +98,16 @@ $(document).ready(function(){initNavTree('d7/de6/class_padamose_1_1_versioned_co
 </div><!--header-->
 <div class="contents">
 
+<p>Implements an interator of the collection. The iterator is also a snapshot of the collection, so the iteration will persist even if the associated collection is changed.  
+ <a href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="../../da/de4/_versioned_collection_iterator_8h_source.html">VersionedCollectionIterator.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Padamose::VersionedCollectionIterator:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d7/d5d/class_padamose_1_1_versioned_collection_iterator__inherit__graph.png" border="0" usemap="#_padamose_1_1_versioned_collection_iterator_inherit__map" alt="Inheritance graph"/></div>
 <map name="_padamose_1_1_versioned_collection_iterator_inherit__map" id="_padamose_1_1_versioned_collection_iterator_inherit__map">
-<area shape="rect" id="node2" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Padamose::VersionedCollection\lSnapshot" alt="" coords="5,92,216,131"/>
+<area shape="rect" id="node2" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Implementation of versioned collection as an immutable snapshot. " alt="" coords="5,92,216,131"/>
 <area shape="rect" id="node3" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="10,5,211,44"/>
 </map>
 <center><span class="legend">[<a target="top" href="../../graph_legend.html">legend</a>]</span></center></div>
@@ -112,8 +115,10 @@ Inheritance diagram for Padamose::VersionedCollectionIterator:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6c13248bcd1f02b14faf146c7afe9c1e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6c13248bcd1f02b14faf146c7afe9c1e">VersionedCollectionIterator</a> (const <a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html">AbstractVersionedCollection</a> &amp;versionedSet)</td></tr>
+<tr class="memdesc:a6c13248bcd1f02b14faf146c7afe9c1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intitialize the iterator with an existing collection.  <a href="#a6c13248bcd1f02b14faf146c7afe9c1e">More...</a><br /></td></tr>
 <tr class="separator:a6c13248bcd1f02b14faf146c7afe9c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97dd1f7844ca08937ad5d03ae63828a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a97dd1f7844ca08937ad5d03ae63828a7">VersionedCollectionIterator</a> (const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;snapshot, string name)</td></tr>
+<tr class="memdesc:a97dd1f7844ca08937ad5d03ae63828a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the base snapshot for iteration. Iteration begins at the front of the list. Internally calls the constructor for <a class="el" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Implementation of versioned collection as an immutable snapshot. ">VersionedCollectionSnapshot</a>.  <a href="#a97dd1f7844ca08937ad5d03ae63828a7">More...</a><br /></td></tr>
 <tr class="separator:a97dd1f7844ca08937ad5d03ae63828a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a712e1c8409f11924b0191b8809be1a76"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a712e1c8409f11924b0191b8809be1a76">~VersionedCollectionIterator</a> ()</td></tr>
 <tr class="separator:a712e1c8409f11924b0191b8809be1a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,31 +133,38 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5e09b7b7b50365b2fb44ab9097e38368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the value for a key in the collection. Throws a <a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a> exception if the key does not exist.  <a href="#a5e09b7b7b50365b2fb44ab9097e38368">More...</a><br /></td></tr>
 <tr class="separator:a5e09b7b7b50365b2fb44ab9097e38368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66140c2bb17664475fc08d9ba8dd9198"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a66140c2bb17664475fc08d9ba8dd9198">isValid</a> () const</td></tr>
+<tr class="memdesc:a66140c2bb17664475fc08d9ba8dd9198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if iterator is in the valid range for iteration.  <a href="#a66140c2bb17664475fc08d9ba8dd9198">More...</a><br /></td></tr>
 <tr class="separator:a66140c2bb17664475fc08d9ba8dd9198"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73caf053db9fcc4fb277a2931b55a749"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a73caf053db9fcc4fb277a2931b55a749">key</a> () const</td></tr>
+<tr class="memdesc:a73caf053db9fcc4fb277a2931b55a749"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the key contained in the current node.  <a href="#a73caf053db9fcc4fb277a2931b55a749">More...</a><br /></td></tr>
 <tr class="separator:a73caf053db9fcc4fb277a2931b55a749"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b86fa813fb4b6560d955434610429e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1">next</a> ()</td></tr>
+<tr class="memdesc:a6b86fa813fb4b6560d955434610429e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates forward by one node.  <a href="#a6b86fa813fb4b6560d955434610429e1">More...</a><br /></td></tr>
 <tr class="separator:a6b86fa813fb4b6560d955434610429e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e738ada0bdf7d5cda047889bef3ecab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a5e738ada0bdf7d5cda047889bef3ecab">operator bool</a> () const</td></tr>
-<tr class="memdesc:a5e738ada0bdf7d5cda047889bef3ecab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overload for bool. False if the iterator is empty or has been iterated past its bounds. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a66140c2bb17664475fc08d9ba8dd9198">isValid()</a> internally.  <a href="#a5e738ada0bdf7d5cda047889bef3ecab">More...</a><br /></td></tr>
+<tr class="memdesc:a5e738ada0bdf7d5cda047889bef3ecab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overload for bool. False if the iterator is empty or has been iterated past its bounds. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a66140c2bb17664475fc08d9ba8dd9198" title="Returns true if iterator is in the valid range for iteration. ">isValid()</a> internally.  <a href="#a5e738ada0bdf7d5cda047889bef3ecab">More...</a><br /></td></tr>
 <tr class="separator:a5e738ada0bdf7d5cda047889bef3ecab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a656a4890d17c4a7d4a24cf4d613b0394"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a656a4890d17c4a7d4a24cf4d613b0394">operator const VersionedStoreSnapshot &amp;</a> () const</td></tr>
 <tr class="memdesc:a656a4890d17c4a7d4a24cf4d613b0394"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast operator to return the <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a> holding the collection.  <a href="#a656a4890d17c4a7d4a24cf4d613b0394">More...</a><br /></td></tr>
 <tr class="separator:a656a4890d17c4a7d4a24cf4d613b0394"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acab9f71c6421166179abe409f84de589"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html">VersionedCollectionIterator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#acab9f71c6421166179abe409f84de589">operator++</a> ()</td></tr>
-<tr class="memdesc:acab9f71c6421166179abe409f84de589"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix increment operator. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1">next()</a> internally.  <a href="#acab9f71c6421166179abe409f84de589">More...</a><br /></td></tr>
+<tr class="memdesc:acab9f71c6421166179abe409f84de589"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix increment operator. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1" title="Iterates forward by one node. ">next()</a> internally.  <a href="#acab9f71c6421166179abe409f84de589">More...</a><br /></td></tr>
 <tr class="separator:acab9f71c6421166179abe409f84de589"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a303241abafbd8f88ae526746087c6f82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html">VersionedCollectionIterator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a303241abafbd8f88ae526746087c6f82">operator--</a> ()</td></tr>
-<tr class="memdesc:a303241abafbd8f88ae526746087c6f82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix decrement operator. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a7a73f5f234a9358982878a34d9523e0a">prev()</a> internally.  <a href="#a303241abafbd8f88ae526746087c6f82">More...</a><br /></td></tr>
+<tr class="memdesc:a303241abafbd8f88ae526746087c6f82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix decrement operator. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a7a73f5f234a9358982878a34d9523e0a" title="Iterates backward by one node. ">prev()</a> internally.  <a href="#a303241abafbd8f88ae526746087c6f82">More...</a><br /></td></tr>
 <tr class="separator:a303241abafbd8f88ae526746087c6f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a73f5f234a9358982878a34d9523e0a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a7a73f5f234a9358982878a34d9523e0a">prev</a> ()</td></tr>
+<tr class="memdesc:a7a73f5f234a9358982878a34d9523e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates backward by one node.  <a href="#a7a73f5f234a9358982878a34d9523e0a">More...</a><br /></td></tr>
 <tr class="separator:a7a73f5f234a9358982878a34d9523e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16fb2a118805a16fbae67774801e1b06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a16fb2a118805a16fbae67774801e1b06">seekBack</a> ()</td></tr>
+<tr class="memdesc:a16fb2a118805a16fbae67774801e1b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset iteration to the back of the list.  <a href="#a16fb2a118805a16fbae67774801e1b06">More...</a><br /></td></tr>
 <tr class="separator:a16fb2a118805a16fbae67774801e1b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad958d434b59ec782712774a6afc8878b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#ad958d434b59ec782712774a6afc8878b">seekFront</a> ()</td></tr>
+<tr class="memdesc:ad958d434b59ec782712774a6afc8878b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset iteration to the front of the list.  <a href="#ad958d434b59ec782712774a6afc8878b">More...</a><br /></td></tr>
 <tr class="separator:ad958d434b59ec782712774a6afc8878b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e4f004fb5c43794a429d7b130f47295"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
 <tr class="memitem:a2e4f004fb5c43794a429d7b130f47295"><td class="memTemplItemLeft" align="right" valign="top">const TYPE &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a2e4f004fb5c43794a429d7b130f47295">value</a> () const</td></tr>
+<tr class="memdesc:a2e4f004fb5c43794a429d7b130f47295"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const reference to the current value being iterated.  <a href="#a2e4f004fb5c43794a429d7b130f47295">More...</a><br /></td></tr>
 <tr class="separator:a2e4f004fb5c43794a429d7b130f47295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
@@ -167,6 +179,7 @@ Protected Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:ae3c7881290e6f433a960b24c20ab8de4"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#ae3c7881290e6f433a960b24c20ab8de4">AbstractVersionedCollection_getSnapshot</a> () const override</td></tr>
+<tr class="memdesc:ae3c7881290e6f433a960b24c20ab8de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of the pure virtual base method to return the versioned snapshot associated with the container.  <a href="#ae3c7881290e6f433a960b24c20ab8de4">More...</a><br /></td></tr>
 <tr class="separator:ae3c7881290e6f433a960b24c20ab8de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a616dd2fa3dc98ed87d63a76897f027f8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a616dd2fa3dc98ed87d63a76897f027f8">getSnapshot</a> () const</td></tr>
 <tr class="memdesc:a616dd2fa3dc98ed87d63a76897f027f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a> holding the collection.  <a href="#a616dd2fa3dc98ed87d63a76897f027f8">More...</a><br /></td></tr>
@@ -174,11 +187,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ac6406d5a8ed217a188d581b0d9753ce4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#ac6406d5a8ed217a188d581b0d9753ce4">pushNode</a> (size_t nodeID, string nodeKey)</td></tr>
 <tr class="separator:ac6406d5a8ed217a188d581b0d9753ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9b9de7ac0a6ce83c97899a261d883a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#af9b9de7ac0a6ce83c97899a261d883a2">seek</a> (size_t nodeID)</td></tr>
+<tr class="memdesc:af9b9de7ac0a6ce83c97899a261d883a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seek to the given node.  <a href="#af9b9de7ac0a6ce83c97899a261d883a2">More...</a><br /></td></tr>
 <tr class="separator:af9b9de7ac0a6ce83c97899a261d883a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a2c45acd9e8ffbd77aac2c2c693a408b9">setName</a> (string name)</td></tr>
 <tr class="memdesc:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the collection and generates the cached lookup prefixes.  <a href="#a2c45acd9e8ffbd77aac2c2c693a408b9">More...</a><br /></td></tr>
 <tr class="separator:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b397a0cac43f65286b0b1f9696b830e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a7b397a0cac43f65286b0b1f9696b830e">step</a> (size_t nextNodeID, int blockingState, int unblockingState)</td></tr>
+<tr class="memdesc:a7b397a0cac43f65286b0b1f9696b830e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Steps the iterator forward or backward. This is a generic implemented used interfally by <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a7a73f5f234a9358982878a34d9523e0a" title="Iterates backward by one node. ">prev()</a> and <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1" title="Iterates forward by one node. ">next()</a>.  <a href="#a7b397a0cac43f65286b0b1f9696b830e">More...</a><br /></td></tr>
 <tr class="separator:a7b397a0cac43f65286b0b1f9696b830e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
@@ -190,14 +205,17 @@ Static Protected Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a509a67ce4f0a716cc0f67ef35f8cee45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html">VersionedCollectionNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a509a67ce4f0a716cc0f67ef35f8cee45">mIteratorNode</a></td></tr>
+<tr class="memdesc:a509a67ce4f0a716cc0f67ef35f8cee45"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current node.  <a href="#a509a67ce4f0a716cc0f67ef35f8cee45">More...</a><br /></td></tr>
 <tr class="separator:a509a67ce4f0a716cc0f67ef35f8cee45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a317fc4d310ded21cbb87a55423c598ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a317fc4d310ded21cbb87a55423c598ac">mIteratorState</a></td></tr>
+<tr class="memdesc:a317fc4d310ded21cbb87a55423c598ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal state of the iterator.  <a href="#a317fc4d310ded21cbb87a55423c598ac">More...</a><br /></td></tr>
 <tr class="separator:a317fc4d310ded21cbb87a55423c598ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3790bb2c83033b6c04dd8254a3c2cd26"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a3790bb2c83033b6c04dd8254a3c2cd26">mKey</a></td></tr>
-<tr class="separator:a3790bb2c83033b6c04dd8254a3c2cd26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74ff7d0e064e6778354307c2d83be2ba"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a74ff7d0e064e6778354307c2d83be2ba">mName</a></td></tr>
 <tr class="memdesc:a74ff7d0e064e6778354307c2d83be2ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the collection in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>.  <a href="#a74ff7d0e064e6778354307c2d83be2ba">More...</a><br /></td></tr>
 <tr class="separator:a74ff7d0e064e6778354307c2d83be2ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9540e6c812152cf16f1a306d765b17d0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a9540e6c812152cf16f1a306d765b17d0">mNodeKey</a></td></tr>
+<tr class="memdesc:a9540e6c812152cf16f1a306d765b17d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The cached full key for the current node.  <a href="#a9540e6c812152cf16f1a306d765b17d0">More...</a><br /></td></tr>
+<tr class="separator:a9540e6c812152cf16f1a306d765b17d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39759dbf94a8860a9bf1573507421a8a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a39759dbf94a8860a9bf1573507421a8a">mNodePrefix</a></td></tr>
 <tr class="memdesc:a39759dbf94a8860a9bf1573507421a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix string of list node keys. Append string encoded node IDs to look up nodes.  <a href="#a39759dbf94a8860a9bf1573507421a8a">More...</a><br /></td></tr>
 <tr class="separator:a39759dbf94a8860a9bf1573507421a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,7 +240,9 @@ Static Protected Attributes</h2></td></tr>
 <tr class="memdesc:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for value look up. Lookup key for values is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt;  <a href="#a9a8b0e0bd5fea1170d1871551d13f90c">More...</a><br /></td></tr>
 <tr class="separator:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements an interator of the collection. The iterator is also a snapshot of the collection, so the iteration will persist even if the associated collection is changed. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="ae154caa6cf56da023845768f22fedfc3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae154caa6cf56da023845768f22fedfc3">&#9670;&nbsp;</a></span>anonymous enum</h2>
 
@@ -268,6 +288,14 @@ Static Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Intitialize the iterator with an existing collection. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">collection</td><td>The existing collection. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a97dd1f7844ca08937ad5d03ae63828a7"></a>
@@ -295,6 +323,21 @@ Static Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialize the base snapshot for iteration. Iteration begins at the front of the list. Internally calls the constructor for <a class="el" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Implementation of versioned collection as an immutable snapshot. ">VersionedCollectionSnapshot</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">store</td><td>The versioned store that contains the collection. </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the collection.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="../../d5/d02/class_padamose_1_1_versioned_collection_not_found_exception.html">VersionedCollectionNotFoundException</a></td><td>No valid state exists for the collection. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -339,6 +382,9 @@ Static Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Implementation of the pure virtual base method to return the versioned snapshot associated with the container. </p>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a>. </dd></dl>
+
 <p>Implements <a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#abc6bf5c27709e7ff4baaffc44a129f2b">Padamose::AbstractVersionedCollection</a>.</p>
 
 </div>
@@ -368,6 +414,12 @@ Static Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>String encoding for node IDs. This is an ad hoc 64-bit encoding; it is not base64 encoding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodeID</td><td>A numeric node ID.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>The encoded node ID. </dd></dl>
 
 </div>
@@ -515,6 +567,9 @@ template&lt;typename TYPE &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Returns true if iterator is in the valid range for iteration. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if iteration is in the valid range. </dd></dl>
+
 </div>
 </div>
 <a id="a73caf053db9fcc4fb277a2931b55a749"></a>
@@ -532,6 +587,9 @@ template&lt;typename TYPE &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Return the key contained in the current node. </p>
+<dl class="section return"><dt>Returns</dt><dd>The key contained in the current node. </dd></dl>
+
 </div>
 </div>
 <a id="a6b86fa813fb4b6560d955434610429e1"></a>
@@ -548,6 +606,9 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Iterates forward by one node. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the step was successful. </dd></dl>
 
 </div>
 </div>
@@ -574,7 +635,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Operator overload for bool. False if the iterator is empty or has been iterated past its bounds. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a66140c2bb17664475fc08d9ba8dd9198">isValid()</a> internally. </p>
+<p>Operator overload for bool. False if the iterator is empty or has been iterated past its bounds. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a66140c2bb17664475fc08d9ba8dd9198" title="Returns true if iterator is in the valid range for iteration. ">isValid()</a> internally. </p>
 
 </div>
 </div>
@@ -629,7 +690,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Prefix increment operator. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1">next()</a> internally. </p>
+<p>Prefix increment operator. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1" title="Iterates forward by one node. ">next()</a> internally. </p>
 
 </div>
 </div>
@@ -656,7 +717,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Prefix decrement operator. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a7a73f5f234a9358982878a34d9523e0a">prev()</a> internally. </p>
+<p>Prefix decrement operator. Calls <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a7a73f5f234a9358982878a34d9523e0a" title="Iterates backward by one node. ">prev()</a> internally. </p>
 
 </div>
 </div>
@@ -674,6 +735,9 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Iterates backward by one node. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the step was successful. </dd></dl>
 
 </div>
 </div>
@@ -737,6 +801,14 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Seek to the given node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodeID</td><td>Numeric ID of the node to seek to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a16fb2a118805a16fbae67774801e1b06"></a>
@@ -754,6 +826,8 @@ template&lt;typename TYPE &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Reset iteration to the back of the list. </p>
+
 </div>
 </div>
 <a id="ad958d434b59ec782712774a6afc8878b"></a>
@@ -770,6 +844,8 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reset iteration to the front of the list. </p>
 
 </div>
 </div>
@@ -798,6 +874,12 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Sets the name of the collection and generates the cached lookup prefixes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the collection. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -841,6 +923,17 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Steps the iterator forward or backward. This is a generic implemented used interfally by <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a7a73f5f234a9358982878a34d9523e0a" title="Iterates backward by one node. ">prev()</a> and <a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1" title="Iterates forward by one node. ">next()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nextNodeID</td><td>Numeric ID of the node to step to. </td></tr>
+    <tr><td class="paramname">blockingState</td><td>State to block against the intended step direction (prev of next). </td></tr>
+    <tr><td class="paramname">unblockingState</td><td>State to unblock from if stepping away (in the oppositer direction).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The step was completed and not blocked. </dd></dl>
+
 </div>
 </div>
 <a id="a2e4f004fb5c43794a429d7b130f47295"></a>
@@ -867,6 +960,9 @@ template&lt;typename TYPE &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns a const reference to the current value being iterated. </p>
+<dl class="section return"><dt>Returns</dt><dd>The current value of the iterator. </dd></dl>
 
 </div>
 </div>
@@ -915,6 +1011,8 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>The current node. </p>
+
 </div>
 </div>
 <a id="a317fc4d310ded21cbb87a55423c598ac"></a>
@@ -937,27 +1035,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a3790bb2c83033b6c04dd8254a3c2cd26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3790bb2c83033b6c04dd8254a3c2cd26">&#9670;&nbsp;</a></span>mKey</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Padamose::VersionedCollectionIterator::mKey</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Internal state of the iterator. </p>
 
 </div>
 </div>
@@ -982,6 +1060,30 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Name of the collection in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>. </p>
+
+</div>
+</div>
+<a id="a9540e6c812152cf16f1a306d765b17d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9540e6c812152cf16f1a306d765b17d0">&#9670;&nbsp;</a></span>mNodeKey</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Padamose::VersionedCollectionIterator::mNodeKey</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The cached full key for the current node. </p>
 
 </div>
 </div>
@@ -1137,7 +1239,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html">VersionedCollectionIterator</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 05:59:09 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 06:44:53 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

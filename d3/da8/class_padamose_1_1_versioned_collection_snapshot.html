@@ -97,20 +97,27 @@ $(document).ready(function(){initNavTree('d3/da8/class_padamose_1_1_versioned_co
 </div><!--header-->
 <div class="contents">
 
+<p>Implementation of versioned collection as an immutable snapshot.  
+ <a href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="../../d1/d4c/_versioned_collection_snapshot_8h_source.html">VersionedCollectionSnapshot.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Padamose::VersionedCollectionSnapshot:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d7/d7a/class_padamose_1_1_versioned_collection_snapshot__inherit__graph.png" border="0" usemap="#_padamose_1_1_versioned_collection_snapshot_inherit__map" alt="Inheritance graph"/></div>
 <map name="_padamose_1_1_versioned_collection_snapshot_inherit__map" id="_padamose_1_1_versioned_collection_snapshot_inherit__map">
-<area shape="rect" id="node3" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Padamose::VersionedCollection\lIterator" alt="" coords="5,179,216,217"/>
+<area shape="rect" id="node3" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Implements an interator of the collection. The iterator is also a snapshot of the collection..." alt="" coords="5,179,216,217"/>
 <area shape="rect" id="node2" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="10,5,211,44"/>
 </map>
 <center><span class="legend">[<a target="top" href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a158792fc87ca5dce3f31c646e5c53632"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#a158792fc87ca5dce3f31c646e5c53632">VersionedCollectionSnapshot</a> (const <a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html">AbstractVersionedCollection</a> &amp;collection)</td></tr>
+<tr class="memdesc:a158792fc87ca5dce3f31c646e5c53632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intitialize the snapshot with an existing collection.  <a href="#a158792fc87ca5dce3f31c646e5c53632">More...</a><br /></td></tr>
+<tr class="separator:a158792fc87ca5dce3f31c646e5c53632"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a228303b1e16386566532f059f453768a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#a228303b1e16386566532f059f453768a">VersionedCollectionSnapshot</a> (const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;snapshot, string name)</td></tr>
+<tr class="memdesc:a228303b1e16386566532f059f453768a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the state of the collection for the given name. Throws a <a class="el" href="../../d5/d02/class_padamose_1_1_versioned_collection_not_found_exception.html">VersionedCollectionNotFoundException</a> if the collection state cannot be loaded.  <a href="#a228303b1e16386566532f059f453768a">More...</a><br /></td></tr>
 <tr class="separator:a228303b1e16386566532f059f453768a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08ec2cb4ba8828d7cdfd64981514a461"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#a08ec2cb4ba8828d7cdfd64981514a461">~VersionedCollectionSnapshot</a> ()</td></tr>
 <tr class="separator:a08ec2cb4ba8828d7cdfd64981514a461"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,6 +138,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:ae3c7881290e6f433a960b24c20ab8de4"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html#ae3c7881290e6f433a960b24c20ab8de4">AbstractVersionedCollection_getSnapshot</a> () const override</td></tr>
+<tr class="memdesc:ae3c7881290e6f433a960b24c20ab8de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of the pure virtual base method to return the versioned snapshot associated with the container.  <a href="#ae3c7881290e6f433a960b24c20ab8de4">More...</a><br /></td></tr>
 <tr class="separator:ae3c7881290e6f433a960b24c20ab8de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a616dd2fa3dc98ed87d63a76897f027f8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a616dd2fa3dc98ed87d63a76897f027f8">getSnapshot</a> () const</td></tr>
 <tr class="memdesc:a616dd2fa3dc98ed87d63a76897f027f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a> holding the collection.  <a href="#a616dd2fa3dc98ed87d63a76897f027f8">More...</a><br /></td></tr>
@@ -176,9 +184,37 @@ Static Protected Attributes</h2></td></tr>
 <tr class="memdesc:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for value look up. Lookup key for values is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt;  <a href="#a9a8b0e0bd5fea1170d1871551d13f90c">More...</a><br /></td></tr>
 <tr class="separator:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of versioned collection as an immutable snapshot. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a158792fc87ca5dce3f31c646e5c53632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a158792fc87ca5dce3f31c646e5c53632">&#9670;&nbsp;</a></span>VersionedCollectionSnapshot() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Padamose::VersionedCollectionSnapshot::VersionedCollectionSnapshot </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html">AbstractVersionedCollection</a> &amp;&#160;</td>
+          <td class="paramname"><em>collection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Intitialize the snapshot with an existing collection. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">collection</td><td>The existing collection. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a228303b1e16386566532f059f453768a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a228303b1e16386566532f059f453768a">&#9670;&nbsp;</a></span>VersionedCollectionSnapshot()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a228303b1e16386566532f059f453768a">&#9670;&nbsp;</a></span>VersionedCollectionSnapshot() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,6 +238,21 @@ Static Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Load the state of the collection for the given name. Throws a <a class="el" href="../../d5/d02/class_padamose_1_1_versioned_collection_not_found_exception.html">VersionedCollectionNotFoundException</a> if the collection state cannot be loaded. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">store</td><td>The versioned store that contains the collection. </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the collection.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="../../d5/d02/class_padamose_1_1_versioned_collection_not_found_exception.html">VersionedCollectionNotFoundException</a></td><td>No valid state exists for the collection. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -246,6 +297,9 @@ Static Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Implementation of the pure virtual base method to return the versioned snapshot associated with the container. </p>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a>. </dd></dl>
+
 <p>Implements <a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#abc6bf5c27709e7ff4baaffc44a129f2b">Padamose::AbstractVersionedCollection</a>.</p>
 
 </div>
@@ -275,6 +329,12 @@ Static Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>String encoding for node IDs. This is an ad hoc 64-bit encoding; it is not base64 encoding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodeID</td><td>A numeric node ID.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>The encoded node ID. </dd></dl>
 
 </div>
@@ -496,6 +556,12 @@ template&lt;typename TYPE &gt; </div>
 </div><div class="memdoc">
 
 <p>Sets the name of the collection and generates the cached lookup prefixes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the collection. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -700,7 +766,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html">VersionedCollectionSnapshot</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 05:59:09 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 06:44:53 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

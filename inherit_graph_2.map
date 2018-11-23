@@ -1,9 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="5,76,206,115"/>
-<area shape="rect" id="node2" href="$de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Padamose::MutableVersioned\lCollection" alt="" coords="260,44,459,83"/>
-<area shape="rect" id="node6" href="$d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Padamose::VersionedCollection\lSnapshot" alt="" coords="254,107,464,145"/>
+<area shape="rect" id="node2" href="$de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Base class for mutable collections referencing a VersionedStore. " alt="" coords="260,44,459,83"/>
+<area shape="rect" id="node6" href="$d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Implementation of versioned collection as an immutable snapshot. " alt="" coords="254,107,464,145"/>
 <area shape="rect" id="node3" href="$dd/dad/class_padamose_1_1_versioned_map.html" title="Padamose::VersionedMap" alt="" coords="529,5,706,31"/>
 <area shape="rect" id="node5" href="$de/daa/class_padamose_1_1_versioned_set.html" title="Padamose::VersionedSet" alt="" coords="532,55,703,80"/>
 <area shape="rect" id="node4" href="$dc/d41/class_versioned_map_collision_tester.html" title="VersionedMapCollisionTester" alt="" coords="771,5,964,31"/>
-<area shape="rect" id="node7" href="$d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Padamose::VersionedCollection\lIterator" alt="" coords="512,107,723,145"/>
+<area shape="rect" id="node7" href="$d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Implements an interator of the collection. The iterator is also a snapshot of the collection..." alt="" coords="512,107,723,145"/>
 </map>

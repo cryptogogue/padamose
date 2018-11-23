@@ -1,4 +1,4 @@
 <map id="Padamose::VersionedSet" name="Padamose::VersionedSet">
-<area shape="rect" id="node2" href="$de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Padamose::MutableVersioned\lCollection" alt="" coords="6,92,205,131"/>
+<area shape="rect" id="node2" href="$de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Base class for mutable collections referencing a VersionedStore. " alt="" coords="6,92,205,131"/>
 <area shape="rect" id="node3" href="$dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="5,5,206,44"/>
 </map>
