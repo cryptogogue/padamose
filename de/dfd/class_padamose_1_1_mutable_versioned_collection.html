@@ -106,8 +106,8 @@ Inheritance diagram for Padamose::MutableVersionedCollection:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/d37/class_padamose_1_1_mutable_versioned_collection__inherit__graph.png" border="0" usemap="#_padamose_1_1_mutable_versioned_collection_inherit__map" alt="Inheritance graph"/></div>
 <map name="_padamose_1_1_mutable_versioned_collection_inherit__map" id="_padamose_1_1_mutable_versioned_collection_inherit__map">
-<area shape="rect" id="node3" href="../../dd/dad/class_padamose_1_1_versioned_map.html" title="Padamose::VersionedMap" alt="" coords="13,179,191,204"/>
-<area shape="rect" id="node5" href="../../de/daa/class_padamose_1_1_versioned_set.html" title="Padamose::VersionedSet" alt="" coords="215,179,387,204"/>
+<area shape="rect" id="node3" href="../../dd/dad/class_padamose_1_1_versioned_map.html" title="VersionedMap is a map collection with iterable keys. Unlike VersionedSet, keys must be explicitely pr..." alt="" coords="13,179,191,204"/>
+<area shape="rect" id="node5" href="../../de/daa/class_padamose_1_1_versioned_set.html" title="VersionedSet is a collection in which keys are automatically provisioned and reused. When an element is added to the set, a key is either created or reused. When an element is removed from the set, its key is added to a stack of unused keys. " alt="" coords="215,179,387,204"/>
 <area shape="rect" id="node2" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="100,5,301,44"/>
 <area shape="rect" id="node4" href="../../dc/d41/class_versioned_map_collision_tester.html" title="VersionedMapCollisionTester" alt="" coords="5,252,199,277"/>
 </map>
@@ -142,17 +142,23 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a236f29eb0e29dc30c1ed09807e6ec51c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a236f29eb0e29dc30c1ed09807e6ec51c">affirmState</a> ()</td></tr>
 <tr class="memdesc:a236f29eb0e29dc30c1ed09807e6ec51c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load or create a state record for the collection. Returns TRUE if the state already exists and FALSE if it did not (and had to be created and stored).  <a href="#a236f29eb0e29dc30c1ed09807e6ec51c">More...</a><br /></td></tr>
 <tr class="separator:a236f29eb0e29dc30c1ed09807e6ec51c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff9457fe0c0c3c482b5457028929444b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#aff9457fe0c0c3c482b5457028929444b">appendNode</a> (size_t nodeID, string fullKey, string nodeKey)</td></tr>
+<tr class="memdesc:aff9457fe0c0c3c482b5457028929444b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a node (and its key) into the collection's list of active nodes. Node will be added at the back of the list.  <a href="#aff9457fe0c0c3c482b5457028929444b">More...</a><br /></td></tr>
+<tr class="separator:aff9457fe0c0c3c482b5457028929444b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a616dd2fa3dc98ed87d63a76897f027f8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a616dd2fa3dc98ed87d63a76897f027f8">getSnapshot</a> () const</td></tr>
 <tr class="memdesc:a616dd2fa3dc98ed87d63a76897f027f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a> holding the collection.  <a href="#a616dd2fa3dc98ed87d63a76897f027f8">More...</a><br /></td></tr>
 <tr class="separator:a616dd2fa3dc98ed87d63a76897f027f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae82777a3a1367024a14aafc474531844"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#ae82777a3a1367024a14aafc474531844">insertNode</a> (size_t nodeID, string key, string nodeKey)</td></tr>
-<tr class="memdesc:ae82777a3a1367024a14aafc474531844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a node (and its key) into the collection's list of active nodes.  <a href="#ae82777a3a1367024a14aafc474531844">More...</a><br /></td></tr>
-<tr class="separator:ae82777a3a1367024a14aafc474531844"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64b9eaa88c307745821683496ea82396"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a64b9eaa88c307745821683496ea82396">isActiveKey</a> (string encodedNodeID)</td></tr>
+<tr class="memdesc:a64b9eaa88c307745821683496ea82396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the key exists and is active in the list.  <a href="#a64b9eaa88c307745821683496ea82396">More...</a><br /></td></tr>
+<tr class="separator:a64b9eaa88c307745821683496ea82396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ea0a6c266cd29f5b2b81ae03b2080ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a6ea0a6c266cd29f5b2b81ae03b2080ea">prependNode</a> (size_t nodeID, string fullKey, string nodeKey)</td></tr>
+<tr class="memdesc:a6ea0a6c266cd29f5b2b81ae03b2080ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a node (and its key) into the collection's list of active nodes. Node will be added at the front of the list.  <a href="#a6ea0a6c266cd29f5b2b81ae03b2080ea">More...</a><br /></td></tr>
+<tr class="separator:a6ea0a6c266cd29f5b2b81ae03b2080ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6406d5a8ed217a188d581b0d9753ce4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#ac6406d5a8ed217a188d581b0d9753ce4">pushNode</a> (size_t nodeID, string nodeKey)</td></tr>
 <tr class="separator:ac6406d5a8ed217a188d581b0d9753ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a883a7c368b53a187bbc8a361a64ca656"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a883a7c368b53a187bbc8a361a64ca656">removeNode</a> (string key, size_t prevID=<a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a72d95902d53faa132a39ad1a1966a3f2">INVALID_NODE_INDEX</a>)</td></tr>
-<tr class="memdesc:a883a7c368b53a187bbc8a361a64ca656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a node (and its key) from the collection's list of active nodes.  <a href="#a883a7c368b53a187bbc8a361a64ca656">More...</a><br /></td></tr>
-<tr class="separator:a883a7c368b53a187bbc8a361a64ca656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2a7b9b74c0b119c230ca5f7997cc34"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a0f2a7b9b74c0b119c230ca5f7997cc34">removeNode</a> (string encodedNodeID, size_t prevID=<a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a72d95902d53faa132a39ad1a1966a3f2">INVALID_NODE_INDEX</a>)</td></tr>
+<tr class="memdesc:a0f2a7b9b74c0b119c230ca5f7997cc34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a node (and its key) from the collection's list of active nodes.  <a href="#a0f2a7b9b74c0b119c230ca5f7997cc34">More...</a><br /></td></tr>
+<tr class="separator:a0f2a7b9b74c0b119c230ca5f7997cc34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a2c45acd9e8ffbd77aac2c2c693a408b9">setName</a> (string name)</td></tr>
 <tr class="memdesc:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the collection and generates the cached lookup prefixes.  <a href="#a2c45acd9e8ffbd77aac2c2c693a408b9">More...</a><br /></td></tr>
 <tr class="separator:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,7 +178,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a39759dbf94a8860a9bf1573507421a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix string of list node keys. Append string encoded node IDs to look up nodes.  <a href="#a39759dbf94a8860a9bf1573507421a8a">More...</a><br /></td></tr>
 <tr class="separator:a39759dbf94a8860a9bf1573507421a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45ec00dd0fb3568e57245fab386bc6e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html">VersionedCollectionState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a45ec00dd0fb3568e57245fab386bc6e8">mState</a></td></tr>
-<tr class="memdesc:a45ec00dd0fb3568e57245fab386bc6e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">State of the collection. Persisted in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>.  <a href="#a45ec00dd0fb3568e57245fab386bc6e8">More...</a><br /></td></tr>
+<tr class="memdesc:a45ec00dd0fb3568e57245fab386bc6e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">State of the collection persisted in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>.  <a href="#a45ec00dd0fb3568e57245fab386bc6e8">More...</a><br /></td></tr>
 <tr class="separator:a45ec00dd0fb3568e57245fab386bc6e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8f953dfb1a732440559154dbd448fdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html">VersionedStore</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#ab8f953dfb1a732440559154dbd448fdc">mStore</a></td></tr>
 <tr class="memdesc:ab8f953dfb1a732440559154dbd448fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The versioned store.  <a href="#ab8f953dfb1a732440559154dbd448fdc">More...</a><br /></td></tr>
@@ -184,13 +190,13 @@ Protected Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:a72d95902d53faa132a39ad1a1966a3f2"><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a72d95902d53faa132a39ad1a1966a3f2">INVALID_NODE_INDEX</a> = ( size_t )-1</td></tr>
-<tr class="memdesc:a72d95902d53faa132a39ad1a1966a3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to desgnate and invalid node ID. Needed to terminate lists.  <a href="#a72d95902d53faa132a39ad1a1966a3f2">More...</a><br /></td></tr>
+<tr class="memdesc:a72d95902d53faa132a39ad1a1966a3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to designate an invalid node ID. Needed to terminate lists.  <a href="#a72d95902d53faa132a39ad1a1966a3f2">More...</a><br /></td></tr>
 <tr class="separator:a72d95902d53faa132a39ad1a1966a3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41932776a7eef5258bc47cb742a66936"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a41932776a7eef5258bc47cb742a66936">SET_NODES_POSTFIX</a> = &quot;.nodes.&quot;</td></tr>
-<tr class="memdesc:a41932776a7eef5258bc47cb742a66936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for node look up. Lookup key for nodes is: &lt;collection name&gt;=""&gt;SET_NODES_POSTFIX&lt;string encoded node ID&gt;  <a href="#a41932776a7eef5258bc47cb742a66936">More...</a><br /></td></tr>
+<tr class="memdesc:a41932776a7eef5258bc47cb742a66936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for node look up. Lookup key is: &lt;collection name&gt;=""&gt;SET_NODES_POSTFIX&lt;string encoded node ID&gt;  <a href="#a41932776a7eef5258bc47cb742a66936">More...</a><br /></td></tr>
 <tr class="separator:a41932776a7eef5258bc47cb742a66936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a9a8b0e0bd5fea1170d1871551d13f90c">SET_VALUES_POSTFIX</a> = &quot;.values.&quot;</td></tr>
-<tr class="memdesc:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for value look up. Lookup key for values is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt;  <a href="#a9a8b0e0bd5fea1170d1871551d13f90c">More...</a><br /></td></tr>
+<tr class="memdesc:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for value look up. Lookup key is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt;  <a href="#a9a8b0e0bd5fea1170d1871551d13f90c">More...</a><br /></td></tr>
 <tr class="separator:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -306,6 +312,58 @@ Static Protected Attributes</h2></td></tr>
 
 <p>Load or create a state record for the collection. Returns TRUE if the state already exists and FALSE if it did not (and had to be created and stored). </p>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the state exists and was loaded. FALSE if the state was created and stored. </dd></dl>
+
+</div>
+</div>
+<a id="aff9457fe0c0c3c482b5457028929444b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff9457fe0c0c3c482b5457028929444b">&#9670;&nbsp;</a></span>appendNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Padamose::MutableVersionedCollection::appendNode </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nodeID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fullKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Insert a node (and its key) into the collection's list of active nodes. Node will be added at the back of the list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodeID</td><td>The numeric ID of the node. </td></tr>
+    <tr><td class="paramname">fullKey</td><td>The key to be tracked by the node. </td></tr>
+    <tr><td class="paramname">nodeKey</td><td>The full key of the node in the versioned store. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -472,8 +530,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="ae82777a3a1367024a14aafc474531844"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae82777a3a1367024a14aafc474531844">&#9670;&nbsp;</a></span>insertNode()</h2>
+<a id="a64b9eaa88c307745821683496ea82396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64b9eaa88c307745821683496ea82396">&#9670;&nbsp;</a></span>isActiveKey()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -482,27 +540,11 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Padamose::MutableVersionedCollection::insertNode </td>
+          <td class="memname">bool Padamose::MutableVersionedCollection::isActiveKey </td>
           <td>(</td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>nodeID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>encodedNodeID</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>nodeKey</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -512,15 +554,14 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Insert a node (and its key) into the collection's list of active nodes. </p>
+<p>Checks to see if the key exists and is active in the list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nodeID</td><td>The numeric ID of the node. </td></tr>
-    <tr><td class="paramname">key</td><td>The key to be tracked by the node. </td></tr>
-    <tr><td class="paramname">nodeKey</td><td>The full key of the node in the versioned store. </td></tr>
+    <tr><td class="paramname">encodedNodeID</td><td>The string encoded node ID. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the key exists and is active. Otherwise FALSE. </dd></dl>
 
 </div>
 </div>
@@ -549,6 +590,58 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Cast operator to return the <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a> holding the collection. </p>
 <dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a> holding the collection. </dd></dl>
+
+</div>
+</div>
+<a id="a6ea0a6c266cd29f5b2b81ae03b2080ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ea0a6c266cd29f5b2b81ae03b2080ea">&#9670;&nbsp;</a></span>prependNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Padamose::MutableVersionedCollection::prependNode </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nodeID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fullKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Insert a node (and its key) into the collection's list of active nodes. Node will be added at the front of the list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodeID</td><td>The numeric ID of the node. </td></tr>
+    <tr><td class="paramname">fullKey</td><td>The key to be tracked by the node. </td></tr>
+    <tr><td class="paramname">nodeKey</td><td>The full key of the node in the versioned store. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -588,8 +681,8 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="a883a7c368b53a187bbc8a361a64ca656"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a883a7c368b53a187bbc8a361a64ca656">&#9670;&nbsp;</a></span>removeNode()</h2>
+<a id="a0f2a7b9b74c0b119c230ca5f7997cc34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f2a7b9b74c0b119c230ca5f7997cc34">&#9670;&nbsp;</a></span>removeNode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -601,7 +694,7 @@ template&lt;typename TYPE &gt; </div>
           <td class="memname">size_t Padamose::MutableVersionedCollection::removeNode </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
+          <td class="paramname"><em>encodedNodeID</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -625,12 +718,18 @@ template&lt;typename TYPE &gt; </div>
 <p>Remove a node (and its key) from the collection's list of active nodes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td>The encoded node ID. </td></tr>
+    <tr><td class="paramname">encodedNodeID</td><td>The string encoded node ID. </td></tr>
     <tr><td class="paramname">prevID</td><td>A numeric ID to assign to the node's prev. Default is INVALID_NODE_INDEX. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The numeric ID of the node removed. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The numeric node ID of the node removed.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a></td><td>The key could not be found. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -689,7 +788,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Used to desgnate and invalid node ID. Needed to terminate lists. </p>
+<p>Used to designate an invalid node ID. Needed to terminate lists. </p>
 
 </div>
 </div>
@@ -761,7 +860,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>State of the collection. Persisted in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>. </p>
+<p>State of the collection persisted in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>. </p>
 
 </div>
 </div>
@@ -833,7 +932,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Postfix for node look up. Lookup key for nodes is: &lt;collection name&gt;=""&gt;SET_NODES_POSTFIX&lt;string encoded node ID&gt; </p>
+<p>Postfix for node look up. Lookup key is: &lt;collection name&gt;=""&gt;SET_NODES_POSTFIX&lt;string encoded node ID&gt; </p>
 
 </div>
 </div>
@@ -857,7 +956,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Postfix for value look up. Lookup key for values is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt; </p>
+<p>Postfix for value look up. Lookup key is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt; </p>
 
 </div>
 </div>
@@ -871,7 +970,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html">MutableVersionedCollection</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 06:44:53 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 23:27:24 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

@@ -114,8 +114,8 @@ $(document).ready(function(){initNavTree('hierarchy.html','');});
 <area shape="rect" id="node1" href="dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="5,76,206,115"/>
 <area shape="rect" id="node2" href="de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Base class for mutable collections referencing a VersionedStore. " alt="" coords="260,44,459,83"/>
 <area shape="rect" id="node6" href="d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Implementation of versioned collection as an immutable snapshot. " alt="" coords="254,107,464,145"/>
-<area shape="rect" id="node3" href="dd/dad/class_padamose_1_1_versioned_map.html" title="Padamose::VersionedMap" alt="" coords="529,5,706,31"/>
-<area shape="rect" id="node5" href="de/daa/class_padamose_1_1_versioned_set.html" title="Padamose::VersionedSet" alt="" coords="532,55,703,80"/>
+<area shape="rect" id="node3" href="dd/dad/class_padamose_1_1_versioned_map.html" title="VersionedMap is a map collection with iterable keys. Unlike VersionedSet, keys must be explicitely pr..." alt="" coords="529,5,706,31"/>
+<area shape="rect" id="node5" href="de/daa/class_padamose_1_1_versioned_set.html" title="VersionedSet is a collection in which keys are automatically provisioned and reused. When an element is added to the set, a key is either created or reused. When an element is removed from the set, its key is added to a stack of unused keys. " alt="" coords="532,55,703,80"/>
 <area shape="rect" id="node4" href="dc/d41/class_versioned_map_collision_tester.html" title="VersionedMapCollisionTester" alt="" coords="771,5,964,31"/>
 <area shape="rect" id="node7" href="d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Implements an interator of the collection. The iterator is also a snapshot of the collection..." alt="" coords="512,107,723,145"/>
 </map>
@@ -132,7 +132,7 @@ $(document).ready(function(){initNavTree('hierarchy.html','');});
 </td></tr>
 <tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#_padamose_1_1_versioned_collection_node"/>
 <map name="_padamose_1_1_versioned_collection_node" id="_padamose_1_1_versioned_collection_node">
-<area shape="rect" id="node1" href="d0/d56/class_padamose_1_1_versioned_collection_node.html" title="Linked list node containing a key and its ID. Nodes are addressed by ID, which may be assigned and re..." alt="" coords="5,5,248,31"/>
+<area shape="rect" id="node1" href="d0/d56/class_padamose_1_1_versioned_collection_node.html" title="Linked list node containing a key and its numeric ID. Nodes are addressed by numeric ID..." alt="" coords="5,5,248,31"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#_padamose_1_1_versioned_collection_state"/>
@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('hierarchy.html','');});
 </td></tr>
 <tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#_padamose_1_1_versioned_set_free_stack"/>
 <map name="_padamose_1_1_versioned_set_free_stack" id="_padamose_1_1_versioned_set_free_stack">
-<area shape="rect" id="node1" href="d9/dd5/class_padamose_1_1_versioned_set_free_stack.html" title="Padamose::VersionedSetFree\lStack" alt="" coords="5,5,205,44"/>
+<area shape="rect" id="node1" href="d9/dd5/class_padamose_1_1_versioned_set_free_stack.html" title="Persistent state object for the stack of free nodes. Just tracks the top of the state, and the total nodes (active and free). The total node count is used to create new node IDs when all exisrting node IDs are in use. " alt="" coords="5,5,205,44"/>
 </map>
 </td></tr>
 </table>
@@ -151,7 +151,7 @@ $(document).ready(function(){initNavTree('hierarchy.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Nov 23 2018 06:44:54 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 23:27:25 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

@@ -1,6 +1,6 @@
 <map id="Padamose::MutableVersionedCollection" name="Padamose::MutableVersionedCollection">
-<area shape="rect" id="node3" href="$dd/dad/class_padamose_1_1_versioned_map.html" title="Padamose::VersionedMap" alt="" coords="13,179,191,204"/>
-<area shape="rect" id="node5" href="$de/daa/class_padamose_1_1_versioned_set.html" title="Padamose::VersionedSet" alt="" coords="215,179,387,204"/>
+<area shape="rect" id="node3" href="$dd/dad/class_padamose_1_1_versioned_map.html" title="VersionedMap is a map collection with iterable keys. Unlike VersionedSet, keys must be explicitely pr..." alt="" coords="13,179,191,204"/>
+<area shape="rect" id="node5" href="$de/daa/class_padamose_1_1_versioned_set.html" title="VersionedSet is a collection in which keys are automatically provisioned and reused. When an element is added to the set, a key is either created or reused. When an element is removed from the set, its key is added to a stack of unused keys. " alt="" coords="215,179,387,204"/>
 <area shape="rect" id="node2" href="$dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="100,5,301,44"/>
 <area shape="rect" id="node4" href="$dc/d41/class_versioned_map_collision_tester.html" title="VersionedMapCollisionTester" alt="" coords="5,252,199,277"/>
 </map>

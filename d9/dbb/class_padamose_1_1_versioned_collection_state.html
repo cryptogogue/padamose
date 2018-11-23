@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('d9/dbb/class_padamose_1_1_versioned_co
 </div><!--header-->
 <div class="contents">
 
-<p>Persistent state object common to all collections. It tracks the head and tail of the doubly linked list of active key nodes (<a class="el" href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html" title="Linked list node containing a key and its ID. Nodes are addressed by ID, which may be assigned and re...">VersionedCollectionNode</a>). It also tracks the size of the list.  
+<p>Persistent state object common to all collections. It tracks the head and tail of the doubly linked list of active key nodes (<a class="el" href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html" title="Linked list node containing a key and its numeric ID. Nodes are addressed by numeric ID...">VersionedCollectionNode</a>). It also tracks the size of the list.  
  <a href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d9/d38/_abstract_versioned_collection_8h_source.html">AbstractVersionedCollection.h</a>&gt;</code></p>
@@ -102,13 +102,13 @@ $(document).ready(function(){initNavTree('d9/dbb/class_padamose_1_1_versioned_co
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a9efcd18f375bd07c3ee6c3c451cbbe7e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html#a9efcd18f375bd07c3ee6c3c451cbbe7e">mHead</a></td></tr>
-<tr class="memdesc:a9efcd18f375bd07c3ee6c3c451cbbe7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numeric ID of the head of list of active keys.  <a href="#a9efcd18f375bd07c3ee6c3c451cbbe7e">More...</a><br /></td></tr>
+<tr class="memdesc:a9efcd18f375bd07c3ee6c3c451cbbe7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numeric ID of the head of the list of active keys.  <a href="#a9efcd18f375bd07c3ee6c3c451cbbe7e">More...</a><br /></td></tr>
 <tr class="separator:a9efcd18f375bd07c3ee6c3c451cbbe7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3ee8c00960adbb65ca945f41fb5fb0b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html#ad3ee8c00960adbb65ca945f41fb5fb0b">mSize</a></td></tr>
 <tr class="memdesc:ad3ee8c00960adbb65ca945f41fb5fb0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count of total active keys in the list.  <a href="#ad3ee8c00960adbb65ca945f41fb5fb0b">More...</a><br /></td></tr>
 <tr class="separator:ad3ee8c00960adbb65ca945f41fb5fb0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ff8c9525821d3bd5f56136d53e60232"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html#a4ff8c9525821d3bd5f56136d53e60232">mTail</a></td></tr>
-<tr class="memdesc:a4ff8c9525821d3bd5f56136d53e60232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numeric ID of the tail of list of active keys.  <a href="#a4ff8c9525821d3bd5f56136d53e60232">More...</a><br /></td></tr>
+<tr class="memdesc:a4ff8c9525821d3bd5f56136d53e60232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numeric ID of the tail of the list of active keys.  <a href="#a4ff8c9525821d3bd5f56136d53e60232">More...</a><br /></td></tr>
 <tr class="separator:a4ff8c9525821d3bd5f56136d53e60232"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
@@ -127,7 +127,7 @@ Friends</h2></td></tr>
 <tr class="separator:a7a4930dc3f267e231ef6a56fd4b5e45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Persistent state object common to all collections. It tracks the head and tail of the doubly linked list of active key nodes (<a class="el" href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html" title="Linked list node containing a key and its ID. Nodes are addressed by ID, which may be assigned and re...">VersionedCollectionNode</a>). It also tracks the size of the list. </p>
+<div class="textblock"><p>Persistent state object common to all collections. It tracks the head and tail of the doubly linked list of active key nodes (<a class="el" href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html" title="Linked list node containing a key and its numeric ID. Nodes are addressed by numeric ID...">VersionedCollectionNode</a>). It also tracks the size of the list. </p>
 </div><h2 class="groupheader">Friends And Related Function Documentation</h2>
 <a id="a9c34a818b0c4fe5c49b28805835ebdb2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9c34a818b0c4fe5c49b28805835ebdb2">&#9670;&nbsp;</a></span>AbstractVersionedCollection</h2>
@@ -282,7 +282,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Numeric ID of the head of list of active keys. </p>
+<p>Numeric ID of the head of the list of active keys. </p>
 
 </div>
 </div>
@@ -330,7 +330,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Numeric ID of the tail of list of active keys. </p>
+<p>Numeric ID of the tail of the list of active keys. </p>
 
 </div>
 </div>
@@ -343,7 +343,7 @@ Friends</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html">VersionedCollectionState</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 06:44:53 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 23:27:25 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

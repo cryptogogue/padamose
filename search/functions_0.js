@@ -16,5 +16,6 @@ var searchData=
   ['abstractversionedstoreclient_5fpreventjoin',['AbstractVersionedStoreClient_preventJoin',['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#ab4e1fde5c635d01ac32503b67b38ef4f',1,'Padamose::AbstractVersionedBranchClient::AbstractVersionedStoreClient_preventJoin()'],['../d4/da9/class_padamose_1_1_versioned_branch.html#aaafb552decf0e49290e6f1f69e1a48b7',1,'Padamose::VersionedBranch::AbstractVersionedStoreClient_preventJoin()'],['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a74806a54a9c4530189c64e3480f7a1cb',1,'Padamose::VersionedStoreSnapshot::AbstractVersionedStoreClient_preventJoin()']]],
   ['affirmbranch',['affirmBranch',['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#acf5cbbfca4abe4107a43d0917908552b',1,'Padamose::VersionedStoreSnapshot']]],
   ['affirmkey',['affirmKey',['../dd/dad/class_padamose_1_1_versioned_map.html#a0bcadf16f062173bb3d8eb91391183c8',1,'Padamose::VersionedMap']]],
-  ['affirmstate',['affirmState',['../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a236f29eb0e29dc30c1ed09807e6ec51c',1,'Padamose::MutableVersionedCollection']]]
+  ['affirmstate',['affirmState',['../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a236f29eb0e29dc30c1ed09807e6ec51c',1,'Padamose::MutableVersionedCollection']]],
+  ['appendnode',['appendNode',['../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#aff9457fe0c0c3c482b5457028929444b',1,'Padamose::MutableVersionedCollection']]]
 ];

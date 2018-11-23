@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('dc/dc4/class_padamose_1_1_abstract_ver
 </div><!--header-->
 <div class="contents">
 
-<p>Abstract base class for versioned collections and versioned collection snapshots. Collections are iterable. This is acheived by internally maintainting a doubly linked list of keys. The linked list is also held in the versioned store.  
+<p>Abstract base class for versioned collections and versioned collection snapshots. Collections are iterable. This is achieved by internally maintainting a doubly linked list of keys. The linked list is also held in the versioned store.  
  <a href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d9/d38/_abstract_versioned_collection_8h_source.html">AbstractVersionedCollection.h</a>&gt;</code></p>
@@ -108,8 +108,8 @@ Inheritance diagram for Padamose::AbstractVersionedCollection:</div>
 <map name="_padamose_1_1_abstract_versioned_collection_inherit__map" id="_padamose_1_1_abstract_versioned_collection_inherit__map">
 <area shape="rect" id="node2" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Base class for mutable collections referencing a VersionedStore. " alt="" coords="260,44,459,83"/>
 <area shape="rect" id="node6" href="../../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Implementation of versioned collection as an immutable snapshot. " alt="" coords="254,107,464,145"/>
-<area shape="rect" id="node3" href="../../dd/dad/class_padamose_1_1_versioned_map.html" title="Padamose::VersionedMap" alt="" coords="529,5,706,31"/>
-<area shape="rect" id="node5" href="../../de/daa/class_padamose_1_1_versioned_set.html" title="Padamose::VersionedSet" alt="" coords="532,55,703,80"/>
+<area shape="rect" id="node3" href="../../dd/dad/class_padamose_1_1_versioned_map.html" title="VersionedMap is a map collection with iterable keys. Unlike VersionedSet, keys must be explicitely pr..." alt="" coords="529,5,706,31"/>
+<area shape="rect" id="node5" href="../../de/daa/class_padamose_1_1_versioned_set.html" title="VersionedSet is a collection in which keys are automatically provisioned and reused. When an element is added to the set, a key is either created or reused. When an element is removed from the set, its key is added to a stack of unused keys. " alt="" coords="532,55,703,80"/>
 <area shape="rect" id="node4" href="../../dc/d41/class_versioned_map_collision_tester.html" title="VersionedMapCollisionTester" alt="" coords="771,5,964,31"/>
 <area shape="rect" id="node7" href="../../d7/de6/class_padamose_1_1_versioned_collection_iterator.html" title="Implements an interator of the collection. The iterator is also a snapshot of the collection..." alt="" coords="512,107,723,145"/>
 </map>
@@ -163,7 +163,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a39759dbf94a8860a9bf1573507421a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix string of list node keys. Append string encoded node IDs to look up nodes.  <a href="#a39759dbf94a8860a9bf1573507421a8a">More...</a><br /></td></tr>
 <tr class="separator:a39759dbf94a8860a9bf1573507421a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45ec00dd0fb3568e57245fab386bc6e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html">VersionedCollectionState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a45ec00dd0fb3568e57245fab386bc6e8">mState</a></td></tr>
-<tr class="memdesc:a45ec00dd0fb3568e57245fab386bc6e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">State of the collection. Persisted in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>.  <a href="#a45ec00dd0fb3568e57245fab386bc6e8">More...</a><br /></td></tr>
+<tr class="memdesc:a45ec00dd0fb3568e57245fab386bc6e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">State of the collection persisted in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>.  <a href="#a45ec00dd0fb3568e57245fab386bc6e8">More...</a><br /></td></tr>
 <tr class="separator:a45ec00dd0fb3568e57245fab386bc6e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b350c4eb26cbeb6b9d08e14d71087f6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a8b350c4eb26cbeb6b9d08e14d71087f6">mValuePrefix</a></td></tr>
 <tr class="memdesc:a8b350c4eb26cbeb6b9d08e14d71087f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix string of values. Append key strings to look up values.  <a href="#a8b350c4eb26cbeb6b9d08e14d71087f6">More...</a><br /></td></tr>
@@ -172,17 +172,17 @@ Protected Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:a72d95902d53faa132a39ad1a1966a3f2"><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a72d95902d53faa132a39ad1a1966a3f2">INVALID_NODE_INDEX</a> = ( size_t )-1</td></tr>
-<tr class="memdesc:a72d95902d53faa132a39ad1a1966a3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to desgnate and invalid node ID. Needed to terminate lists.  <a href="#a72d95902d53faa132a39ad1a1966a3f2">More...</a><br /></td></tr>
+<tr class="memdesc:a72d95902d53faa132a39ad1a1966a3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to designate an invalid node ID. Needed to terminate lists.  <a href="#a72d95902d53faa132a39ad1a1966a3f2">More...</a><br /></td></tr>
 <tr class="separator:a72d95902d53faa132a39ad1a1966a3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41932776a7eef5258bc47cb742a66936"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a41932776a7eef5258bc47cb742a66936">SET_NODES_POSTFIX</a> = &quot;.nodes.&quot;</td></tr>
-<tr class="memdesc:a41932776a7eef5258bc47cb742a66936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for node look up. Lookup key for nodes is: &lt;collection name&gt;=""&gt;SET_NODES_POSTFIX&lt;string encoded node ID&gt;  <a href="#a41932776a7eef5258bc47cb742a66936">More...</a><br /></td></tr>
+<tr class="memdesc:a41932776a7eef5258bc47cb742a66936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for node look up. Lookup key is: &lt;collection name&gt;=""&gt;SET_NODES_POSTFIX&lt;string encoded node ID&gt;  <a href="#a41932776a7eef5258bc47cb742a66936">More...</a><br /></td></tr>
 <tr class="separator:a41932776a7eef5258bc47cb742a66936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a9a8b0e0bd5fea1170d1871551d13f90c">SET_VALUES_POSTFIX</a> = &quot;.values.&quot;</td></tr>
-<tr class="memdesc:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for value look up. Lookup key for values is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt;  <a href="#a9a8b0e0bd5fea1170d1871551d13f90c">More...</a><br /></td></tr>
+<tr class="memdesc:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Postfix for value look up. Lookup key is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt;  <a href="#a9a8b0e0bd5fea1170d1871551d13f90c">More...</a><br /></td></tr>
 <tr class="separator:a9a8b0e0bd5fea1170d1871551d13f90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Abstract base class for versioned collections and versioned collection snapshots. Collections are iterable. This is acheived by internally maintainting a doubly linked list of keys. The linked list is also held in the versioned store. </p>
+<div class="textblock"><p>Abstract base class for versioned collections and versioned collection snapshots. Collections are iterable. This is achieved by internally maintainting a doubly linked list of keys. The linked list is also held in the versioned store. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae19c386a18061eca2e63b068d7badd60"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae19c386a18061eca2e63b068d7badd60">&#9670;&nbsp;</a></span>AbstractVersionedCollection()</h2>
@@ -520,7 +520,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Used to desgnate and invalid node ID. Needed to terminate lists. </p>
+<p>Used to designate an invalid node ID. Needed to terminate lists. </p>
 
 </div>
 </div>
@@ -592,7 +592,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>State of the collection. Persisted in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>. </p>
+<p>State of the collection persisted in the <a class="el" href="../../d2/d73/class_padamose_1_1_versioned_store.html" title="VersionedStore is a key/value store that can be rewound and branched into multiple versions...">VersionedStore</a>. </p>
 
 </div>
 </div>
@@ -640,7 +640,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Postfix for node look up. Lookup key for nodes is: &lt;collection name&gt;=""&gt;SET_NODES_POSTFIX&lt;string encoded node ID&gt; </p>
+<p>Postfix for node look up. Lookup key is: &lt;collection name&gt;=""&gt;SET_NODES_POSTFIX&lt;string encoded node ID&gt; </p>
 
 </div>
 </div>
@@ -664,7 +664,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Postfix for value look up. Lookup key for values is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt; </p>
+<p>Postfix for value look up. Lookup key is: &lt;collection name&gt;=""&gt;SET_VALUES_POSTFIX&lt;key string&gt; </p>
 
 </div>
 </div>
@@ -678,7 +678,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html">AbstractVersionedCollection</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 06:44:53 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 23:27:24 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

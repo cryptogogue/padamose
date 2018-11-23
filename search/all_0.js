@@ -24,5 +24,6 @@ var searchData=
   ['affirmbranch',['affirmBranch',['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#acf5cbbfca4abe4107a43d0917908552b',1,'Padamose::VersionedStoreSnapshot']]],
   ['affirmkey',['affirmKey',['../dd/dad/class_padamose_1_1_versioned_map.html#a0bcadf16f062173bb3d8eb91391183c8',1,'Padamose::VersionedMap']]],
   ['affirmstate',['affirmState',['../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a236f29eb0e29dc30c1ed09807e6ec51c',1,'Padamose::MutableVersionedCollection']]],
+  ['appendnode',['appendNode',['../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#aff9457fe0c0c3c482b5457028929444b',1,'Padamose::MutableVersionedCollection']]],
   ['assert_5fexception_5fcaught',['ASSERT_EXCEPTION_CAUGHT',['../d0/d6a/gtest-helpers_8h.html#aa6f9b6321eabe45c472ead579bf7489a',1,'gtest-helpers.h']]]
 ];
