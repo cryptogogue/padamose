@@ -37,6 +37,8 @@ size_t VersionedMap::affirmKey ( string key ) {
         }
         else {
         
+            assert ( collisionCount != COUNTER_PORTION_MAX ); // unrecoverable
+        
             // no decollider, so provision a new one.
             // a decollider is just the has portion combined with a count of the colliding keys.
             nodeID |= collisionCount << COUNTER_PORTION_SHIFT;

@@ -45,6 +45,7 @@ string AbstractVersionedCollection::nodeIDToString ( size_t nodeID ) {
     // quick and dirty encoding
     
     std::string out;
+    out.reserve ( 32 );
     
     if ( nodeID ) {
         for ( ; nodeID; nodeID = nodeID >> 6 ) {

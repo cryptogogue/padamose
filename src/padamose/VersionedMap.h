@@ -20,8 +20,9 @@ private:
     static constexpr const char* COLLISION_POSTFIX          = ".collision.";
     static constexpr const char* DECOLLIDER_POSTFIX         = ".decollider.";
     
-    static constexpr const size_t HASH_PORTION_MASK         = 0x00000000ffffffff;
-    static constexpr const size_t COUNTER_PORTION_SHIFT     = 32;
+    static constexpr const size_t HASH_PORTION_MASK         = 0x0000ffffffffffff;
+    static constexpr const size_t COUNTER_PORTION_SHIFT     = 48;
+    static constexpr const size_t COUNTER_PORTION_MAX       = 0xffff;
     
     string          mCollisionPrefix;
     string          mDecolliderPrefix;

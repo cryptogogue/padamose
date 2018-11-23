@@ -22,6 +22,26 @@ static const string STR4    = "mno";
 static const string STR5    = "pqr";
 static const string STR6    = "stu";
 
+//================================================================//
+// VersionedMapCollisionTester
+//================================================================//
+class VersionedMapCollisionTester :
+    public VersionedMap {
+private:
+
+    //----------------------------------------------------------------//
+    size_t VersionedMap_hash ( string key ) const {
+        return 0;
+    }
+
+public:
+
+    //----------------------------------------------------------------//
+    VersionedMapCollisionTester ( VersionedStore& store, string mapName ) :
+        VersionedMap ( store, mapName ) {
+    }
+};
+
 //----------------------------------------------------------------//
 TEST ( VersionedMap, test_set_and_get_value ) {
 
@@ -115,4 +135,45 @@ TEST ( VersionedMap, test_iterator ) {
     
     ASSERT_TRUE ( setIt == true );
     ASSERT_TRUE ( setIt.value < int >() == 2 );
+}
+
+//----------------------------------------------------------------//
+TEST ( VersionedMap, test_key_collision_handling ) {
+
+    VersionedStore store;
+    
+    VersionedMapCollisionTester versionedMap ( store, "test" );
+
+    versionedMap.setValue < string >( KEY0, STR0 );
+    versionedMap.setValue < string >( KEY1, STR1 );
+    versionedMap.setValue < string >( KEY2, STR2 );
+
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY0 ) == STR0 );
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY1 ) == STR1 );
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY2 ) == STR2 );
+
+    versionedMap.setValue < string >( KEY1, STR3 );
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY1 ) == STR3 );
+    
+    versionedMap.deleteKey ( KEY1 );
+    
+    ASSERT_TRUE ( versionedMap.getSize () == 2 );
+    
+    versionedMap.setValue < string >( KEY1, STR4 );
+    
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY1 ) == STR4 );
+    
+    VersionedCollectionIterator setIt ( versionedMap );
+    
+    ASSERT_TRUE ( setIt == true );
+    ASSERT_TRUE ( setIt.value < string >() == STR0 );
+    
+    setIt.next ();
+    ASSERT_TRUE ( setIt.value < string >() == STR2 );
+    
+    setIt.next ();
+    ASSERT_TRUE ( setIt.value < string >() == STR4 );
+    
+    setIt.next ();
+    ASSERT_TRUE ( setIt == false );
 }
