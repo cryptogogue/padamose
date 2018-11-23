@@ -11,13 +11,13 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-VersionedCollectionSnapshot::VersionedCollectionSnapshot ( const VersionedStoreSnapshot& snapshot, string mapName ) :
+VersionedCollectionSnapshot::VersionedCollectionSnapshot ( const VersionedStoreSnapshot& snapshot, string name ) :
     mSnapshot ( snapshot ) {
 
-    if ( !this->mSnapshot.hasKey ( mapName )) throw VersionedSetNotFoundException ();
+    if ( !this->mSnapshot.hasKey ( name )) throw VersionedSetNotFoundException ();
 
-    this->setName ( mapName );
-    this->mState = this->mSnapshot.getValue < VersionedCollectionState >( this->mMapName );
+    this->setName ( name );
+    this->mState = this->mSnapshot.getValue < VersionedCollectionState >( this->mName );
 }
 
 //----------------------------------------------------------------//

@@ -40,8 +40,8 @@ void VersionedCollectionIterator::seek ( size_t nodeID ) {
         this->mIteratorState = EMPTY;
         return;
     }
-    this->mKey = this->mNodePrefix + nodeIDToString ( nodeID );
-    this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mKey );
+    this->mKey = this->mNodePrefix + encodeNodeID ( nodeID );
+    this->mIteratorNode = this->mSnapshot.getValue < VersionedCollectionNode >( this->mKey );
     this->mIteratorState = VALID;
 }
 
@@ -71,8 +71,8 @@ bool VersionedCollectionIterator::step ( size_t nextNodeID, int blockingState, i
             this->mIteratorState = blockingState;
         }
         else {
-            this->mKey = this->mNodePrefix + nodeIDToString ( nextNodeID );
-            this->mIteratorNode = this->mSnapshot.getValue < VersionedSetNode >( this->mKey );
+            this->mKey = this->mNodePrefix + encodeNodeID ( nextNodeID );
+            this->mIteratorNode = this->mSnapshot.getValue < VersionedCollectionNode >( this->mKey );
         }
     }
     return ( this->mIteratorState != blockingState );
@@ -86,8 +86,8 @@ VersionedCollectionIterator::VersionedCollectionIterator ( const AbstractVersion
 }
 
 //----------------------------------------------------------------//
-VersionedCollectionIterator::VersionedCollectionIterator ( const VersionedStoreSnapshot& snapshot, string mapName ) :
-    VersionedCollectionSnapshot ( snapshot, mapName ) {
+VersionedCollectionIterator::VersionedCollectionIterator ( const VersionedStoreSnapshot& snapshot, string name ) :
+    VersionedCollectionSnapshot ( snapshot, name ) {
     
     this->seekFront ();
 }

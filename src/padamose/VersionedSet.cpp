@@ -23,11 +23,11 @@ string VersionedSet::provisionKey () {
     
     // grab the node ID from the free stack, or create a new key
     size_t nodeID = ( this->mFreeStack.mTop == INVALID_NODE_INDEX ) ? this->mFreeStack.mTotalNodes++ : this->mFreeStack.mTop;
-    string key = nodeIDToString ( nodeID );
+    string key = encodeNodeID ( nodeID );
     string nodeKey = this->mNodePrefix + key;
     
     if ( this->mFreeStack.mTop != INVALID_NODE_INDEX ) {
-        VersionedSetNode node = this->mStore.getValue < VersionedSetNode >( nodeKey );
+        VersionedCollectionNode node = this->mStore.getValue < VersionedCollectionNode >( nodeKey );
         this->mFreeStack.mTop = node.mPrev;
     }
     
@@ -39,10 +39,10 @@ string VersionedSet::provisionKey () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-VersionedSet::VersionedSet ( VersionedStore& store, string mapName ) :
-    MutableVersionedCollection ( store, mapName ) {
+VersionedSet::VersionedSet ( VersionedStore& store, string name ) :
+    MutableVersionedCollection ( store, name ) {
 
-    this->mFreeStackKey = this->mMapName + SET_FREE_STACK_POSTFIX;
+    this->mFreeStackKey = this->mName + SET_FREE_STACK_POSTFIX;
 
     if ( this->affirmState ()) {
         this->mFreeStack = this->mStore.getValue < VersionedSetFreeStack >( this->mFreeStackKey );

@@ -22,7 +22,7 @@ private:
     
     static constexpr const size_t HASH_PORTION_MASK         = 0x0000ffffffffffff;
     static constexpr const size_t COUNTER_PORTION_SHIFT     = 48;
-    static constexpr const size_t COUNTER_PORTION_MAX       = 0xffff;
+    static constexpr const size_t COUNTER_PORTION_MAX       = 0x7fff;
     
     string          mCollisionPrefix;
     string          mDecolliderPrefix;
@@ -40,7 +40,7 @@ public:
     //----------------------------------------------------------------//
     void            deleteKey                   ( string key );
     bool            hasKey                      ( string key ) const;
-                    VersionedMap                ( VersionedStore& store, string mapName );
+                    VersionedMap                ( VersionedStore& store, string name );
                     ~VersionedMap               ();
     
     //----------------------------------------------------------------//

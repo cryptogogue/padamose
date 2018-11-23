@@ -15,7 +15,7 @@ size_t VersionedMap::affirmKey ( string key ) {
 
     // hash portion of key; assumed to be no collisions, so counter portion is 0.
     size_t nodeID = this->getHashPortion ( key );
-    string collisionKey = this->mCollisionPrefix + nodeIDToString ( nodeID );
+    string collisionKey = this->mCollisionPrefix + encodeNodeID ( nodeID );
     bool foundCollisions = false;
     
     // check to see if there are already known collisions.
@@ -49,9 +49,9 @@ size_t VersionedMap::affirmKey ( string key ) {
         }
     }
     
-    string nodeKey = this->mNodePrefix + nodeIDToString ( nodeID );
+    string nodeKey = this->mNodePrefix + encodeNodeID ( nodeID );
     
-    const VersionedSetNode* existingNode = this->mStore.getValueOrNil < VersionedSetNode >( nodeKey );
+    const VersionedCollectionNode* existingNode = this->mStore.getValueOrNil < VersionedCollectionNode >( nodeKey );
     if ( existingNode && ( existingNode->mID != INVALID_NODE_INDEX )) {
 
         // check to see if there is a collision. if not, we're done.
@@ -71,7 +71,7 @@ size_t VersionedMap::affirmKey ( string key ) {
         // colliding node is the first non-zero decollider.
         nodeID |= ( size_t )1 << COUNTER_PORTION_SHIFT;
         this->mStore.setValue < size_t >( this->mDecolliderPrefix + key, nodeID );
-        nodeKey = this->mNodePrefix + nodeIDToString ( nodeID );
+        nodeKey = this->mNodePrefix + encodeNodeID ( nodeID );
     }
     
     this->insertNode ( nodeID, key, nodeKey );
@@ -85,7 +85,7 @@ void VersionedMap::deleteKey ( string key ) {
 
     // hash portion of key; assumed to be no collisions, so counter portion is 0.
     size_t nodeID = this->getHashPortion ( key );
-    string collisionKey = this->mCollisionPrefix + nodeIDToString ( nodeID );
+    string collisionKey = this->mCollisionPrefix + encodeNodeID ( nodeID );
     
     // check to see if there are already known collisions.
     if ( this->mStore.hasKey ( collisionKey )) {
@@ -100,7 +100,7 @@ void VersionedMap::deleteKey ( string key ) {
         // there is a decollider, so use that instead.
         nodeID = *decolliderRef;
     }
-    this->removeNode ( nodeIDToString ( nodeID ));
+    this->removeNode ( encodeNodeID ( nodeID ));
 }
 
 //----------------------------------------------------------------//
@@ -112,13 +112,13 @@ size_t VersionedMap::getHashPortion ( string key ) const {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-VersionedMap::VersionedMap ( VersionedStore& store, string mapName ) :
-    MutableVersionedCollection ( store, mapName ) {
+VersionedMap::VersionedMap ( VersionedStore& store, string name ) :
+    MutableVersionedCollection ( store, name ) {
     
     this->affirmState ();
     
-    this->mCollisionPrefix      = this->mMapName + COLLISION_POSTFIX;
-    this->mDecolliderPrefix     = this->mMapName + DECOLLIDER_POSTFIX;
+    this->mCollisionPrefix      = this->mName + COLLISION_POSTFIX;
+    this->mDecolliderPrefix     = this->mName + DECOLLIDER_POSTFIX;
 }
 
 //----------------------------------------------------------------//

@@ -31,7 +31,7 @@ protected:
 public:
 
     //----------------------------------------------------------------//
-                    MutableVersionedCollection              ( VersionedStore& store, string mapName );
+                    MutableVersionedCollection              ( VersionedStore& store, string name );
                     ~MutableVersionedCollection             ();
 };
 

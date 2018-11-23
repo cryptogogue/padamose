@@ -27,9 +27,9 @@ protected:
         NO_NEXT,
     };
 
-    string              mKey;
-    VersionedSetNode    mIteratorNode;
-    int                 mIteratorState;
+    string                      mKey;
+    VersionedCollectionNode     mIteratorNode;
+    int                         mIteratorState;
     
     //----------------------------------------------------------------//
     bool                step            ( size_t nextNodeID, int blockingState, int unblockingState );
@@ -69,7 +69,7 @@ public:
     void                seekBack                            ();
     void                seekFront                           ();
                         VersionedCollectionIterator         ( const AbstractVersionedCollection& versionedSet );
-                        VersionedCollectionIterator         ( const VersionedStoreSnapshot& snapshot, string mapName );
+                        VersionedCollectionIterator         ( const VersionedStoreSnapshot& snapshot, string name );
                         ~VersionedCollectionIterator        ();
     
     //----------------------------------------------------------------//

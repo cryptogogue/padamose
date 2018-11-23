@@ -25,7 +25,7 @@ protected:
 public:
 
     //----------------------------------------------------------------//
-                    VersionedCollectionSnapshot         ( const VersionedStoreSnapshot& snapshot, string mapName );
+                    VersionedCollectionSnapshot         ( const VersionedStoreSnapshot& snapshot, string name );
                     ~VersionedCollectionSnapshot        ();
 };
 

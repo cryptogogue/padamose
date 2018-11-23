@@ -10,35 +10,20 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
-// TODO: doxygen
 AbstractVersionedCollection::AbstractVersionedCollection () {
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
 AbstractVersionedCollection::~AbstractVersionedCollection () {
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
-size_t AbstractVersionedCollection::getSize () const {
-    return this->mState.mSize;
-}
+/** \brief  String encoding for node IDs. This is an ad hoc 64-bit
+            encoding; it is not base64 encoding.
 
-//----------------------------------------------------------------//
-const VersionedStoreSnapshot& AbstractVersionedCollection::getSnapshot () const {
-
-    return AbstractVersionedCollection_getSnapshot ();
-}
-
-//----------------------------------------------------------------//
-string AbstractVersionedCollection::getName () const {
-
-    return this->mMapName;
-}
-
-//----------------------------------------------------------------//
-string AbstractVersionedCollection::nodeIDToString ( size_t nodeID ) {
+    \return The encoded node ID.
+*/
+string AbstractVersionedCollection::encodeNodeID ( size_t nodeID ) {
 
     const char* dict = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-";
 
@@ -59,13 +44,45 @@ string AbstractVersionedCollection::nodeIDToString ( size_t nodeID ) {
 }
 
 //----------------------------------------------------------------//
+/** \brief  Returns the size of the collection's list of active keys.
+
+    \return The size of the list of active keys.
+*/
+size_t AbstractVersionedCollection::getSize () const {
+    return this->mState.mSize;
+}
+
+//----------------------------------------------------------------//
+/** \brief  Returns the VersionedStoreSnapshot holding the collection.
+
+    \return The VersionedStoreSnapshot holding the collection.
+*/
+const VersionedStoreSnapshot& AbstractVersionedCollection::getSnapshot () const {
+
+    return AbstractVersionedCollection_getSnapshot ();
+}
+
+//----------------------------------------------------------------//
+/** \brief  Returns the name of the collection.
+
+    \return The name of the collection.
+*/
+string AbstractVersionedCollection::getName () const {
+
+    return this->mName;
+}
+
+//----------------------------------------------------------------//
+/** \brief  Sets the name of the collection and generates the cached
+            lookup prefixes.
+*/
 void AbstractVersionedCollection::setName ( string name ) {
 
-    if ( this->mMapName.find ( ':' ) != string::npos ) throw InvalidMapNameException ();
+    if ( this->mName.find ( ':' ) != string::npos ) throw InvalidMapNameException ();
 
-    this->mMapName = name;
-    this->mNodePrefix = this->mMapName + SET_NODES_POSTFIX;
-    this->mValuePrefix = this->mMapName + SET_VALUES_POSTFIX;
+    this->mName = name;
+    this->mNodePrefix = this->mName + SET_NODES_POSTFIX;
+    this->mValuePrefix = this->mName + SET_VALUES_POSTFIX;
 }
 
 } // namespace Padamose

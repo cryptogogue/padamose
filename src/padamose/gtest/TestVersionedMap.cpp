@@ -37,8 +37,8 @@ private:
 public:
 
     //----------------------------------------------------------------//
-    VersionedMapCollisionTester ( VersionedStore& store, string mapName ) :
-        VersionedMap ( store, mapName ) {
+    VersionedMapCollisionTester ( VersionedStore& store, string name ) :
+        VersionedMap ( store, name ) {
     }
 };
 

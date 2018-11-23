@@ -42,7 +42,7 @@ public:
 
     //----------------------------------------------------------------//
     void            deleteKey                   ( string key );
-                    VersionedSet                ( VersionedStore& store, string mapName );
+                    VersionedSet                ( VersionedStore& store, string name );
                     ~VersionedSet               ();
     
     //----------------------------------------------------------------//
