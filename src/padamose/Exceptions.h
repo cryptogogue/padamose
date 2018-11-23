@@ -61,19 +61,6 @@ public:
 };
 
 //================================================================//
-// VersionedMapKeyCollisionException
-//================================================================//
-class VersionedMapKeyCollisionException :
-    public logic_error {
-public:
-
-    //----------------------------------------------------------------//
-    VersionedMapKeyCollisionException () :
-        logic_error ( "Key hash collision. Modify the key." ) {
-    }
-};
-
-//================================================================//
 // VersionedSetNotFoundException
 //================================================================//
 class VersionedSetNotFoundException :

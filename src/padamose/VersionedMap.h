@@ -17,10 +17,22 @@ class VersionedMap :
     public MutableVersionedCollection {
 private:
     
+    static constexpr const char* COLLISION_POSTFIX          = ".collision.";
+    static constexpr const char* DECOLLIDER_POSTFIX         = ".decollider.";
+    
+    static constexpr const size_t HASH_PORTION_MASK         = 0x00000000ffffffff;
+    static constexpr const size_t COUNTER_PORTION_SHIFT     = 32;
+    
+    string          mCollisionPrefix;
+    string          mDecolliderPrefix;
+    
     //----------------------------------------------------------------//
     size_t          affirmKey                   ( string key );
-    static size_t   getNodeID                   ( string key );
+    size_t          getHashPortion              ( string key ) const;
     string          provisionKey                ();
+    
+    //----------------------------------------------------------------//
+    virtual size_t  VersionedMap_hash           ( string key ) const;
     
 public:
 

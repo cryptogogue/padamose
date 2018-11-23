@@ -267,7 +267,7 @@
 		CD5C62F320B4F7A70038EE98 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				CDD6CE2B21A626E700DB7C10 /* versionedSet */,
+				CDD6CE2B21A626E700DB7C10 /* collection */,
 				CDA06FFC2159A79B003FA0C3 /* AbstractValueStack.cpp */,
 				CDA06FFD2159A79C003FA0C3 /* AbstractValueStack.h */,
 				CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */,
@@ -318,7 +318,7 @@
 			name = loguru;
 			sourceTree = "<group>";
 		};
-		CDD6CE2B21A626E700DB7C10 /* versionedSet */ = {
+		CDD6CE2B21A626E700DB7C10 /* collection */ = {
 			isa = PBXGroup;
 			children = (
 				CDF903B321A1482D00C1930B /* AbstractVersionedCollection.cpp */,
@@ -334,7 +334,7 @@
 				CDD6CE2721A61EB900DB7C10 /* VersionedCollectionIterator.cpp */,
 				CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */,
 			);
-			name = versionedSet;
+			name = collection;
 			sourceTree = "<group>";
 		};
 		CDED581320BA1EF7003A2969 /* 3rd-party */ = {

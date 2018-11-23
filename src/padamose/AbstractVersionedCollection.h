@@ -70,6 +70,7 @@ protected:
     //----------------------------------------------------------------//
     const VersionedStoreSnapshot&       getSnapshot             () const;
     void                                pushNode                ( size_t nodeID, string nodeKey );
+    static string                       nodeIDToString          ( size_t nodeID );
     void                                setName                 ( string name );
     
     //----------------------------------------------------------------//

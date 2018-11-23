@@ -38,6 +38,26 @@ string AbstractVersionedCollection::getName () const {
 }
 
 //----------------------------------------------------------------//
+string AbstractVersionedCollection::nodeIDToString ( size_t nodeID ) {
+
+    const char* dict = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-";
+
+    // quick and dirty encoding
+    
+    std::string out;
+    
+    if ( nodeID ) {
+        for ( ; nodeID; nodeID = nodeID >> 6 ) {
+            out.push_back ( dict [ nodeID & 0x3F ]);
+        }
+    }
+    else {
+        out.push_back ( dict [ 0 ]);
+    }
+    return out;
+}
+
+//----------------------------------------------------------------//
 void AbstractVersionedCollection::setName ( string name ) {
 
     if ( this->mMapName.find ( ':' ) != string::npos ) throw InvalidMapNameException ();

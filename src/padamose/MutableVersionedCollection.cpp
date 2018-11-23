@@ -46,7 +46,7 @@ void MutableVersionedCollection::insertNode ( size_t nodeID, string key, string 
         this->mState.mHead = nodeID;
     }
     else {
-        string prevNodeKey = this->mNodePrefix + to_string ( prevID );
+        string prevNodeKey = this->mNodePrefix + nodeIDToString ( prevID );
         VersionedSetNode prevNode = this->mStore.getValue < VersionedSetNode >( prevNodeKey );
         prevNode.mNext = nodeID;
         this->mStore.setValue < VersionedSetNode >( prevNodeKey, prevNode );
@@ -79,7 +79,7 @@ size_t MutableVersionedCollection::removeNode ( string key, size_t prevID ) {
     size_t nodeID = existingNode->mID;
     
     if ( existingNode->mPrev != INVALID_NODE_INDEX ) {
-        string prevNodeKey = this->mNodePrefix + to_string ( existingNode->mPrev );
+        string prevNodeKey = this->mNodePrefix + nodeIDToString ( existingNode->mPrev );
         VersionedSetNode prevNode = this->mStore.getValue < VersionedSetNode >( prevNodeKey );
         prevNode.mNext = existingNode->mNext;
         this->mStore.setValue < VersionedSetNode >( prevNodeKey, prevNode );
@@ -89,7 +89,7 @@ size_t MutableVersionedCollection::removeNode ( string key, size_t prevID ) {
     }
     
     if ( existingNode->mNext != INVALID_NODE_INDEX ) {
-        string nextNodeKey = this->mNodePrefix + to_string ( existingNode->mNext );
+        string nextNodeKey = this->mNodePrefix + nodeIDToString ( existingNode->mNext );
         VersionedSetNode nextNode = this->mStore.getValue < VersionedSetNode >( nextNodeKey );
         nextNode.mPrev = existingNode->mPrev;
         this->mStore.setValue < VersionedSetNode >( nextNodeKey, nextNode );

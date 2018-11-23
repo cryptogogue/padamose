@@ -23,7 +23,7 @@ string VersionedSet::provisionKey () {
     
     // grab the node ID from the free stack, or create a new key
     size_t nodeID = ( this->mFreeStack.mTop == INVALID_NODE_INDEX ) ? this->mFreeStack.mTotalNodes++ : this->mFreeStack.mTop;
-    string key = to_string ( nodeID );
+    string key = nodeIDToString ( nodeID );
     string nodeKey = this->mNodePrefix + key;
     
     if ( this->mFreeStack.mTop != INVALID_NODE_INDEX ) {
