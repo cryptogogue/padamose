@@ -5,7 +5,8 @@
 #include <padamose/VersionedMap.h>
 #include <padamose/VersionedCollectionIterator.h>
 
-using namespace Padamose;
+namespace Padamose {
+namespace Test {
 
 static const string KEY0    = "key0";
 static const string KEY1    = "key1";
@@ -183,3 +184,6 @@ TEST ( VersionedMap, test_key_collision_handling ) {
     setIt.next ();
     ASSERT_TRUE ( setIt == false );
 }
+
+} // namespace Test
+} // namespace Padamose

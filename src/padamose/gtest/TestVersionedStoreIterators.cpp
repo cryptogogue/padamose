@@ -6,7 +6,8 @@
 #include <padamose/VersionedStoreIterator.h>
 #include <padamose/VersionedValueIterator.h>
 
-using namespace Padamose;
+namespace Padamose {
+namespace Test {
 
 //----------------------------------------------------------------//
 void testVersionedStoreIterator ( VersionedStore& store, string key, const vector < string > expected ) {
@@ -109,3 +110,6 @@ TEST ( VersionedStoreIterators, test0 ) {
     testVersionedValueIterator ( store0, KEY, expected0 );
     testVersionedValueIterator ( store1, KEY, expected1 );
 }
+
+} // namespace Test
+} // namespace Padamose

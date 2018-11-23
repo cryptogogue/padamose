@@ -5,7 +5,8 @@
 #include <padamose/VersionedSet.h>
 #include <padamose/VersionedCollectionIterator.h>
 
-using namespace Padamose;
+namespace Padamose {
+namespace Test {
 
 static const string STR0    = "abc";
 static const string STR1    = "def";
@@ -149,3 +150,6 @@ TEST ( VersionedSet, test_iterator ) {
     ASSERT_TRUE ( setIt == true );
     ASSERT_TRUE ( setIt.value < int >() == 2 );
 }
+
+} // namespace Test
+} // namespace Padamose

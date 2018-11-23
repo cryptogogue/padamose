@@ -4,7 +4,8 @@
 #include <padamose/gtest/gtest-helpers.h>
 #include <padamose/VersionedStore.h>
 
-using namespace Padamose;
+namespace Padamose {
+namespace Test {
 
 static const string KEY     = "test";
 static const string KEY2    = "test2";
@@ -573,3 +574,6 @@ TEST ( VersionedStore, test4 ) {
     ASSERT_TRUE ( store0.getValue < string >( KEY ) == "c" );
     ASSERT_TRUE ( store1.getValue < string >( KEY ) == "c" );
 }
+
+} // namespace Test
+} // namespace Padamose
