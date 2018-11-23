@@ -18,6 +18,7 @@ class VersionedCollectionSnapshot :
     public AbstractVersionedCollection {
 protected:
 
+    /// The versioned snapshot.
     VersionedStoreSnapshot      mSnapshot;
     
     //----------------------------------------------------------------//

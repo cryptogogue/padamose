@@ -22,9 +22,9 @@ TEST ( VersionedSet, test_insert_value_inserts_value_and_returns_valid_key ) {
     
     VersionedSet versionedSet ( store, "test" );
 
-    string key0 = versionedSet.insertValue < string >( STR0 );
-    string key1 = versionedSet.insertValue < string >( STR1 );
-    string key2 = versionedSet.insertValue < string >( STR2 );
+    string key0 = versionedSet.pushBack < string >( STR0 );
+    string key1 = versionedSet.pushBack < string >( STR1 );
+    string key2 = versionedSet.pushBack < string >( STR2 );
 
     ASSERT_TRUE ( versionedSet.getValue < string >( key0 ) == STR0 );
     ASSERT_TRUE ( versionedSet.getValue < string >( key1 ) == STR1 );
@@ -41,12 +41,12 @@ TEST ( VersionedSet, test_deleted_keys_are_reused ) {
     
     VersionedSet versionedSet ( store, "test" );
 
-    string key0 = versionedSet.insertValue < string >( STR0 );
-    string key1 = versionedSet.insertValue < string >( STR1 );
-    string key2 = versionedSet.insertValue < string >( STR2 );
+    string key0 = versionedSet.pushBack < string >( STR0 );
+    string key1 = versionedSet.pushBack < string >( STR1 );
+    string key2 = versionedSet.pushBack < string >( STR2 );
 
     versionedSet.deleteKey ( key1 );
-    string key3 = versionedSet.insertValue < string >( STR3 );
+    string key3 = versionedSet.pushBack < string >( STR3 );
     
     ASSERT_TRUE ( key1 == key3 );
     ASSERT_TRUE ( versionedSet.getValue < string >( key3 ) == STR3 );
@@ -54,8 +54,8 @@ TEST ( VersionedSet, test_deleted_keys_are_reused ) {
     versionedSet.deleteKey ( key0 );
     versionedSet.deleteKey ( key2 );
     
-    string key4 = versionedSet.insertValue < string >( STR4 );
-    string key5 = versionedSet.insertValue < string >( STR5 );
+    string key4 = versionedSet.pushBack < string >( STR4 );
+    string key5 = versionedSet.pushBack < string >( STR5 );
 
     // assumes implementation uses a stack for deleted nodes; keys
     // should be reallocated in reverse order they were deleted.
@@ -68,7 +68,7 @@ TEST ( VersionedSet, test_deleted_keys_are_reused ) {
     // should be head of the list
     versionedSet.deleteKey ( key5 );
     
-    string key6 = versionedSet.insertValue < string >( STR6 );
+    string key6 = versionedSet.pushBack < string >( STR6 );
 
     ASSERT_TRUE ( key5 == key6 );
     ASSERT_TRUE ( versionedSet.getValue < string >( key6 ) == STR6 );
@@ -81,9 +81,9 @@ TEST ( VersionedSet, test_element_count_is_updated_correctly ) {
     
     VersionedSet versionedSet ( store, "test" );
 
-    string key0 = versionedSet.insertValue < int >( 0 );
-    string key1 = versionedSet.insertValue < int >( 1 );
-    string key2 = versionedSet.insertValue < int >( 2 );
+    string key0 = versionedSet.pushBack < int >( 0 );
+    string key1 = versionedSet.pushBack < int >( 1 );
+    string key2 = versionedSet.pushBack < int >( 2 );
 
     ASSERT_TRUE ( versionedSet.getSize () == 3 );
 
@@ -91,9 +91,9 @@ TEST ( VersionedSet, test_element_count_is_updated_correctly ) {
     
     ASSERT_TRUE ( versionedSet.getSize () == 2 );
     
-    string key3 = versionedSet.insertValue < int >( 3 );
-    string key4 = versionedSet.insertValue < int >( 4 );
-    string key5 = versionedSet.insertValue < int >( 5 );
+    string key3 = versionedSet.pushBack < int >( 3 );
+    string key4 = versionedSet.pushBack < int >( 4 );
+    string key5 = versionedSet.pushBack < int >( 5 );
     
     ASSERT_TRUE ( versionedSet.getSize () == 5 );
     
@@ -113,9 +113,9 @@ TEST ( VersionedSet, test_iterator ) {
     
     VersionedSet versionedSet ( store, "test" );
 
-    string key0 = versionedSet.insertValue < int >( 0 );
-    string key1 = versionedSet.insertValue < int >( 1 );
-    string key2 = versionedSet.insertValue < int >( 2 );
+    string key0 = versionedSet.pushBack < int >( 0 );
+    string key1 = versionedSet.pushBack < int >( 1 );
+    string key2 = versionedSet.pushBack < int >( 2 );
     
     // this iterator test relies on keys being provisioned in a specific order
     // and always added to the *back* of the key list.

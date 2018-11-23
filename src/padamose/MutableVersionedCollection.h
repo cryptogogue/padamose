@@ -23,9 +23,11 @@ protected:
     
     
     //----------------------------------------------------------------//
-    bool            affirmState                             ();
-    void            insertNode                              ( size_t nodeID, string key, string nodeKey );
-    size_t          removeNode                              ( string key, size_t prevID = INVALID_NODE_INDEX );
+    bool            affirmState             ();
+    void            appendNode              ( size_t nodeID, string fullKey, string nodeKey );
+    bool            isActiveKey             ( string encodedNodeID );
+    void            prependNode             ( size_t nodeID, string fullKey, string nodeKey );
+    size_t          removeNode              ( string encodedNodeID, size_t prevID = INVALID_NODE_INDEX );
     
     //----------------------------------------------------------------//
     const VersionedStoreSnapshot&       AbstractVersionedCollection_getSnapshot         () const override;

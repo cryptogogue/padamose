@@ -12,7 +12,11 @@ namespace Padamose {
 //================================================================//
 // VersionedSetState
 //================================================================//
-// TODO: doxygen
+/** \brief  Persistent state object for the stack of free nodes. Just
+            tracks the top of the state, and the total nodes (active
+            and free). The total node count is used to create new node
+            IDs when all exisrting node IDs are in use.
+*/
 class VersionedSetFreeStack {
 private:
 
@@ -25,18 +29,30 @@ private:
 //================================================================//
 // VersionedSet
 //================================================================//
-// TODO: doxygen
+/** \brief  VersionedSet is a collection in which keys are automatically
+            provisioned and reused. When an element is added to the set,
+            a key is either created or reused. When an element is removed
+            from the set, its key is added to a stack of unused keys.
+ 
+            VersionedSet uses a simple counter to generate keys.
+ 
+            Internally, VersionedSet is implemented as a doubly linked list.
+*/
 class VersionedSet :
     public MutableVersionedCollection {
 private:
     
+    /// Postfix for free stack. Lookup key is: <collection name>SET_FREE_STACK_POSTFIX<string encoded node ID>
     static constexpr const char* SET_FREE_STACK_POSTFIX     = ".free";
     
+    /// Fully resolved key for free node stack.
     string                  mFreeStackKey;
+    
+    /// State of the free stack. Persisted in the VersionedStore.
     VersionedSetFreeStack   mFreeStack;
     
     //----------------------------------------------------------------//
-    string          provisionKey                ();
+    string          provisionKey                ( bool append );
     
 public:
 
@@ -46,19 +62,63 @@ public:
                     ~VersionedSet               ();
     
     //----------------------------------------------------------------//
-    // TODO: doxygen
+    /** \brief  Add an element at the end of the list. Returns a key that
+                may be used to directly address the element later.
+
+        \param      value       The value to be appended.
+        \return                 The key assigned to the element.
+    */
     template < typename TYPE >
-    string insertValue ( const TYPE& value ) {
+    string pushBack ( const TYPE& value ) {
     
-        string key = this->provisionKey ();
-        this->setValue < TYPE >( key, value );
+        string key = this->provisionKey ( true );
+        this->setValueUnsafe < TYPE >( key, value );
         return key;
     }
     
     //----------------------------------------------------------------//
-    // TODO: doxygen
+    /** \brief  Add an element at the front of the list. Returns a key that
+                may be used to directly address the element later.
+
+        \param      value       The value to be appended.
+        \return                 The key assigned to the element.
+    */
+    template < typename TYPE >
+    string pushFront ( const TYPE& value ) {
+    
+        string key = this->provisionKey ( false );
+        this->setValueUnsafe < TYPE >( key, value );
+        return key;
+    }
+    
+    //----------------------------------------------------------------//
+    /** \brief  Set the value associated with a key. The validity of the
+                key is checked. If it is not active and a member of the
+                list, a KeyNotFoundException will be thrown.
+
+        \param      key         The key to assign the value to.
+        \param      value       The value to be assigned.
+     
+        \throws     KeyNotFoundException    The key does not exist in the collection, or exists but is not active.
+    */
     template < typename TYPE >
     void setValue ( string key, const TYPE& value ) {
+    
+        if ( !this->isActiveKey ( key )) throw KeyNotFoundException ();
+        this->mStore.setValue < TYPE >( this->mValuePrefix + key, value );
+    }
+    
+    //----------------------------------------------------------------//
+    /** \brief  Set the value associated with a key. Note that inclusion
+                in the list is not enforced: this method will not produce
+                an error or throw an exception if the given key is not
+                active.
+
+        \param      key         The key to assign the value to.
+        \param      value       The value to be assigned.
+    */
+    template < typename TYPE >
+    void setValueUnsafe ( string key, const TYPE& value ) {
     
         this->mStore.setValue < TYPE >( this->mValuePrefix + key, value );
     }

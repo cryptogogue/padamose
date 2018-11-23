@@ -10,34 +10,41 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
-// TODO: doxygen
+/** \brief  If the key exists and is active, does nothing. If the key
+            does not exist, it will be created. If the key is not active,
+            it will be added to the active list. A node ID will be
+            generated for the key, taking collisions into account.
+
+    \param      key         The key string.
+    \return                 The node ID generated for the key.
+*/
 size_t VersionedMap::affirmKey ( string key ) {
 
-    // hash portion of key; assumed to be no collisions, so counter portion is 0.
-    size_t nodeID = this->getHashPortion ( key );
-    string collisionKey = this->mCollisionPrefix + encodeNodeID ( nodeID );
-    bool foundCollisions = false;
+    size_t nodeID = INVALID_NODE_INDEX;
+    bool hasCollisions = false; // used for sanity check later.
+    string collisionKey;
+
+    // see if there is already a decollider for this key.
+    string decolliderKey = this->mDecolliderPrefix + key; // decolliders are stored for the full key.
+    const size_t* decolliderRef = this->mStore.getValueOrNil < size_t >( decolliderKey );
+    if ( decolliderRef ) {
     
-    // check to see if there are already known collisions.
-    const size_t* collisionCountRef = this->mStore.getValueOrNil < size_t >( collisionKey );
-    if ( collisionCountRef ) {
-    
-        foundCollisions = true; // user for sanity check later.
-    
-        // there are already collisions; get the count
-        size_t collisionCount = *collisionCountRef;
-    
-        // see if there is already a decollider for this key.
-        string decolliderKey = this->mDecolliderPrefix + key; // decolliders are stored for the full key.
-        const size_t* decolliderRef = this->mStore.getValueOrNil < size_t >( decolliderKey );
-        if ( decolliderRef ) {
+        nodeID = *decolliderRef;
+        hasCollisions = true;
+    }
+    else {
+
+        // hash portion of key; assumed to be no collisions, so counter portion is 0.
+        nodeID = this->getHashPortion ( key );
+        collisionKey = this->mCollisionPrefix + encodeNodeID ( nodeID );
         
-            // there is a decollider, so use that instead.
-            nodeID = *decolliderRef;
-        }
-        else {
+        // check to see if there are already known collisions.
+        const size_t* collisionCountRef = this->mStore.getValueOrNil < size_t >( collisionKey );
+        if ( collisionCountRef ) {
         
-            assert ( collisionCount != COUNTER_PORTION_MAX ); // unrecoverable
+            // there are already collisions; get the count
+            size_t collisionCount = *collisionCountRef;
+            assert ( collisionCount != COUNTER_PORTION_MASK ); // unrecoverable
         
             // no decollider, so provision a new one.
             // a decollider is just the has portion combined with a count of the colliding keys.
@@ -46,8 +53,12 @@ size_t VersionedMap::affirmKey ( string key ) {
             // store the decollider and increment the collision count.
             this->mStore.setValue < size_t >( decolliderKey, nodeID );
             this->mStore.setValue < size_t >( collisionKey, collisionCount++ );
+            
+            hasCollisions = true;
         }
     }
+    
+    assert ( nodeID != INVALID_NODE_INDEX );
     
     string nodeKey = this->mNodePrefix + encodeNodeID ( nodeID );
     
@@ -60,9 +71,10 @@ size_t VersionedMap::affirmKey ( string key ) {
         // there is a collision!
         
         // sanity check.
-        assert ( !foundCollisions );
+        assert ( !hasCollisions );
+        assert ( collisionKey.size () > 0 );
 
-        // there will be two decolliders now.
+        // start with two decolliders.
         this->mStore.setValue < size_t >( collisionKey, 2 );
 
         // decollide the original node. it'll keep its existing ID.
@@ -74,36 +86,35 @@ size_t VersionedMap::affirmKey ( string key ) {
         nodeKey = this->mNodePrefix + encodeNodeID ( nodeID );
     }
     
-    this->insertNode ( nodeID, key, nodeKey );
+    this->appendNode ( nodeID, key, nodeKey );
     
     return nodeID;
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
+/** \brief  Removes the key from the active list.
+
+    \param      key         They key to remove.
+ 
+    \throws     KeyNotFoundException    The key could not be found.
+*/
 void VersionedMap::deleteKey ( string key ) {
 
-    // hash portion of key; assumed to be no collisions, so counter portion is 0.
-    size_t nodeID = this->getHashPortion ( key );
-    string collisionKey = this->mCollisionPrefix + encodeNodeID ( nodeID );
-    
-    // check to see if there are already known collisions.
-    if ( this->mStore.hasKey ( collisionKey )) {
-    
-        // there are collisions. if the key is valid, there must be a decollider for it.
-        string decolliderKey = this->mDecolliderPrefix + key; // decolliders are stored for the full key.
-        const size_t* decolliderRef = this->mStore.getValueOrNil < size_t >( decolliderKey );
-        
-        // sanity check.
-        assert ( decolliderRef );
-        
-        // there is a decollider, so use that instead.
-        nodeID = *decolliderRef;
-    }
+    // check to see if there is a decollider.
+    string decolliderKey = this->mDecolliderPrefix + key; // decolliders are stored for the full key.
+    const size_t* decolliderRef = this->mStore.getValueOrNil < size_t >( decolliderKey );
+
+    size_t nodeID = decolliderRef ? *decolliderRef : this->getHashPortion ( key );
+
     this->removeNode ( encodeNodeID ( nodeID ));
 }
 
 //----------------------------------------------------------------//
+/** \brief  Hashes the key and masks it with the HASH_PORTION_MASK.
+
+    \param      key         They key to hash.
+    \return                 The hash portion of the key's node ID.
+*/
 size_t VersionedMap::getHashPortion ( string key ) const {
 
     assert ( sizeof ( size_t ) == 8 );
@@ -111,7 +122,11 @@ size_t VersionedMap::getHashPortion ( string key ) const {
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
+/** \brief  Construct the collection in (or from) the given store.
+
+    \param      store       The versioned store that contains (or will contain) the collection.
+    \param      name        The name of the collection.
+*/
 VersionedMap::VersionedMap ( VersionedStore& store, string name ) :
     MutableVersionedCollection ( store, name ) {
     
@@ -122,11 +137,17 @@ VersionedMap::VersionedMap ( VersionedStore& store, string name ) :
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
 VersionedMap::~VersionedMap () {
 }
 
 //----------------------------------------------------------------//
+/** \brief  Virtual function for string hashing. Provided for collision
+            test instrumentation: provide a crappy hash to predictably
+            create collisions.
+
+    \param      key             The key to hash.
+    \param      size_t          The hash of the key.
+*/
 size_t VersionedMap::VersionedMap_hash ( string key ) const {
 
     return std::hash < string >{}( key );

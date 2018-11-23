@@ -26,10 +26,10 @@ private:
     friend class VersionedCollectionSnapshot;
     friend class VersionedCollectionIterator;
     
-    /// Numeric ID of the head of list of active keys.
+    /// Numeric ID of the head of the list of active keys.
     size_t      mHead;
     
-    /// Numeric ID of the tail of list of active keys.
+    /// Numeric ID of the tail of the list of active keys.
     size_t      mTail;
     
     /// Count of total active keys in the list.
@@ -39,8 +39,8 @@ private:
 //================================================================//
 // VersionedCollectionNode
 //================================================================//
-/** \brief  Linked list node containing a key and its ID. Nodes are
-            addressed by ID, which may be assigned and reused (as in
+/** \brief  Linked list node containing a key and its numeric ID. Nodes are
+            addressed by numeric ID, which may be assigned and reused (as in
             VersionedSet) or derived from hashing heys (as in VersionedMap).
 */
 class VersionedCollectionNode {
@@ -70,20 +70,20 @@ private:
 // AbstractVersionedCollection
 //================================================================//
 /** \brief  Abstract base class for versioned collections and versioned
-            collection snapshots. Collections are iterable. This is acheived by
+            collection snapshots. Collections are iterable. This is achieved by
             internally maintainting a doubly linked list of keys. The linked
             list is also held in the versioned store.
 */
 class AbstractVersionedCollection {
 protected:
 
-    /// Postfix for node look up. Lookup key for nodes is: <collection name>SET_NODES_POSTFIX<string encoded node ID>
+    /// Postfix for node look up. Lookup key is: <collection name>SET_NODES_POSTFIX<string encoded node ID>
     static constexpr const char* SET_NODES_POSTFIX      = ".nodes.";
     
-    /// Postfix for value look up. Lookup key for values is: <collection name>SET_VALUES_POSTFIX<key string>
+    /// Postfix for value look up. Lookup key is: <collection name>SET_VALUES_POSTFIX<key string>
     static constexpr const char* SET_VALUES_POSTFIX     = ".values.";
 
-    /// Used to desgnate and invalid node ID. Needed to terminate lists.
+    /// Used to designate an invalid node ID. Needed to terminate lists.
     static const size_t INVALID_NODE_INDEX = ( size_t )-1;
 
     /// Prefix string of list node keys. Append string encoded node IDs to look up nodes.
@@ -95,7 +95,7 @@ protected:
     /// Name of the collection in the VersionedStore.
     string      mName;
     
-    /// State of the collection. Persisted in the VersionedStore.
+    /// State of the collection persisted in the VersionedStore.
     VersionedCollectionState    mState;
     
     //----------------------------------------------------------------//
