@@ -12,8 +12,8 @@ var dir_53205d729e2de803411098b876920811 =
     [ "AbstractVersionedCollection.cpp", "de/d66/_abstract_versioned_collection_8cpp.html", null ],
     [ "AbstractVersionedCollection.h", "d9/d38/_abstract_versioned_collection_8h.html", [
       [ "AbstractVersionedCollection", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html", "dc/dc4/class_padamose_1_1_abstract_versioned_collection" ],
-      [ "VersionedCollectionState", "d9/dbb/class_padamose_1_1_versioned_collection_state.html", "d9/dbb/class_padamose_1_1_versioned_collection_state" ],
-      [ "VersionedSetNode", "dc/dea/class_padamose_1_1_versioned_set_node.html", "dc/dea/class_padamose_1_1_versioned_set_node" ]
+      [ "VersionedCollectionNode", "d0/d56/class_padamose_1_1_versioned_collection_node.html", "d0/d56/class_padamose_1_1_versioned_collection_node" ],
+      [ "VersionedCollectionState", "d9/dbb/class_padamose_1_1_versioned_collection_state.html", "d9/dbb/class_padamose_1_1_versioned_collection_state" ]
     ] ],
     [ "Exceptions.h", "d7/d2f/_exceptions_8h.html", [
       [ "InvalidMapNameException", "d3/d9c/class_padamose_1_1_invalid_map_name_exception.html", "d3/d9c/class_padamose_1_1_invalid_map_name_exception" ],

@@ -135,10 +135,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html">Padamose::AbstractVersionedCollection</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class for versioned collections and versioned collection snapshots. Collections are iterable. This is acheived by internally maintainting a doubly linked list of keys. The linked list is also held in the versioned store.  <a href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html">Padamose::VersionedCollectionNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linked list node containing a key and its ID. Nodes are addressed by ID, which may be assigned and reused (as in <a class="el" href="../../de/daa/class_padamose_1_1_versioned_set.html">VersionedSet</a>) or derived from hashing heys (as in <a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html">VersionedMap</a>).  <a href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html">Padamose::VersionedCollectionState</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dea/class_padamose_1_1_versioned_set_node.html">Padamose::VersionedSetNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Persistent state object common to all collections. It tracks the head and tail of the doubly linked list of active key nodes (<a class="el" href="../../d0/d56/class_padamose_1_1_versioned_collection_node.html" title="Linked list node containing a key and its ID. Nodes are addressed by ID, which may be assigned and re...">VersionedCollectionNode</a>). It also tracks the size of the list.  <a href="../../d9/dbb/class_padamose_1_1_versioned_collection_state.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -152,7 +155,7 @@ Namespaces</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="../../dir_53205d729e2de803411098b876920811.html">padamose</a></li><li class="navelem"><a class="el" href="../../d9/d38/_abstract_versioned_collection_8h.html">AbstractVersionedCollection.h</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 05:22:45 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 05:59:08 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

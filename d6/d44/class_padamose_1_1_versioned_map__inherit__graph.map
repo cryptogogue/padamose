@@ -1,5 +1,5 @@
 <map id="Padamose::VersionedMap" name="Padamose::VersionedMap">
 <area shape="rect" id="node4" href="$dc/d41/class_versioned_map_collision_tester.html" title="VersionedMapCollisionTester" alt="" coords="9,252,202,277"/>
 <area shape="rect" id="node2" href="$de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Padamose::MutableVersioned\lCollection" alt="" coords="6,92,205,131"/>
-<area shape="rect" id="node3" href="$dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Padamose::AbstractVersioned\lCollection" alt="" coords="5,5,206,44"/>
+<area shape="rect" id="node3" href="$dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="5,5,206,44"/>
 </map>
