@@ -7,5 +7,6 @@ var searchData=
   ['copy',['copy',['../df/d69/class_padamose_1_1_versioned_value.html#a0c54cc82a45f67e9656135a6870353f9',1,'Padamose::VersionedValue']]],
   ['copyvaluefrom',['copyValueFrom',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#a700ee4c9b2a44335122955f229aa86b8',1,'Padamose::AbstractValueStack']]],
   ['countdependencies',['countDependencies',['../d4/da9/class_padamose_1_1_versioned_branch.html#a384adf6744324b6780aa5b0900c0c914',1,'Padamose::VersionedBranch']]],
+  ['counter_5fportion_5fmax',['COUNTER_PORTION_MAX',['../dd/dad/class_padamose_1_1_versioned_map.html#a2135eaec6c61fcebf316aa14f4905d42',1,'Padamose::VersionedMap']]],
   ['counter_5fportion_5fshift',['COUNTER_PORTION_SHIFT',['../dd/dad/class_padamose_1_1_versioned_map.html#a62b06a099509fc1bd6f10edcc374f7f5',1,'Padamose::VersionedMap']]]
 ];

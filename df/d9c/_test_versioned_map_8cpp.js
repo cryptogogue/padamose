@@ -1,8 +1,10 @@
 var _test_versioned_map_8cpp =
 [
+    [ "VersionedMapCollisionTester", "dc/d41/class_versioned_map_collision_tester.html", "dc/d41/class_versioned_map_collision_tester" ],
     [ "TEST", "df/d9c/_test_versioned_map_8cpp.html#a6c8f74dfb0eaf98d7790c11ffee50070", null ],
     [ "TEST", "df/d9c/_test_versioned_map_8cpp.html#aaf190c66841fbafb6032885a5865364f", null ],
     [ "TEST", "df/d9c/_test_versioned_map_8cpp.html#ac4181286890de7638b7e62468159fadf", null ],
+    [ "TEST", "df/d9c/_test_versioned_map_8cpp.html#abb261a7044d87f09194e7ed8d2038264", null ],
     [ "KEY0", "df/d9c/_test_versioned_map_8cpp.html#ab2c2f14662e97136ff2fc68a41e5b10a", null ],
     [ "KEY1", "df/d9c/_test_versioned_map_8cpp.html#a4ed113c336ef2b96392a40070d2a51ab", null ],
     [ "KEY2", "df/d9c/_test_versioned_map_8cpp.html#a57fbae95da1b334b77a1b7f7722b1846", null ],

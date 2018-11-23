@@ -22,6 +22,7 @@ var class_padamose_1_1_versioned_map =
     [ "setValue", "dd/dad/class_padamose_1_1_versioned_map.html#a1cb80d97b4554d803a99797a5539f62e", null ],
     [ "VersionedMap_hash", "dd/dad/class_padamose_1_1_versioned_map.html#a028a496394c3dd605276fa8c02ed69a8", null ],
     [ "COLLISION_POSTFIX", "dd/dad/class_padamose_1_1_versioned_map.html#af8c9edfeadc08c07f6d7439860807077", null ],
+    [ "COUNTER_PORTION_MAX", "dd/dad/class_padamose_1_1_versioned_map.html#a2135eaec6c61fcebf316aa14f4905d42", null ],
     [ "COUNTER_PORTION_SHIFT", "dd/dad/class_padamose_1_1_versioned_map.html#a62b06a099509fc1bd6f10edcc374f7f5", null ],
     [ "DECOLLIDER_POSTFIX", "dd/dad/class_padamose_1_1_versioned_map.html#a2743a50361bc23dbac6970bfc847db43", null ],
     [ "HASH_PORTION_MASK", "dd/dad/class_padamose_1_1_versioned_map.html#a20d168335a7da0f29496ccfc62f7c40f", null ],

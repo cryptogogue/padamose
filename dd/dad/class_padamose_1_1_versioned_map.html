@@ -106,6 +106,7 @@ Inheritance diagram for Padamose::VersionedMap:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d6/d44/class_padamose_1_1_versioned_map__inherit__graph.png" border="0" usemap="#_padamose_1_1_versioned_map_inherit__map" alt="Inheritance graph"/></div>
 <map name="_padamose_1_1_versioned_map_inherit__map" id="_padamose_1_1_versioned_map_inherit__map">
+<area shape="rect" id="node4" href="../../dc/d41/class_versioned_map_collision_tester.html" title="VersionedMapCollisionTester" alt="" coords="9,252,202,277"/>
 <area shape="rect" id="node2" href="../../de/dfd/class_padamose_1_1_mutable_versioned_collection.html" title="Padamose::MutableVersioned\lCollection" alt="" coords="6,92,205,131"/>
 <area shape="rect" id="node3" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Padamose::AbstractVersioned\lCollection" alt="" coords="5,5,206,44"/>
 </map>
@@ -200,11 +201,13 @@ Private Attributes</h2></td></tr>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:af8c9edfeadc08c07f6d7439860807077"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#af8c9edfeadc08c07f6d7439860807077">COLLISION_POSTFIX</a> = &quot;.collision.&quot;</td></tr>
 <tr class="separator:af8c9edfeadc08c07f6d7439860807077"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62b06a099509fc1bd6f10edcc374f7f5"><td class="memItemLeft" align="right" valign="top">static constexpr const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a62b06a099509fc1bd6f10edcc374f7f5">COUNTER_PORTION_SHIFT</a> = 32</td></tr>
+<tr class="memitem:a2135eaec6c61fcebf316aa14f4905d42"><td class="memItemLeft" align="right" valign="top">static constexpr const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a2135eaec6c61fcebf316aa14f4905d42">COUNTER_PORTION_MAX</a> = 0xffff</td></tr>
+<tr class="separator:a2135eaec6c61fcebf316aa14f4905d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62b06a099509fc1bd6f10edcc374f7f5"><td class="memItemLeft" align="right" valign="top">static constexpr const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a62b06a099509fc1bd6f10edcc374f7f5">COUNTER_PORTION_SHIFT</a> = 48</td></tr>
 <tr class="separator:a62b06a099509fc1bd6f10edcc374f7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2743a50361bc23dbac6970bfc847db43"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a2743a50361bc23dbac6970bfc847db43">DECOLLIDER_POSTFIX</a> = &quot;.decollider.&quot;</td></tr>
 <tr class="separator:a2743a50361bc23dbac6970bfc847db43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20d168335a7da0f29496ccfc62f7c40f"><td class="memItemLeft" align="right" valign="top">static constexpr const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a20d168335a7da0f29496ccfc62f7c40f">HASH_PORTION_MASK</a> = 0x00000000ffffffff</td></tr>
+<tr class="memitem:a20d168335a7da0f29496ccfc62f7c40f"><td class="memItemLeft" align="right" valign="top">static constexpr const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a20d168335a7da0f29496ccfc62f7c40f">HASH_PORTION_MASK</a> = 0x0000ffffffffffff</td></tr>
 <tr class="separator:a20d168335a7da0f29496ccfc62f7c40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -775,6 +778,8 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Reimplemented in <a class="el" href="../../dc/d41/class_versioned_map_collision_tester.html#a6728d07be17069a926eaabc086087a53">VersionedMapCollisionTester</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -800,6 +805,28 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
+<a id="a2135eaec6c61fcebf316aa14f4905d42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2135eaec6c61fcebf316aa14f4905d42">&#9670;&nbsp;</a></span>COUNTER_PORTION_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const size_t Padamose::VersionedMap::COUNTER_PORTION_MAX = 0xffff</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a62b06a099509fc1bd6f10edcc374f7f5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a62b06a099509fc1bd6f10edcc374f7f5">&#9670;&nbsp;</a></span>COUNTER_PORTION_SHIFT</h2>
 
@@ -810,7 +837,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr const size_t Padamose::VersionedMap::COUNTER_PORTION_SHIFT = 32</td>
+          <td class="memname">constexpr const size_t Padamose::VersionedMap::COUNTER_PORTION_SHIFT = 48</td>
         </tr>
       </table>
   </td>
@@ -854,7 +881,7 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr const size_t Padamose::VersionedMap::HASH_PORTION_MASK = 0x00000000ffffffff</td>
+          <td class="memname">constexpr const size_t Padamose::VersionedMap::HASH_PORTION_MASK = 0x0000ffffffffffff</td>
         </tr>
       </table>
   </td>
@@ -1096,7 +1123,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html">VersionedMap</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 00:25:27 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 05:22:45 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>
