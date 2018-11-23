@@ -10,6 +10,12 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
+/** \brief  Load or create a state record for the collection. Returns
+            TRUE if the state already exists and FALSE if it did not
+            (and had to be created and stored).
+
+    \return TRUE if the state exists and was loaded. FALSE if the state was created and stored.
+*/
 bool MutableVersionedCollection::affirmState () {
 
     if ( this->mStore.hasKey ( this->mName )) {
@@ -27,6 +33,12 @@ bool MutableVersionedCollection::affirmState () {
 }
 
 //----------------------------------------------------------------//
+/** \brief  Insert a node (and its key) into the collection's list of active nodes.
+
+    \param      nodeID      The numeric ID of the node.
+    \param      key         The key to be tracked by the node.
+    \param      nodeKey     The full key of the node in the versioned store.
+*/
 void MutableVersionedCollection::insertNode ( size_t nodeID, string key, string nodeKey ) {
 
     size_t prevID = this->mState.mTail;
@@ -56,7 +68,11 @@ void MutableVersionedCollection::insertNode ( size_t nodeID, string key, string 
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
+/** \brief  Construct the collection in (or from) the given store.
+
+    \param      store       The versioned store that contains (or will contain) the collection.
+    \param      name        The name of the collection.
+*/
 MutableVersionedCollection::MutableVersionedCollection ( VersionedStore& store, string name ) :
     mStore ( store ) {
 
@@ -64,11 +80,16 @@ MutableVersionedCollection::MutableVersionedCollection ( VersionedStore& store, 
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
 MutableVersionedCollection::~MutableVersionedCollection () {
 }
 
 //----------------------------------------------------------------//
+/** \brief  Remove a node (and its key) from the collection's list of active nodes.
+
+    \param      key         The encoded node ID.
+    \param      prevID      A numeric ID to assign to the node's prev. Default is INVALID_NODE_INDEX.
+    \return                 The numeric ID of the node removed.
+*/
 size_t MutableVersionedCollection::removeNode ( string key, size_t prevID ) {
 
     string nodeKey = this->mNodePrefix + key;
@@ -116,6 +137,11 @@ size_t MutableVersionedCollection::removeNode ( string key, size_t prevID ) {
 //================================================================//
 
 //----------------------------------------------------------------//
+/** \brief  Implementation of the pure virtual base method to return
+            the versioned snapshot associated with the container.
+
+    \return The VersionedStore (as a VersionedStoreSnapshot).
+*/
 const VersionedStoreSnapshot& MutableVersionedCollection::AbstractVersionedCollection_getSnapshot () const {
 
     return this->mStore;

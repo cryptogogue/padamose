@@ -111,12 +111,15 @@ TEST ( VersionedMap, test_iterator ) {
     
     ASSERT_TRUE ( setIt == true );
     ASSERT_TRUE ( setIt.value < int >() == 0 );
+    ASSERT_TRUE ( setIt.key () == KEY0 );
     
     setIt.next ();
     ASSERT_TRUE ( setIt.value < int >() == 1 );
+    ASSERT_TRUE ( setIt.key () == KEY1 );
     
     setIt.next ();
     ASSERT_TRUE ( setIt.value < int >() == 2 );
+    ASSERT_TRUE ( setIt.key () == KEY2 );
     
     setIt.next ();
     ASSERT_TRUE ( setIt == false );
@@ -125,16 +128,19 @@ TEST ( VersionedMap, test_iterator ) {
     
     ASSERT_TRUE ( setIt == true );
     ASSERT_TRUE ( setIt.value < int >() == 2 );
+    ASSERT_TRUE ( setIt.key () == KEY2 );
     
     setIt.seekFront ();
     
     ASSERT_TRUE ( setIt == true );
     ASSERT_TRUE ( setIt.value < int >() == 0 );
+    ASSERT_TRUE ( setIt.key () == KEY0 );
     
     setIt.seekBack ();
     
     ASSERT_TRUE ( setIt == true );
     ASSERT_TRUE ( setIt.value < int >() == 2 );
+    ASSERT_TRUE ( setIt.key () == KEY2 );
 }
 
 //----------------------------------------------------------------//

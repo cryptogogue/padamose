@@ -12,12 +12,14 @@ namespace Padamose {
 //================================================================//
 // MutableVersionedCollection
 //================================================================//
-// TODO: doxygen
+/** \brief  Base class for mutable collections referencing a VersionedStore.
+*/
 class MutableVersionedCollection :
     public AbstractVersionedCollection {
 protected:
 
-    VersionedStore&             mStore;
+    /// The versioned store.
+    VersionedStore& mStore;
     
     
     //----------------------------------------------------------------//

@@ -12,9 +12,9 @@ namespace Padamose {
 //================================================================//
 // VersionedCollectionState
 //================================================================//
-/** \brief Persistent state object common to all collections. It tracks
-    the head and tail of the doubly linked list of active key nodes
-    (VersionedCollectionNode). It also tracks the size of the list.
+/** \brief  Persistent state object common to all collections. It tracks
+            the head and tail of the doubly linked list of active key nodes
+            (VersionedCollectionNode). It also tracks the size of the list.
 */
 class VersionedCollectionState {
 private:
@@ -39,9 +39,9 @@ private:
 //================================================================//
 // VersionedCollectionNode
 //================================================================//
-/** \brief Linked list node containing a key and its ID. Nodes are
-    addressed by ID, which may be assigned and reused (as in
-    VersionedSet) or derived from hashing heys (as in VersionedMap).
+/** \brief  Linked list node containing a key and its ID. Nodes are
+            addressed by ID, which may be assigned and reused (as in
+            VersionedSet) or derived from hashing heys (as in VersionedMap).
 */
 class VersionedCollectionNode {
 private:
@@ -69,10 +69,10 @@ private:
 //================================================================//
 // AbstractVersionedCollection
 //================================================================//
-/** \brief Abstract base class for versioned collections and versioned
-    collection snapshots. Collections are iterable. This is acheived by
-    internally maintainting a doubly linked list of keys. The linked
-    list is also held in the versioned store.
+/** \brief  Abstract base class for versioned collections and versioned
+            collection snapshots. Collections are iterable. This is acheived by
+            internally maintainting a doubly linked list of keys. The linked
+            list is also held in the versioned store.
 */
 class AbstractVersionedCollection {
 protected:

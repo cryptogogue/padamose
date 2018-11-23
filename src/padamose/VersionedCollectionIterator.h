@@ -12,7 +12,10 @@ namespace Padamose {
 //================================================================//
 // VersionedCollectionIterator
 //================================================================//
-// TODO: doxygen
+/** \brief  Implements an interator of the collection. The iterator is
+            also a snapshot of the collection, so the iteration will
+            persist even if the associated collection is changed.
+*/
 class VersionedCollectionIterator :
     public VersionedCollectionSnapshot {
 protected:
@@ -27,8 +30,13 @@ protected:
         NO_NEXT,
     };
 
-    string                      mKey;
+    /// The cached full key for the current node.
+    string                      mNodeKey;
+    
+    /// The current node.
     VersionedCollectionNode     mIteratorNode;
+    
+    /// Internal state of the iterator.
     int                         mIteratorState;
     
     //----------------------------------------------------------------//
@@ -73,7 +81,10 @@ public:
                         ~VersionedCollectionIterator        ();
     
     //----------------------------------------------------------------//
-    // TODO: doxygen
+    /** \brief Returns a const reference to the current value being iterated.
+
+        \return     The current value of the iterator.
+    */
     template < typename TYPE >
     const TYPE& value () const {
         

@@ -61,14 +61,14 @@ public:
 };
 
 //================================================================//
-// VersionedSetNotFoundException
+// VersionedCollectionNotFoundException
 //================================================================//
-class VersionedSetNotFoundException :
+class VersionedCollectionNotFoundException :
     public logic_error {
 public:
 
     //----------------------------------------------------------------//
-    VersionedSetNotFoundException () :
+    VersionedCollectionNotFoundException () :
         logic_error ( "Versioned set not found for given name." ) {
     }
 };

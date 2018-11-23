@@ -21,7 +21,9 @@ AbstractVersionedCollection::~AbstractVersionedCollection () {
 /** \brief  String encoding for node IDs. This is an ad hoc 64-bit
             encoding; it is not base64 encoding.
 
-    \return The encoded node ID.
+    \param      nodeID      A numeric node ID.
+    
+    \return                 The encoded node ID.
 */
 string AbstractVersionedCollection::encodeNodeID ( size_t nodeID ) {
 
@@ -75,6 +77,8 @@ string AbstractVersionedCollection::getName () const {
 //----------------------------------------------------------------//
 /** \brief  Sets the name of the collection and generates the cached
             lookup prefixes.
+ 
+    \param      name        The name of the collection.
 */
 void AbstractVersionedCollection::setName ( string name ) {
 

@@ -12,7 +12,8 @@ namespace Padamose {
 //================================================================//
 // VersionedCollectionSnapshot
 //================================================================//
-// TODO: doxygen
+/** \brief  Implementation of versioned collection as an immutable snapshot.
+*/
 class VersionedCollectionSnapshot :
     public AbstractVersionedCollection {
 protected:
@@ -25,6 +26,7 @@ protected:
 public:
 
     //----------------------------------------------------------------//
+                    VersionedCollectionSnapshot         ( const AbstractVersionedCollection& collection );
                     VersionedCollectionSnapshot         ( const VersionedStoreSnapshot& snapshot, string name );
                     ~VersionedCollectionSnapshot        ();
 };
