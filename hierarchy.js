@@ -26,7 +26,7 @@ var hierarchy =
     [ "Padamose::AbstractVersionedCollection", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html", [
       [ "Padamose::MutableVersionedCollection", "de/dfd/class_padamose_1_1_mutable_versioned_collection.html", [
         [ "Padamose::VersionedMap", "dd/dad/class_padamose_1_1_versioned_map.html", [
-          [ "VersionedMapCollisionTester", "dc/d41/class_versioned_map_collision_tester.html", null ]
+          [ "Padamose::Test::VersionedMapCollisionTester", "dd/dac/class_padamose_1_1_test_1_1_versioned_map_collision_tester.html", null ]
         ] ],
         [ "Padamose::VersionedSet", "de/daa/class_padamose_1_1_versioned_set.html", null ]
       ] ],

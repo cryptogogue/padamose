@@ -8,7 +8,7 @@ var searchData=
   ['versionedcollectionsnapshot',['VersionedCollectionSnapshot',['../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html',1,'Padamose']]],
   ['versionedcollectionstate',['VersionedCollectionState',['../d9/dbb/class_padamose_1_1_versioned_collection_state.html',1,'Padamose']]],
   ['versionedmap',['VersionedMap',['../dd/dad/class_padamose_1_1_versioned_map.html',1,'Padamose']]],
-  ['versionedmapcollisiontester',['VersionedMapCollisionTester',['../dc/d41/class_versioned_map_collision_tester.html',1,'']]],
+  ['versionedmapcollisiontester',['VersionedMapCollisionTester',['../dd/dac/class_padamose_1_1_test_1_1_versioned_map_collision_tester.html',1,'Padamose::Test']]],
   ['versionedset',['VersionedSet',['../de/daa/class_padamose_1_1_versioned_set.html',1,'Padamose']]],
   ['versionedsetfreestack',['VersionedSetFreeStack',['../d9/dd5/class_padamose_1_1_versioned_set_free_stack.html',1,'Padamose']]],
   ['versionedstore',['VersionedStore',['../d2/d73/class_padamose_1_1_versioned_store.html',1,'Padamose']]],

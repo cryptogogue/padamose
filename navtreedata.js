@@ -26,7 +26,12 @@ var NAVTREE =
   [ "Padamose", "index.html", [
     [ "Todo List", "dd/da0/todo.html", null ],
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -46,7 +51,6 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -56,8 +60,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d5/d87/class_padamose_1_1_key_not_found_exception.html",
-"dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a74ff7d0e064e6778354307c2d83be2ba"
+"d5/d02/class_padamose_1_1_versioned_collection_not_found_exception.html",
+"dd/d4c/class_padamose_1_1_value_stack.html#a9ed9ab18f3d3b233ed814adbf7ce9c6b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
