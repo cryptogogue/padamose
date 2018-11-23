@@ -5,6 +5,8 @@ var searchData=
   ['makeemptycopy',['makeEmptyCopy',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#ab4d33fd22348fee6645036b0489f7648',1,'Padamose::AbstractValueStack']]],
   ['manchor',['mAnchor',['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a3ce1299b733f884adccd2d84bc3e4bdc',1,'Padamose::VersionedStoreIterator::mAnchor()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#abd6c636e7cb39b6a9ac4dd576531e938',1,'Padamose::VersionedValueIterator::mAnchor()']]],
   ['mclients',['mClients',['../d4/da9/class_padamose_1_1_versioned_branch.html#a9d4ca1df529076ecc2420da618f24fbf',1,'Padamose::VersionedBranch']]],
+  ['mcollisionprefix',['mCollisionPrefix',['../dd/dad/class_padamose_1_1_versioned_map.html#a8b7074ab42cc4dae27276d12c5583f2e',1,'Padamose::VersionedMap']]],
+  ['mdecolliderprefix',['mDecolliderPrefix',['../dd/dad/class_padamose_1_1_versioned_map.html#a5af4c74e54b5a7790ffe8fc08f1324c8',1,'Padamose::VersionedMap']]],
   ['mdirectreferencecount',['mDirectReferenceCount',['../d4/da9/class_padamose_1_1_versioned_branch.html#add321fe7b87a9ebed11a59d7420c248c',1,'Padamose::VersionedBranch']]],
   ['mfirstversion',['mFirstVersion',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a1487d5e0649004f2972e881f3daa45b0',1,'Padamose::VersionedValueIterator']]],
   ['mfreestack',['mFreeStack',['../de/daa/class_padamose_1_1_versioned_set.html#ae127e8990f92d2cb99ac79083a03444d',1,'Padamose::VersionedSet']]],

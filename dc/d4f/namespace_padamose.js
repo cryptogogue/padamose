@@ -14,7 +14,6 @@ var namespace_padamose =
     [ "VersionedCollectionSnapshot", "d3/da8/class_padamose_1_1_versioned_collection_snapshot.html", "d3/da8/class_padamose_1_1_versioned_collection_snapshot" ],
     [ "VersionedCollectionState", "d9/dbb/class_padamose_1_1_versioned_collection_state.html", "d9/dbb/class_padamose_1_1_versioned_collection_state" ],
     [ "VersionedMap", "dd/dad/class_padamose_1_1_versioned_map.html", "dd/dad/class_padamose_1_1_versioned_map" ],
-    [ "VersionedMapKeyCollisionException", "db/de5/class_padamose_1_1_versioned_map_key_collision_exception.html", "db/de5/class_padamose_1_1_versioned_map_key_collision_exception" ],
     [ "VersionedSet", "de/daa/class_padamose_1_1_versioned_set.html", "de/daa/class_padamose_1_1_versioned_set" ],
     [ "VersionedSetFreeStack", "d9/dd5/class_padamose_1_1_versioned_set_free_stack.html", "d9/dd5/class_padamose_1_1_versioned_set_free_stack" ],
     [ "VersionedSetNode", "dc/dea/class_padamose_1_1_versioned_set_node.html", "dc/dea/class_padamose_1_1_versioned_set_node" ],

@@ -11,6 +11,7 @@ var class_padamose_1_1_versioned_set =
     [ "getValue", "de/daa/class_padamose_1_1_versioned_set.html#a5e09b7b7b50365b2fb44ab9097e38368", null ],
     [ "insertNode", "de/daa/class_padamose_1_1_versioned_set.html#ae82777a3a1367024a14aafc474531844", null ],
     [ "insertValue", "de/daa/class_padamose_1_1_versioned_set.html#a07455a035b3b80d68f5e1e43f8bbc3c1", null ],
+    [ "nodeIDToString", "de/daa/class_padamose_1_1_versioned_set.html#adcd8959b1a98442fb8baf71ea2c60518", null ],
     [ "operator const VersionedStoreSnapshot &", "de/daa/class_padamose_1_1_versioned_set.html#a656a4890d17c4a7d4a24cf4d613b0394", null ],
     [ "provisionKey", "de/daa/class_padamose_1_1_versioned_set.html#a216f8cba4e3acc6fa95d84fe37d6a986", null ],
     [ "pushNode", "de/daa/class_padamose_1_1_versioned_set.html#ac6406d5a8ed217a188d581b0d9753ce4", null ],

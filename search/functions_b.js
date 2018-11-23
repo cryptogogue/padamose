@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['next',['next',['../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1',1,'Padamose::VersionedCollectionIterator::next()'],['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a8e15f5955123bd2090fca9b82faa8f6c',1,'Padamose::VersionedStoreIterator::next()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#af97b7001e886bb5cc903d1106e589600',1,'Padamose::VersionedValueIterator::next()']]]
+  ['next',['next',['../d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1',1,'Padamose::VersionedCollectionIterator::next()'],['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a8e15f5955123bd2090fca9b82faa8f6c',1,'Padamose::VersionedStoreIterator::next()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#af97b7001e886bb5cc903d1106e589600',1,'Padamose::VersionedValueIterator::next()']]],
+  ['nodeidtostring',['nodeIDToString',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#adcd8959b1a98442fb8baf71ea2c60518',1,'Padamose::AbstractVersionedCollection']]]
 ];

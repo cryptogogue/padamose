@@ -88,10 +88,12 @@ $(document).ready(function(){initNavTree('dd/dad/class_padamose_1_1_versioned_ma
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="../../d7/d3d/class_padamose_1_1_versioned_map-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Padamose::VersionedMap Class Reference</div>  </div>
@@ -149,6 +151,11 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a2c45acd9e8ffbd77aac2c2c693a408b9">setName</a> (string name)</td></tr>
 <tr class="separator:a2c45acd9e8ffbd77aac2c2c693a408b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
+Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:adcd8959b1a98442fb8baf71ea2c60518"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#adcd8959b1a98442fb8baf71ea2c60518">nodeIDToString</a> (size_t nodeID)</td></tr>
+<tr class="separator:adcd8959b1a98442fb8baf71ea2c60518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a1dc7f6563253dac2cbcddacdb8b81180"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a1dc7f6563253dac2cbcddacdb8b81180">mMapName</a></td></tr>
@@ -175,13 +182,30 @@ Static Protected Attributes</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a0bcadf16f062173bb3d8eb91391183c8"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a0bcadf16f062173bb3d8eb91391183c8">affirmKey</a> (string key)</td></tr>
 <tr class="separator:a0bcadf16f062173bb3d8eb91391183c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34915d473925217d8578c928d9e2901e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a34915d473925217d8578c928d9e2901e">getHashPortion</a> (string key) const</td></tr>
+<tr class="separator:a34915d473925217d8578c928d9e2901e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e7120211c55b63d936082bdb8202c40"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a3e7120211c55b63d936082bdb8202c40">provisionKey</a> ()</td></tr>
 <tr class="separator:a3e7120211c55b63d936082bdb8202c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a028a496394c3dd605276fa8c02ed69a8"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a028a496394c3dd605276fa8c02ed69a8">VersionedMap_hash</a> (string key) const</td></tr>
+<tr class="separator:a028a496394c3dd605276fa8c02ed69a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
-Static Private Member Functions</h2></td></tr>
-<tr class="memitem:abf87e042f08c53934c8427124dcd1ce9"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#abf87e042f08c53934c8427124dcd1ce9">getNodeID</a> (string key)</td></tr>
-<tr class="separator:abf87e042f08c53934c8427124dcd1ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a8b7074ab42cc4dae27276d12c5583f2e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a8b7074ab42cc4dae27276d12c5583f2e">mCollisionPrefix</a></td></tr>
+<tr class="separator:a8b7074ab42cc4dae27276d12c5583f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5af4c74e54b5a7790ffe8fc08f1324c8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a5af4c74e54b5a7790ffe8fc08f1324c8">mDecolliderPrefix</a></td></tr>
+<tr class="separator:a5af4c74e54b5a7790ffe8fc08f1324c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:af8c9edfeadc08c07f6d7439860807077"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#af8c9edfeadc08c07f6d7439860807077">COLLISION_POSTFIX</a> = &quot;.collision.&quot;</td></tr>
+<tr class="separator:af8c9edfeadc08c07f6d7439860807077"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62b06a099509fc1bd6f10edcc374f7f5"><td class="memItemLeft" align="right" valign="top">static constexpr const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a62b06a099509fc1bd6f10edcc374f7f5">COUNTER_PORTION_SHIFT</a> = 32</td></tr>
+<tr class="separator:a62b06a099509fc1bd6f10edcc374f7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2743a50361bc23dbac6970bfc847db43"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a2743a50361bc23dbac6970bfc847db43">DECOLLIDER_POSTFIX</a> = &quot;.decollider.&quot;</td></tr>
+<tr class="separator:a2743a50361bc23dbac6970bfc847db43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20d168335a7da0f29496ccfc62f7c40f"><td class="memItemLeft" align="right" valign="top">static constexpr const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a20d168335a7da0f29496ccfc62f7c40f">HASH_PORTION_MASK</a> = 0x00000000ffffffff</td></tr>
+<tr class="separator:a20d168335a7da0f29496ccfc62f7c40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0ff092ac6a2c597f0bc64501d30bf18f"></a>
@@ -326,6 +350,32 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a34915d473925217d8578c928d9e2901e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34915d473925217d8578c928d9e2901e">&#9670;&nbsp;</a></span>getHashPortion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Padamose::VersionedMap::getHashPortion </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac8d0d908d7c4d7b8f4ec5ef0bca40121"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac8d0d908d7c4d7b8f4ec5ef0bca40121">&#9670;&nbsp;</a></span>getName()</h2>
 
@@ -345,32 +395,6 @@ Static Private Member Functions</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="abf87e042f08c53934c8427124dcd1ce9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf87e042f08c53934c8427124dcd1ce9">&#9670;&nbsp;</a></span>getNodeID()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t Padamose::VersionedMap::getNodeID </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -509,6 +533,32 @@ template&lt;typename TYPE &gt; </div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adcd8959b1a98442fb8baf71ea2c60518"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcd8959b1a98442fb8baf71ea2c60518">&#9670;&nbsp;</a></span>nodeIDToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Padamose::AbstractVersionedCollection::nodeIDToString </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nodeID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -701,7 +751,121 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
+<a id="a028a496394c3dd605276fa8c02ed69a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a028a496394c3dd605276fa8c02ed69a8">&#9670;&nbsp;</a></span>VersionedMap_hash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Padamose::VersionedMap::VersionedMap_hash </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="af8c9edfeadc08c07f6d7439860807077"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8c9edfeadc08c07f6d7439860807077">&#9670;&nbsp;</a></span>COLLISION_POSTFIX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const char* Padamose::VersionedMap::COLLISION_POSTFIX = &quot;.collision.&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a62b06a099509fc1bd6f10edcc374f7f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62b06a099509fc1bd6f10edcc374f7f5">&#9670;&nbsp;</a></span>COUNTER_PORTION_SHIFT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const size_t Padamose::VersionedMap::COUNTER_PORTION_SHIFT = 32</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2743a50361bc23dbac6970bfc847db43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2743a50361bc23dbac6970bfc847db43">&#9670;&nbsp;</a></span>DECOLLIDER_POSTFIX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const char* Padamose::VersionedMap::DECOLLIDER_POSTFIX = &quot;.decollider.&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20d168335a7da0f29496ccfc62f7c40f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20d168335a7da0f29496ccfc62f7c40f">&#9670;&nbsp;</a></span>HASH_PORTION_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const size_t Padamose::VersionedMap::HASH_PORTION_MASK = 0x00000000ffffffff</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a72d95902d53faa132a39ad1a1966a3f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a72d95902d53faa132a39ad1a1966a3f2">&#9670;&nbsp;</a></span>INVALID_NODE_INDEX</h2>
 
@@ -718,6 +882,50 @@ template&lt;typename TYPE &gt; </div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b7074ab42cc4dae27276d12c5583f2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b7074ab42cc4dae27276d12c5583f2e">&#9670;&nbsp;</a></span>mCollisionPrefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Padamose::VersionedMap::mCollisionPrefix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5af4c74e54b5a7790ffe8fc08f1324c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5af4c74e54b5a7790ffe8fc08f1324c8">&#9670;&nbsp;</a></span>mDecolliderPrefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Padamose::VersionedMap::mDecolliderPrefix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -888,7 +1096,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html">VersionedMap</a></li>
-    <li class="footer">Generated on Thu Nov 22 2018 21:40:59 for Padamose by
+    <li class="footer">Generated on Fri Nov 23 2018 00:25:27 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

@@ -20,7 +20,6 @@ var dir_53205d729e2de803411098b876920811 =
       [ "KeyNotFoundException", "d5/d87/class_padamose_1_1_key_not_found_exception.html", "d5/d87/class_padamose_1_1_key_not_found_exception" ],
       [ "OverwriteException", "d0/d81/class_padamose_1_1_overwrite_exception.html", "d0/d81/class_padamose_1_1_overwrite_exception" ],
       [ "TypeMismatchOnAssignException", "db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception.html", "db/d6e/class_padamose_1_1_type_mismatch_on_assign_exception" ],
-      [ "VersionedMapKeyCollisionException", "db/de5/class_padamose_1_1_versioned_map_key_collision_exception.html", "db/de5/class_padamose_1_1_versioned_map_key_collision_exception" ],
       [ "VersionedSetNotFoundException", "d0/d60/class_padamose_1_1_versioned_set_not_found_exception.html", "d0/d60/class_padamose_1_1_versioned_set_not_found_exception" ],
       [ "VersionOutOfBoundsException", "d1/dcb/class_padamose_1_1_version_out_of_bounds_exception.html", "d1/dcb/class_padamose_1_1_version_out_of_bounds_exception" ]
     ] ],

@@ -6,7 +6,6 @@ var searchData=
   ['versionedcollectionsnapshot',['VersionedCollectionSnapshot',['../d3/da8/class_padamose_1_1_versioned_collection_snapshot.html',1,'Padamose']]],
   ['versionedcollectionstate',['VersionedCollectionState',['../d9/dbb/class_padamose_1_1_versioned_collection_state.html',1,'Padamose']]],
   ['versionedmap',['VersionedMap',['../dd/dad/class_padamose_1_1_versioned_map.html',1,'Padamose']]],
-  ['versionedmapkeycollisionexception',['VersionedMapKeyCollisionException',['../db/de5/class_padamose_1_1_versioned_map_key_collision_exception.html',1,'Padamose']]],
   ['versionedset',['VersionedSet',['../de/daa/class_padamose_1_1_versioned_set.html',1,'Padamose']]],
   ['versionedsetfreestack',['VersionedSetFreeStack',['../d9/dd5/class_padamose_1_1_versioned_set_free_stack.html',1,'Padamose']]],
   ['versionedsetnode',['VersionedSetNode',['../dc/dea/class_padamose_1_1_versioned_set_node.html',1,'Padamose']]],

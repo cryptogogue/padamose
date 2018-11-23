@@ -15,6 +15,7 @@ var class_padamose_1_1_versioned_collection_iterator =
     [ "isValid", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a66140c2bb17664475fc08d9ba8dd9198", null ],
     [ "key", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a73caf053db9fcc4fb277a2931b55a749", null ],
     [ "next", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a6b86fa813fb4b6560d955434610429e1", null ],
+    [ "nodeIDToString", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html#adcd8959b1a98442fb8baf71ea2c60518", null ],
     [ "operator bool", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a5e738ada0bdf7d5cda047889bef3ecab", null ],
     [ "operator const VersionedStoreSnapshot &", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html#a656a4890d17c4a7d4a24cf4d613b0394", null ],
     [ "operator++", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html#acab9f71c6421166179abe409f84de589", null ],

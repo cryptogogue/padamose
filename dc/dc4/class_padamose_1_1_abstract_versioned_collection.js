@@ -7,6 +7,7 @@ var class_padamose_1_1_abstract_versioned_collection =
     [ "getSize", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a8144a9a36e8de89f708a96ce5f057aea", null ],
     [ "getSnapshot", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a616dd2fa3dc98ed87d63a76897f027f8", null ],
     [ "getValue", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a5e09b7b7b50365b2fb44ab9097e38368", null ],
+    [ "nodeIDToString", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#adcd8959b1a98442fb8baf71ea2c60518", null ],
     [ "operator const VersionedStoreSnapshot &", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a656a4890d17c4a7d4a24cf4d613b0394", null ],
     [ "pushNode", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#ac6406d5a8ed217a188d581b0d9753ce4", null ],
     [ "setName", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a2c45acd9e8ffbd77aac2c2c693a408b9", null ],

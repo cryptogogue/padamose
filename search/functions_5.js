@@ -1,8 +1,8 @@
 var searchData=
 [
+  ['gethashportion',['getHashPortion',['../dd/dad/class_padamose_1_1_versioned_map.html#a34915d473925217d8578c928d9e2901e',1,'Padamose::VersionedMap']]],
   ['getjoinscore',['getJoinScore',['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#a27a351eedec84aaa51ea41498116acc9',1,'Padamose::AbstractVersionedBranchClient']]],
   ['getname',['getName',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#ac8d0d908d7c4d7b8f4ec5ef0bca40121',1,'Padamose::AbstractVersionedCollection']]],
-  ['getnodeid',['getNodeID',['../dd/dad/class_padamose_1_1_versioned_map.html#abf87e042f08c53934c8427124dcd1ce9',1,'Padamose::VersionedMap']]],
   ['getraw',['getRaw',['../d4/da9/class_padamose_1_1_versioned_branch.html#a93a3e84ba26aa417153c7a32c4612eb2',1,'Padamose::VersionedBranch::getRaw()'],['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a088b030bf7726e27d710d087221b8408',1,'Padamose::VersionedStoreSnapshot::getRaw()']]],
   ['getsize',['getSize',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a8144a9a36e8de89f708a96ce5f057aea',1,'Padamose::AbstractVersionedCollection']]],
   ['getsnapshot',['getSnapshot',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a616dd2fa3dc98ed87d63a76897f027f8',1,'Padamose::AbstractVersionedCollection']]],

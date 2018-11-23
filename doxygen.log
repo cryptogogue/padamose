@@ -12,6 +12,8 @@
   parameter 'version'
 /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+  parameter 'version'
 Searching for include files...
 Searching for example files...
 Searching for images...
@@ -224,7 +226,6 @@ Generating docs for compound Padamose::VersionedCollectionIterator...
 Generating docs for compound Padamose::VersionedCollectionSnapshot...
 Generating docs for compound Padamose::VersionedCollectionState...
 Generating docs for compound Padamose::VersionedMap...
-Generating docs for compound Padamose::VersionedMapKeyCollisionException...
 Generating docs for compound Padamose::VersionedSet...
 Generating docs for compound Padamose::VersionedSetFreeStack...
 Generating docs for compound Padamose::VersionedSetNode...
@@ -232,12 +233,10 @@ Generating docs for compound Padamose::VersionedSetNotFoundException...
 Generating docs for compound Padamose::VersionedStore...
 Generating docs for compound Padamose::VersionedStoreIterator...
 Generating docs for compound Padamose::VersionedStoreSnapshot...
-Generating docs /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+Generating docs for compound Padamose::VersionedValue...
+Generating docs for compound Padamo/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
-  parameter 'version'
-for compound Padamose::VersionedValue...
-Generating docs for compound Padamose::VersionedValueIterator...
+se::VersionedValueIterator...
 Generating docs for compound Padamose::VersionOutOfBoundsException...
 Generating graph info page...
 Generating directory documentation...
@@ -260,151 +259,149 @@ finalizing index lists...
 writing tag file...
 Running dot...
 Generating dot graphs using 3 parallel threads...
-Running dot for graph 1/85
-Running dot for graph 2/85
-Running dot for graph 3/85
-Running dot for graph 4/85
-Running dot for graph 5/85
-Running dot for graph 6/85
-Running dot for graph 7/85
-Running dot for graph 8/85
-Running dot for graph 9/85
-Running dot for graph 10/85
-Running dot for graph 11/85
-Running dot for graph 12/85
-Running dot for graph 13/85
-Running dot for graph 14/85
-Running dot for graph 15/85
-Running dot for graph 16/85
-Running dot for graph 17/85
-Running dot for graph 18/85
-Running dot for graph 19/85
-Running dot for graph 20/85
-Running dot for graph 21/85
-Running dot for graph 22/85
-Running dot for graph 23/85
-Running dot for graph 24/85
-Running dot for graph 25/85
-Running dot for graph 26/85
-Running dot for graph 27/85
-Running dot for graph 28/85
-Running dot for graph 29/85
-Running dot for graph 30/85
-Running dot for graph 31/85
-Running dot for graph 32/85
-Running dot for graph 33/85
-Running dot for graph 34/85
-Running dot for graph 35/85
-Running dot for graph 36/85
-Running dot for graph 37/85
-Running dot for graph 38/85
-Running dot for graph 39/85
-Running dot for graph 40/85
-Running dot for graph 41/85
-Running dot for graph 42/85
-Running dot for graph 43/85
-Running dot for graph 44/85
-Running dot for graph 45/85
-Running dot for graph 46/85
-Running dot for graph 47/85
-Running dot for graph 48/85
-Running dot for graph 49/85
-Running dot for graph 50/85
-Running dot for graph 51/85
-Running dot for graph 52/85
-Running dot for graph 53/85
-Running dot for graph 54/85
-Running dot for graph 55/85
-Running dot for graph 56/85
-Running dot for graph 57/85
-Running dot for graph 58/85
-Running dot for graph 59/85
-Running dot for graph 60/85
-Running dot for graph 61/85
-Running dot for graph 62/85
-Running dot for graph 63/85
-Running dot for graph 64/85
-Running dot for graph 65/85
-Running dot for graph 66/85
-Running dot for graph 67/85
-Running dot for graph 68/85
-Running dot for graph 69/85
-Running dot for graph 70/85
-Running dot for graph 71/85
-Running dot for graph 72/85
-Running dot for graph 73/85
-Running dot for graph 74/85
-Running dot for graph 75/85
-Running dot for graph 76/85
-Running dot for graph 77/85
-Running dot for graph 78/85
-Running dot for graph 79/85
-Running dot for graph 80/85
-Running dot for graph 81/85
-Running dot for graph 82/85
-Running dot for graph 83/85
-Running dot for graph 84/85
-Running dot for graph 85/85
-Patching output file 1/61
-Patching output file 2/61
-Patching output file 3/61
-Patching output file 4/61
-Patching output file 5/61
-Patching output file 6/61
-Patching output file 7/61
-Patching output file 8/61
-Patching output file 9/61
-Patching output file 10/61
-Patching output file 11/61
-Patching output file 12/61
-Patching output file 13/61
-Patching output file 14/61
-Patching output file 15/61
-Patching output file 16/61
-Patching output file 17/61
-Patching output file 18/61
-Patching output file 19/61
-Patching output file 20/61
-Patching output file 21/61
-Patching output file 22/61
-Patching output file 23/61
-Patching output file 24/61
-Patching output file 25/61
-Patching output file 26/61
-Patching output file 27/61
-Patching output file 28/61
-Patching output file 29/61
-Patching output file 30/61
-Patching output file 31/61
-Patching output file 32/61
-Patching output file 33/61
-Patching output file 34/61
-Patching output file 35/61
-Patching output file 36/61
-Patching output file 37/61
-Patching output file 38/61
-Patching output file 39/61
-Patching output file 40/61
-Patching output file 41/61
-Patching output file 42/61
-Patching output file 43/61
-Patching output file 44/61
-Patching output file 45/61
-Patching output file 46/61
-Patching output file 47/61
-Patching output file 48/61
-Patching output file 49/61
-Patching output file 50/61
-Patching output file 51/61
-Patching output file 52/61
-Patching output file 53/61
-Patching output file 54/61
-Patching output file 55/61
-Patching output file 56/61
-Patching output file 57/61
-Patching output file 58/61
-Patching output file 59/61
-Patching output file 60/61
-Patching output file 61/61
-lookup cache used 807/65536 hits=3576 misses=830
+Running dot for graph 1/84
+Running dot for graph 2/84
+Running dot for graph 3/84
+Running dot for graph 4/84
+Running dot for graph 5/84
+Running dot for graph 6/84
+Running dot for graph 7/84
+Running dot for graph 8/84
+Running dot for graph 9/84
+Running dot for graph 10/84
+Running dot for graph 11/84
+Running dot for graph 12/84
+Running dot for graph 13/84
+Running dot for graph 14/84
+Running dot for graph 15/84
+Running dot for graph 16/84
+Running dot for graph 17/84
+Running dot for graph 18/84
+Running dot for graph 19/84
+Running dot for graph 20/84
+Running dot for graph 21/84
+Running dot for graph 22/84
+Running dot for graph 23/84
+Running dot for graph 24/84
+Running dot for graph 25/84
+Running dot for graph 26/84
+Running dot for graph 27/84
+Running dot for graph 28/84
+Running dot for graph 29/84
+Running dot for graph 30/84
+Running dot for graph 31/84
+Running dot for graph 32/84
+Running dot for graph 33/84
+Running dot for graph 34/84
+Running dot for graph 35/84
+Running dot for graph 36/84
+Running dot for graph 37/84
+Running dot for graph 38/84
+Running dot for graph 39/84
+Running dot for graph 40/84
+Running dot for graph 41/84
+Running dot for graph 42/84
+Running dot for graph 43/84
+Running dot for graph 44/84
+Running dot for graph 45/84
+Running dot for graph 46/84
+Running dot for graph 47/84
+Running dot for graph 48/84
+Running dot for graph 49/84
+Running dot for graph 50/84
+Running dot for graph 51/84
+Running dot for graph 52/84
+Running dot for graph 53/84
+Running dot for graph 54/84
+Running dot for graph 55/84
+Running dot for graph 56/84
+Running dot for graph 57/84
+Running dot for graph 58/84
+Running dot for graph 59/84
+Running dot for graph 60/84
+Running dot for graph 61/84
+Running dot for graph 62/84
+Running dot for graph 63/84
+Running dot for graph 64/84
+Running dot for graph 65/84
+Running dot for graph 66/84
+Running dot for graph 67/84
+Running dot for graph 68/84
+Running dot for graph 69/84
+Running dot for graph 70/84
+Running dot for graph 71/84
+Running dot for graph 72/84
+Running dot for graph 73/84
+Running dot for graph 74/84
+Running dot for graph 75/84
+Running dot for graph 76/84
+Running dot for graph 77/84
+Running dot for graph 78/84
+Running dot for graph 79/84
+Running dot for graph 80/84
+Running dot for graph 81/84
+Running dot for graph 82/84
+Running dot for graph 83/84
+Running dot for graph 84/84
+Patching output file 1/60
+Patching output file 2/60
+Patching output file 3/60
+Patching output file 4/60
+Patching output file 5/60
+Patching output file 6/60
+Patching output file 7/60
+Patching output file 8/60
+Patching output file 9/60
+Patching output file 10/60
+Patching output file 11/60
+Patching output file 12/60
+Patching output file 13/60
+Patching output file 14/60
+Patching output file 15/60
+Patching output file 16/60
+Patching output file 17/60
+Patching output file 18/60
+Patching output file 19/60
+Patching output file 20/60
+Patching output file 21/60
+Patching output file 22/60
+Patching output file 23/60
+Patching output file 24/60
+Patching output file 25/60
+Patching output file 26/60
+Patching output file 27/60
+Patching output file 28/60
+Patching output file 29/60
+Patching output file 30/60
+Patching output file 31/60
+Patching output file 32/60
+Patching output file 33/60
+Patching output file 34/60
+Patching output file 35/60
+Patching output file 36/60
+Patching output file 37/60
+Patching output file 38/60
+Patching output file 39/60
+Patching output file 40/60
+Patching output file 41/60
+Patching output file 42/60
+Patching output file 43/60
+Patching output file 44/60
+Patching output file 45/60
+Patching output file 46/60
+Patching output file 47/60
+Patching output file 48/60
+Patching output file 49/60
+Patching output file 50/60
+Patching output file 51/60
+Patching output file 52/60
+Patching output file 53/60
+Patching output file 54/60
+Patching output file 55/60
+Patching output file 56/60
+Patching output file 57/60
+Patching output file 58/60
+Patching output file 59/60
+Patching output file 60/60
+lookup cache used 819/65536 hits=3618 misses=842
 finished...
