@@ -56,6 +56,8 @@
 		CD561DBA210730E5008B06C7 /* ValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CD561DB9210730E5008B06C7 /* ValueStack.h */; };
 		CD561DBD210730ED008B06C7 /* VersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD561DBB210730ED008B06C7 /* VersionedBranch.cpp */; };
 		CD561DBE210730ED008B06C7 /* VersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CD561DBC210730ED008B06C7 /* VersionedBranch.h */; };
+		CD9B810721AA35E30039B645 /* BaseVersionedCollectionIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9B810521AA35E30039B645 /* BaseVersionedCollectionIterator.cpp */; };
+		CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9B810621AA35E30039B645 /* BaseVersionedCollectionIterator.h */; };
 		CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */; };
 		CDA06FE52155C4CF003FA0C3 /* loguru.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FE42155C4CF003FA0C3 /* loguru.hpp */; };
 		CDA06FF221570FDF003FA0C3 /* VersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */; };
@@ -67,7 +69,6 @@
 		CDA06FFE2159A79C003FA0C3 /* AbstractValueStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FFC2159A79B003FA0C3 /* AbstractValueStack.cpp */; };
 		CDA06FFF2159A79C003FA0C3 /* AbstractValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FFD2159A79C003FA0C3 /* AbstractValueStack.h */; };
 		CDD36CC9215DA1DA004FC222 /* loguru.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FE62155C57F003FA0C3 /* loguru.cpp */; };
-		CDD6CE2921A61EB900DB7C10 /* VersionedCollectionIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDD6CE2721A61EB900DB7C10 /* VersionedCollectionIterator.cpp */; };
 		CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */; };
 		CDD6CE2E21A6388600DB7C10 /* VersionedMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */; };
 		CDD6CE2F21A6388600DB7C10 /* VersionedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */; };
@@ -156,6 +157,8 @@
 		CD561DBB210730ED008B06C7 /* VersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedBranch.cpp; path = src/padamose/VersionedBranch.cpp; sourceTree = "<group>"; };
 		CD561DBC210730ED008B06C7 /* VersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedBranch.h; path = src/padamose/VersionedBranch.h; sourceTree = "<group>"; };
 		CD5C62FA20B4F7B10038EE98 /* padamose-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "padamose-common.h"; path = "src/padamose/padamose-common.h"; sourceTree = "<group>"; };
+		CD9B810521AA35E30039B645 /* BaseVersionedCollectionIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseVersionedCollectionIterator.cpp; path = src/padamose/BaseVersionedCollectionIterator.cpp; sourceTree = "<group>"; };
+		CD9B810621AA35E30039B645 /* BaseVersionedCollectionIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseVersionedCollectionIterator.h; path = src/padamose/BaseVersionedCollectionIterator.h; sourceTree = "<group>"; };
 		CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStoreIterators.cpp; path = src/padamose/gtest/TestVersionedStoreIterators.cpp; sourceTree = "<group>"; };
 		CDA06FE42155C4CF003FA0C3 /* loguru.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = loguru.hpp; path = "3rd-party/loguru/loguru.hpp"; sourceTree = "<group>"; };
 		CDA06FE62155C57F003FA0C3 /* loguru.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = loguru.cpp; path = src/padamose/loguru.cpp; sourceTree = "<group>"; };
@@ -166,7 +169,6 @@
 		CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedBranchClient.cpp; path = src/padamose/AbstractVersionedBranchClient.cpp; sourceTree = "<group>"; };
 		CDA06FFC2159A79B003FA0C3 /* AbstractValueStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractValueStack.cpp; path = src/padamose/AbstractValueStack.cpp; sourceTree = "<group>"; };
 		CDA06FFD2159A79C003FA0C3 /* AbstractValueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractValueStack.h; path = src/padamose/AbstractValueStack.h; sourceTree = "<group>"; };
-		CDD6CE2721A61EB900DB7C10 /* VersionedCollectionIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedCollectionIterator.cpp; path = src/padamose/VersionedCollectionIterator.cpp; sourceTree = "<group>"; };
 		CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedCollectionIterator.h; path = src/padamose/VersionedCollectionIterator.h; sourceTree = "<group>"; };
 		CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedMap.cpp; path = src/padamose/VersionedMap.cpp; sourceTree = "<group>"; };
 		CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedMap.h; path = src/padamose/VersionedMap.h; sourceTree = "<group>"; };
@@ -323,6 +325,8 @@
 			children = (
 				CDF903B321A1482D00C1930B /* AbstractVersionedCollection.cpp */,
 				CDF903B421A1482D00C1930B /* AbstractVersionedCollection.h */,
+				CD9B810521AA35E30039B645 /* BaseVersionedCollectionIterator.cpp */,
+				CD9B810621AA35E30039B645 /* BaseVersionedCollectionIterator.h */,
 				CD07CDDF21A74A2600C9C8DB /* MutableVersionedCollection.cpp */,
 				CD07CDE021A74A2600C9C8DB /* MutableVersionedCollection.h */,
 				CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */,
@@ -331,7 +335,6 @@
 				CDF903AC21A0A70B00C1930B /* VersionedSet.h */,
 				CDF903AF21A1455700C1930B /* VersionedCollectionSnapshot.cpp */,
 				CDF903B021A1455700C1930B /* VersionedCollectionSnapshot.h */,
-				CDD6CE2721A61EB900DB7C10 /* VersionedCollectionIterator.cpp */,
 				CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */,
 			);
 			name = collection;
@@ -387,6 +390,7 @@
 				CDA06FE52155C4CF003FA0C3 /* loguru.hpp in Headers */,
 				CD4E81CA2105940F007DA585 /* VersionedStoreSnapshot.h in Headers */,
 				CDA06FF5215715EE003FA0C3 /* VersionedValue.h in Headers */,
+				CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */,
 				CDF903AE21A0A70B00C1930B /* VersionedSet.h in Headers */,
 				CD240D3221363CE000FF8812 /* VersionedStoreIterator.h in Headers */,
 				CDA06FF321570FDF003FA0C3 /* VersionedStore.h in Headers */,
@@ -549,13 +553,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD07CDE121A74A2600C9C8DB /* MutableVersionedCollection.cpp in Sources */,
-				CDD6CE2921A61EB900DB7C10 /* VersionedCollectionIterator.cpp in Sources */,
 				CDA06FF921587771003FA0C3 /* AbstractVersionedBranchClient.cpp in Sources */,
 				CD561DBD210730ED008B06C7 /* VersionedBranch.cpp in Sources */,
 				CDD6CE2E21A6388600DB7C10 /* VersionedMap.cpp in Sources */,
 				CDF903B521A1482D00C1930B /* AbstractVersionedCollection.cpp in Sources */,
 				CD240D3121363CE000FF8812 /* VersionedStoreIterator.cpp in Sources */,
 				CD4E81C92105940F007DA585 /* VersionedStoreSnapshot.cpp in Sources */,
+				CD9B810721AA35E30039B645 /* BaseVersionedCollectionIterator.cpp in Sources */,
 				CDF903B121A1455700C1930B /* VersionedCollectionSnapshot.cpp in Sources */,
 				CDF903AD21A0A70B00C1930B /* VersionedSet.cpp in Sources */,
 				CDA06FFE2159A79C003FA0C3 /* AbstractValueStack.cpp in Sources */,

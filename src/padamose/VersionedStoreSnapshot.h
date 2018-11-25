@@ -24,12 +24,12 @@ class VersionedStoreSnapshot :
     public AbstractVersionedBranchClient {
 protected:
 
+    friend class BaseVersionedCollectionIterator;
     friend class AbstractVersionedValueIterator;
     friend class MutableVersionedCollection;
     friend class VersionedBranch;
     friend class VersionedMap;
     friend class VersionedSet;
-    friend class VersionedCollectionIterator;
     friend class VersionedStoreIterator;
     
     template < typename > friend class VersionedValue;

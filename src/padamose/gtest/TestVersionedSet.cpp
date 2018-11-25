@@ -121,16 +121,16 @@ TEST ( VersionedSet, test_iterator ) {
     // this iterator test relies on keys being provisioned in a specific order
     // and always added to the *back* of the key list.
     
-    VersionedCollectionIterator setIt ( versionedSet );
+    VersionedCollectionIterator < int > setIt ( versionedSet );
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < int >() == 0 );
+    ASSERT_TRUE ( *setIt == 0 );
     
     setIt.next ();
-    ASSERT_TRUE ( setIt.value < int >() == 1 );
+    ASSERT_TRUE ( *setIt == 1 );
     
     setIt.next ();
-    ASSERT_TRUE ( setIt.value < int >() == 2 );
+    ASSERT_TRUE ( *setIt == 2 );
     
     setIt.next ();
     ASSERT_TRUE ( setIt == false );
@@ -138,17 +138,17 @@ TEST ( VersionedSet, test_iterator ) {
     setIt.prev ();
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < int >() == 2 );
+    ASSERT_TRUE ( *setIt == 2 );
     
     setIt.seekFront ();
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < int >() == 0 );
+    ASSERT_TRUE ( *setIt == 0 );
     
     setIt.seekBack ();
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < int >() == 2 );
+    ASSERT_TRUE ( *setIt == 2 );
 }
 
 } // namespace Test

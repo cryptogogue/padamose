@@ -19,12 +19,12 @@ namespace Padamose {
 class VersionedCollectionState {
 private:
 
+    friend class BaseVersionedCollectionIterator;
     friend class AbstractVersionedCollection;
     friend class MutableVersionedCollection;
     friend class VersionedMap;
     friend class VersionedSet;
     friend class VersionedCollectionSnapshot;
-    friend class VersionedCollectionIterator;
     
     /// Numeric ID of the head of the list of active keys.
     size_t      mHead;
@@ -46,12 +46,12 @@ private:
 class VersionedCollectionNode {
 private:
 
+    friend class BaseVersionedCollectionIterator;
     friend class AbstractVersionedCollection;
     friend class MutableVersionedCollection;
     friend class VersionedMap;
     friend class VersionedSet;
     friend class VersionedCollectionSnapshot;
-    friend class VersionedCollectionIterator;
     
     /// Numeric ID of the node.
     size_t      mID;

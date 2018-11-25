@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/VersionedCollectionIterator.h>
+#include <padamose/BaseVersionedCollectionIterator.h>
 
 namespace Padamose {
 
@@ -10,11 +10,42 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
+/** \brief  Intitialize the iterator with an existing collection.
+
+    \param      collection      The existing collection.
+*/
+BaseVersionedCollectionIterator::BaseVersionedCollectionIterator ( const AbstractVersionedCollection& versionedSet ) :
+    VersionedCollectionSnapshot ( versionedSet, versionedSet.getName ()) {
+    
+    this->seekFront ();
+}
+
+//----------------------------------------------------------------//
+/** \brief  Initialize the base snapshot for iteration. Iteration begins
+            at the front of the list. Internally calls the constructor
+            for VersionedCollectionSnapshot.
+
+    \param      store       The versioned store that contains the collection.
+    \param      name        The name of the collection.
+ 
+    \throws     VersionedCollectionNotFoundException    No valid state exists for the collection.
+*/
+BaseVersionedCollectionIterator::BaseVersionedCollectionIterator ( const VersionedStoreSnapshot& snapshot, string name ) :
+    VersionedCollectionSnapshot ( snapshot, name ) {
+    
+    this->seekFront ();
+}
+
+//----------------------------------------------------------------//
+BaseVersionedCollectionIterator::~BaseVersionedCollectionIterator () {
+}
+
+//----------------------------------------------------------------//
 /** \brief Returns true if iterator is in the valid range for iteration.
 
     \return     True if iteration is in the valid range.
 */
-bool VersionedCollectionIterator::isValid () const {
+bool BaseVersionedCollectionIterator::isValid () const {
 
     return ( this->mIteratorState == VALID );
 }
@@ -24,7 +55,7 @@ bool VersionedCollectionIterator::isValid () const {
 
     \return     The key contained in the current node.
 */
-string VersionedCollectionIterator::key () const {
+string BaseVersionedCollectionIterator::key () const {
 
     return this->mIteratorNode.mKey;
 }
@@ -34,7 +65,7 @@ string VersionedCollectionIterator::key () const {
 
     \return     True if the step was successful.
 */
-bool VersionedCollectionIterator::next () {
+bool BaseVersionedCollectionIterator::next () {
     
     return this->step ( this->mIteratorNode.mNext, NO_NEXT, NO_PREV );
 }
@@ -44,7 +75,7 @@ bool VersionedCollectionIterator::next () {
 
     \return     True if the step was successful.
 */
-bool VersionedCollectionIterator::prev () {
+bool BaseVersionedCollectionIterator::prev () {
     
     return this->step ( this->mIteratorNode.mPrev, NO_PREV, NO_NEXT );
 }
@@ -54,7 +85,7 @@ bool VersionedCollectionIterator::prev () {
 
     \param      nodeID      Numeric ID of the node to seek to.
 */
-void VersionedCollectionIterator::seek ( size_t nodeID ) {
+void BaseVersionedCollectionIterator::seek ( size_t nodeID ) {
 
     if ( this->mState.mSize == 0 ) {
         this->mIteratorState = EMPTY;
@@ -68,7 +99,7 @@ void VersionedCollectionIterator::seek ( size_t nodeID ) {
 //----------------------------------------------------------------//
 /** \brief  Reset iteration to the back of the list.
 */
-void VersionedCollectionIterator::seekBack () {
+void BaseVersionedCollectionIterator::seekBack () {
     
     this->seek ( this->mState.mTail );
 }
@@ -76,7 +107,7 @@ void VersionedCollectionIterator::seekBack () {
 //----------------------------------------------------------------//
 /** \brief  Reset iteration to the front of the list.
 */
-void VersionedCollectionIterator::seekFront () {
+void BaseVersionedCollectionIterator::seekFront () {
 
     this->seek ( this->mState.mHead );
 }
@@ -91,7 +122,7 @@ void VersionedCollectionIterator::seekFront () {
  
     \return                         The step was completed and not blocked.
 */
-bool VersionedCollectionIterator::step ( size_t nextNodeID, int blockingState, int unblockingState ) {
+bool BaseVersionedCollectionIterator::step ( size_t nextNodeID, int blockingState, int unblockingState ) {
 
     if ( this->mIteratorState == EMPTY ) return false;
 
@@ -109,37 +140,6 @@ bool VersionedCollectionIterator::step ( size_t nextNodeID, int blockingState, i
         }
     }
     return ( this->mIteratorState != blockingState );
-}
-
-//----------------------------------------------------------------//
-/** \brief  Intitialize the iterator with an existing collection.
-
-    \param      collection      The existing collection.
-*/
-VersionedCollectionIterator::VersionedCollectionIterator ( const AbstractVersionedCollection& versionedSet ) :
-    VersionedCollectionSnapshot ( versionedSet, versionedSet.getName ()) {
-    
-    this->seekFront ();
-}
-
-//----------------------------------------------------------------//
-/** \brief  Initialize the base snapshot for iteration. Iteration begins
-            at the front of the list. Internally calls the constructor
-            for VersionedCollectionSnapshot.
-
-    \param      store       The versioned store that contains the collection.
-    \param      name        The name of the collection.
- 
-    \throws     VersionedCollectionNotFoundException    No valid state exists for the collection.
-*/
-VersionedCollectionIterator::VersionedCollectionIterator ( const VersionedStoreSnapshot& snapshot, string name ) :
-    VersionedCollectionSnapshot ( snapshot, name ) {
-    
-    this->seekFront ();
-}
-
-//----------------------------------------------------------------//
-VersionedCollectionIterator::~VersionedCollectionIterator () {
 }
 
 } // namespace Padamose

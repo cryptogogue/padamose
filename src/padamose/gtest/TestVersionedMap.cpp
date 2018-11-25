@@ -108,18 +108,18 @@ TEST ( VersionedMap, test_iterator ) {
     // this iterator test relies on keys being provisioned in a specific order
     // and always added to the *back* of the key list.
     
-    VersionedCollectionIterator setIt ( versionedMap );
+    VersionedCollectionIterator < int > setIt ( versionedMap );
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < int >() == 0 );
+    ASSERT_TRUE ( *setIt == 0 );
     ASSERT_TRUE ( setIt.key () == KEY0 );
     
     setIt.next ();
-    ASSERT_TRUE ( setIt.value < int >() == 1 );
+    ASSERT_TRUE ( *setIt == 1 );
     ASSERT_TRUE ( setIt.key () == KEY1 );
     
     setIt.next ();
-    ASSERT_TRUE ( setIt.value < int >() == 2 );
+    ASSERT_TRUE ( *setIt == 2 );
     ASSERT_TRUE ( setIt.key () == KEY2 );
     
     setIt.next ();
@@ -128,19 +128,19 @@ TEST ( VersionedMap, test_iterator ) {
     setIt.prev ();
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < int >() == 2 );
+    ASSERT_TRUE ( *setIt == 2 );
     ASSERT_TRUE ( setIt.key () == KEY2 );
     
     setIt.seekFront ();
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < int >() == 0 );
+    ASSERT_TRUE ( *setIt == 0 );
     ASSERT_TRUE ( setIt.key () == KEY0 );
     
     setIt.seekBack ();
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < int >() == 2 );
+    ASSERT_TRUE ( *setIt == 2 );
     ASSERT_TRUE ( setIt.key () == KEY2 );
 }
 
@@ -170,16 +170,16 @@ TEST ( VersionedMap, test_key_collision_handling ) {
     
     ASSERT_TRUE ( versionedMap.getValue < string >( KEY1 ) == STR4 );
     
-    VersionedCollectionIterator setIt ( versionedMap );
+    VersionedCollectionIterator < string >setIt ( versionedMap );
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < string >() == STR0 );
+    ASSERT_TRUE ( *setIt == STR0 );
     
     setIt.next ();
-    ASSERT_TRUE ( setIt.value < string >() == STR2 );
+    ASSERT_TRUE ( *setIt == STR2 );
     
     setIt.next ();
-    ASSERT_TRUE ( setIt.value < string >() == STR4 );
+    ASSERT_TRUE ( *setIt == STR4 );
     
     setIt.next ();
     ASSERT_TRUE ( setIt == false );
@@ -224,16 +224,16 @@ TEST ( VersionedMap, test_key_collision_handling_with_common_table ) {
     
     ASSERT_TRUE ( versionedMap.getValue < string >( KEY1 ) == STR4 );
     
-    VersionedCollectionIterator setIt ( versionedMap );
+    VersionedCollectionIterator < string >setIt ( versionedMap );
     
     ASSERT_TRUE ( setIt == true );
-    ASSERT_TRUE ( setIt.value < string >() == STR0 );
+    ASSERT_TRUE ( *setIt == STR0 );
     
     setIt.next ();
-    ASSERT_TRUE ( setIt.value < string >() == STR2 );
+    ASSERT_TRUE ( *setIt == STR2 );
     
     setIt.next ();
-    ASSERT_TRUE ( setIt.value < string >() == STR4 );
+    ASSERT_TRUE ( *setIt == STR4 );
     
     setIt.next ();
     ASSERT_TRUE ( setIt == false );
