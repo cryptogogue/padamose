@@ -185,5 +185,59 @@ TEST ( VersionedMap, test_key_collision_handling ) {
     ASSERT_TRUE ( setIt == false );
 }
 
+//----------------------------------------------------------------//
+TEST ( VersionedMap, test_key_collision_handling_with_common_table ) {
+
+    static const string COLLISION_PREFIX    = "__collision.";
+    static const string DECOLLIDER_PREFIX   = "__decollider.";
+
+    VersionedStore store;
+    
+    {
+        VersionedMapCollisionTester versionedMap ( store, "test0" );
+        versionedMap.setCollisionPrefixes ( COLLISION_PREFIX, DECOLLIDER_PREFIX );
+
+        versionedMap.setValue < string >( KEY0, STR0 );
+        versionedMap.setValue < string >( KEY1, STR1 );
+        versionedMap.setValue < string >( KEY2, STR2 );
+    }
+
+    VersionedMapCollisionTester versionedMap ( store, "test1" );
+    versionedMap.setCollisionPrefixes ( COLLISION_PREFIX, DECOLLIDER_PREFIX );
+
+    versionedMap.setValue < string >( KEY0, STR0 );
+    versionedMap.setValue < string >( KEY1, STR1 );
+    versionedMap.setValue < string >( KEY2, STR2 );
+
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY0 ) == STR0 );
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY1 ) == STR1 );
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY2 ) == STR2 );
+
+    versionedMap.setValue < string >( KEY1, STR3 );
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY1 ) == STR3 );
+    
+    versionedMap.deleteKey ( KEY1 );
+    
+    ASSERT_TRUE ( versionedMap.getSize () == 2 );
+    
+    versionedMap.setValue < string >( KEY1, STR4 );
+    
+    ASSERT_TRUE ( versionedMap.getValue < string >( KEY1 ) == STR4 );
+    
+    VersionedCollectionIterator setIt ( versionedMap );
+    
+    ASSERT_TRUE ( setIt == true );
+    ASSERT_TRUE ( setIt.value < string >() == STR0 );
+    
+    setIt.next ();
+    ASSERT_TRUE ( setIt.value < string >() == STR2 );
+    
+    setIt.next ();
+    ASSERT_TRUE ( setIt.value < string >() == STR4 );
+    
+    setIt.next ();
+    ASSERT_TRUE ( setIt == false );
+}
+
 } // namespace Test
 } // namespace Padamose

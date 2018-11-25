@@ -122,6 +122,19 @@ size_t VersionedMap::getHashPortion ( string key ) const {
 }
 
 //----------------------------------------------------------------//
+/** \brief  Set the collision table prefixes. Use to share all collisions
+            in a common set of tables.
+
+    \param      collisionPrefix     The collision table prefix
+    \param      decolliderPrefix    The decollider table prefix.
+*/
+void VersionedMap::setCollisionPrefixes ( string collisionPrefix, string decolliderPrefix ) {
+
+    this->mCollisionPrefix      = collisionPrefix;
+    this->mDecolliderPrefix     = decolliderPrefix;
+}
+
+//----------------------------------------------------------------//
 /** \brief  Construct the collection in (or from) the given store.
 
     \param      store       The versioned store that contains (or will contain) the collection.

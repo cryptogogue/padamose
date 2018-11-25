@@ -83,6 +83,7 @@ public:
     //----------------------------------------------------------------//
     void            deleteKey                   ( string key );
     bool            hasKey                      ( string key ) const;
+    void            setCollisionPrefixes        ( string collisionPrefix, string decolliderPrefix );
                     VersionedMap                ( VersionedStore& store, string name );
                     ~VersionedMap               ();
     
