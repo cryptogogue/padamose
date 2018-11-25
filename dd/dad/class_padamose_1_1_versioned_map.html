@@ -140,6 +140,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a656a4890d17c4a7d4a24cf4d613b0394"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a656a4890d17c4a7d4a24cf4d613b0394">operator const VersionedStoreSnapshot &amp;</a> () const</td></tr>
 <tr class="memdesc:a656a4890d17c4a7d4a24cf4d613b0394"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast operator to return the <a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html" title="Common base implementation for versioned storeiterators. Contains only read-only methods and getters...">VersionedStoreSnapshot</a> holding the collection.  <a href="#a656a4890d17c4a7d4a24cf4d613b0394">More...</a><br /></td></tr>
 <tr class="separator:a656a4890d17c4a7d4a24cf4d613b0394"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7179ab7f1e33e1dcf1754f7cda00d19e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a7179ab7f1e33e1dcf1754f7cda00d19e">setCollisionPrefixes</a> (string collisionPrefix, string decolliderPrefix)</td></tr>
+<tr class="memdesc:a7179ab7f1e33e1dcf1754f7cda00d19e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the collision table prefixes. Use to share all collisions in a common set of tables.  <a href="#a7179ab7f1e33e1dcf1754f7cda00d19e">More...</a><br /></td></tr>
+<tr class="separator:a7179ab7f1e33e1dcf1754f7cda00d19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cb80d97b4554d803a99797a5539f62e"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
 <tr class="memitem:a1cb80d97b4554d803a99797a5539f62e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html#a1cb80d97b4554d803a99797a5539f62e">setValue</a> (string key, const TYPE &amp;value)</td></tr>
 <tr class="memdesc:a1cb80d97b4554d803a99797a5539f62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets or overwrites the value for the corresponding key.  <a href="#a1cb80d97b4554d803a99797a5539f62e">More...</a><br /></td></tr>
@@ -936,6 +939,43 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
+<a id="a7179ab7f1e33e1dcf1754f7cda00d19e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7179ab7f1e33e1dcf1754f7cda00d19e">&#9670;&nbsp;</a></span>setCollisionPrefixes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Padamose::VersionedMap::setCollisionPrefixes </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collisionPrefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>decolliderPrefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the collision table prefixes. Use to share all collisions in a common set of tables. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">collisionPrefix</td><td>The collision table prefix </td></tr>
+    <tr><td class="paramname">decolliderPrefix</td><td>The decollider table prefix. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a2c45acd9e8ffbd77aac2c2c693a408b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2c45acd9e8ffbd77aac2c2c693a408b9">&#9670;&nbsp;</a></span>setName()</h2>
 
@@ -1425,7 +1465,7 @@ template&lt;typename TYPE &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../dd/dad/class_padamose_1_1_versioned_map.html">VersionedMap</a></li>
-    <li class="footer">Generated on Fri Nov 23 2018 23:37:08 for Padamose by
+    <li class="footer">Generated on Sun Nov 25 2018 01:21:47 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

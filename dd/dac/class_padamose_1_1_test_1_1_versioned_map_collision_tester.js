@@ -16,6 +16,7 @@ var class_padamose_1_1_test_1_1_versioned_map_collision_tester =
     [ "prependNode", "dd/dac/class_padamose_1_1_test_1_1_versioned_map_collision_tester.html#a6ea0a6c266cd29f5b2b81ae03b2080ea", null ],
     [ "pushNode", "dd/dac/class_padamose_1_1_test_1_1_versioned_map_collision_tester.html#ac6406d5a8ed217a188d581b0d9753ce4", null ],
     [ "removeNode", "dd/dac/class_padamose_1_1_test_1_1_versioned_map_collision_tester.html#a0f2a7b9b74c0b119c230ca5f7997cc34", null ],
+    [ "setCollisionPrefixes", "dd/dac/class_padamose_1_1_test_1_1_versioned_map_collision_tester.html#a7179ab7f1e33e1dcf1754f7cda00d19e", null ],
     [ "setName", "dd/dac/class_padamose_1_1_test_1_1_versioned_map_collision_tester.html#a2c45acd9e8ffbd77aac2c2c693a408b9", null ],
     [ "setValue", "dd/dac/class_padamose_1_1_test_1_1_versioned_map_collision_tester.html#a1cb80d97b4554d803a99797a5539f62e", null ],
     [ "VersionedMap_hash", "dd/dac/class_padamose_1_1_test_1_1_versioned_map_collision_tester.html#afe899f60c517add5512b610582d782b3", null ],

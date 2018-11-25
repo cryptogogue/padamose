@@ -8,6 +8,7 @@ var searchData=
   ['seekprev',['seekPrev',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#af03a14f2095f3bbc07d6a6cb84410124',1,'Padamose::VersionedValueIterator']]],
   ['seekupper',['seekUpper',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#afe627def54c16406f8ca51a8f9395693',1,'Padamose::VersionedValueIterator']]],
   ['setbranch',['setBranch',['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#a624e5cb9ba0bb6e4b0b1fcca8907a14f',1,'Padamose::AbstractVersionedBranchClient::setBranch(shared_ptr&lt; VersionedBranch &gt; branch)'],['../d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html#af10c293db1a78375feeb4029ec8d35fb',1,'Padamose::AbstractVersionedBranchClient::setBranch(shared_ptr&lt; VersionedBranch &gt; branch, size_t version)']]],
+  ['setcollisionprefixes',['setCollisionPrefixes',['../dd/dad/class_padamose_1_1_versioned_map.html#a7179ab7f1e33e1dcf1754f7cda00d19e',1,'Padamose::VersionedMap']]],
   ['setdebugname',['setDebugName',['../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a6342403e9e6846ce53a69730b8f34086',1,'Padamose::VersionedStoreSnapshot']]],
   ['setextents',['setExtents',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#ad72a35b9b7faad3524c3c8b77592eae7',1,'Padamose::VersionedValueIterator']]],
   ['setname',['setName',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a2c45acd9e8ffbd77aac2c2c693a408b9',1,'Padamose::AbstractVersionedCollection']]],

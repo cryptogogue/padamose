@@ -20,6 +20,7 @@ var class_padamose_1_1_versioned_map =
     [ "provisionKey", "dd/dad/class_padamose_1_1_versioned_map.html#a3e7120211c55b63d936082bdb8202c40", null ],
     [ "pushNode", "dd/dad/class_padamose_1_1_versioned_map.html#ac6406d5a8ed217a188d581b0d9753ce4", null ],
     [ "removeNode", "dd/dad/class_padamose_1_1_versioned_map.html#a0f2a7b9b74c0b119c230ca5f7997cc34", null ],
+    [ "setCollisionPrefixes", "dd/dad/class_padamose_1_1_versioned_map.html#a7179ab7f1e33e1dcf1754f7cda00d19e", null ],
     [ "setName", "dd/dad/class_padamose_1_1_versioned_map.html#a2c45acd9e8ffbd77aac2c2c693a408b9", null ],
     [ "setValue", "dd/dad/class_padamose_1_1_versioned_map.html#a1cb80d97b4554d803a99797a5539f62e", null ],
     [ "VersionedMap_hash", "dd/dad/class_padamose_1_1_versioned_map.html#a028a496394c3dd605276fa8c02ed69a8", null ],
