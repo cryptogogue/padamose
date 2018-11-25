@@ -19,6 +19,7 @@ var searchData=
   ['mkey',['mKey',['../d0/d56/class_padamose_1_1_versioned_collection_node.html#ab43080d51769cbf1823c8db2b12e1b93',1,'Padamose::VersionedCollectionNode::mKey()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a555e444d51631ba43d45c83a9894aae9',1,'Padamose::VersionedValueIterator::mKey()']]],
   ['mlastversion',['mLastVersion',['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a41ad7d3996bc43d507057ad925f70762',1,'Padamose::VersionedValueIterator']]],
   ['mlayers',['mLayers',['../d4/da9/class_padamose_1_1_versioned_branch.html#add9072b29c5b4f6f428c2f08999f45e6',1,'Padamose::VersionedBranch']]],
+  ['mlookupprefix',['mLookupPrefix',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a0945df19b64c3bd9bcf762838e72cf72',1,'Padamose::AbstractVersionedCollection']]],
   ['mname',['mName',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#a74ff7d0e064e6778354307c2d83be2ba',1,'Padamose::AbstractVersionedCollection']]],
   ['mnext',['mNext',['../d0/d56/class_padamose_1_1_versioned_collection_node.html#ab51af0f962419bbd9894c8c2275fa59b',1,'Padamose::VersionedCollectionNode']]],
   ['mnodekey',['mNodeKey',['../d4/d82/class_padamose_1_1_base_versioned_collection_iterator.html#a25bf9193c6acbbcf80bb1f86512bbd2e',1,'Padamose::BaseVersionedCollectionIterator']]],

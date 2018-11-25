@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['next',['next',['../d4/d82/class_padamose_1_1_base_versioned_collection_iterator.html#ac0d38bc2c9f3ad8b9dcdc132e2c92e4f',1,'Padamose::BaseVersionedCollectionIterator::next()'],['../d9/d05/class_padamose_1_1_versioned_store_iterator.html#a8e15f5955123bd2090fca9b82faa8f6c',1,'Padamose::VersionedStoreIterator::next()'],['../d8/ddf/class_padamose_1_1_versioned_value_iterator.html#af97b7001e886bb5cc903d1106e589600',1,'Padamose::VersionedValueIterator::next()']]]
+  ['main',['main',['../d9/d15/main-gtest_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main-gtest.cpp']]],
+  ['makeemptycopy',['makeEmptyCopy',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#ab4d33fd22348fee6645036b0489f7648',1,'Padamose::AbstractValueStack']]],
+  ['mutableversionedcollection',['MutableVersionedCollection',['../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a9d4cac3832ca980e5c881f2659bc935f',1,'Padamose::MutableVersionedCollection']]]
 ];
