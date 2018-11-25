@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../d9/d15/main-gtest_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main-gtest.cpp']]],
-  ['makeemptycopy',['makeEmptyCopy',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#ab4d33fd22348fee6645036b0489f7648',1,'Padamose::AbstractValueStack']]],
-  ['mutableversionedcollection',['MutableVersionedCollection',['../de/dfd/class_padamose_1_1_mutable_versioned_collection.html#a9d4cac3832ca980e5c881f2659bc935f',1,'Padamose::MutableVersionedCollection']]]
+  ['key',['key',['../d4/d82/class_padamose_1_1_base_versioned_collection_iterator.html#a0b9f6b04c4f9a73309ac8a39559a0553',1,'Padamose::BaseVersionedCollectionIterator']]],
+  ['keynotfoundexception',['KeyNotFoundException',['../d5/d87/class_padamose_1_1_key_not_found_exception.html#aa25ad46b0a03d60f20148d6aab4ff050',1,'Padamose::KeyNotFoundException']]]
 ];

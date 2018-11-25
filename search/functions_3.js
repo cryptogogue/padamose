@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['encodenodeid',['encodeNodeID',['../dc/dc4/class_padamose_1_1_abstract_versioned_collection.html#af5ea9f9fa5a6f2c94d7e81547a9d72fd',1,'Padamose::AbstractVersionedCollection']]],
-  ['erase',['erase',['../d2/d67/class_padamose_1_1_abstract_value_stack.html#a9ed9ab18f3d3b233ed814adbf7ce9c6b',1,'Padamose::AbstractValueStack']]],
-  ['eraseclient',['eraseClient',['../d4/da9/class_padamose_1_1_versioned_branch.html#a5961816289c0830f71645ceeaa2e9d4d',1,'Padamose::VersionedBranch']]]
+  ['deletekey',['deleteKey',['../dd/dad/class_padamose_1_1_versioned_map.html#a9b544545034ece2ef865fe25745d4627',1,'Padamose::VersionedMap::deleteKey()'],['../de/daa/class_padamose_1_1_versioned_set.html#abda7e9f3cfd6bfe48fde51ab20edeb43',1,'Padamose::VersionedSet::deleteKey()']]]
 ];

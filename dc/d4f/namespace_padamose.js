@@ -4,6 +4,7 @@ var namespace_padamose =
     [ "AbstractValueStack", "d2/d67/class_padamose_1_1_abstract_value_stack.html", "d2/d67/class_padamose_1_1_abstract_value_stack" ],
     [ "AbstractVersionedBranchClient", "d6/d41/class_padamose_1_1_abstract_versioned_branch_client.html", "d6/d41/class_padamose_1_1_abstract_versioned_branch_client" ],
     [ "AbstractVersionedCollection", "dc/dc4/class_padamose_1_1_abstract_versioned_collection.html", "dc/dc4/class_padamose_1_1_abstract_versioned_collection" ],
+    [ "BaseVersionedCollectionIterator", "d4/d82/class_padamose_1_1_base_versioned_collection_iterator.html", "d4/d82/class_padamose_1_1_base_versioned_collection_iterator" ],
     [ "InvalidMapNameException", "d3/d9c/class_padamose_1_1_invalid_map_name_exception.html", "d3/d9c/class_padamose_1_1_invalid_map_name_exception" ],
     [ "KeyNotFoundException", "d5/d87/class_padamose_1_1_key_not_found_exception.html", "d5/d87/class_padamose_1_1_key_not_found_exception" ],
     [ "MutableVersionedCollection", "de/dfd/class_padamose_1_1_mutable_versioned_collection.html", "de/dfd/class_padamose_1_1_mutable_versioned_collection" ],

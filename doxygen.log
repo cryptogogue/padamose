@@ -9,6 +9,16 @@
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.cpp:13: warning: argument 'collection' of command @param is not found in the argument list of Padamose::BaseVersionedCollectionIterator::BaseVersionedCollectionIterator(const AbstractVersionedCollection &versionedSet)
+/Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.h:73: warning: The following parameters of Padamose::BaseVersionedCollectionIterator::BaseVersionedCollectionIterator(const AbstractVersionedCollection &versionedSet) are not documented:
+  parameter 'versionedSet'
+/Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.cpp:24: warning: argument 'store' of command @param is not found in the argument list of Padamose::BaseVersionedCollectionIterator::BaseVersionedCollectionIterator(const VersionedStoreSnapshot &snapshot, string name)
+/Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.h:74: warning: The following parameters of Padamose::BaseVersionedCollectionIterator::BaseVersionedCollectionIterator(const VersionedStoreSnapshot &snapshot, string name) are not documented:
+  parameter 'snapshot'
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h:59: warning: argument 'from' of command @param is not found in the argument list of Padamose::ValueStack< TYPE >::AbstractValueStack_join(AbstractValueStack &to) const
@@ -21,44 +31,8 @@
 /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBranch.cpp:87: warning: argument 'parent' of command @param is not found in the argument list of Padamose::VersionedBranch::fork(size_t baseVersion)
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.cpp:115: warning: argument 'collection' of command @param is not found in the argument list of Padamose::VersionedCollectionIterator::VersionedCollectionIterator(const AbstractVersionedCollection &versionedSet)
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.h:79: warning: The following parameters of Padamose::VersionedCollectionIterator::VersionedCollectionIterator(const AbstractVersionedCollection &versionedSet) are not documented:
-  parameter 'versionedSet'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.cpp:126: warning: argument 'store' of command @param is not found in the argument list of Padamose::VersionedCollectionIterator::VersionedCollectionIterator(const VersionedStoreSnapshot &snapshot, string name)
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.h:80: warning: The following parameters of Padamose::VersionedCollectionIterator::VersionedCollectionIterator(const VersionedStoreSnapshot &snapshot, string name) are not documented:
-  parameter 'snapshot'
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionSnapshot.cpp:25: warning: argument 'store' of command @param is not found in the argument list of Padamose::VersionedCollectionSnapshot::VersionedCollectionSnapshot(const VersionedStoreSnapshot &snapshot, string name)
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionSnapshot.h:31: warning: The following parameters of Padamose::VersionedCollectionSnapshot::VersionedCollectionSnapshot(const VersionedStoreSnapshot &snapshot, string name) are not documented:
-  parameter 'snapshot'
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.h:52: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.h:55: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.cpp:157: warning: argument 'size_t' of command @param is not found in the argument list of Padamose::VersionedMap::VersionedMap_hash(string key) const
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.h:52: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.h:55: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedSet.h:45: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedSet.h:45: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
-  parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
-  parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
-  parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
-  parameter 'version'
 Searching for include files...
 Searching for example files...
 Searching for images...
@@ -84,6 +58,10 @@ Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVers
 Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.cpp...
 Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h...
 Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h...
+Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.cpp...
+Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.cpp...
+Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.h...
+Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.h...
 Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/Exceptions.h...
 Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/Exceptions.h...
 Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/gtest-helpers.h...
@@ -112,8 +90,6 @@ Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBra
 Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBranch.cpp...
 Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBranch.h...
 Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBranch.h...
-Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.cpp...
-Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.cpp...
 Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.h...
 Parsing file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.h...
 Preprocessing /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionSnapshot.cpp...
@@ -199,6 +175,7 @@ Generating file sources...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractValueStack.h...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedBranchClient.h...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h...
+Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.h...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/Exceptions.h...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/gtest-helpers.h...
 Generating code for file /Users/travis/build/cryptogogue/padamose/src/padamose/MutableVersionedCollection.h...
@@ -221,6 +198,8 @@ Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/A
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedBranchClient.h...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.cpp...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h...
+Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.cpp...
+Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/BaseVersionedCollectionIterator.h...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/Exceptions.h...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/gtest-helpers.h...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/gtest/main-gtest.cpp...
@@ -235,7 +214,6 @@ Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/p
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/ValueStack.h...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBranch.cpp...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedBranch.h...
-Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.cpp...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionIterator.h...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionSnapshot.cpp...
 Generating docs for file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionSnapshot.h...
@@ -260,6 +238,7 @@ Generating docs for namespace Padamose
 Generating docs for compound Padamose::AbstractValueStack...
 Generating docs for compound Padamose::AbstractVersionedBranchClient...
 Generating docs for compound Padamose::AbstractVersionedCollection...
+Generating docs for compound Padamose::BaseVersionedCollectionIterator...
 Generating docs for compound Padamose::InvalidMapNameException...
 Generating docs for compound Padamose::KeyNotFoundException...
 Generating docs for compound Padamose::MutableVersionedCollection...
@@ -270,7 +249,44 @@ Generating docs for compound Padamose::VersionedBranch...
 Generating docs for compound Padamose::VersionedCollectionIterator...
 Generating docs for compound Padamose::VersionedCollectionNode...
 Generating docs for compound Padamose::VersionedCollectionNotFoundException...
-Generating docs for compound Padamose::VersionedCollectionSnapshot...
+Generating docs for compound Padamose::VersionedC/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionSnapshot.cpp:25: warning: argument 'store' of command @param is not found in the argument list of Padamose::VersionedCollectionSnapshot::VersionedCollectionSnapshot(const VersionedStoreSnapshot &snapshot, string name)
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionSnapshot.h:31: warning: The following parameters of Padamose::VersionedCollectionSnapshot::VersionedCollectionSnapshot(const VersionedStoreSnapshot &snapshot, string name) are not documented:
+  parameter 'snapshot'
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.h:52: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.h:55: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.cpp:157: warning: argument 'size_t' of command @param is not found in the argument list of Padamose::VersionedMap::VersionedMap_hash(string key) const
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.h:52: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.h:55: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedSet.h:45: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedSet.h:45: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+  parameter 'version'
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+  parameter 'version'
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+  parameter 'version'
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+  parameter 'version'
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+  parameter 'version'
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/gtest/TestVersionedMap.cpp:34: warning: argument 'size_t' of command @param is not found in the argument list of Padamose::Test::VersionedMapCollisionTester::VersionedMap_hash(string key) const inherited from member VersionedMap_hash at line 157 in file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.cpp
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
+/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
+ollectionSnapshot...
 Generating docs for compound Padamose::VersionedCollectionState...
 Generating docs for compound Padamose::VersionedMap...
 Generating docs for compound Padamose::VersionedSet...
@@ -279,14 +295,7 @@ Generating docs for compound Padamose::VersionedStore...
 Generating docs for compound Padamose::VersionedStoreIterator...
 Generating docs for compound Padamose::VersionedStoreSnapshot...
 Generating docs for compound Padamose::VersionedValue...
-Generating docs for c/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:161: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
-  parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/gtest/TestVersionedMap.cpp:34: warning: argument 'size_t' of command @param is not found in the argument list of Padamose::Test::VersionedMapCollisionTester::VersionedMap_hash(string key) const inherited from member VersionedMap_hash at line 157 in file /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedMap.cpp
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
-ompound Padamose::VersionedValueIterator...
+Generating docs for compound Padamose::VersionedValueIterator...
 Generating docs for compound Padamose::VersionOutOfBoundsException...
 Generating docs for namespace Padamose::Test
 Generating docs for compound Padamose::Test::VersionedMapCollisionTester...
@@ -311,151 +320,156 @@ finalizing index lists...
 writing tag file...
 Running dot...
 Generating dot graphs using 3 parallel threads...
-Running dot for graph 1/85
-Running dot for graph 2/85
-Running dot for graph 3/85
-Running dot for graph 4/85
-Running dot for graph 5/85
-Running dot for graph 6/85
-Running dot for graph 7/85
-Running dot for graph 8/85
-Running dot for graph 9/85
-Running dot for graph 10/85
-Running dot for graph 11/85
-Running dot for graph 12/85
-Running dot for graph 13/85
-Running dot for graph 14/85
-Running dot for graph 15/85
-Running dot for graph 16/85
-Running dot for graph 17/85
-Running dot for graph 18/85
-Running dot for graph 19/85
-Running dot for graph 20/85
-Running dot for graph 21/85
-Running dot for graph 22/85
-Running dot for graph 23/85
-Running dot for graph 24/85
-Running dot for graph 25/85
-Running dot for graph 26/85
-Running dot for graph 27/85
-Running dot for graph 28/85
-Running dot for graph 29/85
-Running dot for graph 30/85
-Running dot for graph 31/85
-Running dot for graph 32/85
-Running dot for graph 33/85
-Running dot for graph 34/85
-Running dot for graph 35/85
-Running dot for graph 36/85
-Running dot for graph 37/85
-Running dot for graph 38/85
-Running dot for graph 39/85
-Running dot for graph 40/85
-Running dot for graph 41/85
-Running dot for graph 42/85
-Running dot for graph 43/85
-Running dot for graph 44/85
-Running dot for graph 45/85
-Running dot for graph 46/85
-Running dot for graph 47/85
-Running dot for graph 48/85
-Running dot for graph 49/85
-Running dot for graph 50/85
-Running dot for graph 51/85
-Running dot for graph 52/85
-Running dot for graph 53/85
-Running dot for graph 54/85
-Running dot for graph 55/85
-Running dot for graph 56/85
-Running dot for graph 57/85
-Running dot for graph 58/85
-Running dot for graph 59/85
-Running dot for graph 60/85
-Running dot for graph 61/85
-Running dot for graph 62/85
-Running dot for graph 63/85
-Running dot for graph 64/85
-Running dot for graph 65/85
-Running dot for graph 66/85
-Running dot for graph 67/85
-Running dot for graph 68/85
-Running dot for graph 69/85
-Running dot for graph 70/85
-Running dot for graph 71/85
-Running dot for graph 72/85
-Running dot for graph 73/85
-Running dot for graph 74/85
-Running dot for graph 75/85
-Running dot for graph 76/85
-Running dot for graph 77/85
-Running dot for graph 78/85
-Running dot for graph 79/85
-Running dot for graph 80/85
-Running dot for graph 81/85
-Running dot for graph 82/85
-Running dot for graph 83/85
-Running dot for graph 84/85
-Running dot for graph 85/85
-Patching output file 1/61
-Patching output file 2/61
-Patching output file 3/61
-Patching output file 4/61
-Patching output file 5/61
-Patching output file 6/61
-Patching output file 7/61
-Patching output file 8/61
-Patching output file 9/61
-Patching output file 10/61
-Patching output file 11/61
-Patching output file 12/61
-Patching output file 13/61
-Patching output file 14/61
-Patching output file 15/61
-Patching output file 16/61
-Patching output file 17/61
-Patching output file 18/61
-Patching output file 19/61
-Patching output file 20/61
-Patching output file 21/61
-Patching output file 22/61
-Patching output file 23/61
-Patching output file 24/61
-Patching output file 25/61
-Patching output file 26/61
-Patching output file 27/61
-Patching output file 28/61
-Patching output file 29/61
-Patching output file 30/61
-Patching output file 31/61
-Patching output file 32/61
-Patching output file 33/61
-Patching output file 34/61
-Patching output file 35/61
-Patching output file 36/61
-Patching output file 37/61
-Patching output file 38/61
-Patching output file 39/61
-Patching output file 40/61
-Patching output file 41/61
-Patching output file 42/61
-Patching output file 43/61
-Patching output file 44/61
-Patching output file 45/61
-Patching output file 46/61
-Patching output file 47/61
-Patching output file 48/61
-Patching output file 49/61
-Patching output file 50/61
-Patching output file 51/61
-Patching output file 52/61
-Patching output file 53/61
-Patching output file 54/61
-Patching output file 55/61
-Patching output file 56/61
-Patching output file 57/61
-Patching output file 58/61
-Patching output file 59/61
-Patching output file 60/61
-Patching output file 61/61
-lookup cache used 884/65536 hits=3951 misses=909
+Running dot for graph 1/88
+Running dot for graph 2/88
+Running dot for graph 3/88
+Running dot for graph 4/88
+Running dot for graph 5/88
+Running dot for graph 6/88
+Running dot for graph 7/88
+Running dot for graph 8/88
+Running dot for graph 9/88
+Running dot for graph 10/88
+Running dot for graph 11/88
+Running dot for graph 12/88
+Running dot for graph 13/88
+Running dot for graph 14/88
+Running dot for graph 15/88
+Running dot for graph 16/88
+Running dot for graph 17/88
+Running dot for graph 18/88
+Running dot for graph 19/88
+Running dot for graph 20/88
+Running dot for graph 21/88
+Running dot for graph 22/88
+Running dot for graph 23/88
+Running dot for graph 24/88
+Running dot for graph 25/88
+Running dot for graph 26/88
+Running dot for graph 27/88
+Running dot for graph 28/88
+Running dot for graph 29/88
+Running dot for graph 30/88
+Running dot for graph 31/88
+Running dot for graph 32/88
+Running dot for graph 33/88
+Running dot for graph 34/88
+Running dot for graph 35/88
+Running dot for graph 36/88
+Running dot for graph 37/88
+Running dot for graph 38/88
+Running dot for graph 39/88
+Running dot for graph 40/88
+Running dot for graph 41/88
+Running dot for graph 42/88
+Running dot for graph 43/88
+Running dot for graph 44/88
+Running dot for graph 45/88
+Running dot for graph 46/88
+Running dot for graph 47/88
+Running dot for graph 48/88
+Running dot for graph 49/88
+Running dot for graph 50/88
+Running dot for graph 51/88
+Running dot for graph 52/88
+Running dot for graph 53/88
+Running dot for graph 54/88
+Running dot for graph 55/88
+Running dot for graph 56/88
+Running dot for graph 57/88
+Running dot for graph 58/88
+Running dot for graph 59/88
+Running dot for graph 60/88
+Running dot for graph 61/88
+Running dot for graph 62/88
+Running dot for graph 63/88
+Running dot for graph 64/88
+Running dot for graph 65/88
+Running dot for graph 66/88
+Running dot for graph 67/88
+Running dot for graph 68/88
+Running dot for graph 69/88
+Running dot for graph 70/88
+Running dot for graph 71/88
+Running dot for graph 72/88
+Running dot for graph 73/88
+Running dot for graph 74/88
+Running dot for graph 75/88
+Running dot for graph 76/88
+Running dot for graph 77/88
+Running dot for graph 78/88
+Running dot for graph 79/88
+Running dot for graph 80/88
+Running dot for graph 81/88
+Running dot for graph 82/88
+Running dot for graph 83/88
+Running dot for graph 84/88
+Running dot for graph 85/88
+Running dot for graph 86/88
+Running dot for graph 87/88
+Running dot for graph 88/88
+Patching output file 1/63
+Patching output file 2/63
+Patching output file 3/63
+Patching output file 4/63
+Patching output file 5/63
+Patching output file 6/63
+Patching output file 7/63
+Patching output file 8/63
+Patching output file 9/63
+Patching output file 10/63
+Patching output file 11/63
+Patching output file 12/63
+Patching output file 13/63
+Patching output file 14/63
+Patching output file 15/63
+Patching output file 16/63
+Patching output file 17/63
+Patching output file 18/63
+Patching output file 19/63
+Patching output file 20/63
+Patching output file 21/63
+Patching output file 22/63
+Patching output file 23/63
+Patching output file 24/63
+Patching output file 25/63
+Patching output file 26/63
+Patching output file 27/63
+Patching output file 28/63
+Patching output file 29/63
+Patching output file 30/63
+Patching output file 31/63
+Patching output file 32/63
+Patching output file 33/63
+Patching output file 34/63
+Patching output file 35/63
+Patching output file 36/63
+Patching output file 37/63
+Patching output file 38/63
+Patching output file 39/63
+Patching output file 40/63
+Patching output file 41/63
+Patching output file 42/63
+Patching output file 43/63
+Patching output file 44/63
+Patching output file 45/63
+Patching output file 46/63
+Patching output file 47/63
+Patching output file 48/63
+Patching output file 49/63
+Patching output file 50/63
+Patching output file 51/63
+Patching output file 52/63
+Patching output file 53/63
+Patching output file 54/63
+Patching output file 55/63
+Patching output file 56/63
+Patching output file 57/63
+Patching output file 58/63
+Patching output file 59/63
+Patching output file 60/63
+Patching output file 61/63
+Patching output file 62/63
+Patching output file 63/63
+lookup cache used 933/65536 hits=4119 misses=959
 finished...

@@ -31,7 +31,9 @@ var hierarchy =
         [ "Padamose::VersionedSet", "de/daa/class_padamose_1_1_versioned_set.html", null ]
       ] ],
       [ "Padamose::VersionedCollectionSnapshot", "d3/da8/class_padamose_1_1_versioned_collection_snapshot.html", [
-        [ "Padamose::VersionedCollectionIterator", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html", null ]
+        [ "Padamose::BaseVersionedCollectionIterator", "d4/d82/class_padamose_1_1_base_versioned_collection_iterator.html", [
+          [ "Padamose::VersionedCollectionIterator< TYPE >", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Padamose::VersionedCollectionNode", "d0/d56/class_padamose_1_1_versioned_collection_node.html", null ],

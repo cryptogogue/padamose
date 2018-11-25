@@ -1,4 +1,5 @@
-<map id="Padamose::VersionedCollectionIterator" name="Padamose::VersionedCollectionIterator">
-<area shape="rect" id="node2" href="$d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Implementation of versioned collection as an immutable snapshot. " alt="" coords="5,92,216,131"/>
-<area shape="rect" id="node3" href="$dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="10,5,211,44"/>
+<map id="Padamose::VersionedCollectionIterator&lt; TYPE &gt;" name="Padamose::VersionedCollectionIterator&lt; TYPE &gt;">
+<area shape="rect" id="node2" href="$d4/d82/class_padamose_1_1_base_versioned_collection_iterator.html" title="Base class for the collection iterator. The iterator is also a snapshot of the collection, so the iteration will persist even if the associated collection is changed. " alt="" coords="5,179,246,217"/>
+<area shape="rect" id="node3" href="$d3/da8/class_padamose_1_1_versioned_collection_snapshot.html" title="Implementation of versioned collection as an immutable snapshot. " alt="" coords="21,92,231,131"/>
+<area shape="rect" id="node4" href="$dc/dc4/class_padamose_1_1_abstract_versioned_collection.html" title="Abstract base class for versioned collections and versioned collection snapshots. Collections are ite..." alt="" coords="25,5,226,44"/>
 </map>

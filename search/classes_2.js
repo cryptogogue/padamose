@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keynotfoundexception',['KeyNotFoundException',['../d5/d87/class_padamose_1_1_key_not_found_exception.html',1,'Padamose']]]
+  ['invalidmapnameexception',['InvalidMapNameException',['../d3/d9c/class_padamose_1_1_invalid_map_name_exception.html',1,'Padamose']]]
 ];

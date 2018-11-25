@@ -15,6 +15,10 @@ var dir_53205d729e2de803411098b876920811 =
       [ "VersionedCollectionNode", "d0/d56/class_padamose_1_1_versioned_collection_node.html", "d0/d56/class_padamose_1_1_versioned_collection_node" ],
       [ "VersionedCollectionState", "d9/dbb/class_padamose_1_1_versioned_collection_state.html", "d9/dbb/class_padamose_1_1_versioned_collection_state" ]
     ] ],
+    [ "BaseVersionedCollectionIterator.cpp", "dc/d2b/_base_versioned_collection_iterator_8cpp.html", null ],
+    [ "BaseVersionedCollectionIterator.h", "da/d92/_base_versioned_collection_iterator_8h.html", [
+      [ "BaseVersionedCollectionIterator", "d4/d82/class_padamose_1_1_base_versioned_collection_iterator.html", "d4/d82/class_padamose_1_1_base_versioned_collection_iterator" ]
+    ] ],
     [ "Exceptions.h", "d7/d2f/_exceptions_8h.html", [
       [ "InvalidMapNameException", "d3/d9c/class_padamose_1_1_invalid_map_name_exception.html", "d3/d9c/class_padamose_1_1_invalid_map_name_exception" ],
       [ "KeyNotFoundException", "d5/d87/class_padamose_1_1_key_not_found_exception.html", "d5/d87/class_padamose_1_1_key_not_found_exception" ],
@@ -37,7 +41,6 @@ var dir_53205d729e2de803411098b876920811 =
     [ "VersionedBranch.h", "dc/d7d/_versioned_branch_8h.html", [
       [ "VersionedBranch", "d4/da9/class_padamose_1_1_versioned_branch.html", "d4/da9/class_padamose_1_1_versioned_branch" ]
     ] ],
-    [ "VersionedCollectionIterator.cpp", "d6/d1c/_versioned_collection_iterator_8cpp.html", null ],
     [ "VersionedCollectionIterator.h", "da/de4/_versioned_collection_iterator_8h.html", [
       [ "VersionedCollectionIterator", "d7/de6/class_padamose_1_1_versioned_collection_iterator.html", "d7/de6/class_padamose_1_1_versioned_collection_iterator" ]
     ] ],

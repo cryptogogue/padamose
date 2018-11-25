@@ -1,7 +1,8 @@
 <map id="/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionSnapshot.h" name="/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedCollectionSnapshot.h">
-<area shape="rect" id="node2" href="$da/de4/_versioned_collection_iterator_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedCollection\lIterator.h" alt="" coords="258,119,488,184"/>
-<area shape="rect" id="node6" href="$d8/dcc/_versioned_collection_snapshot_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedCollection\lSnapshot.cpp" alt="" coords="513,119,743,184"/>
-<area shape="rect" id="node3" href="$df/d9c/_test_versioned_map_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/gtest/TestVersioned\lMap.cpp" alt="" coords="5,232,234,297"/>
-<area shape="rect" id="node4" href="$d0/d47/_test_versioned_set_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/gtest/TestVersioned\lSet.cpp" alt="" coords="259,232,488,297"/>
-<area shape="rect" id="node5" href="$d6/d1c/_versioned_collection_iterator_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedCollection\lIterator.cpp" alt="" coords="511,232,742,297"/>
+<area shape="rect" id="node2" href="$da/d92/_base_versioned_collection_iterator_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/BaseVersionedCollection\lIterator.h" alt="" coords="140,119,401,184"/>
+<area shape="rect" id="node7" href="$d8/dcc/_versioned_collection_snapshot_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedCollection\lSnapshot.cpp" alt="" coords="425,119,655,184"/>
+<area shape="rect" id="node3" href="$dc/d2b/_base_versioned_collection_iterator_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/BaseVersionedCollection\lIterator.cpp" alt="" coords="5,232,266,297"/>
+<area shape="rect" id="node4" href="$da/de4/_versioned_collection_iterator_8h.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/VersionedCollection\lIterator.h" alt="" coords="290,232,520,297"/>
+<area shape="rect" id="node5" href="$df/d9c/_test_versioned_map_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/gtest/TestVersioned\lMap.cpp" alt="" coords="164,345,393,411"/>
+<area shape="rect" id="node6" href="$d0/d47/_test_versioned_set_8cpp.html" title="/Users/travis/build\l/cryptogogue/padamose\l/src/padamose/gtest/TestVersioned\lSet.cpp" alt="" coords="417,345,646,411"/>
 </map>
