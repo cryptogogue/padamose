@@ -9,6 +9,8 @@ namespace Padamose {
 // VersionedStore
 //================================================================//
 
+const size_t AbstractVersionedCollection::INVALID_NODE_INDEX = ( size_t )-1;
+
 //----------------------------------------------------------------//
 AbstractVersionedCollection::AbstractVersionedCollection () {
 }
@@ -78,6 +80,31 @@ string AbstractVersionedCollection::getName () const {
 /** \brief  Sets the name of the collection and generates the cached
             lookup prefixes.
  
+    \param      key     The full key string to reference.
+    \return             TRUE if the key exists and is active. Otherwise FALSE.
+*/
+bool AbstractVersionedCollection::hasKey ( string key ) const {
+
+    return ( this->lookupNodeID ( key ) != INVALID_NODE_INDEX );
+}
+
+//----------------------------------------------------------------//
+/** \brief  Sets the name of the collection and generates the cached
+            lookup prefixes.
+ 
+    \param      key     The full key string to reference.
+    \return             The numeric node ID (if it exists and is active) or INVALID_NODE_INDEX.
+*/
+size_t AbstractVersionedCollection::lookupNodeID ( string key ) const {
+
+    const size_t* nodeID = this->getSnapshot ().getValueOrNil < size_t >( this->mLookupPrefix + key );
+    return nodeID ? *nodeID : INVALID_NODE_INDEX;
+}
+
+//----------------------------------------------------------------//
+/** \brief  Sets the name of the collection and generates the cached
+            lookup prefixes.
+ 
     \param      name        The name of the collection.
 */
 void AbstractVersionedCollection::setName ( string name ) {
@@ -85,8 +112,9 @@ void AbstractVersionedCollection::setName ( string name ) {
     if ( this->mName.find ( ':' ) != string::npos ) throw InvalidMapNameException ();
 
     this->mName = name;
-    this->mNodePrefix = this->mName + SET_NODES_POSTFIX;
-    this->mValuePrefix = this->mName + SET_VALUES_POSTFIX;
+    this->mNodePrefix = this->mName + NODES_POSTFIX;
+    this->mLookupPrefix = this->mName + LOOKUP_POSTFIX;
+    this->mValuePrefix = this->mName + VALUES_POSTFIX;
 }
 
 } // namespace Padamose

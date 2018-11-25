@@ -100,13 +100,10 @@ size_t VersionedMap::affirmKey ( string key ) {
 */
 void VersionedMap::deleteKey ( string key ) {
 
-    // check to see if there is a decollider.
-    string decolliderKey = this->mDecolliderPrefix + key; // decolliders are stored for the full key.
-    const size_t* decolliderRef = this->mStore.getValueOrNil < size_t >( decolliderKey );
+    size_t nodeID = this->lookupNodeID ( key );
+    if ( nodeID == INVALID_NODE_INDEX ) throw KeyNotFoundException ();
 
-    size_t nodeID = decolliderRef ? *decolliderRef : this->getHashPortion ( key );
-
-    this->removeNode ( encodeNodeID ( nodeID ));
+    this->removeNode ( key, encodeNodeID ( nodeID ));
 }
 
 //----------------------------------------------------------------//

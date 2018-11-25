@@ -25,12 +25,28 @@ protected:
     //----------------------------------------------------------------//
     bool            affirmState             ();
     void            appendNode              ( size_t nodeID, string fullKey, string nodeKey );
-    bool            isActiveKey             ( string encodedNodeID );
     void            prependNode             ( size_t nodeID, string fullKey, string nodeKey );
-    size_t          removeNode              ( string encodedNodeID, size_t prevID = INVALID_NODE_INDEX );
+    size_t          removeNode              ( string key, string encodedNodeID, size_t prevID = INVALID_NODE_INDEX );
     
     //----------------------------------------------------------------//
     const VersionedStoreSnapshot&       AbstractVersionedCollection_getSnapshot         () const override;
+    
+    //----------------------------------------------------------------//
+    /** \brief  Set the value associated with a key. Note that inclusion
+                in the list is not enforced: this method will not produce
+                an error or throw an exception if the given key is not
+                active.
+
+        \param      nodeID      The numeric ID of the node associated with the key.
+        \param      key         The key to assign the value to.
+        \param      value       The value to be assigned.
+    */
+    template < typename TYPE >
+    void setValue ( size_t nodeID, string key, const TYPE& value ) {
+    
+        this->mStore.setValue < size_t >( this->mLookupPrefix + key, nodeID );
+        this->mStore.setValue < TYPE >( this->mValuePrefix + key, value );
+    }
     
 public:
 

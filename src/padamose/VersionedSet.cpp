@@ -19,21 +19,36 @@ namespace Padamose {
 */
 void VersionedSet::deleteKey ( string key ) {
 
-    this->mFreeStack.mTop = this->removeNode ( key, this->mFreeStack.mTop );
+    this->mFreeStack.mTop = this->removeNode ( key, key, this->mFreeStack.mTop );
     this->mStore.setValue < VersionedSetFreeStack >( this->mFreeStackKey, this->mFreeStack );
+}
+
+//----------------------------------------------------------------//
+/** \brief  Companion to provisionKey(). Returns the numerid ID of the next
+            node that will be provisioned.
+
+    \return                 The numeric ID of the next node that provisionKey() will provision.
+*/
+size_t VersionedSet::peekNextKey () {
+
+   return ( this->mFreeStack.mTop == INVALID_NODE_INDEX ) ? this->mFreeStack.mTotalNodes : this->mFreeStack.mTop;
 }
 
 //----------------------------------------------------------------//
 /** \brief  Adds a key to the beginning or end of the list. The key may
             be reused, or will be created if no unused keys are available.
 
-    \param      append      If TRUE, key will be appended. If false, key will be prepended.
-    \return                 The provisioned key.
+    \param      nextNodeID      The numeric ID of the node expected to be provisioned. Used for a sanity check.
+    \param      append          If TRUE, key will be appended. If false, key will be prepended.
+    \return                     The provisioned key.
 */
-string VersionedSet::provisionKey ( bool append ) {
+string VersionedSet::provisionKey ( size_t nextNodeID, bool append ) {
     
     // grab the node ID from the free stack, or create a new key
     size_t nodeID = ( this->mFreeStack.mTop == INVALID_NODE_INDEX ) ? this->mFreeStack.mTotalNodes++ : this->mFreeStack.mTop;
+    
+    assert ( nodeID == nextNodeID );
+    
     string key = encodeNodeID ( nodeID );
     string nodeKey = this->mNodePrefix + key;
     

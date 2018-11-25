@@ -24,6 +24,7 @@ class VersionedStoreSnapshot :
     public AbstractVersionedBranchClient {
 protected:
 
+    friend class AbstractVersionedCollection;
     friend class BaseVersionedCollectionIterator;
     friend class AbstractVersionedValueIterator;
     friend class MutableVersionedCollection;

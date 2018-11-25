@@ -73,7 +73,6 @@ private:
     //----------------------------------------------------------------//
     size_t          affirmKey                   ( string key );
     size_t          getHashPortion              ( string key ) const;
-    string          provisionKey                ();
     
     //----------------------------------------------------------------//
     virtual size_t  VersionedMap_hash           ( string key ) const;
@@ -82,7 +81,6 @@ public:
 
     //----------------------------------------------------------------//
     void            deleteKey                   ( string key );
-    bool            hasKey                      ( string key ) const;
     void            setCollisionPrefixes        ( string collisionPrefix, string decolliderPrefix );
                     VersionedMap                ( VersionedStore& store, string name );
                     ~VersionedMap               ();
@@ -95,9 +93,9 @@ public:
     */
     template < typename TYPE >
     void setValue ( string key, const TYPE& value ) {
-    
-        this->affirmKey ( key );
-        this->mStore.setValue < TYPE >( this->mValuePrefix + key, value );
+        
+        size_t nodeID = this->affirmKey ( key );
+        this->MutableVersionedCollection::setValue < TYPE >( nodeID, key, value );
     }
 };
 

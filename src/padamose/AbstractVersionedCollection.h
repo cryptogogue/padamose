@@ -77,17 +77,23 @@ private:
 class AbstractVersionedCollection {
 protected:
 
-    /// Postfix for node look up. Lookup key is: <collection name>SET_NODES_POSTFIX<string encoded node ID>
-    static constexpr const char* SET_NODES_POSTFIX      = ".nodes.";
+    /// Postfix for node look up. Lookup key is: <collection name>NODES_POSTFIX<string encoded node ID>
+    static constexpr const char* NODES_POSTFIX      = ".nodes.";
     
-    /// Postfix for value look up. Lookup key is: <collection name>SET_VALUES_POSTFIX<key string>
-    static constexpr const char* SET_VALUES_POSTFIX     = ".values.";
+    /// Postfix for node look up. Lookup key is: <collection name>LOOKUP_POSTFIX<key string>
+    static constexpr const char* LOOKUP_POSTFIX     = ".lookup.";
+    
+    /// Postfix for value look up. Lookup key is: <collection name>VALUES_POSTFIX<key string>
+    static constexpr const char* VALUES_POSTFIX     = ".values.";
 
     /// Used to designate an invalid node ID. Needed to terminate lists.
-    static const size_t INVALID_NODE_INDEX = ( size_t )-1;
+    static const size_t INVALID_NODE_INDEX;
 
     /// Prefix string of list node keys. Append string encoded node IDs to look up nodes.
     string      mNodePrefix;
+    
+    /// Prefix string of list node lookup keys. Append string encoded node IDs to look up node lookups.
+    string      mLookupPrefix;
     
     /// Prefix string of values. Append key strings to look up values.
     string      mValuePrefix;
@@ -101,6 +107,7 @@ protected:
     //----------------------------------------------------------------//
     static string                       encodeNodeID            ( size_t nodeID );
     const VersionedStoreSnapshot&       getSnapshot             () const;
+    size_t                              lookupNodeID            ( string key ) const;
     void                                pushNode                ( size_t nodeID, string nodeKey );
     void                                setName                 ( string name );
     
@@ -125,6 +132,7 @@ public:
     virtual         ~AbstractVersionedCollection        ();
     string          getName                             () const;
     size_t          getSize                             () const;
+    bool            hasKey                              ( string key ) const;
     
     //----------------------------------------------------------------//
     /** \brief  Return a copy of the value for a key in the collection. Throws a
@@ -142,7 +150,8 @@ public:
     template < typename TYPE >
     TYPE getValue ( string key ) const {
         
-        return this->AbstractVersionedCollection_getSnapshot ().getValue < TYPE >( this->mValuePrefix + key );
+        if ( !this->hasKey ( key )) throw KeyNotFoundException ();
+        return this->getSnapshot ().getValue < TYPE >( this->mValuePrefix + key );;
     }
 };
 

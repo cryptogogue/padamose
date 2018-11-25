@@ -69,20 +69,6 @@ void MutableVersionedCollection::appendNode ( size_t nodeID, string fullKey, str
 }
 
 //----------------------------------------------------------------//
-/** \brief  Checks to see if the key exists and is active in the list.
-
-    \param      encodedNodeID       The string encoded node ID.
-    \return                         TRUE if the key exists and is active. Otherwise FALSE.
-*/
-bool MutableVersionedCollection::isActiveKey ( string encodedNodeID ) {
-
-    string nodeKey = this->mNodePrefix + encodedNodeID;
-    
-    const VersionedCollectionNode* node = this->mStore.getValueOrNil < VersionedCollectionNode >( nodeKey );
-    return ( node && ( node->mID != INVALID_NODE_INDEX ));
-}
-
-//----------------------------------------------------------------//
 /** \brief  Insert a node (and its key) into the collection's list of active nodes.
             Node will be added at the front of the list.
 
@@ -143,12 +129,14 @@ MutableVersionedCollection::~MutableVersionedCollection () {
  
     \throws     KeyNotFoundException    The key could not be found.
 */
-size_t MutableVersionedCollection::removeNode ( string encodedNodeID, size_t prevID ) {
+size_t MutableVersionedCollection::removeNode ( string key, string encodedNodeID, size_t prevID ) {
 
     string nodeKey = this->mNodePrefix + encodedNodeID;
     
     const VersionedCollectionNode* existingNode = this->mStore.getValueOrNil < VersionedCollectionNode >( nodeKey );
     if (( !existingNode ) || ( existingNode->mID == INVALID_NODE_INDEX )) throw KeyNotFoundException ();
+    
+    assert ( existingNode->mKey == key );
     
     size_t nodeID = existingNode->mID;
     
@@ -181,6 +169,8 @@ size_t MutableVersionedCollection::removeNode ( string encodedNodeID, size_t pre
     
     this->mState.mSize--;
     this->mStore.setValue < VersionedCollectionState >( this->mName, this->mState );
+    
+    this->mStore.setValue < size_t >( this->mLookupPrefix + key, AbstractVersionedCollection::INVALID_NODE_INDEX );
     
     return nodeID;
 }

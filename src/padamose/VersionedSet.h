@@ -52,7 +52,8 @@ private:
     VersionedSetFreeStack   mFreeStack;
     
     //----------------------------------------------------------------//
-    string          provisionKey                ( bool append );
+    size_t          peekNextKey                 ();
+    string          provisionKey                ( size_t nextNodeID, bool append );
     
 public:
 
@@ -71,8 +72,9 @@ public:
     template < typename TYPE >
     string pushBack ( const TYPE& value ) {
     
-        string key = this->provisionKey ( true );
-        this->setValueUnsafe < TYPE >( key, value );
+        size_t nodeID = this->peekNextKey ();
+        string key = this->provisionKey ( nodeID, true );
+        this->MutableVersionedCollection::setValue < TYPE >( nodeID, key, value );
         return key;
     }
     
@@ -86,8 +88,9 @@ public:
     template < typename TYPE >
     string pushFront ( const TYPE& value ) {
     
-        string key = this->provisionKey ( false );
-        this->setValueUnsafe < TYPE >( key, value );
+        size_t nodeID = this->peekNextKey ();
+        string key = this->provisionKey ( nodeID, false );
+        this->MutableVersionedCollection::setValue < TYPE >( nodeID, key, value );
         return key;
     }
     
@@ -104,23 +107,9 @@ public:
     template < typename TYPE >
     void setValue ( string key, const TYPE& value ) {
     
-        if ( !this->isActiveKey ( key )) throw KeyNotFoundException ();
-        this->mStore.setValue < TYPE >( this->mValuePrefix + key, value );
-    }
-    
-    //----------------------------------------------------------------//
-    /** \brief  Set the value associated with a key. Note that inclusion
-                in the list is not enforced: this method will not produce
-                an error or throw an exception if the given key is not
-                active.
-
-        \param      key         The key to assign the value to.
-        \param      value       The value to be assigned.
-    */
-    template < typename TYPE >
-    void setValueUnsafe ( string key, const TYPE& value ) {
-    
-        this->mStore.setValue < TYPE >( this->mValuePrefix + key, value );
+        size_t nodeID = this->lookupNodeID ( key );
+        if ( nodeID == INVALID_NODE_INDEX ) throw KeyNotFoundException ();
+        this->MutableVersionedCollection::setValue < TYPE >( nodeID, key, value );
     }
 };
 
