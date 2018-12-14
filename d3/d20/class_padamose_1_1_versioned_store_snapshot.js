@@ -15,6 +15,8 @@ var class_padamose_1_1_versioned_store_snapshot =
     [ "getRaw", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a088b030bf7726e27d710d087221b8408", null ],
     [ "getValue", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#ad8227002b3ff3b5ef8fb529aa2b8aa9c", null ],
     [ "getValue", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#adb5988b80ae7c3c7b9b6973e747f677a", null ],
+    [ "getValueOrFallback", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#aacea6ee3583f721170161ab5c6f23bfc", null ],
+    [ "getValueOrFallback", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a83228e27f8c974c31d3c5f592238bc5c", null ],
     [ "getValueOrNil", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a6509b624c278e5586f653eacf2a0a416", null ],
     [ "getValueOrNil", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a7569e27dac6f2dc08b00804ba17ae782", null ],
     [ "getVersion", "d3/d20/class_padamose_1_1_versioned_store_snapshot.html#ab3fcb6c8e24b115722a150ee68dc8f05", null ],

@@ -133,6 +133,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adb5988b80ae7c3c7b9b6973e747f677a"><td class="memTemplItemLeft" align="right" valign="top">TYPE&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#adb5988b80ae7c3c7b9b6973e747f677a">getValue</a> (string key, size_t version) const</td></tr>
 <tr class="memdesc:adb5988b80ae7c3c7b9b6973e747f677a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the value for a key at a given version. Throws a <a class="el" href="../../d5/d87/class_padamose_1_1_key_not_found_exception.html">KeyNotFoundException</a> exception if the key does not exist.  <a href="#adb5988b80ae7c3c7b9b6973e747f677a">More...</a><br /></td></tr>
 <tr class="separator:adb5988b80ae7c3c7b9b6973e747f677a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacea6ee3583f721170161ab5c6f23bfc"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:aacea6ee3583f721170161ab5c6f23bfc"><td class="memTemplItemLeft" align="right" valign="top">TYPE&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#aacea6ee3583f721170161ab5c6f23bfc">getValueOrFallback</a> (string key, const TYPE &amp;fallback) const</td></tr>
+<tr class="memdesc:aacea6ee3583f721170161ab5c6f23bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the value for a key. If the value doesn't exist, return the fallback.  <a href="#aacea6ee3583f721170161ab5c6f23bfc">More...</a><br /></td></tr>
+<tr class="separator:aacea6ee3583f721170161ab5c6f23bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83228e27f8c974c31d3c5f592238bc5c"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a83228e27f8c974c31d3c5f592238bc5c"><td class="memTemplItemLeft" align="right" valign="top">TYPE&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#a83228e27f8c974c31d3c5f592238bc5c">getValueOrFallback</a> (string key, size_t version, const TYPE &amp;fallback) const</td></tr>
+<tr class="memdesc:a83228e27f8c974c31d3c5f592238bc5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the value for a key at a given version. If the value doesn't exist, return the fallback.  <a href="#a83228e27f8c974c31d3c5f592238bc5c">More...</a><br /></td></tr>
+<tr class="separator:a83228e27f8c974c31d3c5f592238bc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3fcb6c8e24b115722a150ee68dc8f05"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html#ab3fcb6c8e24b115722a150ee68dc8f05">getVersion</a> () const</td></tr>
 <tr class="memdesc:ab3fcb6c8e24b115722a150ee68dc8f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current version.  <a href="#ab3fcb6c8e24b115722a150ee68dc8f05">More...</a><br /></td></tr>
 <tr class="separator:ab3fcb6c8e24b115722a150ee68dc8f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -706,6 +714,110 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aacea6ee3583f721170161ab5c6f23bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacea6ee3583f721170161ab5c6f23bfc">&#9670;&nbsp;</a></span>getValueOrFallback() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TYPE Padamose::VersionedStoreSnapshot::getValueOrFallback </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TYPE &amp;&#160;</td>
+          <td class="paramname"><em>fallback</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a copy of the value for a key. If the value doesn't exist, return the fallback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+    <tr><td class="paramname">fallback</td><td>The fallback. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value or the fallback. </dd></dl>
+
+</div>
+</div>
+<a id="a83228e27f8c974c31d3c5f592238bc5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83228e27f8c974c31d3c5f592238bc5c">&#9670;&nbsp;</a></span>getValueOrFallback() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TYPE Padamose::VersionedStoreSnapshot::getValueOrFallback </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>version</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TYPE &amp;&#160;</td>
+          <td class="paramname"><em>fallback</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a copy of the value for a key at a given version. If the value doesn't exist, return the fallback. </p>
+<p>Returns the value for the most recent version equal to or less than the given version.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key. </td></tr>
+    <tr><td class="paramname">version</td><td>The version. </td></tr>
+    <tr><td class="paramname">fallback</td><td>The fallback. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value or the fallback. </dd></dl>
 
 </div>
 </div>
@@ -1464,7 +1576,7 @@ template&lt;typename &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dc/d4f/namespace_padamose.html">Padamose</a></li><li class="navelem"><a class="el" href="../../d3/d20/class_padamose_1_1_versioned_store_snapshot.html">VersionedStoreSnapshot</a></li>
-    <li class="footer">Generated on Sun Nov 25 2018 23:26:41 for Padamose by
+    <li class="footer">Generated on Fri Dec 14 2018 10:00:39 for Padamose by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

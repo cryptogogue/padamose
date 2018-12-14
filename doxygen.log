@@ -292,15 +292,15 @@ Generating docs for compound Padamose::VersionedC/Users/travis/build/cryptogogue
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/VersionedSet.h:45: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:86: warning: Unsupported xml/html tag <collection> found
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:162: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:196: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:162: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:196: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:162: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:196: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:162: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:196: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
-/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:162: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
+/Users/travis/build/cryptogogue/padamose/src/padamose/VersionedStoreSnapshot.h:196: warning: The following parameters of Padamose::VersionedStoreSnapshot::hasValue(string key, size_t version) const are not documented:
   parameter 'version'
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:83: warning: Unsupported xml/html tag <collection> found
 /Users/travis/build/cryptogogue/padamose/src/padamose/AbstractVersionedCollection.h:80: warning: Unsupported xml/html tag <collection> found
@@ -496,5 +496,5 @@ Patching output file 60/63
 Patching output file 61/63
 Patching output file 62/63
 Patching output file 63/63
-lookup cache used 982/65536 hits=4338 misses=1008
+lookup cache used 987/65536 hits=4485 misses=1013
 finished...

@@ -18,6 +18,8 @@ var class_padamose_1_1_versioned_value_iterator =
     [ "getRaw", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a088b030bf7726e27d710d087221b8408", null ],
     [ "getValue", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html#ad8227002b3ff3b5ef8fb529aa2b8aa9c", null ],
     [ "getValue", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html#adb5988b80ae7c3c7b9b6973e747f677a", null ],
+    [ "getValueOrFallback", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html#aacea6ee3583f721170161ab5c6f23bfc", null ],
+    [ "getValueOrFallback", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a83228e27f8c974c31d3c5f592238bc5c", null ],
     [ "getValueOrNil", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a6509b624c278e5586f653eacf2a0a416", null ],
     [ "getValueOrNil", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a7569e27dac6f2dc08b00804ba17ae782", null ],
     [ "getValueStack", "d8/ddf/class_padamose_1_1_versioned_value_iterator.html#a7a8c92a7ff254c36f69ac4a41718f43f", null ],
