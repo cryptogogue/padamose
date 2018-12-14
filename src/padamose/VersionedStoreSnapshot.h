@@ -119,6 +119,21 @@ public:
     }
 
     //----------------------------------------------------------------//
+    /** \brief  Return a copy of the value for a key. If the value doesn't
+                exist, return the fallback.
+     
+        \param  key                     The key.
+        \param  fallback                The fallback.
+        \return                         The value or the fallback.
+    */
+    template < typename TYPE >
+    TYPE getValueOrFallback ( string key, const TYPE& fallback ) const {
+        const TYPE* value = this->getValueOrNil < TYPE >( key, this->mVersion );
+        if ( !value ) return fallback;
+        return *value;
+    }
+
+    //----------------------------------------------------------------//
     /** \brief  Return a copy of the value for a key at a given version. Throws a
                 KeyNotFoundException exception if the key does not exist.
      
@@ -134,6 +149,25 @@ public:
     TYPE getValue ( string key, size_t version ) const {
         const TYPE* value = this->getValueOrNil < TYPE >( key, version );
         if ( !value ) throw KeyNotFoundException ();
+        return *value;
+    }
+
+    //----------------------------------------------------------------//
+    /** \brief  Return a copy of the value for a key at a given version. If
+                the value doesn't exist, return the fallback.
+     
+                Returns the value for the most recent version equal to or less than
+                the given version.
+     
+        \param  key                     The key.
+        \param  version                 The version.
+        \param  fallback                The fallback.
+        \return                         The value or the fallback.
+    */
+    template < typename TYPE >
+    TYPE getValueOrFallback ( string key, size_t version, const TYPE& fallback ) const {
+        const TYPE* value = this->getValueOrNil < TYPE >( key, version );
+        if ( !value ) return fallback;
         return *value;
     }
 
