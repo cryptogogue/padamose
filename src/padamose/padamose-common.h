@@ -22,10 +22,12 @@
 #include <typeinfo>
 #include <vector>
 
-#include <loguru.hpp>
+#include <lognosis/Logger.h>
 
 using namespace std;
 
 #include <padamose/Exceptions.h>
+
+#define PDM_FILTER_ROOT "padamose"
 
 #endif

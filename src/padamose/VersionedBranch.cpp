@@ -47,7 +47,7 @@ void VersionedBranch::eraseClient ( AbstractVersionedBranchClient& client ) {
 */
 size_t VersionedBranch::findImmutableTop ( const AbstractVersionedBranchClient* ignore ) const {
 
-    LOG_SCOPE_F ( INFO, "VersionedBranch::findImmutableTop ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedBranch::findImmutableTop ()" );
 
     size_t immutableTop = this->getVersionDependency ();
 
@@ -65,7 +65,7 @@ size_t VersionedBranch::findImmutableTop ( const AbstractVersionedBranchClient* 
         }
     }
     
-    LOG_F ( INFO, "immutableTop: %d", ( int )immutableTop );
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "immutableTop: %d", ( int )immutableTop );
     
     return immutableTop;
 }
@@ -214,7 +214,7 @@ void VersionedBranch::insertClient ( AbstractVersionedBranchClient& client ) {
 */
 void VersionedBranch::optimize () {
 
-    LOG_SCOPE_F ( INFO, "VersionedBranch::optimize ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedBranch::optimize ()" );
     
     // use one loop to find the immutable top and to identify a child branch that
     // may be joined to the parent branch.
@@ -224,12 +224,12 @@ void VersionedBranch::optimize () {
     AbstractVersionedBranchClient* bestJoin = NULL; // a join will be performed if this is non-NULL.
     
     // loop through every client...
-    LOG_F ( INFO, "evaluating clients for possible concatenation..." );
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "evaluating clients for possible concatenation..." );
     set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
     for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
 
         AbstractVersionedBranchClient* client = *clientIt;
-        LOG_SCOPE_F ( INFO, "client %p", client );
+        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "client %p", client );
         
         size_t clientVersion = client->getVersionDependency (); // store the client's version dependency to avoid extra function calls.
         
@@ -237,7 +237,7 @@ void VersionedBranch::optimize () {
         // a client with a higher depenency is found.
         if ( immutableTop < clientVersion ) {
         
-            LOG_F ( INFO, "found new immutable top: %d -> %d", ( int )immutableTop, ( int )clientVersion );
+            LGN_LOG ( PDM_FILTER_ROOT, INFO, "found new immutable top: %d -> %d", ( int )immutableTop, ( int )clientVersion );
         
             immutableTop = clientVersion;
             
@@ -263,16 +263,16 @@ void VersionedBranch::optimize () {
                 // candidate, pick the current client. if we already have a candidate, pick the
                 // one with the higher join score.
                 if (( !bestJoin ) || ( bestJoin->getJoinScore () < client->getJoinScore ())) {
-                    LOG_F ( INFO, "found a client that can join!" );
-                    LOG_F ( INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
+                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
+                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
                     bestJoin = client;
                 }
             }
         }
     }
     
-    LOG_F ( INFO, "immutableTop: %d", ( int )immutableTop );
-    LOG_F ( INFO, "topVersion: %d", ( int )this->getTopVersion ());
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "immutableTop: %d", ( int )immutableTop );
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "topVersion: %d", ( int )this->getTopVersion ());
     
     // throw away any versions equal to or greater than the immutable top.
     this->truncate ( immutableTop );
@@ -292,12 +292,12 @@ void VersionedBranch::optimize () {
 */
 void VersionedBranch::truncate ( size_t topVersion ) {
 
-    LOG_SCOPE_F ( INFO, "truncate: %d -> %d", ( int )this->getTopVersion (), ( int )topVersion );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "truncate: %d -> %d", ( int )this->getTopVersion (), ( int )topVersion );
 
     map < size_t, Layer >::reverse_iterator layerIt = this->mLayers.rbegin ();
     while (( layerIt != this->mLayers.rend ()) && ( layerIt->first >= topVersion )) {
     
-        LOG_SCOPE_F ( INFO, "popping layer: %d", ( int )layerIt->first );
+        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "popping layer: %d", ( int )layerIt->first );
         
         Layer& layer = layerIt->second;
         
@@ -377,8 +377,8 @@ void VersionedBranch::AbstractVersionedStoreClient_joinBranch ( VersionedBranch&
     assert ( branch.mDirectReferenceCount == 0 );
     assert ( this->mDirectReferenceCount == 0 );
 
-    LOG_SCOPE_F ( INFO, "VersionedBranch::AbstractVersionedStoreClient_joinBranch ()" );
-    LOG_F ( INFO, "JOINING PARENT BRANCH" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedBranch::AbstractVersionedStoreClient_joinBranch ()" );
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
     
     this->optimize ();
     

@@ -7,7 +7,10 @@
 //----------------------------------------------------------------//
 int main ( int argc, char **argv ) {
 
-    loguru::init ( argc, argv );
+    Lognosis::init ( argc, argv );
+
+    Lognosis::setFilter ( PDM_FILTER_ROOT, Lognosis::MAX );
+    Lognosis::useCurrentFilterForAllNewThreads ();
 
     ::testing::InitGoogleTest ( &argc, argv );
     int result = RUN_ALL_TESTS ();

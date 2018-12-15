@@ -101,7 +101,7 @@ void AbstractVersionedBranchClient::setBranch ( shared_ptr < VersionedBranch > b
 
     if ( this->mSourceBranch != branch ) {
         
-        LOG_SCOPE_F ( INFO, "VersionedStoreSnapshot::setBranch () - changing branch" );
+        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreSnapshot::setBranch () - changing branch" );
         
         if ( this->mSourceBranch ) {
             prevBranchWeak = this->mSourceBranch;

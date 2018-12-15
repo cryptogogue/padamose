@@ -18,7 +18,7 @@ namespace Padamose {
 */
 void VersionedStore::clearVersion () {
 
-    LOG_SCOPE_F ( INFO, "VersionedStore::clearVersion ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::clearVersion ()" );
 
     size_t version = this->mVersion;
     this->popVersion ();
@@ -32,7 +32,7 @@ void VersionedStore::clearVersion () {
 */
 void VersionedStore::popVersion () {
 
-    LOG_SCOPE_F ( INFO, "VersionedStore::  ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::  ()" );
 
     if ( this->mSourceBranch ) {
     
@@ -71,7 +71,7 @@ void VersionedStore::popVersion () {
 */
 void VersionedStore::prepareForSetValue () {
 
-    LOG_SCOPE_F ( INFO, "VersionedStore::prepareForSetValue ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::prepareForSetValue ()" );
 
     this->affirmBranch ();
     
@@ -79,11 +79,11 @@ void VersionedStore::prepareForSetValue () {
     if ( dependencies > 1 ) {
     
         size_t immutableTop = this->mSourceBranch->findImmutableTop ( this );
-        LOG_F ( INFO, "immutableTop: %d", ( int )immutableTop );
+        LGN_LOG ( PDM_FILTER_ROOT, INFO, "immutableTop: %d", ( int )immutableTop );
         
         if ( this->mVersion < immutableTop ) {
         
-            LOG_F ( INFO, "SPLIT!" );
+            LGN_LOG ( PDM_FILTER_ROOT, INFO, "SPLIT!" );
         
             this->mSourceBranch->eraseClient ( *this );
             this->mSourceBranch = this->mSourceBranch->fork ( this->mVersion );
@@ -104,7 +104,7 @@ void VersionedStore::prepareForSetValue () {
 */
 void VersionedStore::pushVersion () {
 
-    LOG_SCOPE_F ( INFO, "VersionedStore::pushVersion ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::pushVersion ()" );
 
     if ( !this->mSourceBranch ) {
         this->mVersion = 0;
@@ -114,11 +114,11 @@ void VersionedStore::pushVersion () {
     assert ( this->mSourceBranch );
 
     this->mVersion++;
-    LOG_F ( INFO, "version: %d", ( int )this->mVersion );
+    LGN_LOG ( "padamose", INFO, "version: %d", ( int )this->mVersion );
     
     if ( this->mVersion < this->mSourceBranch->getTopVersion ()) {
     
-        LOG_F ( INFO, "SPLIT" );
+        LGN_LOG ( PDM_FILTER_ROOT, INFO, "SPLIT" );
     
         this->mSourceBranch->eraseClient ( *this );
         this->mSourceBranch = this->mSourceBranch->fork ( this->mVersion - 1 );
@@ -139,7 +139,7 @@ void VersionedStore::pushVersion () {
 */
 void VersionedStore::revert ( size_t version ) {
 
-    LOG_SCOPE_F ( INFO, "VersionedStore::rewind ( %d )", ( int )version );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::rewind ( %d )", ( int )version );
 
     if ( version > this->mVersion ) throw VersionOutOfBoundsException ();
     
