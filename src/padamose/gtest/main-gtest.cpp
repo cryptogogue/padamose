@@ -7,10 +7,8 @@
 //----------------------------------------------------------------//
 int main ( int argc, char **argv ) {
 
-    Lognosis::init ( argc, argv );
-
     Lognosis::setFilter ( PDM_FILTER_ROOT, Lognosis::MAX );
-    Lognosis::useCurrentFilterForAllNewThreads ();
+    Lognosis::init ( argc, argv );
 
     ::testing::InitGoogleTest ( &argc, argv );
     int result = RUN_ALL_TESTS ();
