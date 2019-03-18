@@ -5,6 +5,7 @@
 #define PADAMOSE_VERSIONEDVALUEITERATOR_H
 
 #include <padamose/padamose-common.h>
+#include <padamose/AbstractValueStack.h>
 #include <padamose/VersionedStoreSnapshot.h>
 
 namespace Padamose {
@@ -75,10 +76,13 @@ protected:
      
         \return     A pointer to the strongly typed ValueStack or NULL.
     */
-    const ValueStack < TYPE >* getValueStack ( shared_ptr < VersionedBranch > branch ) {
+    const ValueStack < TYPE >* getValueStack ( shared_ptr < AbstractVersionedBranch > branch ) {
     
-        if ( branch ) {
-            const AbstractValueStack* abstractValueStack = branch->findValueStack ( this->mKey );
+        // TODO: obviously, this is temp
+        EphemeralVersionedBranch* ephemeralBranch = dynamic_cast < EphemeralVersionedBranch* >( branch.get ());
+        
+        if ( ephemeralBranch ) {
+            const AbstractValueStack* abstractValueStack = ephemeralBranch->findValueStack ( this->mKey );
             if ( abstractValueStack ) {
                 return dynamic_cast < const ValueStack < TYPE >* >( abstractValueStack );
             }
@@ -92,12 +96,12 @@ protected:
      
         \param     prevBranch   Lower bound branch; the seek will stop at (and exclude) this branch.
     */
-    void seekNext ( shared_ptr < VersionedBranch > prevBranch ) {
+    void seekNext ( shared_ptr < AbstractVersionedBranch > prevBranch ) {
         
-        shared_ptr < VersionedBranch > branch = this->mAnchor.mSourceBranch;
+        shared_ptr < AbstractVersionedBranch > branch = this->mAnchor.mSourceBranch;
         size_t top = this->mAnchor.mVersion + 1;
         
-        shared_ptr < VersionedBranch > bestBranch;
+        shared_ptr < AbstractVersionedBranch > bestBranch;
         const ValueStack < TYPE >* bestValueStack = NULL;
         size_t bestTop = top;
         
@@ -139,7 +143,7 @@ protected:
         \param      branch      Starting branch for the search.
         \param      top         Upper bound for the search.
     */
-    void seekPrev ( shared_ptr < VersionedBranch > branch, size_t top ) {
+    void seekPrev ( shared_ptr < AbstractVersionedBranch > branch, size_t top ) {
         
         for ( ; branch; branch = branch->mSourceBranch ) {
         

@@ -16,7 +16,7 @@ void VersionedStoreSnapshot::affirmBranch () {
 
     if ( !this->mSourceBranch ) {
         assert ( this->mVersion == 0 );
-        this->setBranch ( make_shared < VersionedBranch >(), this->mVersion );
+        this->setBranch ( make_shared < EphemeralVersionedBranch >(), this->mVersion );
     }
 }
 
@@ -101,7 +101,7 @@ VersionedStoreSnapshot::~VersionedStoreSnapshot () {
 /** \brief Implementation of virtual method. Always returns false.
     \return     Always returns false.
 */
-bool VersionedStoreSnapshot::AbstractVersionedStoreClient_canJoin () const {
+bool VersionedStoreSnapshot::AbstractVersionedBranchClient_canJoin () const {
     return false;
 }
 
@@ -109,7 +109,7 @@ bool VersionedStoreSnapshot::AbstractVersionedStoreClient_canJoin () const {
 /** \brief Implementation of virtual method. Asserts false in debug builds;
     returns zero in non-debug builds.
 */
-size_t VersionedStoreSnapshot::AbstractVersionedStoreClient_getJoinScore () const {
+size_t VersionedStoreSnapshot::AbstractVersionedBranchClient_getJoinScore () const {
     assert ( false );
     return 0;
 }
@@ -129,7 +129,7 @@ size_t VersionedStoreSnapshot::AbstractVersionedStoreClient_getJoinScore () cons
  
     \return             The dependent version.
 */
-size_t VersionedStoreSnapshot::AbstractVersionedStoreClient_getVersionDependency () const {
+size_t VersionedStoreSnapshot::AbstractVersionedBranchClient_getVersionDependency () const {
     return this->mVersion + 1;
 }
 
@@ -137,7 +137,7 @@ size_t VersionedStoreSnapshot::AbstractVersionedStoreClient_getVersionDependency
 /** \brief Implementation of virtual method. Asserts false in debug builds;
     does nothing in non-debug builds.
 */
-void VersionedStoreSnapshot::AbstractVersionedStoreClient_joinBranch ( VersionedBranch& branch ) {
+void VersionedStoreSnapshot::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& branch ) {
     assert ( false );
 }
 
@@ -145,7 +145,7 @@ void VersionedStoreSnapshot::AbstractVersionedStoreClient_joinBranch ( Versioned
 /** \brief Implementation of virtual method. Always returns false.
     \return     Always returns false.
 */
-bool VersionedStoreSnapshot::AbstractVersionedStoreClient_preventJoin () const {
+bool VersionedStoreSnapshot::AbstractVersionedBranchClient_preventJoin () const {
     return false;
 }
 

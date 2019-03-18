@@ -5,20 +5,22 @@
 #define PADAMOSE_VERSIONEDSTORESNAPSHOT_H
 
 #include <padamose/padamose-common.h>
+#include <padamose/AbstractVersionedBranch.h>
 #include <padamose/AbstractVersionedBranchClient.h>
-#include <padamose/VersionedBranch.h>
+
+#include <padamose/EphemeralVersionedBranch.h>
 
 namespace Padamose {
 
 //================================================================//
 // VersionedStoreSnapshot
 //================================================================//
-/** \brief Common base implementation for versioned storeiterators. Contains only read-only methods
-    and getters.
+/** \brief Common base implementation for versioned store iterators.
+    Contains only read-only methods and getters.
  
-    This is the base to VersionedStore, VersionedStoreIterator and VersionedValueIterator. It
+    This is the base of VersionedStore, VersionedStoreIterator and VersionedValueIterator. It
     was originally part of VersionedStore, but was broken out into a separate base class
-    to avoid exposing mutators through the interator implementations, which are read-only.
+    to avoid exposing mutators through iterator implementations, which are read-only.
 */
 class VersionedStoreSnapshot :
     public AbstractVersionedBranchClient {
@@ -43,7 +45,6 @@ protected:
 
     //----------------------------------------------------------------//
     void            affirmBranch                    ();
-    const void*     getRaw                          ( string key, size_t version, size_t typeID ) const;
     
     //----------------------------------------------------------------//
     /** \brief Recursively searches the branch to find the value for the key. The most recent version
@@ -52,7 +53,7 @@ protected:
         A pointer to the value or NULL is returned.
 
         \param      key         The key.
-        \return                 A raw pointer to the value for the key or NULL.
+        \return                 A pointer to the value for the key or NULL.
     */
     template < typename TYPE >
     const TYPE* getValueOrNil ( string key ) const {
@@ -67,19 +68,21 @@ protected:
 
         \param      version     Search for this version of the most recent lesser version of the value;
         \param      key         The key.
-        \return                 A raw pointer to the value for the key or NULL.
+        \return                 A pointer to the value for the key or NULL.
     */
     template < typename TYPE >
     const TYPE* getValueOrNil ( string key, size_t version ) const {
-        return this->mSourceBranch ? this->mSourceBranch->getValueOrNil < TYPE >( version <= this->mVersion ? version : this->mVersion, key ) : NULL;
+        // TODO: obviously, this is temp
+        const EphemeralVersionedBranch* ephemeralBranch = dynamic_cast < const EphemeralVersionedBranch* >( this->mSourceBranch.get ());
+        return ephemeralBranch ? ephemeralBranch->getValueOrNil < TYPE >( version <= this->mVersion ? version : this->mVersion, key ) : NULL;
     }
     
     //----------------------------------------------------------------//
-    bool            AbstractVersionedStoreClient_canJoin                    () const override;
-    size_t          AbstractVersionedStoreClient_getJoinScore               () const override;
-    size_t          AbstractVersionedStoreClient_getVersionDependency       () const override;
-    void            AbstractVersionedStoreClient_joinBranch                 ( VersionedBranch& branch ) override;
-    bool            AbstractVersionedStoreClient_preventJoin                () const override;
+    bool            AbstractVersionedBranchClient_canJoin                   () const override;
+    size_t          AbstractVersionedBranchClient_getJoinScore              () const override;
+    size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
+    void            AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& branch ) override;
+    bool            AbstractVersionedBranchClient_preventJoin               () const override;
     
 public:
 

@@ -37,7 +37,7 @@ void VersionedStore::popVersion () {
     if ( this->mSourceBranch ) {
     
         size_t version = this->mVersion;
-        shared_ptr < VersionedBranch > branch = this->mSourceBranch;
+        shared_ptr < AbstractVersionedBranch > branch = this->mSourceBranch;
         branch->eraseClient ( *this );
         
         this->mSourceBranch = NULL;
@@ -145,7 +145,7 @@ void VersionedStore::revert ( size_t version ) {
     
     if (( this->mSourceBranch ) && ( version < this->mVersion )) {
     
-        shared_ptr < VersionedBranch > branch = this->mSourceBranch;
+        shared_ptr < AbstractVersionedBranch > branch = this->mSourceBranch;
         branch->eraseClient ( *this );
         this->mSourceBranch = NULL;
         

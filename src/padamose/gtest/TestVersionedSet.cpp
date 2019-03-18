@@ -2,8 +2,7 @@
 // http://cryptogogue.com
 
 #include <padamose/gtest/gtest-helpers.h>
-#include <padamose/VersionedSet.h>
-#include <padamose/VersionedCollectionIterator.h>
+#include <padamose/padamose.h>
 
 namespace Padamose {
 namespace Test {

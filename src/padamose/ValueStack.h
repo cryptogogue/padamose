@@ -21,8 +21,8 @@ class ValueStack :
     public AbstractValueStack {
 protected:
 
+    friend class EphemeralVersionedBranch;
     friend class VersionedStoreSnapshot;
-    friend class VersionedBranch;
     friend class VersionedStoreLayer;
     friend class VersionedValueIterator < TYPE >;
 

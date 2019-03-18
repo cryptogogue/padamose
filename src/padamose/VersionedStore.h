@@ -5,6 +5,7 @@
 #define PADAMOSE_VERSIONEDSTORE_H
 
 #include <padamose/padamose-common.h>
+#include <padamose/AbstractPersistenceProvider.h>
 #include <padamose/VersionedStoreSnapshot.h>
 
 // TODO: this is all placeholder stuff, to get the algorithm working. will need to
@@ -36,7 +37,7 @@ namespace Padamose {
  
     Two iterator implementations are provided: VersionedStoreIterator and VersionedValueIterator.
     VersionedStoreIterator iterates through versions sequentially. VersionedValueIterator only
-    visits versions where the value being iterated was set of changed. Both iterators inherit
+    visits versions where the value being iterated was set or changed. Both iterators inherit
     from VersionedStoreSnapshot and thus give access to any value in the store.
  
     Iterators are faster moving backward through the version history. Due to the branching nature
@@ -54,7 +55,7 @@ namespace Padamose {
     can do this operation quickly.
  
     \todo The current implementation exists only as a local in-memory data structure. We'll need
-    a way to back it to an in-memory database server backed by storage media, such as Redis.
+    a way to back it to an in-memory database server persisted to storage media, such as Redis.
 */
 class VersionedStore :
     public VersionedStoreSnapshot {
@@ -71,6 +72,7 @@ public:
     void            pushVersion                     ();
     void            revert                          ( size_t version );
                     VersionedStore                  ();
+                    VersionedStore                  ( AbstractPersistenceProvider& persistence, string branch );
                     VersionedStore                  ( VersionedStoreSnapshot& other );
                     ~VersionedStore                 ();
     
@@ -94,8 +96,9 @@ public:
     template < typename TYPE >
     void setValue ( string key, const TYPE& value ) {
         this->prepareForSetValue ();
-        assert ( this->mSourceBranch );
-        this->mSourceBranch->setValue < TYPE >( this->mVersion, key, value );
+        // TODO: obviously, this is temp
+        EphemeralVersionedBranch* ephemeralBranch = dynamic_cast < EphemeralVersionedBranch* >( this->mSourceBranch.get ());
+        ephemeralBranch->setValue < TYPE >( this->mVersion, key, value );
     }
 };
 

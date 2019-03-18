@@ -1,73 +1,25 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
+#include <padamose/EphemeralVersionedBranch.h>
 #include <padamose/VersionedStoreSnapshot.h>
-#include <padamose/VersionedBranch.h>
 
 namespace Padamose {
 
 //================================================================//
-// VersionedBranch
+// EphemeralVersionedBranch
 //================================================================//
 
 //----------------------------------------------------------------//
-/** \brief Returns the total number of dependencies (i.e. clients).
-
-    \return     Total clients.
-*/
-size_t VersionedBranch::countDependencies () const {
-
-    return this->mClients.size ();
+EphemeralVersionedBranch::EphemeralVersionedBranch () {
 }
 
 //----------------------------------------------------------------//
-/** \brief Removes the client from the branch's client set.
-
-    \param      client      Client to erase.
+/** \brief Asserts that no direct references remain.
 */
-void VersionedBranch::eraseClient ( AbstractVersionedBranchClient& client ) {
+EphemeralVersionedBranch::~EphemeralVersionedBranch () {
 
-    this->mClients.erase ( &client );
-}
-
-//----------------------------------------------------------------//
-/** \brief Iterates through all clients to find the top immutable version
-    in the branch. All versions less than the top must not be changed.
- 
-    The "immutable top" is the top of versions in the branch considered
-    immutable. A version is immutable if a client depends on it.
- 
-    The "ignore" parameter is provided to handle the case where a
-    single client wishes to change the contents of a version. If the
-    version only has the client as a dependent, then it is safe to
-    change (without creating a new branch).
-
-    \param      ignore      Client to ignore (or NULL).
-    \return                 The upper limit of immutable versions.
-*/
-size_t VersionedBranch::findImmutableTop ( const AbstractVersionedBranchClient* ignore ) const {
-
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedBranch::findImmutableTop ()" );
-
-    size_t immutableTop = this->getVersionDependency ();
-
-    set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
-    for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
-
-        const AbstractVersionedBranchClient* client = *clientIt;
-        if ( client != ignore ) {
-        
-            size_t clientVersion = client->getVersionDependency ();
-            
-            if ( immutableTop < clientVersion ) {
-                immutableTop = clientVersion;
-            }
-        }
-    }
-    
-    LGN_LOG ( PDM_FILTER_ROOT, INFO, "immutableTop: %d", ( int )immutableTop );
-    
-    return immutableTop;
+    assert ( this->mDirectReferenceCount == 0 );
 }
 
 //----------------------------------------------------------------//
@@ -77,11 +29,48 @@ size_t VersionedBranch::findImmutableTop ( const AbstractVersionedBranchClient* 
     \param      key         The key.
     \return                 The ValueStack for the key or NULL.
 */
-const AbstractValueStack* VersionedBranch::findValueStack ( string key ) const {
+const AbstractValueStack* EphemeralVersionedBranch::findValueStack ( string key ) const {
 
     map < string, unique_ptr < AbstractValueStack >>::const_iterator valueIt = this->mValueStacksByKey.find ( key );
     return ( valueIt != this->mValueStacksByKey.cend ()) ? valueIt->second.get () : NULL;
 }
+
+//----------------------------------------------------------------//
+/** \brief Discards all layers and values with versions greater than or equal to the
+    given version.
+ 
+    \param      topVersion  Version for new "top" of branch.
+*/
+void EphemeralVersionedBranch::truncate ( size_t topVersion ) {
+
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "truncate: %d -> %d", ( int )this->getTopVersion (), ( int )topVersion );
+
+    map < size_t, Layer >::reverse_iterator layerIt = this->mLayers.rbegin ();
+    while (( layerIt != this->mLayers.rend ()) && ( layerIt->first >= topVersion )) {
+    
+        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "popping layer: %d", ( int )layerIt->first );
+        
+        Layer& layer = layerIt->second;
+        
+        Layer::iterator keyIt = layer.begin ();
+        for ( ; keyIt != layer.end (); ++keyIt ) {
+
+            unique_ptr < AbstractValueStack >& valueStack = this->mValueStacksByKey [ *keyIt ];
+            assert ( valueStack );
+            
+            valueStack->erase ( layerIt->first );
+            if ( valueStack->size () == 0 ) {
+                this->mValueStacksByKey.erase ( *keyIt );
+            }
+        }
+        this->mLayers.erase ( layerIt->first );
+        layerIt = this->mLayers.rbegin ();
+    }
+}
+
+//================================================================//
+// overrides
+//================================================================//
 
 //----------------------------------------------------------------//
 /** \brief Initializes a new branch using the given branch as a parent. If the base
@@ -102,9 +91,9 @@ const AbstractValueStack* VersionedBranch::findValueStack ( string key ) const {
     \param      parent          Parent branch.
     \param      baseVersion     Base version of the child branch.
 */
-shared_ptr < VersionedBranch > VersionedBranch::fork ( size_t baseVersion ) {
+shared_ptr < AbstractVersionedBranch > EphemeralVersionedBranch::AbstractVersionedBranch_fork ( size_t baseVersion ) {
     
-    shared_ptr < VersionedBranch > child = make_shared < VersionedBranch >();
+    shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
     
     assert (( this->mVersion <= baseVersion ) && ( baseVersion <= this->getTopVersion ()));
 
@@ -139,7 +128,7 @@ shared_ptr < VersionedBranch > VersionedBranch::fork ( size_t baseVersion ) {
 
     \return     The top of the version stack or 0 if the branch is empty.
 */
-size_t VersionedBranch::getTopVersion () const {
+size_t EphemeralVersionedBranch::AbstractVersionedBranch_getTopVersion () const {
 
     // If there are any layers, use the top layer's version. Otherwise, 0.
     return this->mLayers.size () ? this->mLayers.rbegin ()->first + 1 : 0;
@@ -152,10 +141,10 @@ size_t VersionedBranch::getTopVersion () const {
     \param      key         The key.
     \return                 TRUE if the key is found. FALSE if not.
 */
-bool VersionedBranch::hasKey ( size_t version, string key ) const {
+bool EphemeralVersionedBranch::AbstractVersionedBranch_hasKey ( size_t version, string key ) const {
 
     // start searching at the current branch.
-    const VersionedBranch* branch = this;
+    const AbstractVersionedBranch* branch = this;
     
     // iterate through parent branches.
     for ( ; branch; branch = branch->mSourceBranch.get ()) {
@@ -163,8 +152,12 @@ bool VersionedBranch::hasKey ( size_t version, string key ) const {
         // ignore branches above the version we're searching for.
         if ( branch->mVersion <= version ) {
         
+            // TODO: obviously, this is temp
+            const EphemeralVersionedBranch* ephemeralBranch = dynamic_cast < const EphemeralVersionedBranch* >( branch );
+            assert ( ephemeralBranch );
+        
             // check for a value stack without recursion.
-            const AbstractValueStack* abstractValueStack = branch->findValueStack ( key );
+            const AbstractValueStack* abstractValueStack = ephemeralBranch->findValueStack ( key );
             
             if ( abstractValueStack ) {
                 return true;
@@ -176,15 +169,6 @@ bool VersionedBranch::hasKey ( size_t version, string key ) const {
         version = branch->mVersion;
     }
     return false;
-}
-
-//----------------------------------------------------------------//
-/** \brief Inserts a client into the branch's client set. Inserting a client
-    adds a dependency on a specific layer in the branch.
-*/
-void VersionedBranch::insertClient ( AbstractVersionedBranchClient& client ) {
-
-    this->mClients.insert ( &client );
 }
 
 //----------------------------------------------------------------//
@@ -212,9 +196,9 @@ void VersionedBranch::insertClient ( AbstractVersionedBranchClient& client ) {
     long as direct references exist. This is accomplished using a reference
     count maintained by the VersionedValue object.
 */
-void VersionedBranch::optimize () {
+void EphemeralVersionedBranch::AbstractVersionedBranch_optimize () {
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedBranch::optimize ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::optimize ()" );
     
     // use one loop to find the immutable top and to identify a child branch that
     // may be joined to the parent branch.
@@ -285,60 +269,10 @@ void VersionedBranch::optimize () {
 }
 
 //----------------------------------------------------------------//
-/** \brief Discards all layers and values with versions greater than or equal to the
-    given version.
- 
-    \param      topVersion  Version for new "top" of branch.
-*/
-void VersionedBranch::truncate ( size_t topVersion ) {
-
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "truncate: %d -> %d", ( int )this->getTopVersion (), ( int )topVersion );
-
-    map < size_t, Layer >::reverse_iterator layerIt = this->mLayers.rbegin ();
-    while (( layerIt != this->mLayers.rend ()) && ( layerIt->first >= topVersion )) {
-    
-        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "popping layer: %d", ( int )layerIt->first );
-        
-        Layer& layer = layerIt->second;
-        
-        Layer::iterator keyIt = layer.begin ();
-        for ( ; keyIt != layer.end (); ++keyIt ) {
-
-            unique_ptr < AbstractValueStack >& valueStack = this->mValueStacksByKey [ *keyIt ];
-            assert ( valueStack );
-            
-            valueStack->erase ( layerIt->first );
-            if ( valueStack->size () == 0 ) {
-                this->mValueStacksByKey.erase ( *keyIt );
-            }
-        }
-        this->mLayers.erase ( layerIt->first );
-        layerIt = this->mLayers.rbegin ();
-    }
-}
-
-//----------------------------------------------------------------//
-VersionedBranch::VersionedBranch () :
-    mDirectReferenceCount ( 0 ) {
-}
-
-//----------------------------------------------------------------//
-/** \brief Asserts that no direct references remain.
-*/
-VersionedBranch::~VersionedBranch () {
-
-    assert ( this->mDirectReferenceCount == 0 );
-}
-
-//================================================================//
-// overrides
-//================================================================//
-
-//----------------------------------------------------------------//
 /** \brief Implementation of virtual method. Always returns true.
     \return     Always returns true.
 */
-bool VersionedBranch::AbstractVersionedStoreClient_canJoin () const {
+bool EphemeralVersionedBranch::AbstractVersionedBranchClient_canJoin () const {
     return true;
 }
 
@@ -346,7 +280,7 @@ bool VersionedBranch::AbstractVersionedStoreClient_canJoin () const {
 /** \brief Implementation of virtual method. Returns the top version.
     \return     The top version.
 */
-size_t VersionedBranch::AbstractVersionedStoreClient_getJoinScore () const {
+size_t EphemeralVersionedBranch::AbstractVersionedBranchClient_getJoinScore () const {
     return this->getTopVersion ();
 }
 
@@ -356,7 +290,7 @@ size_t VersionedBranch::AbstractVersionedStoreClient_getJoinScore () const {
  
     \return     The base version.
 */
-size_t VersionedBranch::AbstractVersionedStoreClient_getVersionDependency () const {
+size_t EphemeralVersionedBranch::AbstractVersionedBranchClient_getVersionDependency () const {
     return this->mVersion;
 }
 
@@ -372,20 +306,23 @@ size_t VersionedBranch::AbstractVersionedStoreClient_getVersionDependency () con
  
     \param      branch      The branch to be appended to.
 */
-void VersionedBranch::AbstractVersionedStoreClient_joinBranch ( VersionedBranch& branch ) {
+void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& branch ) {
 
-    assert ( branch.mDirectReferenceCount == 0 );
+    // TODO: obviously, this is temp
+    EphemeralVersionedBranch& ephemeralBranch = dynamic_cast < EphemeralVersionedBranch& >( branch );
+
+    assert ( ephemeralBranch.mDirectReferenceCount == 0 );
     assert ( this->mDirectReferenceCount == 0 );
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedBranch::AbstractVersionedStoreClient_joinBranch ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
     
     this->optimize ();
     
-    shared_ptr < VersionedBranch > pinThis = this->shared_from_this ();
+    shared_ptr < EphemeralVersionedBranch > pinThis = this->shared_from_this ();
     
     // merge the branch layers
-    branch.mLayers.insert ( this->mLayers.begin(), this->mLayers.end ());
+    ephemeralBranch.mLayers.insert ( this->mLayers.begin(), this->mLayers.end ());
 
     // copy the value stacks
     map < string, unique_ptr < AbstractValueStack >>::iterator valueStackIt = this->mValueStacksByKey.begin ();
@@ -394,7 +331,7 @@ void VersionedBranch::AbstractVersionedStoreClient_joinBranch ( VersionedBranch&
         const AbstractValueStack* fromStack = this->findValueStack ( valueStackIt->first );
         assert ( fromStack );
         
-        unique_ptr < AbstractValueStack >& toStack = branch.mValueStacksByKey [ valueStackIt->first ];
+        unique_ptr < AbstractValueStack >& toStack = ephemeralBranch.mValueStacksByKey [ valueStackIt->first ];
         if ( !toStack ) {
             toStack = fromStack->makeEmptyCopy ();
         }
@@ -406,7 +343,7 @@ void VersionedBranch::AbstractVersionedStoreClient_joinBranch ( VersionedBranch&
     for ( ; clientIt != this->mClients.end (); ++clientIt ) {
         AbstractVersionedBranchClient* client = *clientIt;
         branch.insertClient ( *client );
-        client->mSourceBranch = branch.shared_from_this ();
+        client->mSourceBranch = ephemeralBranch.shared_from_this ();
     }
     
     pinThis = NULL;
@@ -418,7 +355,7 @@ void VersionedBranch::AbstractVersionedStoreClient_joinBranch ( VersionedBranch&
  
     \return     True if the branch has any direct references. False otherwise.
 */
-bool VersionedBranch::AbstractVersionedStoreClient_preventJoin () const {
+bool EphemeralVersionedBranch::AbstractVersionedBranchClient_preventJoin () const {
     return ( this->mDirectReferenceCount > 0 );
 }
 

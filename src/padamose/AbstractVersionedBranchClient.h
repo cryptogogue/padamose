@@ -8,49 +8,49 @@
 
 namespace Padamose {
 
-class VersionedBranch;
+class AbstractVersionedBranch;
 
 //================================================================//
 // AbstractVersionedBranchClient
 //================================================================//
-/** \brief Base class for VersionedBranch clients. Branch client types
+/** \brief Base class for AbstractVersionedBranch clients. Branch client types
     include branches (parent-to-child) as well as snapshots and iterators.
  
     Implementing this functionality as a base class saves some redundant
-    code in VersionedBranch at the expense of some extra methods to implement
-    in VersionedBranch and VersionedStoreSnapshot (which is the base for
-    snapshots and iterators).
+    code in AbstractVersionedBranch at the expense of some extra methods to
+    implement in branch implementations and VersionedStoreSnapshot (which
+    is the base for snapshots and iterators).
  
     In practice, it is easier and cleaner to implement a handful of
-    single-line virtual methods than to complicate the client bookkeeping
-    in VersionedBranch.
+    single-line virtual methods than to complicate the client bookkeeping.
 */
 class AbstractVersionedBranchClient {
 protected:
 
-    friend class VersionedBranch;
+    friend class AbstractVersionedBranch;
+    friend class EphemeralVersionedBranch;
 
     /// The source (or parent) branch for this client. May be NULL.
-    shared_ptr < VersionedBranch >      mSourceBranch;
+    shared_ptr < AbstractVersionedBranch >      mSourceBranch;
     
     /// The current (or base) version for this client.
-    size_t                              mVersion;
+    size_t                                      mVersion;
 
     //----------------------------------------------------------------//
     bool                canJoin                                                 () const;
     size_t              getJoinScore                                            () const;
     size_t              getVersionDependency                                    () const;
-    void                joinBranch                                              ( VersionedBranch& branch );
+    void                joinBranch                                              ( AbstractVersionedBranch& branch );
     bool                preventJoin                                             () const;
-    void                setBranch                                               ( shared_ptr < VersionedBranch > branch );
-    void                setBranch                                               ( shared_ptr < VersionedBranch > branch, size_t version );
+    void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch );
+    void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
 
     //----------------------------------------------------------------//
-    virtual bool        AbstractVersionedStoreClient_canJoin                    () const = 0;
-    virtual size_t      AbstractVersionedStoreClient_getJoinScore               () const = 0;
-    virtual size_t      AbstractVersionedStoreClient_getVersionDependency       () const = 0;
-    virtual void        AbstractVersionedStoreClient_joinBranch                 ( VersionedBranch& branch ) = 0;
-    virtual bool        AbstractVersionedStoreClient_preventJoin                () const = 0;
+    virtual bool        AbstractVersionedBranchClient_canJoin                   () const = 0;
+    virtual size_t      AbstractVersionedBranchClient_getJoinScore              () const = 0;
+    virtual size_t      AbstractVersionedBranchClient_getVersionDependency      () const = 0;
+    virtual void        AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& branch ) = 0;
+    virtual bool        AbstractVersionedBranchClient_preventJoin               () const = 0;
 
 public:
 

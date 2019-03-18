@@ -1,10 +1,11 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_VERSIONEDBRANCH_H
-#define PADAMOSE_VERSIONEDBRANCH_H
+#ifndef PADAMOSE_PERSISTENTVERSIONEDBRANCH_H
+#define PADAMOSE_PERSISTENTVERSIONEDBRANCH_H
 
 #include <padamose/padamose-common.h>
+#include <padamose/AbstractVersionedBranch.h>
 #include <padamose/AbstractVersionedBranchClient.h>
 #include <padamose/ValueStack.h>
 
@@ -32,8 +33,8 @@ class VersionedStoreSnapshot;
     Any branch may have a parent branch. When searching for values, the tree will
     be searched recurively until a value is found.
 */
-class VersionedBranch :
-    public enable_shared_from_this < VersionedBranch >,
+class PersistentVersionedBranch :
+    public enable_shared_from_this < PersistentVersionedBranch >,
     public AbstractVersionedBranchClient {
 private:
 
@@ -113,7 +114,7 @@ private:
     /** \brief Sets a value at the given version. If the version doesn't exist,
         a new layer will be created. Also creates a value stack if none exists. Throws
         a TypeMismatchOnAssignException if a value of a different type has already been
-        addigned to the key.
+        assigned to the key.
      
         \param      version     The version to set the value at. Must be equal to or greater than the branch's base version.
         \param      key         Key of the value to set.
@@ -151,7 +152,6 @@ private:
     size_t                          findImmutableTop            ( const AbstractVersionedBranchClient* ignore = NULL ) const;
     const AbstractValueStack*       findValueStack              ( string key ) const;
     shared_ptr < VersionedBranch >  fork                        ( size_t baseVersion );
-    const void*                     getRaw                      ( size_t version, string key, size_t typeID ) const;
     size_t                          getTopVersion               () const;
     bool                            hasKey                      ( size_t version, string key ) const;
     void                            insertClient                ( AbstractVersionedBranchClient& client );
@@ -159,17 +159,17 @@ private:
     void                            truncate                    ( size_t topVersion );
 
     //----------------------------------------------------------------//
-    bool            AbstractVersionedStoreClient_canJoin                    () const override;
-    size_t          AbstractVersionedStoreClient_getJoinScore               () const override;
-    size_t          AbstractVersionedStoreClient_getVersionDependency       () const override;
-    void            AbstractVersionedStoreClient_joinBranch                 ( VersionedBranch& branch ) override;
-    bool            AbstractVersionedStoreClient_preventJoin                () const override;
+    bool            AbstractVersionedBranchClient_canJoin                   () const override;
+    size_t          AbstractVersionedBranchClient_getJoinScore              () const override;
+    size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
+    void            AbstractVersionedBranchClient_joinBranch                ( VersionedBranch& branch ) override;
+    bool            AbstractVersionedBranchClient_preventJoin               () const override;
 
 public:
 
     //----------------------------------------------------------------//
-                    VersionedBranch         ();
-                    ~VersionedBranch        ();
+                    PersistentVersionedBranch       ();
+                    ~PersistentVersionedBranch      ();
 };
 
 } // namespace Padamose
