@@ -75,6 +75,8 @@
 		CDB4058E223ED67A00200C78 /* padamose.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB4058D223ED67A00200C78 /* padamose.h */; };
 		CDB40591223EE24800200C78 /* AbstractVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB4058F223EE24800200C78 /* AbstractVersionedBranch.cpp */; };
 		CDB40592223EE24800200C78 /* AbstractVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB40590223EE24800200C78 /* AbstractVersionedBranch.h */; };
+		CDB4059B224467E500200C78 /* Variant.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB4059A224467E500200C78 /* Variant.h */; };
+		CDB4059E2245602500200C78 /* TestVariant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB4059C2245596600200C78 /* TestVariant.cpp */; };
 		CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */; };
 		CDD6CE2E21A6388600DB7C10 /* VersionedMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */; };
 		CDD6CE2F21A6388600DB7C10 /* VersionedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */; };
@@ -197,6 +199,8 @@
 		CDB40590223EE24800200C78 /* AbstractVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedBranch.h; path = src/padamose/AbstractVersionedBranch.h; sourceTree = "<group>"; };
 		CDB40593223EE36C00200C78 /* PersistentVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PersistentVersionedBranch.cpp; path = src/padamose/PersistentVersionedBranch.cpp; sourceTree = "<group>"; };
 		CDB40594223EE36C00200C78 /* PersistentVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistentVersionedBranch.h; path = src/padamose/PersistentVersionedBranch.h; sourceTree = "<group>"; };
+		CDB4059A224467E500200C78 /* Variant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Variant.h; path = src/padamose/Variant.h; sourceTree = "<group>"; };
+		CDB4059C2245596600200C78 /* TestVariant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVariant.cpp; path = src/padamose/gtest/TestVariant.cpp; sourceTree = "<group>"; };
 		CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedCollectionIterator.h; path = src/padamose/VersionedCollectionIterator.h; sourceTree = "<group>"; };
 		CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedMap.cpp; path = src/padamose/VersionedMap.cpp; sourceTree = "<group>"; };
 		CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedMap.h; path = src/padamose/VersionedMap.h; sourceTree = "<group>"; };
@@ -286,6 +290,7 @@
 			children = (
 				CDF903AA219F99D400C1930B /* gtest-helpers.h */,
 				CD4E816B21057DD1007DA585 /* main-gtest.cpp */,
+				CDB4059C2245596600200C78 /* TestVariant.cpp */,
 				CD3C7C3721A7320300CBA572 /* TestVersionedMap.cpp */,
 				CDF903B721A14C5400C1930B /* TestVersionedSet.cpp */,
 				CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */,
@@ -301,6 +306,7 @@
 				CDD6CE2B21A626E700DB7C10 /* collection */,
 				CDB40588223ED5DC00200C78 /* persistence */,
 				CDF903A8219E2D1400C1930B /* Exceptions.h */,
+				CDB4059A224467E500200C78 /* Variant.h */,
 				CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */,
 				CDA06FF121570FDF003FA0C3 /* VersionedStore.h */,
 				CD4E80E321040032007DA585 /* VersionedStoreSnapshot.cpp */,
@@ -436,6 +442,7 @@
 			files = (
 				CD07CDE221A74A2600C9C8DB /* MutableVersionedCollection.h in Headers */,
 				CDF903B221A1455700C1930B /* VersionedCollectionSnapshot.h in Headers */,
+				CDB4059B224467E500200C78 /* Variant.h in Headers */,
 				CDD6CE2F21A6388600DB7C10 /* VersionedMap.h in Headers */,
 				CDF903B621A1482D00C1930B /* AbstractVersionedCollection.h in Headers */,
 				CD561DBE210730ED008B06C7 /* EphemeralVersionedBranch.h in Headers */,
@@ -617,6 +624,7 @@
 				CDF903B821A14C5400C1930B /* TestVersionedSet.cpp in Sources */,
 				CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */,
 				CDA06FFA21588EB3003FA0C3 /* TestVersionedStoreIterators.cpp in Sources */,
+				CDB4059E2245602500200C78 /* TestVariant.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,7 +809,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -853,7 +861,6 @@
 					"3rd-party/lognosis/src",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -869,7 +876,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -914,7 +921,6 @@
 					"3rd-party/lognosis/src",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",

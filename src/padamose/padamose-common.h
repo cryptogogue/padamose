@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <string>
 #include <typeinfo>
+#include <variant>
 #include <vector>
 
 #include <lognosis/Logger.h>

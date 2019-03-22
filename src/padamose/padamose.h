@@ -14,6 +14,7 @@
 #include <padamose/Exceptions.h>
 #include <padamose/MutableVersionedCollection.h>
 #include <padamose/ValueStack.h>
+#include <padamose/Variant.h>
 #include <padamose/VersionedCollectionSnapshot.h>
 #include <padamose/VersionedCollectionIterator.h>
 #include <padamose/VersionedMap.h>

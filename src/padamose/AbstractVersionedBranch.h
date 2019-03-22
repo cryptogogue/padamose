@@ -7,6 +7,7 @@
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractVersionedBranchClient.h>
 #include <padamose/ValueStack.h>
+#include <padamose/Variant.h>
 
 namespace Padamose {
 
@@ -53,8 +54,10 @@ protected:
     //----------------------------------------------------------------//
     bool            AbstractVersionedBranchClient_canJoin                   () const override;
     size_t          AbstractVersionedBranchClient_getJoinScore              () const override;
+    Variant         AbstractVersionedBranchClient_getValue                  ( size_t version, string key );
     size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
     bool            AbstractVersionedBranchClient_preventJoin               () const override;
+    void            AbstractVersionedBranchClient_setValue                  ( size_t version, string key, Variant& value );
 
     //----------------------------------------------------------------//
     virtual shared_ptr < AbstractVersionedBranch >      AbstractVersionedBranch_fork                ( size_t baseVersion ) = 0;
