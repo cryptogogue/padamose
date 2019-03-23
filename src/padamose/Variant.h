@@ -65,7 +65,7 @@ public:
             case INT_VARIANT:
                 return ( double )this->get < int >();
             case STRING_VARIANT:
-                return 0; // TODO: parse
+                return stod ( this->get < string >());
         }
         return false;
     }
@@ -83,7 +83,7 @@ public:
             case INT_VARIANT:
                 return this->get < int >();
             case STRING_VARIANT:
-                return 0; // TODO: parse
+                return stoi ( this->get < string >());
         }
         return false;
     }
@@ -91,25 +91,48 @@ public:
     //----------------------------------------------------------------//
     operator string () const {
     
+        ostringstream stream;
+    
         switch ( this->index ()) {
             case NULL_VARIANT:
                 return "";
             case BOOL_VARIANT:
                 return this->get < bool >() ? "true" : "false";
             case DOUBLE_VARIANT:
-                return ( int )this->get < double >();
+                stream << this->get < double >();
+                return stream.str ();
             case INT_VARIANT:
-                return this->get < int >();
+                stream << this->get < int >();
+                return stream.str ();
             case STRING_VARIANT:
-                return this->get < string >(); // TODO: parse
+                return this->get < string >();
         }
-        return false;
+        return "";
+    }
+    
+    //----------------------------------------------------------------//
+    Variant& operator = ( const Variant& rhs ) {
+        *( variant* )this = ( const variant& )rhs;
+        return *this;
+    }
+
+    //----------------------------------------------------------------//
+    Variant& operator = ( const char* rhs ) {
+        *( variant* )this = string ( rhs );
+        return *this;
+    }
+
+    //----------------------------------------------------------------//
+    template < typename TYPE >
+    Variant& operator = ( const TYPE& rhs ) {
+        *( variant* )this = rhs;
+        return *this;
     }
 
     //----------------------------------------------------------------//
     template < typename TYPE >
     TYPE get () const {
-        const TYPE* value = this->get_if < TYPE >();
+        const TYPE* value = std::get_if < TYPE >( this );
         assert ( value );
         return *value;
     }
@@ -122,6 +145,17 @@ public:
     //----------------------------------------------------------------//
     Variant () :
         variant ( NullVariant ()) {
+    }
+    
+    //----------------------------------------------------------------//
+    Variant ( const char* value ) :
+        variant ( string ( value )) {
+    }
+    
+    //----------------------------------------------------------------//
+    template < typename TYPE >
+    Variant ( const TYPE& value ) :
+        variant ( value ) {
     }
 };
 
