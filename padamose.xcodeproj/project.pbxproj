@@ -53,7 +53,6 @@
 		CD4E81C92105940F007DA585 /* VersionedStoreSnapshot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4E80E321040032007DA585 /* VersionedStoreSnapshot.cpp */; };
 		CD4E81CA2105940F007DA585 /* VersionedStoreSnapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = CD4E80E421040032007DA585 /* VersionedStoreSnapshot.h */; };
 		CD4E81D421059435007DA585 /* libpadamose.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4E818F21059316007DA585 /* libpadamose.a */; };
-		CD561DBA210730E5008B06C7 /* ValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CD561DB9210730E5008B06C7 /* ValueStack.h */; };
 		CD561DBD210730ED008B06C7 /* EphemeralVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD561DBB210730ED008B06C7 /* EphemeralVersionedBranch.cpp */; };
 		CD561DBE210730ED008B06C7 /* EphemeralVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CD561DBC210730ED008B06C7 /* EphemeralVersionedBranch.h */; };
 		CD6C9ACB21C48175009A3801 /* liblognosis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6C9AC821C47FB9009A3801 /* liblognosis.a */; };
@@ -66,8 +65,8 @@
 		CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchClient.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */; };
 		CDA06FF921587771003FA0C3 /* AbstractVersionedBranchClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */; };
 		CDA06FFA21588EB3003FA0C3 /* TestVersionedStoreIterators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */; };
-		CDA06FFE2159A79C003FA0C3 /* AbstractValueStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FFC2159A79B003FA0C3 /* AbstractValueStack.cpp */; };
-		CDA06FFF2159A79C003FA0C3 /* AbstractValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FFD2159A79C003FA0C3 /* AbstractValueStack.h */; };
+		CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */; };
+		CDA06FFF2159A79C003FA0C3 /* EphemeralValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */; };
 		CDB40586223ED4DD00200C78 /* AbstractPersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */; };
 		CDB40587223ED4DD00200C78 /* AbstractPersistenceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */; };
 		CDB4058B223ED61300200C78 /* DebugPersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40589223ED61300200C78 /* DebugPersistenceProvider.cpp */; };
@@ -175,7 +174,6 @@
 		CD4E816B21057DD1007DA585 /* main-gtest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "main-gtest.cpp"; path = "src/padamose/gtest/main-gtest.cpp"; sourceTree = "<group>"; };
 		CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStore.cpp; path = src/padamose/gtest/TestVersionedStore.cpp; sourceTree = "<group>"; };
 		CD4E818F21059316007DA585 /* libpadamose.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpadamose.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD561DB9210730E5008B06C7 /* ValueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValueStack.h; path = src/padamose/ValueStack.h; sourceTree = "<group>"; };
 		CD561DBB210730ED008B06C7 /* EphemeralVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EphemeralVersionedBranch.cpp; path = src/padamose/EphemeralVersionedBranch.cpp; sourceTree = "<group>"; };
 		CD561DBC210730ED008B06C7 /* EphemeralVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EphemeralVersionedBranch.h; path = src/padamose/EphemeralVersionedBranch.h; sourceTree = "<group>"; };
 		CD5C62FA20B4F7B10038EE98 /* padamose-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "padamose-common.h"; path = "src/padamose/padamose-common.h"; sourceTree = "<group>"; };
@@ -188,8 +186,8 @@
 		CDA06FF4215715EE003FA0C3 /* VersionedValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedValue.h; path = src/padamose/VersionedValue.h; sourceTree = "<group>"; };
 		CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedBranchClient.h; path = src/padamose/AbstractVersionedBranchClient.h; sourceTree = "<group>"; };
 		CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedBranchClient.cpp; path = src/padamose/AbstractVersionedBranchClient.cpp; sourceTree = "<group>"; };
-		CDA06FFC2159A79B003FA0C3 /* AbstractValueStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractValueStack.cpp; path = src/padamose/AbstractValueStack.cpp; sourceTree = "<group>"; };
-		CDA06FFD2159A79C003FA0C3 /* AbstractValueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractValueStack.h; path = src/padamose/AbstractValueStack.h; sourceTree = "<group>"; };
+		CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EphemeralValueStack.cpp; path = src/padamose/EphemeralValueStack.cpp; sourceTree = "<group>"; };
+		CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EphemeralValueStack.h; path = src/padamose/EphemeralValueStack.h; sourceTree = "<group>"; };
 		CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractPersistenceProvider.cpp; path = src/padamose/AbstractPersistenceProvider.cpp; sourceTree = "<group>"; };
 		CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPersistenceProvider.h; path = src/padamose/AbstractPersistenceProvider.h; sourceTree = "<group>"; };
 		CDB40589223ED61300200C78 /* DebugPersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugPersistenceProvider.cpp; path = src/padamose/DebugPersistenceProvider.cpp; sourceTree = "<group>"; };
@@ -364,17 +362,16 @@
 		CDB40597223EE37000200C78 /* branch */ = {
 			isa = PBXGroup;
 			children = (
-				CDA06FFC2159A79B003FA0C3 /* AbstractValueStack.cpp */,
-				CDA06FFD2159A79C003FA0C3 /* AbstractValueStack.h */,
 				CDB4058F223EE24800200C78 /* AbstractVersionedBranch.cpp */,
 				CDB40590223EE24800200C78 /* AbstractVersionedBranch.h */,
 				CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */,
 				CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */,
+				CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */,
+				CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */,
 				CD561DBB210730ED008B06C7 /* EphemeralVersionedBranch.cpp */,
 				CD561DBC210730ED008B06C7 /* EphemeralVersionedBranch.h */,
 				CDB40593223EE36C00200C78 /* PersistentVersionedBranch.cpp */,
 				CDB40594223EE36C00200C78 /* PersistentVersionedBranch.h */,
-				CD561DB9210730E5008B06C7 /* ValueStack.h */,
 			);
 			name = branch;
 			sourceTree = "<group>";
@@ -448,7 +445,7 @@
 				CD561DBE210730ED008B06C7 /* EphemeralVersionedBranch.h in Headers */,
 				CDB40587223ED4DD00200C78 /* AbstractPersistenceProvider.h in Headers */,
 				CDB4058E223ED67A00200C78 /* padamose.h in Headers */,
-				CDA06FFF2159A79C003FA0C3 /* AbstractValueStack.h in Headers */,
+				CDA06FFF2159A79C003FA0C3 /* EphemeralValueStack.h in Headers */,
 				CD4E81CA2105940F007DA585 /* VersionedStoreSnapshot.h in Headers */,
 				CDA06FF5215715EE003FA0C3 /* VersionedValue.h in Headers */,
 				CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */,
@@ -461,7 +458,6 @@
 				CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */,
 				CDB4058C223ED61300200C78 /* DebugPersistenceProvider.h in Headers */,
 				CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */,
-				CD561DBA210730E5008B06C7 /* ValueStack.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,7 +641,7 @@
 				CDF903B121A1455700C1930B /* VersionedCollectionSnapshot.cpp in Sources */,
 				CDB4058B223ED61300200C78 /* DebugPersistenceProvider.cpp in Sources */,
 				CDF903AD21A0A70B00C1930B /* VersionedSet.cpp in Sources */,
-				CDA06FFE2159A79C003FA0C3 /* AbstractValueStack.cpp in Sources */,
+				CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */,
 				CDA06FF221570FDF003FA0C3 /* VersionedStore.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

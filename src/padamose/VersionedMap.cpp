@@ -20,16 +20,14 @@ namespace Padamose {
 */
 size_t VersionedMap::affirmKey ( string key ) {
 
-    size_t nodeID = INVALID_NODE_INDEX;
     bool hasCollisions = false; // used for sanity check later.
     string collisionKey;
 
     // see if there is already a decollider for this key.
     string decolliderKey = this->mDecolliderPrefix + key; // decolliders are stored for the full key.
-    const size_t* decolliderRef = this->mStore.getValueOrNil < size_t >( decolliderKey );
-    if ( decolliderRef ) {
+    size_t nodeID = this->mStore.getValueOrFallback < size_t >( decolliderKey, INVALID_NODE_INDEX );
+    if ( nodeID != INVALID_NODE_INDEX ) {
     
-        nodeID = *decolliderRef;
         hasCollisions = true;
     }
     else {
@@ -39,11 +37,11 @@ size_t VersionedMap::affirmKey ( string key ) {
         collisionKey = this->mCollisionPrefix + encodeNodeID ( nodeID );
         
         // check to see if there are already known collisions.
-        const size_t* collisionCountRef = this->mStore.getValueOrNil < size_t >( collisionKey );
-        if ( collisionCountRef ) {
+        Variant collisionCountRef = this->mStore.getValueVariant ( collisionKey );
+        if ( !collisionCountRef.isNull ()) {
         
             // there are already collisions; get the count
-            size_t collisionCount = *collisionCountRef;
+            size_t collisionCount = collisionCountRef.getStrict < size_t >();
             assert ( collisionCount != COUNTER_PORTION_MASK ); // unrecoverable
         
             // no decollider, so provision a new one.
@@ -62,11 +60,11 @@ size_t VersionedMap::affirmKey ( string key ) {
     
     string nodeKey = this->mNodePrefix + encodeNodeID ( nodeID );
     
-    const VersionedCollectionNode* existingNode = this->mStore.getValueOrNil < VersionedCollectionNode >( nodeKey );
-    if ( existingNode && ( existingNode->mID != INVALID_NODE_INDEX )) {
+    VersionedCollectionNode existingNode = this->getNode ( nodeKey );
+    if ( existingNode.mID != INVALID_NODE_INDEX ) {
 
         // check to see if there is a collision. if not, we're done.
-        if ( existingNode->mKey == key ) return nodeID;
+        if ( existingNode.mKey == key ) return nodeID;
 
         // there is a collision!
         
@@ -78,7 +76,7 @@ size_t VersionedMap::affirmKey ( string key ) {
         this->mStore.setValue < size_t >( collisionKey, 2 );
 
         // decollide the original node. it'll keep its existing ID.
-        this->mStore.setValue < size_t >( this->mDecolliderPrefix + existingNode->mKey, nodeID );
+        this->mStore.setValue < size_t >( this->mDecolliderPrefix + existingNode.mKey, nodeID );
 
         // colliding node is the first non-zero decollider.
         nodeID |= ( size_t )1 << COUNTER_PORTION_SHIFT;

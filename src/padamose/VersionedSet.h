@@ -52,8 +52,10 @@ private:
     VersionedSetFreeStack   mFreeStack;
     
     //----------------------------------------------------------------//
+    void            loadFreeStack               ();
     size_t          peekNextKey                 ();
     string          provisionKey                ( size_t nextNodeID, bool append );
+    void            storeFreeStack              ();
     
 public:
 

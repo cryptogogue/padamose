@@ -71,8 +71,8 @@ private:
     string          mDecolliderPrefix;
     
     //----------------------------------------------------------------//
-    size_t          affirmKey                   ( string key );
-    size_t          getHashPortion              ( string key ) const;
+    size_t                      affirmKey                   ( string key );
+    size_t                      getHashPortion              ( string key ) const;
     
     //----------------------------------------------------------------//
     virtual size_t  VersionedMap_hash           ( string key ) const;

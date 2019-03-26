@@ -64,6 +64,15 @@ private:
     
     /// Numeric ID of next node in the list.
     size_t      mNext;
+    
+    /// Set to true if node exists in the store (even if fields are INVALID_NODE_INDEX).
+    bool        mExists;
+    
+    //----------------------------------------------------------------//
+    // TODO: doxygen
+    operator bool () const {
+        return this->mExists;
+    }
 };
 
 //================================================================//
@@ -106,7 +115,9 @@ protected:
     
     //----------------------------------------------------------------//
     static string                       encodeNodeID            ( size_t nodeID );
+    VersionedCollectionNode             getNode                 ( string key ) const;
     const VersionedStoreSnapshot&       getSnapshot             () const;
+    void                                loadState               ();
     size_t                              lookupNodeID            ( string key ) const;
     void                                pushNode                ( size_t nodeID, string nodeKey );
     void                                setName                 ( string name );

@@ -29,9 +29,9 @@ EphemeralVersionedBranch::~EphemeralVersionedBranch () {
     \param      key         The key.
     \return                 The ValueStack for the key or NULL.
 */
-const AbstractValueStack* EphemeralVersionedBranch::findValueStack ( string key ) const {
+const EphemeralValueStack* EphemeralVersionedBranch::findValueStack ( string key ) const {
 
-    map < string, unique_ptr < AbstractValueStack >>::const_iterator valueIt = this->mValueStacksByKey.find ( key );
+    map < string, unique_ptr < EphemeralValueStack >>::const_iterator valueIt = this->mValueStacksByKey.find ( key );
     return ( valueIt != this->mValueStacksByKey.cend ()) ? valueIt->second.get () : NULL;
 }
 
@@ -55,7 +55,7 @@ void EphemeralVersionedBranch::truncate ( size_t topVersion ) {
         Layer::iterator keyIt = layer.begin ();
         for ( ; keyIt != layer.end (); ++keyIt ) {
 
-            unique_ptr < AbstractValueStack >& valueStack = this->mValueStacksByKey [ *keyIt ];
+            unique_ptr < EphemeralValueStack >& valueStack = this->mValueStacksByKey [ *keyIt ];
             assert ( valueStack );
             
             valueStack->erase ( layerIt->first );
@@ -110,10 +110,10 @@ shared_ptr < AbstractVersionedBranch > EphemeralVersionedBranch::AbstractVersion
             
             toLayer.insert ( *keyIt );
             
-            const AbstractValueStack* fromStack = this->findValueStack ( *keyIt );
+            const EphemeralValueStack* fromStack = this->findValueStack ( *keyIt );
             assert ( fromStack );
             
-            unique_ptr < AbstractValueStack >& toStack = child->mValueStacksByKey [ *keyIt ];
+            unique_ptr < EphemeralValueStack >& toStack = child->mValueStacksByKey [ *keyIt ];
             if ( !toStack ) {
                 toStack = fromStack->makeEmptyCopy ();
             }
@@ -135,38 +135,62 @@ size_t EphemeralVersionedBranch::AbstractVersionedBranch_getTopVersion () const 
 }
 
 //----------------------------------------------------------------//
-/** \brief Recursively searches the branch to see if a the given key exists.
+// TODO: doxygen
+size_t EphemeralVersionedBranch::AbstractVersionedBranch_getValueNextVersion ( string key, size_t version ) const {
 
-    \param      version     Search this version or the most recent lesser version for the key.
-    \param      key         The key.
-    \return                 TRUE if the key is found. FALSE if not.
-*/
-bool EphemeralVersionedBranch::AbstractVersionedBranch_hasKey ( size_t version, string key ) const {
+    const EphemeralValueStack* valueStack = this->findValueStack ( key );
+    if ( valueStack ) {
+        return valueStack->getNextVersion ( version );
+    }
+    return version;
+}
 
-    // start searching at the current branch.
-    const AbstractVersionedBranch* branch = this;
+//----------------------------------------------------------------//
+// TODO: doxygen
+size_t EphemeralVersionedBranch::AbstractVersionedBranch_getValuePrevVersion ( string key, size_t version ) const {
+
+    const EphemeralValueStack* valueStack = this->findValueStack ( key );
+    if ( valueStack ) {
+        return valueStack->getPrevVersion ( version );
+    }
+    return version;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+Variant EphemeralVersionedBranch::AbstractVersionedBranch_getValueVariant ( size_t version, string key ) const {
+
+    if ( this->mVersion <= version ) {
     
-    // iterate through parent branches.
-    for ( ; branch; branch = branch->mSourceBranch.get ()) {
-    
-        // ignore branches above the version we're searching for.
-        if ( branch->mVersion <= version ) {
-        
-            // TODO: obviously, this is temp
-            const EphemeralVersionedBranch* ephemeralBranch = dynamic_cast < const EphemeralVersionedBranch* >( branch );
-            assert ( ephemeralBranch );
-        
-            // check for a value stack without recursion.
-            const AbstractValueStack* abstractValueStack = ephemeralBranch->findValueStack ( key );
-            
-            if ( abstractValueStack ) {
-                return true;
-            }
+        // check for a value stack without recursion.
+        const EphemeralValueStack* valueStack = this->findValueStack ( key );
+        if ( valueStack ) {
+            return valueStack->getValueVariant ( version );
         }
-        
-        // cap the version at the base version before moving to the parent branch.
-        // necessary because branches don't always emerge from the top.
-        version = branch->mVersion;
+    }
+    return Variant ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+bool EphemeralVersionedBranch::AbstractVersionedBranch_getValueVersionExtents ( string key, size_t upperBound, size_t& first, size_t& last ) const {
+
+    const EphemeralValueStack* valueStack = this->findValueStack ( key );
+    if ( valueStack ) {
+        return valueStack->getExtents ( upperBound, first, last );
+    }
+    return false;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+bool EphemeralVersionedBranch::AbstractVersionedBranch_hasKey ( string key, size_t upperBound ) const {
+
+    if ( this->mVersion <= upperBound ) {
+        const EphemeralValueStack* valueStack = this->findValueStack ( key );
+        if ( valueStack ) {
+            return valueStack->hasKey ( upperBound );
+        }
     }
     return false;
 }
@@ -269,6 +293,37 @@ void EphemeralVersionedBranch::AbstractVersionedBranch_optimize () {
 }
 
 //----------------------------------------------------------------//
+/** \brief Sets a value at the given version. If the version doesn't exist,
+    a new layer will be created. Also creates a value stack if none exists. Throws
+    a TypeMismatchOnAssignException if a value of a different type has already been
+    assigned to the key.
+
+    \param      version     The version to set the value at. Must be equal to or greater than the branch's base version.
+    \param      key         Key of the value to set.
+    \param      value       Raw pointer to value to set.
+
+    \throws     TypeMismatchOnAssignException
+*/
+void EphemeralVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t version, string key, const Variant& value ) {
+
+    assert ( this->mVersion <= version );
+    
+    unique_ptr < EphemeralValueStack >& valueStack = this->mValueStacksByKey [ key ];
+
+    if ( !valueStack ) {
+        valueStack = make_unique < EphemeralValueStack >( value.index ());
+    }
+    assert ( valueStack );
+
+    valueStack->setValueVariant ( version, value );
+
+    Layer& layer = this->mLayers [ version ];
+    if ( layer.find ( key ) == layer.end ()) {
+        layer.insert ( key );
+    }
+}
+
+//----------------------------------------------------------------//
 /** \brief Implementation of virtual method. Always returns true.
     \return     Always returns true.
 */
@@ -308,10 +363,7 @@ size_t EphemeralVersionedBranch::AbstractVersionedBranchClient_getVersionDepende
 */
 void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& branch ) {
 
-    // TODO: obviously, this is temp
-    EphemeralVersionedBranch& ephemeralBranch = dynamic_cast < EphemeralVersionedBranch& >( branch );
-
-    assert ( ephemeralBranch.mDirectReferenceCount == 0 );
+    assert ( branch.getDirectReferenceCount () == 0 );
     assert ( this->mDirectReferenceCount == 0 );
 
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
@@ -319,23 +371,16 @@ void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abstra
     
     this->optimize ();
     
-    shared_ptr < EphemeralVersionedBranch > pinThis = this->shared_from_this ();
-    
-    // merge the branch layers
-    ephemeralBranch.mLayers.insert ( this->mLayers.begin(), this->mLayers.end ());
+    shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
 
     // copy the value stacks
-    map < string, unique_ptr < AbstractValueStack >>::iterator valueStackIt = this->mValueStacksByKey.begin ();
+    map < string, unique_ptr < EphemeralValueStack >>::iterator valueStackIt = this->mValueStacksByKey.begin ();
     for ( ; valueStackIt != this->mValueStacksByKey.end (); ++valueStackIt ) {
         
-        const AbstractValueStack* fromStack = this->findValueStack ( valueStackIt->first );
+        string key = valueStackIt->first;
+        const EphemeralValueStack* fromStack = this->findValueStack ( valueStackIt->first );
         assert ( fromStack );
-        
-        unique_ptr < AbstractValueStack >& toStack = ephemeralBranch.mValueStacksByKey [ valueStackIt->first ];
-        if ( !toStack ) {
-            toStack = fromStack->makeEmptyCopy ();
-        }
-        fromStack->join ( *toStack );
+        fromStack->join ( key, branch );
     }
 
     // copy the clients
@@ -343,7 +388,7 @@ void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abstra
     for ( ; clientIt != this->mClients.end (); ++clientIt ) {
         AbstractVersionedBranchClient* client = *clientIt;
         branch.insertClient ( *client );
-        client->mSourceBranch = ephemeralBranch.shared_from_this ();
+        client->mSourceBranch = branch.shared_from_this ();
     }
     
     pinThis = NULL;

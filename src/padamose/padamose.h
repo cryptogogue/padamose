@@ -5,15 +5,14 @@
 #define PADAMOSE_H
 
 #include <padamose/AbstractPersistenceProvider.h>
-#include <padamose/AbstractValueStack.h>
 #include <padamose/AbstractVersionedCollection.h>
 #include <padamose/AbstractVersionedBranchClient.h>
 #include <padamose/BaseVersionedCollectionIterator.h>
 #include <padamose/DebugPersistenceProvider.h>
+#include <padamose/EphemeralValueStack.h>
 #include <padamose/EphemeralVersionedBranch.h>
 #include <padamose/Exceptions.h>
 #include <padamose/MutableVersionedCollection.h>
-#include <padamose/ValueStack.h>
 #include <padamose/Variant.h>
 #include <padamose/VersionedCollectionSnapshot.h>
 #include <padamose/VersionedCollectionIterator.h>

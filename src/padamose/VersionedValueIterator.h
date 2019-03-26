@@ -5,7 +5,6 @@
 #define PADAMOSE_VERSIONEDVALUEITERATOR_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractValueStack.h>
 #include <padamose/VersionedStoreSnapshot.h>
 
 namespace Padamose {
@@ -40,8 +39,6 @@ protected:
 
     friend class VersionedStoreSnapshot;
 
-    typedef typename map < size_t, TYPE >::const_iterator ValueIterator;
-
     enum {
         VALID,
         
@@ -57,9 +54,6 @@ protected:
     /// Key of the value being iterated.
     string                      mKey;
     
-    /// Internal iterator of underlying value stack.
-    ValueIterator               mIterator;
-    
     /// Internal state of the iterator.
     int                         mState;
     
@@ -68,27 +62,6 @@ protected:
     
     /// Upper bound of the stack being iterated.
     size_t                      mLastVersion;
-
-    //----------------------------------------------------------------//
-    /** \brief Helper method to find an AbstractValueStack in a branch and
-        dynamically cast it to a strongly typed implementation. Uses the intenal
-        key to find the value stack.
-     
-        \return     A pointer to the strongly typed ValueStack or NULL.
-    */
-    const ValueStack < TYPE >* getValueStack ( shared_ptr < AbstractVersionedBranch > branch ) {
-    
-        // TODO: obviously, this is temp
-        EphemeralVersionedBranch* ephemeralBranch = dynamic_cast < EphemeralVersionedBranch* >( branch.get ());
-        
-        if ( ephemeralBranch ) {
-            const AbstractValueStack* abstractValueStack = ephemeralBranch->findValueStack ( this->mKey );
-            if ( abstractValueStack ) {
-                return dynamic_cast < const ValueStack < TYPE >* >( abstractValueStack );
-            }
-        }
-        return NULL;
-    }
 
     //----------------------------------------------------------------//
     /** \brief Starts at the anchor's branch and seeks backward to find the
@@ -100,31 +73,32 @@ protected:
         
         shared_ptr < AbstractVersionedBranch > branch = this->mAnchor.mSourceBranch;
         size_t top = this->mAnchor.mVersion + 1;
-        
+
         shared_ptr < AbstractVersionedBranch > bestBranch;
-        const ValueStack < TYPE >* bestValueStack = NULL;
-        size_t bestTop = top;
-        
+
+        size_t first = 0;
+        size_t last = 0;
+
+        // walk back to prevBranch (from the top), searing for the earliest branch
+        // that contains values.
         for ( ; branch != prevBranch; branch = branch->mSourceBranch ) {
-            const ValueStack < TYPE >* valueStack = this->getValueStack ( branch );
-            if ( valueStack && valueStack->size ()) {
+            if ( branch->getValueVersionExtents ( this->mKey, top - 1, first, last )) {
                 bestBranch = branch;
-                bestValueStack = valueStack;
-                bestTop = top;
             }
             top = branch->mVersion;
         }
-        
-        if ( bestValueStack ) {
-        
+
+        if ( bestBranch ) {
+
             bestBranch->mDirectReferenceCount++;
-            
+
             if ( this->mSourceBranch ) {
                 this->mSourceBranch->mDirectReferenceCount--;
             }
-            
-            this->setExtents ( *bestValueStack, bestTop - 1 );
-            this->mIterator = bestValueStack->mValuesByVersion.begin ();
+
+            this->mFirstVersion = first;
+            this->mLastVersion = last;
+
             this->setBranch ( bestBranch, this->mFirstVersion );
             this->mState = VALID;
         }
@@ -146,19 +120,21 @@ protected:
     void seekPrev ( shared_ptr < AbstractVersionedBranch > branch, size_t top ) {
         
         for ( ; branch; branch = branch->mSourceBranch ) {
-        
-            const ValueStack < TYPE >* valueStack = this->getValueStack ( branch );
-            
-            if ( valueStack && valueStack->size ()) {
-            
+
+            size_t first;
+            size_t last;
+
+            if ( branch->getValueVersionExtents ( this->mKey, top - 1, first, last )) {
+
                 branch->mDirectReferenceCount++;
-            
+
                 if ( this->mSourceBranch ) {
                     this->mSourceBranch->mDirectReferenceCount--;
                 }
-                
-                this->setExtents ( *valueStack, top - 1 );
-                this->mIterator = valueStack->mValuesByVersion.find ( this->mLastVersion );
+
+                this->mFirstVersion = first;
+                this->mLastVersion = last;
+
                 this->setBranch ( branch, this->mLastVersion );
                 this->mState = VALID;
                 return;
@@ -166,36 +142,6 @@ protected:
             top = branch->mVersion;
         }
         this->mState = NO_PREV;
-    }
-
-    //----------------------------------------------------------------//
-    /** \brief Updates the internal bounds of the stack.
-    
-        The upper bound must be given; it cannot be deduced from the stack
-        alone (as the stack may be shared by other branches with higher base
-        versions).
-     
-        The lower bound is simply the lowest version held in the stack.
-     
-        \param      valueStack      The stack to be used to setting the bounds. Must at least one value.
-        \param      top             Upper bound for the stack.
-    */
-    void setExtents ( const ValueStack < TYPE >& valueStack, size_t top ) {
-    
-        assert ( valueStack.mValuesByVersion.size ());
-        this->mFirstVersion     = valueStack.mValuesByVersion.begin ()->first;
-        
-        typename map < size_t, TYPE >::const_iterator valueIt = valueStack.mValuesByVersion.lower_bound ( top );
-        
-        if ( valueIt == valueStack.mValuesByVersion.cend ()) {
-            this->mLastVersion = valueStack.mValuesByVersion.rbegin ()->first;
-        }
-        else {
-            if ( valueIt->first > top ) {
-                valueIt--;
-            }
-            this->mLastVersion = valueIt->first;
-        }
     }
 
 public:
@@ -227,7 +173,7 @@ public:
     //----------------------------------------------------------------//
     /** \brief Dereference operator. Calls value() internally.
     */
-    const TYPE& operator * () const {
+    const TYPE operator * () const {
         return this->value ();
     }
 
@@ -254,12 +200,11 @@ public:
         }
         else if ( this->mState != NO_NEXT ) {
             
-             if ( this->mIterator->first < this->mLastVersion ) {
-                ++this->mIterator;
-                this->mVersion = this->mIterator->first;
+             if ( this->mVersion < this->mLastVersion ) {
+                this->mVersion = this->mSourceBranch->getValueNextVersion ( this->mKey, this->mVersion );
             }
             else {
-                assert ( this->mIterator->first == this->mLastVersion );
+                assert ( this->mVersion == this->mLastVersion );
                 this->seekNext ( this->mSourceBranch );
             }
         }
@@ -280,12 +225,11 @@ public:
         }
         else if ( this->mState != NO_PREV ) {
                 
-            if ( this->mIterator->first > this->mFirstVersion ) {
-                --this->mIterator;
-                this->mVersion = this->mIterator->first;
+            if ( this->mVersion > this->mFirstVersion ) {
+                this->mVersion = this->mSourceBranch->getValuePrevVersion ( this->mKey, this->mVersion );
             }
             else {
-                assert ( this->mIterator->first == this->mFirstVersion );
+                assert ( this->mVersion == this->mFirstVersion );
                 this->seekPrev ( this->mSourceBranch->mSourceBranch, this->mVersion );
             }
         }
@@ -326,9 +270,9 @@ public:
 
         \return     The current value of the iterator.
     */
-    const TYPE& value () const {
+    const TYPE value () const {
         assert ( this->isValid ());
-        return this->mIterator->second;
+        return this->getValue < TYPE >( this->mKey );
     }
     
     //----------------------------------------------------------------//

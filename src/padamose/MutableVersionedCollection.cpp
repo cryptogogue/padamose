@@ -19,7 +19,7 @@ namespace Padamose {
 bool MutableVersionedCollection::affirmState () {
 
     if ( this->mStore.hasKey ( this->mName )) {
-        this->mState = this->mStore.getValue < VersionedCollectionState >( this->mName );
+        this->loadState ();
         return true;
     }
 
@@ -27,7 +27,7 @@ bool MutableVersionedCollection::affirmState () {
     this->mState.mTail = INVALID_NODE_INDEX;
     this->mState.mSize = 0;
     
-    this->mStore.setValue < VersionedCollectionState >( this->mName, this->mState );
+    this->storeState ();
 
     return false;
 }
@@ -49,7 +49,7 @@ void MutableVersionedCollection::appendNode ( size_t nodeID, string fullKey, str
     node.mKey = fullKey;
     node.mPrev = prevID;
     node.mNext = INVALID_NODE_INDEX;
-    this->mStore.setValue < VersionedCollectionNode >( nodeKey, node );
+    this->setNode ( nodeKey, node );
 
     this->mState.mTail = nodeID;
     this->mState.mSize++;
@@ -60,12 +60,12 @@ void MutableVersionedCollection::appendNode ( size_t nodeID, string fullKey, str
     }
     else {
         string prevNodeKey = this->mNodePrefix + encodeNodeID ( prevID );
-        VersionedCollectionNode prevNode = this->mStore.getValue < VersionedCollectionNode >( prevNodeKey );
+        VersionedCollectionNode prevNode = this->getNode ( prevNodeKey );
         prevNode.mNext = nodeID;
-        this->mStore.setValue < VersionedCollectionNode >( prevNodeKey, prevNode );
+        this->setNode ( prevNodeKey, prevNode );
     }
     
-    this->mStore.setValue < VersionedCollectionState >( this->mName, this->mState );
+    this->storeState ();
 }
 
 //----------------------------------------------------------------//
@@ -85,7 +85,7 @@ void MutableVersionedCollection::prependNode ( size_t nodeID, string fullKey, st
     node.mKey = fullKey;
     node.mPrev = INVALID_NODE_INDEX;
     node.mNext = nextID;
-    this->mStore.setValue < VersionedCollectionNode >( nodeKey, node );
+    this->setNode ( nodeKey, node );
 
     this->mState.mHead = nodeID;
     this->mState.mSize++;
@@ -96,12 +96,12 @@ void MutableVersionedCollection::prependNode ( size_t nodeID, string fullKey, st
     }
     else {
         string nextNodeKey = this->mNodePrefix + encodeNodeID ( nextID );
-        VersionedCollectionNode nextNode = this->mStore.getValue < VersionedCollectionNode >( nextNodeKey );
+        VersionedCollectionNode nextNode = this->getNode ( nextNodeKey );
         nextNode.mPrev = nodeID;
-        this->mStore.setValue < VersionedCollectionNode >( nextNodeKey, nextNode );
+        this->setNode ( nextNodeKey, nextNode );
     }
     
-    this->mStore.setValue < VersionedCollectionState >( this->mName, this->mState );
+    this->storeState ();
 }
 
 //----------------------------------------------------------------//
@@ -133,31 +133,31 @@ size_t MutableVersionedCollection::removeNode ( string key, string encodedNodeID
 
     string nodeKey = this->mNodePrefix + encodedNodeID;
     
-    const VersionedCollectionNode* existingNode = this->mStore.getValueOrNil < VersionedCollectionNode >( nodeKey );
-    if (( !existingNode ) || ( existingNode->mID == INVALID_NODE_INDEX )) throw KeyNotFoundException ();
+    VersionedCollectionNode existingNode = this->getNode ( nodeKey );
+    if (( !existingNode ) || ( existingNode.mID == INVALID_NODE_INDEX )) throw KeyNotFoundException ();
     
-    assert ( existingNode->mKey == key );
+    assert ( existingNode.mKey == key );
     
-    size_t nodeID = existingNode->mID;
+    size_t nodeID = existingNode.mID;
     
-    if ( existingNode->mPrev != INVALID_NODE_INDEX ) {
-        string prevNodeKey = this->mNodePrefix + encodeNodeID ( existingNode->mPrev );
-        VersionedCollectionNode prevNode = this->mStore.getValue < VersionedCollectionNode >( prevNodeKey );
-        prevNode.mNext = existingNode->mNext;
-        this->mStore.setValue < VersionedCollectionNode >( prevNodeKey, prevNode );
+    if ( existingNode.mPrev != INVALID_NODE_INDEX ) {
+        string prevNodeKey = this->mNodePrefix + encodeNodeID ( existingNode.mPrev );
+        VersionedCollectionNode prevNode = this->getNode ( prevNodeKey );
+        prevNode.mNext = existingNode.mNext;
+        this->setNode ( prevNodeKey, prevNode );
     }
     else {
-        this->mState.mHead = existingNode->mNext;
+        this->mState.mHead = existingNode.mNext;
     }
     
-    if ( existingNode->mNext != INVALID_NODE_INDEX ) {
-        string nextNodeKey = this->mNodePrefix + encodeNodeID ( existingNode->mNext );
-        VersionedCollectionNode nextNode = this->mStore.getValue < VersionedCollectionNode >( nextNodeKey );
-        nextNode.mPrev = existingNode->mPrev;
-        this->mStore.setValue < VersionedCollectionNode >( nextNodeKey, nextNode );
+    if ( existingNode.mNext != INVALID_NODE_INDEX ) {
+        string nextNodeKey = this->mNodePrefix + encodeNodeID ( existingNode.mNext );
+        VersionedCollectionNode nextNode = this->getNode ( nextNodeKey );
+        nextNode.mPrev = existingNode.mPrev;
+        this->setNode ( nextNodeKey, nextNode );
     }
     else {
-        this->mState.mTail = existingNode->mPrev;
+        this->mState.mTail = existingNode.mPrev;
     }
 
     VersionedCollectionNode node;
@@ -165,14 +165,36 @@ size_t MutableVersionedCollection::removeNode ( string key, string encodedNodeID
     node.mNext = INVALID_NODE_INDEX;
     node.mID = INVALID_NODE_INDEX;
     
-    this->mStore.setValue < VersionedCollectionNode >( nodeKey, node );
+    this->setNode ( nodeKey, node );
     
     this->mState.mSize--;
-    this->mStore.setValue < VersionedCollectionState >( this->mName, this->mState );
+    this->storeState ();
     
     this->mStore.setValue < size_t >( this->mLookupPrefix + key, AbstractVersionedCollection::INVALID_NODE_INDEX );
     
     return nodeID;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void MutableVersionedCollection::setNode ( string key, const VersionedCollectionNode& node ) {
+
+    this->mStore.setValue < size_t >( key + ".id", node.mID );
+    this->mStore.setValue < string >( key + ".key", node.mKey );
+    this->mStore.setValue < size_t >( key + ".prev", node.mPrev );
+    this->mStore.setValue < size_t >( key + ".next", node.mNext );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void MutableVersionedCollection::storeState () {
+
+    // mark that the state exists
+    this->mStore.setValue < string >( this->mName, this->mName );
+
+    this->mStore.setValue < size_t >( this->mName + ".head", this->mState.mHead );
+    this->mStore.setValue < size_t >( this->mName + ".tail", this->mState.mTail );
+    this->mStore.setValue < size_t >( this->mName + ".size", this->mState.mSize );
 }
 
 //================================================================//

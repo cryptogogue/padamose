@@ -21,12 +21,13 @@ protected:
     /// The versioned store.
     VersionedStore& mStore;
     
-    
     //----------------------------------------------------------------//
     bool            affirmState             ();
     void            appendNode              ( size_t nodeID, string fullKey, string nodeKey );
     void            prependNode             ( size_t nodeID, string fullKey, string nodeKey );
     size_t          removeNode              ( string key, string encodedNodeID, size_t prevID = INVALID_NODE_INDEX );
+    void            setNode                 ( string key, const VersionedCollectionNode& node );
+    void            storeState              ();
     
     //----------------------------------------------------------------//
     const VersionedStoreSnapshot&       AbstractVersionedCollection_getSnapshot         () const override;

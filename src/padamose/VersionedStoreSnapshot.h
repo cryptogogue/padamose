@@ -47,37 +47,6 @@ protected:
     void            affirmBranch                    ();
     
     //----------------------------------------------------------------//
-    /** \brief Recursively searches the branch to find the value for the key. The most recent version
-        equal to or earlier will be returned.
-
-        A pointer to the value or NULL is returned.
-
-        \param      key         The key.
-        \return                 A pointer to the value for the key or NULL.
-    */
-    template < typename TYPE >
-    const TYPE* getValueOrNil ( string key ) const {
-        return this->getValueOrNil < TYPE >( key, this->mVersion );
-    }
-    
-    //----------------------------------------------------------------//
-    /** \brief Recursively searches the branch to find the value for the key. The most recent version
-        equal to or earlier will be returned.
-
-        A pointer to the value or NULL is returned.
-
-        \param      version     Search for this version of the most recent lesser version of the value;
-        \param      key         The key.
-        \return                 A pointer to the value for the key or NULL.
-    */
-    template < typename TYPE >
-    const TYPE* getValueOrNil ( string key, size_t version ) const {
-        // TODO: obviously, this is temp
-        const EphemeralVersionedBranch* ephemeralBranch = dynamic_cast < const EphemeralVersionedBranch* >( this->mSourceBranch.get ());
-        return ephemeralBranch ? ephemeralBranch->getValueOrNil < TYPE >( version <= this->mVersion ? version : this->mVersion, key ) : NULL;
-    }
-    
-    //----------------------------------------------------------------//
     bool            AbstractVersionedBranchClient_canJoin                   () const override;
     size_t          AbstractVersionedBranchClient_getJoinScore              () const override;
     size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
@@ -88,8 +57,12 @@ public:
 
     //----------------------------------------------------------------//
     void            clear                           ();
+    Variant         getValueVariant                 ( string key ) const;
+    Variant         getValueVariant                 ( string key, size_t version ) const;
     size_t          getVersion                      () const;
     bool            hasKey                          ( string key ) const;
+    bool            hasValue                        ( string key ) const;
+    bool            hasValue                        ( string key, size_t version ) const;
     void            setDebugName                    ( string debugName );
     void            takeSnapshot                    ( const VersionedStoreSnapshot& other );
                     VersionedStoreSnapshot          ();
@@ -116,26 +89,9 @@ public:
     */
     template < typename TYPE >
     TYPE getValue ( string key ) const {
-        const TYPE* value = this->getValueOrNil < TYPE >( key, this->mVersion );
-        if ( !value ) throw KeyNotFoundException ();
-        return *value;
+        return this->getValue < TYPE >( key, this->mVersion );
     }
-
-    //----------------------------------------------------------------//
-    /** \brief  Return a copy of the value for a key. If the value doesn't
-                exist, return the fallback.
-     
-        \param  key                     The key.
-        \param  fallback                The fallback.
-        \return                         The value or the fallback.
-    */
-    template < typename TYPE >
-    TYPE getValueOrFallback ( string key, const TYPE& fallback ) const {
-        const TYPE* value = this->getValueOrNil < TYPE >( key, this->mVersion );
-        if ( !value ) return fallback;
-        return *value;
-    }
-
+    
     //----------------------------------------------------------------//
     /** \brief  Return a copy of the value for a key at a given version. Throws a
                 KeyNotFoundException exception if the key does not exist.
@@ -150,9 +106,23 @@ public:
     */
     template < typename TYPE >
     TYPE getValue ( string key, size_t version ) const {
-        const TYPE* value = this->getValueOrNil < TYPE >( key, version );
-        if ( !value ) throw KeyNotFoundException ();
-        return *value;
+        Variant value = this->getValueVariant ( key, version );
+        if ( value.isNull ()) throw KeyNotFoundException ();
+        if ( !value.isType < TYPE >()) throw TypeMismatchOnGetException ();
+        return value.getStrict < TYPE >();
+    }
+
+    //----------------------------------------------------------------//
+    /** \brief  Return a copy of the value for a key. If the value doesn't
+                exist, return the fallback.
+     
+        \param  key                     The key.
+        \param  fallback                The fallback.
+        \return                         The value or the fallback.
+    */
+    template < typename TYPE >
+    TYPE getValueOrFallback ( string key, const TYPE& fallback ) const {
+        return this->getValueOrFallback < TYPE >( key, this->mVersion, fallback );
     }
 
     //----------------------------------------------------------------//
@@ -169,36 +139,25 @@ public:
     */
     template < typename TYPE >
     TYPE getValueOrFallback ( string key, size_t version, const TYPE& fallback ) const {
-        const TYPE* value = this->getValueOrNil < TYPE >( key, version );
-        if ( !value ) return fallback;
-        return *value;
-    }
-
-    //----------------------------------------------------------------//
-    /** \brief  Check to see if the value can be found.
-     
-        \param  key     The key.
-        \return         True if the value exists. False if it doesn't.
-    */
-    template < typename TYPE >
-    bool hasValue ( string key ) const {
-        const TYPE* value = this->getValueOrNil < TYPE >( key, this->mVersion );
-        return ( value != NULL );
+        Variant value = this->getValueVariant ( key, version );
+        if ( value.isNull ()) return fallback;
+        return value.getStrict < TYPE >();
     }
     
     //----------------------------------------------------------------//
-    /** \brief  Check to see if the value can be found for the given version.
-     
-                Check the value for the most recent version equal to or less than
-                the given version.
-     
-        \param  key     The key.
-        \return         True if the value exists. False if it doesn't.
-    */
+    // TODO: doxygen
     template < typename TYPE >
-    bool hasValue ( string key, size_t version ) const {
-        const TYPE* value = this->getValueOrNil < TYPE >( key, version );
-        return ( value != NULL );
+    bool hasValueWithType ( string key ) const {
+        return this->hasValueWithType < TYPE >( key, this->mVersion );
+    }
+    
+    //----------------------------------------------------------------//
+    // TODO: doxygen
+    template < typename TYPE >
+    bool hasValueWithType ( string key, size_t version ) const {
+        // TODO: provide a more efficient implementation
+        Variant value = this->getValueVariant ( key, version );
+        return holds_alternative < TYPE >( value );
     }
 };
 

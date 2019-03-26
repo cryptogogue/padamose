@@ -61,6 +61,19 @@ public:
 };
 
 //================================================================//
+// TypeMismatchOnGetException
+//================================================================//
+class TypeMismatchOnGetException :
+    public logic_error {
+public:
+
+    //----------------------------------------------------------------//
+    TypeMismatchOnGetException () :
+        logic_error ( "Type mismatch on get; key exists, but was declared as another type." ) {
+    }
+};
+
+//================================================================//
 // VersionedCollectionNotFoundException
 //================================================================//
 class VersionedCollectionNotFoundException :

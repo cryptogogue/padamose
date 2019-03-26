@@ -92,7 +92,7 @@ void BaseVersionedCollectionIterator::seek ( size_t nodeID ) {
         return;
     }
     this->mNodeKey = this->mNodePrefix + encodeNodeID ( nodeID );
-    this->mIteratorNode = this->mSnapshot.getValue < VersionedCollectionNode >( this->mNodeKey );
+    this->mIteratorNode = this->getNode ( this->mNodeKey );
     this->mIteratorState = VALID;
 }
 
@@ -136,7 +136,7 @@ bool BaseVersionedCollectionIterator::step ( size_t nextNodeID, int blockingStat
         }
         else {
             this->mNodeKey = this->mNodePrefix + encodeNodeID ( nextNodeID );
-            this->mIteratorNode = this->mSnapshot.getValue < VersionedCollectionNode >( this->mNodeKey );
+            this->mIteratorNode = this->getNode ( this->mNodeKey );
         }
     }
     return ( this->mIteratorState != blockingState );

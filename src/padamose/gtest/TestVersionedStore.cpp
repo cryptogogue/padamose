@@ -21,21 +21,21 @@ static const string STR4    = "mno";
 TEST ( VersionedStore, test_hasValue_returns_false_if_value_was_not_set ) {
     VersionedStore store;
 
-    ASSERT_FALSE ( store.hasValue < string >( KEY ) );
+    ASSERT_FALSE ( store.hasValueWithType < string >( KEY ) );
 }
 
 TEST ( VersionedStore, test_hasValue_returns_true_if_value_was_set ) {
     VersionedStore store;
     store.setValue < string >( KEY, STR0 );
 
-    ASSERT_TRUE ( store.hasValue < string >( KEY ) );
+    ASSERT_TRUE ( store.hasValueWithType < string >( KEY ) );
 }
 
 TEST ( VersionedStore, test_hasValue_if_value_was_set_with_different_type_fails ) {
     VersionedStore store;
     store.setValue < string >( KEY, STR0 );
 
-    ASSERT_FALSE ( store.hasValue < int >( KEY ));
+    ASSERT_FALSE ( store.hasValueWithType < int >( KEY ));
 
 }
 
@@ -55,11 +55,11 @@ TEST ( VersionedStore, test_setValue_for_int_type ) {
 }
 
 TEST ( VersionedStore, test_setValue_for_float_type ){
-    const float value = 1.f;
+    const double value = 1.f;
     VersionedStore store;
     store.setValue < float >( KEY, value );
     
-    ASSERT_EQ ( store.getValue < float >( KEY ), value );
+    ASSERT_EQ ( store.getValue < double >( KEY ), value );
 }
 
 TEST ( VersionedStore, test_setValue_for_bool_type ){
@@ -81,7 +81,7 @@ TEST ( VersionedStore, test_getValue_missmatch_type_exception_fails ){
     VersionedStore store;
     store.setValue < string >( KEY, value );
     
-    ASSERT_EXCEPTION_CAUGHT ( store.getValue < int >( KEY ), KeyNotFoundException );
+    ASSERT_EXCEPTION_CAUGHT ( store.getValue < int >( KEY ), TypeMismatchOnGetException );
 }
 
 TEST ( VersionedStore, test_setValue_different_type_for_the_same_key_exception_fails ){
@@ -106,7 +106,7 @@ TEST ( VersionedStore, test_setValue_different_type_with_different_keys ){
 //-------------- Let's make some snapshots -----------------------//
 TEST ( VersionedStore, test_assign_operator_copy_store_state ) {
     VersionedStore store;
-    store.setValue < string > (KEY, STR0);
+    store.setValue < string >( KEY, STR0);
     VersionedStore store1 = store;
     
     ASSERT_EQ ( store1.getValue < string >( KEY ), STR0);
@@ -114,7 +114,7 @@ TEST ( VersionedStore, test_assign_operator_copy_store_state ) {
 
 TEST ( VersionedStore, test_getSnapshot_copy_store_state ) {
     VersionedStore store;
-    store.setValue < string > ( KEY, STR0 );
+    store.setValue < string >( KEY, STR0 );
     VersionedStore store1;
     store1.takeSnapshot( store );
     
@@ -130,7 +130,7 @@ TEST ( VersionedStore, test_getSnapshot_not_preserve_current_store_state ) {
     store1.takeSnapshot ( store );
     
     ASSERT_EQ ( store1.getValue < string >( KEY ), STR0);
-    ASSERT_FALSE ( store1.hasValue < string >( KEY2 ));
+    ASSERT_FALSE ( store1.hasValueWithType < string >( KEY2 ));
 }
 
 TEST ( VersionedStore, test_adding_value_to_snapshoot_does_not_affect_original ) {
@@ -140,8 +140,8 @@ TEST ( VersionedStore, test_adding_value_to_snapshoot_does_not_affect_original )
     store1.takeSnapshot ( store );
     store1.setValue < string >( KEY2, STR1 );
     
-    ASSERT_TRUE ( store1.hasValue < string >( KEY2 ));
-    ASSERT_FALSE ( store.hasValue < string >( KEY2 ));
+    ASSERT_TRUE ( store1.hasValueWithType < string >( KEY2 ));
+    ASSERT_FALSE ( store.hasValueWithType < string >( KEY2 ));
 }
 
 TEST ( VersionedStore, test_changing_value_to_snapshoot_does_not_affect_original ) {
@@ -202,8 +202,8 @@ TEST ( VersionedStore, test_pushVersion_will_not_change_values_set ) {
     store.setValue < string >( KEY, STR0 );
     store.pushVersion ();
 
-    ASSERT_TRUE ( store.hasValue < string > ( KEY ) );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR0 );
+    ASSERT_TRUE ( store.hasValueWithType < string >( KEY ) );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR0 );
 }
 
 TEST ( VersionedStore, test_popVersion_when_version_0_does_not_decrease_version ) {
@@ -217,26 +217,26 @@ TEST ( VersionedStore, test_popVersion_when_version_0_erases_values_set ) {
     VersionedStore store;
     store.setValue < string >( KEY, STR0 );
     
-    ASSERT_TRUE ( store.hasValue < string >( KEY ) );
+    ASSERT_TRUE ( store.hasValueWithType < string >( KEY ) );
     store.popVersion();
 
-    ASSERT_FALSE ( store.hasValue < string >( KEY ) );
+    ASSERT_FALSE ( store.hasValueWithType < string >( KEY ) );
 }
 
 TEST ( VersionedStore, test_popVersion_reverts_previous_version_value ) {
     VersionedStore store;
     store.setValue < string >( KEY, STR0 );
     
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR0 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR0 );
     
     store.pushVersion ();
     store.setValue < string >( KEY, STR1 );
     
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR1 );
 
     store.popVersion ();
 
-    ASSERT_TRUE ( store.hasValue < string >( KEY ) );
+    ASSERT_TRUE ( store.hasValueWithType < string >( KEY ) );
     ASSERT_EQ ( store.getValue < string >( KEY ), STR0 );
 }
 
@@ -257,24 +257,24 @@ TEST ( VersionedStore, test_multiple_setValue_without_pushVersion_will_override_
 
     // setValue for version 0
     store.setValue < string >( KEY, STR0 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR0 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR0 );
     
     store.pushVersion ();
    
     // Update value three times on the same version 1
     store.setValue < string >( KEY, STR1 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR1 );
     
     store.setValue < string >( KEY, STR2 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR2 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR2 );
     
     store.setValue < string >( KEY, STR3 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR3 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR3 );
 
     // popVersion reverts to value set on version 0
     store.popVersion ();
 
-    ASSERT_TRUE ( store.hasValue < string >( KEY ) );
+    ASSERT_TRUE ( store.hasValueWithType < string >( KEY ) );
     ASSERT_EQ ( store.getValue < string >( KEY ), STR0 );
 }
 TEST ( VersionedStore, test_clear_will_remove_all_changes_made_for_that_version_and_set_version_0 ){
@@ -286,11 +286,11 @@ TEST ( VersionedStore, test_clear_will_remove_all_changes_made_for_that_version_
     store.setValue < string >( KEY, STR1 );
 
     ASSERT_EQ ( store.getVersion (), 1 );
-    ASSERT_TRUE ( store.hasValue < string > ( KEY ) );
+    ASSERT_TRUE ( store.hasValueWithType < string >( KEY ) );
     
     store.clear ();
     ASSERT_EQ ( store.getVersion (), 0 );
-    ASSERT_FALSE ( store.hasValue < string > ( KEY ) );
+    ASSERT_FALSE ( store.hasValueWithType < string >( KEY ) );
 }
 
 TEST ( VersionedStore, test_clearVerion_will_remove_all_changes_made_for_that_version_and_version_is_0 ){
@@ -298,12 +298,12 @@ TEST ( VersionedStore, test_clearVerion_will_remove_all_changes_made_for_that_ve
 
     // setValue for version 0
     store.setValue < string >( KEY, STR0 );
-    ASSERT_TRUE ( store.hasValue < string > ( KEY ));
+    ASSERT_TRUE ( store.hasValueWithType < string >( KEY ));
     
     store.clearVersion ();
     
     ASSERT_EQ ( store.getVersion (), 0 );
-    ASSERT_FALSE ( store.hasValue < string > ( KEY ));
+    ASSERT_FALSE ( store.hasValueWithType < string >( KEY ));
 }
 
 
@@ -316,11 +316,11 @@ TEST ( VersionedStore, test_clearVerion_will_remove_all_changes_made_for_that_ve
     store.setValue < string >( KEY, STR1 );
 
     ASSERT_EQ ( store.getVersion (), 1 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR1 );
     
     store.clearVersion ();
     ASSERT_EQ ( store.getVersion (), 1 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR0 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR0 );
 }
 
 TEST ( VersionedStore, test_revert_to_current_version_doesnt_make_any_changes ){
@@ -332,11 +332,11 @@ TEST ( VersionedStore, test_revert_to_current_version_doesnt_make_any_changes ){
     store.setValue < string >( KEY, STR1 );
 
     ASSERT_EQ ( store.getVersion (), 1 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR1 );
     
     store.revert( store.getVersion ());
     ASSERT_EQ ( store.getVersion (), 1 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR1 );
 }
 
 TEST ( VersionedStore, test_revert_to_non_existing_future_version_exception_fails ){
@@ -348,7 +348,7 @@ TEST ( VersionedStore, test_revert_to_non_existing_future_version_exception_fail
     store.setValue < string >( KEY, STR1 );
 
     ASSERT_EQ ( store.getVersion (), 1 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR1 );
     
     ASSERT_EXCEPTION_CAUGHT ( store.revert ( store.getVersion () + 10 ), VersionOutOfBoundsException );
 }
@@ -361,7 +361,7 @@ TEST ( VersionedStore, test_revert_to_negative_version_exception_fails ){
     store.setValue < string >( KEY, STR1 );
 
     ASSERT_EQ ( store.getVersion (), 1 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR1 );
    
     // size_t is unsigned so in fact this will end in large possitive number
     ASSERT_EXCEPTION_CAUGHT ( store.revert ( -1 ), VersionOutOfBoundsException );
@@ -379,12 +379,12 @@ TEST ( VersionedStore, test_revert_to_specific_version_will_restore_value_set_in
     store.setValue < string >( KEY, STR3 );
 
     ASSERT_EQ ( store.getVersion (), 3 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR3 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR3 );
    
     // size_t is unsigned so in fact this will end in large possitive number
     store.revert( 1 );
     ASSERT_EQ ( store.getVersion (), 1 );
-    ASSERT_EQ ( store.getValue < string > ( KEY ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY ), STR1 );
 }
 //----------------------------------------------------------------//
 TEST ( VersionedStore, test0 ) {
@@ -440,7 +440,7 @@ TEST ( VersionedStore, test2 ) {
     
     store0.popVersion ();
     
-    ASSERT_TRUE ( store0.hasValue < string >( KEY ) == false );
+    ASSERT_TRUE ( store0.hasValueWithType < string >( KEY ) == false );
     ASSERT_TRUE ( store0.getVersion () == 0 );
     
     store0.setValue < string >( KEY, STR0 );
@@ -457,7 +457,7 @@ TEST ( VersionedStore, test2 ) {
     ASSERT_TRUE ( store0.getVersion () == 0 );
     
     store0.popVersion ();
-    ASSERT_TRUE ( store0.hasValue < string >( KEY ) == false );
+    ASSERT_TRUE ( store0.hasValueWithType < string >( KEY ) == false );
     ASSERT_TRUE ( store0.getVersion () == 0 );
     
     store0.setValue < string >( KEY, STR0 );

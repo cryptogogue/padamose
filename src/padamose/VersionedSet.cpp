@@ -20,7 +20,15 @@ namespace Padamose {
 void VersionedSet::deleteKey ( string key ) {
 
     this->mFreeStack.mTop = this->removeNode ( key, key, this->mFreeStack.mTop );
-    this->mStore.setValue < VersionedSetFreeStack >( this->mFreeStackKey, this->mFreeStack );
+    this->storeFreeStack ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void VersionedSet::loadFreeStack () {
+
+    this->mFreeStack.mTop           = this->mStore.getValue < size_t >( this->mFreeStackKey + ".top" );
+    this->mFreeStack.mTotalNodes    = this->mStore.getValue < size_t >( this->mFreeStackKey + ".totalNodes" );
 }
 
 //----------------------------------------------------------------//
@@ -53,11 +61,11 @@ string VersionedSet::provisionKey ( size_t nextNodeID, bool append ) {
     string nodeKey = this->mNodePrefix + key;
     
     if ( this->mFreeStack.mTop != INVALID_NODE_INDEX ) {
-        VersionedCollectionNode node = this->mStore.getValue < VersionedCollectionNode >( nodeKey );
+        VersionedCollectionNode node = this->getNode ( nodeKey );
         this->mFreeStack.mTop = node.mPrev;
     }
     
-    this->mStore.setValue < VersionedSetFreeStack >( this->mFreeStackKey, this->mFreeStack );
+    this->storeFreeStack ();
     
     if ( append ) {
         this->appendNode ( nodeID, key, nodeKey );
@@ -67,6 +75,14 @@ string VersionedSet::provisionKey ( size_t nextNodeID, bool append ) {
     }
 
     return key;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void VersionedSet::storeFreeStack () {
+
+    this->mStore.setValue < size_t >( this->mFreeStackKey + ".top", this->mFreeStack.mTop );
+    this->mStore.setValue < size_t >( this->mFreeStackKey + ".totalNodes", this->mFreeStack.mTotalNodes );
 }
 
 //----------------------------------------------------------------//
@@ -81,13 +97,12 @@ VersionedSet::VersionedSet ( VersionedStore& store, string name ) :
     this->mFreeStackKey = this->mName + SET_FREE_STACK_POSTFIX;
 
     if ( this->affirmState ()) {
-        this->mFreeStack = this->mStore.getValue < VersionedSetFreeStack >( this->mFreeStackKey );
+        this->loadFreeStack ();
     }
     else {
         this->mFreeStack.mTop = INVALID_NODE_INDEX;
         this->mFreeStack.mTotalNodes = 0;
-        
-        this->mStore.setValue < VersionedSetFreeStack >( this->mFreeStackKey, this->mFreeStack );
+        this->storeFreeStack ();
     }
 }
 

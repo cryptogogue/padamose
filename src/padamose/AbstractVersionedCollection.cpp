@@ -77,6 +77,32 @@ string AbstractVersionedCollection::getName () const {
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+VersionedCollectionNode AbstractVersionedCollection::getNode ( string key ) const {
+
+    const VersionedStoreSnapshot& snapshot = this->getSnapshot ();
+
+    VersionedCollectionNode node;
+    
+    if ( snapshot.hasKey ( key + ".id" )) {
+    
+        node.mExists    = true;
+        node.mID        = snapshot.getValue < size_t >( key + ".id" );
+        node.mKey       = snapshot.getValue < string >( key + ".key" );
+        node.mPrev      = snapshot.getValue < size_t >( key + ".prev" );
+        node.mNext      = snapshot.getValue < size_t >( key + ".next" );
+    }
+    else {
+    
+        node.mExists    = false;
+        node.mID        = INVALID_NODE_INDEX;
+        node.mPrev      = INVALID_NODE_INDEX;
+        node.mNext      = INVALID_NODE_INDEX;
+    }
+    return node;
+}
+
+//----------------------------------------------------------------//
 /** \brief  Sets the name of the collection and generates the cached
             lookup prefixes.
  
@@ -89,6 +115,17 @@ bool AbstractVersionedCollection::hasKey ( string key ) const {
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedCollection::loadState () {
+    
+    const VersionedStoreSnapshot& snapshot = this->getSnapshot ();
+
+    this->mState.mHead  = snapshot.getValue < size_t >( this->mName + ".head" );
+    this->mState.mTail  = snapshot.getValue < size_t >( this->mName + ".tail" );
+    this->mState.mSize  = snapshot.getValue < size_t >( this->mName + ".size" );
+}
+
+//----------------------------------------------------------------//
 /** \brief  Sets the name of the collection and generates the cached
             lookup prefixes.
  
@@ -97,8 +134,7 @@ bool AbstractVersionedCollection::hasKey ( string key ) const {
 */
 size_t AbstractVersionedCollection::lookupNodeID ( string key ) const {
 
-    const size_t* nodeID = this->getSnapshot ().getValueOrNil < size_t >( this->mLookupPrefix + key );
-    return nodeID ? *nodeID : INVALID_NODE_INDEX;
+    return this->getSnapshot ().getValueOrFallback < size_t >( this->mLookupPrefix + key, INVALID_NODE_INDEX );
 }
 
 //----------------------------------------------------------------//

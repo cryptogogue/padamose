@@ -23,52 +23,60 @@ TEST ( Variant, test_coercion ) {
     ASSERT_TRUE ( v.isNull ());
     
     v = true;
-    ASSERT_TRUE (( bool )v == true );
-    ASSERT_TRUE (( double )v == 1.0 );
-    ASSERT_TRUE (( int )v == 1 );
-    ASSERT_TRUE (( string )v == "true" );
+    ASSERT_TRUE ( v.get < bool >() == true );
+    ASSERT_TRUE ( v.get < double >() == 1.0 );
+    ASSERT_TRUE ( v.get < int >() == 1 );
+    ASSERT_TRUE ( v.get < size_t >() == 1 );
+    ASSERT_TRUE ( v.get < string >() == "true" );
     
     v = false;
-    ASSERT_TRUE (( bool )v == false );
-    ASSERT_TRUE (( double )v == 0.0 );
-    ASSERT_TRUE (( int )v == 0 );
-    ASSERT_TRUE (( string )v == "false" );
+    ASSERT_TRUE ( v.get < bool >() == false );
+    ASSERT_TRUE ( v.get < double >() == 0.0 );
+    ASSERT_TRUE ( v.get < int >() == 0 );
+    ASSERT_TRUE ( v.get < size_t >() == 0 );
+    ASSERT_TRUE ( v.get < string >() == "false" );
     
     v = 123.0;
-    ASSERT_TRUE (( bool )v == true );
-    ASSERT_TRUE (( double )v == 123.0 );
-    ASSERT_TRUE (( int )v == 123 );
-    ASSERT_TRUE (( string )v == "123" );
+    ASSERT_TRUE ( v.get < bool >() == true );
+    ASSERT_TRUE ( v.get < double >() == 123.0 );
+    ASSERT_TRUE ( v.get < int >() == 123 );
+    ASSERT_TRUE ( v.get < size_t >() == 123 );
+    ASSERT_TRUE ( v.get < string >() == "123" );
     
     v = 0.0;
-    ASSERT_TRUE (( bool )v == false );
-    ASSERT_TRUE (( double )v == 0.0 );
-    ASSERT_TRUE (( int )v == 0 );
-    ASSERT_TRUE (( string )v == "0" );
+    ASSERT_TRUE ( v.get < bool >() == false );
+    ASSERT_TRUE ( v.get < double >() == 0.0 );
+    ASSERT_TRUE ( v.get < int >() == 0 );
+    ASSERT_TRUE ( v.get < size_t >() == 0 );
+    ASSERT_TRUE ( v.get < string >() == "0" );
     
     v = 456;
-    ASSERT_TRUE (( bool )v == true );
-    ASSERT_TRUE (( double )v == 456.0 );
-    ASSERT_TRUE (( int )v == 456 );
-    ASSERT_TRUE (( string )v == "456" );
+    ASSERT_TRUE ( v.get < bool >() == true );
+    ASSERT_TRUE ( v.get < double >() == 456.0 );
+    ASSERT_TRUE ( v.get < int >() == 456 );
+    ASSERT_TRUE ( v.get < size_t >() == 456 );
+    ASSERT_TRUE ( v.get < string >() == "456" );
     
     v = 0;
-    ASSERT_TRUE (( bool )v == false );
-    ASSERT_TRUE (( double )v == 0.0 );
-    ASSERT_TRUE (( int )v == 0 );
-    ASSERT_TRUE (( string )v == "0" );
+    ASSERT_TRUE ( v.get < bool >() == false );
+    ASSERT_TRUE ( v.get < double >() == 0.0 );
+    ASSERT_TRUE ( v.get < int >() == 0 );
+    ASSERT_TRUE ( v.get < size_t >() == 0 );
+    ASSERT_TRUE ( v.get < string >() == "0" );
     
     v = "123";
-    ASSERT_TRUE (( bool )v == true );
-    ASSERT_TRUE (( double )v == 123.0 );
-    ASSERT_TRUE (( int )v == 123 );
-    ASSERT_TRUE (( string )v == "123" );
+    ASSERT_TRUE ( v.get < bool >() == true );
+    ASSERT_TRUE ( v.get < double >() == 123.0 );
+    ASSERT_TRUE ( v.get < int >() == 123 );
+    ASSERT_TRUE ( v.get < size_t >() == 123 );
+    ASSERT_TRUE ( v.get < string >() == "123" );
     
     v = string ( "123" );
-    ASSERT_TRUE (( bool )v == true );
-    ASSERT_TRUE (( double )v == 123.0 );
-    ASSERT_TRUE (( int )v == 123 );
-    ASSERT_TRUE (( string )v == "123" );
+    ASSERT_TRUE ( v.get < bool >() == true );
+    ASSERT_TRUE ( v.get < double >() == 123.0 );
+    ASSERT_TRUE ( v.get < int >() == 123 );
+    ASSERT_TRUE ( v.get < size_t >() == 123 );
+    ASSERT_TRUE ( v.get < string >() == "123" );
 }
 
 } // namespace Test

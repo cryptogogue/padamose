@@ -92,16 +92,95 @@ shared_ptr < AbstractVersionedBranch > AbstractVersionedBranch::fork ( size_t ba
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+size_t AbstractVersionedBranch::getDirectReferenceCount () const {
+
+    return this->mDirectReferenceCount;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 size_t AbstractVersionedBranch::getTopVersion () const {
 
     return this->AbstractVersionedBranch_getTopVersion ();
 }
 
 //----------------------------------------------------------------//
+size_t AbstractVersionedBranch::getValueNextVersion ( string key, size_t version ) const {
+
+    return this->AbstractVersionedBranch_getValueNextVersion ( key, version );
+}
+
+//----------------------------------------------------------------//
+size_t AbstractVersionedBranch::getValuePrevVersion ( string key, size_t version ) const {
+
+    return this->AbstractVersionedBranch_getValuePrevVersion ( key, version );
+}
+
+//----------------------------------------------------------------//
+/** \brief Recursively searches the branch to find the value for the key. The most recent version
+    equal to or earlier will be returned.
+
+    A pointer to the value or NULL is returned.
+
+    \param      version     Search for this version or the most recent lesser version of the value.
+    \param      key         The key.
+    \return                 A raw pointer to the value for the key or NULL.
+*/
+Variant AbstractVersionedBranch::getValueVariant ( size_t version, string key ) const {
+
+    Variant value;
+
+    // start searching at the current branch.
+    const AbstractVersionedBranch* branch = this;
+
+    // iterate through parent branches.
+    for ( ; branch; branch = branch->mSourceBranch.get ()) {
+    
+        value = branch->AbstractVersionedBranch_getValueVariant ( version, key );
+    
+        if ( !value.isNull ()) {
+            return value;
+        }
+        
+        // cap the version at the base version before moving to the parent branch.
+        // necessary because branches don't always emerge from the top.
+        version = branch->mVersion;
+    }
+    return value;
+}
+
+//----------------------------------------------------------------//
 // TODO: doxygen
+bool AbstractVersionedBranch::getValueVersionExtents ( string key, size_t upperBound, size_t& first, size_t& last ) const {
+
+    return this->AbstractVersionedBranch_getValueVersionExtents ( key, upperBound, first, last );
+}
+
+//----------------------------------------------------------------//
+/** \brief Recursively searches the branch to see if a the given key exists.
+
+    \param      version     Search this version or the most recent lesser version for the key.
+    \param      key         The key.
+    \return                 TRUE if the key is found. FALSE if not.
+*/
 bool AbstractVersionedBranch::hasKey ( size_t version, string key ) const {
 
-    return this->AbstractVersionedBranch_hasKey ( version, key );
+    // start searching at the current branch.
+    const AbstractVersionedBranch* branch = this;
+    
+    // iterate through parent branches.
+    for ( ; branch; branch = branch->mSourceBranch.get ()) {
+    
+        // ignore branches above the version we're searching for.
+        if ( branch->AbstractVersionedBranch_hasKey ( key, version )) {
+            return true;
+        }
+        
+        // cap the version at the base version before moving to the parent branch.
+        // necessary because branches don't always emerge from the top.
+        version = branch->mVersion;
+    }
+    return false;
 }
 
 //----------------------------------------------------------------//
@@ -118,6 +197,13 @@ void AbstractVersionedBranch::insertClient ( AbstractVersionedBranchClient& clie
 void AbstractVersionedBranch::optimize () {
 
     this->AbstractVersionedBranch_optimize ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::setValueVariant ( size_t version, string key, const Variant& value ) {
+
+    this->AbstractVersionedBranch_setValueVariant ( version, key, value );
 }
 
 //================================================================//
@@ -149,58 +235,6 @@ size_t AbstractVersionedBranch::AbstractVersionedBranchClient_getJoinScore () co
 size_t AbstractVersionedBranch::AbstractVersionedBranchClient_getVersionDependency () const {
     return this->mVersion;
 }
-
-////----------------------------------------------------------------//
-///** \brief Implementation of virtual method. Appends the contents of
-//    the branch onto the given branch and transfers all clients and
-//    children to the given branch.
-// 
-//    The branch is optimized before being appended. Optimization may
-//    recursively trigger additional joins.
-// 
-//    Neither branch is permitted to have direct references.
-// 
-//    \param      branch      The branch to be appended to.
-//*/
-//void AbstractVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& branch ) {
-//
-//    assert ( branch.mDirectReferenceCount == 0 );
-//    assert ( this->mDirectReferenceCount == 0 );
-//
-//    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "AbstractVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
-//    LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
-//    
-//    this->optimize ();
-//    
-//    shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
-//    
-//    // merge the branch layers
-//    branch.mLayers.insert ( this->mLayers.begin(), this->mLayers.end ());
-//
-//    // copy the value stacks
-//    map < string, unique_ptr < AbstractValueStack >>::iterator valueStackIt = this->mValueStacksByKey.begin ();
-//    for ( ; valueStackIt != this->mValueStacksByKey.end (); ++valueStackIt ) {
-//        
-//        const AbstractValueStack* fromStack = this->findValueStack ( valueStackIt->first );
-//        assert ( fromStack );
-//        
-//        unique_ptr < AbstractValueStack >& toStack = branch.mValueStacksByKey [ valueStackIt->first ];
-//        if ( !toStack ) {
-//            toStack = fromStack->makeEmptyCopy ();
-//        }
-//        fromStack->join ( *toStack );
-//    }
-//
-//    // copy the clients
-//    set < AbstractVersionedBranchClient* >::iterator clientIt = this->mClients.begin ();
-//    for ( ; clientIt != this->mClients.end (); ++clientIt ) {
-//        AbstractVersionedBranchClient* client = *clientIt;
-//        branch.insertClient ( *client );
-//        client->mSourceBranch = branch.shared_from_this ();
-//    }
-//    
-//    pinThis = NULL;
-//}
 
 //----------------------------------------------------------------//
 /** \brief Implementation of virtual method. Prevents a join optimization

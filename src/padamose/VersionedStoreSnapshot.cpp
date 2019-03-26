@@ -29,6 +29,33 @@ void VersionedStoreSnapshot::clear () {
 }
 
 //----------------------------------------------------------------//
+/** \brief Recursively searches the branch to find the value for the key. The most recent version
+    equal to or earlier will be returned.
+
+    A pointer to the value or NULL is returned.
+
+    \param      key         The key.
+    \return                 A pointer to the value for the key or NULL.
+*/
+Variant VersionedStoreSnapshot::getValueVariant ( string key ) const {
+    return this->getValueVariant ( key, this->mVersion );
+}
+
+//----------------------------------------------------------------//
+/** \brief Recursively searches the branch to find the value for the key. The most recent version
+    equal to or earlier will be returned.
+
+    A pointer to the value or NULL is returned.
+
+    \param      version     Search for this version of the most recent lesser version of the value;
+    \param      key         The key.
+    \return                 A pointer to the value for the key or NULL.
+*/
+Variant VersionedStoreSnapshot::getValueVariant ( string key, size_t version ) const {
+    return this->mSourceBranch ? this->mSourceBranch->getValueVariant ( version <= this->mVersion ? version : this->mVersion, key ) : Variant ();
+}
+
+//----------------------------------------------------------------//
 /** \brief Return the current version.
 
     \return             The current version.
@@ -47,6 +74,29 @@ size_t VersionedStoreSnapshot::getVersion () const {
 bool VersionedStoreSnapshot::hasKey ( string key ) const {
 
     return this->mSourceBranch ? this->mSourceBranch->hasKey ( this->mVersion, key ) : false;
+}
+
+//----------------------------------------------------------------//
+/** \brief  Check to see if the value can be found.
+
+    \param  key     The key.
+    \return         True if the value exists. False if it doesn't.
+*/
+bool VersionedStoreSnapshot::hasValue ( string key ) const {
+    return this->hasValue ( key, this->mVersion );
+}
+
+//----------------------------------------------------------------//
+/** \brief  Check to see if the value can be found for the given version.
+
+            Check the value for the most recent version equal to or less than
+            the given version.
+
+    \param  key     The key.
+    \return         True if the value exists. False if it doesn't.
+*/
+bool VersionedStoreSnapshot::hasValue ( string key, size_t version ) const {
+    return ( !this->getValueVariant ( key, version ).isNull ());
 }
 
 //----------------------------------------------------------------//

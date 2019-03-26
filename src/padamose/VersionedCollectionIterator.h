@@ -24,7 +24,7 @@ public:
     //----------------------------------------------------------------//
     /** \brief Dereference operator. Calls value() internally.
     */
-    const TYPE& operator * () const {
+    const TYPE operator * () const {
         return this->value ();
     }
 
@@ -46,7 +46,7 @@ public:
 
         \return     The current value of the iterator.
     */
-    const TYPE& value () const {
+    const TYPE value () const {
         
         return this->BaseVersionedCollectionIterator::value < TYPE >();
     }

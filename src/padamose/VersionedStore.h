@@ -96,9 +96,8 @@ public:
     template < typename TYPE >
     void setValue ( string key, const TYPE& value ) {
         this->prepareForSetValue ();
-        // TODO: obviously, this is temp
-        EphemeralVersionedBranch* ephemeralBranch = dynamic_cast < EphemeralVersionedBranch* >( this->mSourceBranch.get ());
-        ephemeralBranch->setValue < TYPE >( this->mVersion, key, value );
+        assert ( this->mSourceBranch );
+        this->mSourceBranch->setValueVariant ( this->mVersion, key, Variant ( value ));
     }
 };
 

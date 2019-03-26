@@ -86,11 +86,8 @@ public:
         \return     The current value of the iterator.
     */
     template < typename TYPE >
-    const TYPE& value () const {
-        
-        const TYPE* value = this->mSnapshot.getValueOrNil < TYPE >( this->mValuePrefix + this->mIteratorNode.mKey );
-        assert ( value );
-        return *value;
+    TYPE value () const {
+        return this->mSnapshot.getValue < TYPE >( this->mValuePrefix + this->mIteratorNode.mKey );
     }
 };
 

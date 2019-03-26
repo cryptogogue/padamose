@@ -18,7 +18,7 @@ VersionedCollectionSnapshot::VersionedCollectionSnapshot ( const AbstractVersion
     mSnapshot ( collection ) {
     
     this->setName ( collection.getName ());
-    this->mState = this->mSnapshot.getValue < VersionedCollectionState >( this->mName );
+    this->loadState ();
 }
 
 //----------------------------------------------------------------//
@@ -34,10 +34,10 @@ VersionedCollectionSnapshot::VersionedCollectionSnapshot ( const AbstractVersion
 VersionedCollectionSnapshot::VersionedCollectionSnapshot ( const VersionedStoreSnapshot& snapshot, string name ) :
     mSnapshot ( snapshot ) {
 
-    if ( !this->mSnapshot.hasValue < VersionedCollectionState >( name )) throw VersionedCollectionNotFoundException ();
+    if ( !this->mSnapshot.hasValue ( name )) throw VersionedCollectionNotFoundException ();
 
     this->setName ( name );
-    this->mState = this->mSnapshot.getValue < VersionedCollectionState >( this->mName );
+    this->loadState ();
 }
 
 //----------------------------------------------------------------//
