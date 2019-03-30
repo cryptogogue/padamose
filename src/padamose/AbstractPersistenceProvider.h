@@ -8,6 +8,19 @@
 
 namespace Padamose {
 
+class AbstractVersionedBranch;
+
+//================================================================//
+// BranchTag
+//================================================================//
+// TODO: doxygen
+class BranchTag {
+public:
+
+    shared_ptr < AbstractVersionedBranch >      mBranch;
+    size_t                                      mVersion;
+};
+
 //================================================================//
 // AbstractPersistenceProvider
 //================================================================//
@@ -15,13 +28,19 @@ namespace Padamose {
 class AbstractPersistenceProvider {
 protected:
 
-    //----------------------------------------------------------------//
+    map < string, BranchTag > mTags;
 
+    //----------------------------------------------------------------//
+    virtual shared_ptr < AbstractVersionedBranch >  AbstractPersistenceProvider_makePersistentBranch    () = 0;
+    
 public:
 
     //----------------------------------------------------------------//
-                        AbstractPersistenceProvider             ();
-    virtual             ~AbstractPersistenceProvider            ();
+                                                    AbstractPersistenceProvider             ();
+    virtual                                         ~AbstractPersistenceProvider            ();
+    BranchTag&                                      getTag                                  ( string branchName );
+    shared_ptr < AbstractVersionedBranch >          makePersistentBranch                    ();
+    void                                            tagBranch                               ( AbstractVersionedBranch& branch, string branchName, size_t version );
 };
 
 } // namespace Padamose

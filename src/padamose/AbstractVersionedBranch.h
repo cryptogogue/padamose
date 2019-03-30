@@ -10,6 +10,7 @@
 
 namespace Padamose {
 
+class AbstractPersistenceProvider;
 class AbstractVersionedBranchClient;
 class VersionedStoreSnapshot;
 
@@ -52,6 +53,9 @@ protected:
     size_t                                                  mDirectReferenceCount;
 
     //----------------------------------------------------------------//
+    void            transferClients             ( AbstractVersionedBranch& other );
+
+    //----------------------------------------------------------------//
     bool            AbstractVersionedBranchClient_canJoin                   () const override;
     size_t          AbstractVersionedBranchClient_getJoinScore              () const override;
     size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
@@ -66,27 +70,29 @@ protected:
     virtual bool                                        AbstractVersionedBranch_getValueVersionExtents  ( string key, size_t upperBound, size_t& first, size_t& last ) const = 0;
     virtual bool                                        AbstractVersionedBranch_hasKey                  ( string key, size_t upperBound ) const = 0;
     virtual void                                        AbstractVersionedBranch_optimize                () = 0;
+    virtual void                                        AbstractVersionedBranch_persistSelf             ( AbstractPersistenceProvider& provider ) = 0;
     virtual void                                        AbstractVersionedBranch_setValueVariant         ( size_t version, string key, const Variant& value ) = 0;
 
 public:
 
     //----------------------------------------------------------------//
-                    AbstractVersionedBranch         ();
-                    ~AbstractVersionedBranch        ();
-    size_t          countDependencies               () const;
-    void            eraseClient                     ( AbstractVersionedBranchClient& client );
-    size_t          findImmutableTop                ( const AbstractVersionedBranchClient* ignore = NULL ) const;
-    shared_ptr < AbstractVersionedBranch > fork     ( size_t baseVersion );
-    size_t          getDirectReferenceCount         () const;
-    size_t          getTopVersion                   () const;
-    size_t          getValueNextVersion             ( string key, size_t version ) const;
-    size_t          getValuePrevVersion             ( string key, size_t version ) const;
-    Variant         getValueVariant                 ( size_t version, string key ) const;
-    bool            getValueVersionExtents          ( string key, size_t upperBound, size_t& first, size_t& last ) const;
-    bool            hasKey                          ( size_t version, string key ) const;
-    void            insertClient                    ( AbstractVersionedBranchClient& client );
-    void            optimize                        ();
-    void            setValueVariant                 ( size_t version, string key, const Variant& value );
+                                                AbstractVersionedBranch         ();
+                                                ~AbstractVersionedBranch        ();
+    size_t                                      countDependencies               () const;
+    void                                        eraseClient                     ( AbstractVersionedBranchClient& client );
+    size_t                                      findImmutableTop                ( const AbstractVersionedBranchClient* ignore = NULL ) const;
+    shared_ptr < AbstractVersionedBranch >      fork                            ( size_t baseVersion );
+    size_t                                      getDirectReferenceCount         () const;
+    size_t                                      getTopVersion                   () const;
+    size_t                                      getValueNextVersion             ( string key, size_t version ) const;
+    size_t                                      getValuePrevVersion             ( string key, size_t version ) const;
+    Variant                                     getValueVariant                 ( size_t version, string key ) const;
+    bool                                        getValueVersionExtents          ( string key, size_t upperBound, size_t& first, size_t& last ) const;
+    bool                                        hasKey                          ( size_t version, string key ) const;
+    void                                        insertClient                    ( AbstractVersionedBranchClient& client );
+    void                                        optimize                        ();
+    void                                        persistSelf                     ( AbstractPersistenceProvider& provider );
+    void                                        setValueVariant                 ( size_t version, string key, const Variant& value );
 };
 
 } // namespace Padamose

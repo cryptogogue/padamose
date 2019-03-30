@@ -2,6 +2,7 @@
 // http://cryptogogue.com
 
 #include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/AbstractPersistenceProvider.h>
 
 namespace Padamose {
 
@@ -96,7 +97,17 @@ bool VersionedStoreSnapshot::hasValue ( string key ) const {
     \return         True if the value exists. False if it doesn't.
 */
 bool VersionedStoreSnapshot::hasValue ( string key, size_t version ) const {
+
     return ( !this->getValueVariant ( key, version ).isNull ());
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void VersionedStoreSnapshot::persist ( AbstractPersistenceProvider& provider, string branchName ) {
+
+    assert ( this->mSourceBranch );
+    this->persistSource ( provider );
+    provider.tagBranch ( *this->mSourceBranch, branchName, this->mVersion );
 }
 
 //----------------------------------------------------------------//
@@ -126,6 +137,14 @@ void VersionedStoreSnapshot::takeSnapshot ( const VersionedStoreSnapshot& other 
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+void VersionedStoreSnapshot::takeSnapshot ( AbstractPersistenceProvider& provider, string branchName ) {
+
+    BranchTag& tag = provider.getTag ( branchName );
+    this->setBranch ( tag.mBranch, tag.mVersion );
+}
+
+//----------------------------------------------------------------//
 VersionedStoreSnapshot::VersionedStoreSnapshot () {
 }
 
@@ -137,6 +156,13 @@ VersionedStoreSnapshot::VersionedStoreSnapshot () {
 VersionedStoreSnapshot::VersionedStoreSnapshot ( const VersionedStoreSnapshot& other ) {
 
     this->takeSnapshot ( other );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+VersionedStoreSnapshot::VersionedStoreSnapshot ( AbstractPersistenceProvider& provider, string branchName ) {
+
+    this->takeSnapshot ( provider, branchName );
 }
 
 //----------------------------------------------------------------//

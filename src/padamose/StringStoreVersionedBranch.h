@@ -1,62 +1,43 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_EPHEMERALVERSIONEDBRANCH_H
-#define PADAMOSE_EPHEMERALVERSIONEDBRANCH_H
+#ifndef PADAMOSE_STRINGSTOREVERSIONEDBRANCH_H
+#define PADAMOSE_STRINGSTOREVERSIONEDBRANCH_H
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractVersionedBranch.h>
-#include <padamose/AbstractVersionedBranchClient.h>
-#include <padamose/EphemeralValueStack.h>
 
 namespace Padamose {
 
 class AbstractVersionedBranchClient;
+class StringStorePersistenceProvider;
 class VersionedStoreSnapshot;
 
 //================================================================//
-// EphemeralVersionedBranch
+// StringStoreVersionedBranch
 //================================================================//
-/** \brief EphemeralVersionedBranch is an internal data structure used to store
-    a contiguous block of versioned values.
- 
-    Each branch is a sparse record of changes to the database over a
-    span of versions. It contains a map of ValueStack instances referenced
-    by key. In addition, a sparse stack of version layers (implemented as a map of
-    string sets) is used to quickly identify the keys of values modified in that layer.
- 
-    The branch tracks a base version. Its "top" version is the highest version
-    index in the layer stack. When a layer is removed, the keys of the values that were
-    set in that layer are retrieved from the layer stack and used to erase the
-    corresponding values from each value stack.
- 
-    Any branch may have a parent branch. When searching for values, the tree will
-    be searched recurively until a value is found.
-*/
-class EphemeralVersionedBranch :
+// TODO: doxygen
+class StringStoreVersionedBranch :
     public AbstractVersionedBranch {
 private:
 
-//    friend class AbstractVersionedBranchClient;
-//    friend class AbstractVersionedValueIterator;
-//    friend class VersionedStore;
-//    friend class VersionedStoreSnapshot;
-//    friend class VersionedStoreIterator;
-//    template < typename > friend class VersionedValue;
-//    template < typename > friend class VersionedValueIterator;
+    friend class StringStorePersistenceProvider;
 
-    typedef set < string > Layer;
-    
-    /// Sparse array mapping versions onto layers. Each layer holds the set of keys corresponding to values that were set or modified in the version.
-    map < size_t, Layer >                                   mLayers;
-    
-    /// Map of value stacks, indexed by key.
-    map < string, unique_ptr < EphemeralValueStack >>       mValueStacksByKey;
+    static const size_t INVALID_LAYER_INDEX             = ( size_t )-1;
+
+    string                              mBranchID;
+    StringStorePersistenceProvider*     mStringStore;
 
     //----------------------------------------------------------------//
-    void                            copyValues                  ( AbstractVersionedBranch& other );
-    const EphemeralValueStack*      findValueStack              ( string key ) const;
-    void                            truncate                    ( size_t topVersion );
+    string                          formatKeyForLayerIndexByMemberName      ( size_t version, string name ) const;
+    string                          formatKeyForLayerMemberNameByIndex      ( size_t version, size_t index ) const;
+    string                          formatKeyForLayerSize                   ( size_t version ) const;
+    string                          formatKeyForValue                       ( string key, size_t n ) const;
+    string                          formatKeyForValueStackTop               ( string key ) const;
+    string                          formatKeyForValueStackType              ( string key ) const;
+    string                          formatKeyForValueVersion                ( string key, size_t n ) const;
+    AbstractStringStore&            getStore                                ();
+    const AbstractStringStore&      getStoreConst                           () const;
 
     //----------------------------------------------------------------//
     shared_ptr < AbstractVersionedBranch >      AbstractVersionedBranch_fork                            ( size_t baseVersion ) override;
@@ -78,8 +59,8 @@ private:
 public:
 
     //----------------------------------------------------------------//
-                    EphemeralVersionedBranch        ();
-                    ~EphemeralVersionedBranch       ();
+                        StringStoreVersionedBranch          ();
+                        ~StringStoreVersionedBranch         ();
 };
 
 } // namespace Padamose

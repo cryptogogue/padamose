@@ -1,6 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
+#include <padamose/AbstractPersistenceProvider.h>
 #include <padamose/AbstractVersionedBranch.h>
 #include <padamose/AbstractVersionedBranchClient.h>
 
@@ -17,6 +18,9 @@ AbstractVersionedBranchClient::AbstractVersionedBranchClient () :
 
 //----------------------------------------------------------------//
 AbstractVersionedBranchClient::~AbstractVersionedBranchClient () {
+    if ( this->mSourceBranch ) {
+        this->mSourceBranch->eraseClient ( *this );
+    }
     this->setBranch ( NULL );
 }
 
@@ -57,6 +61,15 @@ size_t AbstractVersionedBranchClient::getVersionDependency () const {
 */
 void AbstractVersionedBranchClient::joinBranch ( AbstractVersionedBranch& branch ) {
     this->AbstractVersionedBranchClient_joinBranch ( branch );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranchClient::persistSource ( AbstractPersistenceProvider& provider ) {
+
+    if ( this->mSourceBranch ) {
+        this->mSourceBranch->persistSelf ( provider );
+    }
 }
 
 //----------------------------------------------------------------//

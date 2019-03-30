@@ -201,9 +201,35 @@ void AbstractVersionedBranch::optimize () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+void AbstractVersionedBranch::persistSelf ( AbstractPersistenceProvider& provider ) {
+
+    this->persistSource ( provider );
+    this->AbstractVersionedBranch_persistSelf ( provider );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 void AbstractVersionedBranch::setValueVariant ( size_t version, string key, const Variant& value ) {
 
     this->AbstractVersionedBranch_setValueVariant ( version, key, value );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other ) {
+
+    shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
+
+    // copy the clients
+    set < AbstractVersionedBranchClient* >::iterator clientIt = this->mClients.begin ();
+    for ( ; clientIt != this->mClients.end (); ++clientIt ) {
+        AbstractVersionedBranchClient* client = *clientIt;
+        other.insertClient ( *client );
+        client->mSourceBranch = other.shared_from_this ();
+    }
+    this->mClients.clear ();
+    
+    pinThis = NULL;
 }
 
 //================================================================//

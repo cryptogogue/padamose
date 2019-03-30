@@ -1,6 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
+#include <padamose/AbstractPersistenceProvider.h>
 #include <padamose/EphemeralVersionedBranch.h>
 #include <padamose/VersionedStoreSnapshot.h>
 
@@ -11,6 +12,21 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+void EphemeralVersionedBranch::copyValues ( AbstractVersionedBranch& other ) {
+
+    // copy the value stacks
+    map < string, unique_ptr < EphemeralValueStack >>::iterator valueStackIt = this->mValueStacksByKey.begin ();
+    for ( ; valueStackIt != this->mValueStacksByKey.end (); ++valueStackIt ) {
+        
+        string key = valueStackIt->first;
+        const EphemeralValueStack* fromStack = this->findValueStack ( valueStackIt->first );
+        assert ( fromStack );
+        fromStack->join ( key, other );
+    }
+}
+
+//----------------------------------------------------------------//
 EphemeralVersionedBranch::EphemeralVersionedBranch () {
 }
 
@@ -18,8 +34,6 @@ EphemeralVersionedBranch::EphemeralVersionedBranch () {
 /** \brief Asserts that no direct references remain.
 */
 EphemeralVersionedBranch::~EphemeralVersionedBranch () {
-
-    assert ( this->mDirectReferenceCount == 0 );
 }
 
 //----------------------------------------------------------------//
@@ -293,6 +307,15 @@ void EphemeralVersionedBranch::AbstractVersionedBranch_optimize () {
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+void EphemeralVersionedBranch::AbstractVersionedBranch_persistSelf ( AbstractPersistenceProvider& provider ) {
+
+    shared_ptr < AbstractVersionedBranch > persist = provider.makePersistentBranch ();
+    this->copyValues ( *persist );
+    this->transferClients ( *persist );
+}
+
+//----------------------------------------------------------------//
 /** \brief Sets a value at the given version. If the version doesn't exist,
     a new layer will be created. Also creates a value stack if none exists. Throws
     a TypeMismatchOnAssignException if a value of a different type has already been
@@ -361,37 +384,17 @@ size_t EphemeralVersionedBranch::AbstractVersionedBranchClient_getVersionDepende
  
     \param      branch      The branch to be appended to.
 */
-void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& branch ) {
+void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& other ) {
 
-    assert ( branch.getDirectReferenceCount () == 0 );
+    assert ( other.getDirectReferenceCount () == 0 );
     assert ( this->mDirectReferenceCount == 0 );
 
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
     
     this->optimize ();
-    
-    shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
-
-    // copy the value stacks
-    map < string, unique_ptr < EphemeralValueStack >>::iterator valueStackIt = this->mValueStacksByKey.begin ();
-    for ( ; valueStackIt != this->mValueStacksByKey.end (); ++valueStackIt ) {
-        
-        string key = valueStackIt->first;
-        const EphemeralValueStack* fromStack = this->findValueStack ( valueStackIt->first );
-        assert ( fromStack );
-        fromStack->join ( key, branch );
-    }
-
-    // copy the clients
-    set < AbstractVersionedBranchClient* >::iterator clientIt = this->mClients.begin ();
-    for ( ; clientIt != this->mClients.end (); ++clientIt ) {
-        AbstractVersionedBranchClient* client = *clientIt;
-        branch.insertClient ( *client );
-        client->mSourceBranch = branch.shared_from_this ();
-    }
-    
-    pinThis = NULL;
+    this->copyValues ( other );
+    this->transferClients ( other );
 }
 
 //----------------------------------------------------------------//

@@ -12,6 +12,8 @@
 
 namespace Padamose {
 
+class AbstractPersistenceProvider;
+
 //================================================================//
 // VersionedStoreSnapshot
 //================================================================//
@@ -63,10 +65,13 @@ public:
     bool            hasKey                          ( string key ) const;
     bool            hasValue                        ( string key ) const;
     bool            hasValue                        ( string key, size_t version ) const;
+    void            persist                         ( AbstractPersistenceProvider& provider, string branchName );
     void            setDebugName                    ( string debugName );
     void            takeSnapshot                    ( const VersionedStoreSnapshot& other );
+    void            takeSnapshot                    ( AbstractPersistenceProvider& provider, string branchName );
                     VersionedStoreSnapshot          ();
                     VersionedStoreSnapshot          ( const VersionedStoreSnapshot& other );
+                    VersionedStoreSnapshot          ( AbstractPersistenceProvider& provider, string branchName );
     virtual         ~VersionedStoreSnapshot         ();
     
     //----------------------------------------------------------------//

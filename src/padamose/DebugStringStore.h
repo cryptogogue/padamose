@@ -1,0 +1,35 @@
+// Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
+// http://cryptogogue.com
+
+#ifndef PADAMOSE_DEBUGSTRINGSTORE_H
+#define PADAMOSE_DEBUGSTRINGSTORE_H
+
+#include <padamose/padamose-common.h>
+#include <padamose/AbstractStringStore.h>
+
+namespace Padamose {
+
+//================================================================//
+// DebugStringStore
+//================================================================//
+// TODO: doxygen
+class DebugStringStore :
+    public AbstractStringStore {
+protected:
+
+    map < string, string > mStrings;
+
+    //----------------------------------------------------------------//
+    string          AbstractStringStore_getString       ( string key ) const override;
+    bool            AbstractStringStore_hasString       ( string key ) const override;
+    void            AbstractStringStore_setString       ( string key, string value ) override;
+
+public:
+
+    //----------------------------------------------------------------//
+                    DebugStringStore                    ();
+    virtual         ~DebugStringStore                   ();
+};
+
+} // namespace Padamose
+#endif

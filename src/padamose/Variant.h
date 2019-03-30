@@ -20,7 +20,7 @@ class NullVariant {
 // TODO: doxygen
 class Variant :
     public variant < NullVariant, bool, double, int, size_t, string > {
-protected:
+public:
 
     // indices; must match order of template arguement list passed to variant<> base class.
     enum {
@@ -32,8 +32,6 @@ protected:
         STRING_VARIANT,
     };
 
-public:
-
     //----------------------------------------------------------------//
     template < typename TYPE >
     TYPE get () const {
@@ -44,7 +42,7 @@ public:
     template <>
     bool get () const {
     
-        switch ( this->index ()) {
+        switch ( this->getType ()) {
             case NULL_VARIANT:
                 return false;
             case BOOL_VARIANT:
@@ -65,7 +63,7 @@ public:
     template <>
     double get () const {
     
-        switch ( this->index ()) {
+        switch ( this->getType ()) {
             case NULL_VARIANT:
                 return 0;
             case BOOL_VARIANT:
@@ -86,7 +84,7 @@ public:
     template <>
     int get () const {
     
-        switch ( this->index ()) {
+        switch ( this->getType ()) {
             case NULL_VARIANT:
                 return 0;
             case BOOL_VARIANT:
@@ -107,7 +105,7 @@ public:
     template <>
     size_t get () const {
     
-        switch ( this->index ()) {
+        switch ( this->getType ()) {
             case NULL_VARIANT:
                 return 0;
             case BOOL_VARIANT:
@@ -130,7 +128,7 @@ public:
     
         ostringstream stream;
     
-        switch ( this->index ()) {
+        switch ( this->getType ()) {
             case NULL_VARIANT:
                 return "";
             case BOOL_VARIANT:
@@ -148,6 +146,11 @@ public:
                 return this->getStrict < string >();
         }
         return "";
+    }
+    
+    //----------------------------------------------------------------//
+    size_t getType () const {
+        return this->index ();
     }
     
     //----------------------------------------------------------------//

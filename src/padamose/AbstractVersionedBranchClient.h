@@ -8,6 +8,7 @@
 
 namespace Padamose {
 
+class AbstractPersistenceProvider;
 class AbstractVersionedBranch;
 
 //================================================================//
@@ -41,6 +42,7 @@ protected:
     size_t              getJoinScore                                            () const;
     size_t              getVersionDependency                                    () const;
     void                joinBranch                                              ( AbstractVersionedBranch& branch );
+    void                persistSource                                           ( AbstractPersistenceProvider& provider );
     bool                preventJoin                                             () const;
     void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch );
     void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
@@ -49,14 +51,14 @@ protected:
     virtual bool        AbstractVersionedBranchClient_canJoin                   () const = 0;
     virtual size_t      AbstractVersionedBranchClient_getJoinScore              () const = 0;
     virtual size_t      AbstractVersionedBranchClient_getVersionDependency      () const = 0;
-    virtual void        AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& branch ) = 0;
+    virtual void        AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& other ) = 0;
     virtual bool        AbstractVersionedBranchClient_preventJoin               () const = 0;
 
 public:
 
     //----------------------------------------------------------------//
-                        AbstractVersionedBranchClient                            ();
-    virtual             ~AbstractVersionedBranchClient                           ();
+                        AbstractVersionedBranchClient                           ();
+    virtual             ~AbstractVersionedBranchClient                          ();
 };
 
 } // namespace Padamose
