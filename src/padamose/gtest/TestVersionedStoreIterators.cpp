@@ -36,14 +36,14 @@ void testVersionedValueIterator ( VersionedStore& store, string key, const vecto
 
     for ( ; valueIt; valueIt.prev ()) {
         ASSERT_TRUE ( *valueIt == expected [ --idx ]);
-        ASSERT_TRUE ( valueIt.getValue < string >( key ) == expected [ idx ]);
+        ASSERT_TRUE ( valueIt.value () == expected [ idx ]);
     }
     
     ASSERT_TRUE ( idx == 0 );
     
     for ( valueIt.next (); valueIt; valueIt.next ()) {
         ASSERT_TRUE ( *valueIt == expected [ idx ]);
-        ASSERT_TRUE ( valueIt.getValue < string >( key ) == expected [ idx++ ]);
+        ASSERT_TRUE ( valueIt.value () == expected [ idx++ ]);
     }
     
     ASSERT_TRUE ( idx == expected.size ());

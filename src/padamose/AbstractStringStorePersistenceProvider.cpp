@@ -1,25 +1,25 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/StringStorePersistenceProvider.h>
+#include <padamose/AbstractStringStorePersistenceProvider.h>
 #include <padamose/StringStoreVersionedBranch.h>
 
 namespace Padamose {
 
 //================================================================//
-// StringStorePersistenceProvider
+// AbstractStringStorePersistenceProvider
 //================================================================//
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void StringStorePersistenceProvider::eraseBranchID ( string branchID ) {
+void AbstractStringStorePersistenceProvider::eraseBranchID ( string branchID ) {
 
     this->mBranchIDs.erase ( branchID );
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-string StringStorePersistenceProvider::makeBranchID () {
+string AbstractStringStorePersistenceProvider::makeBranchID () {
 
     string branchID;
     do {
@@ -34,11 +34,11 @@ string StringStorePersistenceProvider::makeBranchID () {
 }
 
 //----------------------------------------------------------------//
-StringStorePersistenceProvider::StringStorePersistenceProvider () {
+AbstractStringStorePersistenceProvider::AbstractStringStorePersistenceProvider () {
 }
 
 //----------------------------------------------------------------//
-StringStorePersistenceProvider::~StringStorePersistenceProvider () {
+AbstractStringStorePersistenceProvider::~AbstractStringStorePersistenceProvider () {
 }
 
 //================================================================//
@@ -46,7 +46,7 @@ StringStorePersistenceProvider::~StringStorePersistenceProvider () {
 //================================================================//
 
 //----------------------------------------------------------------//
-shared_ptr < AbstractVersionedBranch > StringStorePersistenceProvider::AbstractPersistenceProvider_makePersistentBranch () {
+shared_ptr < AbstractVersionedBranch > AbstractStringStorePersistenceProvider::AbstractPersistenceProvider_makePersistentBranch () {
 
     shared_ptr < StringStoreVersionedBranch > branch = make_shared < StringStoreVersionedBranch >();
     branch->mStringStore = this;

@@ -1,8 +1,8 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_STRINGSTOREPERSISTENCEPROVIDER_H
-#define PADAMOSE_STRINGSTOREPERSISTENCEPROVIDER_H
+#ifndef PADAMOSE_ABSTRACTSTRINGSTOREPERSISTENCEPROVIDER_H
+#define PADAMOSE_ABSTRACTSTRINGSTOREPERSISTENCEPROVIDER_H
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractPersistenceProvider.h>
@@ -11,17 +11,17 @@
 namespace Padamose {
 
 //================================================================//
-// StringStorePersistenceProvider
+// AbstractStringStorePersistenceProvider
 //================================================================//
 // TODO: doxygen
-class StringStorePersistenceProvider :
-    public AbstractPersistenceProvider {
+class AbstractStringStorePersistenceProvider :
+    public AbstractPersistenceProvider,
+    public AbstractStringStore {
 protected:
 
     friend class StringStoreVersionedBranch;
 
-    set < string >                          mBranchIDs;
-    unique_ptr < AbstractStringStore >      mStore;
+    std::set < string > mBranchIDs;
 
     //----------------------------------------------------------------//
     void                eraseBranchID                           ( string branchID );
@@ -33,14 +33,8 @@ protected:
 public:
 
     //----------------------------------------------------------------//
-                        StringStorePersistenceProvider          ();
-    virtual             ~StringStorePersistenceProvider         ();
-    
-    //----------------------------------------------------------------//
-    template < typename TYPE >
-    void setStore () {
-        this->mStore = make_unique < TYPE >();
-    }
+                        AbstractStringStorePersistenceProvider          ();
+    virtual             ~AbstractStringStorePersistenceProvider         ();
 };
 
 } // namespace Padamose

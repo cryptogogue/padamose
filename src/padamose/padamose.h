@@ -6,15 +6,15 @@
 
 #include <padamose/AbstractPersistenceProvider.h>
 #include <padamose/AbstractStringStore.h>
+#include <padamose/AbstractStringStorePersistenceProvider.h>
 #include <padamose/AbstractVersionedCollection.h>
 #include <padamose/AbstractVersionedBranchClient.h>
 #include <padamose/BaseVersionedCollectionIterator.h>
-#include <padamose/DebugStringStore.h>
+#include <padamose/DebugStringStorePersistenceProvider.h>
 #include <padamose/EphemeralValueStack.h>
 #include <padamose/EphemeralVersionedBranch.h>
 #include <padamose/Exceptions.h>
 #include <padamose/MutableVersionedCollection.h>
-#include <padamose/StringStorePersistenceProvider.h>
 #include <padamose/StringStoreVersionedBranch.h>
 #include <padamose/Variant.h>
 #include <padamose/VersionedCollectionSnapshot.h>

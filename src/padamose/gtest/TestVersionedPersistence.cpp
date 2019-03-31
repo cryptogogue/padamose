@@ -18,8 +18,7 @@ static const string STR4    = "mno";
 //----------------------------------------------------------------//
 TEST ( VersionedStore, test_simple_persistence ){
 
-    StringStorePersistenceProvider provider;
-    provider.setStore < DebugStringStore >();
+    DebugStringStorePersistenceProvider provider;
 
     {
         VersionedStore store;
@@ -36,6 +35,7 @@ TEST ( VersionedStore, test_simple_persistence ){
         ASSERT_EQ ( store.getValue < string >( KEY0 ), STR3 );
         
         store.persist ( provider, "master" );
+        provider.dump ();
     }
 
     VersionedStore store;
@@ -46,6 +46,50 @@ TEST ( VersionedStore, test_simple_persistence ){
     ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
+    
+    // iterate by version
+    VersionedStoreIterator storeIt ( store );
+    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR3 );
+    
+    storeIt.prev ();
+    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR2 );
+    
+    storeIt.prev ();
+    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR1 );
+    
+    storeIt.prev ();
+    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR0 );
+    
+    storeIt.next ();
+    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR1 );
+    
+    storeIt.next ();
+    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR2 );
+    
+    storeIt.next ();
+    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR3 );
+    
+    // iterate by value
+    VersionedValueIterator < string > valueIt ( store, KEY0 );
+    ASSERT_EQ ( valueIt.value (), STR3 );
+    
+    valueIt.prev ();
+    ASSERT_EQ ( valueIt.value (), STR2 );
+    
+    valueIt.prev ();
+    ASSERT_EQ ( valueIt.value (), STR1 );
+    
+    valueIt.prev ();
+    ASSERT_EQ ( valueIt.value (), STR0 );
+    
+    valueIt.next ();
+    ASSERT_EQ ( valueIt.value (), STR1 );
+    
+    valueIt.next ();
+    ASSERT_EQ ( valueIt.value (), STR2 );
+    
+    valueIt.next ();
+    ASSERT_EQ ( valueIt.value (), STR3 );
 }
 
 } // namespace Test

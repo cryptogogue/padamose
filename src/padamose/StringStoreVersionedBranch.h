@@ -21,21 +21,23 @@ class StringStoreVersionedBranch :
     public AbstractVersionedBranch {
 private:
 
-    friend class StringStorePersistenceProvider;
+    friend class AbstractStringStorePersistenceProvider;
 
     static const size_t INVALID_LAYER_INDEX             = ( size_t )-1;
 
-    string                              mBranchID;
-    StringStorePersistenceProvider*     mStringStore;
+    string                                      mBranchID;
+    AbstractStringStorePersistenceProvider*     mStringStore;
 
     //----------------------------------------------------------------//
     string                          formatKeyForLayerIndexByMemberName      ( size_t version, string name ) const;
     string                          formatKeyForLayerMemberNameByIndex      ( size_t version, size_t index ) const;
     string                          formatKeyForLayerSize                   ( size_t version ) const;
-    string                          formatKeyForValue                       ( string key, size_t n ) const;
-    string                          formatKeyForValueStackTop               ( string key ) const;
+    string                          formatKeyForLayerStackSize              () const;
+    string                          formatKeyForValueByIndex                ( string key, size_t index ) const;
+    string                          formatKeyForValueIndexByVersion         ( string key, size_t version ) const;
+    string                          formatKeyForValueStackSize              ( string key ) const;
     string                          formatKeyForValueStackType              ( string key ) const;
-    string                          formatKeyForValueVersion                ( string key, size_t n ) const;
+    string                          formatKeyForValueVersionByIndex         ( string key, size_t index ) const;
     AbstractStringStore&            getStore                                ();
     const AbstractStringStore&      getStoreConst                           () const;
 
