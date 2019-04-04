@@ -17,6 +17,7 @@ class AbstractStringStore {
 protected:
 
     //----------------------------------------------------------------//
+    virtual void        AbstractStringStore_eraseString     ( string key ) = 0;
     virtual string      AbstractStringStore_getString       ( string key ) const = 0;
     virtual bool        AbstractStringStore_hasString       ( string key ) const = 0;
     virtual void        AbstractStringStore_setString       ( string key, string value ) = 0;
@@ -26,6 +27,7 @@ public:
     //----------------------------------------------------------------//
                         AbstractStringStore                 ();
     virtual             ~AbstractStringStore                ();
+    void                eraseString                         ( string key );
     string              getString                           ( string key ) const;
     bool                hasString                           ( string key ) const;
     void                setString                           ( string key, string value );

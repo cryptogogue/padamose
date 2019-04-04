@@ -140,8 +140,7 @@ void VersionedStoreSnapshot::takeSnapshot ( const VersionedStoreSnapshot& other 
 // TODO: doxygen
 void VersionedStoreSnapshot::takeSnapshot ( AbstractPersistenceProvider& provider, string branchName ) {
 
-    BranchTag& tag = provider.getTag ( branchName );
-    this->setBranch ( tag.mBranch, tag.mVersion );
+    this->takeSnapshot ( provider.getTag ( branchName ));
 }
 
 //----------------------------------------------------------------//

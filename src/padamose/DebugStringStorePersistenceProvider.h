@@ -20,6 +20,7 @@ protected:
     map < string, string > mStrings;
 
     //----------------------------------------------------------------//
+    void            AbstractStringStore_eraseString     ( string key ) override;
     string          AbstractStringStore_getString       ( string key ) const override;
     bool            AbstractStringStore_hasString       ( string key ) const override;
     void            AbstractStringStore_setString       ( string key, string value ) override;

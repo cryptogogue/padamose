@@ -15,6 +15,8 @@ DebugStringStorePersistenceProvider::DebugStringStorePersistenceProvider () {
 
 //----------------------------------------------------------------//
 DebugStringStorePersistenceProvider::~DebugStringStorePersistenceProvider () {
+
+    this->mTags.clear ();
 }
 
 //----------------------------------------------------------------//
@@ -29,6 +31,12 @@ void DebugStringStorePersistenceProvider::dump () const {
 //================================================================//
 // overrides
 //================================================================//
+
+//----------------------------------------------------------------//
+void DebugStringStorePersistenceProvider::AbstractStringStore_eraseString ( string key ) {
+
+    this->mStrings.erase ( key );
+}
 
 //----------------------------------------------------------------//
 string DebugStringStorePersistenceProvider::AbstractStringStore_getString ( string key ) const {

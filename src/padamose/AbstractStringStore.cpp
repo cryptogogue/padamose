@@ -18,6 +18,12 @@ AbstractStringStore::~AbstractStringStore () {
 }
 
 //----------------------------------------------------------------//
+void AbstractStringStore::eraseString ( string key ) {
+
+    this->AbstractStringStore_eraseString ( key );
+}
+
+//----------------------------------------------------------------//
 string AbstractStringStore::getString ( string key ) const {
 
     return this->AbstractStringStore_getString ( key );

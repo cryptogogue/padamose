@@ -20,9 +20,9 @@ AbstractPersistenceProvider::~AbstractPersistenceProvider () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-BranchTag& AbstractPersistenceProvider::getTag ( string branchName ) {
+const VersionedStoreSnapshot& AbstractPersistenceProvider::getTag ( string branchName ) {
 
-    map < string, BranchTag >::iterator tagIt = this->mTags.find ( branchName );
+    map < string, VersionedStoreSnapshot >::iterator tagIt = this->mTags.find ( branchName );
     assert ( tagIt != this->mTags.end ()); // TODO: throw exception
     return tagIt->second;
 }
@@ -36,9 +36,8 @@ shared_ptr < AbstractVersionedBranch > AbstractPersistenceProvider::makePersiste
 //----------------------------------------------------------------//
 void AbstractPersistenceProvider::tagBranch ( AbstractVersionedBranch& branch, string branchName, size_t version ) {
 
-    BranchTag& tag = this->mTags [ branchName ];
-    tag.mBranch = branch.shared_from_this ();
-    tag.mVersion = version;
+    VersionedStoreSnapshot& tag = this->mTags [ branchName ];
+    tag.setBranch ( branch.shared_from_this (), version );
 }
 
 } // namespace Padamose

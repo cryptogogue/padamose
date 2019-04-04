@@ -54,6 +54,7 @@ protected:
 
     //----------------------------------------------------------------//
     void            transferClients             ( AbstractVersionedBranch& other );
+    void            truncate                    ( size_t topVersion );
 
     //----------------------------------------------------------------//
     bool            AbstractVersionedBranchClient_canJoin                   () const override;
@@ -69,9 +70,9 @@ protected:
     virtual Variant                                     AbstractVersionedBranch_getValueVariant         ( size_t version, string key ) const = 0;
     virtual bool                                        AbstractVersionedBranch_getValueVersionExtents  ( string key, size_t upperBound, size_t& first, size_t& last ) const = 0;
     virtual bool                                        AbstractVersionedBranch_hasKey                  ( string key, size_t upperBound ) const = 0;
-    virtual void                                        AbstractVersionedBranch_optimize                () = 0;
     virtual void                                        AbstractVersionedBranch_persistSelf             ( AbstractPersistenceProvider& provider ) = 0;
     virtual void                                        AbstractVersionedBranch_setValueVariant         ( size_t version, string key, const Variant& value ) = 0;
+    virtual void                                        AbstractVersionedBranch_truncate                ( size_t topVersion ) = 0;
 
 public:
 

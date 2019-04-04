@@ -13,25 +13,7 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-string StringStoreVersionedBranch::formatKeyForLayerIndexByMemberName ( size_t version, string name ) const {
-
-    ostringstream stream;
-    stream << this->mBranchID << ".layerForVersion." << version << ".indexByName." << name;
-    return stream.str ();
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-string StringStoreVersionedBranch::formatKeyForLayerMemberNameByIndex ( size_t version, size_t index ) const {
-
-    ostringstream stream;
-    stream << this->mBranchID << ".layerForVersion." << version << ".nameByIndex." << index;
-    return stream.str ();
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-string StringStoreVersionedBranch::formatKeyForLayerSize ( size_t version ) const {
+string StringStoreVersionedBranch::formatKeyForLayerSizeByVersion ( size_t version ) const {
 
     ostringstream stream;
     stream << this->mBranchID << ".layerForVersion." << version << ".size";
@@ -40,25 +22,35 @@ string StringStoreVersionedBranch::formatKeyForLayerSize ( size_t version ) cons
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-string StringStoreVersionedBranch::formatKeyForLayerStackSize () const {
+string StringStoreVersionedBranch::formatKeyForTopVersion () const {
 
     ostringstream stream;
-    stream << this->mBranchID << ".layerStackSize";
+    stream << this->mBranchID << ".topVersion";
     return stream.str ();
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-string StringStoreVersionedBranch::formatKeyForValueByIndex ( string key, size_t index ) const {
+string StringStoreVersionedBranch::formatKeyForValueByVersion ( string key, size_t version ) const {
+    
+    ostringstream stream;
+    stream << this->mBranchID << ".valueStackForKey." << key << ".valueByVersion." << version;
+    return stream.str ();
+}
+
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+string StringStoreVersionedBranch::formatKeyForValueNameByIndexInLayer ( size_t version, size_t indexInLayer ) const {
 
     ostringstream stream;
-    stream << this->mBranchID << ".valueStackForKey." << key << ".valueByIndex." << index;
+    stream << this->mBranchID << ".layerForVersion." << version << ".nameByIndex." << indexInLayer;
     return stream.str ();
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-string StringStoreVersionedBranch::formatKeyForValueIndexByVersion ( string key, size_t version ) const {
+string StringStoreVersionedBranch::formatKeyForValueStackIndexByVersion ( string key, size_t version ) const {
     
     ostringstream stream;
     stream << this->mBranchID << ".valueStackForKey." << key << ".indexByVersion." << version;
@@ -85,10 +77,10 @@ string StringStoreVersionedBranch::formatKeyForValueStackType ( string key ) con
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-string StringStoreVersionedBranch::formatKeyForValueVersionByIndex ( string key, size_t index ) const {
+string StringStoreVersionedBranch::formatKeyForValueVersionByStackIndex ( string key, size_t stackIndex ) const {
 
     ostringstream stream;
-    stream << this->mBranchID << ".valueStackForKey." << key << ".versionByIndex." << index;
+    stream << this->mBranchID << ".valueStackForKey." << key << ".versionByIndex." << stackIndex;
     return stream.str ();
 }
 
@@ -110,6 +102,37 @@ const AbstractStringStore& StringStoreVersionedBranch::getStoreConst () const {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+Variant StringStoreVersionedBranch::getValueVariantForVersion ( string key, size_t version ) const {
+
+    const AbstractStringStore& store = this->getStoreConst ();
+
+    string keyForValueByVersion = this->formatKeyForValueByVersion ( key, version );
+    string value = store.get < string >( keyForValueByVersion, "" );
+    assert ( value.size () > 0 ); // TODO: throw exception
+
+    Variant strVariant ( value );
+
+    string keyForValueStackType = this->formatKeyForValueStackType ( key );
+    size_t type = store.get < size_t >( keyForValueStackType, Variant::NULL_VARIANT );
+    assert ( type != Variant::NULL_VARIANT ); // TODO: throw exception
+
+    switch ( type ) {
+        case Variant::BOOL_VARIANT:
+            return Variant ( strVariant.get < bool >());
+        case Variant::DOUBLE_VARIANT:
+            return Variant ( strVariant.get < double >());
+        case Variant::INT_VARIANT:
+            return Variant ( strVariant.get < int >());
+        case Variant::SIZE_VARIANT:
+            return Variant ( strVariant.get < size_t >());
+        case Variant::STRING_VARIANT:
+            return strVariant;
+    }
+    return Variant ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 StringStoreVersionedBranch::StringStoreVersionedBranch () :
     mStringStore ( 0 ) {
 }
@@ -117,6 +140,8 @@ StringStoreVersionedBranch::StringStoreVersionedBranch () :
 //----------------------------------------------------------------//
 // TODO: doxygen
 StringStoreVersionedBranch::~StringStoreVersionedBranch () {
+
+    this->AbstractVersionedBranch_truncate ( this->mVersion );
 }
 
 //================================================================//
@@ -144,36 +169,27 @@ StringStoreVersionedBranch::~StringStoreVersionedBranch () {
 */
 shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersionedBranch_fork ( size_t baseVersion ) {
     
-//    shared_ptr < StringStoreVersionedBranch > child = make_shared < StringStoreVersionedBranch >();
-//
-//    assert (( this->mVersion <= baseVersion ) && ( baseVersion <= this->getTopVersion ()));
-//
-//    child->setBranch ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
-//
-//    map < size_t, Layer >::const_iterator layerIt = this->mLayers.find ( baseVersion );
-//    if ( layerIt != this->mLayers.cend ()) {
-//
-//        const Layer& fromLayer = layerIt->second;
-//        Layer& toLayer = child->mLayers [ baseVersion ];
-//
-//        Layer::const_iterator keyIt = fromLayer.cbegin ();
-//        for ( ; keyIt != fromLayer.cend (); ++keyIt ) {
-//
-//            toLayer.insert ( *keyIt );
-//
-//            const EphemeralValueStack* fromStack = this->findValueStack ( *keyIt );
-//            assert ( fromStack );
-//
-//            unique_ptr < EphemeralValueStack >& toStack = child->mValueStacksByKey [ *keyIt ];
-//            if ( !toStack ) {
-//                toStack = fromStack->makeEmptyCopy ();
-//            }
-//            toStack->copyValueFrom ( *fromStack, baseVersion );
-//        }
-//    }
-//    return child;
+    AbstractStringStore& store = this->getStore ();
+    
+    shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
 
-    return NULL;
+    assert (( this->mVersion <= baseVersion ) && ( baseVersion <= this->getTopVersion ()));
+
+    child->setBranch ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
+
+    string keyforBaseLayerSize = this->formatKeyForLayerSizeByVersion ( baseVersion );
+    size_t baseLayerSize = store.get < size_t >( keyforBaseLayerSize, 0 );
+
+    for ( size_t indexInLayer = 0; indexInLayer < baseLayerSize; ++indexInLayer ) {
+
+        string keyForValueNameByIndexInLayer = this->formatKeyForValueNameByIndexInLayer ( baseVersion, indexInLayer );
+        string valueName = store.get < string >( keyForValueNameByIndexInLayer, "" );
+        
+        Variant value = this->getValueVariantForVersion ( valueName, baseVersion );
+        assert ( !value.isNull ());
+        child->setValueVariant ( baseVersion, valueName, value );
+    }
+    return child;
 }
 
 //----------------------------------------------------------------//
@@ -185,13 +201,9 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranch_getTopVersion () cons
 
     const AbstractStringStore& store = this->getStoreConst ();
 
-    // get the top index
-    string keyForLayerStackSize = this->formatKeyForLayerStackSize ();
-    size_t layerStackSize = store.get < size_t >( keyForLayerStackSize, INVALID_LAYER_INDEX );
-    if ( layerStackSize != INVALID_LAYER_INDEX ) {
-        return this->mVersion + layerStackSize;
-    }
-    return 0;
+    // get the top version
+    string keyForTopVersion = this->formatKeyForTopVersion ();
+    return store.get < size_t >( keyForTopVersion, 0 );
 }
 
 //----------------------------------------------------------------//
@@ -201,16 +213,16 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranch_getValueNextVersion (
     const AbstractStringStore& store = this->getStoreConst ();
     
     // get the index of the current version
-    string keyForValueIndexByVersion = this->formatKeyForValueIndexByVersion ( key, version );
-    size_t index = store.get < size_t >( keyForValueIndexByVersion, INVALID_LAYER_INDEX ); // TODO: throw exception
+    string keyForValueStackIndexByVersion = this->formatKeyForValueStackIndexByVersion ( key, version );
+    size_t index = store.get < size_t >( keyForValueStackIndexByVersion, INVALID_LAYER_INDEX ); // TODO: throw exception
     
     // get the top index
     string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
     size_t top = store.get < size_t >( keyForValueStackSize, INVALID_LAYER_INDEX ); // TODO: throw exception
     
     if ( index < ( top - 1 )) {
-        string keyForValueVersionByIndex = this->formatKeyForValueVersionByIndex ( key, index + 1 );
-        return store.get < size_t >( keyForValueVersionByIndex, version );
+        string keyForValueVersionByStackIndex = this->formatKeyForValueVersionByStackIndex ( key, index + 1 );
+        return store.get < size_t >( keyForValueVersionByStackIndex, version );
     }
     return version;
 }
@@ -222,11 +234,11 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranch_getValuePrevVersion (
     const AbstractStringStore& store = this->getStoreConst ();
 
     // get the index of the current version
-    string keyForValueIndexByVersion = this->formatKeyForValueIndexByVersion ( key, version );
-    size_t index = store.get < size_t >( keyForValueIndexByVersion, INVALID_LAYER_INDEX ); // TODO: throw exception
+    string keyForValueStackIndexByVersion = this->formatKeyForValueStackIndexByVersion ( key, version );
+    size_t index = store.get < size_t >( keyForValueStackIndexByVersion, INVALID_LAYER_INDEX ); // TODO: throw exception
     if ( index > 0 ) {
-        string keyForValueVersionByIndex = this->formatKeyForValueVersionByIndex ( key, index - 1 );
-        return store.get < size_t >( keyForValueVersionByIndex, version );
+        string keyForValueVersionByStackIndex = this->formatKeyForValueVersionByStackIndex ( key, index - 1 );
+        return store.get < size_t >( keyForValueVersionByStackIndex, version );
     }
     return version;
 }
@@ -245,37 +257,15 @@ Variant StringStoreVersionedBranch::AbstractVersionedBranch_getValueVariant ( si
         if ( top > 0 ) {
         
             // TODO: binary search
-            size_t cursor = top;
+            size_t index = top;
             do {
-                cursor--;
-                string keyForValueVersion = formatKeyForValueVersionByIndex ( key, cursor );
-                size_t valueVersion = store.get < size_t >( keyForValueVersion, 0 );
+                index--;
+                string keyForValueVersionByStackIndex = formatKeyForValueVersionByStackIndex ( key, index );
+                size_t valueVersion = store.get < size_t >( keyForValueVersionByStackIndex, 0 );
                 if ( valueVersion <= version ) {
-                
-                    string keyForValue = this->formatKeyForValueByIndex ( key, cursor );
-                    string value = store.get < string >( keyForValue, "" );
-                    assert ( value.size () > 0 ); // TODO: throw exception
-                    
-                    Variant strVariant ( value );
-                    
-                    string keyForValueStackType = this->formatKeyForValueStackType ( key );
-                    size_t type = store.get < size_t >( keyForValueStackType, Variant::NULL_VARIANT );
-                    assert ( type != Variant::NULL_VARIANT ); // TODO: throw exception
-                    
-                    switch ( type ) {
-                        case Variant::BOOL_VARIANT:
-                            return Variant ( strVariant.get < bool >());
-                        case Variant::DOUBLE_VARIANT:
-                            return Variant ( strVariant.get < double >());
-                        case Variant::INT_VARIANT:
-                            return Variant ( strVariant.get < int >());
-                        case Variant::SIZE_VARIANT:
-                            return Variant ( strVariant.get < size_t >());
-                        case Variant::STRING_VARIANT:
-                            return strVariant;
-                    }
+                    return this->getValueVariantForVersion ( key, valueVersion );
                 }
-            } while ( cursor > 0 );
+            } while ( index > 0 );
         }
     }
     return Variant ();
@@ -294,21 +284,21 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_getValueVersionExtents 
     
     if ( top > 0 ) {
     
-        string keyForFirst = this->formatKeyForValueVersionByIndex ( key, 0 );
+        string keyForFirst = this->formatKeyForValueVersionByStackIndex ( key, 0 );
         first = store.get < size_t >( keyForFirst, 0 );
         
         if ( first <= upperBound ) {
         
             // TODO: binary search
-            size_t cursor = top;
+            size_t index = top;
             do {
-                cursor--;
-                string keyForLast = formatKeyForValueVersionByIndex ( key, cursor );
+                index--;
+                string keyForLast = formatKeyForValueVersionByStackIndex ( key, index );
                 last = store.get < size_t >( keyForLast, 0 );
                 if ( last <= upperBound ) {
                     return true;
                 }
-            } while ( cursor > 0 );
+            } while ( index > 0 );
         }
     }
     return false;
@@ -322,114 +312,12 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_hasKey ( string key, si
 
         const AbstractStringStore& store = this->getStoreConst ();
 
-        string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
-        size_t top = store.get < size_t >( keyForValueStackSize, 0 );
-        
-        if ( top > 0 ) {
-            string keyForValueVersion = formatKeyForValueVersionByIndex ( key, 0 );
-            size_t valueVersion = store.get < size_t >( keyForValueVersion, 0 );
+        string keyForValueVersionByStackIndex = formatKeyForValueVersionByStackIndex ( key, 0 );
+        size_t valueVersion = store.get < size_t >( keyForValueVersionByStackIndex, INVALID_VERSION );
             
-            return ( valueVersion <= upperBound );
-        }
+        return (( valueVersion != INVALID_VERSION ) && ( valueVersion <= upperBound ));
     }
     return false;
-}
-
-//----------------------------------------------------------------//
-/** \brief Attempts to optimize the branch.
-
-    "Optimizing" a branch means two things: trim any unused versions from the
-    top of the branch, and concatenate the longest child branch if the child
-    branches from the top of the current branch.
- 
-    Unused versions are simply those equal to or greatet than the "immutable top"
-    version. The immutable top can fall below the top version following the
-    removal of the top client. In this case, the branch can be truncated.
- 
-    Following truncation, if there are child branches with their bases at the
-    top pf the branch, one of those children may be joined to the branch. In
-    this case, we select the longest child branch. When the child is joined to
-    the parent, all of its clients must also be moved to the parent.
- 
-    Optimization is performed recursively on any child branch selected to be
-    be joined to the parent.
- 
-    The presence of "direct references" will prevent the join optimization.
-    A "direct reference" is a pointer to a branch internal, such as a value.
-    As the join operation may invalidate internals, it must be prevented as
-    long as direct references exist. This is accomplished using a reference
-    count maintained by the VersionedValue object.
-*/
-void StringStoreVersionedBranch::AbstractVersionedBranch_optimize () {
-
-//    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "StringStoreVersionedBranch::optimize ()" );
-//
-//    // use one loop to find the immutable top and to identify a child branch that
-//    // may be joined to the parent branch.
-//
-//    size_t immutableTop = this->mVersion; // immutable top won't be less than the branch's base version.
-//    bool preventJoin = this->preventJoin (); // don't allow join if there are any direct references to the current branch. (May be over-cautious.)
-//    AbstractVersionedBranchClient* bestJoin = NULL; // a join will be performed if this is non-NULL.
-//
-//    // loop through every client...
-//    LGN_LOG ( PDM_FILTER_ROOT, INFO, "evaluating clients for possible concatenation..." );
-//    set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
-//    for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
-//
-//        AbstractVersionedBranchClient* client = *clientIt;
-//        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "client %p", client );
-//
-//        size_t clientVersion = client->getVersionDependency (); // store the client's version dependency to avoid extra function calls.
-//
-//        // the immutable top is the *highest* client version dependency. update it if and only if
-//        // a client with a higher depenency is found.
-//        if ( immutableTop < clientVersion ) {
-//
-//            LGN_LOG ( PDM_FILTER_ROOT, INFO, "found new immutable top: %d -> %d", ( int )immutableTop, ( int )clientVersion );
-//
-//            immutableTop = clientVersion;
-//
-//            // if we've found a more recent client, invalidate any candidate for joining.
-//            // we can only optimize by joining a child branch located at the top of
-//            // the branch.
-//            bestJoin = NULL;
-//        }
-//
-//        // if nothing is preventing a join, check to see if we can (and should) select
-//        // the current client as our new candidate for join. only conder client if dependency
-//        // is greater or equal to the current immutable top.
-//        if (( !preventJoin ) && client->canJoin () && ( client->getVersionDependency () >= immutableTop )) {
-//
-//            // a client branch with direct refereces will prevent any join.
-//            if ( client->preventJoin ()) {
-//                preventJoin = true; // stop considering join candidates.
-//                bestJoin = NULL; // clear out any existing join candidate.
-//            }
-//            else {
-//
-//                // the "join score" is just the length of the branch. if we don't yet have a join
-//                // candidate, pick the current client. if we already have a candidate, pick the
-//                // one with the higher join score.
-//                if (( !bestJoin ) || ( bestJoin->getJoinScore () < client->getJoinScore ())) {
-//                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
-//                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
-//                    bestJoin = client;
-//                }
-//            }
-//        }
-//    }
-//
-//    LGN_LOG ( PDM_FILTER_ROOT, INFO, "immutableTop: %d", ( int )immutableTop );
-//    LGN_LOG ( PDM_FILTER_ROOT, INFO, "topVersion: %d", ( int )this->getTopVersion ());
-//
-//    // throw away any versions equal to or greater than the immutable top.
-//    this->truncate ( immutableTop );
-//
-//    // if we have a join candidate, perform the join.
-//    if ( bestJoin ) {
-//        assert ( bestJoin->getVersionDependency () >= immutableTop );
-//        bestJoin->joinBranch ( *this );
-//    }
 }
 
 //----------------------------------------------------------------//
@@ -456,47 +344,115 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
 
     AbstractStringStore& store = this->getStore ();
 
-    // first, set the value stack
+    string keyForValueByVersion = this->formatKeyForValueByVersion ( key, version );
+
+    // if the value is new, we need to add a bunch of metadata.
+    if ( !store.hasString ( keyForValueByVersion )) {
     
-    string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
-    size_t top = store.get < size_t >( keyForValueStackSize, 0 );
-    store.set < size_t >( keyForValueStackSize, top + 1 );
+        // add the value to the layer.
+        
+        string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( version );
+        size_t indexInLayer = store.get < size_t >( keyForLayerSizeByVersion, 0 );
+        store.set < size_t >( keyForLayerSizeByVersion, indexInLayer + 1 ); // later gets one item bigger
+        
+        string keyForValueNameByIndexInLayer = this->formatKeyForValueNameByIndexInLayer ( version, indexInLayer );
+        store.set < string >( keyForValueNameByIndexInLayer, key ); // add value name to layer
+        
+        string keyForTopVersion = this->formatKeyForTopVersion ();
+        size_t topVersion = store.get < size_t >( keyForTopVersion, 0 );
+        if ( topVersion <= version ) {
+            store.set < size_t >( keyForTopVersion, version + 1 );
+        }
+        
+        // push the value onto the value stack.
+        
+        string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
+        size_t valueStackIndex = store.get < size_t >( keyForValueStackSize, 0 );
+        
+        // TODO: make this check more robust
+        assert (( this->mVersion + valueStackIndex ) <= version ); // we don't support inserting into the middle of a stack.
+        store.set < size_t >( keyForValueStackSize, valueStackIndex + 1 ); // new value stack top.
+        
+        // this is the first entry in the stack, so also set the type.
+        if ( valueStackIndex == 0 ) {
+            string keyForValueStackType = this->formatKeyForValueStackType ( key );
+            store.set < size_t >( keyForValueStackType, value.getType ());
+        }
     
-    if ( top == 0 ) {
+        string keyForValueVersionByStackIndex = this->formatKeyForValueVersionByStackIndex ( key, valueStackIndex );
+        store.set < size_t >( keyForValueVersionByStackIndex, version );
+        
+        string keyForValueStackIndexByVersion = this->formatKeyForValueStackIndexByVersion ( key, version );
+        store.set < size_t >( keyForValueStackIndexByVersion, valueStackIndex );
+    }
+    else {
+    
+        // check the type
         string keyForValueStackType = this->formatKeyForValueStackType ( key );
-        store.set < size_t >( keyForValueStackType, value.getType ());
+        size_t type = store.get < size_t >( keyForValueStackType, Variant::NULL_VARIANT );
+    
+        if ( type != value.getType ()) throw TypeMismatchOnAssignException ();
     }
     
-    string keyForValueByIndex = this->formatKeyForValueByIndex ( key, top );
-    store.setString ( keyForValueByIndex, value.get < string >());
+    // set the value
+    store.setString ( keyForValueByVersion, value.get < string >());
+}
+
+//----------------------------------------------------------------//
+/** \brief Discards all layers and values with versions greater than or equal to the
+    given version.
+ 
+    \param      topVersion  Version for new "top" of branch.
+*/
+void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVersion ) {
+
+    if ( this->mVersion > topVersion ) return;
+
+    AbstractStringStore& store = this->getStore ();
+
+    string keyForTopVersion = this->formatKeyForTopVersion ();
+    size_t version = store.get < size_t >( keyForTopVersion, 0 );
     
-    string keyForValueVersionByIndex = this->formatKeyForValueVersionByIndex ( key, top );
-    store.set < size_t >( keyForValueVersionByIndex, version );
+    if ( version <= topVersion ) return;
     
-    string keyForValueIndexByVersion = this->formatKeyForValueIndexByVersion ( key, version );
-    store.set < size_t >( keyForValueIndexByVersion, top );
-    
-    // now, make sure the value is recorded in the layer
-    string keyForLayerIndexByMemberName = this->formatKeyForLayerIndexByMemberName ( version, key );
-    size_t layerIndex = store.get < size_t >( keyForLayerIndexByMemberName, INVALID_LAYER_INDEX );
-    
-    if ( layerIndex == INVALID_LAYER_INDEX ) {
-    
-        string keyForLayerSize = this->formatKeyForLayerSize ( version );
-        layerIndex = store.get < size_t >( keyForLayerSize, 0 );
+    do {
+        version--;
         
-        string keyForLayerMemberNameByIndex = this->formatKeyForLayerMemberNameByIndex ( version, layerIndex );
-        store.set < string >( keyForLayerMemberNameByIndex, key );
+        string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( version );
+        size_t layerSize = store.get < size_t >( keyForLayerSizeByVersion, 0 );
+        store.eraseString ( keyForLayerSizeByVersion );
         
-        store.set < size_t >( keyForLayerIndexByMemberName, layerIndex );
-        store.set < size_t >( keyForLayerSize, layerIndex + 1 );
-        
-        string keyForLayerStackSize = this->formatKeyForLayerStackSize ();
-        size_t layerStackSize = store.get < size_t >( keyForLayerStackSize, 0 );
-        size_t topVersion = this->mVersion + layerStackSize;
-        if ( topVersion < version ) {
-            store.set < size_t >( keyForLayerStackSize, version - this->mVersion );
+        for ( size_t i = 0; i < layerSize; ++i ) {
+            
+            string valueNameByIndexInLayer = this->formatKeyForValueNameByIndexInLayer ( version, i );
+            string valueName = store.get < string >( valueNameByIndexInLayer, "" );
+            store.eraseString ( valueNameByIndexInLayer );
+            
+            string keyForValueStackSize = this->formatKeyForValueStackSize ( valueName );
+            size_t valueStackTopIndex = store.get < size_t >( keyForValueStackSize, 0 ) - 1;
+            
+            string keyForValueByVersion              = this->formatKeyForValueByVersion ( valueName, version );
+            string keyForValueVersionByStackIndex    = this->formatKeyForValueVersionByStackIndex ( valueName, valueStackTopIndex );
+            string keyForValueStackIndexByVersion    = this->formatKeyForValueStackIndexByVersion ( valueName, version );
+            
+            store.eraseString ( keyForValueByVersion );
+            store.eraseString ( keyForValueVersionByStackIndex );
+            store.eraseString ( keyForValueStackIndexByVersion );
+            
+            if ( valueStackTopIndex > 0 ) {
+                store.set < size_t >( keyForValueStackSize, valueStackTopIndex );
+            }
+            else {
+                store.eraseString ( keyForValueStackSize );
+                string keyForValueStackType = this->formatKeyForValueStackType ( valueName );
+                store.eraseString ( keyForValueStackType );
+            }
         }
+    }
+    while ( version > topVersion );
+    
+    if ( version == this->mVersion ) {
+        store.eraseString ( keyForTopVersion );
     }
 }
 
@@ -536,39 +492,42 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranchClient_getVersionDepen
  
     Neither branch is permitted to have direct references.
  
-    \param      branch      The branch to be appended to.
+    \param      other       The branch to be appended to.
 */
-void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& branch ) {
+void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& other ) {
 
-//    assert ( branch.getDirectReferenceCount () == 0 );
-//    assert ( this->mDirectReferenceCount == 0 );
-//
-//    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
-//    LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
-//
-//    this->optimize ();
-//
-//    shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
-//
-//    // copy the value stacks
-//    map < string, unique_ptr < EphemeralValueStack >>::iterator valueStackIt = this->mValueStacksByKey.begin ();
-//    for ( ; valueStackIt != this->mValueStacksByKey.end (); ++valueStackIt ) {
-//
-//        string key = valueStackIt->first;
-//        const EphemeralValueStack* fromStack = this->findValueStack ( valueStackIt->first );
-//        assert ( fromStack );
-//        fromStack->join ( key, branch );
-//    }
-//
-//    // copy the clients
-//    set < AbstractVersionedBranchClient* >::iterator clientIt = this->mClients.begin ();
-//    for ( ; clientIt != this->mClients.end (); ++clientIt ) {
-//        AbstractVersionedBranchClient* client = *clientIt;
-//        branch.insertClient ( *client );
-//        client->mSourceBranch = branch.shared_from_this ();
-//    }
-//
-//    pinThis = NULL;
+    assert ( other.getDirectReferenceCount () == 0 );
+    assert ( this->mDirectReferenceCount == 0 );
+
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
+    
+    this->optimize ();
+    
+    AbstractStringStore& store = this->getStore ();
+
+    string keyForTopVersion = this->formatKeyForTopVersion ();
+    size_t topVersion = store.get < size_t >( keyForTopVersion, 0 );
+    size_t versionCount = topVersion - this->mVersion;
+    
+    for ( size_t i = 0; i < versionCount; ++i ) {
+        
+        size_t version = this->mVersion + i;
+        
+        string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( i );
+        size_t layerSize = store.get < size_t >( keyForLayerSizeByVersion, 0 );
+        
+        for ( size_t j = 0; j < layerSize; ++j ) {
+            
+            string keyForValueNameByIndexInLayer = this->formatKeyForValueNameByIndexInLayer ( version, j );
+            string valueName = store.get < string >( keyForValueNameByIndexInLayer, "" );
+            
+            Variant value = this->getValueVariantForVersion ( valueName, version );
+            assert ( !value.isNull ());
+            other.setValueVariant ( version, valueName, value );
+        }
+    }
+    this->transferClients ( other );
 }
 
 //----------------------------------------------------------------//

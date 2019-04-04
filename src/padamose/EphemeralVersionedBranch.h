@@ -56,7 +56,6 @@ private:
     //----------------------------------------------------------------//
     void                            copyValues                  ( AbstractVersionedBranch& other );
     const EphemeralValueStack*      findValueStack              ( string key ) const;
-    void                            truncate                    ( size_t topVersion );
 
     //----------------------------------------------------------------//
     shared_ptr < AbstractVersionedBranch >      AbstractVersionedBranch_fork                            ( size_t baseVersion ) override;
@@ -66,7 +65,6 @@ private:
     Variant                                     AbstractVersionedBranch_getValueVariant                 ( size_t version, string key ) const override;
     bool                                        AbstractVersionedBranch_getValueVersionExtents          ( string key, size_t upperBound, size_t& first, size_t& last ) const override;
     bool                                        AbstractVersionedBranch_hasKey                          ( string key, size_t upperBound ) const override;
-    void                                        AbstractVersionedBranch_optimize                        () override;
     void                                        AbstractVersionedBranch_persistSelf                     ( AbstractPersistenceProvider& provider ) override;
     void                                        AbstractVersionedBranch_setValueVariant                 ( size_t version, string key, const Variant& value ) override;
     bool                                        AbstractVersionedBranchClient_canJoin                   () const override;
@@ -74,6 +72,7 @@ private:
     size_t                                      AbstractVersionedBranchClient_getVersionDependency      () const override;
     void                                        AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& other ) override;
     bool                                        AbstractVersionedBranchClient_preventJoin               () const override;
+    void                                        AbstractVersionedBranch_truncate                        ( size_t topVersion ) override;
 
 public:
 

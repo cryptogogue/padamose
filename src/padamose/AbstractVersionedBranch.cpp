@@ -193,10 +193,100 @@ void AbstractVersionedBranch::insertClient ( AbstractVersionedBranchClient& clie
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
+/** \brief Attempts to optimize the branch.
+
+    "Optimizing" a branch means two things: trim any unused versions from the
+    top of the branch, and concatenate the longest child branch if the child
+    branches from the top of the current branch.
+ 
+    Unused versions are simply those equal to or greatet than the "immutable top"
+    version. The immutable top can fall below the top version following the
+    removal of the top client. In this case, the branch can be truncated.
+ 
+    Following truncation, if there are child branches with their bases at the
+    top pf the branch, one of those children may be joined to the branch. In
+    this case, we select the longest child branch. When the child is joined to
+    the parent, all of its clients must also be moved to the parent.
+ 
+    Optimization is performed recursively on any child branch selected to be
+    be joined to the parent.
+ 
+    The presence of "direct references" will prevent the join optimization.
+    A "direct reference" is a pointer to a branch internal, such as a value.
+    As the join operation may invalidate internals, it must be prevented as
+    long as direct references exist. This is accomplished using a reference
+    count maintained by the VersionedValue object.
+*/
 void AbstractVersionedBranch::optimize () {
 
-    this->AbstractVersionedBranch_optimize ();
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::optimize ()" );
+    
+    // use one loop to find the immutable top and to identify a child branch that
+    // may be joined to the parent branch.
+    
+    size_t immutableTop = this->mVersion; // immutable top won't be less than the branch's base version.
+    bool preventJoin = this->preventJoin (); // don't allow join if there are any direct references to the current branch. (May be over-cautious.)
+    AbstractVersionedBranchClient* bestJoin = NULL; // a join will be performed if this is non-NULL.
+    
+    // loop through every client...
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "evaluating clients for possible concatenation..." );
+    set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
+    for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
+
+        AbstractVersionedBranchClient* client = *clientIt;
+        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "client %p", client );
+        
+        size_t clientVersion = client->getVersionDependency (); // store the client's version dependency to avoid extra function calls.
+        
+        // the immutable top is the *highest* client version dependency. update it if and only if
+        // a client with a higher depenency is found.
+        if ( immutableTop < clientVersion ) {
+        
+            LGN_LOG ( PDM_FILTER_ROOT, INFO, "found new immutable top: %d -> %d", ( int )immutableTop, ( int )clientVersion );
+        
+            immutableTop = clientVersion;
+            
+            // if we've found a more recent client, invalidate any candidate for joining.
+            // we can only optimize by joining a child branch located at the top of
+            // the branch.
+            bestJoin = NULL;
+        }
+        
+        // if nothing is preventing a join, check to see if we can (and should) select
+        // the current client as our new candidate for join. only conder client if dependency
+        // is greater or equal to the current immutable top.
+        if (( !preventJoin ) && client->canJoin () && ( client->getVersionDependency () >= immutableTop )) {
+
+            // a client branch with direct refereces will prevent any join.
+            if ( client->preventJoin ()) {
+                preventJoin = true; // stop considering join candidates.
+                bestJoin = NULL; // clear out any existing join candidate.
+            }
+            else {
+            
+                // the "join score" is just the length of the branch. if we don't yet have a join
+                // candidate, pick the current client. if we already have a candidate, pick the
+                // one with the higher join score.
+                if (( !bestJoin ) || ( bestJoin->getJoinScore () < client->getJoinScore ())) {
+                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
+                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
+                    bestJoin = client;
+                }
+            }
+        }
+    }
+    
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "immutableTop: %d", ( int )immutableTop );
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "topVersion: %d", ( int )this->getTopVersion ());
+    
+    // throw away any versions equal to or greater than the immutable top.
+    this->truncate ( immutableTop );
+    
+    // if we have a join candidate, perform the join.
+    if ( bestJoin ) {
+        assert ( bestJoin->getVersionDependency () >= immutableTop );
+        bestJoin->joinBranch ( *this );
+    }
 }
 
 //----------------------------------------------------------------//
@@ -230,6 +320,13 @@ void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other )
     this->mClients.clear ();
     
     pinThis = NULL;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::truncate ( size_t topVersion ) {
+
+    this->AbstractVersionedBranch_truncate ( topVersion );
 }
 
 //================================================================//

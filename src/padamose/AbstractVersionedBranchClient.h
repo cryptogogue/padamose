@@ -44,8 +44,6 @@ protected:
     void                joinBranch                                              ( AbstractVersionedBranch& branch );
     void                persistSource                                           ( AbstractPersistenceProvider& provider );
     bool                preventJoin                                             () const;
-    void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch );
-    void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
 
     //----------------------------------------------------------------//
     virtual bool        AbstractVersionedBranchClient_canJoin                   () const = 0;
@@ -59,6 +57,8 @@ public:
     //----------------------------------------------------------------//
                         AbstractVersionedBranchClient                           ();
     virtual             ~AbstractVersionedBranchClient                          ();
+    void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch );
+    void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
 };
 
 } // namespace Padamose
