@@ -2,6 +2,7 @@
 // http://cryptogogue.com
 
 #include <padamose/AbstractPersistenceProvider.h>
+#include <padamose/AbstractPersistentVersionedBranch.h>
 #include <padamose/AbstractVersionedBranch.h>
 
 namespace Padamose {
@@ -16,19 +17,21 @@ AbstractPersistenceProvider::AbstractPersistenceProvider () {
 
 //----------------------------------------------------------------//
 AbstractPersistenceProvider::~AbstractPersistenceProvider () {
+
+    this->mTags.clear ();
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-const VersionedStoreSnapshot& AbstractPersistenceProvider::getTag ( string branchName ) {
+const VersionedStoreSnapshot& AbstractPersistenceProvider::getTag ( string branchName ) const {
 
-    map < string, VersionedStoreSnapshot >::iterator tagIt = this->mTags.find ( branchName );
+    map < string, VersionedStoreSnapshot >::const_iterator tagIt = this->mTags.find ( branchName );
     assert ( tagIt != this->mTags.end ()); // TODO: throw exception
     return tagIt->second;
 }
 
 //----------------------------------------------------------------//
-shared_ptr < AbstractVersionedBranch > AbstractPersistenceProvider::makePersistentBranch () {
+shared_ptr < AbstractPersistentVersionedBranch > AbstractPersistenceProvider::makePersistentBranch () {
 
     return this->AbstractPersistenceProvider_makePersistentBranch ();
 }

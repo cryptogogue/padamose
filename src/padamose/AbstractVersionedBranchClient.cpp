@@ -65,7 +65,7 @@ void AbstractVersionedBranchClient::joinBranch ( AbstractVersionedBranch& branch
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranchClient::persistSource ( AbstractPersistenceProvider& provider ) {
+void AbstractVersionedBranchClient::persistSource ( shared_ptr < AbstractPersistenceProvider > provider ) {
 
     if ( this->mSourceBranch ) {
         this->mSourceBranch->persistSelf ( provider );

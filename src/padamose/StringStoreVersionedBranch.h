@@ -5,29 +5,27 @@
 #define PADAMOSE_STRINGSTOREVERSIONEDBRANCH_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractVersionedBranch.h>
+#include <padamose/AbstractPersistentVersionedBranch.h>
 
 namespace Padamose {
 
-class AbstractVersionedBranchClient;
-class StringStorePersistenceProvider;
-class VersionedStoreSnapshot;
+class AbstractStringStore;
 
 //================================================================//
 // StringStoreVersionedBranch
 //================================================================//
 // TODO: doxygen
 class StringStoreVersionedBranch :
-    public AbstractVersionedBranch {
+    public AbstractPersistentVersionedBranch {
 private:
 
-    friend class AbstractStringStorePersistenceProvider;
+    friend class StringStorePersistenceProvider;
 
     static const size_t INVALID_LAYER_INDEX             = ( size_t )-1;
     static const size_t INVALID_VERSION                 = ( size_t )-1;
 
-    string                                      mBranchID;
-    AbstractStringStorePersistenceProvider*     mStringStore;
+    string                              mBranchID;
+    shared_ptr < AbstractStringStore >  mStringStore;
 
     //----------------------------------------------------------------//
     string                          formatKeyForLayerSizeByVersion          ( size_t version ) const;
@@ -50,7 +48,7 @@ private:
     Variant                                     AbstractVersionedBranch_getValueVariant                 ( size_t version, string key ) const override;
     bool                                        AbstractVersionedBranch_getValueVersionExtents          ( string key, size_t upperBound, size_t& first, size_t& last ) const override;
     bool                                        AbstractVersionedBranch_hasKey                          ( string key, size_t upperBound ) const override;
-    void                                        AbstractVersionedBranch_persistSelf                     ( AbstractPersistenceProvider& provider ) override;
+    void                                        AbstractVersionedBranch_persistSelf                     ( shared_ptr < AbstractPersistenceProvider > provider ) override;
     void                                        AbstractVersionedBranch_setValueVariant                 ( size_t version, string key, const Variant& value ) override;
     void                                        AbstractVersionedBranch_truncate                        ( size_t topVersion ) override;
     bool                                        AbstractVersionedBranchClient_canJoin                   () const override;

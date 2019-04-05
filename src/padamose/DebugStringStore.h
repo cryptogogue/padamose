@@ -1,20 +1,20 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_DEBUGSTRINGSTOREPERSISTENCEPROVIDER_H
-#define PADAMOSE_DEBUGSTRINGSTOREPERSISTENCEPROVIDER_H
+#ifndef PADAMOSE_DEBUGSTRINGSTORE_H
+#define PADAMOSE_DEBUGSTRINGSTORE_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractStringStorePersistenceProvider.h>
+#include <padamose/AbstractStringStore.h>
 
 namespace Padamose {
 
 //================================================================//
-// DebugStringStorePersistenceProvider
+// DebugStringStore
 //================================================================//
 // TODO: doxygen
-class DebugStringStorePersistenceProvider :
-    public AbstractStringStorePersistenceProvider {
+class DebugStringStore :
+    public AbstractStringStore {
 protected:
 
     map < string, string > mStrings;
@@ -28,9 +28,9 @@ protected:
 public:
 
     //----------------------------------------------------------------//
-                    DebugStringStorePersistenceProvider     ();
-    virtual         ~DebugStringStorePersistenceProvider    ();
-    void            dump                                    () const;
+                    DebugStringStore        ();
+    virtual         ~DebugStringStore       ();
+    void            dump                    () const;
 };
 
 } // namespace Padamose

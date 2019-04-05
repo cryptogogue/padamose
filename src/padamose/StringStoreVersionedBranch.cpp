@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/AbstractStringStorePersistenceProvider.h>
+#include <padamose/StringStorePersistenceProvider.h>
 #include <padamose/StringStoreVersionedBranch.h>
 #include <padamose/VersionedStoreSnapshot.h>
 
@@ -322,7 +322,7 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_hasKey ( string key, si
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void StringStoreVersionedBranch::AbstractVersionedBranch_persistSelf ( AbstractPersistenceProvider& provider ) {
+void StringStoreVersionedBranch::AbstractVersionedBranch_persistSelf ( shared_ptr < AbstractPersistenceProvider > provider ) {
     // do nothing; already persisted
 }
 

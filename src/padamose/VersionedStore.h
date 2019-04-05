@@ -72,7 +72,7 @@ public:
     void            pushVersion                     ();
     void            revert                          ( size_t version );
                     VersionedStore                  ();
-                    VersionedStore                  ( AbstractPersistenceProvider& persistence, string branch );
+                    VersionedStore                  ( shared_ptr < AbstractPersistenceProvider > persistence, string branch );
                     VersionedStore                  ( VersionedStoreSnapshot& other );
                     ~VersionedStore                 ();
     

@@ -9,28 +9,34 @@
 
 namespace Padamose {
 
+class AbstractPersistentVersionedBranch;
 class AbstractVersionedBranch;
 
 //================================================================//
 // AbstractPersistenceProvider
 //================================================================//
 // TODO: doxygen
-class AbstractPersistenceProvider {
+class AbstractPersistenceProvider :
+    public enable_shared_from_this < AbstractPersistenceProvider > {
 protected:
+
+    friend class VersionedStoreSnapshot;
 
     map < string, VersionedStoreSnapshot > mTags;
 
     //----------------------------------------------------------------//
-    virtual shared_ptr < AbstractVersionedBranch >  AbstractPersistenceProvider_makePersistentBranch    () = 0;
+    const VersionedStoreSnapshot&                       getTag                                  ( string branchName ) const;
+
+    //----------------------------------------------------------------//
+    virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () = 0;
     
 public:
 
     //----------------------------------------------------------------//
-                                                    AbstractPersistenceProvider             ();
-    virtual                                         ~AbstractPersistenceProvider            ();
-    const VersionedStoreSnapshot&                   getTag                                  ( string branchName );
-    shared_ptr < AbstractVersionedBranch >          makePersistentBranch                    ();
-    void                                            tagBranch                               ( AbstractVersionedBranch& branch, string branchName, size_t version );
+                                                        AbstractPersistenceProvider             ();
+    virtual                                             ~AbstractPersistenceProvider            ();
+    shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ();
+    void                                                tagBranch                               ( AbstractVersionedBranch& branch, string branchName, size_t version );
 };
 
 } // namespace Padamose

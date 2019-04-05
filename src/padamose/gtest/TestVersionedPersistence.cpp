@@ -16,9 +16,7 @@ static const string STR3    = "jkl";
 static const string STR4    = "mno";
 
 //----------------------------------------------------------------//
-TEST ( VersionedStore, test_simple_persistence ){
-
-    DebugStringStorePersistenceProvider provider;
+void testWithProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
 
     {
         VersionedStore store;
@@ -35,7 +33,6 @@ TEST ( VersionedStore, test_simple_persistence ){
         ASSERT_EQ ( store.getValue < string >( KEY0 ), STR3 );
         
         store.persist ( provider, "master" );
-        provider.dump ();
     }
 
     VersionedStore store;
@@ -90,6 +87,27 @@ TEST ( VersionedStore, test_simple_persistence ){
     
     valueIt.next ();
     ASSERT_EQ ( valueIt.value (), STR3 );
+}
+
+//----------------------------------------------------------------//
+TEST ( VersionedStore, test_simple_persistence ) {
+
+    shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
+    shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
+    
+    testWithProvider ( provider );
+    VersionedStoreSnapshot snapshot ( provider, "master" );
+    
+    stringStore->dump ();
+    provider = NULL;
+
+    printf ( "not empty:\n" );
+    stringStore->dump ();
+    snapshot.clear ();
+
+    printf ( "empty:\n" );
+    stringStore->dump ();
+    printf ( "done\n" );
 }
 
 } // namespace Test

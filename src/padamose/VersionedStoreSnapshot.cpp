@@ -27,6 +27,7 @@ void VersionedStoreSnapshot::affirmBranch () {
 void VersionedStoreSnapshot::clear () {
 
     this->setBranch ( NULL, 0 );
+    this->mProvider = NULL;
 }
 
 //----------------------------------------------------------------//
@@ -103,11 +104,11 @@ bool VersionedStoreSnapshot::hasValue ( string key, size_t version ) const {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedStoreSnapshot::persist ( AbstractPersistenceProvider& provider, string branchName ) {
+void VersionedStoreSnapshot::persist ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
     assert ( this->mSourceBranch );
     this->persistSource ( provider );
-    provider.tagBranch ( *this->mSourceBranch, branchName, this->mVersion );
+    provider->tagBranch ( *this->mSourceBranch, branchName, this->mVersion );
 }
 
 //----------------------------------------------------------------//
@@ -134,13 +135,15 @@ void VersionedStoreSnapshot::setDebugName ( string debugName ) {
 void VersionedStoreSnapshot::takeSnapshot ( const VersionedStoreSnapshot& other ) {
 
     this->setBranch ( other.mSourceBranch, other.mVersion );
+    this->mProvider = other.mProvider;
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedStoreSnapshot::takeSnapshot ( AbstractPersistenceProvider& provider, string branchName ) {
+void VersionedStoreSnapshot::takeSnapshot ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
-    this->takeSnapshot ( provider.getTag ( branchName ));
+    this->takeSnapshot ( provider->getTag ( branchName ));
+    this->mProvider = provider;
 }
 
 //----------------------------------------------------------------//
@@ -159,7 +162,7 @@ VersionedStoreSnapshot::VersionedStoreSnapshot ( const VersionedStoreSnapshot& o
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-VersionedStoreSnapshot::VersionedStoreSnapshot ( AbstractPersistenceProvider& provider, string branchName ) {
+VersionedStoreSnapshot::VersionedStoreSnapshot ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
     this->takeSnapshot ( provider, branchName );
 }

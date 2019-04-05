@@ -2,6 +2,7 @@
 // http://cryptogogue.com
 
 #include <padamose/AbstractPersistenceProvider.h>
+#include <padamose/AbstractPersistentVersionedBranch.h>
 #include <padamose/EphemeralVersionedBranch.h>
 #include <padamose/VersionedStoreSnapshot.h>
 
@@ -178,9 +179,10 @@ bool EphemeralVersionedBranch::AbstractVersionedBranch_hasKey ( string key, size
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void EphemeralVersionedBranch::AbstractVersionedBranch_persistSelf ( AbstractPersistenceProvider& provider ) {
+void EphemeralVersionedBranch::AbstractVersionedBranch_persistSelf ( shared_ptr < AbstractPersistenceProvider > provider ) {
 
-    shared_ptr < AbstractVersionedBranch > persist = provider.makePersistentBranch ();
+    shared_ptr < AbstractPersistentVersionedBranch > persist = provider->makePersistentBranch ();
+    persist->setProvider ( provider );
     this->copyValues ( *persist );
     this->transferClients ( *persist );
 }

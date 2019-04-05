@@ -291,7 +291,7 @@ void AbstractVersionedBranch::optimize () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranch::persistSelf ( AbstractPersistenceProvider& provider ) {
+void AbstractVersionedBranch::persistSelf ( shared_ptr < AbstractPersistenceProvider > provider ) {
 
     this->persistSource ( provider );
     this->AbstractVersionedBranch_persistSelf ( provider );

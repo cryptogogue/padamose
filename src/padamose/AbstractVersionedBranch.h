@@ -70,7 +70,7 @@ protected:
     virtual Variant                                     AbstractVersionedBranch_getValueVariant         ( size_t version, string key ) const = 0;
     virtual bool                                        AbstractVersionedBranch_getValueVersionExtents  ( string key, size_t upperBound, size_t& first, size_t& last ) const = 0;
     virtual bool                                        AbstractVersionedBranch_hasKey                  ( string key, size_t upperBound ) const = 0;
-    virtual void                                        AbstractVersionedBranch_persistSelf             ( AbstractPersistenceProvider& provider ) = 0;
+    virtual void                                        AbstractVersionedBranch_persistSelf             ( shared_ptr < AbstractPersistenceProvider > provider ) = 0;
     virtual void                                        AbstractVersionedBranch_setValueVariant         ( size_t version, string key, const Variant& value ) = 0;
     virtual void                                        AbstractVersionedBranch_truncate                ( size_t topVersion ) = 0;
 
@@ -92,7 +92,7 @@ public:
     bool                                        hasKey                          ( size_t version, string key ) const;
     void                                        insertClient                    ( AbstractVersionedBranchClient& client );
     void                                        optimize                        ();
-    void                                        persistSelf                     ( AbstractPersistenceProvider& provider );
+    void                                        persistSelf                     ( shared_ptr < AbstractPersistenceProvider > provider );
     void                                        setValueVariant                 ( size_t version, string key, const Variant& value );
 };
 

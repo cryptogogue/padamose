@@ -58,6 +58,9 @@
 		CD6C9ACB21C48175009A3801 /* liblognosis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6C9AC821C47FB9009A3801 /* liblognosis.a */; };
 		CD9B810721AA35E30039B645 /* BaseVersionedCollectionIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9B810521AA35E30039B645 /* BaseVersionedCollectionIterator.cpp */; };
 		CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9B810621AA35E30039B645 /* BaseVersionedCollectionIterator.h */; };
+		CD9FE5D12256E0A1009B4144 /* DebugStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */; };
+		CD9FE5D42256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */; };
+		CD9FE5D52256E8E4009B4144 /* AbstractPersistentVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */; };
 		CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */; };
 		CDA06FF221570FDF003FA0C3 /* VersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */; };
 		CDA06FF321570FDF003FA0C3 /* VersionedStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF121570FDF003FA0C3 /* VersionedStore.h */; };
@@ -69,8 +72,8 @@
 		CDA06FFF2159A79C003FA0C3 /* EphemeralValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */; };
 		CDB40586223ED4DD00200C78 /* AbstractPersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */; };
 		CDB40587223ED4DD00200C78 /* AbstractPersistenceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */; };
-		CDB4058B223ED61300200C78 /* AbstractStringStorePersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40589223ED61300200C78 /* AbstractStringStorePersistenceProvider.cpp */; };
-		CDB4058C223ED61300200C78 /* AbstractStringStorePersistenceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB4058A223ED61300200C78 /* AbstractStringStorePersistenceProvider.h */; };
+		CDB4058B223ED61300200C78 /* StringStorePersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40589223ED61300200C78 /* StringStorePersistenceProvider.cpp */; };
+		CDB4058C223ED61300200C78 /* StringStorePersistenceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB4058A223ED61300200C78 /* StringStorePersistenceProvider.h */; };
 		CDB4058E223ED67A00200C78 /* padamose.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB4058D223ED67A00200C78 /* padamose.h */; };
 		CDB40591223EE24800200C78 /* AbstractVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB4058F223EE24800200C78 /* AbstractVersionedBranch.cpp */; };
 		CDB40592223EE24800200C78 /* AbstractVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB40590223EE24800200C78 /* AbstractVersionedBranch.h */; };
@@ -80,8 +83,7 @@
 		CDD6CE2E21A6388600DB7C10 /* VersionedMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */; };
 		CDD6CE2F21A6388600DB7C10 /* VersionedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */; };
 		CDF2903A224D4D870028719C /* TestVersionedPersistence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF29039224D4D870028719C /* TestVersionedPersistence.cpp */; };
-		CDF2903D224EC3560028719C /* DebugStringStorePersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF2903B224EC3560028719C /* DebugStringStorePersistenceProvider.cpp */; };
-		CDF2903E224EC3560028719C /* DebugStringStorePersistenceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF2903C224EC3560028719C /* DebugStringStorePersistenceProvider.h */; };
+		CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF2903C224EC3560028719C /* DebugStringStore.h */; };
 		CDF29042224EC3600028719C /* AbstractStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF29040224EC3600028719C /* AbstractStringStore.h */; };
 		CDF29045224EF0C20028719C /* StringStoreVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */; };
 		CDF29047224EF30F0028719C /* AbstractStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF29046224EF30F0028719C /* AbstractStringStore.cpp */; };
@@ -186,6 +188,9 @@
 		CD6C9AC321C47FB9009A3801 /* lognosis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = lognosis.xcodeproj; path = "3rd-party/lognosis/lognosis.xcodeproj"; sourceTree = "<group>"; };
 		CD9B810521AA35E30039B645 /* BaseVersionedCollectionIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseVersionedCollectionIterator.cpp; path = src/padamose/BaseVersionedCollectionIterator.cpp; sourceTree = "<group>"; };
 		CD9B810621AA35E30039B645 /* BaseVersionedCollectionIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseVersionedCollectionIterator.h; path = src/padamose/BaseVersionedCollectionIterator.h; sourceTree = "<group>"; };
+		CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugStringStore.cpp; path = src/padamose/DebugStringStore.cpp; sourceTree = "<group>"; };
+		CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractPersistentVersionedBranch.cpp; path = src/padamose/AbstractPersistentVersionedBranch.cpp; sourceTree = "<group>"; };
+		CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPersistentVersionedBranch.h; path = src/padamose/AbstractPersistentVersionedBranch.h; sourceTree = "<group>"; };
 		CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStoreIterators.cpp; path = src/padamose/gtest/TestVersionedStoreIterators.cpp; sourceTree = "<group>"; };
 		CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStore.cpp; path = src/padamose/VersionedStore.cpp; sourceTree = "<group>"; };
 		CDA06FF121570FDF003FA0C3 /* VersionedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStore.h; path = src/padamose/VersionedStore.h; sourceTree = "<group>"; };
@@ -196,8 +201,8 @@
 		CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EphemeralValueStack.h; path = src/padamose/EphemeralValueStack.h; sourceTree = "<group>"; };
 		CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractPersistenceProvider.cpp; path = src/padamose/AbstractPersistenceProvider.cpp; sourceTree = "<group>"; };
 		CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPersistenceProvider.h; path = src/padamose/AbstractPersistenceProvider.h; sourceTree = "<group>"; };
-		CDB40589223ED61300200C78 /* AbstractStringStorePersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractStringStorePersistenceProvider.cpp; path = src/padamose/AbstractStringStorePersistenceProvider.cpp; sourceTree = "<group>"; };
-		CDB4058A223ED61300200C78 /* AbstractStringStorePersistenceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractStringStorePersistenceProvider.h; path = src/padamose/AbstractStringStorePersistenceProvider.h; sourceTree = "<group>"; };
+		CDB40589223ED61300200C78 /* StringStorePersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringStorePersistenceProvider.cpp; path = src/padamose/StringStorePersistenceProvider.cpp; sourceTree = "<group>"; };
+		CDB4058A223ED61300200C78 /* StringStorePersistenceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringStorePersistenceProvider.h; path = src/padamose/StringStorePersistenceProvider.h; sourceTree = "<group>"; };
 		CDB4058D223ED67A00200C78 /* padamose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = padamose.h; path = src/padamose/padamose.h; sourceTree = "<group>"; };
 		CDB4058F223EE24800200C78 /* AbstractVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedBranch.cpp; path = src/padamose/AbstractVersionedBranch.cpp; sourceTree = "<group>"; };
 		CDB40590223EE24800200C78 /* AbstractVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedBranch.h; path = src/padamose/AbstractVersionedBranch.h; sourceTree = "<group>"; };
@@ -209,8 +214,7 @@
 		CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedMap.cpp; path = src/padamose/VersionedMap.cpp; sourceTree = "<group>"; };
 		CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedMap.h; path = src/padamose/VersionedMap.h; sourceTree = "<group>"; };
 		CDF29039224D4D870028719C /* TestVersionedPersistence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedPersistence.cpp; path = src/padamose/gtest/TestVersionedPersistence.cpp; sourceTree = "<group>"; };
-		CDF2903B224EC3560028719C /* DebugStringStorePersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugStringStorePersistenceProvider.cpp; path = src/padamose/DebugStringStorePersistenceProvider.cpp; sourceTree = "<group>"; };
-		CDF2903C224EC3560028719C /* DebugStringStorePersistenceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugStringStorePersistenceProvider.h; path = src/padamose/DebugStringStorePersistenceProvider.h; sourceTree = "<group>"; };
+		CDF2903C224EC3560028719C /* DebugStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugStringStore.h; path = src/padamose/DebugStringStore.h; sourceTree = "<group>"; };
 		CDF29040224EC3600028719C /* AbstractStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractStringStore.h; path = src/padamose/AbstractStringStore.h; sourceTree = "<group>"; };
 		CDF29046224EF30F0028719C /* AbstractStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractStringStore.cpp; path = src/padamose/AbstractStringStore.cpp; sourceTree = "<group>"; };
 		CDF903A8219E2D1400C1930B /* Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exceptions.h; path = src/padamose/Exceptions.h; sourceTree = "<group>"; };
@@ -365,12 +369,14 @@
 			children = (
 				CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */,
 				CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */,
+				CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */,
+				CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */,
 				CDF29046224EF30F0028719C /* AbstractStringStore.cpp */,
 				CDF29040224EC3600028719C /* AbstractStringStore.h */,
-				CDB40589223ED61300200C78 /* AbstractStringStorePersistenceProvider.cpp */,
-				CDB4058A223ED61300200C78 /* AbstractStringStorePersistenceProvider.h */,
-				CDF2903B224EC3560028719C /* DebugStringStorePersistenceProvider.cpp */,
-				CDF2903C224EC3560028719C /* DebugStringStorePersistenceProvider.h */,
+				CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */,
+				CDF2903C224EC3560028719C /* DebugStringStore.h */,
+				CDB40589223ED61300200C78 /* StringStorePersistenceProvider.cpp */,
+				CDB4058A223ED61300200C78 /* StringStorePersistenceProvider.h */,
 				CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */,
 				CDB40594223EE36C00200C78 /* StringStoreVersionedBranch.h */,
 			);
@@ -472,10 +478,11 @@
 				CDF29042224EC3600028719C /* AbstractStringStore.h in Headers */,
 				CD240D2821327F6600FF8812 /* VersionedValueIterator.h in Headers */,
 				CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchClient.h in Headers */,
+				CD9FE5D52256E8E4009B4144 /* AbstractPersistentVersionedBranch.h in Headers */,
 				CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */,
-				CDB4058C223ED61300200C78 /* AbstractStringStorePersistenceProvider.h in Headers */,
+				CDB4058C223ED61300200C78 /* StringStorePersistenceProvider.h in Headers */,
 				CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */,
-				CDF2903E224EC3560028719C /* DebugStringStorePersistenceProvider.h in Headers */,
+				CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,7 +655,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDF29045224EF0C20028719C /* StringStoreVersionedBranch.cpp in Sources */,
-				CDF2903D224EC3560028719C /* DebugStringStorePersistenceProvider.cpp in Sources */,
 				CDB40591223EE24800200C78 /* AbstractVersionedBranch.cpp in Sources */,
 				CD07CDE121A74A2600C9C8DB /* MutableVersionedCollection.cpp in Sources */,
 				CDA06FF921587771003FA0C3 /* AbstractVersionedBranchClient.cpp in Sources */,
@@ -658,9 +664,11 @@
 				CD240D3121363CE000FF8812 /* VersionedStoreIterator.cpp in Sources */,
 				CD4E81C92105940F007DA585 /* VersionedStoreSnapshot.cpp in Sources */,
 				CD9B810721AA35E30039B645 /* BaseVersionedCollectionIterator.cpp in Sources */,
+				CD9FE5D42256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp in Sources */,
 				CDB40586223ED4DD00200C78 /* AbstractPersistenceProvider.cpp in Sources */,
 				CDF903B121A1455700C1930B /* VersionedCollectionSnapshot.cpp in Sources */,
-				CDB4058B223ED61300200C78 /* AbstractStringStorePersistenceProvider.cpp in Sources */,
+				CD9FE5D12256E0A1009B4144 /* DebugStringStore.cpp in Sources */,
+				CDB4058B223ED61300200C78 /* StringStorePersistenceProvider.cpp in Sources */,
 				CDF903AD21A0A70B00C1930B /* VersionedSet.cpp in Sources */,
 				CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */,
 				CDF29047224EF30F0028719C /* AbstractStringStore.cpp in Sources */,

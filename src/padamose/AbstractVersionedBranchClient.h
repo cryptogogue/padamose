@@ -42,7 +42,7 @@ protected:
     size_t              getJoinScore                                            () const;
     size_t              getVersionDependency                                    () const;
     void                joinBranch                                              ( AbstractVersionedBranch& branch );
-    void                persistSource                                           ( AbstractPersistenceProvider& provider );
+    void                persistSource                                           ( shared_ptr < AbstractPersistenceProvider > provider );
     bool                preventJoin                                             () const;
 
     //----------------------------------------------------------------//

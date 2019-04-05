@@ -65,7 +65,7 @@ private:
     Variant                                     AbstractVersionedBranch_getValueVariant                 ( size_t version, string key ) const override;
     bool                                        AbstractVersionedBranch_getValueVersionExtents          ( string key, size_t upperBound, size_t& first, size_t& last ) const override;
     bool                                        AbstractVersionedBranch_hasKey                          ( string key, size_t upperBound ) const override;
-    void                                        AbstractVersionedBranch_persistSelf                     ( AbstractPersistenceProvider& provider ) override;
+    void                                        AbstractVersionedBranch_persistSelf                     ( shared_ptr < AbstractPersistenceProvider > provider ) override;
     void                                        AbstractVersionedBranch_setValueVariant                 ( size_t version, string key, const Variant& value ) override;
     bool                                        AbstractVersionedBranchClient_canJoin                   () const override;
     size_t                                      AbstractVersionedBranchClient_getJoinScore              () const override;
