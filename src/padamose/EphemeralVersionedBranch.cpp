@@ -105,14 +105,14 @@ shared_ptr < AbstractVersionedBranch > EphemeralVersionedBranch::AbstractVersion
 }
 
 //----------------------------------------------------------------//
-/** \brief Returns the top of the version stack or 0 if the stack is empty.
+/** \brief Returns the version above the top layer held in the branch.
 
-    \return     The top of the version stack or 0 if the branch is empty.
+    \return     The version above the top layer or branch's base version if the branch is empty.
 */
 size_t EphemeralVersionedBranch::AbstractVersionedBranch_getTopVersion () const {
 
     // If there are any layers, use the top layer's version. Otherwise, 0.
-    return this->mLayers.size () ? this->mLayers.rbegin ()->first + 1 : 0;
+    return this->mLayers.size () ? this->mLayers.rbegin ()->first + 1 : this->mVersion;
 }
 
 //----------------------------------------------------------------//

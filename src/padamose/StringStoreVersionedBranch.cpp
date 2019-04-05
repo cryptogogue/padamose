@@ -193,9 +193,9 @@ shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersi
 }
 
 //----------------------------------------------------------------//
-/** \brief Returns the top of the version stack or 0 if the stack is empty.
+/** \brief Returns the version above the top layer held in the branch.
 
-    \return     The top of the version stack or 0 if the branch is empty.
+    \return     The version above the top layer or branch's base version if the branch is empty.
 */
 size_t StringStoreVersionedBranch::AbstractVersionedBranch_getTopVersion () const {
 
@@ -203,7 +203,7 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranch_getTopVersion () cons
 
     // get the top version
     string keyForTopVersion = this->formatKeyForTopVersion ();
-    return store.get < size_t >( keyForTopVersion, 0 );
+    return store.get < size_t >( keyForTopVersion, this->mVersion );
 }
 
 //----------------------------------------------------------------//
