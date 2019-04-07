@@ -19,9 +19,18 @@ AbstractPersistentVersionedBranch::~AbstractPersistentVersionedBranch () {
 }
 
 //----------------------------------------------------------------//
-void AbstractPersistentVersionedBranch::setProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
+const AbstractPersistenceProvider* AbstractPersistentVersionedBranch::getProvider () const {
 
-    this->mProvider = provider;
+    return this->AbstractPersistentVersionedBranch_getProvider ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+bool AbstractPersistentVersionedBranch::isFrozen () const {
+
+    const AbstractPersistenceProvider* provider = this->getProvider ();
+    assert ( provider );
+    return provider->isFrozen ();
 }
 
 } // namespace Padamose

@@ -107,7 +107,7 @@ bool VersionedStoreSnapshot::hasValue ( string key, size_t version ) const {
 void VersionedStoreSnapshot::persist ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
     assert ( this->mSourceBranch );
-    this->persistSource ( provider );
+    this->mSourceBranch->persistSelf ( provider );
     provider->tagBranch ( *this->mSourceBranch, branchName, this->mVersion );
 }
 
@@ -225,6 +225,11 @@ void VersionedStoreSnapshot::AbstractVersionedBranchClient_joinBranch ( Abstract
 */
 bool VersionedStoreSnapshot::AbstractVersionedBranchClient_preventJoin () const {
     return false;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void VersionedStoreSnapshot::AbstractVersionedBranchClient_sourceBranchDidChange () {
 }
 
 } // namespace Padamose

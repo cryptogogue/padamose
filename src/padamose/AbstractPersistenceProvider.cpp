@@ -12,7 +12,8 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
-AbstractPersistenceProvider::AbstractPersistenceProvider () {
+AbstractPersistenceProvider::AbstractPersistenceProvider () :
+    mIsFrozen ( false ) {
 }
 
 //----------------------------------------------------------------//
@@ -23,11 +24,25 @@ AbstractPersistenceProvider::~AbstractPersistenceProvider () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+void AbstractPersistenceProvider::freeze () {
+
+    this->mIsFrozen = true;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 const VersionedStoreSnapshot& AbstractPersistenceProvider::getTag ( string branchName ) const {
 
     map < string, VersionedStoreSnapshot >::const_iterator tagIt = this->mTags.find ( branchName );
     assert ( tagIt != this->mTags.end ()); // TODO: throw exception
     return tagIt->second;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+bool AbstractPersistenceProvider::isFrozen () const {
+
+    return this->mIsFrozen;
 }
 
 //----------------------------------------------------------------//
@@ -41,6 +56,7 @@ void AbstractPersistenceProvider::tagBranch ( AbstractVersionedBranch& branch, s
 
     VersionedStoreSnapshot& tag = this->mTags [ branchName ];
     tag.setBranch ( branch.shared_from_this (), version );
+    this->AbstractPersistenceProvider_tagDidChange ( branchName, &tag );
 }
 
 } // namespace Padamose

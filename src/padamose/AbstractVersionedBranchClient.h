@@ -42,7 +42,6 @@ protected:
     size_t              getJoinScore                                            () const;
     size_t              getVersionDependency                                    () const;
     void                joinBranch                                              ( AbstractVersionedBranch& branch );
-    void                persistSource                                           ( shared_ptr < AbstractPersistenceProvider > provider );
     bool                preventJoin                                             () const;
 
     //----------------------------------------------------------------//
@@ -51,14 +50,16 @@ protected:
     virtual size_t      AbstractVersionedBranchClient_getVersionDependency      () const = 0;
     virtual void        AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& other ) = 0;
     virtual bool        AbstractVersionedBranchClient_preventJoin               () const = 0;
+    virtual void        AbstractVersionedBranchClient_sourceBranchDidChange     () = 0;
 
 public:
 
     //----------------------------------------------------------------//
-                        AbstractVersionedBranchClient                           ();
-    virtual             ~AbstractVersionedBranchClient                          ();
-    void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch );
-    void                setBranch                                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
+                                        AbstractVersionedBranchClient           ();
+    virtual                             ~AbstractVersionedBranchClient          ();
+    const AbstractVersionedBranch*      getSourceBranch                         () const;
+    void                                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch );
+    void                                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
 };
 
 } // namespace Padamose

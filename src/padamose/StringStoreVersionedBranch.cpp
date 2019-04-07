@@ -16,7 +16,16 @@ namespace Padamose {
 string StringStoreVersionedBranch::formatKeyForLayerSizeByVersion ( size_t version ) const {
 
     ostringstream stream;
-    stream << this->mBranchID << ".layerForVersion." << version << ".size";
+    stream << this->mBranchIDWithPrefix << ".layerForVersion." << version << ".size";
+    return stream.str ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+string StringStoreVersionedBranch::formatKeyForSourceBranchID () const {
+
+    ostringstream stream;
+    stream << this->mBranchIDWithPrefix << ".sourceBranchID";
     return stream.str ();
 }
 
@@ -25,7 +34,7 @@ string StringStoreVersionedBranch::formatKeyForLayerSizeByVersion ( size_t versi
 string StringStoreVersionedBranch::formatKeyForTopVersion () const {
 
     ostringstream stream;
-    stream << this->mBranchID << ".topVersion";
+    stream << this->mBranchIDWithPrefix << ".topVersion";
     return stream.str ();
 }
 
@@ -34,7 +43,7 @@ string StringStoreVersionedBranch::formatKeyForTopVersion () const {
 string StringStoreVersionedBranch::formatKeyForValueByVersion ( string key, size_t version ) const {
     
     ostringstream stream;
-    stream << this->mBranchID << ".valueStackForKey." << key << ".valueByVersion." << version;
+    stream << this->mBranchIDWithPrefix << ".valueStackForKey." << key << ".valueByVersion." << version;
     return stream.str ();
 }
 
@@ -44,7 +53,7 @@ string StringStoreVersionedBranch::formatKeyForValueByVersion ( string key, size
 string StringStoreVersionedBranch::formatKeyForValueNameByIndexInLayer ( size_t version, size_t indexInLayer ) const {
 
     ostringstream stream;
-    stream << this->mBranchID << ".layerForVersion." << version << ".nameByIndex." << indexInLayer;
+    stream << this->mBranchIDWithPrefix << ".layerForVersion." << version << ".nameByIndex." << indexInLayer;
     return stream.str ();
 }
 
@@ -53,7 +62,7 @@ string StringStoreVersionedBranch::formatKeyForValueNameByIndexInLayer ( size_t 
 string StringStoreVersionedBranch::formatKeyForValueStackIndexByVersion ( string key, size_t version ) const {
     
     ostringstream stream;
-    stream << this->mBranchID << ".valueStackForKey." << key << ".indexByVersion." << version;
+    stream << this->mBranchIDWithPrefix << ".valueStackForKey." << key << ".indexByVersion." << version;
     return stream.str ();
 }
 
@@ -62,7 +71,7 @@ string StringStoreVersionedBranch::formatKeyForValueStackIndexByVersion ( string
 string StringStoreVersionedBranch::formatKeyForValueStackSize ( string key ) const {
     
     ostringstream stream;
-    stream << this->mBranchID << ".valueStackForKey." << key << ".size";
+    stream << this->mBranchIDWithPrefix << ".valueStackForKey." << key << ".size";
     return stream.str ();
 }
 
@@ -71,7 +80,7 @@ string StringStoreVersionedBranch::formatKeyForValueStackSize ( string key ) con
 string StringStoreVersionedBranch::formatKeyForValueStackType ( string key ) const {
 
     ostringstream stream;
-    stream << this->mBranchID << ".valueStackForKey." << key << ".valueType";
+    stream << this->mBranchIDWithPrefix << ".valueStackForKey." << key << ".valueType";
     return stream.str ();
 }
 
@@ -80,7 +89,16 @@ string StringStoreVersionedBranch::formatKeyForValueStackType ( string key ) con
 string StringStoreVersionedBranch::formatKeyForValueVersionByStackIndex ( string key, size_t stackIndex ) const {
 
     ostringstream stream;
-    stream << this->mBranchID << ".valueStackForKey." << key << ".versionByIndex." << stackIndex;
+    stream << this->mBranchIDWithPrefix << ".valueStackForKey." << key << ".versionByIndex." << stackIndex;
+    return stream.str ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+string StringStoreVersionedBranch::formatKeyForVersion () const {
+
+    ostringstream stream;
+    stream << this->mBranchIDWithPrefix << ".version";
     return stream.str ();
 }
 
@@ -88,16 +106,16 @@ string StringStoreVersionedBranch::formatKeyForValueVersionByStackIndex ( string
 // TODO: doxygen
 AbstractStringStore& StringStoreVersionedBranch::getStore () {
 
-    assert ( this->mStringStore ); // TODO: throw exception
-    return *this->mStringStore;
+    assert ( this->mProvider.mStore ); // TODO: throw exception
+    return *this->mProvider.mStore;
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
 const AbstractStringStore& StringStoreVersionedBranch::getStoreConst () const {
 
-    assert ( this->mStringStore ); // TODO: throw exception
-    return *this->mStringStore;
+    assert ( this->mProvider.mStore ); // TODO: throw exception
+    return *this->mProvider.mStore;
 }
 
 //----------------------------------------------------------------//
@@ -133,20 +151,58 @@ Variant StringStoreVersionedBranch::getValueVariantForVersion ( string key, size
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-StringStoreVersionedBranch::StringStoreVersionedBranch () :
-    mStringStore ( 0 ) {
+void StringStoreVersionedBranch::loadFromStore () {
+    
+    const AbstractStringStore& store = this->getStoreConst ();
+    
+    string keyForVersion = this->formatKeyForVersion ();
+    this->mVersion = store.get < size_t >( keyForVersion, INVALID_VERSION );
+    assert ( this->mVersion != INVALID_VERSION );
+    
+    string keyForSourceBranchID = this->formatKeyForSourceBranchID ();
+    string sourceBranchID = store.get < string >( keyForSourceBranchID, "" );
+    if ( sourceBranchID.size ()) {
+        this->mSourceBranch = this->mProvider.affirmBranch ( sourceBranchID )->shared_from_this ();
+    }
+    
+    if ( this->mSourceBranch ) {
+        this->mSourceBranch->insertClient ( *this );
+    }
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+StringStoreVersionedBranch::StringStoreVersionedBranch ( StringStorePersistenceProvider& provider, string branchID ) :
+    mBranchID ( branchID ),
+    mProvider ( provider ) {
+    
+    ostringstream stream;
+    stream << provider.getPrefix () << this->mBranchID;
+    this->mBranchIDWithPrefix = stream.str ();
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
 StringStoreVersionedBranch::~StringStoreVersionedBranch () {
 
-    this->AbstractVersionedBranch_truncate ( this->mVersion );
+    this->mProvider.eraseBranch ( *this );
+    this->setBranch ( NULL );
+
+    if ( !this->mProvider.isFrozen ()) {
+        this->AbstractVersionedBranch_truncate ( this->mVersion );
+    }
 }
 
 //================================================================//
 // overrides
 //================================================================//
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+const AbstractPersistenceProvider* StringStoreVersionedBranch::AbstractPersistentVersionedBranch_getProvider () const {
+
+    return &this->mProvider;
+}
 
 //----------------------------------------------------------------//
 /** \brief Initializes a new branch using the given branch as a parent. If the base
@@ -322,7 +378,7 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_hasKey ( string key, si
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void StringStoreVersionedBranch::AbstractVersionedBranch_persistSelf ( shared_ptr < AbstractPersistenceProvider > provider ) {
+void StringStoreVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < AbstractPersistentVersionedBranch > persist ) {
     // do nothing; already persisted
 }
 
@@ -538,6 +594,25 @@ void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abst
 */
 bool StringStoreVersionedBranch::AbstractVersionedBranchClient_preventJoin () const {
     return ( this->mDirectReferenceCount > 0 );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void StringStoreVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidChange () {
+
+    AbstractStringStore& store = this->getStore ();
+    string keyForSourceBranchID = this->formatKeyForSourceBranchID ();
+
+    if ( this->mSourceBranch ) {
+        string sourceBranchID = this->mProvider.getIDForBranch ( *this->mSourceBranch );
+        store.set < string >( keyForSourceBranchID, sourceBranchID );
+    }
+    else {
+        store.eraseString ( keyForSourceBranchID );
+    }
+    
+    string keyForVersion = this->formatKeyForVersion ();
+    store.set < size_t >( keyForVersion, this->mVersion );
 }
 
 } // namespace Padamose

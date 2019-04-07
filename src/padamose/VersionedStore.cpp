@@ -175,6 +175,13 @@ VersionedStore::VersionedStore ( VersionedStoreSnapshot& other ) :
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+VersionedStore::VersionedStore ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
+
+    this->takeSnapshot ( provider, branchName );
+}
+
+//----------------------------------------------------------------//
 VersionedStore::~VersionedStore () {
 }
 

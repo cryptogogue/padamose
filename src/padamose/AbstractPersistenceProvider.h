@@ -20,21 +20,26 @@ class AbstractPersistenceProvider :
     public enable_shared_from_this < AbstractPersistenceProvider > {
 protected:
 
+    friend class AbstractPersistentVersionedBranch;
     friend class VersionedStoreSnapshot;
 
-    map < string, VersionedStoreSnapshot > mTags;
+    map < string, VersionedStoreSnapshot >  mTags;
+    bool                                    mIsFrozen;
 
     //----------------------------------------------------------------//
-    const VersionedStoreSnapshot&                       getTag                                  ( string branchName ) const;
-
+    void                                freeze          ();
+    const VersionedStoreSnapshot&       getTag          ( string branchName ) const;
+    
     //----------------------------------------------------------------//
     virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () = 0;
+    virtual void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreSnapshot* snapshot ) = 0;
     
 public:
 
     //----------------------------------------------------------------//
                                                         AbstractPersistenceProvider             ();
     virtual                                             ~AbstractPersistenceProvider            ();
+    bool                                                isFrozen                                () const;
     shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ();
     void                                                tagBranch                               ( AbstractVersionedBranch& branch, string branchName, size_t version );
 };

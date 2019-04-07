@@ -21,7 +21,6 @@ AbstractVersionedBranchClient::~AbstractVersionedBranchClient () {
     if ( this->mSourceBranch ) {
         this->mSourceBranch->eraseClient ( *this );
     }
-    this->setBranch ( NULL );
 }
 
 //----------------------------------------------------------------//
@@ -44,6 +43,13 @@ size_t AbstractVersionedBranchClient::getJoinScore () const {
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+const AbstractVersionedBranch* AbstractVersionedBranchClient::getSourceBranch () const {
+
+    return this->mSourceBranch.get ();
+}
+
+//----------------------------------------------------------------//
 /** \brief Returns the version below which all verions are depended
     on (to not change) by client. If any version below the dependent
     verion is changed, the branch must be forked and the change applied
@@ -61,15 +67,6 @@ size_t AbstractVersionedBranchClient::getVersionDependency () const {
 */
 void AbstractVersionedBranchClient::joinBranch ( AbstractVersionedBranch& branch ) {
     this->AbstractVersionedBranchClient_joinBranch ( branch );
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void AbstractVersionedBranchClient::persistSource ( shared_ptr < AbstractPersistenceProvider > provider ) {
-
-    if ( this->mSourceBranch ) {
-        this->mSourceBranch->persistSelf ( provider );
-    }
 }
 
 //----------------------------------------------------------------//
@@ -110,9 +107,12 @@ void AbstractVersionedBranchClient::setBranch ( shared_ptr < AbstractVersionedBr
 */
 void AbstractVersionedBranchClient::setBranch ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
 
+    bool didChange = false;
     weak_ptr < AbstractVersionedBranch > prevBranchWeak;
 
     if ( this->mSourceBranch != branch ) {
+        
+        didChange = true;
         
         LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreSnapshot::setBranch () - changing branch" );
         
@@ -137,6 +137,10 @@ void AbstractVersionedBranchClient::setBranch ( shared_ptr < AbstractVersionedBr
     if ( !prevBranchWeak.expired ()) {
         branch = prevBranchWeak.lock ();
         branch->optimize ();
+    }
+    
+    if ( didChange ) {
+        this->AbstractVersionedBranchClient_sourceBranchDidChange ();
     }
 }
 

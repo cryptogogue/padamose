@@ -57,6 +57,7 @@ protected:
     size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
     void            AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& branch ) override;
     bool            AbstractVersionedBranchClient_preventJoin               () const override;
+    void            AbstractVersionedBranchClient_sourceBranchDidChange     () override;
     
 public:
 

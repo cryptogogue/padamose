@@ -35,8 +35,7 @@ void testWithProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
         store.persist ( provider, "master" );
     }
 
-    VersionedStore store;
-    store.takeSnapshot ( provider, "master" );
+    VersionedStore store ( provider, "master" );
 
     ASSERT_EQ ( store.getVersion (), 3 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
@@ -105,9 +104,20 @@ TEST ( VersionedStore, test_simple_persistence ) {
     stringStore->dump ();
     snapshot.clear ();
 
-    printf ( "empty:\n" );
+    printf ( "still not empty:\n" );
     stringStore->dump ();
     printf ( "done\n" );
+    
+    // load provider from store
+    provider = make_shared < StringStorePersistenceProvider >( stringStore );
+    
+    VersionedStore store ( provider, "master" );
+
+    ASSERT_EQ ( store.getVersion (), 3 );
+    ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
+    ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
+    ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
 }
 
 } // namespace Test

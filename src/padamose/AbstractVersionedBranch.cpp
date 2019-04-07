@@ -1,8 +1,10 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/AbstractPersistenceProvider.h>
+#include <padamose/AbstractPersistentVersionedBranch.h>
 #include <padamose/AbstractVersionedBranch.h>
+#include <padamose/VersionedStoreSnapshot.h>
 
 namespace Padamose {
 
@@ -292,9 +294,26 @@ void AbstractVersionedBranch::optimize () {
 //----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractVersionedBranch::persistSelf ( shared_ptr < AbstractPersistenceProvider > provider ) {
-
-    this->persistSource ( provider );
-    this->AbstractVersionedBranch_persistSelf ( provider );
+    
+    if ( this->mSourceBranch ) {
+        this->mSourceBranch->persistSelf ( provider );
+    }
+    shared_ptr < AbstractPersistentVersionedBranch > persist = provider->makePersistentBranch ();
+    assert ( persist->getProvider () == provider.get ());
+    
+    // set the source branch and version manually
+    persist->mSourceBranch = this->mSourceBranch;
+    persist->mVersion = this->mVersion;
+    if ( persist->mSourceBranch ) {
+        persist->mSourceBranch->insertClient ( *persist );
+    }
+    
+    // force an update
+    persist->AbstractVersionedBranchClient_sourceBranchDidChange ();
+    
+    weak_ptr < AbstractVersionedBranch > weakSelf = this->shared_from_this ();
+    this->AbstractVersionedBranch_persist ( persist ); // this should move over all clients and orphan the branch
+    assert ( weakSelf.expired ());
 }
 
 //----------------------------------------------------------------//

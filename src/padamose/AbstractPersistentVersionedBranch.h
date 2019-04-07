@@ -21,16 +21,18 @@ protected:
 
     friend class EphemeralVersionedBranch;
 
-    weak_ptr < AbstractPersistenceProvider >    mProvider;
+    //----------------------------------------------------------------//
+    bool                                            isFrozen                                    () const;
 
     //----------------------------------------------------------------//
-    void                setProvider                                 ( shared_ptr < AbstractPersistenceProvider > provider );
+    virtual const AbstractPersistenceProvider*      AbstractPersistentVersionedBranch_getProvider       () const = 0;
 
 public:
 
     //----------------------------------------------------------------//
-                        AbstractPersistentVersionedBranch           ();
-                        ~AbstractPersistentVersionedBranch          ();
+                                                    AbstractPersistentVersionedBranch           ();
+                                                    ~AbstractPersistentVersionedBranch          ();
+    const AbstractPersistenceProvider*              getProvider                                 () const;
 };
 
 } // namespace Padamose

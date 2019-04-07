@@ -10,6 +10,8 @@
 
 namespace Padamose {
 
+class StringStoreVersionedBranch;
+
 //================================================================//
 // StringStorePersistenceProvider
 //================================================================//
@@ -20,16 +22,30 @@ protected:
 
     friend class StringStoreVersionedBranch;
 
-    std::set < string >                 mBranchIDs;
-    shared_ptr < AbstractStringStore >  mStore;
+    static const size_t INVALID_VERSION                 = ( size_t )-1;
+
+    std::map < string, weak_ptr < StringStoreVersionedBranch >>     mBranchesByID;
+    std::map < const AbstractVersionedBranch*, string >             mIDsByBranch;
+    
+    shared_ptr < AbstractStringStore >                  mStore;
+    string                                              mPrefix;
 
     //----------------------------------------------------------------//
-    void                eraseBranchID                           ( string branchID );
-    string              makeBranchID                            ();
-                        StringStorePersistenceProvider          ();
+    shared_ptr < StringStoreVersionedBranch >       affirmBranch                            ( string branchID );
+    void                                            eraseBranch                             ( StringStoreVersionedBranch& branch );
+    string                                          formatKeyForBranchIDByTagName           ( string tagName ) const;
+    string                                          formatKeyForTagListSize                 () const;
+    string                                          formatKeyForTagNameByTagListIndex       ( size_t index ) const;
+    string                                          formatKeyForVersionByTagName            ( string tagName ) const;
+    string                                          getIDForBranch                          ( const AbstractVersionedBranch& branch ) const;
+    void                                            insertBranch                            ( shared_ptr < StringStoreVersionedBranch > branch );
+    void                                            loadFromStore                           ();
+    string                                          makeBranchID                            () const;
+                                                    StringStorePersistenceProvider          ();
 
     //----------------------------------------------------------------//
     shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () override;
+    void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreSnapshot* snapshot ) override;
 
 public:
 
@@ -42,7 +58,8 @@ public:
 //    }
 
     //----------------------------------------------------------------//
-                        StringStorePersistenceProvider          ( shared_ptr < AbstractStringStore > store );
+    string              getPrefix                               () const;
+                        StringStorePersistenceProvider          ( shared_ptr < AbstractStringStore > store, string prefix = "" );
     virtual             ~StringStorePersistenceProvider         ();
 };
 

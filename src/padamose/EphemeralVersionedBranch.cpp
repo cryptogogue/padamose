@@ -179,10 +179,8 @@ bool EphemeralVersionedBranch::AbstractVersionedBranch_hasKey ( string key, size
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void EphemeralVersionedBranch::AbstractVersionedBranch_persistSelf ( shared_ptr < AbstractPersistenceProvider > provider ) {
+void EphemeralVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < AbstractPersistentVersionedBranch > persist ) {
 
-    shared_ptr < AbstractPersistentVersionedBranch > persist = provider->makePersistentBranch ();
-    persist->setProvider ( provider );
     this->copyValues ( *persist );
     this->transferClients ( *persist );
 }
@@ -310,6 +308,11 @@ void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abstra
 */
 bool EphemeralVersionedBranch::AbstractVersionedBranchClient_preventJoin () const {
     return ( this->mDirectReferenceCount > 0 );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void EphemeralVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidChange () {
 }
 
 } // namespace Padamose
