@@ -122,7 +122,7 @@ void VersionedStoreIterator::seek ( size_t version ) {
 VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreSnapshot& versionedStore ) :
     mAnchor ( versionedStore ) {
 
-    if ( this->mAnchor.mSourceBranch && ( this->mAnchor.mSourceBranch->getTopVersion () > this->mAnchor.mVersion )) {
+    if ( this->mAnchor.mSourceBranch && ( this->mAnchor.mSourceBranch->getTopVersion () > 0 )) {
         this->takeSnapshot ( versionedStore );
         this->mTopVersion = this->mVersion + 1;
     }
