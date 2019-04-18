@@ -4,6 +4,7 @@
 #ifndef PADAMOSE_COMMON_H
 #define PADAMOSE_COMMON_H
 
+#include <array>
 #include <assert.h>
 #include <cmath>
 #include <exception>

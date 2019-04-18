@@ -2,6 +2,7 @@
 // http://cryptogogue.com
 
 #include <padamose/gtest/gtest-helpers.h>
+#include <padamose/gtest/RedisServerProc.h>
 #include <padamose/padamose.h>
 
 namespace Padamose {
@@ -89,7 +90,7 @@ void testWithProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
 }
 
 //----------------------------------------------------------------//
-TEST ( VersionedStore, test_simple_persistence ) {
+TEST ( StringPersistence, test_string_persistence ) {
 
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
     shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
@@ -107,6 +108,29 @@ TEST ( VersionedStore, test_simple_persistence ) {
     printf ( "still not empty:\n" );
     stringStore->dump ();
     printf ( "done\n" );
+    
+    // load provider from store
+    provider = make_shared < StringStorePersistenceProvider >( stringStore );
+    
+    VersionedStore store ( provider, "master" );
+
+    ASSERT_EQ ( store.getVersion (), 3 );
+    ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
+    ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
+    ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
+    ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
+}
+
+//----------------------------------------------------------------//
+TEST ( RedisPersistence, test_redis_persistence ) {
+
+    RedisServerProc redisServerProc;
+    ASSERT_TRUE ( redisServerProc );
+
+    shared_ptr < RedisStringStore > stringStore = make_shared < RedisStringStore >( REDIS_HOSTNAME, REDIS_PORT, REDIS_TIMEOUT );
+    shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
+    
+    testWithProvider ( provider );
     
     // load provider from store
     provider = make_shared < StringStorePersistenceProvider >( stringStore );

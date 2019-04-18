@@ -13,9 +13,12 @@
 			buildPhases = (
 			);
 			dependencies = (
-				CD2D3C03215C9B370000A22E /* PBXTargetDependency */,
 				CD2D3C05215C9B370000A22E /* PBXTargetDependency */,
+				CD9FE63D22669352009B4144 /* PBXTargetDependency */,
+				CD9FE64122669352009B4144 /* PBXTargetDependency */,
+				CD9FE63F22669352009B4144 /* PBXTargetDependency */,
 				CD2D3C07215C9B370000A22E /* PBXTargetDependency */,
+				CD2D3C03215C9B370000A22E /* PBXTargetDependency */,
 			);
 			name = "padamose-all";
 			productName = "padamose-all";
@@ -61,6 +64,48 @@
 		CD9FE5D12256E0A1009B4144 /* DebugStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */; };
 		CD9FE5D42256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */; };
 		CD9FE5D52256E8E4009B4144 /* AbstractPersistentVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */; };
+		CD9FE60B22667454009B4144 /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5F922667454009B4144 /* async.c */; };
+		CD9FE60C22667454009B4144 /* async.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5FA22667454009B4144 /* async.h */; };
+		CD9FE60D22667454009B4144 /* dict.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5FB22667454009B4144 /* dict.c */; };
+		CD9FE60E22667454009B4144 /* dict.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5FC22667454009B4144 /* dict.h */; };
+		CD9FE60F22667454009B4144 /* fmacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5FD22667454009B4144 /* fmacros.h */; };
+		CD9FE61022667454009B4144 /* hiredis.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5FE22667454009B4144 /* hiredis.c */; };
+		CD9FE61122667454009B4144 /* hiredis.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5FF22667454009B4144 /* hiredis.h */; };
+		CD9FE61222667454009B4144 /* net.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60022667454009B4144 /* net.c */; };
+		CD9FE61322667454009B4144 /* net.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60122667454009B4144 /* net.h */; };
+		CD9FE61422667454009B4144 /* read.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60222667454009B4144 /* read.c */; };
+		CD9FE61522667454009B4144 /* read.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60322667454009B4144 /* read.h */; };
+		CD9FE61622667454009B4144 /* sds.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60422667454009B4144 /* sds.c */; };
+		CD9FE61722667454009B4144 /* sds.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60522667454009B4144 /* sds.h */; };
+		CD9FE61822667454009B4144 /* sdsalloc.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60622667454009B4144 /* sdsalloc.h */; };
+		CD9FE61922667454009B4144 /* sockcompat.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60722667454009B4144 /* sockcompat.c */; };
+		CD9FE61A22667454009B4144 /* sockcompat.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60822667454009B4144 /* sockcompat.h */; };
+		CD9FE61B22667454009B4144 /* sslio.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60922667454009B4144 /* sslio.c */; };
+		CD9FE61C22667454009B4144 /* sslio.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60A22667454009B4144 /* sslio.h */; };
+		CD9FE61F226674F6009B4144 /* libhiredis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9FE5F8226673FD009B4144 /* libhiredis.a */; };
+		CD9FE62122668AEC009B4144 /* TestHiredis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE62022668AEC009B4144 /* TestHiredis.cpp */; };
+		CD9FE64B22669AB0009B4144 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE64822669AB0009B4144 /* error.c */; };
+		CD9FE64C22669AB0009B4144 /* infinite.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE64922669AB0009B4144 /* infinite.c */; };
+		CD9FE64D22669AB0009B4144 /* reproc.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE64A22669AB0009B4144 /* reproc.c */; };
+		CD9FE65622669ABB009B4144 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE64E22669ABB009B4144 /* error.c */; };
+		CD9FE65722669ABB009B4144 /* fd.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE64F22669ABB009B4144 /* fd.c */; };
+		CD9FE65822669ABB009B4144 /* fd.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE65022669ABB009B4144 /* fd.h */; };
+		CD9FE65922669ABB009B4144 /* pipe.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE65122669ABB009B4144 /* pipe.c */; };
+		CD9FE65A22669ABB009B4144 /* pipe.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE65222669ABB009B4144 /* pipe.h */; };
+		CD9FE65B22669ABB009B4144 /* process.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE65322669ABB009B4144 /* process.c */; };
+		CD9FE65C22669ABB009B4144 /* process.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE65422669ABB009B4144 /* process.h */; };
+		CD9FE65D22669ABB009B4144 /* reproc.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE65522669ABB009B4144 /* reproc.c */; };
+		CD9FE66122669ACD009B4144 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE65F22669ACD009B4144 /* error.h */; };
+		CD9FE66222669ACD009B4144 /* reproc.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE66022669ACD009B4144 /* reproc.h */; };
+		CD9FE67622669EBB009B4144 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE67322669EBB009B4144 /* error.cpp */; };
+		CD9FE67722669EBB009B4144 /* reproc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE67422669EBB009B4144 /* reproc.cpp */; };
+		CD9FE67822669EBB009B4144 /* sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE67522669EBB009B4144 /* sink.cpp */; };
+		CD9FE67C22669EC2009B4144 /* error.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE67922669EC2009B4144 /* error.hpp */; };
+		CD9FE67D22669EC2009B4144 /* reproc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE67A22669EC2009B4144 /* reproc.hpp */; };
+		CD9FE67E22669EC2009B4144 /* sink.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE67B22669EC2009B4144 /* sink.hpp */; };
+		CD9FE6812266A01B009B4144 /* libreproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9FE63B22669323009B4144 /* libreproc.a */; };
+		CD9FE684226838EC009B4144 /* RedisStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE682226838EC009B4144 /* RedisStringStore.cpp */; };
+		CD9FE685226838EC009B4144 /* RedisStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE683226838EC009B4144 /* RedisStringStore.h */; };
 		CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */; };
 		CDA06FF221570FDF003FA0C3 /* VersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */; };
 		CDA06FF321570FDF003FA0C3 /* VersionedStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF121570FDF003FA0C3 /* VersionedStore.h */; };
@@ -147,6 +192,41 @@
 			remoteGlobalIDString = CD4E817521059316007DA585;
 			remoteInfo = "lib-lognosis";
 		};
+		CD9FE61D226674EB009B4144 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD9FE5DE226673FD009B4144;
+			remoteInfo = "lib-hiredis";
+		};
+		CD9FE63C22669352009B4144 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD9FE5DE226673FD009B4144;
+			remoteInfo = "lib-hiredis";
+		};
+		CD9FE63E22669352009B4144 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD9FE62222669323009B4144;
+			remoteInfo = "lib-reproc";
+		};
+		CD9FE64022669352009B4144 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD6C9AC321C47FB9009A3801 /* lognosis.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CD4E817521059316007DA585;
+			remoteInfo = "lib-lognosis";
+		};
+		CD9FE67F2266A011009B4144 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD9FE62222669323009B4144;
+			remoteInfo = "lib-reproc";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -191,6 +271,49 @@
 		CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugStringStore.cpp; path = src/padamose/DebugStringStore.cpp; sourceTree = "<group>"; };
 		CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractPersistentVersionedBranch.cpp; path = src/padamose/AbstractPersistentVersionedBranch.cpp; sourceTree = "<group>"; };
 		CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPersistentVersionedBranch.h; path = src/padamose/AbstractPersistentVersionedBranch.h; sourceTree = "<group>"; };
+		CD9FE5F8226673FD009B4144 /* libhiredis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhiredis.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD9FE5F922667454009B4144 /* async.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = async.c; path = "3rd-party/hiredis/async.c"; sourceTree = "<group>"; };
+		CD9FE5FA22667454009B4144 /* async.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = async.h; path = "3rd-party/hiredis/async.h"; sourceTree = "<group>"; };
+		CD9FE5FB22667454009B4144 /* dict.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dict.c; path = "3rd-party/hiredis/dict.c"; sourceTree = "<group>"; };
+		CD9FE5FC22667454009B4144 /* dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dict.h; path = "3rd-party/hiredis/dict.h"; sourceTree = "<group>"; };
+		CD9FE5FD22667454009B4144 /* fmacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmacros.h; path = "3rd-party/hiredis/fmacros.h"; sourceTree = "<group>"; };
+		CD9FE5FE22667454009B4144 /* hiredis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hiredis.c; path = "3rd-party/hiredis/hiredis.c"; sourceTree = "<group>"; };
+		CD9FE5FF22667454009B4144 /* hiredis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hiredis.h; path = "3rd-party/hiredis/hiredis.h"; sourceTree = "<group>"; };
+		CD9FE60022667454009B4144 /* net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = net.c; path = "3rd-party/hiredis/net.c"; sourceTree = "<group>"; };
+		CD9FE60122667454009B4144 /* net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = net.h; path = "3rd-party/hiredis/net.h"; sourceTree = "<group>"; };
+		CD9FE60222667454009B4144 /* read.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = read.c; path = "3rd-party/hiredis/read.c"; sourceTree = "<group>"; };
+		CD9FE60322667454009B4144 /* read.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = read.h; path = "3rd-party/hiredis/read.h"; sourceTree = "<group>"; };
+		CD9FE60422667454009B4144 /* sds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sds.c; path = "3rd-party/hiredis/sds.c"; sourceTree = "<group>"; };
+		CD9FE60522667454009B4144 /* sds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sds.h; path = "3rd-party/hiredis/sds.h"; sourceTree = "<group>"; };
+		CD9FE60622667454009B4144 /* sdsalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sdsalloc.h; path = "3rd-party/hiredis/sdsalloc.h"; sourceTree = "<group>"; };
+		CD9FE60722667454009B4144 /* sockcompat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sockcompat.c; path = "3rd-party/hiredis/sockcompat.c"; sourceTree = "<group>"; };
+		CD9FE60822667454009B4144 /* sockcompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sockcompat.h; path = "3rd-party/hiredis/sockcompat.h"; sourceTree = "<group>"; };
+		CD9FE60922667454009B4144 /* sslio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sslio.c; path = "3rd-party/hiredis/sslio.c"; sourceTree = "<group>"; };
+		CD9FE60A22667454009B4144 /* sslio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sslio.h; path = "3rd-party/hiredis/sslio.h"; sourceTree = "<group>"; };
+		CD9FE62022668AEC009B4144 /* TestHiredis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestHiredis.cpp; path = src/padamose/gtest/TestHiredis.cpp; sourceTree = "<group>"; };
+		CD9FE63B22669323009B4144 /* libreproc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libreproc.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD9FE64822669AB0009B4144 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error.c; path = "3rd-party/reproc/reproc/src/common/error.c"; sourceTree = "<group>"; };
+		CD9FE64922669AB0009B4144 /* infinite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = infinite.c; path = "3rd-party/reproc/reproc/src/common/infinite.c"; sourceTree = "<group>"; };
+		CD9FE64A22669AB0009B4144 /* reproc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = reproc.c; path = "3rd-party/reproc/reproc/src/common/reproc.c"; sourceTree = "<group>"; };
+		CD9FE64E22669ABB009B4144 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = error.c; path = "3rd-party/reproc/reproc/src/posix/error.c"; sourceTree = "<group>"; };
+		CD9FE64F22669ABB009B4144 /* fd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fd.c; path = "3rd-party/reproc/reproc/src/posix/fd.c"; sourceTree = "<group>"; };
+		CD9FE65022669ABB009B4144 /* fd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fd.h; path = "3rd-party/reproc/reproc/src/posix/fd.h"; sourceTree = "<group>"; };
+		CD9FE65122669ABB009B4144 /* pipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pipe.c; path = "3rd-party/reproc/reproc/src/posix/pipe.c"; sourceTree = "<group>"; };
+		CD9FE65222669ABB009B4144 /* pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pipe.h; path = "3rd-party/reproc/reproc/src/posix/pipe.h"; sourceTree = "<group>"; };
+		CD9FE65322669ABB009B4144 /* process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = process.c; path = "3rd-party/reproc/reproc/src/posix/process.c"; sourceTree = "<group>"; };
+		CD9FE65422669ABB009B4144 /* process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = process.h; path = "3rd-party/reproc/reproc/src/posix/process.h"; sourceTree = "<group>"; };
+		CD9FE65522669ABB009B4144 /* reproc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = reproc.c; path = "3rd-party/reproc/reproc/src/posix/reproc.c"; sourceTree = "<group>"; };
+		CD9FE65F22669ACD009B4144 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = error.h; path = "3rd-party/reproc/reproc/include/reproc/error.h"; sourceTree = "<group>"; };
+		CD9FE66022669ACD009B4144 /* reproc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reproc.h; path = "3rd-party/reproc/reproc/include/reproc/reproc.h"; sourceTree = "<group>"; };
+		CD9FE67322669EBB009B4144 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = error.cpp; path = "3rd-party/reproc/reproc++/src/error.cpp"; sourceTree = "<group>"; };
+		CD9FE67422669EBB009B4144 /* reproc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = reproc.cpp; path = "3rd-party/reproc/reproc++/src/reproc.cpp"; sourceTree = "<group>"; };
+		CD9FE67522669EBB009B4144 /* sink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sink.cpp; path = "3rd-party/reproc/reproc++/src/sink.cpp"; sourceTree = "<group>"; };
+		CD9FE67922669EC2009B4144 /* error.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = error.hpp; path = "3rd-party/reproc/reproc++/include/reproc++/error.hpp"; sourceTree = "<group>"; };
+		CD9FE67A22669EC2009B4144 /* reproc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = reproc.hpp; path = "3rd-party/reproc/reproc++/include/reproc++/reproc.hpp"; sourceTree = "<group>"; };
+		CD9FE67B22669EC2009B4144 /* sink.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = sink.hpp; path = "3rd-party/reproc/reproc++/include/reproc++/sink.hpp"; sourceTree = "<group>"; };
+		CD9FE682226838EC009B4144 /* RedisStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RedisStringStore.cpp; path = src/padamose/RedisStringStore.cpp; sourceTree = "<group>"; };
+		CD9FE683226838EC009B4144 /* RedisStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedisStringStore.h; path = src/padamose/RedisStringStore.h; sourceTree = "<group>"; };
+		CD9FE68622684147009B4144 /* RedisServerProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedisServerProc.h; path = src/padamose/gtest/RedisServerProc.h; sourceTree = "<group>"; };
 		CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStoreIterators.cpp; path = src/padamose/gtest/TestVersionedStoreIterators.cpp; sourceTree = "<group>"; };
 		CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStore.cpp; path = src/padamose/VersionedStore.cpp; sourceTree = "<group>"; };
 		CDA06FF121570FDF003FA0C3 /* VersionedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStore.h; path = src/padamose/VersionedStore.h; sourceTree = "<group>"; };
@@ -241,12 +364,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD4E817121057E91007DA585 /* libgtest.a in Frameworks */,
+				CD9FE61F226674F6009B4144 /* libhiredis.a in Frameworks */,
 				CD6C9ACB21C48175009A3801 /* liblognosis.a in Frameworks */,
 				CD4E81D421059435007DA585 /* libpadamose.a in Frameworks */,
+				CD9FE6812266A01B009B4144 /* libreproc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD4E817F21059316007DA585 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9FE5E8226673FD009B4144 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9FE62C22669323009B4144 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -303,6 +442,8 @@
 			children = (
 				CDF903AA219F99D400C1930B /* gtest-helpers.h */,
 				CD4E816B21057DD1007DA585 /* main-gtest.cpp */,
+				CD9FE68622684147009B4144 /* RedisServerProc.h */,
+				CD9FE62022668AEC009B4144 /* TestHiredis.cpp */,
 				CDB4059C2245596600200C78 /* TestVariant.cpp */,
 				CD3C7C3721A7320300CBA572 /* TestVersionedMap.cpp */,
 				CDF29039224D4D870028719C /* TestVersionedPersistence.cpp */,
@@ -360,8 +501,101 @@
 				CD4E8105210577FF007DA585 /* libgtest.a */,
 				CD4E8161210579C8007DA585 /* padamose-gtest */,
 				CD4E818F21059316007DA585 /* libpadamose.a */,
+				CD9FE5F8226673FD009B4144 /* libhiredis.a */,
+				CD9FE63B22669323009B4144 /* libreproc.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CD9FE5DD226673E5009B4144 /* hiredis */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FE5F922667454009B4144 /* async.c */,
+				CD9FE5FA22667454009B4144 /* async.h */,
+				CD9FE5FB22667454009B4144 /* dict.c */,
+				CD9FE5FC22667454009B4144 /* dict.h */,
+				CD9FE5FD22667454009B4144 /* fmacros.h */,
+				CD9FE5FE22667454009B4144 /* hiredis.c */,
+				CD9FE5FF22667454009B4144 /* hiredis.h */,
+				CD9FE60022667454009B4144 /* net.c */,
+				CD9FE60122667454009B4144 /* net.h */,
+				CD9FE60222667454009B4144 /* read.c */,
+				CD9FE60322667454009B4144 /* read.h */,
+				CD9FE60422667454009B4144 /* sds.c */,
+				CD9FE60522667454009B4144 /* sds.h */,
+				CD9FE60622667454009B4144 /* sdsalloc.h */,
+				CD9FE60722667454009B4144 /* sockcompat.c */,
+				CD9FE60822667454009B4144 /* sockcompat.h */,
+				CD9FE60922667454009B4144 /* sslio.c */,
+				CD9FE60A22667454009B4144 /* sslio.h */,
+			);
+			name = hiredis;
+			sourceTree = "<group>";
+		};
+		CD9FE64222669368009B4144 /* reproc */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FE67022669E95009B4144 /* reproc */,
+				CD9FE67122669E9E009B4144 /* reproc++ */,
+			);
+			name = reproc;
+			sourceTree = "<group>";
+		};
+		CD9FE64622669A98009B4144 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FE64822669AB0009B4144 /* error.c */,
+				CD9FE64922669AB0009B4144 /* infinite.c */,
+				CD9FE64A22669AB0009B4144 /* reproc.c */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		CD9FE64722669A9D009B4144 /* posix */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FE64E22669ABB009B4144 /* error.c */,
+				CD9FE64F22669ABB009B4144 /* fd.c */,
+				CD9FE65022669ABB009B4144 /* fd.h */,
+				CD9FE65122669ABB009B4144 /* pipe.c */,
+				CD9FE65222669ABB009B4144 /* pipe.h */,
+				CD9FE65322669ABB009B4144 /* process.c */,
+				CD9FE65422669ABB009B4144 /* process.h */,
+				CD9FE65522669ABB009B4144 /* reproc.c */,
+			);
+			name = posix;
+			sourceTree = "<group>";
+		};
+		CD9FE65E22669ABF009B4144 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FE65F22669ACD009B4144 /* error.h */,
+				CD9FE66022669ACD009B4144 /* reproc.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		CD9FE67022669E95009B4144 /* reproc */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FE64622669A98009B4144 /* common */,
+				CD9FE65E22669ABF009B4144 /* include */,
+				CD9FE64722669A9D009B4144 /* posix */,
+			);
+			name = reproc;
+			sourceTree = "<group>";
+		};
+		CD9FE67122669E9E009B4144 /* reproc++ */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FE67322669EBB009B4144 /* error.cpp */,
+				CD9FE67922669EC2009B4144 /* error.hpp */,
+				CD9FE67422669EBB009B4144 /* reproc.cpp */,
+				CD9FE67A22669EC2009B4144 /* reproc.hpp */,
+				CD9FE67522669EBB009B4144 /* sink.cpp */,
+				CD9FE67B22669EC2009B4144 /* sink.hpp */,
+			);
+			name = "reproc++";
 			sourceTree = "<group>";
 		};
 		CDB40588223ED5DC00200C78 /* persistence */ = {
@@ -375,6 +609,8 @@
 				CDF29040224EC3600028719C /* AbstractStringStore.h */,
 				CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */,
 				CDF2903C224EC3560028719C /* DebugStringStore.h */,
+				CD9FE682226838EC009B4144 /* RedisStringStore.cpp */,
+				CD9FE683226838EC009B4144 /* RedisStringStore.h */,
 				CDB40589223ED61300200C78 /* StringStorePersistenceProvider.cpp */,
 				CDB4058A223ED61300200C78 /* StringStorePersistenceProvider.h */,
 				CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */,
@@ -422,6 +658,8 @@
 			isa = PBXGroup;
 			children = (
 				CD4E80F0210577F5007DA585 /* gtest */,
+				CD9FE5DD226673E5009B4144 /* hiredis */,
+				CD9FE64222669368009B4144 /* reproc */,
 				CD6C9AC321C47FB9009A3801 /* lognosis.xcodeproj */,
 			);
 			name = "3rd-party";
@@ -480,9 +718,42 @@
 				CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchClient.h in Headers */,
 				CD9FE5D52256E8E4009B4144 /* AbstractPersistentVersionedBranch.h in Headers */,
 				CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */,
+				CD9FE685226838EC009B4144 /* RedisStringStore.h in Headers */,
 				CDB4058C223ED61300200C78 /* StringStorePersistenceProvider.h in Headers */,
 				CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */,
 				CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9FE5E9226673FD009B4144 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD9FE61522667454009B4144 /* read.h in Headers */,
+				CD9FE61A22667454009B4144 /* sockcompat.h in Headers */,
+				CD9FE60F22667454009B4144 /* fmacros.h in Headers */,
+				CD9FE61722667454009B4144 /* sds.h in Headers */,
+				CD9FE60E22667454009B4144 /* dict.h in Headers */,
+				CD9FE60C22667454009B4144 /* async.h in Headers */,
+				CD9FE61822667454009B4144 /* sdsalloc.h in Headers */,
+				CD9FE61C22667454009B4144 /* sslio.h in Headers */,
+				CD9FE61122667454009B4144 /* hiredis.h in Headers */,
+				CD9FE61322667454009B4144 /* net.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9FE62D22669323009B4144 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD9FE65A22669ABB009B4144 /* pipe.h in Headers */,
+				CD9FE65822669ABB009B4144 /* fd.h in Headers */,
+				CD9FE65C22669ABB009B4144 /* process.h in Headers */,
+				CD9FE67E22669EC2009B4144 /* sink.hpp in Headers */,
+				CD9FE66222669ACD009B4144 /* reproc.h in Headers */,
+				CD9FE67D22669EC2009B4144 /* reproc.hpp in Headers */,
+				CD9FE66122669ACD009B4144 /* error.h in Headers */,
+				CD9FE67C22669EC2009B4144 /* error.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,8 +789,10 @@
 			);
 			dependencies = (
 				CD4E817021057E4F007DA585 /* PBXTargetDependency */,
+				CD9FE61E226674EB009B4144 /* PBXTargetDependency */,
 				CD6C9ACA21C4816D009A3801 /* PBXTargetDependency */,
 				CD4E81D32105942B007DA585 /* PBXTargetDependency */,
+				CD9FE6802266A011009B4144 /* PBXTargetDependency */,
 			);
 			name = "padamose-gtest";
 			productName = consensus;
@@ -541,6 +814,40 @@
 			name = "lib-padamose";
 			productName = "lib-simple-cpp-router";
 			productReference = CD4E818F21059316007DA585 /* libpadamose.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CD9FE5DE226673FD009B4144 /* lib-hiredis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD9FE5F5226673FD009B4144 /* Build configuration list for PBXNativeTarget "lib-hiredis" */;
+			buildPhases = (
+				CD9FE5DF226673FD009B4144 /* Sources */,
+				CD9FE5E8226673FD009B4144 /* Frameworks */,
+				CD9FE5E9226673FD009B4144 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "lib-hiredis";
+			productName = "lib-simple-cpp-router";
+			productReference = CD9FE5F8226673FD009B4144 /* libhiredis.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CD9FE62222669323009B4144 /* lib-reproc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD9FE63822669323009B4144 /* Build configuration list for PBXNativeTarget "lib-reproc" */;
+			buildPhases = (
+				CD9FE62322669323009B4144 /* Sources */,
+				CD9FE62C22669323009B4144 /* Frameworks */,
+				CD9FE62D22669323009B4144 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "lib-reproc";
+			productName = "lib-simple-cpp-router";
+			productReference = CD9FE63B22669323009B4144 /* libreproc.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -565,6 +872,12 @@
 					CD4E817521059316007DA585 = {
 						ProvisioningStyle = Automatic;
 					};
+					CD9FE5DE226673FD009B4144 = {
+						ProvisioningStyle = Automatic;
+					};
+					CD9FE62222669323009B4144 = {
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = CD9345BD2093EB140077BAD4 /* Build configuration list for PBXProject "padamose" */;
@@ -587,7 +900,9 @@
 			targets = (
 				CD4E8131210579C8007DA585 /* padamose-gtest */,
 				CD4E80F1210577FF007DA585 /* lib-gtest */,
+				CD9FE5DE226673FD009B4144 /* lib-hiredis */,
 				CD4E817521059316007DA585 /* lib-padamose */,
+				CD9FE62222669323009B4144 /* lib-reproc */,
 				CD2D3BFE215C9B2E0000A22E /* padamose-all */,
 			);
 		};
@@ -640,6 +955,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD9FE62122668AEC009B4144 /* TestHiredis.cpp in Sources */,
 				CD4E81732105802E007DA585 /* main-gtest.cpp in Sources */,
 				CD3C7C3821A7320300CBA572 /* TestVersionedMap.cpp in Sources */,
 				CDF2903A224D4D870028719C /* TestVersionedPersistence.cpp in Sources */,
@@ -666,6 +982,7 @@
 				CD9B810721AA35E30039B645 /* BaseVersionedCollectionIterator.cpp in Sources */,
 				CD9FE5D42256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp in Sources */,
 				CDB40586223ED4DD00200C78 /* AbstractPersistenceProvider.cpp in Sources */,
+				CD9FE684226838EC009B4144 /* RedisStringStore.cpp in Sources */,
 				CDF903B121A1455700C1930B /* VersionedCollectionSnapshot.cpp in Sources */,
 				CD9FE5D12256E0A1009B4144 /* DebugStringStore.cpp in Sources */,
 				CDB4058B223ED61300200C78 /* StringStorePersistenceProvider.cpp in Sources */,
@@ -673,6 +990,39 @@
 				CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */,
 				CDF29047224EF30F0028719C /* AbstractStringStore.cpp in Sources */,
 				CDA06FF221570FDF003FA0C3 /* VersionedStore.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9FE5DF226673FD009B4144 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD9FE61622667454009B4144 /* sds.c in Sources */,
+				CD9FE61422667454009B4144 /* read.c in Sources */,
+				CD9FE61B22667454009B4144 /* sslio.c in Sources */,
+				CD9FE61922667454009B4144 /* sockcompat.c in Sources */,
+				CD9FE60B22667454009B4144 /* async.c in Sources */,
+				CD9FE61222667454009B4144 /* net.c in Sources */,
+				CD9FE61022667454009B4144 /* hiredis.c in Sources */,
+				CD9FE60D22667454009B4144 /* dict.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD9FE62322669323009B4144 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD9FE67822669EBB009B4144 /* sink.cpp in Sources */,
+				CD9FE64B22669AB0009B4144 /* error.c in Sources */,
+				CD9FE65922669ABB009B4144 /* pipe.c in Sources */,
+				CD9FE64C22669AB0009B4144 /* infinite.c in Sources */,
+				CD9FE65622669ABB009B4144 /* error.c in Sources */,
+				CD9FE67722669EBB009B4144 /* reproc.cpp in Sources */,
+				CD9FE65D22669ABB009B4144 /* reproc.c in Sources */,
+				CD9FE67622669EBB009B4144 /* error.cpp in Sources */,
+				CD9FE64D22669AB0009B4144 /* reproc.c in Sources */,
+				CD9FE65B22669ABB009B4144 /* process.c in Sources */,
+				CD9FE65722669ABB009B4144 /* fd.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +1058,31 @@
 			isa = PBXTargetDependency;
 			name = "lib-lognosis";
 			targetProxy = CD6C9AC921C4816D009A3801 /* PBXContainerItemProxy */;
+		};
+		CD9FE61E226674EB009B4144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD9FE5DE226673FD009B4144 /* lib-hiredis */;
+			targetProxy = CD9FE61D226674EB009B4144 /* PBXContainerItemProxy */;
+		};
+		CD9FE63D22669352009B4144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD9FE5DE226673FD009B4144 /* lib-hiredis */;
+			targetProxy = CD9FE63C22669352009B4144 /* PBXContainerItemProxy */;
+		};
+		CD9FE63F22669352009B4144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD9FE62222669323009B4144 /* lib-reproc */;
+			targetProxy = CD9FE63E22669352009B4144 /* PBXContainerItemProxy */;
+		};
+		CD9FE64122669352009B4144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "lib-lognosis";
+			targetProxy = CD9FE64022669352009B4144 /* PBXContainerItemProxy */;
+		};
+		CD9FE6802266A011009B4144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD9FE62222669323009B4144 /* lib-reproc */;
+			targetProxy = CD9FE67F2266A011009B4144 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -882,7 +1257,11 @@
 				HEADER_SEARCH_PATHS = (
 					src,
 					"3rd-party/googletest/googletest/include",
+					"3rd-party/hiredis",
 					"3rd-party/lognosis/src",
+					"3rd-party/reproc-export/include",
+					"3rd-party/reproc/reproc/include",
+					"3rd-party/reproc/reproc++/include",
 				);
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -942,7 +1321,11 @@
 				HEADER_SEARCH_PATHS = (
 					src,
 					"3rd-party/googletest/googletest/include",
+					"3rd-party/hiredis",
 					"3rd-party/lognosis/src",
+					"3rd-party/reproc-export/include",
+					"3rd-party/reproc/reproc/include",
+					"3rd-party/reproc/reproc++/include",
 				);
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -951,6 +1334,82 @@
 					"-Wno-documentation-deprecated-sync",
 				);
 				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CD9FE5F6226673FD009B4144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BUD786NAA6;
+				EXECUTABLE_PREFIX = lib;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(INHERITED)",
+					"-w",
+				);
+				PRODUCT_NAME = hiredis;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CD9FE5F7226673FD009B4144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BUD786NAA6;
+				EXECUTABLE_PREFIX = lib;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(INHERITED)",
+					"-w",
+				);
+				PRODUCT_NAME = hiredis;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		CD9FE63922669323009B4144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BUD786NAA6;
+				EXECUTABLE_PREFIX = lib;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(INHERITED)",
+					"-w",
+				);
+				PRODUCT_NAME = reproc;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CD9FE63A22669323009B4144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BUD786NAA6;
+				EXECUTABLE_PREFIX = lib;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(INHERITED)",
+					"-w",
+				);
+				PRODUCT_NAME = reproc;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -998,6 +1457,24 @@
 			buildConfigurations = (
 				CD9345C72093EB140077BAD4 /* Debug */,
 				CD9345C82093EB140077BAD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD9FE5F5226673FD009B4144 /* Build configuration list for PBXNativeTarget "lib-hiredis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD9FE5F6226673FD009B4144 /* Debug */,
+				CD9FE5F7226673FD009B4144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD9FE63822669323009B4144 /* Build configuration list for PBXNativeTarget "lib-reproc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD9FE63922669323009B4144 /* Debug */,
+				CD9FE63A22669323009B4144 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
