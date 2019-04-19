@@ -106,6 +106,9 @@
 		CD9FE6812266A01B009B4144 /* libreproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9FE63B22669323009B4144 /* libreproc.a */; };
 		CD9FE684226838EC009B4144 /* RedisStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE682226838EC009B4144 /* RedisStringStore.cpp */; };
 		CD9FE685226838EC009B4144 /* RedisStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE683226838EC009B4144 /* RedisStringStore.h */; };
+		CD9FE69122697F87009B4144 /* RedisServerProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE68F22697F87009B4144 /* RedisServerProc.cpp */; };
+		CD9FE69222697F87009B4144 /* RedisServerProc.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE69022697F87009B4144 /* RedisServerProc.h */; };
+		CD9FE69422698141009B4144 /* padamose-hiredis.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE69322698141009B4144 /* padamose-hiredis.h */; };
 		CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */; };
 		CDA06FF221570FDF003FA0C3 /* VersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */; };
 		CDA06FF321570FDF003FA0C3 /* VersionedStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF121570FDF003FA0C3 /* VersionedStore.h */; };
@@ -313,7 +316,9 @@
 		CD9FE67B22669EC2009B4144 /* sink.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = sink.hpp; path = "3rd-party/reproc/reproc++/include/reproc++/sink.hpp"; sourceTree = "<group>"; };
 		CD9FE682226838EC009B4144 /* RedisStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RedisStringStore.cpp; path = src/padamose/RedisStringStore.cpp; sourceTree = "<group>"; };
 		CD9FE683226838EC009B4144 /* RedisStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedisStringStore.h; path = src/padamose/RedisStringStore.h; sourceTree = "<group>"; };
-		CD9FE68622684147009B4144 /* RedisServerProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedisServerProc.h; path = src/padamose/gtest/RedisServerProc.h; sourceTree = "<group>"; };
+		CD9FE68F22697F87009B4144 /* RedisServerProc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RedisServerProc.cpp; path = src/padamose/RedisServerProc.cpp; sourceTree = "<group>"; };
+		CD9FE69022697F87009B4144 /* RedisServerProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedisServerProc.h; path = src/padamose/RedisServerProc.h; sourceTree = "<group>"; };
+		CD9FE69322698141009B4144 /* padamose-hiredis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "padamose-hiredis.h"; path = "src/padamose/padamose-hiredis.h"; sourceTree = "<group>"; };
 		CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStoreIterators.cpp; path = src/padamose/gtest/TestVersionedStoreIterators.cpp; sourceTree = "<group>"; };
 		CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStore.cpp; path = src/padamose/VersionedStore.cpp; sourceTree = "<group>"; };
 		CDA06FF121570FDF003FA0C3 /* VersionedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStore.h; path = src/padamose/VersionedStore.h; sourceTree = "<group>"; };
@@ -442,7 +447,6 @@
 			children = (
 				CDF903AA219F99D400C1930B /* gtest-helpers.h */,
 				CD4E816B21057DD1007DA585 /* main-gtest.cpp */,
-				CD9FE68622684147009B4144 /* RedisServerProc.h */,
 				CD9FE62022668AEC009B4144 /* TestHiredis.cpp */,
 				CDB4059C2245596600200C78 /* TestVariant.cpp */,
 				CD3C7C3721A7320300CBA572 /* TestVersionedMap.cpp */,
@@ -472,6 +476,7 @@
 				CD240D2721327F6600FF8812 /* VersionedValueIterator.h */,
 				CDB4058D223ED67A00200C78 /* padamose.h */,
 				CD5C62FA20B4F7B10038EE98 /* padamose-common.h */,
+				CD9FE69322698141009B4144 /* padamose-hiredis.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -609,6 +614,8 @@
 				CDF29040224EC3600028719C /* AbstractStringStore.h */,
 				CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */,
 				CDF2903C224EC3560028719C /* DebugStringStore.h */,
+				CD9FE68F22697F87009B4144 /* RedisServerProc.cpp */,
+				CD9FE69022697F87009B4144 /* RedisServerProc.h */,
 				CD9FE682226838EC009B4144 /* RedisStringStore.cpp */,
 				CD9FE683226838EC009B4144 /* RedisStringStore.h */,
 				CDB40589223ED61300200C78 /* StringStorePersistenceProvider.cpp */,
@@ -710,6 +717,7 @@
 				CDA06FF5215715EE003FA0C3 /* VersionedValue.h in Headers */,
 				CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */,
 				CDF903AE21A0A70B00C1930B /* VersionedSet.h in Headers */,
+				CD9FE69222697F87009B4144 /* RedisServerProc.h in Headers */,
 				CD240D3221363CE000FF8812 /* VersionedStoreIterator.h in Headers */,
 				CDA06FF321570FDF003FA0C3 /* VersionedStore.h in Headers */,
 				CDB40592223EE24800200C78 /* AbstractVersionedBranch.h in Headers */,
@@ -720,6 +728,7 @@
 				CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */,
 				CD9FE685226838EC009B4144 /* RedisStringStore.h in Headers */,
 				CDB4058C223ED61300200C78 /* StringStorePersistenceProvider.h in Headers */,
+				CD9FE69422698141009B4144 /* padamose-hiredis.h in Headers */,
 				CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */,
 				CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */,
 			);
@@ -990,6 +999,7 @@
 				CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */,
 				CDF29047224EF30F0028719C /* AbstractStringStore.cpp in Sources */,
 				CDA06FF221570FDF003FA0C3 /* VersionedStore.cpp in Sources */,
+				CD9FE69122697F87009B4144 /* RedisServerProc.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

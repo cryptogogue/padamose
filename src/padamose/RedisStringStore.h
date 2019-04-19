@@ -29,7 +29,7 @@ public:
 
     //----------------------------------------------------------------//
     bool            isConnecred             ();
-                    RedisStringStore        ( string host, int port, const struct timeval timeout );
+                    RedisStringStore        ( string host, int port, const struct timeval timeout = { 1, 500000 });
     virtual         ~RedisStringStore       ();
 };
 

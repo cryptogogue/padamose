@@ -2,7 +2,6 @@
 // http://cryptogogue.com
 
 #include <padamose/gtest/gtest-helpers.h>
-#include <padamose/gtest/RedisServerProc.h>
 #include <padamose/padamose.h>
 
 namespace Padamose {
@@ -124,10 +123,10 @@ TEST ( StringPersistence, test_string_persistence ) {
 //----------------------------------------------------------------//
 TEST ( RedisPersistence, test_redis_persistence ) {
 
-    RedisServerProc redisServerProc;
-    ASSERT_TRUE ( redisServerProc );
+    RedisServerProc redisServerProc ( "./redis-test", "./redis.conf", "127.0.0.1", 9999 );
+    ASSERT_TRUE ( redisServerProc.getStatus () == RedisServerProc::RUNNING_AS_CHILD );
 
-    shared_ptr < RedisStringStore > stringStore = make_shared < RedisStringStore >( REDIS_HOSTNAME, REDIS_PORT, REDIS_TIMEOUT );
+    shared_ptr < RedisStringStore > stringStore = redisServerProc.makeStringStore ();
     shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
     
     testWithProvider ( provider );

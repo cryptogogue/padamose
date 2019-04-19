@@ -2,8 +2,8 @@
 // http://cryptogogue.com
 
 #include <padamose/gtest/gtest-helpers.h>
-#include <padamose/gtest/RedisServerProc.h>
 #include <padamose/padamose.h>
+#include <padamose/padamose-hiredis.h>
 
 namespace Padamose {
 namespace Test {
@@ -11,13 +11,13 @@ namespace Test {
 //----------------------------------------------------------------//
 TEST ( Hiredis, hello_redis ) {
 
-    RedisServerProc redisServerProc;
-    ASSERT_TRUE ( redisServerProc );
+    RedisServerProc redisServerProc ( "./redis-test", "./redis.conf", "127.0.0.1", 9999 );
+    ASSERT_TRUE ( redisServerProc.getStatus () == RedisServerProc::RUNNING_AS_CHILD );
 
     redisContext* c = NULL;
     redisReply* reply;
 
-    c = redisConnectWithTimeout ( REDIS_HOSTNAME, REDIS_PORT, REDIS_TIMEOUT );
+    c = redisConnectWithTimeout ( redisServerProc.getHostname ().c_str (), redisServerProc.getPort (), { 1, 500000 });
     ASSERT_TRUE ( c && ( c->err == 0 ));
 
     reply = ( redisReply* )redisCommand ( c, "PING" );

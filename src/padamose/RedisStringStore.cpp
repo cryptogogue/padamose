@@ -2,11 +2,7 @@
 // http://cryptogogue.com
 
 #include <padamose/RedisStringStore.h>
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wshorten-64-to-32"
-#include <hiredis.h>
-#pragma clang diagnostic pop
+#include <padamose/padamose-hiredis.h>
 
 namespace Padamose {
 

@@ -15,6 +15,7 @@
 #include <padamose/EphemeralVersionedBranch.h>
 #include <padamose/Exceptions.h>
 #include <padamose/MutableVersionedCollection.h>
+#include <padamose/RedisServerProc.h>
 #include <padamose/RedisStringStore.h>
 #include <padamose/StringStorePersistenceProvider.h>
 #include <padamose/StringStoreVersionedBranch.h>
