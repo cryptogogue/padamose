@@ -21,6 +21,7 @@ class AbstractPersistenceProvider :
 protected:
 
     friend class AbstractPersistentVersionedBranch;
+    friend class VersionedStore;
     friend class VersionedStoreSnapshot;
 
     map < string, VersionedStoreSnapshot >  mTags;
@@ -29,6 +30,7 @@ protected:
     //----------------------------------------------------------------//
     void                                freeze          ();
     const VersionedStoreSnapshot&       getTag          ( string branchName ) const;
+    bool                                hasTag          ( string branchName ) const;
     
     //----------------------------------------------------------------//
     virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () = 0;

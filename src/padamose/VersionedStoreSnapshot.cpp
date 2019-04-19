@@ -106,9 +106,11 @@ bool VersionedStoreSnapshot::hasValue ( string key, size_t version ) const {
 // TODO: doxygen
 void VersionedStoreSnapshot::persist ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
-    assert ( this->mSourceBranch );
-    this->mSourceBranch->persistSelf ( provider );
-    provider->tagBranch ( *this->mSourceBranch, branchName, this->mVersion );
+    if ( this->mSourceBranch ) {
+        this->setPersistenceProvider ( provider );
+        this->mSourceBranch->persistSelf ( this->mProvider );
+        this->mProvider->tagBranch ( *this->mSourceBranch, branchName, this->mVersion );
+    }
 }
 
 //----------------------------------------------------------------//
@@ -121,6 +123,20 @@ void VersionedStoreSnapshot::setDebugName ( string debugName ) {
     #ifdef _DEBUG
         this->mDebugName = debugName;
     #endif
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void VersionedStoreSnapshot::setPersistenceProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
+
+    assert ( provider ); // TODO: throw exception
+
+    if ( this->mProvider ) {
+        assert ( this->mProvider == provider ); // TODO: throw exception
+    }
+    else {
+        this->mProvider = provider;
+    }
 }
 
 //----------------------------------------------------------------//
@@ -142,8 +158,12 @@ void VersionedStoreSnapshot::takeSnapshot ( const VersionedStoreSnapshot& other 
 // TODO: doxygen
 void VersionedStoreSnapshot::takeSnapshot ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
-    this->takeSnapshot ( provider->getTag ( branchName ));
-    this->mProvider = provider;
+    assert ( provider ); // TODO: throw exception
+
+    if ( provider->hasTag ( branchName )) {
+        this->takeSnapshot ( provider->getTag ( branchName ));
+        this->setPersistenceProvider ( provider ); // DO THIS *AFTER* takeSnapshot ()
+    }
 }
 
 //----------------------------------------------------------------//

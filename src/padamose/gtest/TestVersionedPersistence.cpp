@@ -89,6 +89,28 @@ void testWithProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
 }
 
 //----------------------------------------------------------------//
+TEST ( StringPersistence, test_new_branch ) {
+
+    shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
+    shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
+    
+    {
+        VersionedStore store;
+        store.persist ( provider, "master" );
+        store.setValue < string >( KEY0, STR0 );
+        store.persist ( provider, "master" );
+    }
+    
+    stringStore->dump ();
+    
+    {
+        VersionedStore store;
+        store.takeSnapshot ( provider, "master" );
+        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
+    }
+}
+
+//----------------------------------------------------------------//
 TEST ( StringPersistence, test_string_persistence ) {
 
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();

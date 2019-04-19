@@ -40,6 +40,14 @@ const VersionedStoreSnapshot& AbstractPersistenceProvider::getTag ( string branc
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+bool AbstractPersistenceProvider::hasTag ( string branchName ) const {
+
+    map < string, VersionedStoreSnapshot >::const_iterator tagIt = this->mTags.find ( branchName );
+    return ( tagIt != this->mTags.end ());
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 bool AbstractPersistenceProvider::isFrozen () const {
 
     return this->mIsFrozen;

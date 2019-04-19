@@ -12,6 +12,7 @@ namespace Padamose {
 
 class AbstractPersistentVersionedBranch;
 class AbstractVersionedBranchClient;
+class AbstractVersionedBranchTag;
 class VersionedStoreSnapshot;
 
 //================================================================//
@@ -47,10 +48,10 @@ protected:
     template < typename > friend class VersionedValueIterator;
 
     /// Set containing active clients. This is needed to calculate dependencies and to know when to optimize.
-    set < AbstractVersionedBranchClient* >                  mClients;
+    set < AbstractVersionedBranchClient* >      mClients;
 
     /// The number of clients holding direct references to branch internals. A nonzero direct reference count will prevent optimization of the branch.
-    size_t                                                  mDirectReferenceCount;
+    size_t                                      mDirectReferenceCount;
 
     //----------------------------------------------------------------//
     void            transferClients             ( AbstractVersionedBranch& other );

@@ -43,13 +43,14 @@ protected:
 
     #ifdef _DEBUG
         /// Available in debug builds to add an easily readable name to snapshots.
-        string                              mDebugName;
+        string                                      mDebugName;
     #endif
 
-    shared_ptr < AbstractPersistenceProvider >  mProvider;
+    shared_ptr < AbstractPersistenceProvider >      mProvider;
 
     //----------------------------------------------------------------//
     void            affirmBranch                    ();
+    void            setPersistenceProvider          ( shared_ptr < AbstractPersistenceProvider > provider );
     
     //----------------------------------------------------------------//
     bool            AbstractVersionedBranchClient_canJoin                   () const override;
