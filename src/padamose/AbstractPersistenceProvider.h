@@ -33,6 +33,7 @@ protected:
     bool                                hasTag          ( string branchName ) const;
     
     //----------------------------------------------------------------//
+    virtual void                                                AbstractPersistenceProvider_flush                   () = 0;
     virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () = 0;
     virtual void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreSnapshot* snapshot ) = 0;
     
@@ -41,6 +42,7 @@ public:
     //----------------------------------------------------------------//
                                                         AbstractPersistenceProvider             ();
     virtual                                             ~AbstractPersistenceProvider            ();
+    void                                                flush                                   ();
     bool                                                isFrozen                                () const;
     shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ();
     void                                                tagBranch                               ( AbstractVersionedBranch& branch, string branchName, size_t version );

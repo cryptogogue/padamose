@@ -195,6 +195,13 @@ void AbstractVersionedBranch::insertClient ( AbstractVersionedBranchClient& clie
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+bool AbstractVersionedBranch::isPersistent () const {
+
+    return this->AbstractVersionedBranch_isPersistent ();
+}
+
+//----------------------------------------------------------------//
 /** \brief Attempts to optimize the branch.
 
     "Optimizing" a branch means two things: trim any unused versions from the
@@ -294,6 +301,8 @@ void AbstractVersionedBranch::optimize () {
 //----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractVersionedBranch::persistSelf ( shared_ptr < AbstractPersistenceProvider > provider ) {
+    
+    if ( this->isPersistent ()) return;
     
     if ( this->mSourceBranch ) {
         this->mSourceBranch->persistSelf ( provider );

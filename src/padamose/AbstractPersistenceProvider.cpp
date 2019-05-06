@@ -24,6 +24,13 @@ AbstractPersistenceProvider::~AbstractPersistenceProvider () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+void AbstractPersistenceProvider::flush () {
+
+    this->AbstractPersistenceProvider_flush ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 void AbstractPersistenceProvider::freeze () {
 
     this->mIsFrozen = true;

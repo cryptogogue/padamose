@@ -175,6 +175,11 @@ StringStorePersistenceProvider::~StringStorePersistenceProvider () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+void StringStorePersistenceProvider::AbstractPersistenceProvider_flush () {
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 shared_ptr < AbstractPersistentVersionedBranch > StringStorePersistenceProvider::AbstractPersistenceProvider_makePersistentBranch () {
 
     string branchID = this->makeBranchID ();

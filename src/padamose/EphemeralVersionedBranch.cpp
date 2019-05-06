@@ -179,6 +179,13 @@ bool EphemeralVersionedBranch::AbstractVersionedBranch_hasKey ( string key, size
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+bool EphemeralVersionedBranch::AbstractVersionedBranch_isPersistent () const {
+
+    return false;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 void EphemeralVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < AbstractPersistentVersionedBranch > persist ) {
 
     this->copyValues ( *persist );

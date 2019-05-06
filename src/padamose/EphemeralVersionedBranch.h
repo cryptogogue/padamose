@@ -65,6 +65,7 @@ private:
     Variant                                     AbstractVersionedBranch_getValueVariant                 ( size_t version, string key ) const override;
     bool                                        AbstractVersionedBranch_getValueVersionExtents          ( string key, size_t upperBound, size_t& first, size_t& last ) const override;
     bool                                        AbstractVersionedBranch_hasKey                          ( string key, size_t upperBound ) const override;
+    bool                                        AbstractVersionedBranch_isPersistent                    () const override;
     void                                        AbstractVersionedBranch_persist                         ( shared_ptr < AbstractPersistentVersionedBranch > persist ) override;
     void                                        AbstractVersionedBranch_setValueVariant                 ( size_t version, string key, const Variant& value ) override;
     void                                        AbstractVersionedBranch_truncate                        ( size_t topVersion ) override;

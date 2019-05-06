@@ -378,6 +378,13 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_hasKey ( string key, si
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+bool StringStoreVersionedBranch::AbstractVersionedBranch_isPersistent () const {
+
+    return true;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 void StringStoreVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < AbstractPersistentVersionedBranch > persist ) {
     // do nothing; already persisted
 }
