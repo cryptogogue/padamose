@@ -62,7 +62,7 @@ const EphemeralValueStack* EphemeralVersionedBranch::findValueStack ( string key
     top (i.e. other clients or children depend on later versions) then all values set in that
     version must be copied into the child branch.
  
-    The given version must be greated than or equal to the base version of the parent branch. (We
+    The given version must be greater than or equal to the base version of the parent branch. (We
     could iterate back through the list of branches if an earlier version is given, but for the
     use case of this constructor, that functionality isn't needed.)
  
@@ -77,7 +77,7 @@ shared_ptr < AbstractVersionedBranch > EphemeralVersionedBranch::AbstractVersion
     
     shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
     
-    assert (( this->mVersion <= baseVersion ) && ( baseVersion <= this->getTopVersion ()));
+    assert ( this->mVersion <= baseVersion );
 
     child->setBranch ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
 
