@@ -35,7 +35,7 @@ protected:
     friend class MutableVersionedCollection;
     friend class VersionedBranch;
     friend class VersionedMap;
-    friend class VersionedSet;
+    friend class VersionedList;
     friend class VersionedStoreIterator;
     
     template < typename > friend class VersionedValue;

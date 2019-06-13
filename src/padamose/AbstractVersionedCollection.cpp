@@ -48,25 +48,6 @@ string AbstractVersionedCollection::encodeNodeID ( size_t nodeID ) {
 }
 
 //----------------------------------------------------------------//
-/** \brief  Returns the size of the collection's list of active keys.
-
-    \return The size of the list of active keys.
-*/
-size_t AbstractVersionedCollection::getSize () const {
-    return this->mState.mSize;
-}
-
-//----------------------------------------------------------------//
-/** \brief  Returns the VersionedStoreSnapshot holding the collection.
-
-    \return The VersionedStoreSnapshot holding the collection.
-*/
-const VersionedStoreSnapshot& AbstractVersionedCollection::getSnapshot () const {
-
-    return AbstractVersionedCollection_getSnapshot ();
-}
-
-//----------------------------------------------------------------//
 /** \brief  Returns the name of the collection.
 
     \return The name of the collection.
@@ -100,6 +81,25 @@ VersionedCollectionNode AbstractVersionedCollection::getNode ( string key ) cons
         node.mNext      = INVALID_NODE_INDEX;
     }
     return node;
+}
+
+//----------------------------------------------------------------//
+/** \brief  Returns the size of the collection's list of active keys.
+
+    \return The size of the list of active keys.
+*/
+size_t AbstractVersionedCollection::getSize () const {
+    return this->mState.mSize;
+}
+
+//----------------------------------------------------------------//
+/** \brief  Returns the VersionedStoreSnapshot holding the collection.
+
+    \return The VersionedStoreSnapshot holding the collection.
+*/
+const VersionedStoreSnapshot& AbstractVersionedCollection::getSnapshot () const {
+
+    return AbstractVersionedCollection_getSnapshot ();
 }
 
 //----------------------------------------------------------------//

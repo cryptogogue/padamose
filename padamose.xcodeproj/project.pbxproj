@@ -113,7 +113,6 @@
 		CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */; };
 		CDA06FF221570FDF003FA0C3 /* VersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */; };
 		CDA06FF321570FDF003FA0C3 /* VersionedStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF121570FDF003FA0C3 /* VersionedStore.h */; };
-		CDA06FF5215715EE003FA0C3 /* VersionedValue.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF4215715EE003FA0C3 /* VersionedValue.h */; };
 		CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchClient.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */; };
 		CDA06FF921587771003FA0C3 /* AbstractVersionedBranchClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */; };
 		CDA06FFA21588EB3003FA0C3 /* TestVersionedStoreIterators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */; };
@@ -137,13 +136,13 @@
 		CDF29045224EF0C20028719C /* StringStoreVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */; };
 		CDF29047224EF30F0028719C /* AbstractStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF29046224EF30F0028719C /* AbstractStringStore.cpp */; };
 		CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF903A8219E2D1400C1930B /* Exceptions.h */; };
-		CDF903AD21A0A70B00C1930B /* VersionedSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF903AB21A0A70B00C1930B /* VersionedSet.cpp */; };
-		CDF903AE21A0A70B00C1930B /* VersionedSet.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF903AC21A0A70B00C1930B /* VersionedSet.h */; };
+		CDF903AD21A0A70B00C1930B /* VersionedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF903AB21A0A70B00C1930B /* VersionedList.cpp */; };
+		CDF903AE21A0A70B00C1930B /* VersionedList.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF903AC21A0A70B00C1930B /* VersionedList.h */; };
 		CDF903B121A1455700C1930B /* VersionedCollectionSnapshot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF903AF21A1455700C1930B /* VersionedCollectionSnapshot.cpp */; };
 		CDF903B221A1455700C1930B /* VersionedCollectionSnapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF903B021A1455700C1930B /* VersionedCollectionSnapshot.h */; };
 		CDF903B521A1482D00C1930B /* AbstractVersionedCollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF903B321A1482D00C1930B /* AbstractVersionedCollection.cpp */; };
 		CDF903B621A1482D00C1930B /* AbstractVersionedCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF903B421A1482D00C1930B /* AbstractVersionedCollection.h */; };
-		CDF903B821A14C5400C1930B /* TestVersionedSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF903B721A14C5400C1930B /* TestVersionedSet.cpp */; };
+		CDF903B821A14C5400C1930B /* TestVersionedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF903B721A14C5400C1930B /* TestVersionedList.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,7 +323,6 @@
 		CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStoreIterators.cpp; path = src/padamose/gtest/TestVersionedStoreIterators.cpp; sourceTree = "<group>"; };
 		CDA06FF021570FDF003FA0C3 /* VersionedStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStore.cpp; path = src/padamose/VersionedStore.cpp; sourceTree = "<group>"; };
 		CDA06FF121570FDF003FA0C3 /* VersionedStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStore.h; path = src/padamose/VersionedStore.h; sourceTree = "<group>"; };
-		CDA06FF4215715EE003FA0C3 /* VersionedValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedValue.h; path = src/padamose/VersionedValue.h; sourceTree = "<group>"; };
 		CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedBranchClient.h; path = src/padamose/AbstractVersionedBranchClient.h; sourceTree = "<group>"; };
 		CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedBranchClient.cpp; path = src/padamose/AbstractVersionedBranchClient.cpp; sourceTree = "<group>"; };
 		CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EphemeralValueStack.cpp; path = src/padamose/EphemeralValueStack.cpp; sourceTree = "<group>"; };
@@ -349,13 +347,13 @@
 		CDF29046224EF30F0028719C /* AbstractStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractStringStore.cpp; path = src/padamose/AbstractStringStore.cpp; sourceTree = "<group>"; };
 		CDF903A8219E2D1400C1930B /* Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exceptions.h; path = src/padamose/Exceptions.h; sourceTree = "<group>"; };
 		CDF903AA219F99D400C1930B /* gtest-helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtest-helpers.h"; path = "src/padamose/gtest/gtest-helpers.h"; sourceTree = "<group>"; };
-		CDF903AB21A0A70B00C1930B /* VersionedSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedSet.cpp; path = src/padamose/VersionedSet.cpp; sourceTree = "<group>"; };
-		CDF903AC21A0A70B00C1930B /* VersionedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedSet.h; path = src/padamose/VersionedSet.h; sourceTree = "<group>"; };
+		CDF903AB21A0A70B00C1930B /* VersionedList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedList.cpp; path = src/padamose/VersionedList.cpp; sourceTree = "<group>"; };
+		CDF903AC21A0A70B00C1930B /* VersionedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedList.h; path = src/padamose/VersionedList.h; sourceTree = "<group>"; };
 		CDF903AF21A1455700C1930B /* VersionedCollectionSnapshot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedCollectionSnapshot.cpp; path = src/padamose/VersionedCollectionSnapshot.cpp; sourceTree = "<group>"; };
 		CDF903B021A1455700C1930B /* VersionedCollectionSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedCollectionSnapshot.h; path = src/padamose/VersionedCollectionSnapshot.h; sourceTree = "<group>"; };
 		CDF903B321A1482D00C1930B /* AbstractVersionedCollection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedCollection.cpp; path = src/padamose/AbstractVersionedCollection.cpp; sourceTree = "<group>"; };
 		CDF903B421A1482D00C1930B /* AbstractVersionedCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedCollection.h; path = src/padamose/AbstractVersionedCollection.h; sourceTree = "<group>"; };
-		CDF903B721A14C5400C1930B /* TestVersionedSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedSet.cpp; path = src/padamose/gtest/TestVersionedSet.cpp; sourceTree = "<group>"; };
+		CDF903B721A14C5400C1930B /* TestVersionedList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedList.cpp; path = src/padamose/gtest/TestVersionedList.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,9 +449,9 @@
 				CD4E816B21057DD1007DA585 /* main-gtest.cpp */,
 				CD9FE62022668AEC009B4144 /* TestHiredis.cpp */,
 				CDB4059C2245596600200C78 /* TestVariant.cpp */,
+				CDF903B721A14C5400C1930B /* TestVersionedList.cpp */,
 				CD3C7C3721A7320300CBA572 /* TestVersionedMap.cpp */,
 				CDF29039224D4D870028719C /* TestVersionedPersistence.cpp */,
-				CDF903B721A14C5400C1930B /* TestVersionedSet.cpp */,
 				CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */,
 				CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */,
 			);
@@ -475,13 +473,35 @@
 				CD4E80E421040032007DA585 /* VersionedStoreSnapshot.h */,
 				CD240D2F21363CE000FF8812 /* VersionedStoreIterator.cpp */,
 				CD240D3021363CE000FF8812 /* VersionedStoreIterator.h */,
-				CDA06FF4215715EE003FA0C3 /* VersionedValue.h */,
 				CD240D2721327F6600FF8812 /* VersionedValueIterator.h */,
 				CDB4058D223ED67A00200C78 /* padamose.h */,
 				CD5C62FA20B4F7B10038EE98 /* padamose-common.h */,
 				CD9FE69322698141009B4144 /* padamose-hiredis.h */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		CD63A1D522B2176500D5C801 /* iterator */ = {
+			isa = PBXGroup;
+			children = (
+				CD9B810521AA35E30039B645 /* BaseVersionedCollectionIterator.cpp */,
+				CD9B810621AA35E30039B645 /* BaseVersionedCollectionIterator.h */,
+				CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */,
+			);
+			name = iterator;
+			sourceTree = "<group>";
+		};
+		CD63A1D622B2177700D5C801 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				CDF903B321A1482D00C1930B /* AbstractVersionedCollection.cpp */,
+				CDF903B421A1482D00C1930B /* AbstractVersionedCollection.h */,
+				CD07CDDF21A74A2600C9C8DB /* MutableVersionedCollection.cpp */,
+				CD07CDE021A74A2600C9C8DB /* MutableVersionedCollection.h */,
+				CDF903AF21A1455700C1930B /* VersionedCollectionSnapshot.cpp */,
+				CDF903B021A1455700C1930B /* VersionedCollectionSnapshot.h */,
+			);
+			name = base;
 			sourceTree = "<group>";
 		};
 		CD6C9AC421C47FB9009A3801 /* Products */ = {
@@ -647,19 +667,12 @@
 		CDD6CE2B21A626E700DB7C10 /* collection */ = {
 			isa = PBXGroup;
 			children = (
-				CDF903B321A1482D00C1930B /* AbstractVersionedCollection.cpp */,
-				CDF903B421A1482D00C1930B /* AbstractVersionedCollection.h */,
-				CD9B810521AA35E30039B645 /* BaseVersionedCollectionIterator.cpp */,
-				CD9B810621AA35E30039B645 /* BaseVersionedCollectionIterator.h */,
-				CD07CDDF21A74A2600C9C8DB /* MutableVersionedCollection.cpp */,
-				CD07CDE021A74A2600C9C8DB /* MutableVersionedCollection.h */,
-				CDF903AF21A1455700C1930B /* VersionedCollectionSnapshot.cpp */,
-				CDF903B021A1455700C1930B /* VersionedCollectionSnapshot.h */,
-				CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */,
+				CD63A1D622B2177700D5C801 /* base */,
+				CD63A1D522B2176500D5C801 /* iterator */,
+				CDF903AB21A0A70B00C1930B /* VersionedList.cpp */,
+				CDF903AC21A0A70B00C1930B /* VersionedList.h */,
 				CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */,
 				CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */,
-				CDF903AB21A0A70B00C1930B /* VersionedSet.cpp */,
-				CDF903AC21A0A70B00C1930B /* VersionedSet.h */,
 			);
 			name = collection;
 			sourceTree = "<group>";
@@ -717,9 +730,8 @@
 				CDB4058E223ED67A00200C78 /* padamose.h in Headers */,
 				CDA06FFF2159A79C003FA0C3 /* EphemeralValueStack.h in Headers */,
 				CD4E81CA2105940F007DA585 /* VersionedStoreSnapshot.h in Headers */,
-				CDA06FF5215715EE003FA0C3 /* VersionedValue.h in Headers */,
 				CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */,
-				CDF903AE21A0A70B00C1930B /* VersionedSet.h in Headers */,
+				CDF903AE21A0A70B00C1930B /* VersionedList.h in Headers */,
 				CD9FE69222697F87009B4144 /* RedisServerProc.h in Headers */,
 				CD240D3221363CE000FF8812 /* VersionedStoreIterator.h in Headers */,
 				CDA06FF321570FDF003FA0C3 /* VersionedStore.h in Headers */,
@@ -971,7 +983,7 @@
 				CD4E81732105802E007DA585 /* main-gtest.cpp in Sources */,
 				CD3C7C3821A7320300CBA572 /* TestVersionedMap.cpp in Sources */,
 				CDF2903A224D4D870028719C /* TestVersionedPersistence.cpp in Sources */,
-				CDF903B821A14C5400C1930B /* TestVersionedSet.cpp in Sources */,
+				CDF903B821A14C5400C1930B /* TestVersionedList.cpp in Sources */,
 				CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */,
 				CDA06FFA21588EB3003FA0C3 /* TestVersionedStoreIterators.cpp in Sources */,
 				CDB4059E2245602500200C78 /* TestVariant.cpp in Sources */,
@@ -998,7 +1010,7 @@
 				CDF903B121A1455700C1930B /* VersionedCollectionSnapshot.cpp in Sources */,
 				CD9FE5D12256E0A1009B4144 /* DebugStringStore.cpp in Sources */,
 				CDB4058B223ED61300200C78 /* StringStorePersistenceProvider.cpp in Sources */,
-				CDF903AD21A0A70B00C1930B /* VersionedSet.cpp in Sources */,
+				CDF903AD21A0A70B00C1930B /* VersionedList.cpp in Sources */,
 				CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */,
 				CDF29047224EF30F0028719C /* AbstractStringStore.cpp in Sources */,
 				CDA06FF221570FDF003FA0C3 /* VersionedStore.cpp in Sources */,

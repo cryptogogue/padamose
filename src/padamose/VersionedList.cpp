@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/VersionedSet.h>
+#include <padamose/VersionedList.h>
 
 namespace Padamose {
 
@@ -17,7 +17,7 @@ namespace Padamose {
  
     \throws     KeyNotFoundException    The key could not be found.
 */
-void VersionedSet::deleteKey ( string key ) {
+void VersionedList::deleteKey ( string key ) {
 
     this->mFreeStack.mTop = this->removeNode ( key, key, this->mFreeStack.mTop );
     this->storeFreeStack ();
@@ -25,7 +25,7 @@ void VersionedSet::deleteKey ( string key ) {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedSet::loadFreeStack () {
+void VersionedList::loadFreeStack () {
 
     this->mFreeStack.mTop           = this->mStore.getValue < size_t >( this->mFreeStackKey + ".top" );
     this->mFreeStack.mTotalNodes    = this->mStore.getValue < size_t >( this->mFreeStackKey + ".totalNodes" );
@@ -37,7 +37,7 @@ void VersionedSet::loadFreeStack () {
 
     \return                 The numeric ID of the next node that provisionKey() will provision.
 */
-size_t VersionedSet::peekNextKey () {
+size_t VersionedList::peekNextKey () {
 
    return ( this->mFreeStack.mTop == INVALID_NODE_INDEX ) ? this->mFreeStack.mTotalNodes : this->mFreeStack.mTop;
 }
@@ -50,7 +50,7 @@ size_t VersionedSet::peekNextKey () {
     \param      append          If TRUE, key will be appended. If false, key will be prepended.
     \return                     The provisioned key.
 */
-string VersionedSet::provisionKey ( size_t nextNodeID, bool append ) {
+string VersionedList::provisionKey ( size_t nextNodeID, bool append ) {
     
     // grab the node ID from the free stack, or create a new key
     size_t nodeID = ( this->mFreeStack.mTop == INVALID_NODE_INDEX ) ? this->mFreeStack.mTotalNodes++ : this->mFreeStack.mTop;
@@ -79,7 +79,7 @@ string VersionedSet::provisionKey ( size_t nextNodeID, bool append ) {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedSet::storeFreeStack () {
+void VersionedList::storeFreeStack () {
 
     this->mStore.setValue < size_t >( this->mFreeStackKey + ".top", this->mFreeStack.mTop );
     this->mStore.setValue < size_t >( this->mFreeStackKey + ".totalNodes", this->mFreeStack.mTotalNodes );
@@ -91,7 +91,7 @@ void VersionedSet::storeFreeStack () {
     \param      store       The versioned store that contains (or will contain) the collection.
     \param      name        The name of the collection.
 */
-VersionedSet::VersionedSet ( VersionedStore& store, string name ) :
+VersionedList::VersionedList ( VersionedStore& store, string name ) :
     MutableVersionedCollection ( store, name ) {
 
     this->mFreeStackKey = this->mName + SET_FREE_STACK_POSTFIX;
@@ -107,7 +107,7 @@ VersionedSet::VersionedSet ( VersionedStore& store, string name ) :
 }
 
 //----------------------------------------------------------------//
-VersionedSet::~VersionedSet () {
+VersionedList::~VersionedList () {
 }
 
 } // namespace Padamose

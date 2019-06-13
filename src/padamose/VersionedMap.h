@@ -13,7 +13,7 @@ namespace Padamose {
 // VersionedMap
 //================================================================//
 /** \brief  VersionedMap is a map collection with iterable keys. Unlike
-            VersionedSet, keys must be explicitely provided by the user.
+            VersionedList, keys must be explicitely provided by the user.
  
             User-provided keys are used to generate node IDs by hashing them.
             This can lead to collisions. Collisions are handled by maintaining
@@ -57,7 +57,7 @@ private:
     
     /// Bitmask for the hash portion of the node ID. Hash portion = (( hash ( key ) & HASH_PORTION_MASK ).
     static constexpr const size_t HASH_PORTION_MASK         = 0x0000ffffffffffff;
-        
+    
     /// Bitmask for the counter portion of the node ID. Counter portion = (( collision count ) & COUNTER_PORTION_MASK ).
     static constexpr const size_t COUNTER_PORTION_MASK      = 0x7fff;
     
@@ -71,8 +71,8 @@ private:
     string          mDecolliderPrefix;
     
     //----------------------------------------------------------------//
-    size_t                      affirmKey                   ( string key );
-    size_t                      getHashPortion              ( string key ) const;
+    size_t          affirmKey                   ( string key );
+    size_t          getHashPortion              ( string key ) const;
     
     //----------------------------------------------------------------//
     virtual size_t  VersionedMap_hash           ( string key ) const;

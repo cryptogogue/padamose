@@ -16,11 +16,11 @@ static const string STR5    = "pqr";
 static const string STR6    = "stu";
 
 //----------------------------------------------------------------//
-TEST ( VersionedSet, test_insert_value_inserts_value_and_returns_valid_key ) {
+TEST ( VersionedList, test_insert_value_inserts_value_and_returns_valid_key ) {
 
     VersionedStore store;
     
-    VersionedSet versionedSet ( store, "test" );
+    VersionedList versionedSet ( store, "test" );
 
     string key0 = versionedSet.pushBack < string >( STR0 );
     string key1 = versionedSet.pushBack < string >( STR1 );
@@ -35,11 +35,11 @@ TEST ( VersionedSet, test_insert_value_inserts_value_and_returns_valid_key ) {
 }
 
 //----------------------------------------------------------------//
-TEST ( VersionedSet, test_deleted_keys_are_reused ) {
+TEST ( VersionedList, test_deleted_keys_are_reused ) {
 
     VersionedStore store;
     
-    VersionedSet versionedSet ( store, "test" );
+    VersionedList versionedSet ( store, "test" );
 
     string key0 = versionedSet.pushBack < string >( STR0 );
     string key1 = versionedSet.pushBack < string >( STR1 );
@@ -75,11 +75,11 @@ TEST ( VersionedSet, test_deleted_keys_are_reused ) {
 }
 
 //----------------------------------------------------------------//
-TEST ( VersionedSet, test_element_count_is_updated_correctly ) {
+TEST ( VersionedList, test_element_count_is_updated_correctly ) {
 
     VersionedStore store;
     
-    VersionedSet versionedSet ( store, "test" );
+    VersionedList versionedSet ( store, "test" );
 
     string key0 = versionedSet.pushBack < int >( 0 );
     string key1 = versionedSet.pushBack < int >( 1 );
@@ -107,11 +107,11 @@ TEST ( VersionedSet, test_element_count_is_updated_correctly ) {
 }
 
 //----------------------------------------------------------------//
-TEST ( VersionedSet, test_iterator ) {
+TEST ( VersionedList, test_iterator ) {
 
     VersionedStore store;
     
-    VersionedSet versionedSet ( store, "test" );
+    VersionedList versionedSet ( store, "test" );
 
     string key0 = versionedSet.pushBack < int >( 0 );
     string key1 = versionedSet.pushBack < int >( 1 );

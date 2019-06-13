@@ -1,8 +1,8 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_VERSIONEDSET_H
-#define PADAMOSE_VERSIONEDSET_H
+#ifndef PADAMOSE_VERSIONEDLIST_H
+#define PADAMOSE_VERSIONEDLIST_H
 
 #include <padamose/padamose-common.h>
 #include <padamose/MutableVersionedCollection.h>
@@ -10,35 +10,35 @@
 namespace Padamose {
 
 //================================================================//
-// VersionedSetState
+// VersionedListFreeStack
 //================================================================//
 /** \brief  Persistent state object for the stack of free nodes. Just
             tracks the top of the state, and the total nodes (active
             and free). The total node count is used to create new node
             IDs when all exisrting node IDs are in use.
 */
-class VersionedSetFreeStack {
+class VersionedListFreeStack {
 private:
 
-    friend class VersionedSet;
+    friend class VersionedList;
     
     size_t      mTop;               // top of key free stack
     size_t      mTotalNodes;        // total nodes created
 };
 
 //================================================================//
-// VersionedSet
+// VersionedList
 //================================================================//
-/** \brief  VersionedSet is a collection in which keys are automatically
+/** \brief  VersionedList is a collection in which keys are automatically
             provisioned and reused. When an element is added to the set,
             a key is either created or reused. When an element is removed
             from the set, its key is added to a stack of unused keys.
  
-            VersionedSet uses a simple counter to generate keys.
+            VersionedList uses a simple counter to generate keys.
  
-            Internally, VersionedSet is implemented as a doubly linked list.
+            Internally, VersionedList is implemented as a doubly linked list.
 */
-class VersionedSet :
+class VersionedList :
     public MutableVersionedCollection {
 private:
     
@@ -49,7 +49,7 @@ private:
     string                  mFreeStackKey;
     
     /// State of the free stack. Persisted in the VersionedStore.
-    VersionedSetFreeStack   mFreeStack;
+    VersionedListFreeStack   mFreeStack;
     
     //----------------------------------------------------------------//
     void            loadFreeStack               ();
@@ -61,8 +61,8 @@ public:
 
     //----------------------------------------------------------------//
     void            deleteKey                   ( string key );
-                    VersionedSet                ( VersionedStore& store, string name );
-                    ~VersionedSet               ();
+                    VersionedList                ( VersionedStore& store, string name );
+                    ~VersionedList               ();
     
     //----------------------------------------------------------------//
     /** \brief  Add an element at the end of the list. Returns a key that

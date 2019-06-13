@@ -23,7 +23,7 @@ private:
     friend class AbstractVersionedCollection;
     friend class MutableVersionedCollection;
     friend class VersionedMap;
-    friend class VersionedSet;
+    friend class VersionedList;
     friend class VersionedCollectionSnapshot;
     
     /// Numeric ID of the head of the list of active keys.
@@ -41,7 +41,7 @@ private:
 //================================================================//
 /** \brief  Linked list node containing a key and its numeric ID. Nodes are
             addressed by numeric ID, which may be assigned and reused (as in
-            VersionedSet) or derived from hashing heys (as in VersionedMap).
+            VersionedList) or derived from hashing heys (as in VersionedMap).
 */
 class VersionedCollectionNode {
 private:
@@ -50,7 +50,7 @@ private:
     friend class AbstractVersionedCollection;
     friend class MutableVersionedCollection;
     friend class VersionedMap;
-    friend class VersionedSet;
+    friend class VersionedList;
     friend class VersionedCollectionSnapshot;
     
     /// Numeric ID of the node.
