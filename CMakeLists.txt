@@ -48,8 +48,8 @@ target_sources ( padamose
         src/padamose/StringStoreVersionedBranch.cpp
         src/padamose/Variant.cpp
         src/padamose/VersionedCollectionSnapshot.cpp
+        src/padamose/VersionedList.cpp
         src/padamose/VersionedMap.cpp
-        src/padamose/VersionedSet.cpp
         src/padamose/VersionedStore.cpp
         src/padamose/VersionedStoreIterator.cpp
         src/padamose/VersionedStoreSnapshot.cpp
