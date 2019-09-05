@@ -386,6 +386,7 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_isPersistent () const {
 //----------------------------------------------------------------//
 // TODO: doxygen
 void StringStoreVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < AbstractPersistentVersionedBranch > persist ) {
+    UNUSED ( persist );
     // do nothing; already persisted
 }
 

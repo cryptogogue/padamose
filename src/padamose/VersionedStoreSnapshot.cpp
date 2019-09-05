@@ -119,6 +119,7 @@ void VersionedStoreSnapshot::persist ( shared_ptr < AbstractPersistenceProvider 
     \param  debugName   The debug name.
 */
 void VersionedStoreSnapshot::setDebugName ( string debugName ) {
+    UNUSED ( debugName );
 
     #ifdef _DEBUG
         this->mDebugName = debugName;
@@ -236,6 +237,7 @@ size_t VersionedStoreSnapshot::AbstractVersionedBranchClient_getVersionDependenc
     does nothing in non-debug builds.
 */
 void VersionedStoreSnapshot::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& branch ) {
+    UNUSED ( branch );
     assert ( false );
 }
 

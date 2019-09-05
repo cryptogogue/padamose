@@ -34,4 +34,8 @@ using namespace std;
 
 #define PDM_FILTER_ROOT "padamose"
 
+#if !defined(UNUSED)
+    #define UNUSED(x) ((void)(x))
+#endif
+
 #endif
