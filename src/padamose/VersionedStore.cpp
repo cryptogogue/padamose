@@ -127,6 +127,14 @@ void VersionedStore::pushVersion () {
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+void VersionedStore::reset ( size_t version ) {
+
+    this->revert ( version );
+    this->clearVersion ();
+}
+
+//----------------------------------------------------------------//
 /** \brief Revert to a previous version.
  
     This method may trigger branch optimizations and deletions. Once
@@ -134,7 +142,7 @@ void VersionedStore::pushVersion () {
     before calling revert() if it's important to be able to return
     to the current version.
  
-    \param  version                         he version to revert to.
+    \param  version                         the version to revert to.
     \throws VersionOutOfBoundsException
 */
 void VersionedStore::revert ( size_t version ) {

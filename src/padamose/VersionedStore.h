@@ -70,6 +70,7 @@ public:
     void            clearVersion                    ();
     void            popVersion                      ();
     void            pushVersion                     ();
+    void            reset                           ( size_t version );
     void            revert                          ( size_t version );
                     VersionedStore                  ();
                     VersionedStore                  ( VersionedStoreSnapshot& other );
