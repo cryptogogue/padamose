@@ -29,8 +29,8 @@ class KeyNotFoundException :
 public:
 
     //----------------------------------------------------------------//
-    KeyNotFoundException () :
-        logic_error ( "Key could not be found." ) {
+    KeyNotFoundException ( string key ) :
+        logic_error ( "Key could not be found: " + key ) {
     }
 };
 
@@ -43,7 +43,7 @@ public:
 
     //----------------------------------------------------------------//
     OverwriteException () :
-        logic_error ( "Existing value would be overwtieen." ) {
+        logic_error ( "Existing value would be overwritten." ) {
     }
 };
 

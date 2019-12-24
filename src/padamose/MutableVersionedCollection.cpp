@@ -134,7 +134,9 @@ size_t MutableVersionedCollection::removeNode ( string key, string encodedNodeID
     string nodeKey = this->mNodePrefix + encodedNodeID;
     
     VersionedCollectionNode existingNode = this->getNode ( nodeKey );
-    if (( !existingNode ) || ( existingNode.mID == INVALID_NODE_INDEX )) throw KeyNotFoundException ();
+    if (( !existingNode ) || ( existingNode.mID == INVALID_NODE_INDEX )) {
+        throw KeyNotFoundException ( key );
+    }
     
     assert ( existingNode.mKey == key );
     

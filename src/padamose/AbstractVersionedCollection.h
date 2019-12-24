@@ -161,7 +161,7 @@ public:
     template < typename TYPE >
     TYPE getValue ( string key ) const {
         
-        if ( !this->hasKey ( key )) throw KeyNotFoundException ();
+        if ( !this->hasKey ( key )) throw KeyNotFoundException ( key );
         return this->getSnapshot ().getValue < TYPE >( this->mValuePrefix + key );;
     }
 };

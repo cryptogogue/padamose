@@ -117,7 +117,7 @@ public:
     template < typename TYPE >
     TYPE getValue ( string key, size_t version ) const {
         Variant value = this->getValueVariant ( key, version );
-        if ( value.isNull ()) throw KeyNotFoundException ();
+        if ( value.isNull ()) throw KeyNotFoundException ( key );
         if ( !value.isType < TYPE >()) throw TypeMismatchOnGetException ();
         return value.getStrict < TYPE >();
     }

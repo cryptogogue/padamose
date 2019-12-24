@@ -99,7 +99,7 @@ size_t VersionedMap::affirmKey ( string key ) {
 void VersionedMap::deleteKey ( string key ) {
 
     size_t nodeID = this->lookupNodeID ( key );
-    if ( nodeID == INVALID_NODE_INDEX ) throw KeyNotFoundException ();
+    if ( nodeID == INVALID_NODE_INDEX ) throw KeyNotFoundException ( key );
 
     this->removeNode ( key, encodeNodeID ( nodeID ));
 }

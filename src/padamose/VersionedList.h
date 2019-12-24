@@ -110,7 +110,7 @@ public:
     void setValue ( string key, const TYPE& value ) {
     
         size_t nodeID = this->lookupNodeID ( key );
-        if ( nodeID == INVALID_NODE_INDEX ) throw KeyNotFoundException ();
+        if ( nodeID == INVALID_NODE_INDEX ) throw KeyNotFoundException ( key );
         this->MutableVersionedCollection::setValue < TYPE >( nodeID, key, value );
     }
 };
