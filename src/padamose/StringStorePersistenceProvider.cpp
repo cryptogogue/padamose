@@ -101,7 +101,7 @@ void StringStorePersistenceProvider::loadFromStore () {
     AbstractStringStore& store = *this->mStore;
 
     string keyForTagListSize = this->formatKeyForTagListSize ();
-    size_t tagListSize = store.get < size_t >( keyForTagListSize, 0 );
+    size_t tagListSize = store.get < u64 >( keyForTagListSize, 0 );
 
     for ( size_t i = 0; i < tagListSize; ++i ) {
     
@@ -114,7 +114,7 @@ void StringStorePersistenceProvider::loadFromStore () {
         assert ( branchID.size ());
         
         string keyForVersionByTagName = this->formatKeyForVersionByTagName ( tagName );
-        size_t version = store.get < size_t >( keyForVersionByTagName, INVALID_VERSION );
+        size_t version = store.get < u64 >( keyForVersionByTagName, INVALID_VERSION );
         assert ( version != INVALID_VERSION );
         
         shared_ptr < StringStoreVersionedBranch > branch = this->affirmBranch ( branchID );
@@ -208,20 +208,20 @@ void StringStorePersistenceProvider::AbstractPersistenceProvider_tagDidChange ( 
         
         if ( !prevBranchID.size ()) {
             string keyForTagListSize = this->formatKeyForTagListSize ();
-            size_t tagListIndex = store.get < size_t >( keyForTagListSize, 0 );
+            size_t tagListIndex = store.get < u64 >( keyForTagListSize, 0 );
             
             string keyForTagNameByTagListIndex = this->formatKeyForTagNameByTagListIndex ( tagListIndex );
             store.set < string >( keyForTagNameByTagListIndex, name );
-            store.set < size_t >( keyForTagListSize, tagListIndex + 1 );
+            store.set < u64 >( keyForTagListSize, tagListIndex + 1 );
         }
         
         store.set < string >( keyForBranchIDByTagName, branchID );
-        store.set < size_t >( keyForVersionByTagName, snapshot->getVersion ());
+        store.set < u64 >( keyForVersionByTagName, snapshot->getVersion ());
     }
     else if ( prevBranchID.size ()) {
     
         string keyForTagListSize = this->formatKeyForTagListSize ();
-        size_t tagListSize = store.get < size_t >( keyForTagListSize, 0 );
+        size_t tagListSize = store.get < u64 >( keyForTagListSize, 0 );
         
         size_t cursor = 0;
         for ( size_t i = 0; i < tagListSize; ++i ) {

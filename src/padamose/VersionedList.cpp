@@ -27,8 +27,8 @@ void VersionedList::deleteKey ( string key ) {
 // TODO: doxygen
 void VersionedList::loadFreeStack () {
 
-    this->mFreeStack.mTop           = this->mStore.getValue < size_t >( this->mFreeStackKey + ".top" );
-    this->mFreeStack.mTotalNodes    = this->mStore.getValue < size_t >( this->mFreeStackKey + ".totalNodes" );
+    this->mFreeStack.mTop           = this->mStore.getValue < u64 >( this->mFreeStackKey + ".top" );
+    this->mFreeStack.mTotalNodes    = this->mStore.getValue < u64 >( this->mFreeStackKey + ".totalNodes" );
 }
 
 //----------------------------------------------------------------//
@@ -81,8 +81,8 @@ string VersionedList::provisionKey ( size_t nextNodeID, bool append ) {
 // TODO: doxygen
 void VersionedList::storeFreeStack () {
 
-    this->mStore.setValue < size_t >( this->mFreeStackKey + ".top", this->mFreeStack.mTop );
-    this->mStore.setValue < size_t >( this->mFreeStackKey + ".totalNodes", this->mFreeStack.mTotalNodes );
+    this->mStore.setValue < u64 >( this->mFreeStackKey + ".top", this->mFreeStack.mTop );
+    this->mStore.setValue < u64 >( this->mFreeStackKey + ".totalNodes", this->mFreeStack.mTotalNodes );
 }
 
 //----------------------------------------------------------------//

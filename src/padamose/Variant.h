@@ -19,7 +19,7 @@ class NullVariant {
 //================================================================//
 // TODO: doxygen
 class Variant :
-    public variant < NullVariant, bool, double, int, size_t, string > {
+    public variant < NullVariant, bool, double, s64, u64, string > {
 public:
 
     // indices; must match order of template arguement list passed to variant<> base class.
@@ -27,8 +27,8 @@ public:
         NULL_VARIANT    = 0,
         BOOL_VARIANT,
         DOUBLE_VARIANT,
-        INT_VARIANT,
-        SIZE_VARIANT,
+        INT64_VARIANT,
+        UINT64_VARIANT,
         STRING_VARIANT,
     };
 
@@ -62,13 +62,13 @@ public:
     }
     
     //----------------------------------------------------------------//
-    Variant& operator = ( int rhs ) {
+    Variant& operator = ( s64 rhs ) {
         *( variant* )this = rhs;
         return *this;
     }
     
     //----------------------------------------------------------------//
-    Variant& operator = ( size_t rhs ) {
+    Variant& operator = ( u64 rhs ) {
         *( variant* )this = rhs;
         return *this;
     }
@@ -125,12 +125,12 @@ public:
     }
     
     //----------------------------------------------------------------//
-    Variant ( int value ) :
+    Variant ( s64 value ) :
         variant ( value ) {
     }
     
     //----------------------------------------------------------------//
-    Variant ( size_t value ) :
+    Variant ( u64 value ) :
         variant ( value ) {
     }
     
@@ -148,8 +148,8 @@ public:
 //----------------------------------------------------------------//
 template <> bool    Variant::get () const;
 template <> double  Variant::get () const;
-template <> int     Variant::get () const;
-template <> size_t  Variant::get () const;
+template <> s64     Variant::get () const;
+template <> u64     Variant::get () const;
 template <> string  Variant::get () const;
 
 } // namespace Padamose

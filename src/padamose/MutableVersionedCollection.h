@@ -45,7 +45,7 @@ protected:
     template < typename TYPE >
     void setValue ( size_t nodeID, string key, const TYPE& value ) {
     
-        this->mStore.setValue < size_t >( this->mLookupPrefix + key, nodeID );
+        this->mStore.setValue < u64 >( this->mLookupPrefix + key, nodeID );
         this->mStore.setValue < TYPE >( this->mValuePrefix + key, value );
     }
     

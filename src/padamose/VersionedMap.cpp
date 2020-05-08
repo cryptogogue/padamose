@@ -25,7 +25,7 @@ size_t VersionedMap::affirmKey ( string key ) {
 
     // see if there is already a decollider for this key.
     string decolliderKey = this->mDecolliderPrefix + key; // decolliders are stored for the full key.
-    size_t nodeID = this->mStore.getValueOrFallback < size_t >( decolliderKey, INVALID_NODE_INDEX );
+    size_t nodeID = this->mStore.getValueOrFallback < u64 >( decolliderKey, INVALID_NODE_INDEX );
     if ( nodeID != INVALID_NODE_INDEX ) {
     
         hasCollisions = true;
@@ -41,7 +41,7 @@ size_t VersionedMap::affirmKey ( string key ) {
         if ( !collisionCountRef.isNull ()) {
         
             // there are already collisions; get the count
-            size_t collisionCount = collisionCountRef.getStrict < size_t >();
+            size_t collisionCount = collisionCountRef.getStrict < u64 >();
             assert ( collisionCount != COUNTER_PORTION_MASK ); // unrecoverable
         
             // no decollider, so provision a new one.
@@ -49,8 +49,8 @@ size_t VersionedMap::affirmKey ( string key ) {
             nodeID |= collisionCount << COUNTER_PORTION_SHIFT;
         
             // store the decollider and increment the collision count.
-            this->mStore.setValue < size_t >( decolliderKey, nodeID );
-            this->mStore.setValue < size_t >( collisionKey, collisionCount++ );
+            this->mStore.setValue < u64 >( decolliderKey, nodeID );
+            this->mStore.setValue < u64 >( collisionKey, collisionCount++ );
             
             hasCollisions = true;
         }
@@ -73,14 +73,14 @@ size_t VersionedMap::affirmKey ( string key ) {
         assert ( collisionKey.size () > 0 );
 
         // start with two decolliders.
-        this->mStore.setValue < size_t >( collisionKey, 2 );
+        this->mStore.setValue < u64 >( collisionKey, 2 );
 
         // decollide the original node. it'll keep its existing ID.
-        this->mStore.setValue < size_t >( this->mDecolliderPrefix + existingNode.mKey, nodeID );
+        this->mStore.setValue < u64 >( this->mDecolliderPrefix + existingNode.mKey, nodeID );
 
         // colliding node is the first non-zero decollider.
         nodeID |= ( size_t )1 << COUNTER_PORTION_SHIFT;
-        this->mStore.setValue < size_t >( this->mDecolliderPrefix + key, nodeID );
+        this->mStore.setValue < u64 >( this->mDecolliderPrefix + key, nodeID );
         nodeKey = this->mNodePrefix + encodeNodeID ( nodeID );
     }
     

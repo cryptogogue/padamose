@@ -172,7 +172,7 @@ size_t MutableVersionedCollection::removeNode ( string key, string encodedNodeID
     this->mState.mSize--;
     this->storeState ();
     
-    this->mStore.setValue < size_t >( this->mLookupPrefix + key, AbstractVersionedCollection::INVALID_NODE_INDEX );
+    this->mStore.setValue < u64 >( this->mLookupPrefix + key, AbstractVersionedCollection::INVALID_NODE_INDEX );
     
     return nodeID;
 }
@@ -181,10 +181,10 @@ size_t MutableVersionedCollection::removeNode ( string key, string encodedNodeID
 // TODO: doxygen
 void MutableVersionedCollection::setNode ( string key, const VersionedCollectionNode& node ) {
 
-    this->mStore.setValue < size_t >( key + ".id", node.mID );
+    this->mStore.setValue < u64 >( key + ".id", node.mID );
     this->mStore.setValue < string >( key + ".key", node.mKey );
-    this->mStore.setValue < size_t >( key + ".prev", node.mPrev );
-    this->mStore.setValue < size_t >( key + ".next", node.mNext );
+    this->mStore.setValue < u64 >( key + ".prev", node.mPrev );
+    this->mStore.setValue < u64 >( key + ".next", node.mNext );
 }
 
 //----------------------------------------------------------------//
@@ -194,9 +194,9 @@ void MutableVersionedCollection::storeState () {
     // mark that the state exists
     this->mStore.setValue < string >( this->mName, this->mName );
 
-    this->mStore.setValue < size_t >( this->mName + ".head", this->mState.mHead );
-    this->mStore.setValue < size_t >( this->mName + ".tail", this->mState.mTail );
-    this->mStore.setValue < size_t >( this->mName + ".size", this->mState.mSize );
+    this->mStore.setValue < u64 >( this->mName + ".head", this->mState.mHead );
+    this->mStore.setValue < u64 >( this->mName + ".tail", this->mState.mTail );
+    this->mStore.setValue < u64 >( this->mName + ".size", this->mState.mSize );
 }
 
 //================================================================//

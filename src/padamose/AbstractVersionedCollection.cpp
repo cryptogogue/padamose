@@ -68,10 +68,10 @@ VersionedCollectionNode AbstractVersionedCollection::getNode ( string key ) cons
     if ( snapshot.hasKey ( key + ".id" )) {
     
         node.mExists    = true;
-        node.mID        = snapshot.getValue < size_t >( key + ".id" );
+        node.mID        = snapshot.getValue < u64 >( key + ".id" );
         node.mKey       = snapshot.getValue < string >( key + ".key" );
-        node.mPrev      = snapshot.getValue < size_t >( key + ".prev" );
-        node.mNext      = snapshot.getValue < size_t >( key + ".next" );
+        node.mPrev      = snapshot.getValue < u64 >( key + ".prev" );
+        node.mNext      = snapshot.getValue < u64 >( key + ".next" );
     }
     else {
     
@@ -120,9 +120,9 @@ void AbstractVersionedCollection::loadState () {
     
     const VersionedStoreSnapshot& snapshot = this->getSnapshot ();
 
-    this->mState.mHead  = snapshot.getValue < size_t >( this->mName + ".head" );
-    this->mState.mTail  = snapshot.getValue < size_t >( this->mName + ".tail" );
-    this->mState.mSize  = snapshot.getValue < size_t >( this->mName + ".size" );
+    this->mState.mHead  = snapshot.getValue < u64 >( this->mName + ".head" );
+    this->mState.mTail  = snapshot.getValue < u64 >( this->mName + ".tail" );
+    this->mState.mSize  = snapshot.getValue < u64 >( this->mName + ".size" );
 }
 
 //----------------------------------------------------------------//
@@ -134,7 +134,7 @@ void AbstractVersionedCollection::loadState () {
 */
 size_t AbstractVersionedCollection::lookupNodeID ( string key ) const {
 
-    return this->getSnapshot ().getValueOrFallback < size_t >( this->mLookupPrefix + key, INVALID_NODE_INDEX );
+    return this->getSnapshot ().getValueOrFallback < u64 >( this->mLookupPrefix + key, INVALID_NODE_INDEX );
 }
 
 //----------------------------------------------------------------//

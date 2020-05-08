@@ -131,7 +131,7 @@ Variant StringStoreVersionedBranch::getValueVariantForVersion ( string key, size
     Variant strVariant ( value );
 
     string keyForValueStackType = this->formatKeyForValueStackType ( key );
-    size_t type = store.get < size_t >( keyForValueStackType, Variant::NULL_VARIANT );
+    size_t type = store.get < u64 >( keyForValueStackType, Variant::NULL_VARIANT );
     assert ( type != Variant::NULL_VARIANT ); // TODO: throw exception
 
     switch ( type ) {
@@ -139,10 +139,10 @@ Variant StringStoreVersionedBranch::getValueVariantForVersion ( string key, size
             return Variant ( strVariant.get < bool >());
         case Variant::DOUBLE_VARIANT:
             return Variant ( strVariant.get < double >());
-        case Variant::INT_VARIANT:
-            return Variant ( strVariant.get < int >());
-        case Variant::SIZE_VARIANT:
-            return Variant ( strVariant.get < size_t >());
+        case Variant::INT64_VARIANT:
+            return Variant ( strVariant.get < s64 >());
+        case Variant::UINT64_VARIANT:
+            return Variant ( strVariant.get < u64 >());
         case Variant::STRING_VARIANT:
             return strVariant;
     }
@@ -156,7 +156,7 @@ void StringStoreVersionedBranch::loadFromStore () {
     const AbstractStringStore& store = this->getStoreConst ();
     
     string keyForVersion = this->formatKeyForVersion ();
-    this->mVersion = store.get < size_t >( keyForVersion, INVALID_VERSION );
+    this->mVersion = store.get < u64 >( keyForVersion, INVALID_VERSION );
     assert ( this->mVersion != INVALID_VERSION );
     
     string keyForSourceBranchID = this->formatKeyForSourceBranchID ();
@@ -234,7 +234,7 @@ shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersi
     child->setBranch ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
 
     string keyforBaseLayerSize = this->formatKeyForLayerSizeByVersion ( baseVersion );
-    size_t baseLayerSize = store.get < size_t >( keyforBaseLayerSize, 0 );
+    size_t baseLayerSize = store.get < u64 >( keyforBaseLayerSize, 0 );
 
     for ( size_t indexInLayer = 0; indexInLayer < baseLayerSize; ++indexInLayer ) {
 
@@ -259,7 +259,7 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranch_getTopVersion () cons
 
     // get the top version
     string keyForTopVersion = this->formatKeyForTopVersion ();
-    return store.get < size_t >( keyForTopVersion, this->mVersion );
+    return store.get < u64 >( keyForTopVersion, this->mVersion );
 }
 
 //----------------------------------------------------------------//
@@ -270,15 +270,15 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranch_getValueNextVersion (
     
     // get the index of the current version
     string keyForValueStackIndexByVersion = this->formatKeyForValueStackIndexByVersion ( key, version );
-    size_t index = store.get < size_t >( keyForValueStackIndexByVersion, INVALID_LAYER_INDEX ); // TODO: throw exception
+    size_t index = store.get < u64 >( keyForValueStackIndexByVersion, INVALID_LAYER_INDEX ); // TODO: throw exception
     
     // get the top index
     string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
-    size_t top = store.get < size_t >( keyForValueStackSize, INVALID_LAYER_INDEX ); // TODO: throw exception
+    size_t top = store.get < u64 >( keyForValueStackSize, INVALID_LAYER_INDEX ); // TODO: throw exception
     
     if ( index < ( top - 1 )) {
         string keyForValueVersionByStackIndex = this->formatKeyForValueVersionByStackIndex ( key, index + 1 );
-        return store.get < size_t >( keyForValueVersionByStackIndex, version );
+        return store.get < u64 >( keyForValueVersionByStackIndex, version );
     }
     return version;
 }
@@ -291,10 +291,10 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranch_getValuePrevVersion (
 
     // get the index of the current version
     string keyForValueStackIndexByVersion = this->formatKeyForValueStackIndexByVersion ( key, version );
-    size_t index = store.get < size_t >( keyForValueStackIndexByVersion, INVALID_LAYER_INDEX ); // TODO: throw exception
+    size_t index = store.get < u64 >( keyForValueStackIndexByVersion, INVALID_LAYER_INDEX ); // TODO: throw exception
     if ( index > 0 ) {
         string keyForValueVersionByStackIndex = this->formatKeyForValueVersionByStackIndex ( key, index - 1 );
-        return store.get < size_t >( keyForValueVersionByStackIndex, version );
+        return store.get < u64 >( keyForValueVersionByStackIndex, version );
     }
     return version;
 }
@@ -308,7 +308,7 @@ Variant StringStoreVersionedBranch::AbstractVersionedBranch_getValueVariant ( si
         const AbstractStringStore& store = this->getStoreConst ();
 
         string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
-        size_t top = store.get < size_t >( keyForValueStackSize, 0 );
+        size_t top = store.get < u64 >( keyForValueStackSize, 0 );
         
         if ( top > 0 ) {
         
@@ -317,7 +317,7 @@ Variant StringStoreVersionedBranch::AbstractVersionedBranch_getValueVariant ( si
             do {
                 index--;
                 string keyForValueVersionByStackIndex = formatKeyForValueVersionByStackIndex ( key, index );
-                size_t valueVersion = store.get < size_t >( keyForValueVersionByStackIndex, 0 );
+                size_t valueVersion = store.get < u64 >( keyForValueVersionByStackIndex, 0 );
                 if ( valueVersion <= version ) {
                     return this->getValueVariantForVersion ( key, valueVersion );
                 }
@@ -336,12 +336,12 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_getValueVersionExtents 
     const AbstractStringStore& store = this->getStoreConst ();
     
     string keyForValueStackSize = formatKeyForValueStackSize ( key );
-    size_t top = store.get < size_t >( keyForValueStackSize, 0 );
+    size_t top = store.get < u64 >( keyForValueStackSize, 0 );
     
     if ( top > 0 ) {
     
         string keyForFirst = this->formatKeyForValueVersionByStackIndex ( key, 0 );
-        first = store.get < size_t >( keyForFirst, 0 );
+        first = store.get < u64 >( keyForFirst, 0 );
         
         if ( first <= upperBound ) {
         
@@ -350,7 +350,7 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_getValueVersionExtents 
             do {
                 index--;
                 string keyForLast = formatKeyForValueVersionByStackIndex ( key, index );
-                last = store.get < size_t >( keyForLast, 0 );
+                last = store.get < u64 >( keyForLast, 0 );
                 if ( last <= upperBound ) {
                     return true;
                 }
@@ -369,7 +369,7 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_hasKey ( string key, si
         const AbstractStringStore& store = this->getStoreConst ();
 
         string keyForValueVersionByStackIndex = formatKeyForValueVersionByStackIndex ( key, 0 );
-        size_t valueVersion = store.get < size_t >( keyForValueVersionByStackIndex, INVALID_VERSION );
+        size_t valueVersion = store.get < u64 >( keyForValueVersionByStackIndex, INVALID_VERSION );
             
         return (( valueVersion != INVALID_VERSION ) && ( valueVersion <= upperBound ));
     }
@@ -416,44 +416,44 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
         // add the value to the layer.
         
         string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( version );
-        size_t indexInLayer = store.get < size_t >( keyForLayerSizeByVersion, 0 );
-        store.set < size_t >( keyForLayerSizeByVersion, indexInLayer + 1 ); // later gets one item bigger
+        size_t indexInLayer = store.get < u64 >( keyForLayerSizeByVersion, 0 );
+        store.set < u64 >( keyForLayerSizeByVersion, indexInLayer + 1 ); // later gets one item bigger
         
         string keyForValueNameByIndexInLayer = this->formatKeyForValueNameByIndexInLayer ( version, indexInLayer );
         store.set < string >( keyForValueNameByIndexInLayer, key ); // add value name to layer
         
         string keyForTopVersion = this->formatKeyForTopVersion ();
-        size_t topVersion = store.get < size_t >( keyForTopVersion, 0 );
+        size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
         if ( topVersion <= version ) {
-            store.set < size_t >( keyForTopVersion, version + 1 );
+            store.set < u64 >( keyForTopVersion, version + 1 );
         }
         
         // push the value onto the value stack.
         
         string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
-        size_t valueStackIndex = store.get < size_t >( keyForValueStackSize, 0 );
+        size_t valueStackIndex = store.get < u64 >( keyForValueStackSize, 0 );
         
         // TODO: make this check more robust
         assert (( this->mVersion + valueStackIndex ) <= version ); // we don't support inserting into the middle of a stack.
-        store.set < size_t >( keyForValueStackSize, valueStackIndex + 1 ); // new value stack top.
+        store.set < u64 >( keyForValueStackSize, valueStackIndex + 1 ); // new value stack top.
         
         // this is the first entry in the stack, so also set the type.
         if ( valueStackIndex == 0 ) {
             string keyForValueStackType = this->formatKeyForValueStackType ( key );
-            store.set < size_t >( keyForValueStackType, value.getType ());
+            store.set < u64 >( keyForValueStackType, value.getType ());
         }
     
         string keyForValueVersionByStackIndex = this->formatKeyForValueVersionByStackIndex ( key, valueStackIndex );
-        store.set < size_t >( keyForValueVersionByStackIndex, version );
+        store.set < u64 >( keyForValueVersionByStackIndex, version );
         
         string keyForValueStackIndexByVersion = this->formatKeyForValueStackIndexByVersion ( key, version );
-        store.set < size_t >( keyForValueStackIndexByVersion, valueStackIndex );
+        store.set < u64 >( keyForValueStackIndexByVersion, valueStackIndex );
     }
     else {
     
         // check the type
         string keyForValueStackType = this->formatKeyForValueStackType ( key );
-        size_t type = store.get < size_t >( keyForValueStackType, Variant::NULL_VARIANT );
+        size_t type = store.get < u64 >( keyForValueStackType, Variant::NULL_VARIANT );
     
         if ( type != value.getType ()) throw TypeMismatchOnAssignException ();
     }
@@ -475,7 +475,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
     AbstractStringStore& store = this->getStore ();
 
     string keyForTopVersion = this->formatKeyForTopVersion ();
-    size_t version = store.get < size_t >( keyForTopVersion, 0 );
+    size_t version = store.get < u64 >( keyForTopVersion, 0 );
     
     if ( version <= topVersion ) return;
     
@@ -483,7 +483,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
         version--;
         
         string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( version );
-        size_t layerSize = store.get < size_t >( keyForLayerSizeByVersion, 0 );
+        size_t layerSize = store.get < u64 >( keyForLayerSizeByVersion, 0 );
         store.eraseString ( keyForLayerSizeByVersion );
         
         for ( size_t i = 0; i < layerSize; ++i ) {
@@ -493,7 +493,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
             store.eraseString ( valueNameByIndexInLayer );
             
             string keyForValueStackSize = this->formatKeyForValueStackSize ( valueName );
-            size_t valueStackTopIndex = store.get < size_t >( keyForValueStackSize, 0 ) - 1;
+            size_t valueStackTopIndex = store.get < u64 >( keyForValueStackSize, 0 ) - 1;
             
             string keyForValueByVersion              = this->formatKeyForValueByVersion ( valueName, version );
             string keyForValueVersionByStackIndex    = this->formatKeyForValueVersionByStackIndex ( valueName, valueStackTopIndex );
@@ -504,7 +504,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
             store.eraseString ( keyForValueStackIndexByVersion );
             
             if ( valueStackTopIndex > 0 ) {
-                store.set < size_t >( keyForValueStackSize, valueStackTopIndex );
+                store.set < u64 >( keyForValueStackSize, valueStackTopIndex );
             }
             else {
                 store.eraseString ( keyForValueStackSize );
@@ -571,7 +571,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abst
     AbstractStringStore& store = this->getStore ();
 
     string keyForTopVersion = this->formatKeyForTopVersion ();
-    size_t topVersion = store.get < size_t >( keyForTopVersion, 0 );
+    size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
     size_t versionCount = topVersion - this->mVersion;
     
     for ( size_t i = 0; i < versionCount; ++i ) {
@@ -579,7 +579,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abst
         size_t version = this->mVersion + i;
         
         string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( i );
-        size_t layerSize = store.get < size_t >( keyForLayerSizeByVersion, 0 );
+        size_t layerSize = store.get < u64 >( keyForLayerSizeByVersion, 0 );
         
         for ( size_t j = 0; j < layerSize; ++j ) {
             
@@ -620,7 +620,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidCh
     }
     
     string keyForVersion = this->formatKeyForVersion ();
-    store.set < size_t >( keyForVersion, this->mVersion );
+    store.set < u64 >( keyForVersion, this->mVersion );
 }
 
 } // namespace Padamose

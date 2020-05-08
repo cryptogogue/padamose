@@ -21,10 +21,10 @@ bool Variant::get () const {
             return this->getStrict < bool >();
         case DOUBLE_VARIANT:
             return this->getStrict < double >() == 0.0 ? false : true;
-        case INT_VARIANT:
-            return this->getStrict < int >() == 0 ? false : true;
-        case SIZE_VARIANT:
-            return this->getStrict < size_t >() == 0 ? false : true;
+        case INT64_VARIANT:
+            return this->getStrict < s64 >() == 0 ? false : true;
+        case UINT64_VARIANT:
+            return this->getStrict < u64 >() == 0 ? false : true;
         case STRING_VARIANT:
             return this->getStrict < string >().size () == 0 ? false : true;
     }
@@ -42,10 +42,10 @@ double Variant::get () const {
             return this->getStrict < bool >() ? 1.0 : 0.0;
         case DOUBLE_VARIANT:
             return this->getStrict < double >();
-        case INT_VARIANT:
-            return ( double )this->getStrict < int >();
-        case SIZE_VARIANT:
-            return ( double )this->getStrict < size_t >();
+        case INT64_VARIANT:
+            return ( double )this->getStrict < s64 >();
+        case UINT64_VARIANT:
+            return ( double )this->getStrict < u64 >();
         case STRING_VARIANT:
             return stod ( this->getStrict < string >());
     }
@@ -54,7 +54,7 @@ double Variant::get () const {
 
 //----------------------------------------------------------------//
 template <>
-int Variant::get () const {
+s64 Variant::get () const {
 
     switch ( this->getType ()) {
         case NULL_VARIANT:
@@ -63,10 +63,10 @@ int Variant::get () const {
             return this->getStrict < bool >() ? 1 : 0;
         case DOUBLE_VARIANT:
             return ( int )this->getStrict < double >();
-        case INT_VARIANT:
-            return this->getStrict < int >();
-        case SIZE_VARIANT:
-            return ( int )this->getStrict < size_t >();
+        case INT64_VARIANT:
+            return this->getStrict < s64 >();
+        case UINT64_VARIANT:
+            return ( int )this->getStrict < u64 >();
         case STRING_VARIANT:
             return stoi ( this->getStrict < string >());
     }
@@ -75,7 +75,7 @@ int Variant::get () const {
 
 //----------------------------------------------------------------//
 template <>
-size_t Variant::get () const {
+u64 Variant::get () const {
 
     switch ( this->getType ()) {
         case NULL_VARIANT:
@@ -84,10 +84,10 @@ size_t Variant::get () const {
             return this->getStrict < bool >() ? 1 : 0;
         case DOUBLE_VARIANT:
             return ( size_t )this->getStrict < double >();
-        case INT_VARIANT:
-            return ( size_t )this->getStrict < int >();
-        case SIZE_VARIANT:
-            return this->getStrict < size_t >();
+        case INT64_VARIANT:
+            return ( size_t )this->getStrict < s64 >();
+        case UINT64_VARIANT:
+            return this->getStrict < u64 >();
         case STRING_VARIANT:
             return stoi ( this->getStrict < string >());
     }
@@ -108,11 +108,11 @@ string Variant::get () const {
         case DOUBLE_VARIANT:
             stream << this->getStrict < double >();
             return stream.str ();
-        case INT_VARIANT:
-            stream << this->getStrict < int >();
+        case INT64_VARIANT:
+            stream << this->getStrict < s64 >();
             return stream.str ();
-        case SIZE_VARIANT:
-            stream << this->getStrict < size_t >();
+        case UINT64_VARIANT:
+            stream << this->getStrict < u64 >();
             return stream.str ();
         case STRING_VARIANT:
             return this->getStrict < string >();
