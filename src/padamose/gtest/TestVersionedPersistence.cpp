@@ -2,6 +2,7 @@
 // http://cryptogogue.com
 
 #include <padamose/gtest/gtest-helpers.h>
+#include <padamose/gtest/util.h>
 #include <padamose/padamose.h>
 
 namespace Padamose {
@@ -14,79 +15,6 @@ static const string STR1    = "def";
 static const string STR2    = "ghi";
 static const string STR3    = "jkl";
 static const string STR4    = "mno";
-
-//----------------------------------------------------------------//
-void testWithProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
-
-    {
-        VersionedStore store;
-
-        store.setValue < string >( KEY0, STR0 );
-        store.pushVersion (); // version 1
-        store.setValue < string >( KEY0, STR1 );
-        store.pushVersion (); // version 2
-        store.setValue < string >( KEY0, STR2 );
-        store.pushVersion (); // version 3
-        store.setValue < string >( KEY0, STR3 );
-
-        ASSERT_EQ ( store.getVersion (), 3 );
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR3 );
-        
-        store.persist ( provider, "master" );
-    }
-
-    VersionedStore store ( provider, "master" );
-
-    ASSERT_EQ ( store.getVersion (), 3 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
-    
-    // iterate by version
-    VersionedStoreIterator storeIt ( store );
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR3 );
-    
-    storeIt.prev ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR2 );
-    
-    storeIt.prev ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR1 );
-    
-    storeIt.prev ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR0 );
-    
-    storeIt.next ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR1 );
-    
-    storeIt.next ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR2 );
-    
-    storeIt.next ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR3 );
-    
-    // iterate by value
-    VersionedValueIterator < string > valueIt ( store, KEY0 );
-    ASSERT_EQ ( valueIt.value (), STR3 );
-    
-    valueIt.prev ();
-    ASSERT_EQ ( valueIt.value (), STR2 );
-    
-    valueIt.prev ();
-    ASSERT_EQ ( valueIt.value (), STR1 );
-    
-    valueIt.prev ();
-    ASSERT_EQ ( valueIt.value (), STR0 );
-    
-    valueIt.next ();
-    ASSERT_EQ ( valueIt.value (), STR1 );
-    
-    valueIt.next ();
-    ASSERT_EQ ( valueIt.value (), STR2 );
-    
-    valueIt.next ();
-    ASSERT_EQ ( valueIt.value (), STR3 );
-}
 
 //----------------------------------------------------------------//
 TEST ( StringPersistence, test_new_branch ) {
@@ -129,29 +57,6 @@ TEST ( StringPersistence, test_string_persistence ) {
     printf ( "still not empty:\n" );
     stringStore->dump ();
     printf ( "done\n" );
-    
-    // load provider from store
-    provider = make_shared < StringStorePersistenceProvider >( stringStore );
-    
-    VersionedStore store ( provider, "master" );
-
-    ASSERT_EQ ( store.getVersion (), 3 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
-}
-
-//----------------------------------------------------------------//
-TEST ( RedisPersistence, test_redis_persistence ) {
-
-    RedisServerProc redisServerProc ( "./redis-test", "./redis.conf", "127.0.0.1", 9999 );
-    ASSERT_TRUE ( redisServerProc.getStatus () == RedisServerProc::RUNNING_AS_CHILD );
-
-    shared_ptr < RedisStringStore > stringStore = redisServerProc.makeStringStore ();
-    shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
-    
-    testWithProvider ( provider );
     
     // load provider from store
     provider = make_shared < StringStorePersistenceProvider >( stringStore );

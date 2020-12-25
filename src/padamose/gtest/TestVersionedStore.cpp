@@ -38,7 +38,7 @@ TEST ( VersionedStore, test_hasValue_if_value_was_set_with_different_type_fails 
     VersionedStore store;
     store.setValue < string >( KEY, STR0 );
 
-    ASSERT_FALSE ( store.hasValueWithType < int >( KEY ));
+    ASSERT_FALSE ( store.hasValueWithType < s64 >( KEY ));
 
 }
 
@@ -52,11 +52,11 @@ TEST ( VersionedStore, test_setValue_for_string_type ) {
 
 //----------------------------------------------------------------//
 TEST ( VersionedStore, test_setValue_for_int_type ) {
-    const int value = 1;
+    const s64 value = 1;
     VersionedStore store;
-    store.setValue < int >( KEY, value );
+    store.setValue < s64 >( KEY, value );
     
-    ASSERT_EQ ( store.getValue < int >( KEY ), value );
+    ASSERT_EQ ( store.getValue < s64 >( KEY ), value );
 }
 
 //----------------------------------------------------------------//
@@ -90,7 +90,7 @@ TEST ( VersionedStore, test_getValue_mismatch_type_exception_fails ){
     VersionedStore store;
     store.setValue < string >( KEY, value );
     
-    ASSERT_EXCEPTION_CAUGHT ( store.getValue < int >( KEY ), TypeMismatchOnGetException );
+    ASSERT_EXCEPTION_CAUGHT ( store.getValue < s64 >( KEY ), TypeMismatchOnGetException );
 }
 
 //----------------------------------------------------------------//
@@ -100,7 +100,7 @@ TEST ( VersionedStore, test_setValue_different_type_for_the_same_key_exception_f
     VersionedStore store;
     store.setValue < string >( KEY, str_value );
     
-    ASSERT_EXCEPTION_CAUGHT ( store.setValue < int >( KEY, int_value ), TypeMismatchOnAssignException );
+    ASSERT_EXCEPTION_CAUGHT ( store.setValue < s64 >( KEY, int_value ), TypeMismatchOnAssignException );
 }
 
 //----------------------------------------------------------------//
@@ -108,10 +108,10 @@ TEST ( VersionedStore, test_setValue_different_type_with_different_keys ){
     const int int_value = 1;
     VersionedStore store;
     store.setValue < string >( KEY, STR0 );
-    store.setValue < int >( KEY2, int_value );
+    store.setValue < s64 >( KEY2, int_value );
 
     ASSERT_EQ ( store.getValue < string >( KEY ), STR0 );
-    ASSERT_EQ ( store.getValue < int >( KEY2 ), int_value );
+    ASSERT_EQ ( store.getValue < s64 >( KEY2 ), int_value );
 }
 
 //-------------- Let's make some snapshots -----------------------//
@@ -140,7 +140,7 @@ TEST ( VersionedStore, test_getSnapshot_not_preserve_current_store_state ) {
     VersionedStore store;
     store.setValue < string >( KEY, STR0 );
     VersionedStore store1;
-    store1.setValue < int >( KEY, 1 );
+    store1.setValue < s64 >( KEY, 1 );
     store1.setValue < string >( KEY2, STR1 );
     store1.takeSnapshot ( store );
     

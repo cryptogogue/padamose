@@ -81,9 +81,9 @@ TEST ( VersionedList, test_element_count_is_updated_correctly ) {
     
     VersionedList versionedSet ( store, "test" );
 
-    string key0 = versionedSet.pushBack < int >( 0 );
-    string key1 = versionedSet.pushBack < int >( 1 );
-    string key2 = versionedSet.pushBack < int >( 2 );
+    string key0 = versionedSet.pushBack < s64 >( 0 );
+    string key1 = versionedSet.pushBack < s64 >( 1 );
+    string key2 = versionedSet.pushBack < s64 >( 2 );
 
     ASSERT_TRUE ( versionedSet.getSize () == 3 );
 
@@ -91,9 +91,9 @@ TEST ( VersionedList, test_element_count_is_updated_correctly ) {
     
     ASSERT_TRUE ( versionedSet.getSize () == 2 );
     
-    string key3 = versionedSet.pushBack < int >( 3 );
-    string key4 = versionedSet.pushBack < int >( 4 );
-    string key5 = versionedSet.pushBack < int >( 5 );
+    string key3 = versionedSet.pushBack < s64 >( 3 );
+    string key4 = versionedSet.pushBack < s64 >( 4 );
+    string key5 = versionedSet.pushBack < s64 >( 5 );
     
     ASSERT_TRUE ( versionedSet.getSize () == 5 );
     
@@ -113,14 +113,14 @@ TEST ( VersionedList, test_iterator ) {
     
     VersionedList versionedSet ( store, "test" );
 
-    string key0 = versionedSet.pushBack < int >( 0 );
-    string key1 = versionedSet.pushBack < int >( 1 );
-    string key2 = versionedSet.pushBack < int >( 2 );
+    string key0 = versionedSet.pushBack < s64 >( 0 );
+    string key1 = versionedSet.pushBack < s64 >( 1 );
+    string key2 = versionedSet.pushBack < s64 >( 2 );
     
     // this iterator test relies on keys being provisioned in a specific order
     // and always added to the *back* of the key list.
     
-    VersionedCollectionIterator < int > setIt ( versionedSet );
+    VersionedCollectionIterator < s64 > setIt ( versionedSet );
     
     ASSERT_TRUE ( setIt == true );
     ASSERT_TRUE ( *setIt == 0 );

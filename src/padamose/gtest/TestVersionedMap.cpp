@@ -68,9 +68,9 @@ TEST ( VersionedMap, test_element_count_is_updated_correctly ) {
     
     VersionedMap versionedMap ( store, "test" );
 
-    versionedMap.setValue < int >( KEY0, 0 );
-    versionedMap.setValue < int >( KEY1, 1 );
-    versionedMap.setValue < int >( KEY2, 2 );
+    versionedMap.setValue < s64 >( KEY0, 0 );
+    versionedMap.setValue < s64 >( KEY1, 1 );
+    versionedMap.setValue < s64 >( KEY2, 2 );
 
     ASSERT_TRUE ( versionedMap.getSize () == 3 );
 
@@ -78,9 +78,9 @@ TEST ( VersionedMap, test_element_count_is_updated_correctly ) {
     
     ASSERT_TRUE ( versionedMap.getSize () == 2 );
     
-    versionedMap.setValue < int >( KEY3, 3 );
-    versionedMap.setValue < int >( KEY4, 4 );
-    versionedMap.setValue < int >( KEY5, 5 );
+    versionedMap.setValue < s64 >( KEY3, 3 );
+    versionedMap.setValue < s64 >( KEY4, 4 );
+    versionedMap.setValue < s64 >( KEY5, 5 );
     
     ASSERT_TRUE ( versionedMap.getSize () == 5 );
     
@@ -100,14 +100,14 @@ TEST ( VersionedMap, test_iterator ) {
     
     VersionedMap versionedMap ( store, "test" );
 
-    versionedMap.setValue < int >( KEY0, 0 );
-    versionedMap.setValue < int >( KEY1, 1 );
-    versionedMap.setValue < int >( KEY2, 2 );
+    versionedMap.setValue < s64 >( KEY0, 0 );
+    versionedMap.setValue < s64 >( KEY1, 1 );
+    versionedMap.setValue < s64 >( KEY2, 2 );
     
     // this iterator test relies on keys being provisioned in a specific order
     // and always added to the *back* of the key list.
     
-    VersionedCollectionIterator < int > setIt ( versionedMap );
+    VersionedCollectionIterator < s64 > setIt ( versionedMap );
     
     ASSERT_TRUE ( setIt == true );
     ASSERT_TRUE ( *setIt == 0 );

@@ -16,8 +16,9 @@
 				CD2D3C05215C9B370000A22E /* PBXTargetDependency */,
 				CD9FE63D22669352009B4144 /* PBXTargetDependency */,
 				CD9FE64122669352009B4144 /* PBXTargetDependency */,
-				CD9FE63F22669352009B4144 /* PBXTargetDependency */,
 				CD2D3C07215C9B370000A22E /* PBXTargetDependency */,
+				CD9FE63F22669352009B4144 /* PBXTargetDependency */,
+				CD19DEC92592DE9C0007ACF0 /* PBXTargetDependency */,
 				CD2D3C03215C9B370000A22E /* PBXTargetDependency */,
 			);
 			name = "padamose-all";
@@ -28,6 +29,35 @@
 /* Begin PBXBuildFile section */
 		CD07CDE121A74A2600C9C8DB /* MutableVersionedCollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD07CDDF21A74A2600C9C8DB /* MutableVersionedCollection.cpp */; };
 		CD07CDE221A74A2600C9C8DB /* MutableVersionedCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = CD07CDE021A74A2600C9C8DB /* MutableVersionedCollection.h */; };
+		CD19DEA22592DE330007ACF0 /* sds.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60422667454009B4144 /* sds.c */; };
+		CD19DEA32592DE330007ACF0 /* read.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60222667454009B4144 /* read.c */; };
+		CD19DEA42592DE330007ACF0 /* sslio.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60922667454009B4144 /* sslio.c */; };
+		CD19DEA52592DE330007ACF0 /* sockcompat.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60722667454009B4144 /* sockcompat.c */; };
+		CD19DEA62592DE330007ACF0 /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5F922667454009B4144 /* async.c */; };
+		CD19DEA72592DE330007ACF0 /* net.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60022667454009B4144 /* net.c */; };
+		CD19DEA82592DE330007ACF0 /* hiredis.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5FE22667454009B4144 /* hiredis.c */; };
+		CD19DEA92592DE330007ACF0 /* dict.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5FB22667454009B4144 /* dict.c */; };
+		CD19DEAC2592DE330007ACF0 /* read.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60322667454009B4144 /* read.h */; };
+		CD19DEAD2592DE330007ACF0 /* sockcompat.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60822667454009B4144 /* sockcompat.h */; };
+		CD19DEAE2592DE330007ACF0 /* fmacros.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5FD22667454009B4144 /* fmacros.h */; };
+		CD19DEAF2592DE330007ACF0 /* sds.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60522667454009B4144 /* sds.h */; };
+		CD19DEB02592DE330007ACF0 /* dict.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5FC22667454009B4144 /* dict.h */; };
+		CD19DEB12592DE330007ACF0 /* async.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5FA22667454009B4144 /* async.h */; };
+		CD19DEB22592DE330007ACF0 /* sdsalloc.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60622667454009B4144 /* sdsalloc.h */; };
+		CD19DEB32592DE330007ACF0 /* sslio.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60A22667454009B4144 /* sslio.h */; };
+		CD19DEB42592DE330007ACF0 /* hiredis.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5FF22667454009B4144 /* hiredis.h */; };
+		CD19DEB52592DE330007ACF0 /* net.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60122667454009B4144 /* net.h */; };
+		CD19DECF2592F2A40007ACF0 /* SQLiteStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD19DECD2592F2A40007ACF0 /* SQLiteStringStore.cpp */; };
+		CD19DED02592F2A40007ACF0 /* SQLiteStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19DECE2592F2A40007ACF0 /* SQLiteStringStore.h */; };
+		CD19DEE325930C820007ACF0 /* SQLite.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19DEE125930C820007ACF0 /* SQLite.h */; };
+		CD19DEE425930C820007ACF0 /* SQLite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD19DEE225930C820007ACF0 /* SQLite.cpp */; };
+		CD19DEEA2593DF790007ACF0 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19DEE82593DF790007ACF0 /* util.h */; };
+		CD19DEEB2593DF790007ACF0 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD19DEE92593DF790007ACF0 /* util.cpp */; };
+		CD19DEEE2593E1AE0007ACF0 /* TestSQLitePersistence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD19DEED2593E1AE0007ACF0 /* TestSQLitePersistence.cpp */; };
+		CD19DEEF2593E4B50007ACF0 /* libsqlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD19DEB92592DE330007ACF0 /* libsqlite.a */; };
+		CD19DEF32593E4DF0007ACF0 /* sqlite3ext.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19DEF02593E4DF0007ACF0 /* sqlite3ext.h */; };
+		CD19DEF42593E4DF0007ACF0 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19DEF12593E4DF0007ACF0 /* sqlite3.h */; };
+		CD19DEF52593E4DF0007ACF0 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = CD19DEF22593E4DF0007ACF0 /* sqlite3.c */; };
 		CD240D2821327F6600FF8812 /* VersionedValueIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = CD240D2721327F6600FF8812 /* VersionedValueIterator.h */; };
 		CD240D3121363CE000FF8812 /* VersionedStoreIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD240D2F21363CE000FF8812 /* VersionedStoreIterator.cpp */; };
 		CD240D3221363CE000FF8812 /* VersionedStoreIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = CD240D3021363CE000FF8812 /* VersionedStoreIterator.h */; };
@@ -84,7 +114,6 @@
 		CD9FE61B22667454009B4144 /* sslio.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60922667454009B4144 /* sslio.c */; };
 		CD9FE61C22667454009B4144 /* sslio.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE60A22667454009B4144 /* sslio.h */; };
 		CD9FE61F226674F6009B4144 /* libhiredis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9FE5F8226673FD009B4144 /* libhiredis.a */; };
-		CD9FE62122668AEC009B4144 /* TestHiredis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE62022668AEC009B4144 /* TestHiredis.cpp */; };
 		CD9FE64B22669AB0009B4144 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE64822669AB0009B4144 /* error.c */; };
 		CD9FE64C22669AB0009B4144 /* infinite.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE64922669AB0009B4144 /* infinite.c */; };
 		CD9FE64D22669AB0009B4144 /* reproc.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE64A22669AB0009B4144 /* reproc.c */; };
@@ -146,6 +175,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CD19DEC82592DE9C0007ACF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD19DEA02592DE330007ACF0;
+			remoteInfo = "lib-sqlite";
+		};
+		CD19DECA2592DEAE0007ACF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD19DEA02592DE330007ACF0;
+			remoteInfo = "lib-sqlite";
+		};
 		CD2D3C02215C9B370000A22E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
@@ -235,6 +278,18 @@
 /* Begin PBXFileReference section */
 		CD07CDDF21A74A2600C9C8DB /* MutableVersionedCollection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MutableVersionedCollection.cpp; path = src/padamose/MutableVersionedCollection.cpp; sourceTree = "<group>"; };
 		CD07CDE021A74A2600C9C8DB /* MutableVersionedCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutableVersionedCollection.h; path = src/padamose/MutableVersionedCollection.h; sourceTree = "<group>"; };
+		CD19DEB92592DE330007ACF0 /* libsqlite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsqlite.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD19DECD2592F2A40007ACF0 /* SQLiteStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLiteStringStore.cpp; path = src/padamose/SQLiteStringStore.cpp; sourceTree = "<group>"; };
+		CD19DECE2592F2A40007ACF0 /* SQLiteStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLiteStringStore.h; path = src/padamose/SQLiteStringStore.h; sourceTree = "<group>"; };
+		CD19DEE125930C820007ACF0 /* SQLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLite.h; path = src/padamose/SQLite.h; sourceTree = "<group>"; };
+		CD19DEE225930C820007ACF0 /* SQLite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLite.cpp; path = src/padamose/SQLite.cpp; sourceTree = "<group>"; };
+		CD19DEE82593DF790007ACF0 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = src/padamose/gtest/util.h; sourceTree = "<group>"; };
+		CD19DEE92593DF790007ACF0 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = util.cpp; path = src/padamose/gtest/util.cpp; sourceTree = "<group>"; };
+		CD19DEEC2593E0AB0007ACF0 /* TestRedisPersistence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TestRedisPersistence.cpp; path = src/padamose/gtest/TestRedisPersistence.cpp; sourceTree = "<group>"; };
+		CD19DEED2593E1AE0007ACF0 /* TestSQLitePersistence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSQLitePersistence.cpp; path = src/padamose/gtest/TestSQLitePersistence.cpp; sourceTree = "<group>"; };
+		CD19DEF02593E4DF0007ACF0 /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3ext.h; path = "3rd-party/sqlite-3.34.0/sqlite3ext.h"; sourceTree = "<group>"; };
+		CD19DEF12593E4DF0007ACF0 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = "3rd-party/sqlite-3.34.0/sqlite3.h"; sourceTree = "<group>"; };
+		CD19DEF22593E4DF0007ACF0 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "3rd-party/sqlite-3.34.0/sqlite3.c"; sourceTree = "<group>"; };
 		CD240D2721327F6600FF8812 /* VersionedValueIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedValueIterator.h; path = src/padamose/VersionedValueIterator.h; sourceTree = "<group>"; };
 		CD240D2F21363CE000FF8812 /* VersionedStoreIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStoreIterator.cpp; path = src/padamose/VersionedStoreIterator.cpp; sourceTree = "<group>"; };
 		CD240D3021363CE000FF8812 /* VersionedStoreIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStoreIterator.h; path = src/padamose/VersionedStoreIterator.h; sourceTree = "<group>"; };
@@ -357,6 +412,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CD19DEAA2592DE330007ACF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CD4E80F9210577FF007DA585 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,6 +435,7 @@
 				CD6C9ACB21C48175009A3801 /* liblognosis.a in Frameworks */,
 				CD4E81D421059435007DA585 /* libpadamose.a in Frameworks */,
 				CD9FE6812266A01B009B4144 /* libreproc.a in Frameworks */,
+				CD19DEEF2593E4B50007ACF0 /* libsqlite.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +463,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD19DE9F2592DCE90007ACF0 /* sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				CD19DEF22593E4DF0007ACF0 /* sqlite3.c */,
+				CD19DEF12593E4DF0007ACF0 /* sqlite3.h */,
+				CD19DEF02593E4DF0007ACF0 /* sqlite3ext.h */,
+			);
+			name = sqlite;
+			sourceTree = "<group>";
+		};
+		CD19DEE025930C5A0007ACF0 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				CD19DEE225930C820007ACF0 /* SQLite.cpp */,
+				CD19DEE125930C820007ACF0 /* SQLite.h */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
+		CD19DEE52593DF2C0007ACF0 /* redis */ = {
+			isa = PBXGroup;
+			children = (
+				CD9FE62022668AEC009B4144 /* TestHiredis.cpp */,
+				CD19DEEC2593E0AB0007ACF0 /* TestRedisPersistence.cpp */,
+			);
+			name = redis;
+			sourceTree = "<group>";
+		};
+		CD19DEE62593DF350007ACF0 /* sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				CD19DEED2593E1AE0007ACF0 /* TestSQLitePersistence.cpp */,
+			);
+			name = sqlite;
+			sourceTree = "<group>";
+		};
+		CD19DEE72593DF480007ACF0 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				CD19DEE92593DF790007ACF0 /* util.cpp */,
+				CD19DEE82593DF790007ACF0 /* util.h */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 		CD4E80F0210577F5007DA585 /* gtest */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,9 +553,11 @@
 		CD4E816621057ADF007DA585 /* gtest */ = {
 			isa = PBXGroup;
 			children = (
+				CD19DEE52593DF2C0007ACF0 /* redis */,
+				CD19DEE62593DF350007ACF0 /* sqlite */,
+				CD19DEE72593DF480007ACF0 /* util */,
 				CDF903AA219F99D400C1930B /* gtest-helpers.h */,
 				CD4E816B21057DD1007DA585 /* main-gtest.cpp */,
-				CD9FE62022668AEC009B4144 /* TestHiredis.cpp */,
 				CDB4059C2245596600200C78 /* TestVariant.cpp */,
 				CDF903B721A14C5400C1930B /* TestVersionedList.cpp */,
 				CD3C7C3721A7320300CBA572 /* TestVersionedMap.cpp */,
@@ -464,6 +574,7 @@
 				CDB40597223EE37000200C78 /* branch */,
 				CDD6CE2B21A626E700DB7C10 /* collection */,
 				CDB40588223ED5DC00200C78 /* persistence */,
+				CD19DEE025930C5A0007ACF0 /* util */,
 				CDF903A8219E2D1400C1930B /* Exceptions.h */,
 				CD85B1CE228F3091000C2A54 /* Variant.cpp */,
 				CDB4059A224467E500200C78 /* Variant.h */,
@@ -531,6 +642,7 @@
 				CD4E818F21059316007DA585 /* libpadamose.a */,
 				CD9FE5F8226673FD009B4144 /* libhiredis.a */,
 				CD9FE63B22669323009B4144 /* libreproc.a */,
+				CD19DEB92592DE330007ACF0 /* libsqlite.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -641,6 +753,8 @@
 				CD9FE69022697F87009B4144 /* RedisServerProc.h */,
 				CD9FE682226838EC009B4144 /* RedisStringStore.cpp */,
 				CD9FE683226838EC009B4144 /* RedisStringStore.h */,
+				CD19DECD2592F2A40007ACF0 /* SQLiteStringStore.cpp */,
+				CD19DECE2592F2A40007ACF0 /* SQLiteStringStore.h */,
 				CDB40589223ED61300200C78 /* StringStorePersistenceProvider.cpp */,
 				CDB4058A223ED61300200C78 /* StringStorePersistenceProvider.h */,
 				CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */,
@@ -683,6 +797,7 @@
 				CD4E80F0210577F5007DA585 /* gtest */,
 				CD9FE5DD226673E5009B4144 /* hiredis */,
 				CD9FE64222669368009B4144 /* reproc */,
+				CD19DE9F2592DCE90007ACF0 /* sqlite */,
 				CD6C9AC321C47FB9009A3801 /* lognosis.xcodeproj */,
 			);
 			name = "3rd-party";
@@ -698,6 +813,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		CD19DEAB2592DE330007ACF0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD19DEAC2592DE330007ACF0 /* read.h in Headers */,
+				CD19DEAD2592DE330007ACF0 /* sockcompat.h in Headers */,
+				CD19DEAE2592DE330007ACF0 /* fmacros.h in Headers */,
+				CD19DEAF2592DE330007ACF0 /* sds.h in Headers */,
+				CD19DEF42593E4DF0007ACF0 /* sqlite3.h in Headers */,
+				CD19DEB02592DE330007ACF0 /* dict.h in Headers */,
+				CD19DEF32593E4DF0007ACF0 /* sqlite3ext.h in Headers */,
+				CD19DEB12592DE330007ACF0 /* async.h in Headers */,
+				CD19DEB22592DE330007ACF0 /* sdsalloc.h in Headers */,
+				CD19DEB32592DE330007ACF0 /* sslio.h in Headers */,
+				CD19DEB42592DE330007ACF0 /* hiredis.h in Headers */,
+				CD19DEB52592DE330007ACF0 /* net.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CD4E80FA210577FF007DA585 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -708,6 +842,7 @@
 				CD4E8114210578D7007DA585 /* gtest-internal-inl.h in Headers */,
 				CD4E8128210578FF007DA585 /* gtest_prod.h in Headers */,
 				CD4E8127210578FF007DA585 /* gtest_pred_impl.h in Headers */,
+				CD19DEEA2593DF790007ACF0 /* util.h in Headers */,
 				CD4E8130210578FF007DA585 /* gtest.h in Headers */,
 				CD4E812C210578FF007DA585 /* gtest-printers.h in Headers */,
 				CD4E812F210578FF007DA585 /* gtest-typed-test.h in Headers */,
@@ -723,6 +858,7 @@
 				CD07CDE221A74A2600C9C8DB /* MutableVersionedCollection.h in Headers */,
 				CDF903B221A1455700C1930B /* VersionedCollectionSnapshot.h in Headers */,
 				CDB4059B224467E500200C78 /* Variant.h in Headers */,
+				CD19DED02592F2A40007ACF0 /* SQLiteStringStore.h in Headers */,
 				CDD6CE2F21A6388600DB7C10 /* VersionedMap.h in Headers */,
 				CDF903B621A1482D00C1930B /* AbstractVersionedCollection.h in Headers */,
 				CD561DBE210730ED008B06C7 /* EphemeralVersionedBranch.h in Headers */,
@@ -731,6 +867,7 @@
 				CDA06FFF2159A79C003FA0C3 /* EphemeralValueStack.h in Headers */,
 				CD4E81CA2105940F007DA585 /* VersionedStoreSnapshot.h in Headers */,
 				CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */,
+				CD19DEE325930C820007ACF0 /* SQLite.h in Headers */,
 				CDF903AE21A0A70B00C1930B /* VersionedList.h in Headers */,
 				CD9FE69222697F87009B4144 /* RedisServerProc.h in Headers */,
 				CD240D3221363CE000FF8812 /* VersionedStoreIterator.h in Headers */,
@@ -784,6 +921,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		CD19DEA02592DE330007ACF0 /* lib-sqlite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD19DEB62592DE330007ACF0 /* Build configuration list for PBXNativeTarget "lib-sqlite" */;
+			buildPhases = (
+				CD19DEA12592DE330007ACF0 /* Sources */,
+				CD19DEAA2592DE330007ACF0 /* Frameworks */,
+				CD19DEAB2592DE330007ACF0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "lib-sqlite";
+			productName = "lib-simple-cpp-router";
+			productReference = CD19DEB92592DE330007ACF0 /* libsqlite.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		CD4E80F1210577FF007DA585 /* lib-gtest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD4E8102210577FF007DA585 /* Build configuration list for PBXNativeTarget "lib-gtest" */;
@@ -817,6 +971,7 @@
 				CD6C9ACA21C4816D009A3801 /* PBXTargetDependency */,
 				CD4E81D32105942B007DA585 /* PBXTargetDependency */,
 				CD9FE6802266A011009B4144 /* PBXTargetDependency */,
+				CD19DECB2592DEAE0007ACF0 /* PBXTargetDependency */,
 			);
 			name = "padamose-gtest";
 			productName = consensus;
@@ -883,6 +1038,9 @@
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Patrick Meehan";
 				TargetAttributes = {
+					CD19DEA02592DE330007ACF0 = {
+						ProvisioningStyle = Automatic;
+					};
 					CD2D3BFE215C9B2E0000A22E = {
 						CreatedOnToolsVersion = 10.0;
 						ProvisioningStyle = Automatic;
@@ -928,6 +1086,7 @@
 				CD9FE5DE226673FD009B4144 /* lib-hiredis */,
 				CD4E817521059316007DA585 /* lib-padamose */,
 				CD9FE62222669323009B4144 /* lib-reproc */,
+				CD19DEA02592DE330007ACF0 /* lib-sqlite */,
 				CD2D3BFE215C9B2E0000A22E /* padamose-all */,
 			);
 		};
@@ -961,12 +1120,29 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CD19DEA12592DE330007ACF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD19DEA22592DE330007ACF0 /* sds.c in Sources */,
+				CD19DEF52593E4DF0007ACF0 /* sqlite3.c in Sources */,
+				CD19DEA32592DE330007ACF0 /* read.c in Sources */,
+				CD19DEA42592DE330007ACF0 /* sslio.c in Sources */,
+				CD19DEA52592DE330007ACF0 /* sockcompat.c in Sources */,
+				CD19DEA62592DE330007ACF0 /* async.c in Sources */,
+				CD19DEA72592DE330007ACF0 /* net.c in Sources */,
+				CD19DEA82592DE330007ACF0 /* hiredis.c in Sources */,
+				CD19DEA92592DE330007ACF0 /* dict.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CD4E80F2210577FF007DA585 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CD4E8112210578D7007DA585 /* gtest-death-test.cc in Sources */,
 				CD4E8113210578D7007DA585 /* gtest-filepath.cc in Sources */,
+				CD19DEEB2593DF790007ACF0 /* util.cpp in Sources */,
 				CD4E8117210578D7007DA585 /* gtest-test-part.cc in Sources */,
 				CD4E8111210578D7007DA585 /* gtest-all.cc in Sources */,
 				CD4E8116210578D7007DA585 /* gtest-printers.cc in Sources */,
@@ -980,8 +1156,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD9FE62122668AEC009B4144 /* TestHiredis.cpp in Sources */,
 				CD4E81732105802E007DA585 /* main-gtest.cpp in Sources */,
+				CD19DEEE2593E1AE0007ACF0 /* TestSQLitePersistence.cpp in Sources */,
 				CD3C7C3821A7320300CBA572 /* TestVersionedMap.cpp in Sources */,
 				CDF2903A224D4D870028719C /* TestVersionedPersistence.cpp in Sources */,
 				CDF903B821A14C5400C1930B /* TestVersionedList.cpp in Sources */,
@@ -1000,6 +1176,8 @@
 				CD07CDE121A74A2600C9C8DB /* MutableVersionedCollection.cpp in Sources */,
 				CDA06FF921587771003FA0C3 /* AbstractVersionedBranchClient.cpp in Sources */,
 				CD561DBD210730ED008B06C7 /* EphemeralVersionedBranch.cpp in Sources */,
+				CD19DEE425930C820007ACF0 /* SQLite.cpp in Sources */,
+				CD19DECF2592F2A40007ACF0 /* SQLiteStringStore.cpp in Sources */,
 				CDD6CE2E21A6388600DB7C10 /* VersionedMap.cpp in Sources */,
 				CDF903B521A1482D00C1930B /* AbstractVersionedCollection.cpp in Sources */,
 				CD240D3121363CE000FF8812 /* VersionedStoreIterator.cpp in Sources */,
@@ -1056,6 +1234,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CD19DEC92592DE9C0007ACF0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD19DEA02592DE330007ACF0 /* lib-sqlite */;
+			targetProxy = CD19DEC82592DE9C0007ACF0 /* PBXContainerItemProxy */;
+		};
+		CD19DECB2592DEAE0007ACF0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD19DEA02592DE330007ACF0 /* lib-sqlite */;
+			targetProxy = CD19DECA2592DEAE0007ACF0 /* PBXContainerItemProxy */;
+		};
 		CD2D3C03215C9B370000A22E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CD4E8131210579C8007DA585 /* padamose-gtest */;
@@ -1114,6 +1302,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		CD19DEB72592DE330007ACF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BUD786NAA6;
+				EXECUTABLE_PREFIX = lib;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(INHERITED)",
+					"-w",
+				);
+				PRODUCT_NAME = sqlite;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CD19DEB82592DE330007ACF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BUD786NAA6;
+				EXECUTABLE_PREFIX = lib;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(INHERITED)",
+					"-w",
+				);
+				PRODUCT_NAME = sqlite;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		CD2D3BFF215C9B2E0000A22E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1290,6 +1516,7 @@
 					"3rd-party/reproc-export/include",
 					"3rd-party/reproc/reproc/include",
 					"3rd-party/reproc/reproc++/include",
+					"3rd-party/sqlite-3.34.0",
 				);
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1355,6 +1582,7 @@
 					"3rd-party/reproc-export/include",
 					"3rd-party/reproc/reproc/include",
 					"3rd-party/reproc/reproc++/include",
+					"3rd-party/sqlite-3.34.0",
 				);
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1445,6 +1673,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CD19DEB62592DE330007ACF0 /* Build configuration list for PBXNativeTarget "lib-sqlite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD19DEB72592DE330007ACF0 /* Debug */,
+				CD19DEB82592DE330007ACF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CD2D3C01215C9B2E0000A22E /* Build configuration list for PBXAggregateTarget "padamose-all" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
