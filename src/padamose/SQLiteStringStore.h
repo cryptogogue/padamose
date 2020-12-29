@@ -35,7 +35,7 @@ public:
 
     //----------------------------------------------------------------//
     void            clear                   ();
-                    SQLiteStringStore       ( string filename );
+                    SQLiteStringStore       ( string filename, string prefix = "" );
     virtual         ~SQLiteStringStore      ();
 };
 

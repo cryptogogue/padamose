@@ -69,14 +69,10 @@ TEST ( SQLitePersistence, test_sqlite_string_store ) {
 TEST ( SQLitePersistence, test_sqlite_persistence ) {
 
     shared_ptr < SQLiteStringStore > stringStore = make_shared < SQLiteStringStore >( SQLITE_FILE );
-    shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
 
-    testWithProvider ( provider );
+    testWithProvider ( stringStore );
 
-    // load provider from store
-    provider = make_shared < StringStorePersistenceProvider >( stringStore );
-
-    VersionedStore store ( provider, "master" );
+    VersionedStore store ( stringStore, "master" );
 
     ASSERT_EQ ( store.getVersion (), 3 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );

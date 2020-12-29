@@ -10,7 +10,10 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
-DebugStringStore::DebugStringStore () {
+DebugStringStore::DebugStringStore ( string prefix ) :
+    AbstractStringStore ( prefix ) {
+    
+    this->loadFromStore ();
 }
 
 //----------------------------------------------------------------//

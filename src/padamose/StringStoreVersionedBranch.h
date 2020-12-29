@@ -19,14 +19,14 @@ class StringStoreVersionedBranch :
     public AbstractPersistentVersionedBranch {
 private:
 
-    friend class StringStorePersistenceProvider;
+    friend class AbstractStringStore;
 
     static const size_t INVALID_LAYER_INDEX             = ( size_t )-1;
     static const size_t INVALID_VERSION                 = ( size_t )-1;
 
     string                              mBranchID;
     string                              mBranchIDWithPrefix;
-    StringStorePersistenceProvider&     mProvider;
+    AbstractStringStore&     mProvider;
 
     //----------------------------------------------------------------//
     string                          formatKeyForLayerSizeByVersion          ( size_t version ) const;
@@ -39,8 +39,6 @@ private:
     string                          formatKeyForValueStackType              ( string key ) const;
     string                          formatKeyForValueVersionByStackIndex    ( string key, size_t stackIndex ) const;
     string                          formatKeyForVersion                     () const;
-    AbstractStringStore&            getStore                                ();
-    const AbstractStringStore&      getStoreConst                           () const;
     Variant                         getValueVariantForVersion               ( string key, size_t version ) const;
     void                            loadFromStore                           ();
 
@@ -67,7 +65,7 @@ private:
 public:
 
     //----------------------------------------------------------------//
-                        StringStoreVersionedBranch          ( StringStorePersistenceProvider& provider, string branchID );
+                        StringStoreVersionedBranch          ( AbstractStringStore& provider, string branchID );
                         ~StringStoreVersionedBranch         ();
 };
 

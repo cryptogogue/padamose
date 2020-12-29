@@ -33,7 +33,7 @@ int RedisServerProc::getStatus () const {
 shared_ptr < RedisStringStore > RedisServerProc::makeStringStore ( const struct timeval timeout ) const {
 
     assert ( this->mStatus != NOT_RUNNING ); // TODO: throw exception
-    return make_shared < RedisStringStore >( this->mHostname, this->mPort, timeout );
+    return make_shared < RedisStringStore >( this->mHostname, this->mPort, "", timeout );
 }
 
 //----------------------------------------------------------------//

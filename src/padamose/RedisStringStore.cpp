@@ -11,19 +11,23 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
-bool RedisStringStore::isConnecred () {
+bool RedisStringStore::isConnected () {
 
     return ( this->mContext != NULL );
 }
 
 //----------------------------------------------------------------//
-RedisStringStore::RedisStringStore ( string host, int port, const struct timeval timeout ) :
+RedisStringStore::RedisStringStore ( string host, int port, string prefix, const struct timeval timeout ) :
+    AbstractStringStore ( prefix ),
     mContext ( NULL ) {
 
     redisContext* c = redisConnectWithTimeout ( host.c_str (), port, timeout );
     if ( c->err == 0 ) {
         this->mContext = c;
     }
+    
+    assert ( this->isConnected ());
+    this->loadFromStore ();
 }
 
 //----------------------------------------------------------------//

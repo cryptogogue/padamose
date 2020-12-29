@@ -17,7 +17,6 @@
 #include <padamose/MutableVersionedCollection.h>
 #include <padamose/RedisServerProc.h>
 #include <padamose/RedisStringStore.h>
-#include <padamose/StringStorePersistenceProvider.h>
 #include <padamose/StringStoreVersionedBranch.h>
 #include <padamose/Variant.h>
 #include <padamose/VersionedCollectionSnapshot.h>

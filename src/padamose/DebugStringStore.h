@@ -28,7 +28,7 @@ protected:
 public:
 
     //----------------------------------------------------------------//
-                    DebugStringStore        ();
+                    DebugStringStore        ( string prefix = "" );
     virtual         ~DebugStringStore       ();
     void            dump                    () const;
 };

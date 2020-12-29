@@ -23,12 +23,12 @@ TEST ( RedisPersistence, test_redis_persistence ) {
     ASSERT_TRUE ( redisServerProc.getStatus () == RedisServerProc::RUNNING_AS_CHILD );
 
     shared_ptr < RedisStringStore > stringStore = redisServerProc.makeStringStore ();
-    shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
+    shared_ptr < AbstractStringStore > provider = make_shared < AbstractStringStore >( stringStore );
     
     testWithProvider ( provider );
     
     // load provider from store
-    provider = make_shared < StringStorePersistenceProvider >( stringStore );
+    provider = make_shared < AbstractStringStore >( stringStore );
     
     VersionedStore store ( provider, "master" );
 

@@ -20,20 +20,19 @@ static const string STR4    = "mno";
 TEST ( StringPersistence, test_new_branch ) {
 
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
-    shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
     
     {
         VersionedStore store;
-        store.persist ( provider, "master" );
+        store.persist ( stringStore, "master" );
         store.setValue < string >( KEY0, STR0 );
-        store.persist ( provider, "master" );
+        store.persist ( stringStore, "master" );
     }
     
     stringStore->dump ();
     
     {
         VersionedStore store;
-        store.takeSnapshot ( provider, "master" );
+        store.takeSnapshot ( stringStore, "master" );
         ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
     }
 }
@@ -42,13 +41,11 @@ TEST ( StringPersistence, test_new_branch ) {
 TEST ( StringPersistence, test_string_persistence ) {
 
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
-    shared_ptr < StringStorePersistenceProvider > provider = make_shared < StringStorePersistenceProvider >( stringStore );
     
-    testWithProvider ( provider );
-    VersionedStoreSnapshot snapshot ( provider, "master" );
+    testWithProvider ( stringStore );
+    VersionedStoreSnapshot snapshot ( stringStore, "master" );
     
     stringStore->dump ();
-    provider = NULL;
 
     printf ( "not empty:\n" );
     stringStore->dump ();
@@ -58,16 +55,41 @@ TEST ( StringPersistence, test_string_persistence ) {
     stringStore->dump ();
     printf ( "done\n" );
     
-    // load provider from store
-    provider = make_shared < StringStorePersistenceProvider >( stringStore );
-    
-    VersionedStore store ( provider, "master" );
+    VersionedStore store ( stringStore, "master" );
 
     ASSERT_EQ ( store.getVersion (), 3 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
+}
+
+//----------------------------------------------------------------//
+TEST ( StringPersistence, test_persistence ) {
+
+    shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
+    
+    {
+        VersionedStore store;
+        store.setValue < string >( KEY0, STR0 );
+        store.pushVersion ();
+        store.persist ( stringStore, "master" );
+
+        ASSERT_EQ ( store.getVersion (), 1 );
+        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
+        
+        store.setValue < string >( KEY0, STR1 );
+        store.pushVersion ();
+    }
+    
+    stringStore->dump ();
+    
+    VersionedStore store ( stringStore, "master" );
+    
+    ASSERT_EQ ( store.getVersion (), 1 );
+    ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
+    
+    printf ( "OK!\n" );
 }
 
 } // namespace Test
