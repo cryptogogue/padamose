@@ -17,11 +17,11 @@ namespace Padamose {
 void EphemeralVersionedBranch::copyValues ( AbstractVersionedBranch& other ) {
 
     // copy the value stacks
-    map < string, unique_ptr < EphemeralValueStack >>::iterator valueStackIt = this->mValueStacksByKey.begin ();
+    map < string, shared_ptr < EphemeralValueStack >>::iterator valueStackIt = this->mValueStacksByKey.begin ();
     for ( ; valueStackIt != this->mValueStacksByKey.end (); ++valueStackIt ) {
         
         string key = valueStackIt->first;
-        const EphemeralValueStack* fromStack = this->findValueStack ( valueStackIt->first );
+        shared_ptr < const EphemeralValueStack > fromStack = this->findValueStack ( valueStackIt->first );
         assert ( fromStack );
         fromStack->join ( key, other );
     }
@@ -32,8 +32,6 @@ EphemeralVersionedBranch::EphemeralVersionedBranch () {
 }
 
 //----------------------------------------------------------------//
-/** \brief Asserts that no direct references remain.
-*/
 EphemeralVersionedBranch::~EphemeralVersionedBranch () {
 }
 
@@ -44,10 +42,10 @@ EphemeralVersionedBranch::~EphemeralVersionedBranch () {
     \param      key         The key.
     \return                 The ValueStack for the key or NULL.
 */
-const EphemeralValueStack* EphemeralVersionedBranch::findValueStack ( string key ) const {
+shared_ptr < const EphemeralValueStack > EphemeralVersionedBranch::findValueStack ( string key ) const {
 
-    map < string, unique_ptr < EphemeralValueStack >>::const_iterator valueIt = this->mValueStacksByKey.find ( key );
-    return ( valueIt != this->mValueStacksByKey.cend ()) ? valueIt->second.get () : NULL;
+    map < string, shared_ptr < EphemeralValueStack >>::const_iterator valueIt = this->mValueStacksByKey.find ( key );
+    return ( valueIt != this->mValueStacksByKey.cend ()) ? valueIt->second : NULL;
 }
 
 //================================================================//
@@ -92,10 +90,10 @@ shared_ptr < AbstractVersionedBranch > EphemeralVersionedBranch::AbstractVersion
             
             toLayer.insert ( *keyIt );
             
-            const EphemeralValueStack* fromStack = this->findValueStack ( *keyIt );
+            shared_ptr < const EphemeralValueStack > fromStack = this->findValueStack ( *keyIt );
             assert ( fromStack );
             
-            unique_ptr < EphemeralValueStack >& toStack = child->mValueStacksByKey [ *keyIt ];
+            shared_ptr < EphemeralValueStack >& toStack = child->mValueStacksByKey [ *keyIt ];
             if ( !toStack ) {
                 toStack = fromStack->makeEmptyCopy ();
             }
@@ -120,7 +118,7 @@ size_t EphemeralVersionedBranch::AbstractVersionedBranch_getTopVersion () const 
 // TODO: doxygen
 size_t EphemeralVersionedBranch::AbstractVersionedBranch_getValueNextVersion ( string key, size_t version ) const {
 
-    const EphemeralValueStack* valueStack = this->findValueStack ( key );
+    shared_ptr < const EphemeralValueStack > valueStack = this->findValueStack ( key );
     if ( valueStack ) {
         return valueStack->getNextVersion ( version );
     }
@@ -131,7 +129,7 @@ size_t EphemeralVersionedBranch::AbstractVersionedBranch_getValueNextVersion ( s
 // TODO: doxygen
 size_t EphemeralVersionedBranch::AbstractVersionedBranch_getValuePrevVersion ( string key, size_t version ) const {
 
-    const EphemeralValueStack* valueStack = this->findValueStack ( key );
+    shared_ptr < const EphemeralValueStack > valueStack = this->findValueStack ( key );
     if ( valueStack ) {
         return valueStack->getPrevVersion ( version );
     }
@@ -145,7 +143,7 @@ Variant EphemeralVersionedBranch::AbstractVersionedBranch_getValueVariant ( size
     if ( this->mVersion <= version ) {
     
         // check for a value stack without recursion.
-        const EphemeralValueStack* valueStack = this->findValueStack ( key );
+        shared_ptr < const EphemeralValueStack > valueStack = this->findValueStack ( key );
         if ( valueStack ) {
             return valueStack->getValueVariant ( version );
         }
@@ -157,7 +155,7 @@ Variant EphemeralVersionedBranch::AbstractVersionedBranch_getValueVariant ( size
 // TODO: doxygen
 bool EphemeralVersionedBranch::AbstractVersionedBranch_getValueVersionExtents ( string key, size_t upperBound, size_t& first, size_t& last ) const {
 
-    const EphemeralValueStack* valueStack = this->findValueStack ( key );
+    shared_ptr < const EphemeralValueStack > valueStack = this->findValueStack ( key );
     if ( valueStack ) {
         return valueStack->getExtents ( upperBound, first, last );
     }
@@ -169,7 +167,7 @@ bool EphemeralVersionedBranch::AbstractVersionedBranch_getValueVersionExtents ( 
 bool EphemeralVersionedBranch::AbstractVersionedBranch_hasKey ( string key, size_t upperBound ) const {
 
     if ( this->mVersion <= upperBound ) {
-        const EphemeralValueStack* valueStack = this->findValueStack ( key );
+        shared_ptr < const EphemeralValueStack > valueStack = this->findValueStack ( key );
         if ( valueStack ) {
             return valueStack->hasKey ( upperBound );
         }
@@ -208,10 +206,10 @@ void EphemeralVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t 
 
     assert ( this->mVersion <= version );
     
-    unique_ptr < EphemeralValueStack >& valueStack = this->mValueStacksByKey [ key ];
+    shared_ptr < EphemeralValueStack >& valueStack = this->mValueStacksByKey [ key ];
 
     if ( !valueStack ) {
-        valueStack = make_unique < EphemeralValueStack >( value.index ());
+        valueStack = make_shared < EphemeralValueStack >( value.index ());
     }
     assert ( valueStack );
 
@@ -243,7 +241,7 @@ void EphemeralVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVers
         Layer::iterator keyIt = layer.begin ();
         for ( ; keyIt != layer.end (); ++keyIt ) {
 
-            unique_ptr < EphemeralValueStack >& valueStack = this->mValueStacksByKey [ *keyIt ];
+            shared_ptr < EphemeralValueStack >& valueStack = this->mValueStacksByKey [ *keyIt ];
             assert ( valueStack );
             
             valueStack->erase ( layerIt->first );

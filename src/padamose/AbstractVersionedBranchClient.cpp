@@ -33,6 +33,18 @@ bool AbstractVersionedBranchClient::canJoin () const {
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+size_t AbstractVersionedBranchClient::countBranches () const {
+
+    size_t count = 1;
+    shared_ptr < AbstractVersionedBranch > cursor = this->mSourceBranch;
+    for ( ; cursor; cursor = cursor->mSourceBranch ) {
+        count++;
+    }
+    return count;
+}
+
+//----------------------------------------------------------------//
 /** \brief If a client supports the join operation, returns the
     score to use to select a winner from two valid candidates.
 

@@ -57,6 +57,7 @@ public:
     //----------------------------------------------------------------//
                                         AbstractVersionedBranchClient           ();
     virtual                             ~AbstractVersionedBranchClient          ();
+    size_t                              countBranches                           () const;
     const AbstractVersionedBranch*      getSourceBranch                         () const;
     void                                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch );
     void                                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );

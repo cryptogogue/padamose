@@ -8,10 +8,6 @@
 #include <padamose/AbstractPersistenceProvider.h>
 #include <padamose/VersionedStoreSnapshot.h>
 
-// TODO: this is all placeholder stuff, to get the algorithm working. will need to
-// optimize to reduce dynamic allocation. will also need to provide a NoSQL-backed
-// implementation.
-
 namespace Padamose {
 
 //================================================================//

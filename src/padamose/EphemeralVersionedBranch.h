@@ -37,25 +37,17 @@ class EphemeralVersionedBranch :
     public AbstractVersionedBranch {
 private:
 
-//    friend class AbstractVersionedBranchClient;
-//    friend class AbstractVersionedValueIterator;
-//    friend class VersionedStore;
-//    friend class VersionedStoreSnapshot;
-//    friend class VersionedStoreIterator;
-//    template < typename > friend class VersionedValue;
-//    template < typename > friend class VersionedValueIterator;
-
     typedef set < string > Layer;
     
     /// Sparse array mapping versions onto layers. Each layer holds the set of keys corresponding to values that were set or modified in the version.
     map < size_t, Layer >                                   mLayers;
     
     /// Map of value stacks, indexed by key.
-    map < string, unique_ptr < EphemeralValueStack >>       mValueStacksByKey;
+    map < string, shared_ptr < EphemeralValueStack >>       mValueStacksByKey;
 
     //----------------------------------------------------------------//
-    void                            copyValues                  ( AbstractVersionedBranch& other );
-    const EphemeralValueStack*      findValueStack              ( string key ) const;
+    void                                        copyValues                  ( AbstractVersionedBranch& other );
+    shared_ptr < const EphemeralValueStack >    findValueStack              ( string key ) const;
 
     //----------------------------------------------------------------//
     shared_ptr < AbstractVersionedBranch >      AbstractVersionedBranch_fork                            ( size_t baseVersion ) override;

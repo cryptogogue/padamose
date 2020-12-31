@@ -206,14 +206,14 @@ bool AbstractVersionedBranch::isPersistent () const {
 
     "Optimizing" a branch means two things: trim any unused versions from the
     top of the branch, and concatenate the longest child branch if the child
-    branches from the top of the current branch.
+    branch extends from the top of the current branch.
  
     Unused versions are simply those equal to or greatet than the "immutable top"
     version. The immutable top can fall below the top version following the
     removal of the top client. In this case, the branch can be truncated.
  
     Following truncation, if there are child branches with their bases at the
-    top pf the branch, one of those children may be joined to the branch. In
+    top of the branch, one of those children may be joined to the branch. In
     this case, we select the longest child branch. When the child is joined to
     the parent, all of its clients must also be moved to the parent.
  
