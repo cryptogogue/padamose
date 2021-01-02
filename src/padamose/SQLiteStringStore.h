@@ -18,7 +18,7 @@ class SQLiteStringStore :
     public AbstractStringStore {
 protected:
 
-    SQLite          mDB;
+    mutable SQLite  mDB;
 
     //----------------------------------------------------------------//
     void            AbstractStringStore_eraseString     ( string key ) override;

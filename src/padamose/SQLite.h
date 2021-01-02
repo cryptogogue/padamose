@@ -9,19 +9,48 @@
 
 namespace Padamose {
 
+class SQLite;
+
+//================================================================//
+// SQLiteResult
+//================================================================//
+class SQLiteResult {
+private:
+
+    int             mCode;
+    string          mMessage;
+
+public:
+
+    //----------------------------------------------------------------//
+    operator        bool                () const;
+    string          getMessage          () const;
+    static bool     isErrorCode         ( int code );
+                    SQLiteResult        ();
+                    SQLiteResult        ( SQLite& sqlite, int result );
+                    SQLiteResult        ( const SQLiteResult& other );
+};
+
 //================================================================//
 // SQLite
 //================================================================//
 class SQLite {
-protected:
-
-    sqlite3*                mDB;
-
 public:
 
     typedef std::function < int ( int, char**, char** )>                                SQLCallbackFunc;
     typedef std::function < void ( sqlite3_stmt* )>                                     SQLPrepareCallbackFunc;
     typedef std::function < void ( int, const map < string, int >&, sqlite3_stmt* )>    SQLRowCallbackFunc;
+    
+protected:
+
+    friend class SQLiteResult;
+
+    sqlite3*                mDB;
+
+    //----------------------------------------------------------------//
+    SQLiteResult            prepare                 ( string sql, sqlite3_stmt** stmt, SQLPrepareCallbackFunc onPrepare = NULL );
+
+public:
 
     //----------------------------------------------------------------//
     operator bool () const {
@@ -34,11 +63,10 @@ public:
     }
 
     //----------------------------------------------------------------//
-    void                    close                   ();
-    void                    exec                    ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow );
-    void                    exec                    ( string sql, SQLPrepareCallbackFunc onPrepare = NULL, SQLRowCallbackFunc onRow = NULL );
-    void                    open                    ( string filename );
-    sqlite3_stmt*           prepare                 ( string sql, SQLPrepareCallbackFunc onPrepare = NULL );
+    SQLiteResult            close                   ();
+    SQLiteResult            exec                    ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow );
+    SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare = NULL, SQLRowCallbackFunc onRow = NULL );
+    SQLiteResult            open                    ( string filename );
                             SQLite                  ();
                             SQLite                  ( string filename );
                             ~SQLite                 ();

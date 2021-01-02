@@ -42,10 +42,9 @@ SQLiteStringStore::~SQLiteStringStore () {
 //----------------------------------------------------------------//
 void SQLiteStringStore::AbstractStringStore_eraseString ( string key ) {
 
-    SQLite& db = this->mDB;
-    assert ( db );
+    assert ( this->mDB );
     
-    db.exec (
+    this->mDB.exec (
          "DELETE FROM padamose WHERE key = ?1",
         [ key ]( sqlite3_stmt* stmt ) {
             sqlite3_bind_text ( stmt, 1, key.c_str (), ( int )key.size (), SQLITE_TRANSIENT );
@@ -56,12 +55,11 @@ void SQLiteStringStore::AbstractStringStore_eraseString ( string key ) {
 //----------------------------------------------------------------//
 string SQLiteStringStore::AbstractStringStore_getString ( string key ) const {
 
-    SQLite& db = const_cast < SQLite& >( this->mDB );
-    assert ( db );
+    assert ( this->mDB );
 
     string result;
     
-    db.exec (
+    this->mDB.exec (
         "SELECT value FROM padamose WHERE key = ?1",
         [ key ]( sqlite3_stmt* stmt ) {
             sqlite3_bind_text ( stmt, 1, key.c_str (), ( int )key.size (), SQLITE_TRANSIENT );
@@ -79,12 +77,11 @@ string SQLiteStringStore::AbstractStringStore_getString ( string key ) const {
 //----------------------------------------------------------------//
 bool SQLiteStringStore::AbstractStringStore_hasString ( string key ) const {
 
-    SQLite& db = const_cast < SQLite& >( this->mDB );
-    assert ( db );
+    assert ( this->mDB );
 
     bool result = false;
     
-    db.exec (
+    this->mDB.exec (
         "SELECT EXISTS ( SELECT 1 FROM padamose WHERE key = ?1 )",
         [ key ]( sqlite3_stmt* stmt ) {
             sqlite3_bind_text ( stmt, 1, key.c_str (), ( int )key.size (), SQLITE_TRANSIENT );
@@ -102,10 +99,9 @@ bool SQLiteStringStore::AbstractStringStore_hasString ( string key ) const {
 //----------------------------------------------------------------//
 void SQLiteStringStore::AbstractStringStore_setString ( string key, string value ) {
 
-    SQLite& db = this->mDB;
-    assert ( db );
+    assert ( this->mDB );
     
-    db.exec (
+    this->mDB.exec (
         "REPLACE INTO padamose ( key, value ) VALUES ( ?1, ?2 )",
         [ key, value ]( sqlite3_stmt* stmt ) {
             sqlite3_bind_text ( stmt, 1, key.c_str (), ( int )key.size (), SQLITE_TRANSIENT );
