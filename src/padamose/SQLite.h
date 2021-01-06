@@ -12,6 +12,46 @@ namespace Padamose {
 class SQLite;
 
 //================================================================//
+// SQLiteStatement
+//================================================================//
+class SQLiteStatement {
+protected:
+
+    friend class SQLite;
+
+    mutable sqlite3_stmt*           mStmt;
+    mutable map < string, int >     mColumns;
+
+    //----------------------------------------------------------------//
+    void            affirmColumnNames       () const;
+
+public:
+
+    //----------------------------------------------------------------//
+    operator sqlite3_stmt* () {
+        return mStmt;
+    }
+
+    //----------------------------------------------------------------//
+    void            bind                    ( int key, int value );
+    void            bind                    ( int key, string value );
+                    SQLiteStatement         ( sqlite3_stmt* stmt );
+                    ~SQLiteStatement        ();
+    
+    //----------------------------------------------------------------//
+    template < typename TYPE > TYPE     getValue                ( int idx ) const;
+    template <> int                     getValue < int >        ( int idx ) const;
+    template <> string                  getValue < string >     ( int idx ) const;
+    
+    //----------------------------------------------------------------//
+    template < typename TYPE >
+    TYPE getValue ( string key ) const {
+        this->affirmColumnNames ();
+        return this->SQLiteStatement::getValue < TYPE >( this->mColumns.find ( key )->second );
+    }
+};
+
+//================================================================//
 // SQLiteResult
 //================================================================//
 class SQLiteResult {
@@ -37,9 +77,8 @@ public:
 class SQLite {
 public:
 
-    typedef std::function < int ( int, char**, char** )>                                SQLCallbackFunc;
-    typedef std::function < void ( sqlite3_stmt* )>                                     SQLPrepareCallbackFunc;
-    typedef std::function < void ( int, const map < string, int >&, sqlite3_stmt* )>    SQLRowCallbackFunc;
+    typedef std::function < void ( SQLiteStatement& )>                  SQLPrepareCallbackFunc;
+    typedef std::function < void ( int, const SQLiteStatement& )>       SQLRowCallbackFunc;
     
 protected:
 
@@ -48,7 +87,8 @@ protected:
     sqlite3*                mDB;
 
     //----------------------------------------------------------------//
-    SQLiteResult            prepare                 ( string sql, sqlite3_stmt** stmt, SQLPrepareCallbackFunc onPrepare = NULL );
+    SQLiteResult            innerExec               ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow, bool getColumnNames );
+    SQLiteResult            prepare                 ( string sql, sqlite3_stmt** stmt, SQLPrepareCallbackFunc onPrepare );
 
 public:
 
@@ -64,8 +104,9 @@ public:
 
     //----------------------------------------------------------------//
     SQLiteResult            close                   ();
-    SQLiteResult            exec                    ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow );
-    SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare = NULL, SQLRowCallbackFunc onRow = NULL );
+    SQLiteResult            exec                    ( string sql );
+    SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare );
+    SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow, bool getColumnNames = true );
     SQLiteResult            open                    ( string filename );
                             SQLite                  ();
                             SQLite                  ( string filename );

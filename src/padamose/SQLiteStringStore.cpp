@@ -45,9 +45,12 @@ void SQLiteStringStore::AbstractStringStore_eraseString ( string key ) {
     assert ( this->mDB );
     
     this->mDB.exec (
-         "DELETE FROM padamose WHERE key = ?1",
-        [ key ]( sqlite3_stmt* stmt ) {
-            sqlite3_bind_text ( stmt, 1, key.c_str (), ( int )key.size (), SQLITE_TRANSIENT );
+    
+        "DELETE FROM padamose WHERE key = ?1",
+        
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, key );
         }
     );
 }
@@ -60,14 +63,17 @@ string SQLiteStringStore::AbstractStringStore_getString ( string key ) const {
     string result;
     
     this->mDB.exec (
+    
         "SELECT value FROM padamose WHERE key = ?1",
-        [ key ]( sqlite3_stmt* stmt ) {
-            sqlite3_bind_text ( stmt, 1, key.c_str (), ( int )key.size (), SQLITE_TRANSIENT );
+        
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, key );
         },
-        [ &result ]( int row, const map < string, int >& columns, sqlite3_stmt* stmt ) {
-            UNUSED ( row );
-            UNUSED ( columns );
-            result = ( cc8* )sqlite3_column_text ( stmt, 0 );
+        
+        //--------------------------------//
+        [ & ]( int, const SQLiteStatement& stmt ) {
+            result = stmt.getValue < string >( 0 );
         }
     );
 
@@ -82,14 +88,17 @@ bool SQLiteStringStore::AbstractStringStore_hasString ( string key ) const {
     bool result = false;
     
     this->mDB.exec (
+    
         "SELECT EXISTS ( SELECT 1 FROM padamose WHERE key = ?1 )",
-        [ key ]( sqlite3_stmt* stmt ) {
-            sqlite3_bind_text ( stmt, 1, key.c_str (), ( int )key.size (), SQLITE_TRANSIENT );
+        
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, key );
         },
-        [ &result ]( int row, const map < string, int >& columns, sqlite3_stmt* stmt ) {
-            UNUSED ( row );
-            UNUSED ( columns );
-            result = ( sqlite3_column_int ( stmt, 0 ) == 1 );
+        
+        //--------------------------------//
+        [ & ]( int row, const SQLiteStatement& stmt ) {
+            result = ( stmt.getValue < int >( 0 ) == 1 );
         }
     );
 
@@ -102,10 +111,13 @@ void SQLiteStringStore::AbstractStringStore_setString ( string key, string value
     assert ( this->mDB );
     
     this->mDB.exec (
+    
         "REPLACE INTO padamose ( key, value ) VALUES ( ?1, ?2 )",
-        [ key, value ]( sqlite3_stmt* stmt ) {
-            sqlite3_bind_text ( stmt, 1, key.c_str (), ( int )key.size (), SQLITE_TRANSIENT );
-            sqlite3_bind_text ( stmt, 2, value.c_str (), ( int )value.size (), SQLITE_TRANSIENT );
+        
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, key );
+            stmt.bind ( 2, value );
         }
     );
 }

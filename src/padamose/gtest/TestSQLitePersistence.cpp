@@ -26,7 +26,6 @@ TEST ( SQLitePersistence, test_sqlite_string_store ) {
     if ( exists ( SQLITE_FILE )) {
         remove ( SQLITE_FILE );
     }
-
     ASSERT_EQ ( exists ( SQLITE_FILE ), false );
 
     {

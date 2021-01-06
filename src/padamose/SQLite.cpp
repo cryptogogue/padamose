@@ -6,6 +6,58 @@
 namespace Padamose {
 
 //================================================================//
+// SQLiteStatement
+//================================================================//
+
+//----------------------------------------------------------------//
+void SQLiteStatement::affirmColumnNames () const {
+
+    if ( this->mColumns.size () > 0 ) return;
+    
+    int nCols = sqlite3_column_count ( this->mStmt );
+    for ( int i = 0; i < nCols; i++ ) {
+        string name = ( char* )sqlite3_column_name ( this->mStmt, i );
+        this->mColumns [ name ] = i;
+    }
+}
+
+//----------------------------------------------------------------//
+void SQLiteStatement::bind ( int key, int value ) {
+
+    sqlite3_bind_int ( this->mStmt, key, value );
+}
+
+//----------------------------------------------------------------//
+void SQLiteStatement::bind ( int key, string value ) {
+
+    sqlite3_bind_text ( this->mStmt, key, value.c_str (), ( int )value.size (), SQLITE_TRANSIENT );
+}
+
+//----------------------------------------------------------------//
+template <>
+int SQLiteStatement::getValue < int >( int idx ) const {
+	
+	return ( int )sqlite3_column_int ( this->mStmt, idx );
+}
+
+//----------------------------------------------------------------//
+template <>
+string SQLiteStatement::getValue < string >( int idx ) const {
+	
+	return ( cc8* )sqlite3_column_text ( this->mStmt, idx );
+}
+
+//----------------------------------------------------------------//
+SQLiteStatement::SQLiteStatement ( sqlite3_stmt* stmt ) :
+    mStmt ( stmt ) {
+    assert ( this->mStmt );
+}
+
+//----------------------------------------------------------------//
+SQLiteStatement::~SQLiteStatement () {
+}
+
+//================================================================//
 // SQLiteResult
 //================================================================//
 
@@ -57,43 +109,48 @@ SQLiteResult SQLite::close () {
 }
 
 //----------------------------------------------------------------//
-SQLiteResult SQLite::exec ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow ) {
+SQLiteResult SQLite::exec ( string sql ) {
 
-    int rows = 0;
-    
-    map < string, int > columns;
-    
-    while ( true ) {
-        
-        if ( sqlite3_step ( stmt ) != SQLITE_ROW ) break;
-        
-        if ( rows == 0 ){
-            int nCols = sqlite3_column_count ( stmt );
-            for ( int i = 0; i < nCols; i++ ) {
-                cc8* name = ( char* )sqlite3_column_name ( stmt, i );
-                columns [ name ] = i;
-            }
-        }
-        if ( onRow ) {
-            onRow ( rows, columns, stmt );
-        }
-        rows++;
-    }
-    return SQLiteResult ( *this, sqlite3_reset ( stmt ) );
+    return this->exec ( sql, NULL, ( SQLRowCallbackFunc )NULL );
 }
 
 //----------------------------------------------------------------//
-SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow ) {
+SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare ) {
+
+    return this->exec ( sql, onPrepare, ( SQLRowCallbackFunc )NULL, false );
+}
+
+//----------------------------------------------------------------//
+SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow, bool getColumnNames ) {
     
     sqlite3_stmt* stmt;
     
     SQLiteResult result = this->prepare ( sql, &stmt, onPrepare );
     if ( !result ) return result;
 
-    result = this->exec ( stmt, onRow );
+    result = this->innerExec ( stmt, onRow, getColumnNames );
     sqlite3_finalize ( stmt );
     
     return result;
+}
+
+//----------------------------------------------------------------//
+SQLiteResult SQLite::innerExec ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow, bool getColumnNames ) {
+
+    int rows = 0;
+    
+    SQLiteStatement statement ( stmt );
+    
+    while ( true ) {
+        
+        if ( sqlite3_step ( stmt ) != SQLITE_ROW ) break;
+        
+        if ( onRow ) {
+            onRow ( rows, statement );
+        }
+        rows++;
+    }
+    return SQLiteResult ( *this, sqlite3_reset ( stmt ) );
 }
 
 //----------------------------------------------------------------//
@@ -118,7 +175,8 @@ SQLiteResult SQLite::prepare ( string sql, sqlite3_stmt** stmt, SQLPrepareCallba
     }
     
     if ( *stmt && onPrepare ) {
-        onPrepare ( *stmt );
+        SQLiteStatement statement ( *stmt );
+        onPrepare ( statement );
     }
     
     return result;
@@ -146,7 +204,6 @@ SQLite::SQLite ( string filename ) :
     
     this->open ( filename );
 }
-
 
 //----------------------------------------------------------------//
 SQLite::~SQLite () {
