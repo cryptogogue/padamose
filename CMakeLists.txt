@@ -44,7 +44,8 @@ target_sources ( padamose
         src/padamose/MutableVersionedCollection.cpp
         src/padamose/RedisServerProc.cpp
         src/padamose/RedisStringStore.cpp
-        src/padamose/StringStorePersistenceProvider.cpp
+        src/padamose/SQLite.cpp
+        src/padamose/SQLiteStringStore.cpp
         src/padamose/StringStoreVersionedBranch.cpp
         src/padamose/Variant.cpp
         src/padamose/VersionedCollectionSnapshot.cpp

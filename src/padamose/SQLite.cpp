@@ -117,25 +117,25 @@ SQLiteResult SQLite::exec ( string sql ) {
 //----------------------------------------------------------------//
 SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare ) {
 
-    return this->exec ( sql, onPrepare, ( SQLRowCallbackFunc )NULL, false );
+    return this->exec ( sql, onPrepare, ( SQLRowCallbackFunc )NULL );
 }
 
 //----------------------------------------------------------------//
-SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow, bool getColumnNames ) {
+SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow ) {
     
     sqlite3_stmt* stmt;
     
     SQLiteResult result = this->prepare ( sql, &stmt, onPrepare );
     if ( !result ) return result;
 
-    result = this->innerExec ( stmt, onRow, getColumnNames );
+    result = this->innerExec ( stmt, onRow );
     sqlite3_finalize ( stmt );
     
     return result;
 }
 
 //----------------------------------------------------------------//
-SQLiteResult SQLite::innerExec ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow, bool getColumnNames ) {
+SQLiteResult SQLite::innerExec ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow ) {
 
     int rows = 0;
     

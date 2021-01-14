@@ -97,7 +97,7 @@ bool SQLiteStringStore::AbstractStringStore_hasString ( string key ) const {
         },
         
         //--------------------------------//
-        [ & ]( int row, const SQLiteStatement& stmt ) {
+        [ & ]( int, const SQLiteStatement& stmt ) {
             result = ( stmt.getValue < int >( 0 ) == 1 );
         }
     );

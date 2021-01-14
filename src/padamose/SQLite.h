@@ -40,8 +40,6 @@ public:
     
     //----------------------------------------------------------------//
     template < typename TYPE > TYPE     getValue                ( int idx ) const;
-    template <> int                     getValue < int >        ( int idx ) const;
-    template <> string                  getValue < string >     ( int idx ) const;
     
     //----------------------------------------------------------------//
     template < typename TYPE >
@@ -50,6 +48,10 @@ public:
         return this->SQLiteStatement::getValue < TYPE >( this->mColumns.find ( key )->second );
     }
 };
+
+//----------------------------------------------------------------//
+template <> int         SQLiteStatement::getValue < int >           ( int idx ) const;
+template <> string      SQLiteStatement::getValue < string >        ( int idx ) const;
 
 //================================================================//
 // SQLiteResult
@@ -87,7 +89,7 @@ protected:
     sqlite3*                mDB;
 
     //----------------------------------------------------------------//
-    SQLiteResult            innerExec               ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow, bool getColumnNames );
+    SQLiteResult            innerExec               ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow );
     SQLiteResult            prepare                 ( string sql, sqlite3_stmt** stmt, SQLPrepareCallbackFunc onPrepare );
 
 public:
@@ -106,7 +108,7 @@ public:
     SQLiteResult            close                   ();
     SQLiteResult            exec                    ( string sql );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare );
-    SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow, bool getColumnNames = true );
+    SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow );
     SQLiteResult            open                    ( string filename );
                             SQLite                  ();
                             SQLite                  ( string filename );
