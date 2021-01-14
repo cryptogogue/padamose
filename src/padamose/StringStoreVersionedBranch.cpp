@@ -125,9 +125,10 @@ Variant StringStoreVersionedBranch::getValueVariantForVersion ( string key, size
     const AbstractStringStore& store = this->mProvider;
 
     string keyForValueByVersion = this->formatKeyForValueByVersion ( key, version );
+    
+    assert ( store.hasString ( keyForValueByVersion )); // TODO: throw exception
+    
     string value = store.get < string >( keyForValueByVersion, "" );
-    assert ( value.size () > 0 ); // TODO: throw exception
-
     Variant strVariant ( value );
 
     string keyForValueStackType = this->formatKeyForValueStackType ( key );
@@ -578,7 +579,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abst
         
         size_t version = this->mVersion + i;
         
-        string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( i );
+        string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( version );
         size_t layerSize = store.get < u64 >( keyForLayerSizeByVersion, 0 );
         
         for ( size_t j = 0; j < layerSize; ++j ) {

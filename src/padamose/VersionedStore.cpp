@@ -127,14 +127,6 @@ void VersionedStore::pushVersion () {
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
-void VersionedStore::reset ( size_t version ) {
-
-    this->revert ( version );
-    this->clearVersion ();
-}
-
-//----------------------------------------------------------------//
 /** \brief Revert to a previous version.
  
     This method may trigger branch optimizations and deletions. Once
@@ -171,6 +163,14 @@ void VersionedStore::revert ( size_t version ) {
         this->mVersion = version;
         this->mSourceBranch->optimize ();
     }
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void VersionedStore::revertAndClear ( size_t version ) {
+
+    this->revert ( version );
+    this->clearVersion ();
 }
 
 //----------------------------------------------------------------//

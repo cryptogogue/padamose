@@ -67,17 +67,34 @@ TEST ( SQLitePersistence, test_sqlite_string_store ) {
 //----------------------------------------------------------------//
 TEST ( SQLitePersistence, test_sqlite_persistence ) {
 
-    shared_ptr < SQLiteStringStore > stringStore = make_shared < SQLiteStringStore >( SQLITE_FILE );
+    {
+        shared_ptr < SQLiteStringStore > stringStore = make_shared < SQLiteStringStore >( SQLITE_FILE );
+        testWithProvider ( stringStore );
 
-    testWithProvider ( stringStore );
+        VersionedStore store ( stringStore, "master" );
 
-    VersionedStore store ( stringStore, "master" );
-
-    ASSERT_EQ ( store.getVersion (), 3 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
+        ASSERT_EQ ( store.getVersion (), 3 );
+        ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
+        ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
+        ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
+        ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
+        
+        store.revert ( 2 );
+        
+        ASSERT_EQ ( store.getVersion (), 2 );
+        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR2 );
+        
+        store.persist ( stringStore, "master" );
+    }
+    
+    {
+        shared_ptr < SQLiteStringStore > stringStore = make_shared < SQLiteStringStore >( SQLITE_FILE );
+        
+        VersionedStore store ( stringStore, "master" );
+        
+        ASSERT_EQ ( store.getVersion (), 2 );
+        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR2 );
+    }
     
     ASSERT_EQ ( remove ( SQLITE_FILE ), 0 );
     ASSERT_EQ ( exists ( SQLITE_FILE ), false );

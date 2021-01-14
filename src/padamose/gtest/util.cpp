@@ -30,12 +30,23 @@ void testWithProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
 
         store.setValue < string >( KEY0, STR0 );
         store.pushVersion (); // version 1
+        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
+        
         store.setValue < string >( KEY0, STR1 );
         store.pushVersion (); // version 2
+        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR1 );
+        
+        store.persist ( provider, "master" );
+        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR1 );
+        
         store.setValue < string >( KEY0, STR2 );
         store.pushVersion (); // version 3
+        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR2 );
+        
+        store.persist ( provider, "master" );
+        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR2 );
+        
         store.setValue < string >( KEY0, STR3 );
-
         ASSERT_EQ ( store.getVersion (), 3 );
         ASSERT_EQ ( store.getValue < string >( KEY0 ), STR3 );
         
