@@ -9,6 +9,7 @@ add_subdirectory ( 3rd-party/googletest EXCLUDE_FROM_ALL )
 add_subdirectory ( 3rd-party/hiredis EXCLUDE_FROM_ALL )
 add_subdirectory ( 3rd-party/lognosis EXCLUDE_FROM_ALL )
 add_subdirectory ( 3rd-party/reproc EXCLUDE_FROM_ALL )
+add_subdirectory ( 3rd-party/sqlite-3.34.0 EXCLUDE_FROM_ALL )
 
 add_library ( padamose "" )
 
@@ -27,6 +28,7 @@ target_include_directories ( padamose
         3rd-party/lognosis/3rd-party/
         3rd-party/reproc/reproc/include/
         3rd-party/reproc/reproc++/include/
+        3rd-party/sqlite-3.34.0/
 )
 
 target_sources ( padamose
