@@ -21,6 +21,9 @@ protected:
     mutable SQLite  mDB;
 
     //----------------------------------------------------------------//
+    void            open                    ( string filename, string prefix = "" );
+                    
+    //----------------------------------------------------------------//
     void            AbstractStringStore_eraseString     ( string key ) override;
     string          AbstractStringStore_getString       ( string key ) const override;
     bool            AbstractStringStore_hasString       ( string key ) const override;
@@ -35,8 +38,16 @@ public:
 
     //----------------------------------------------------------------//
     void            clear                   ();
-                    SQLiteStringStore       ( string filename, string prefix = "" );
+                    SQLiteStringStore       ();
     virtual         ~SQLiteStringStore      ();
+    
+    //----------------------------------------------------------------//
+    static shared_ptr < SQLiteStringStore > make ( string filename, string prefix = "" ) {
+    
+        shared_ptr < SQLiteStringStore > store = make_shared < SQLiteStringStore >();
+        store->open ( filename, prefix );
+        return store;
+    }
 };
 
 } // namespace Padamose

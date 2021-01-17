@@ -16,7 +16,8 @@ class StringStoreVersionedBranch;
 //================================================================//
 // TODO: doxygen
 class AbstractStringStore :
-    public AbstractPersistenceProvider {
+    public AbstractPersistenceProvider,
+    public enable_shared_from_this < AbstractStringStore > {
 protected:
 
     friend class StringStoreVersionedBranch;

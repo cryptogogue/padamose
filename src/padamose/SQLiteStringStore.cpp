@@ -20,15 +20,21 @@ void SQLiteStringStore::clear () {
 }
 
 //----------------------------------------------------------------//
-SQLiteStringStore::SQLiteStringStore ( string filename, string prefix ) :
-    AbstractStringStore ( prefix ) {
-    
+void SQLiteStringStore::open ( string filename, string prefix ) {
+
+    this->mPrefix = prefix;
+
     this->mDB.open ( filename );
     assert ( this->mDB );
 
     this->mDB.exec ( "CREATE TABLE IF NOT EXISTS padamose ( key TEXT PRIMARY KEY, value TEXT NOT NULL )" );
     
     this->loadFromStore ();
+}
+
+//----------------------------------------------------------------//
+SQLiteStringStore::SQLiteStringStore () :
+    AbstractStringStore ( "" ) {
 }
 
 //----------------------------------------------------------------//

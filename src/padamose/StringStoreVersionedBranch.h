@@ -6,10 +6,9 @@
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractPersistentVersionedBranch.h>
+#include <padamose/AbstractStringStore.h>
 
 namespace Padamose {
-
-class AbstractStringStore;
 
 //================================================================//
 // StringStoreVersionedBranch
@@ -24,9 +23,9 @@ private:
     static const size_t INVALID_LAYER_INDEX             = ( size_t )-1;
     static const size_t INVALID_VERSION                 = ( size_t )-1;
 
-    string                          mBranchID;
-    string                          mBranchIDWithPrefix;
-    AbstractStringStore&            mProvider;
+    string                                  mBranchID;
+    string                                  mBranchIDWithPrefix;
+    shared_ptr < AbstractStringStore >      mProvider;
 
     //----------------------------------------------------------------//
     string                          formatKeyForLayerSizeByVersion          ( size_t version ) const;
@@ -65,7 +64,7 @@ private:
 public:
 
     //----------------------------------------------------------------//
-                        StringStoreVersionedBranch          ( AbstractStringStore& provider, string branchID );
+                        StringStoreVersionedBranch          ( shared_ptr < AbstractStringStore > provider, string branchID );
                         ~StringStoreVersionedBranch         ();
 };
 

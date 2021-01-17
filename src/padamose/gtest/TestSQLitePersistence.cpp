@@ -29,7 +29,8 @@ TEST ( SQLitePersistence, test_sqlite_string_store ) {
     ASSERT_EQ ( exists ( SQLITE_FILE ), false );
 
     {
-        SQLiteStringStore store ( SQLITE_FILE );
+        SQLiteStringStore store;
+        store.open ( SQLITE_FILE );
 
         ASSERT_EQ (( bool )store, true );
         ASSERT_EQ ( exists ( SQLITE_FILE ), true );
@@ -68,7 +69,7 @@ TEST ( SQLitePersistence, test_sqlite_string_store ) {
 TEST ( SQLitePersistence, test_sqlite_persistence ) {
 
     {
-        shared_ptr < SQLiteStringStore > stringStore = make_shared < SQLiteStringStore >( SQLITE_FILE );
+        shared_ptr < SQLiteStringStore > stringStore = SQLiteStringStore::make ( SQLITE_FILE );
         testWithProvider ( stringStore );
 
         VersionedStore store ( stringStore, "master" );
@@ -88,7 +89,7 @@ TEST ( SQLitePersistence, test_sqlite_persistence ) {
     }
     
     {
-        shared_ptr < SQLiteStringStore > stringStore = make_shared < SQLiteStringStore >( SQLITE_FILE );
+        shared_ptr < SQLiteStringStore > stringStore = SQLiteStringStore::make ( SQLITE_FILE );
         
         VersionedStore store ( stringStore, "master" );
         

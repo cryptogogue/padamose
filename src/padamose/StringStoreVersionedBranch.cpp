@@ -122,7 +122,7 @@ string StringStoreVersionedBranch::formatKeyForVersion () const {
 // TODO: doxygen
 Variant StringStoreVersionedBranch::getValueVariantForVersion ( string key, size_t version ) const {
 
-    const AbstractStringStore& store = this->mProvider;
+    const AbstractStringStore& store = *this->mProvider;
 
     string keyForValueByVersion = this->formatKeyForValueByVersion ( key, version );
     
@@ -154,7 +154,7 @@ Variant StringStoreVersionedBranch::getValueVariantForVersion ( string key, size
 // TODO: doxygen
 void StringStoreVersionedBranch::loadFromStore () {
     
-    const AbstractStringStore& store = this->mProvider;
+    const AbstractStringStore& store = *this->mProvider;
     
     string keyForVersion = this->formatKeyForVersion ();
     this->mVersion = store.get < u64 >( keyForVersion, INVALID_VERSION );
@@ -163,7 +163,7 @@ void StringStoreVersionedBranch::loadFromStore () {
     string keyForSourceBranchID = this->formatKeyForSourceBranchID ();
     string sourceBranchID = store.get < string >( keyForSourceBranchID, "" );
     if ( sourceBranchID.size ()) {
-        this->mSourceBranch = this->mProvider.affirmBranch ( sourceBranchID )->shared_from_this ();
+        this->mSourceBranch = this->mProvider->affirmBranch ( sourceBranchID )->shared_from_this ();
     }
     
     if ( this->mSourceBranch ) {
@@ -173,12 +173,14 @@ void StringStoreVersionedBranch::loadFromStore () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-StringStoreVersionedBranch::StringStoreVersionedBranch ( AbstractStringStore& provider, string branchID ) :
+StringStoreVersionedBranch::StringStoreVersionedBranch ( shared_ptr < AbstractStringStore > provider, string branchID ) :
     mBranchID ( branchID ),
     mProvider ( provider ) {
     
+    assert ( provider );
+    
     ostringstream stream;
-    stream << provider.getPrefix () << this->mBranchID;
+    stream << provider->getPrefix () << this->mBranchID;
     this->mBranchIDWithPrefix = stream.str ();
 }
 
@@ -186,10 +188,10 @@ StringStoreVersionedBranch::StringStoreVersionedBranch ( AbstractStringStore& pr
 // TODO: doxygen
 StringStoreVersionedBranch::~StringStoreVersionedBranch () {
 
-    this->mProvider.eraseBranch ( *this );
+    this->mProvider->eraseBranch ( *this );
     this->setBranch ( NULL );
 
-    if ( !this->mProvider.isFrozen ()) {
+    if ( !this->mProvider->isFrozen ()) {
         this->AbstractVersionedBranch_truncate ( this->mVersion );
     }
 }
@@ -202,7 +204,7 @@ StringStoreVersionedBranch::~StringStoreVersionedBranch () {
 // TODO: doxygen
 const AbstractPersistenceProvider* StringStoreVersionedBranch::AbstractPersistentVersionedBranch_getProvider () const {
 
-    return &this->mProvider;
+    return this->mProvider.get ();
 }
 
 //----------------------------------------------------------------//
@@ -226,7 +228,7 @@ const AbstractPersistenceProvider* StringStoreVersionedBranch::AbstractPersisten
 */
 shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersionedBranch_fork ( size_t baseVersion ) {
     
-    const AbstractStringStore& store = this->mProvider;
+    const AbstractStringStore& store = *this->mProvider;
     
     shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
 
@@ -256,7 +258,7 @@ shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersi
 */
 size_t StringStoreVersionedBranch::AbstractVersionedBranch_getTopVersion () const {
 
-    const AbstractStringStore& store = this->mProvider;
+    const AbstractStringStore& store = *this->mProvider;
 
     // get the top version
     string keyForTopVersion = this->formatKeyForTopVersion ();
@@ -267,7 +269,7 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranch_getTopVersion () cons
 // TODO: doxygen
 size_t StringStoreVersionedBranch::AbstractVersionedBranch_getValueNextVersion ( string key, size_t version ) const {
 
-    const AbstractStringStore& store = this->mProvider;
+    const AbstractStringStore& store = *this->mProvider;
     
     // get the index of the current version
     string keyForValueStackIndexByVersion = this->formatKeyForValueStackIndexByVersion ( key, version );
@@ -288,7 +290,7 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranch_getValueNextVersion (
 // TODO: doxygen
 size_t StringStoreVersionedBranch::AbstractVersionedBranch_getValuePrevVersion ( string key, size_t version ) const {
 
-    const AbstractStringStore& store = this->mProvider;
+    const AbstractStringStore& store = *this->mProvider;
 
     // get the index of the current version
     string keyForValueStackIndexByVersion = this->formatKeyForValueStackIndexByVersion ( key, version );
@@ -306,7 +308,7 @@ Variant StringStoreVersionedBranch::AbstractVersionedBranch_getValueVariant ( si
 
     if ( this->mVersion <= version ) {
 
-        const AbstractStringStore& store = this->mProvider;
+        const AbstractStringStore& store = *this->mProvider;
 
         string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
         size_t top = store.get < u64 >( keyForValueStackSize, 0 );
@@ -334,7 +336,7 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_getValueVersionExtents 
 
     if ( upperBound < this->mVersion ) return false; // can't have any matching version for given bound
 
-    const AbstractStringStore& store = this->mProvider;
+    const AbstractStringStore& store = *this->mProvider;
     
     string keyForValueStackSize = formatKeyForValueStackSize ( key );
     size_t top = store.get < u64 >( keyForValueStackSize, 0 );
@@ -367,7 +369,7 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_hasKey ( string key, si
 
     if ( this->mVersion <= upperBound ) {
 
-        const AbstractStringStore& store = this->mProvider;
+        const AbstractStringStore& store = *this->mProvider;
 
         string keyForValueVersionByStackIndex = formatKeyForValueVersionByStackIndex ( key, 0 );
         size_t valueVersion = store.get < u64 >( keyForValueVersionByStackIndex, INVALID_VERSION );
@@ -407,7 +409,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
 
     assert ( this->mVersion <= version );
 
-    AbstractStringStore& store = this->mProvider;
+    AbstractStringStore& store = *this->mProvider;
 
     string keyForValueByVersion = this->formatKeyForValueByVersion ( key, version );
 
@@ -473,7 +475,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
 
     if ( this->mVersion > topVersion ) return;
 
-    AbstractStringStore& store = this->mProvider;
+    AbstractStringStore& store = *this->mProvider;
 
     string keyForTopVersion = this->formatKeyForTopVersion ();
     size_t version = store.get < u64 >( keyForTopVersion, 0 );
@@ -569,7 +571,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abst
     
     this->optimize ();
     
-    AbstractStringStore& store = this->mProvider;
+    AbstractStringStore& store = *this->mProvider;
 
     string keyForTopVersion = this->formatKeyForTopVersion ();
     size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
@@ -609,11 +611,11 @@ bool StringStoreVersionedBranch::AbstractVersionedBranchClient_preventJoin () co
 // TODO: doxygen
 void StringStoreVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidChange () {
 
-    AbstractStringStore& store = this->mProvider;
+    AbstractStringStore& store = *this->mProvider;
     string keyForSourceBranchID = this->formatKeyForSourceBranchID ();
 
     if ( this->mSourceBranch ) {
-        string sourceBranchID = this->mProvider.getIDForBranch ( *this->mSourceBranch );
+        string sourceBranchID = this->mProvider->getIDForBranch ( *this->mSourceBranch );
         store.set < string >( keyForSourceBranchID, sourceBranchID );
     }
     else {

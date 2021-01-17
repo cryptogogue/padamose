@@ -16,8 +16,7 @@ class AbstractVersionedBranch;
 // AbstractPersistenceProvider
 //================================================================//
 // TODO: doxygen
-class AbstractPersistenceProvider :
-    public enable_shared_from_this < AbstractPersistenceProvider > {
+class AbstractPersistenceProvider {
 protected:
 
     friend class AbstractPersistentVersionedBranch;

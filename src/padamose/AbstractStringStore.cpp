@@ -21,7 +21,7 @@ shared_ptr < StringStoreVersionedBranch > AbstractStringStore::affirmBranch ( st
         return weakBranch.lock ();
     }
 
-    shared_ptr < StringStoreVersionedBranch > branch = make_shared < StringStoreVersionedBranch >( *this, branchID );
+    shared_ptr < StringStoreVersionedBranch > branch = make_shared < StringStoreVersionedBranch >( this->shared_from_this (), branchID );
     branch->loadFromStore ();
     this->insertBranch ( branch );
     
@@ -202,7 +202,7 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractStringStore::AbstractPe
 
     string branchID = this->makeBranchID ();
     
-    shared_ptr < StringStoreVersionedBranch > branch = make_shared < StringStoreVersionedBranch >( *this, branchID );
+    shared_ptr < StringStoreVersionedBranch > branch = make_shared < StringStoreVersionedBranch >( this->shared_from_this (), branchID );
     this->insertBranch ( branch );
     
     return branch;
