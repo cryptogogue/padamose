@@ -438,12 +438,12 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
         
         if ( version < ( this->mVersion + valueStackIndex )) {
         
-            LGN_LOG ( "volition", INFO, "Padamose is about to crash" );
-            LGN_LOG ( "volition", INFO, "KEY: %s", key.c_str ());
-            LGN_LOG ( "volition", INFO, "this->mVersion: %d", ( int )this->mVersion );
-            LGN_LOG ( "volition", INFO, "valueStackIndex: %d", ( int )valueStackIndex );
-            LGN_LOG ( "volition", INFO, "version: %d", ( int )version );
-            LGN_LOG ( "volition", INFO, "keyForValueStackSize: %s", keyForValueStackSize.c_str ());
+            LOG_F ( INFO, "Padamose is about to crash" );
+            LOG_F ( INFO, "KEY: %s", key.c_str ());
+            LOG_F ( INFO, "this->mVersion: %d", ( int )this->mVersion );
+            LOG_F ( INFO, "valueStackIndex: %d", ( int )valueStackIndex );
+            LOG_F ( INFO, "version: %d", ( int )version );
+            LOG_F ( INFO, "keyForValueStackSize: %s", keyForValueStackSize.c_str ());
         }
         
         // TODO: make this check more robust
