@@ -436,6 +436,16 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
         string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
         size_t valueStackIndex = store.get < u64 >( keyForValueStackSize, 0 );
         
+        if ( version < ( this->mVersion + valueStackIndex )) {
+        
+            LGN_LOG ( "volition", INFO, "Padamose is about to crash" );
+            LGN_LOG ( "volition", INFO, "KEY: %s", key.c_str ());
+            LGN_LOG ( "volition", INFO, "this->mVersion: %d", ( int )this->mVersion );
+            LGN_LOG ( "volition", INFO, "valueStackIndex: %d", ( int )valueStackIndex );
+            LGN_LOG ( "volition", INFO, "version: %d", ( int )version );
+            LGN_LOG ( "volition", INFO, "keyForValueStackSize: %s", keyForValueStackSize.c_str ());
+        }
+        
         // TODO: make this check more robust
         assert (( this->mVersion + valueStackIndex ) <= version ); // we don't support inserting into the middle of a stack.
         store.set < u64 >( keyForValueStackSize, valueStackIndex + 1 ); // new value stack top.
