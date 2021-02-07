@@ -46,6 +46,22 @@ SQLiteStringStore::~SQLiteStringStore () {
 //================================================================//
 
 //----------------------------------------------------------------//
+void SQLiteStringStore::AbstractPersistenceProvider_begin () {
+
+    assert ( this->mDB );
+    
+    this->mDB.exec ( "BEGIN TRANSACTION" );
+}
+
+//----------------------------------------------------------------//
+void SQLiteStringStore::AbstractPersistenceProvider_commit () {
+
+    assert ( this->mDB );
+    
+    this->mDB.exec ( "COMMIT TRANSACTION" );
+}
+
+//----------------------------------------------------------------//
 void SQLiteStringStore::AbstractStringStore_eraseString ( string key ) {
 
     assert ( this->mDB );

@@ -27,11 +27,15 @@ protected:
     bool                                    mIsFrozen;
 
     //----------------------------------------------------------------//
+    void                                begin           ();
+    void                                commit          ();
     void                                freeze          ();
     const VersionedStoreSnapshot&       getTag          ( string branchName ) const;
     bool                                hasTag          ( string branchName ) const;
     
     //----------------------------------------------------------------//
+    virtual void                                                AbstractPersistenceProvider_begin                   () = 0;
+    virtual void                                                AbstractPersistenceProvider_commit                  () = 0;
     virtual void                                                AbstractPersistenceProvider_flush                   () = 0;
     virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () = 0;
     virtual void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreSnapshot* snapshot ) = 0;

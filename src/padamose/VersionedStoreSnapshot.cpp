@@ -107,9 +107,22 @@ bool VersionedStoreSnapshot::hasValue ( string key, size_t version ) const {
 void VersionedStoreSnapshot::persist ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
     if ( this->mSourceBranch ) {
-        this->setPersistenceProvider ( provider );
-        this->mSourceBranch->persistSelf ( this->mProvider );
-        this->mProvider->tagBranch ( *this->mSourceBranch, branchName, this->mVersion );
+    
+        try {
+        
+            provider->begin ();
+    
+            this->setPersistenceProvider ( provider );
+            this->mSourceBranch->persistSelf ( this->mProvider );
+            this->mProvider->tagBranch ( *this->mSourceBranch, branchName, this->mVersion );
+            
+            provider->commit ();
+        }
+        catch ( ... ) {
+        
+            // TODO: try to recover and gracefully report the error
+            exit ( 1 );
+        }
     }
 }
 

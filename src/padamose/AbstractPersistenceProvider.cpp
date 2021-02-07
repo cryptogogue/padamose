@@ -23,6 +23,18 @@ AbstractPersistenceProvider::~AbstractPersistenceProvider () {
 }
 
 //----------------------------------------------------------------//
+void AbstractPersistenceProvider::begin () {
+
+    this->AbstractPersistenceProvider_begin ();
+}
+
+//----------------------------------------------------------------//
+void AbstractPersistenceProvider::commit () {
+
+    this->AbstractPersistenceProvider_commit ();
+}
+
+//----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractPersistenceProvider::flush () {
 

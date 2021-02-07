@@ -44,6 +44,14 @@ RedisStringStore::~RedisStringStore () {
 //================================================================//
 
 //----------------------------------------------------------------//
+void RedisStringStore::AbstractPersistenceProvider_begin () {
+}
+
+//----------------------------------------------------------------//
+void RedisStringStore::AbstractPersistenceProvider_commit () {
+}
+
+//----------------------------------------------------------------//
 void RedisStringStore::AbstractStringStore_eraseString ( string key ) {
 
     redisContext* c = ( redisContext* )this->mContext;

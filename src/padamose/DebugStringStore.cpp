@@ -34,6 +34,14 @@ void DebugStringStore::dump () const {
 //================================================================//
 
 //----------------------------------------------------------------//
+void DebugStringStore::AbstractPersistenceProvider_begin () {
+}
+
+//----------------------------------------------------------------//
+void DebugStringStore::AbstractPersistenceProvider_commit () {
+}
+
+//----------------------------------------------------------------//
 void DebugStringStore::AbstractStringStore_eraseString ( string key ) {
 
     this->mStrings.erase ( key );

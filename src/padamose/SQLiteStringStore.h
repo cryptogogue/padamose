@@ -24,10 +24,12 @@ protected:
     void            open                    ( string filename, string prefix = "" );
                     
     //----------------------------------------------------------------//
-    void            AbstractStringStore_eraseString     ( string key ) override;
-    string          AbstractStringStore_getString       ( string key ) const override;
-    bool            AbstractStringStore_hasString       ( string key ) const override;
-    void            AbstractStringStore_setString       ( string key, string value ) override;
+    void            AbstractPersistenceProvider_begin       () override;
+    void            AbstractPersistenceProvider_commit      () override;
+    void            AbstractStringStore_eraseString         ( string key ) override;
+    string          AbstractStringStore_getString           ( string key ) const override;
+    bool            AbstractStringStore_hasString           ( string key ) const override;
+    void            AbstractStringStore_setString           ( string key, string value ) override;
 
 public:
 
