@@ -68,7 +68,7 @@ s64 Variant::get () const {
         case UINT64_VARIANT:
             return ( int )this->getStrict < u64 >();
         case STRING_VARIANT:
-            return stoi ( this->getStrict < string >());
+            return stoll ( this->getStrict < string >());
     }
     return false;
 }
@@ -89,7 +89,7 @@ u64 Variant::get () const {
         case UINT64_VARIANT:
             return this->getStrict < u64 >();
         case STRING_VARIANT:
-            return stoi ( this->getStrict < string >());
+            return stoull ( this->getStrict < string >());
     }
     return false;
 }
