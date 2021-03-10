@@ -105,6 +105,7 @@ SQLiteResult SQLite::close () {
     if ( this->mDB ) {
         return SQLiteResult ( *this, sqlite3_close ( this->mDB ));
     }
+    this->mDB = NULL;
     return SQLiteResult ();
 }
 
