@@ -66,8 +66,10 @@ public:
 
     //----------------------------------------------------------------//
     operator        bool                () const;
+    static cc8*     getCodeName         ( int code );
     string          getMessage          () const;
     static bool     isErrorCode         ( int code );
+    void            reportWithAssert    () const;
                     SQLiteResult        ();
                     SQLiteResult        ( SQLite& sqlite, int result );
                     SQLiteResult        ( const SQLiteResult& other );
@@ -109,7 +111,7 @@ public:
     SQLiteResult            exec                    ( string sql );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow );
-    SQLiteResult            open                    ( string filename );
+    SQLiteResult            open                    ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE );
                             SQLite                  ();
                             SQLite                  ( string filename );
                             ~SQLite                 ();

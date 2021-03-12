@@ -32,7 +32,8 @@ using namespace std;
 
 #include <padamose/Exceptions.h>
 
-#define PDM_FILTER_ROOT "padamose"
+#define PDM_FILTER_ROOT     " @PADAMOSE "
+#define PDM_FILTER_SQLITE   " @SQLITE "
 
 #if !defined(UNUSED)
     #define UNUSED(x) ((void)(x))

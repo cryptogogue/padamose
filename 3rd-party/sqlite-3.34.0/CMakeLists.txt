@@ -6,7 +6,7 @@ set ( CMAKE_CXX_STANDARD 17 )
 add_library ( sqlite "" )
 
 add_definitions (
-    "-DSQLITE_THREADSAFE=0"
+    "-DSQLITE_THREADSAFE=2"
     "-DSQLITE_DEFAULT_MEMSTATUS=0"
     "-DSQLITE_OMIT_DECLTYPE"
     "-DSQLITE_OMIT_PROGRESS_CALLBACK"

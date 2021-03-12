@@ -114,7 +114,7 @@ void VersionedStore::pushVersion () {
     assert ( this->mSourceBranch );
 
     this->mVersion++;
-    LGN_LOG ( "padamose", INFO, "version: %d", ( int )this->mVersion );
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "version: %d", ( int )this->mVersion );
     
     if ( this->mVersion < this->mSourceBranch->getTopVersion ()) {
     
