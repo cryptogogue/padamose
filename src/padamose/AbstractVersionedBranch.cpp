@@ -366,7 +366,7 @@ void AbstractVersionedBranch::truncate ( size_t topVersion ) {
 void AbstractVersionedBranch::AbstractVersionedBranch_print ( string prefix ) const {
 
     LGN_LOG ( PDM_FILTER_TREE, INFO,
-        "%sbranch [%d-%d]: %p (refs: %d)",
+        "%s[%d-%d]: branch %p (refs: %d)",
         prefix.c_str (),
         ( int )this->mVersion,
         ( int )this->getTopVersion (),

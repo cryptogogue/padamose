@@ -101,31 +101,23 @@ TEST ( StringPersistence, test_branch_consolidation ) {
     
     store.setValue < string >( "KEY", "VERSION 0" );
     store.pushVersion ();
-//    store.persist ( provider, "master" );
+    store.persist ( provider, "master" );
     store.printTree ();
-//    provider->dump ();
-//
+    provider->dump ();
+
     store.setValue < string >( "KEY", "VERSION 1" );
     store.pushVersion ();
-//    store.persist ( provider, "master" );
+    store.persist ( provider, "master" );
     store.printTree ();
-//    provider->dump ();
+    provider->dump ();
 
     VersionedStore store2 ( store );
 
     store.setValue < string >( "KEY", "VERSION 2" );
     store.pushVersion ();
-//    store.persist ( provider, "master" );
+    store.persist ( provider, "master" );
     store.printTree ();
-//    provider->dump ();
-    
-//    store2 = store;
-//    store.persist ( provider, "master" );
-//    provider->dump ();
-//
-//    store2.takeSnapshot ( store );
-//    store2.revert ( 1 );
-//    provider->dump ();
+    provider->dump ();
 }
 
 } // namespace Test

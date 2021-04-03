@@ -174,7 +174,7 @@ void AbstractVersionedBranchClient::setBranch ( shared_ptr < AbstractVersionedBr
 //----------------------------------------------------------------//
 void AbstractVersionedBranchClient::AbstractVersionedBranchClient_print ( string prefix ) const {
 
-    LGN_LOG ( PDM_FILTER_TREE, INFO, "%sclient [%d]: %p", prefix.c_str (), ( int )this->mVersion, this );
+    LGN_LOG ( PDM_FILTER_TREE, INFO, "%s[%d]: client %p", prefix.c_str (), ( int )this->mVersion, this );
 }
 
 } // namespace Padamose

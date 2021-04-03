@@ -397,8 +397,8 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < 
 // TODO: doxygen
 void StringStoreVersionedBranch::AbstractVersionedBranch_print ( string prefix ) const {
 
-    printf (
-        "%sstringStore [%d-%d]: %p (refs: %d)\n",
+    LGN_LOG ( PDM_FILTER_TREE, INFO,
+        "%s[%d-%d]: stringStore %p (refs: %d)\n",
         prefix.c_str (),
         ( int )this->mVersion,
         ( int )this->getTopVersion (),
