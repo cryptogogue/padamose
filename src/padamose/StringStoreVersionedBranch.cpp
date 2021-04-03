@@ -394,6 +394,20 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < 
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+void StringStoreVersionedBranch::AbstractVersionedBranch_print ( string prefix ) const {
+
+    printf (
+        "%sstringStore [%d-%d]: %p (refs: %d)\n",
+        prefix.c_str (),
+        ( int )this->mVersion,
+        ( int )this->getTopVersion (),
+        this,
+        ( int )this->mDirectReferenceCount
+    );
+}
+
+//----------------------------------------------------------------//
 /** \brief Sets a value at the given version. If the version doesn't exist,
     a new layer will be created. Also creates a value stack if none exists. Throws
     a TypeMismatchOnAssignException if a value of a different type has already been
@@ -437,7 +451,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
         size_t valueStackIndex = store.get < u64 >( keyForValueStackSize, 0 );
         
         if ( version < ( this->mVersion + valueStackIndex )) {
-        
+            
             LOG_F ( INFO, "Padamose is about to crash" );
             LOG_F ( INFO, "KEY: %s", key.c_str ());
             LOG_F ( INFO, "this->mVersion: %d", ( int )this->mVersion );

@@ -92,5 +92,41 @@ TEST ( StringPersistence, test_persistence ) {
     printf ( "OK!\n" );
 }
 
+//----------------------------------------------------------------//
+TEST ( StringPersistence, test_branch_consolidation ) {
+
+    shared_ptr < DebugStringStore > provider = make_shared < DebugStringStore >();
+    
+    VersionedStore store;
+    
+    store.setValue < string >( "KEY", "VERSION 0" );
+    store.pushVersion ();
+//    store.persist ( provider, "master" );
+    store.printTree ();
+//    provider->dump ();
+//
+    store.setValue < string >( "KEY", "VERSION 1" );
+    store.pushVersion ();
+//    store.persist ( provider, "master" );
+    store.printTree ();
+//    provider->dump ();
+
+    VersionedStore store2 ( store );
+
+    store.setValue < string >( "KEY", "VERSION 2" );
+    store.pushVersion ();
+//    store.persist ( provider, "master" );
+    store.printTree ();
+//    provider->dump ();
+    
+//    store2 = store;
+//    store.persist ( provider, "master" );
+//    provider->dump ();
+//
+//    store2.takeSnapshot ( store );
+//    store2.revert ( 1 );
+//    provider->dump ();
+}
+
 } // namespace Test
 } // namespace Padamose

@@ -362,6 +362,20 @@ void AbstractVersionedBranch::truncate ( size_t topVersion ) {
 //================================================================//
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::AbstractVersionedBranch_print ( string prefix ) const {
+
+    LGN_LOG ( PDM_FILTER_TREE, INFO,
+        "%sbranch [%d-%d]: %p (refs: %d)",
+        prefix.c_str (),
+        ( int )this->mVersion,
+        ( int )this->getTopVersion (),
+        this,
+        ( int )this->mDirectReferenceCount
+    );
+}
+
+//----------------------------------------------------------------//
 /** \brief Implementation of virtual method. Always returns true.
     \return     Always returns true.
 */
@@ -385,6 +399,21 @@ size_t AbstractVersionedBranch::AbstractVersionedBranchClient_getJoinScore () co
 */
 size_t AbstractVersionedBranch::AbstractVersionedBranchClient_getVersionDependency () const {
     return this->mVersion;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::AbstractVersionedBranchClient_print ( string prefix ) const {
+
+    this->AbstractVersionedBranch_print ( prefix );
+    
+    prefix += "....";
+    
+    set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
+    for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
+        AbstractVersionedBranchClient* client = *clientIt;
+        client->AbstractVersionedBranchClient_print ( prefix );
+    }
 }
 
 //----------------------------------------------------------------//

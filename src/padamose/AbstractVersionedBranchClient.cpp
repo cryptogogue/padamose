@@ -92,6 +92,17 @@ bool AbstractVersionedBranchClient::preventJoin () const {
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranchClient::printTree () const {
+
+    const AbstractVersionedBranchClient* base = this;
+    while ( base->mSourceBranch ) {
+        base = base->mSourceBranch.get ();
+    }
+    base->AbstractVersionedBranchClient_print ( "" );
+}
+
+//----------------------------------------------------------------//
 /** \brief Remove the client from the existing branch (if any) and add
     it to the new branch without changing the client's version.
  
@@ -154,6 +165,16 @@ void AbstractVersionedBranchClient::setBranch ( shared_ptr < AbstractVersionedBr
     if ( didChange ) {
         this->AbstractVersionedBranchClient_sourceBranchDidChange ();
     }
+}
+
+//================================================================//
+// overrides
+//================================================================//
+
+//----------------------------------------------------------------//
+void AbstractVersionedBranchClient::AbstractVersionedBranchClient_print ( string prefix ) const {
+
+    LGN_LOG ( PDM_FILTER_TREE, INFO, "%sclient [%d]: %p", prefix.c_str (), ( int )this->mVersion, this );
 }
 
 } // namespace Padamose

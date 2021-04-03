@@ -19,10 +19,7 @@ class SQLiteStringStore :
 protected:
 
     mutable SQLite  mDB;
-
-    //----------------------------------------------------------------//
-    void            open                    ( string filename, string prefix = "" );
-                    
+     
     //----------------------------------------------------------------//
     void            AbstractPersistenceProvider_begin       () override;
     void            AbstractPersistenceProvider_commit      () override;
@@ -40,6 +37,7 @@ public:
 
     //----------------------------------------------------------------//
     void            clear                   ();
+    void            open                    ( string filename, string prefix = "" );
                     SQLiteStringStore       ();
     virtual         ~SQLiteStringStore      ();
     

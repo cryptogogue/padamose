@@ -61,6 +61,7 @@ protected:
     bool            AbstractVersionedBranchClient_canJoin                   () const override;
     size_t          AbstractVersionedBranchClient_getJoinScore              () const override;
     size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
+    void            AbstractVersionedBranchClient_print                     ( string prefix ) const override;
     bool            AbstractVersionedBranchClient_preventJoin               () const override;
 
     //----------------------------------------------------------------//
@@ -73,6 +74,7 @@ protected:
     virtual bool                                        AbstractVersionedBranch_hasKey                  ( string key, size_t upperBound ) const = 0;
     virtual bool                                        AbstractVersionedBranch_isPersistent            () const = 0;
     virtual void                                        AbstractVersionedBranch_persist                 ( shared_ptr < AbstractPersistentVersionedBranch > persist ) = 0;
+    virtual void                                        AbstractVersionedBranch_print                   ( string prefix ) const;
     virtual void                                        AbstractVersionedBranch_setValueVariant         ( size_t version, string key, const Variant& value ) = 0;
     virtual void                                        AbstractVersionedBranch_truncate                ( size_t topVersion ) = 0;
 

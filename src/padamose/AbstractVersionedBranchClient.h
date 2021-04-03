@@ -50,6 +50,7 @@ protected:
     virtual size_t      AbstractVersionedBranchClient_getVersionDependency      () const = 0;
     virtual void        AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& other ) = 0;
     virtual bool        AbstractVersionedBranchClient_preventJoin               () const = 0;
+    virtual void        AbstractVersionedBranchClient_print                     ( string prefix ) const;
     virtual void        AbstractVersionedBranchClient_sourceBranchDidChange     () = 0;
 
 public:
@@ -59,6 +60,7 @@ public:
     virtual                             ~AbstractVersionedBranchClient          ();
     size_t                              countBranches                           () const;
     const AbstractVersionedBranch*      getSourceBranch                         () const;
+    void                                printTree                               () const;
     void                                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch );
     void                                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
 };

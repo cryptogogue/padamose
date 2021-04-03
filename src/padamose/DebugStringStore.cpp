@@ -25,7 +25,7 @@ void DebugStringStore::dump () const {
 
     map < string, string >::const_iterator stringIt = this->mStrings.cbegin ();
     for ( ; stringIt != this->mStrings.end (); ++stringIt ) {
-        printf ( "%s:\t%s\n", stringIt->first.c_str (), stringIt->second.c_str ());
+        LGN_LOG ( PDM_FILTER_STRINGSTORE, INFO, "%s:\t%s", stringIt->first.c_str (), stringIt->second.c_str ());
     }
 }
 
