@@ -6,7 +6,7 @@
 namespace Padamose {
 
 //================================================================//
-// VersionedStore
+// VersionedStoreTag
 //================================================================//
 
 //----------------------------------------------------------------//
@@ -91,7 +91,7 @@ void VersionedList::storeFreeStack () {
     \param      store       The versioned store that contains (or will contain) the collection.
     \param      name        The name of the collection.
 */
-VersionedList::VersionedList ( VersionedStore& store, string name ) :
+VersionedList::VersionedList ( VersionedStoreTag& store, string name ) :
     MutableVersionedCollection ( store, name ) {
 
     this->mFreeStackKey = this->mName + SET_FREE_STACK_POSTFIX;

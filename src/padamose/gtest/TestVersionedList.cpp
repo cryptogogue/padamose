@@ -18,7 +18,7 @@ static const string STR6    = "stu";
 //----------------------------------------------------------------//
 TEST ( VersionedList, test_insert_value_inserts_value_and_returns_valid_key ) {
 
-    VersionedStore store;
+    VersionedStoreTag store;
     
     VersionedList versionedSet ( store, "test" );
 
@@ -37,7 +37,7 @@ TEST ( VersionedList, test_insert_value_inserts_value_and_returns_valid_key ) {
 //----------------------------------------------------------------//
 TEST ( VersionedList, test_deleted_keys_are_reused ) {
 
-    VersionedStore store;
+    VersionedStoreTag store;
     
     VersionedList versionedSet ( store, "test" );
 
@@ -77,7 +77,7 @@ TEST ( VersionedList, test_deleted_keys_are_reused ) {
 //----------------------------------------------------------------//
 TEST ( VersionedList, test_element_count_is_updated_correctly ) {
 
-    VersionedStore store;
+    VersionedStoreTag store;
     
     VersionedList versionedSet ( store, "test" );
 
@@ -109,7 +109,7 @@ TEST ( VersionedList, test_element_count_is_updated_correctly ) {
 //----------------------------------------------------------------//
 TEST ( VersionedList, test_iterator ) {
 
-    VersionedStore store;
+    VersionedStoreTag store;
     
     VersionedList versionedSet ( store, "test" );
 

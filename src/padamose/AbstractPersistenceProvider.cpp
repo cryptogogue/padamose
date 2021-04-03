@@ -50,9 +50,9 @@ void AbstractPersistenceProvider::freeze () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-const VersionedStoreSnapshot& AbstractPersistenceProvider::getTag ( string branchName ) const {
+const ConstVersionedStoreTag& AbstractPersistenceProvider::getTag ( string branchName ) const {
 
-    map < string, VersionedStoreSnapshot >::const_iterator tagIt = this->mTags.find ( branchName );
+    map < string, ConstVersionedStoreTag >::const_iterator tagIt = this->mTags.find ( branchName );
     assert ( tagIt != this->mTags.end ()); // TODO: throw exception
     return tagIt->second;
 }
@@ -61,7 +61,7 @@ const VersionedStoreSnapshot& AbstractPersistenceProvider::getTag ( string branc
 // TODO: doxygen
 bool AbstractPersistenceProvider::hasTag ( string branchName ) const {
 
-    map < string, VersionedStoreSnapshot >::const_iterator tagIt = this->mTags.find ( branchName );
+    map < string, ConstVersionedStoreTag >::const_iterator tagIt = this->mTags.find ( branchName );
     return ( tagIt != this->mTags.end ());
 }
 
@@ -81,7 +81,7 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractPersistenceProvider::ma
 //----------------------------------------------------------------//
 void AbstractPersistenceProvider::tagBranch ( AbstractVersionedBranch& branch, string branchName, size_t version ) {
 
-    VersionedStoreSnapshot& tag = this->mTags [ branchName ];
+    ConstVersionedStoreTag& tag = this->mTags [ branchName ];
     tag.setBranch ( branch.shared_from_this (), version );
     this->AbstractPersistenceProvider_tagDidChange ( branchName, &tag );
 }

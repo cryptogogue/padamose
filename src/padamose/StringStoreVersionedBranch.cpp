@@ -3,7 +3,7 @@
 
 #include <padamose/AbstractStringStore.h>
 #include <padamose/StringStoreVersionedBranch.h>
-#include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/ConstVersionedStoreTag.h>
 
 namespace Padamose {
 

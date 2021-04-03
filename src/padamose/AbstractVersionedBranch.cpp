@@ -4,7 +4,7 @@
 #include <padamose/AbstractPersistenceProvider.h>
 #include <padamose/AbstractPersistentVersionedBranch.h>
 #include <padamose/AbstractVersionedBranch.h>
-#include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/ConstVersionedStoreTag.h>
 
 namespace Padamose {
 

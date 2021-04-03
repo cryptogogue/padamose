@@ -110,7 +110,7 @@ void MutableVersionedCollection::prependNode ( size_t nodeID, string fullKey, st
     \param      store       The versioned store that contains (or will contain) the collection.
     \param      name        The name of the collection.
 */
-MutableVersionedCollection::MutableVersionedCollection ( VersionedStore& store, string name ) :
+MutableVersionedCollection::MutableVersionedCollection ( VersionedStoreTag& store, string name ) :
     mStore ( store ) {
 
     this->setName ( name );
@@ -207,9 +207,9 @@ void MutableVersionedCollection::storeState () {
 /** \brief  Implementation of the pure virtual base method to return
             the versioned snapshot associated with the container.
 
-    \return The VersionedStore (as a VersionedStoreSnapshot).
+    \return The VersionedStoreTag (as a ConstVersionedStoreTag).
 */
-const VersionedStoreSnapshot& MutableVersionedCollection::AbstractVersionedCollection_getSnapshot () const {
+const ConstVersionedStoreTag& MutableVersionedCollection::AbstractVersionedCollection_getSnapshot () const {
 
     return this->mStore;
 }

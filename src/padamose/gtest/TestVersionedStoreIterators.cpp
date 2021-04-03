@@ -8,7 +8,7 @@ namespace Padamose {
 namespace Test {
 
 //----------------------------------------------------------------//
-void testVersionedStoreIterator ( VersionedStore& store, string key, const vector < string > expected ) {
+void testVersionedStoreIterator ( VersionedStoreTag& store, string key, const vector < string > expected ) {
 
     VersionedStoreIterator storeIt ( store );
 
@@ -28,7 +28,7 @@ void testVersionedStoreIterator ( VersionedStore& store, string key, const vecto
 }
 
 //----------------------------------------------------------------//
-void testVersionedValueIterator ( VersionedStore& store, string key, const vector < string > expected ) {
+void testVersionedValueIterator ( VersionedStoreTag& store, string key, const vector < string > expected ) {
 
     VersionedValueIterator < string > valueIt ( store, key );
 
@@ -54,8 +54,8 @@ TEST ( VersionedStoreIterators, test_iterators ) {
 
     const string KEY = "test";
 
-    VersionedStore store0;
-    VersionedStore store1;
+    VersionedStoreTag store0;
+    VersionedStoreTag store1;
 
     store0.setValue < string >( KEY, "a" );
     store0.pushVersion ();

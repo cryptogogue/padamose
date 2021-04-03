@@ -6,7 +6,7 @@
 namespace Padamose {
 
 //================================================================//
-// VersionedStore
+// VersionedStoreTag
 //================================================================//
 
 //----------------------------------------------------------------//
@@ -135,7 +135,7 @@ void VersionedMap::setCollisionPrefixes ( string collisionPrefix, string decolli
     \param      store       The versioned store that contains (or will contain) the collection.
     \param      name        The name of the collection.
 */
-VersionedMap::VersionedMap ( VersionedStore& store, string name ) :
+VersionedMap::VersionedMap ( VersionedStoreTag& store, string name ) :
     MutableVersionedCollection ( store, name ) {
     
     this->affirmState ();

@@ -19,16 +19,16 @@ class VersionedCollectionSnapshot :
 protected:
 
     /// The versioned snapshot.
-    VersionedStoreSnapshot      mSnapshot;
+    ConstVersionedStoreTag      mSnapshot;
     
     //----------------------------------------------------------------//
-    const VersionedStoreSnapshot&       AbstractVersionedCollection_getSnapshot         () const override;
+    const ConstVersionedStoreTag&       AbstractVersionedCollection_getSnapshot         () const override;
     
 public:
 
     //----------------------------------------------------------------//
                     VersionedCollectionSnapshot         ( const AbstractVersionedCollection& collection );
-                    VersionedCollectionSnapshot         ( const VersionedStoreSnapshot& snapshot, string name );
+                    VersionedCollectionSnapshot         ( const ConstVersionedStoreTag& snapshot, string name );
                     ~VersionedCollectionSnapshot        ();
 };
 

@@ -6,7 +6,7 @@
 namespace Padamose {
 
 //================================================================//
-// VersionedStore
+// VersionedStoreTag
 //================================================================//
 
 const size_t AbstractVersionedCollection::INVALID_NODE_INDEX = ( size_t )-1;
@@ -61,7 +61,7 @@ string AbstractVersionedCollection::getName () const {
 // TODO: doxygen
 VersionedCollectionNode AbstractVersionedCollection::getNode ( string key ) const {
 
-    const VersionedStoreSnapshot& snapshot = this->getSnapshot ();
+    const ConstVersionedStoreTag& snapshot = this->getSnapshot ();
 
     VersionedCollectionNode node;
     
@@ -93,11 +93,11 @@ size_t AbstractVersionedCollection::getSize () const {
 }
 
 //----------------------------------------------------------------//
-/** \brief  Returns the VersionedStoreSnapshot holding the collection.
+/** \brief  Returns the ConstVersionedStoreTag holding the collection.
 
-    \return The VersionedStoreSnapshot holding the collection.
+    \return The ConstVersionedStoreTag holding the collection.
 */
-const VersionedStoreSnapshot& AbstractVersionedCollection::getSnapshot () const {
+const ConstVersionedStoreTag& AbstractVersionedCollection::getSnapshot () const {
 
     return AbstractVersionedCollection_getSnapshot ();
 }
@@ -118,7 +118,7 @@ bool AbstractVersionedCollection::hasKey ( string key ) const {
 // TODO: doxygen
 void AbstractVersionedCollection::loadState () {
     
-    const VersionedStoreSnapshot& snapshot = this->getSnapshot ();
+    const ConstVersionedStoreTag& snapshot = this->getSnapshot ();
 
     this->mState.mHead  = snapshot.getValue < u64 >( this->mName + ".head" );
     this->mState.mTail  = snapshot.getValue < u64 >( this->mName + ".tail" );

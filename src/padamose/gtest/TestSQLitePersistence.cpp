@@ -18,7 +18,22 @@ static const string STR2    = "ghi";
 static const string STR3    = "jkl";
 static const string STR4    = "mno";
 
-static cc8* SQLITE_FILE     = "sqlite-test.db";
+static cc8* SQLITE_FILE         = "sqlite-test.db";
+static cc8* SQLITE_FILE_SHM     = "sqlite-test.db-shm";
+static cc8* SQLITE_FILE_WAL     = "sqlite-test.db-wal";
+
+//----------------------------------------------------------------//
+void cleanup () {
+
+    ASSERT_EQ ( remove ( SQLITE_FILE ), 0 );
+    ASSERT_EQ ( exists ( SQLITE_FILE ), false );
+    
+    ASSERT_EQ ( remove ( SQLITE_FILE_SHM ), 0 );
+    ASSERT_EQ ( exists ( SQLITE_FILE_SHM ), false );
+    
+    ASSERT_EQ ( remove ( SQLITE_FILE_WAL ), 0 );
+    ASSERT_EQ ( exists ( SQLITE_FILE_WAL ), false );
+}
 
 //----------------------------------------------------------------//
 TEST ( SQLitePersistence, test_sqlite_string_store ) {
@@ -61,8 +76,7 @@ TEST ( SQLitePersistence, test_sqlite_string_store ) {
         ASSERT_EQ ( store.hasString ( KEY0 ), false );
     }
 
-    ASSERT_EQ ( remove ( SQLITE_FILE ), 0 );
-    ASSERT_EQ ( exists ( SQLITE_FILE ), false );
+    cleanup ();
 }
 
 //----------------------------------------------------------------//
@@ -72,7 +86,7 @@ TEST ( SQLitePersistence, test_sqlite_persistence ) {
         shared_ptr < SQLiteStringStore > stringStore = SQLiteStringStore::make ( SQLITE_FILE );
         testWithProvider ( stringStore );
 
-        VersionedStore store ( stringStore, "master" );
+        VersionedStoreTag store ( stringStore, "master" );
 
         ASSERT_EQ ( store.getVersion (), 3 );
         ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
@@ -91,14 +105,13 @@ TEST ( SQLitePersistence, test_sqlite_persistence ) {
     {
         shared_ptr < SQLiteStringStore > stringStore = SQLiteStringStore::make ( SQLITE_FILE );
         
-        VersionedStore store ( stringStore, "master" );
+        VersionedStoreTag store ( stringStore, "master" );
         
         ASSERT_EQ ( store.getVersion (), 2 );
         ASSERT_EQ ( store.getValue < string >( KEY0 ), STR2 );
     }
     
-    ASSERT_EQ ( remove ( SQLITE_FILE ), 0 );
-    ASSERT_EQ ( exists ( SQLITE_FILE ), false );
+    cleanup ();
 }
 
 } // namespace Test

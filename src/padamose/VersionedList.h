@@ -48,7 +48,7 @@ private:
     /// Fully resolved key for free node stack.
     string                  mFreeStackKey;
     
-    /// State of the free stack. Persisted in the VersionedStore.
+    /// State of the free stack. Persisted in the VersionedStoreTag.
     VersionedListFreeStack   mFreeStack;
     
     //----------------------------------------------------------------//
@@ -61,7 +61,7 @@ public:
 
     //----------------------------------------------------------------//
     void            deleteKey                   ( string key );
-                    VersionedList                ( VersionedStore& store, string name );
+                    VersionedList                ( VersionedStoreTag& store, string name );
                     ~VersionedList               ();
     
     //----------------------------------------------------------------//

@@ -1,12 +1,12 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/VersionedStore.h>
+#include <padamose/VersionedStoreTag.h>
 
 namespace Padamose {
 
 //================================================================//
-// VersionedStore
+// VersionedStoreTag
 //================================================================//
 
 //----------------------------------------------------------------//
@@ -16,9 +16,9 @@ namespace Padamose {
     \todo Internally implemented as a pop followed by a push. Look into
     a more efficient implementation.
 */
-void VersionedStore::clearVersion () {
+void VersionedStoreTag::clearVersion () {
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::clearVersion ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreTag::clearVersion ()" );
 
     size_t version = this->mVersion;
     this->popVersion ();
@@ -30,9 +30,9 @@ void VersionedStore::clearVersion () {
 //----------------------------------------------------------------//
 /** \brief Pop the top version and revert to the version before it.
 */
-void VersionedStore::popVersion () {
+void VersionedStoreTag::popVersion () {
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::  ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreTag::  ()" );
 
     if ( this->mSourceBranch ) {
     
@@ -69,9 +69,9 @@ void VersionedStore::popVersion () {
     must be created. The new branch will become a child of the original branch
     and the cursor will be moved to this new branch.
 */
-void VersionedStore::prepareForSetValue () {
+void VersionedStoreTag::prepareForSetValue () {
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::prepareForSetValue ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreTag::prepareForSetValue ()" );
 
     this->affirmBranch ();
     
@@ -102,9 +102,9 @@ void VersionedStore::prepareForSetValue () {
     to represent the "empty" version and the cursor is moved to that
     branch.
 */
-void VersionedStore::pushVersion () {
+void VersionedStoreTag::pushVersion () {
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::pushVersion ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreTag::pushVersion ()" );
 
     if ( !this->mSourceBranch ) {
         this->mVersion = 0;
@@ -137,9 +137,9 @@ void VersionedStore::pushVersion () {
     \param  version                         the version to revert to.
     \throws VersionOutOfBoundsException
 */
-void VersionedStore::revert ( size_t version ) {
+void VersionedStoreTag::revert ( size_t version ) {
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStore::rewind ( %d )", ( int )version );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreTag::rewind ( %d )", ( int )version );
 
     if ( version > this->mVersion ) throw VersionOutOfBoundsException ();
     
@@ -167,30 +167,30 @@ void VersionedStore::revert ( size_t version ) {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedStore::revertAndClear ( size_t version ) {
+void VersionedStoreTag::revertAndClear ( size_t version ) {
 
     this->revert ( version );
     this->clearVersion ();
 }
 
 //----------------------------------------------------------------//
-VersionedStore::VersionedStore () {
+VersionedStoreTag::VersionedStoreTag () {
 }
 
 //----------------------------------------------------------------//
-VersionedStore::VersionedStore ( VersionedStoreSnapshot& other ) :
-    VersionedStoreSnapshot ( other ) {
+VersionedStoreTag::VersionedStoreTag ( ConstVersionedStoreTag& other ) :
+    ConstVersionedStoreTag ( other ) {
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-VersionedStore::VersionedStore ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
+VersionedStoreTag::VersionedStoreTag ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
     this->takeSnapshot ( provider, branchName );
 }
 
 //----------------------------------------------------------------//
-VersionedStore::~VersionedStore () {
+VersionedStoreTag::~VersionedStoreTag () {
 }
 
 } // namespace Padamose

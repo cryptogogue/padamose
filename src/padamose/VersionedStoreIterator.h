@@ -5,7 +5,7 @@
 #define PADAMOSE_VERSIONEDSTOREITERATOR_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/ConstVersionedStoreTag.h>
 
 namespace Padamose {
 
@@ -31,7 +31,7 @@ class AbstractValueStack;
     in the opposite direction.
 */
 class VersionedStoreIterator :
-    public VersionedStoreSnapshot {
+    public ConstVersionedStoreTag {
 protected:
 
     enum {
@@ -45,7 +45,7 @@ protected:
     };
 
     /// The anchor snapshot.
-    VersionedStoreSnapshot      mAnchor;
+    ConstVersionedStoreTag      mAnchor;
     
     /// Internal state of the iterator.
     int                         mState;
@@ -85,8 +85,8 @@ public:
     bool                next                                ();
     bool                prev                                ();
     void                seek                                ( size_t version );
-                        VersionedStoreIterator              ( const VersionedStoreSnapshot& versionedStore );
-                        VersionedStoreIterator              ( const VersionedStoreSnapshot& versionedStore, size_t version );
+                        VersionedStoreIterator              ( const ConstVersionedStoreTag& versionedStore );
+                        VersionedStoreIterator              ( const ConstVersionedStoreTag& versionedStore, size_t version );
     virtual             ~VersionedStoreIterator             ();
 };
 

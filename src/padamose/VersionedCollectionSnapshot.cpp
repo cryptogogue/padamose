@@ -6,7 +6,7 @@
 namespace Padamose {
 
 //================================================================//
-// VersionedStore
+// VersionedStoreTag
 //================================================================//
 
 //----------------------------------------------------------------//
@@ -31,7 +31,7 @@ VersionedCollectionSnapshot::VersionedCollectionSnapshot ( const AbstractVersion
  
     \throws     VersionedCollectionNotFoundException    No valid state exists for the collection.
 */
-VersionedCollectionSnapshot::VersionedCollectionSnapshot ( const VersionedStoreSnapshot& snapshot, string name ) :
+VersionedCollectionSnapshot::VersionedCollectionSnapshot ( const ConstVersionedStoreTag& snapshot, string name ) :
     mSnapshot ( snapshot ) {
 
     if ( !this->mSnapshot.hasValue ( name )) throw VersionedCollectionNotFoundException ();
@@ -52,9 +52,9 @@ VersionedCollectionSnapshot::~VersionedCollectionSnapshot () {
 /** \brief  Implementation of the pure virtual base method to return
             the versioned snapshot associated with the container.
 
-    \return The VersionedStoreSnapshot.
+    \return The ConstVersionedStoreTag.
 */
-const VersionedStoreSnapshot& VersionedCollectionSnapshot::AbstractVersionedCollection_getSnapshot () const {
+const ConstVersionedStoreTag& VersionedCollectionSnapshot::AbstractVersionedCollection_getSnapshot () const {
 
     return this->mSnapshot;
 }

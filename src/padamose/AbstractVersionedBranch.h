@@ -13,7 +13,7 @@ namespace Padamose {
 class AbstractPersistentVersionedBranch;
 class AbstractVersionedBranchClient;
 class AbstractVersionedBranchTag;
-class VersionedStoreSnapshot;
+class ConstVersionedStoreTag;
 
 //================================================================//
 // AbstractVersionedBranch
@@ -41,8 +41,8 @@ protected:
 
     friend class AbstractVersionedBranchClient;
     friend class AbstractVersionedValueIterator;
-    friend class VersionedStore;
-    friend class VersionedStoreSnapshot;
+    friend class VersionedStoreTag;
+    friend class ConstVersionedStoreTag;
     friend class VersionedStoreIterator;
     template < typename > friend class VersionedValue;
     template < typename > friend class VersionedValueIterator;

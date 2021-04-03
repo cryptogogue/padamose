@@ -1,19 +1,19 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/ConstVersionedStoreTag.h>
 #include <padamose/AbstractPersistenceProvider.h>
 
 namespace Padamose {
 
 //================================================================//
-// VersionedStoreSnapshot
+// ConstVersionedStoreTag
 //================================================================//
 
 //----------------------------------------------------------------//
 /** \brief Create a branch if none exists and add self as client.
 */
-void VersionedStoreSnapshot::affirmBranch () {
+void ConstVersionedStoreTag::affirmBranch () {
 
     if ( !this->mSourceBranch ) {
         assert ( this->mVersion == 0 );
@@ -24,7 +24,7 @@ void VersionedStoreSnapshot::affirmBranch () {
 //----------------------------------------------------------------//
 /** \brief Abandons branch and sets version to 0.
 */
-void VersionedStoreSnapshot::clear () {
+void ConstVersionedStoreTag::clear () {
 
     this->setBranch ( NULL, 0 );
     this->mProvider = NULL;
@@ -39,7 +39,7 @@ void VersionedStoreSnapshot::clear () {
     \param      key         The key.
     \return                 A pointer to the value for the key or NULL.
 */
-Variant VersionedStoreSnapshot::getValueVariant ( string key ) const {
+Variant ConstVersionedStoreTag::getValueVariant ( string key ) const {
     return this->getValueVariant ( key, this->mVersion );
 }
 
@@ -53,7 +53,7 @@ Variant VersionedStoreSnapshot::getValueVariant ( string key ) const {
     \param      key         The key.
     \return                 A pointer to the value for the key or NULL.
 */
-Variant VersionedStoreSnapshot::getValueVariant ( string key, size_t version ) const {
+Variant ConstVersionedStoreTag::getValueVariant ( string key, size_t version ) const {
     return this->mSourceBranch ? this->mSourceBranch->getValueVariant ( version <= this->mVersion ? version : this->mVersion, key ) : Variant ();
 }
 
@@ -62,7 +62,7 @@ Variant VersionedStoreSnapshot::getValueVariant ( string key, size_t version ) c
 
     \return             The current version.
 */
-size_t VersionedStoreSnapshot::getVersion () const {
+size_t ConstVersionedStoreTag::getVersion () const {
 
     return this->mVersion;
 }
@@ -73,7 +73,7 @@ size_t VersionedStoreSnapshot::getVersion () const {
     \param      key         The key.
     \return                 TRUE if the key is found. FALSE if not.
 */
-bool VersionedStoreSnapshot::hasKey ( string key ) const {
+bool ConstVersionedStoreTag::hasKey ( string key ) const {
 
     return this->mSourceBranch ? this->mSourceBranch->hasKey ( this->mVersion, key ) : false;
 }
@@ -84,7 +84,7 @@ bool VersionedStoreSnapshot::hasKey ( string key ) const {
     \param  key     The key.
     \return         True if the value exists. False if it doesn't.
 */
-bool VersionedStoreSnapshot::hasValue ( string key ) const {
+bool ConstVersionedStoreTag::hasValue ( string key ) const {
     return this->hasValue ( key, this->mVersion );
 }
 
@@ -97,14 +97,14 @@ bool VersionedStoreSnapshot::hasValue ( string key ) const {
     \param  key     The key.
     \return         True if the value exists. False if it doesn't.
 */
-bool VersionedStoreSnapshot::hasValue ( string key, size_t version ) const {
+bool ConstVersionedStoreTag::hasValue ( string key, size_t version ) const {
 
     return ( !this->getValueVariant ( key, version ).isNull ());
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedStoreSnapshot::persist ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
+void ConstVersionedStoreTag::persist ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
     if ( this->mSourceBranch ) {
     
@@ -131,7 +131,7 @@ void VersionedStoreSnapshot::persist ( shared_ptr < AbstractPersistenceProvider 
  
     \param  debugName   The debug name.
 */
-void VersionedStoreSnapshot::setDebugName ( string debugName ) {
+void ConstVersionedStoreTag::setDebugName ( string debugName ) {
     UNUSED ( debugName );
 
     #ifdef _DEBUG
@@ -141,7 +141,7 @@ void VersionedStoreSnapshot::setDebugName ( string debugName ) {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedStoreSnapshot::setPersistenceProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
+void ConstVersionedStoreTag::setPersistenceProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
 
     assert ( provider ); // TODO: throw exception
 
@@ -162,7 +162,7 @@ void VersionedStoreSnapshot::setPersistenceProvider ( shared_ptr < AbstractPersi
  
     \param  other   The snapshot to copy.
 */
-void VersionedStoreSnapshot::takeSnapshot ( const VersionedStoreSnapshot& other ) {
+void ConstVersionedStoreTag::takeSnapshot ( const ConstVersionedStoreTag& other ) {
 
     this->setBranch ( other.mSourceBranch, other.mVersion );
     this->mProvider = other.mProvider;
@@ -170,7 +170,7 @@ void VersionedStoreSnapshot::takeSnapshot ( const VersionedStoreSnapshot& other 
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedStoreSnapshot::takeSnapshot ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
+void ConstVersionedStoreTag::takeSnapshot ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
     assert ( provider ); // TODO: throw exception
 
@@ -181,7 +181,7 @@ void VersionedStoreSnapshot::takeSnapshot ( shared_ptr < AbstractPersistenceProv
 }
 
 //----------------------------------------------------------------//
-VersionedStoreSnapshot::VersionedStoreSnapshot () {
+ConstVersionedStoreTag::ConstVersionedStoreTag () {
 }
 
 //----------------------------------------------------------------//
@@ -189,20 +189,20 @@ VersionedStoreSnapshot::VersionedStoreSnapshot () {
  
     \param  other   The snapshot to copy.
 */
-VersionedStoreSnapshot::VersionedStoreSnapshot ( const VersionedStoreSnapshot& other ) {
+ConstVersionedStoreTag::ConstVersionedStoreTag ( const ConstVersionedStoreTag& other ) {
 
     this->takeSnapshot ( other );
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-VersionedStoreSnapshot::VersionedStoreSnapshot ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
+ConstVersionedStoreTag::ConstVersionedStoreTag ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
 
     this->takeSnapshot ( provider, branchName );
 }
 
 //----------------------------------------------------------------//
-VersionedStoreSnapshot::~VersionedStoreSnapshot () {
+ConstVersionedStoreTag::~ConstVersionedStoreTag () {
 }
 
 //================================================================//
@@ -213,7 +213,7 @@ VersionedStoreSnapshot::~VersionedStoreSnapshot () {
 /** \brief Implementation of virtual method. Always returns false.
     \return     Always returns false.
 */
-bool VersionedStoreSnapshot::AbstractVersionedBranchClient_canJoin () const {
+bool ConstVersionedStoreTag::AbstractVersionedBranchClient_canJoin () const {
     return false;
 }
 
@@ -221,7 +221,7 @@ bool VersionedStoreSnapshot::AbstractVersionedBranchClient_canJoin () const {
 /** \brief Implementation of virtual method. Asserts false in debug builds;
     returns zero in non-debug builds.
 */
-size_t VersionedStoreSnapshot::AbstractVersionedBranchClient_getJoinScore () const {
+size_t ConstVersionedStoreTag::AbstractVersionedBranchClient_getJoinScore () const {
     assert ( false );
     return 0;
 }
@@ -241,7 +241,7 @@ size_t VersionedStoreSnapshot::AbstractVersionedBranchClient_getJoinScore () con
  
     \return             The dependent version.
 */
-size_t VersionedStoreSnapshot::AbstractVersionedBranchClient_getVersionDependency () const {
+size_t ConstVersionedStoreTag::AbstractVersionedBranchClient_getVersionDependency () const {
     return this->mVersion + 1;
 }
 
@@ -249,7 +249,7 @@ size_t VersionedStoreSnapshot::AbstractVersionedBranchClient_getVersionDependenc
 /** \brief Implementation of virtual method. Asserts false in debug builds;
     does nothing in non-debug builds.
 */
-void VersionedStoreSnapshot::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& branch ) {
+void ConstVersionedStoreTag::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& branch ) {
     UNUSED ( branch );
     assert ( false );
 }
@@ -258,13 +258,13 @@ void VersionedStoreSnapshot::AbstractVersionedBranchClient_joinBranch ( Abstract
 /** \brief Implementation of virtual method. Always returns false.
     \return     Always returns false.
 */
-bool VersionedStoreSnapshot::AbstractVersionedBranchClient_preventJoin () const {
+bool ConstVersionedStoreTag::AbstractVersionedBranchClient_preventJoin () const {
     return false;
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedStoreSnapshot::AbstractVersionedBranchClient_sourceBranchDidChange () {
+void ConstVersionedStoreTag::AbstractVersionedBranchClient_sourceBranchDidChange () {
 }
 
 } // namespace Padamose

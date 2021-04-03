@@ -10,6 +10,7 @@
 #include <padamose/AbstractVersionedCollection.h>
 #include <padamose/AbstractVersionedBranchClient.h>
 #include <padamose/BaseVersionedCollectionIterator.h>
+#include <padamose/ConstVersionedStoreTag.h>
 #include <padamose/DebugStringStore.h>
 #include <padamose/EphemeralValueStack.h>
 #include <padamose/EphemeralVersionedBranch.h>
@@ -23,8 +24,7 @@
 #include <padamose/VersionedCollectionIterator.h>
 #include <padamose/VersionedMap.h>
 #include <padamose/VersionedList.h>
-#include <padamose/VersionedStore.h>
-#include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/VersionedStoreTag.h>
 #include <padamose/VersionedStoreIterator.h>
 #include <padamose/VersionedValueIterator.h>
 

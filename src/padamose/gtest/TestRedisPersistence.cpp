@@ -30,7 +30,7 @@ TEST ( RedisPersistence, test_redis_persistence ) {
     // load provider from store
     provider = make_shared < AbstractStringStore >( stringStore );
     
-    VersionedStore store ( provider, "master" );
+    VersionedStoreTag store ( provider, "master" );
 
     ASSERT_EQ ( store.getVersion (), 3 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );

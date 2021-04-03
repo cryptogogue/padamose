@@ -22,7 +22,7 @@ TEST ( StringPersistence, test_new_branch ) {
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
     
     {
-        VersionedStore store;
+        VersionedStoreTag store;
         store.persist ( stringStore, "master" );
         store.setValue < string >( KEY0, STR0 );
         store.persist ( stringStore, "master" );
@@ -31,7 +31,7 @@ TEST ( StringPersistence, test_new_branch ) {
     stringStore->dump ();
     
     {
-        VersionedStore store;
+        VersionedStoreTag store;
         store.takeSnapshot ( stringStore, "master" );
         ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
     }
@@ -43,7 +43,7 @@ TEST ( StringPersistence, test_string_persistence ) {
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
     
     testWithProvider ( stringStore );
-    VersionedStoreSnapshot snapshot ( stringStore, "master" );
+    ConstVersionedStoreTag snapshot ( stringStore, "master" );
     
     stringStore->dump ();
 
@@ -55,7 +55,7 @@ TEST ( StringPersistence, test_string_persistence ) {
     stringStore->dump ();
     printf ( "done\n" );
     
-    VersionedStore store ( stringStore, "master" );
+    VersionedStoreTag store ( stringStore, "master" );
 
     ASSERT_EQ ( store.getVersion (), 3 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
@@ -70,7 +70,7 @@ TEST ( StringPersistence, test_persistence ) {
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
     
     {
-        VersionedStore store;
+        VersionedStoreTag store;
         store.setValue < string >( KEY0, STR0 );
         store.pushVersion ();
         store.persist ( stringStore, "master" );
@@ -84,7 +84,7 @@ TEST ( StringPersistence, test_persistence ) {
     
     stringStore->dump ();
     
-    VersionedStore store ( stringStore, "master" );
+    VersionedStoreTag store ( stringStore, "master" );
     
     ASSERT_EQ ( store.getVersion (), 1 );
     ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
@@ -97,7 +97,7 @@ TEST ( StringPersistence, test_branch_consolidation ) {
 
     shared_ptr < DebugStringStore > provider = make_shared < DebugStringStore >();
     
-    VersionedStore store;
+    VersionedStoreTag store;
     
     store.setValue < string >( "KEY", "VERSION 0" );
     store.pushVersion ();
@@ -111,7 +111,7 @@ TEST ( StringPersistence, test_branch_consolidation ) {
     store.printTree ();
     provider->dump ();
 
-    VersionedStore store2 ( store );
+    VersionedStoreTag store2 ( store );
 
     store.setValue < string >( "KEY", "VERSION 2" );
     store.pushVersion ();

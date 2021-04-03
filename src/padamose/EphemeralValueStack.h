@@ -22,7 +22,7 @@ protected:
 
     friend class AbstractVersionedValueIterator;
     friend class EphemeralVersionedBranch;
-    friend class VersionedStoreSnapshot;
+    friend class ConstVersionedStoreTag;
     
     /// Sparse stack of values indexed by version.
     map < size_t, Variant >     mValuesByVersion;

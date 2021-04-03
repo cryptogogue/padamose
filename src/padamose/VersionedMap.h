@@ -39,7 +39,7 @@ namespace Padamose {
             more efficient for them to share a common collision table.
  
             Since all versions of the container (and thus its collisions)
-            are permanently remembered by the VersionedStore, there is
+            are permanently remembered by the VersionedStoreTag, there is
             no significant advantage to clean up unused decolliders. The
             decollider table is also slightly more efficient than typical
             methods for handling collisions in terms of storage and code
@@ -82,7 +82,7 @@ public:
     //----------------------------------------------------------------//
     void            deleteKey                   ( string key );
     void            setCollisionPrefixes        ( string collisionPrefix, string decolliderPrefix );
-                    VersionedMap                ( VersionedStore& store, string name );
+                    VersionedMap                ( VersionedStoreTag& store, string name );
                     ~VersionedMap               ();
     
     //----------------------------------------------------------------//

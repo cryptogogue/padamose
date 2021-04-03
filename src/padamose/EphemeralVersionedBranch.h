@@ -12,7 +12,7 @@
 namespace Padamose {
 
 class AbstractVersionedBranchClient;
-class VersionedStoreSnapshot;
+class ConstVersionedStoreTag;
 
 //================================================================//
 // EphemeralVersionedBranch

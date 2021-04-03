@@ -12,14 +12,14 @@ namespace Padamose {
 //================================================================//
 // MutableVersionedCollection
 //================================================================//
-/** \brief  Base class for mutable collections referencing a VersionedStore.
+/** \brief  Base class for mutable collections referencing a VersionedStoreTag.
 */
 class MutableVersionedCollection :
     public AbstractVersionedCollection {
 protected:
 
     /// The versioned store.
-    VersionedStore& mStore;
+    VersionedStoreTag& mStore;
     
     //----------------------------------------------------------------//
     bool            affirmState             ();
@@ -30,7 +30,7 @@ protected:
     void            storeState              ();
     
     //----------------------------------------------------------------//
-    const VersionedStoreSnapshot&       AbstractVersionedCollection_getSnapshot         () const override;
+    const ConstVersionedStoreTag&       AbstractVersionedCollection_getSnapshot         () const override;
     
     //----------------------------------------------------------------//
     /** \brief  Set the value associated with a key. Note that inclusion
@@ -52,7 +52,7 @@ protected:
 public:
 
     //----------------------------------------------------------------//
-                    MutableVersionedCollection              ( VersionedStore& store, string name );
+                    MutableVersionedCollection              ( VersionedStoreTag& store, string name );
                     ~MutableVersionedCollection             ();
 };
 

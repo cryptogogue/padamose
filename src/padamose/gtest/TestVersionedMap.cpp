@@ -37,7 +37,7 @@ private:
 public:
 
     //----------------------------------------------------------------//
-    VersionedMapCollisionTester ( VersionedStore& store, string name ) :
+    VersionedMapCollisionTester ( VersionedStoreTag& store, string name ) :
         VersionedMap ( store, name ) {
     }
 };
@@ -45,7 +45,7 @@ public:
 //----------------------------------------------------------------//
 TEST ( VersionedMap, test_set_and_get_value ) {
 
-    VersionedStore store;
+    VersionedStoreTag store;
     
     VersionedMap versionedMap ( store, "test" );
 
@@ -64,7 +64,7 @@ TEST ( VersionedMap, test_set_and_get_value ) {
 //----------------------------------------------------------------//
 TEST ( VersionedMap, test_element_count_is_updated_correctly ) {
 
-    VersionedStore store;
+    VersionedStoreTag store;
     
     VersionedMap versionedMap ( store, "test" );
 
@@ -96,7 +96,7 @@ TEST ( VersionedMap, test_element_count_is_updated_correctly ) {
 //----------------------------------------------------------------//
 TEST ( VersionedMap, test_iterator ) {
 
-    VersionedStore store;
+    VersionedStoreTag store;
     
     VersionedMap versionedMap ( store, "test" );
 
@@ -146,7 +146,7 @@ TEST ( VersionedMap, test_iterator ) {
 //----------------------------------------------------------------//
 TEST ( VersionedMap, test_key_collision_handling ) {
 
-    VersionedStore store;
+    VersionedStoreTag store;
     
     VersionedMapCollisionTester versionedMap ( store, "test" );
 
@@ -190,7 +190,7 @@ TEST ( VersionedMap, test_key_collision_handling_with_common_table ) {
     static const string COLLISION_PREFIX    = "__collision.";
     static const string DECOLLIDER_PREFIX   = "__decollider.";
 
-    VersionedStore store;
+    VersionedStoreTag store;
     
     {
         VersionedMapCollisionTester versionedMap ( store, "test0" );

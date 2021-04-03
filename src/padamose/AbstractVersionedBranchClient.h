@@ -19,7 +19,7 @@ class AbstractVersionedBranch;
  
     Implementing this functionality as a base class saves some redundant
     code in AbstractVersionedBranch at the expense of some extra methods to
-    implement in branch implementations and VersionedStoreSnapshot (which
+    implement in branch implementations and ConstVersionedStoreTag (which
     is the base for snapshots and iterators).
  
     In practice, it is easier and cleaner to implement a handful of

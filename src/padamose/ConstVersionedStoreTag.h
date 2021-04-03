@@ -1,8 +1,8 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_VERSIONEDSTORESNAPSHOT_H
-#define PADAMOSE_VERSIONEDSTORESNAPSHOT_H
+#ifndef PADAMOSE_CONSTVERSIONEDSTORETAG_H
+#define PADAMOSE_CONSTVERSIONEDSTORETAG_H
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractVersionedBranch.h>
@@ -15,16 +15,16 @@ namespace Padamose {
 class AbstractPersistenceProvider;
 
 //================================================================//
-// VersionedStoreSnapshot
+// ConstVersionedStoreTag
 //================================================================//
 /** \brief Common base implementation for versioned store iterators.
     Contains only read-only methods and getters.
  
-    This is the base of VersionedStore, VersionedStoreIterator and VersionedValueIterator. It
-    was originally part of VersionedStore, but was broken out into a separate base class
+    This is the base of VersionedStoreTag, VersionedStoreIterator and VersionedValueIterator. It
+    was originally part of VersionedStoreTag, but was broken out into a separate base class
     to avoid exposing mutators through iterator implementations, which are read-only.
 */
-class VersionedStoreSnapshot :
+class ConstVersionedStoreTag :
     public AbstractVersionedBranchClient {
 protected:
 
@@ -72,19 +72,19 @@ public:
     bool            hasValue                        ( string key, size_t version ) const;
     void            persist                         ( shared_ptr < AbstractPersistenceProvider > provider, string branchName );
     void            setDebugName                    ( string debugName );
-    void            takeSnapshot                    ( const VersionedStoreSnapshot& other );
+    void            takeSnapshot                    ( const ConstVersionedStoreTag& other );
     void            takeSnapshot                    ( shared_ptr < AbstractPersistenceProvider > provider, string branchName );
-                    VersionedStoreSnapshot          ();
-                    VersionedStoreSnapshot          ( const VersionedStoreSnapshot& other );
-                    VersionedStoreSnapshot          ( shared_ptr < AbstractPersistenceProvider > provider, string branchName );
-    virtual         ~VersionedStoreSnapshot         ();
+                    ConstVersionedStoreTag          ();
+                    ConstVersionedStoreTag          ( const ConstVersionedStoreTag& other );
+                    ConstVersionedStoreTag          ( shared_ptr < AbstractPersistenceProvider > provider, string branchName );
+    virtual         ~ConstVersionedStoreTag         ();
     
     //----------------------------------------------------------------//
     /** \brief  Implements assignment by calling takeSnapshot().
      
         \param  other   The version to snapshot.
     */
-    VersionedStoreSnapshot& operator = ( VersionedStoreSnapshot& other ) {
+    ConstVersionedStoreTag& operator = ( ConstVersionedStoreTag& other ) {
         this->takeSnapshot ( other );
         return *this;
     }

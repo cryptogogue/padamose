@@ -136,7 +136,7 @@ void AbstractStringStore::loadFromStore () {
         shared_ptr < StringStoreVersionedBranch > branch = this->affirmBranch ( branchID );
         assert ( branch );
         
-        VersionedStoreSnapshot& tag = this->mTags [ tagName ];
+        ConstVersionedStoreTag& tag = this->mTags [ tagName ];
         tag.setBranch ( branch, version );
     }
 }
@@ -210,7 +210,7 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractStringStore::AbstractPe
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractStringStore::AbstractPersistenceProvider_tagDidChange ( string name, const VersionedStoreSnapshot* snapshot ) {
+void AbstractStringStore::AbstractPersistenceProvider_tagDidChange ( string name, const ConstVersionedStoreTag* snapshot ) {
     
     string keyForBranchIDByTagName = this->formatKeyForBranchIDByTagName ( name );
     string prevBranchID = this->get < string >( keyForBranchIDByTagName, "" );

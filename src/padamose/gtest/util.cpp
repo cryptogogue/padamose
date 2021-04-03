@@ -26,7 +26,7 @@ bool exists ( cc8* filename ) {
 void testWithProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
 
     {
-        VersionedStore store;
+        VersionedStoreTag store;
 
         store.setValue < string >( KEY0, STR0 );
         store.pushVersion (); // version 1
@@ -53,7 +53,7 @@ void testWithProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
         store.persist ( provider, "master" );
     }
 
-    VersionedStore store ( provider, "master" );
+    VersionedStoreTag store ( provider, "master" );
 
     ASSERT_EQ ( store.getVersion (), 3 );
     ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );

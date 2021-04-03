@@ -71,7 +71,7 @@ public:
 
     //----------------------------------------------------------------//
                         BaseVersionedCollectionIterator     ( const AbstractVersionedCollection& versionedSet );
-                        BaseVersionedCollectionIterator     ( const VersionedStoreSnapshot& snapshot, string name );
+                        BaseVersionedCollectionIterator     ( const ConstVersionedStoreTag& snapshot, string name );
                         ~BaseVersionedCollectionIterator    ();
     bool                isValid                             () const;
     string              key                                 () const;

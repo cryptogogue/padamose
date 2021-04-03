@@ -5,7 +5,7 @@
 #define PADAMOSE_ABSTRACTVERSIONEDCOLLECTION_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/VersionedStore.h>
+#include <padamose/VersionedStoreTag.h>
 
 namespace Padamose {
 
@@ -107,33 +107,33 @@ protected:
     /// Prefix string of values. Append key strings to look up values.
     string      mValuePrefix;
 
-    /// Name of the collection in the VersionedStore.
+    /// Name of the collection in the VersionedStoreTag.
     string      mName;
     
-    /// State of the collection persisted in the VersionedStore.
+    /// State of the collection persisted in the VersionedStoreTag.
     VersionedCollectionState    mState;
     
     //----------------------------------------------------------------//
     static string                       encodeNodeID            ( size_t nodeID );
     VersionedCollectionNode             getNode                 ( string key ) const;
-    const VersionedStoreSnapshot&       getSnapshot             () const;
+    const ConstVersionedStoreTag&       getSnapshot             () const;
     void                                loadState               ();
     size_t                              lookupNodeID            ( string key ) const;
     void                                pushNode                ( size_t nodeID, string nodeKey );
     void                                setName                 ( string name );
     
     //----------------------------------------------------------------//
-    virtual const VersionedStoreSnapshot&       AbstractVersionedCollection_getSnapshot         () const = 0;
+    virtual const ConstVersionedStoreTag&       AbstractVersionedCollection_getSnapshot         () const = 0;
     
 public:
 
     //----------------------------------------------------------------//
-    /** \brief  Cast operator to return the VersionedStoreSnapshot holding
+    /** \brief  Cast operator to return the ConstVersionedStoreTag holding
                 the collection.
         
-        \return The VersionedStoreSnapshot holding the collection.
+        \return The ConstVersionedStoreTag holding the collection.
     */
-    operator const VersionedStoreSnapshot& () const {
+    operator const ConstVersionedStoreTag& () const {
     
         return this->getSnapshot ();
     }

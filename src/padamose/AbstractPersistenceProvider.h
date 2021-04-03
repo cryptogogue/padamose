@@ -5,7 +5,7 @@
 #define PADAMOSE_ABSTRACTPERSISTENCEPROVIDER_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/ConstVersionedStoreTag.h>
 
 namespace Padamose {
 
@@ -20,17 +20,17 @@ class AbstractPersistenceProvider {
 protected:
 
     friend class AbstractPersistentVersionedBranch;
-    friend class VersionedStore;
-    friend class VersionedStoreSnapshot;
+    friend class VersionedStoreTag;
+    friend class ConstVersionedStoreTag;
 
-    map < string, VersionedStoreSnapshot >  mTags;
+    map < string, ConstVersionedStoreTag >  mTags;
     bool                                    mIsFrozen;
 
     //----------------------------------------------------------------//
     void                                begin           ();
     void                                commit          ();
     void                                freeze          ();
-    const VersionedStoreSnapshot&       getTag          ( string branchName ) const;
+    const ConstVersionedStoreTag&       getTag          ( string branchName ) const;
     bool                                hasTag          ( string branchName ) const;
     
     //----------------------------------------------------------------//
@@ -38,7 +38,7 @@ protected:
     virtual void                                                AbstractPersistenceProvider_commit                  () = 0;
     virtual void                                                AbstractPersistenceProvider_flush                   () = 0;
     virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () = 0;
-    virtual void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreSnapshot* snapshot ) = 0;
+    virtual void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const ConstVersionedStoreTag* snapshot ) = 0;
     
 public:
 

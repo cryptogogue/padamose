@@ -1,22 +1,22 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_VERSIONEDSTORE_H
-#define PADAMOSE_VERSIONEDSTORE_H
+#ifndef PADAMOSE_VERSIONEDSTORETAG_H
+#define PADAMOSE_VERSIONEDSTORETAG_H
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractPersistenceProvider.h>
-#include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/ConstVersionedStoreTag.h>
 
 namespace Padamose {
 
 //================================================================//
-// VersionedStore
+// VersionedStoreTag
 //================================================================//
-/** \brief VersionedStore is a key/value store that can be rewound and branched into multiple
+/** \brief VersionedStoreTag is a key/value store that can be rewound and branched into multiple
     versions.
  
-    The VersionedStoreSnapshot class represents a cursor into the versioned key/value store. The database
+    The ConstVersionedStoreTag class represents a cursor into the versioned key/value store. The database
     itself is held in a series of branches (VersionedBranch). Branches may have multiple
     dependencies in the form of cursors and child branches.
  
@@ -34,7 +34,7 @@ namespace Padamose {
     Two iterator implementations are provided: VersionedStoreIterator and VersionedValueIterator.
     VersionedStoreIterator iterates through versions sequentially. VersionedValueIterator only
     visits versions where the value being iterated was set or changed. Both iterators inherit
-    from VersionedStoreSnapshot and thus give access to any value in the store.
+    from ConstVersionedStoreTag and thus give access to any value in the store.
  
     Iterators are faster moving backward through the version history. Due to the branching nature
     of the store, iterating forward may incur additional overhead when a fork in a branch is
@@ -53,32 +53,32 @@ namespace Padamose {
     \todo The current implementation exists only as a local in-memory data structure. We'll need
     a way to back it to an in-memory database server persisted to storage media, such as Redis.
 */
-class VersionedStore :
-    public VersionedStoreSnapshot {
+class VersionedStoreTag :
+    public ConstVersionedStoreTag {
 protected:
 
     //----------------------------------------------------------------//
-    void            prepareForSetValue              ();
+    void            prepareForSetValue          ();
     
 public:
 
     //----------------------------------------------------------------//
-    void            clearVersion                    ();
-    void            popVersion                      ();
-    void            pushVersion                     ();
-    void            revert                          ( size_t version );
-    void            revertAndClear                  ( size_t version );
-                    VersionedStore                  ();
-                    VersionedStore                  ( VersionedStoreSnapshot& other );
-                    VersionedStore                  ( shared_ptr < AbstractPersistenceProvider > persistence, string branch );
-                    ~VersionedStore                 ();
+    void            clearVersion                ();
+    void            popVersion                  ();
+    void            pushVersion                 ();
+    void            revert                      ( size_t version );
+    void            revertAndClear              ( size_t version );
+                    VersionedStoreTag           ();
+                    VersionedStoreTag           ( ConstVersionedStoreTag& other );
+                    VersionedStoreTag           ( shared_ptr < AbstractPersistenceProvider > persistence, string branch );
+                    ~VersionedStoreTag          ();
     
     //----------------------------------------------------------------//
     /** \brief  Implements assignment by calling takeSnapshot().
      
         \param  other   The version to snapshot.
     */
-    VersionedStore& operator = ( VersionedStoreSnapshot& other ) {
+    VersionedStoreTag& operator = ( ConstVersionedStoreTag& other ) {
         this->takeSnapshot ( other );
         return *this;
     }

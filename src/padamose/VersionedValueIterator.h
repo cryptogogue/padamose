@@ -5,7 +5,7 @@
 #define PADAMOSE_VERSIONEDVALUEITERATOR_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/VersionedStoreSnapshot.h>
+#include <padamose/ConstVersionedStoreTag.h>
 
 namespace Padamose {
 
@@ -34,10 +34,10 @@ namespace Padamose {
 */
 template < typename TYPE >
 class VersionedValueIterator :
-    public VersionedStoreSnapshot {
+    public ConstVersionedStoreTag {
 protected:
 
-    friend class VersionedStoreSnapshot;
+    friend class ConstVersionedStoreTag;
 
     enum {
         VALID,
@@ -49,7 +49,7 @@ protected:
     };
 
     /// The anchor snapshot.
-    VersionedStoreSnapshot      mAnchor;
+    ConstVersionedStoreTag      mAnchor;
     
     /// Key of the value being iterated.
     string                      mKey;
@@ -283,7 +283,7 @@ public:
         \param  versionedStore  Snapshot to use as the upper bound for iteration.
         \param  key             Key of the value to be iterated.
     */
-    VersionedValueIterator ( const VersionedStoreSnapshot& versionedStore, string key ) :
+    VersionedValueIterator ( const ConstVersionedStoreTag& versionedStore, string key ) :
         mAnchor ( versionedStore ),
         mKey ( key ) {
         
