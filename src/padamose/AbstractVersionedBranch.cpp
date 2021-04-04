@@ -195,6 +195,12 @@ void AbstractVersionedBranch::insertClient ( AbstractVersionedBranchClient& clie
 }
 
 //----------------------------------------------------------------//
+bool AbstractVersionedBranch::isLocked () const {
+
+    return ( this->mLockCount > 0 );
+}
+
+//----------------------------------------------------------------//
 // TODO: doxygen
 bool AbstractVersionedBranch::isPersistent () const {
 
@@ -202,9 +208,19 @@ bool AbstractVersionedBranch::isPersistent () const {
 }
 
 //----------------------------------------------------------------//
-void AbstractVersionedBranch::lock () {
+/** \brief If a client supports the join operation (i.e. client is a branch),
+    appends the contents of the client to the given branch.
+*/
+void AbstractVersionedBranch::joinBranch ( AbstractVersionedBranch& branch ) {
+    this->AbstractVersionedBranch_joinBranch ( branch );
+}
 
+//----------------------------------------------------------------//
+void AbstractVersionedBranch::lock () {
     this->mLockCount++;
+    if ( this->mSourceBranch ) {
+        this->mSourceBranch->lock ();
+    }
 }
 
 //----------------------------------------------------------------//
@@ -234,7 +250,7 @@ void AbstractVersionedBranch::lock () {
 */
 void AbstractVersionedBranch::optimize () {
 
-    if ( this->preventJoin ()) return; // don't allow join if there are any direct references to the current branch. (May be over-cautious.)
+    if ( this->isLocked ()) return; // don't allow join if there are any direct references to the current branch. (May be over-cautious.)
 
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::optimize ()" );
     
@@ -242,10 +258,8 @@ void AbstractVersionedBranch::optimize () {
     // may be joined to the parent branch.
     
     size_t immutableTop = this->mVersion; // immutable top won't be less than the branch's base version.
-    AbstractVersionedBranchClient* bestJoin = NULL; // a join will be performed if this is non-NULL.
-    
-    bool preventJoin = false;
-    
+    BranchPtr bestJoin = NULL; // a join will be performed if this is non-NULL.
+        
     // loop through every client...
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "evaluating clients for possible concatenation..." );
     set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
@@ -270,26 +284,22 @@ void AbstractVersionedBranch::optimize () {
             bestJoin = NULL;
         }
         
+        BranchPtr branch = client->asBranch ();
+        
         // if nothing is preventing a join, check to see if we can (and should) select
         // the current client as our new candidate for join. only conder client if dependency
         // is greater or equal to the current immutable top.
-        if (( !preventJoin ) && client->canJoin () && ( client->getVersionDependency () >= immutableTop )) {
+        if ( branch && ( branch->getVersionDependency () >= immutableTop )) {
 
-            // a client branch with direct refereces will prevent any join.
-            if ( client->preventJoin ()) {
-                preventJoin = true; // stop considering join candidates.
-                bestJoin = NULL; // clear out any existing join candidate.
-            }
-            else {
-            
-                // the "join score" is just the length of the branch. if we don't yet have a join
-                // candidate, pick the current client. if we already have a candidate, pick the
-                // one with the higher join score.
-                if (( !bestJoin ) || ( bestJoin->getJoinScore () < client->getJoinScore ())) {
-                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
-                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
-                    bestJoin = client;
-                }
+            assert ( !branch->isLocked ());
+
+            // the "join score" is just the length of the branch. if we don't yet have a join
+            // candidate, pick the current client. if we already have a candidate, pick the
+            // one with the higher join score.
+            if (( !bestJoin ) || ( bestJoin->getTopVersion () < branch->getTopVersion ())) {
+                LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
+                LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
+                bestJoin = branch;
             }
         }
     }
@@ -317,7 +327,7 @@ void AbstractVersionedBranch::persistSelf ( AbstractPersistenceProvider& provide
         this->mSourceBranch->persistSelf ( provider );
     }
     shared_ptr < AbstractPersistentVersionedBranch > persist = provider.makePersistentBranch ();
-    assert ( persist->getProvider () == &provider );
+    assert ( &( *persist->getProvider ()) == &provider );
     
     // set the source branch and version manually
     persist->mSourceBranch = this->mSourceBranch;
@@ -344,6 +354,8 @@ void AbstractVersionedBranch::setValueVariant ( size_t version, string key, cons
 // TODO: doxygen
 void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other ) {
 
+    if ( this->isLocked ()) return;
+
     shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
 
     // copy the clients
@@ -362,6 +374,7 @@ void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other )
 // TODO: doxygen
 void AbstractVersionedBranch::truncate ( size_t topVersion ) {
 
+    if ( this->isLocked ()) return;
     this->AbstractVersionedBranch_truncate ( topVersion );
 }
 
@@ -369,7 +382,13 @@ void AbstractVersionedBranch::truncate ( size_t topVersion ) {
 void AbstractVersionedBranch::unlock () {
 
     if ( this->mLockCount ) {
+    
         this->mLockCount--;
+    
+        if ( this->mSourceBranch ) {
+            this->mSourceBranch->unlock ();
+        }
+        
         if ( this->mLockCount == 0 ) {
             this->optimize ();
         }
@@ -395,19 +414,9 @@ void AbstractVersionedBranch::AbstractVersionedBranch_print ( string prefix ) co
 }
 
 //----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Always returns true.
-    \return     Always returns true.
-*/
-bool AbstractVersionedBranch::AbstractVersionedBranchClient_canJoin () const {
-    return true;
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Returns the top version.
-    \return     The top version.
-*/
-size_t AbstractVersionedBranch::AbstractVersionedBranchClient_getJoinScore () const {
-    return this->getTopVersion ();
+// TODO: doxygen
+AbstractVersionedBranch::BranchPtr AbstractVersionedBranch::AbstractVersionedBranchClient_asBranch () {
+    return this->shared_from_this ();
 }
 
 //----------------------------------------------------------------//
@@ -433,16 +442,6 @@ void AbstractVersionedBranch::AbstractVersionedBranchClient_print ( string prefi
         AbstractVersionedBranchClient* client = *clientIt;
         client->AbstractVersionedBranchClient_print ( prefix );
     }
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Prevents a join optimization
-    from happening if the branch has any direct references.
- 
-    \return     True if the branch has any direct references. False otherwise.
-*/
-bool AbstractVersionedBranch::AbstractVersionedBranchClient_preventJoin () const {
-    return ( this->mLockCount > 0 );
 }
 
 } // namespace Padamose

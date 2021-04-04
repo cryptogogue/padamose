@@ -183,6 +183,31 @@ bool EphemeralVersionedBranch::AbstractVersionedBranch_isPersistent () const {
 }
 
 //----------------------------------------------------------------//
+/** \brief Implementation of virtual method. Appends the contents of
+    the branch onto the given branch and transfers all clients and
+    children to the given branch.
+ 
+    The branch is optimized before being appended. Optimization may
+    recursively trigger additional joins.
+ 
+    Neither branch is permitted to have direct references.
+ 
+    \param      other       The branch to be appended to.
+*/
+void EphemeralVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersionedBranch& other ) {
+
+    assert ( other.getDirectReferenceCount () == 0 );
+    assert ( this->mLockCount == 0 );
+
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
+    
+    this->optimize ();
+    this->copyValues ( other );
+    this->transferClients ( other );
+}
+
+//----------------------------------------------------------------//
 // TODO: doxygen
 void EphemeralVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < AbstractPersistentVersionedBranch > persist ) {
 
@@ -252,72 +277,6 @@ void EphemeralVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVers
         this->mLayers.erase ( layerIt->first );
         layerIt = this->mLayers.rbegin ();
     }
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Always returns true.
-    \return     Always returns true.
-*/
-bool EphemeralVersionedBranch::AbstractVersionedBranchClient_canJoin () const {
-    return true;
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Returns the top version.
-    \return     The top version.
-*/
-size_t EphemeralVersionedBranch::AbstractVersionedBranchClient_getJoinScore () const {
-    return this->getTopVersion ();
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Returns the base version;
-    the branch depends on all versions less than the base version.
- 
-    \return     The base version.
-*/
-size_t EphemeralVersionedBranch::AbstractVersionedBranchClient_getVersionDependency () const {
-    return this->mVersion;
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Appends the contents of
-    the branch onto the given branch and transfers all clients and
-    children to the given branch.
- 
-    The branch is optimized before being appended. Optimization may
-    recursively trigger additional joins.
- 
-    Neither branch is permitted to have direct references.
- 
-    \param      other       The branch to be appended to.
-*/
-void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& other ) {
-
-    assert ( other.getDirectReferenceCount () == 0 );
-    assert ( this->mLockCount == 0 );
-
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
-    LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
-    
-    this->optimize ();
-    this->copyValues ( other );
-    this->transferClients ( other );
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Prevents a join optimization
-    from happening if the branch has any direct references.
- 
-    \return     True if the branch has any direct references. False otherwise.
-*/
-bool EphemeralVersionedBranch::AbstractVersionedBranchClient_preventJoin () const {
-    return ( this->mLockCount > 0 );
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void EphemeralVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidChange () {
 }
 
 } // namespace Padamose

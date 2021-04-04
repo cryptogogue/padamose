@@ -202,9 +202,9 @@ StringStoreVersionedBranch::~StringStoreVersionedBranch () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-const AbstractPersistenceProvider* StringStoreVersionedBranch::AbstractPersistentVersionedBranch_getProvider () const {
+StringStoreVersionedBranch::ConstProviderPtr StringStoreVersionedBranch::AbstractPersistentVersionedBranch_getProvider () const {
 
-    return this->mProvider.get ();
+    return this->mProvider;
 }
 
 //----------------------------------------------------------------//
@@ -387,6 +387,54 @@ bool StringStoreVersionedBranch::AbstractVersionedBranch_isPersistent () const {
 }
 
 //----------------------------------------------------------------//
+/** \brief Implementation of virtual method. Appends the contents of
+    the branch onto the given branch and transfers all clients and
+    children to the given branch.
+ 
+    The branch is optimized before being appended. Optimization may
+    recursively trigger additional joins.
+ 
+    Neither branch is permitted to have direct references.
+ 
+    \param      other       The branch to be appended to.
+*/
+void StringStoreVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersionedBranch& other ) {
+
+    assert ( other.getDirectReferenceCount () == 0 );
+    assert ( this->mLockCount == 0 );
+
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
+    LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
+    
+    this->optimize ();
+    
+    AbstractStringStore& store = *this->mProvider;
+
+    string keyForTopVersion = this->formatKeyForTopVersion ();
+    size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
+    size_t versionCount = topVersion - this->mVersion;
+    
+    for ( size_t i = 0; i < versionCount; ++i ) {
+        
+        size_t version = this->mVersion + i;
+        
+        string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( version );
+        size_t layerSize = store.get < u64 >( keyForLayerSizeByVersion, 0 );
+        
+        for ( size_t j = 0; j < layerSize; ++j ) {
+            
+            string keyForValueNameByIndexInLayer = this->formatKeyForValueNameByIndexInLayer ( version, j );
+            string valueName = store.get < string >( keyForValueNameByIndexInLayer, "" );
+            
+            Variant value = this->getValueVariantForVersion ( valueName, version );
+            assert ( !value.isNull ());
+            other.setValueVariant ( version, valueName, value );
+        }
+    }
+    this->transferClients ( other );
+}
+
+//----------------------------------------------------------------//
 // TODO: doxygen
 void StringStoreVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < AbstractPersistentVersionedBranch > persist ) {
     UNUSED ( persist );
@@ -545,90 +593,6 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
     if ( version == this->mVersion ) {
         store.eraseString ( keyForTopVersion );
     }
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Always returns true.
-    \return     Always returns true.
-*/
-bool StringStoreVersionedBranch::AbstractVersionedBranchClient_canJoin () const {
-    return true;
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Returns the top version.
-    \return     The top version.
-*/
-size_t StringStoreVersionedBranch::AbstractVersionedBranchClient_getJoinScore () const {
-    return this->getTopVersion ();
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Returns the base version;
-    the branch depends on all versions less than the base version.
- 
-    \return     The base version.
-*/
-size_t StringStoreVersionedBranch::AbstractVersionedBranchClient_getVersionDependency () const {
-    return this->mVersion;
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Appends the contents of
-    the branch onto the given branch and transfers all clients and
-    children to the given branch.
- 
-    The branch is optimized before being appended. Optimization may
-    recursively trigger additional joins.
- 
-    Neither branch is permitted to have direct references.
- 
-    \param      other       The branch to be appended to.
-*/
-void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& other ) {
-
-    assert ( other.getDirectReferenceCount () == 0 );
-    assert ( this->mLockCount == 0 );
-
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
-    LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
-    
-    this->optimize ();
-    
-    AbstractStringStore& store = *this->mProvider;
-
-    string keyForTopVersion = this->formatKeyForTopVersion ();
-    size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
-    size_t versionCount = topVersion - this->mVersion;
-    
-    for ( size_t i = 0; i < versionCount; ++i ) {
-        
-        size_t version = this->mVersion + i;
-        
-        string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( version );
-        size_t layerSize = store.get < u64 >( keyForLayerSizeByVersion, 0 );
-        
-        for ( size_t j = 0; j < layerSize; ++j ) {
-            
-            string keyForValueNameByIndexInLayer = this->formatKeyForValueNameByIndexInLayer ( version, j );
-            string valueName = store.get < string >( keyForValueNameByIndexInLayer, "" );
-            
-            Variant value = this->getValueVariantForVersion ( valueName, version );
-            assert ( !value.isNull ());
-            other.setValueVariant ( version, valueName, value );
-        }
-    }
-    this->transferClients ( other );
-}
-
-//----------------------------------------------------------------//
-/** \brief Implementation of virtual method. Prevents a join optimization
-    from happening if the branch has any direct references.
- 
-    \return     True if the branch has any direct references. False otherwise.
-*/
-bool StringStoreVersionedBranch::AbstractVersionedBranchClient_preventJoin () const {
-    return ( this->mLockCount > 0 );
 }
 
 //----------------------------------------------------------------//

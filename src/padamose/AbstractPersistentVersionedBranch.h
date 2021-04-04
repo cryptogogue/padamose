@@ -21,18 +21,21 @@ protected:
 
     friend class EphemeralVersionedBranch;
 
-    //----------------------------------------------------------------//
-    bool                                            isFrozen                                    () const;
+    typedef shared_ptr < AbstractPersistenceProvider > ProviderPtr;
+    typedef shared_ptr < const AbstractPersistenceProvider > ConstProviderPtr;
 
     //----------------------------------------------------------------//
-    virtual const AbstractPersistenceProvider*      AbstractPersistentVersionedBranch_getProvider       () const = 0;
+    bool                        isFrozen                                    () const;
+
+    //----------------------------------------------------------------//
+    virtual ConstProviderPtr    AbstractPersistentVersionedBranch_getProvider       () const = 0;
 
 public:
 
     //----------------------------------------------------------------//
-                                                    AbstractPersistentVersionedBranch           ();
-                                                    ~AbstractPersistentVersionedBranch          ();
-    const AbstractPersistenceProvider*              getProvider                                 () const;
+                                AbstractPersistentVersionedBranch           ();
+                                ~AbstractPersistentVersionedBranch          ();
+    ConstProviderPtr            getProvider                                 () const;
 };
 
 } // namespace Padamose

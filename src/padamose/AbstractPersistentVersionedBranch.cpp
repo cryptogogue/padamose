@@ -19,7 +19,7 @@ AbstractPersistentVersionedBranch::~AbstractPersistentVersionedBranch () {
 }
 
 //----------------------------------------------------------------//
-const AbstractPersistenceProvider* AbstractPersistentVersionedBranch::getProvider () const {
+AbstractPersistentVersionedBranch::ConstProviderPtr AbstractPersistentVersionedBranch::getProvider () const {
 
     return this->AbstractPersistentVersionedBranch_getProvider ();
 }
@@ -28,7 +28,7 @@ const AbstractPersistenceProvider* AbstractPersistentVersionedBranch::getProvide
 // TODO: doxygen
 bool AbstractPersistentVersionedBranch::isFrozen () const {
 
-    const AbstractPersistenceProvider* provider = this->getProvider ();
+    ConstProviderPtr provider = this->getProvider ();
     assert ( provider );
     return provider->isFrozen ();
 }

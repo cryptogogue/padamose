@@ -41,14 +41,6 @@ protected:
 
     string          mDebugName;
     
-    //----------------------------------------------------------------//
-    bool            AbstractVersionedBranchClient_canJoin                   () const override;
-    size_t          AbstractVersionedBranchClient_getJoinScore              () const override;
-    size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
-    void            AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& branch ) override;
-    bool            AbstractVersionedBranchClient_preventJoin               () const override;
-    void            AbstractVersionedBranchClient_sourceBranchDidChange     () override;
-    
 public:
 
     //----------------------------------------------------------------//

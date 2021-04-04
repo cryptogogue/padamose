@@ -36,7 +36,6 @@ protected:
     size_t                                  getPrevVersion          ( size_t version ) const;
     Variant                                 getValueVariant         ( size_t version ) const;
     bool                                    hasKey                  ( size_t upperBound ) const;
-//    void                                    join                    ( EphemeralValueStack& to ) const;
     void                                    join                    ( string key, AbstractVersionedBranch& branch ) const;
     unique_ptr < EphemeralValueStack >      makeEmptyCopy           () const;
     void                                    setValueVariant         ( size_t version, const Variant& value );

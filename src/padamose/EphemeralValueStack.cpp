@@ -139,21 +139,6 @@ bool EphemeralValueStack::hasKey ( size_t upperBound ) const {
     return false;
 }
 
-////----------------------------------------------------------------//
-///** \brief Concatenates values from one stack to another. All values in
-//    the source stack must have versions greater than values in the
-//    destination stack.
-//
-//    \param      to          The stack to copy to.
-//*/
-//void EphemeralValueStack::join ( EphemeralValueStack& to ) const {
-//
-//    if ( this->mValuesByVersion.size () > 0 ) {
-//        assert (( to.mValuesByVersion.size () == 0 ) || ( to.mValuesByVersion.crbegin ()->first < this->mValuesByVersion.cbegin ()->first ));
-//        to.mValuesByVersion.insert ( this->mValuesByVersion.begin (),  this->mValuesByVersion.end ());
-//    }
-//}
-
 //----------------------------------------------------------------//
 // TODO: doxygen
 void EphemeralValueStack::join ( string key, AbstractVersionedBranch& branch ) const {

@@ -25,7 +25,8 @@ class AbstractVersionedBranch;
     In practice, it is easier and cleaner to implement a handful of
     single-line virtual methods than to complicate the client bookkeeping.
 */
-class AbstractVersionedBranchClient {
+class AbstractVersionedBranchClient :
+    public enable_shared_from_this < AbstractVersionedBranch > {
 public:
 
     typedef shared_ptr < AbstractVersionedBranch >          BranchPtr;
@@ -44,20 +45,14 @@ protected:
     size_t                                      mVersion;
 
     //----------------------------------------------------------------//
-    bool                canJoin                                                 () const;
-    size_t              getJoinScore                                            () const;
-    size_t              getVersionDependency                                    () const;
-    void                joinBranch                                              ( AbstractVersionedBranch& branch );
-    bool                preventJoin                                             () const;
+    BranchPtr           asBranch                                ();
+    size_t              getVersionDependency                    () const;
 
     //----------------------------------------------------------------//
-    virtual bool        AbstractVersionedBranchClient_canJoin                   () const = 0;
-    virtual size_t      AbstractVersionedBranchClient_getJoinScore              () const = 0;
-    virtual size_t      AbstractVersionedBranchClient_getVersionDependency      () const = 0;
-    virtual void        AbstractVersionedBranchClient_joinBranch                ( AbstractVersionedBranch& other ) = 0;
-    virtual bool        AbstractVersionedBranchClient_preventJoin               () const = 0;
+    virtual BranchPtr   AbstractVersionedBranchClient_asBranch                  ();
+    virtual size_t      AbstractVersionedBranchClient_getVersionDependency      () const;
     virtual void        AbstractVersionedBranchClient_print                     ( string prefix ) const;
-    virtual void        AbstractVersionedBranchClient_sourceBranchDidChange     () = 0;
+    virtual void        AbstractVersionedBranchClient_sourceBranchDidChange     ();
 
 public:
 

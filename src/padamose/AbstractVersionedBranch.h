@@ -35,7 +35,6 @@ class ConstVersionedStoreTag;
     be searched recurively until a value is found.
 */
 class AbstractVersionedBranch :
-    public enable_shared_from_this < AbstractVersionedBranch >,
     public AbstractVersionedBranchClient {
 protected:
 
@@ -55,53 +54,54 @@ protected:
     size_t                                      mLockCount;
 
     //----------------------------------------------------------------//
-    void            lock                        ();
-    void            transferClients             ( AbstractVersionedBranch& other );
-    void            truncate                    ( size_t topVersion );
-    void            unlock                      ();
+    void            lock                            ();
+    void            transferClients                 ( AbstractVersionedBranch& other );
+    void            truncate                        ( size_t topVersion );
+    void            unlock                          ();
 
     //----------------------------------------------------------------//
-    bool            AbstractVersionedBranchClient_canJoin                   () const override;
-    size_t          AbstractVersionedBranchClient_getJoinScore              () const override;
+    BranchPtr       AbstractVersionedBranchClient_asBranch                  () override;
     size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
     void            AbstractVersionedBranchClient_print                     ( string prefix ) const override;
-    bool            AbstractVersionedBranchClient_preventJoin               () const override;
 
     //----------------------------------------------------------------//
-    virtual shared_ptr < AbstractVersionedBranch >      AbstractVersionedBranch_fork                    ( size_t baseVersion ) = 0;
-    virtual size_t                                      AbstractVersionedBranch_getTopVersion           () const = 0;
-    virtual size_t                                      AbstractVersionedBranch_getValueNextVersion     ( string key, size_t version ) const = 0;
-    virtual size_t                                      AbstractVersionedBranch_getValuePrevVersion     ( string key, size_t version ) const = 0;
-    virtual Variant                                     AbstractVersionedBranch_getValueVariant         ( size_t version, string key ) const = 0;
-    virtual bool                                        AbstractVersionedBranch_getValueVersionExtents  ( string key, size_t upperBound, size_t& first, size_t& last ) const = 0;
-    virtual bool                                        AbstractVersionedBranch_hasKey                  ( string key, size_t upperBound ) const = 0;
-    virtual bool                                        AbstractVersionedBranch_isPersistent            () const = 0;
-    virtual void                                        AbstractVersionedBranch_persist                 ( shared_ptr < AbstractPersistentVersionedBranch > persist ) = 0;
-    virtual void                                        AbstractVersionedBranch_print                   ( string prefix ) const;
-    virtual void                                        AbstractVersionedBranch_setValueVariant         ( size_t version, string key, const Variant& value ) = 0;
-    virtual void                                        AbstractVersionedBranch_truncate                ( size_t topVersion ) = 0;
+    virtual BranchPtr       AbstractVersionedBranch_fork                        ( size_t baseVersion ) = 0;
+    virtual size_t          AbstractVersionedBranch_getTopVersion               () const = 0;
+    virtual size_t          AbstractVersionedBranch_getValueNextVersion         ( string key, size_t version ) const = 0;
+    virtual size_t          AbstractVersionedBranch_getValuePrevVersion         ( string key, size_t version ) const = 0;
+    virtual Variant         AbstractVersionedBranch_getValueVariant             ( size_t version, string key ) const = 0;
+    virtual bool            AbstractVersionedBranch_getValueVersionExtents      ( string key, size_t upperBound, size_t& first, size_t& last ) const = 0;
+    virtual bool            AbstractVersionedBranch_hasKey                      ( string key, size_t upperBound ) const = 0;
+    virtual bool            AbstractVersionedBranch_isPersistent                () const = 0;
+    virtual void            AbstractVersionedBranch_joinBranch                  ( AbstractVersionedBranch& other ) = 0;
+    virtual void            AbstractVersionedBranch_persist                     ( shared_ptr < AbstractPersistentVersionedBranch > persist ) = 0;
+    virtual void            AbstractVersionedBranch_print                       ( string prefix ) const;
+    virtual void            AbstractVersionedBranch_setValueVariant             ( size_t version, string key, const Variant& value ) = 0;
+    virtual void            AbstractVersionedBranch_truncate                    ( size_t topVersion ) = 0;
 
 public:
 
     //----------------------------------------------------------------//
-                                                AbstractVersionedBranch         ();
-                                                ~AbstractVersionedBranch        ();
-    size_t                                      countDependencies               () const;
-    void                                        eraseClient                     ( AbstractVersionedBranchClient& client );
-    size_t                                      findImmutableTop                ( const AbstractVersionedBranchClient* ignore = NULL ) const;
-    shared_ptr < AbstractVersionedBranch >      fork                            ( size_t baseVersion );
-    size_t                                      getDirectReferenceCount         () const;
-    size_t                                      getTopVersion                   () const;
-    size_t                                      getValueNextVersion             ( string key, size_t version ) const;
-    size_t                                      getValuePrevVersion             ( string key, size_t version ) const;
-    Variant                                     getValueVariant                 ( size_t version, string key ) const;
-    bool                                        getValueVersionExtents          ( string key, size_t upperBound, size_t& first, size_t& last ) const;
-    bool                                        hasKey                          ( size_t version, string key ) const;
-    void                                        insertClient                    ( AbstractVersionedBranchClient& client );
-    bool                                        isPersistent                    () const;
-    void                                        optimize                        ();
-    void                                        persistSelf                     ( AbstractPersistenceProvider& provider );
-    void                                        setValueVariant                 ( size_t version, string key, const Variant& value );
+                    AbstractVersionedBranch         ();
+                    ~AbstractVersionedBranch        ();
+    size_t          countDependencies               () const;
+    void            eraseClient                     ( AbstractVersionedBranchClient& client );
+    size_t          findImmutableTop                ( const AbstractVersionedBranchClient* ignore = NULL ) const;
+    BranchPtr       fork                            ( size_t baseVersion );
+    size_t          getDirectReferenceCount         () const;
+    size_t          getTopVersion                   () const;
+    size_t          getValueNextVersion             ( string key, size_t version ) const;
+    size_t          getValuePrevVersion             ( string key, size_t version ) const;
+    Variant         getValueVariant                 ( size_t version, string key ) const;
+    bool            getValueVersionExtents          ( string key, size_t upperBound, size_t& first, size_t& last ) const;
+    bool            hasKey                          ( size_t version, string key ) const;
+    void            insertClient                    ( AbstractVersionedBranchClient& client );
+    bool            isLocked                        () const;
+    bool            isPersistent                    () const;
+    void            joinBranch                      ( AbstractVersionedBranch& branch );
+    void            optimize                        ();
+    void            persistSelf                     ( AbstractPersistenceProvider& provider );
+    void            setValueVariant                 ( size_t version, string key, const Variant& value );
 };
 
 } // namespace Padamose
