@@ -4,7 +4,7 @@
 #include <padamose/AbstractPersistenceProvider.h>
 #include <padamose/AbstractPersistentVersionedBranch.h>
 #include <padamose/EphemeralVersionedBranch.h>
-#include <padamose/ConstVersionedStoreTag.h>
+#include <padamose/VersionedStoreTag.h>
 
 namespace Padamose {
 
@@ -199,7 +199,7 @@ void EphemeralVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVers
     assert ( other.getDirectReferenceCount () == 0 );
     assert ( this->mLockCount == 0 );
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchOrLeaf_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
     
     this->optimize ();

@@ -33,7 +33,7 @@ public:
         BaseVersionedCollectionIterator ( versionedSet ) {
     }
     
-    VersionedCollectionIterator ( const ConstVersionedStoreTag& snapshot, string name ) :
+    VersionedCollectionIterator ( const VersionedStoreTag& snapshot, string name ) :
         BaseVersionedCollectionIterator ( snapshot, name ) {
     }
     

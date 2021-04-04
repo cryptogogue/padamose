@@ -5,15 +5,15 @@
 #define PADAMOSE_ABSTRACTVERSIONEDBRANCH_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractVersionedBranchClient.h>
+#include <padamose/AbstractVersionedBranchOrLeaf.h>
 #include <padamose/Variant.h>
 
 namespace Padamose {
 
 class AbstractPersistentVersionedBranch;
-class AbstractVersionedBranchClient;
+class AbstractVersionedBranchOrLeaf;
 class AbstractVersionedBranchTag;
-class ConstVersionedStoreTag;
+class VersionedStoreTag;
 
 //================================================================//
 // AbstractVersionedBranch
@@ -35,12 +35,12 @@ class ConstVersionedStoreTag;
     be searched recurively until a value is found.
 */
 class AbstractVersionedBranch :
-    public AbstractVersionedBranchClient {
+    public AbstractVersionedBranchOrLeaf {
 protected:
 
-    friend class AbstractVersionedBranchClient;
+    friend class AbstractVersionedBranchOrLeaf;
     friend class AbstractVersionedValueIterator;
-    friend class ConstVersionedStoreTag;
+    friend class VersionedStoreTag;
     friend class VersionedStoreLock;
     friend class VersionedStoreTag;
     friend class VersionedStoreIterator;
@@ -48,7 +48,7 @@ protected:
     template < typename > friend class VersionedValueIterator;
 
     /// Set containing active clients. This is needed to calculate dependencies and to know when to optimize.
-    set < AbstractVersionedBranchClient* >      mClients;
+    set < AbstractVersionedBranchOrLeaf* >      mClients;
 
     /// The number of clients holding direct references to branch internals. A nonzero direct reference count will prevent optimization of the branch.
     size_t                                      mLockCount;
@@ -60,9 +60,9 @@ protected:
     void            unlock                          ();
 
     //----------------------------------------------------------------//
-    BranchPtr       AbstractVersionedBranchClient_asBranch                  () override;
-    size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
-    void            AbstractVersionedBranchClient_print                     ( string prefix ) const override;
+    BranchPtr       AbstractVersionedBranchOrLeaf_asBranch                  () override;
+    size_t          AbstractVersionedBranchOrLeaf_getVersionDependency      () const override;
+    void            AbstractVersionedBranchOrLeaf_print                     ( string prefix ) const override;
 
     //----------------------------------------------------------------//
     virtual BranchPtr       AbstractVersionedBranch_fork                        ( size_t baseVersion ) = 0;
@@ -85,8 +85,8 @@ public:
                     AbstractVersionedBranch         ();
                     ~AbstractVersionedBranch        ();
     size_t          countDependencies               () const;
-    void            eraseClient                     ( AbstractVersionedBranchClient& client );
-    size_t          findImmutableTop                ( const AbstractVersionedBranchClient* ignore = NULL ) const;
+    void            eraseClient                     ( AbstractVersionedBranchOrLeaf& client );
+    size_t          findImmutableTop                ( const AbstractVersionedBranchOrLeaf* ignore = NULL ) const;
     BranchPtr       fork                            ( size_t baseVersion );
     size_t          getDirectReferenceCount         () const;
     size_t          getTopVersion                   () const;
@@ -95,7 +95,7 @@ public:
     Variant         getValueVariant                 ( size_t version, string key ) const;
     bool            getValueVersionExtents          ( string key, size_t upperBound, size_t& first, size_t& last ) const;
     bool            hasKey                          ( size_t version, string key ) const;
-    void            insertClient                    ( AbstractVersionedBranchClient& client );
+    void            insertClient                    ( AbstractVersionedBranchOrLeaf& client );
     bool            isLocked                        () const;
     bool            isPersistent                    () const;
     void            joinBranch                      ( AbstractVersionedBranch& branch );

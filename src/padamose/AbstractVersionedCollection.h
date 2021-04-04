@@ -116,24 +116,24 @@ protected:
     //----------------------------------------------------------------//
     static string                       encodeNodeID            ( size_t nodeID );
     VersionedCollectionNode             getNode                 ( string key ) const;
-    const ConstVersionedStoreTag&       getSnapshot             () const;
+    const VersionedStoreTag&       getSnapshot             () const;
     void                                loadState               ();
     size_t                              lookupNodeID            ( string key ) const;
     void                                pushNode                ( size_t nodeID, string nodeKey );
     void                                setName                 ( string name );
     
     //----------------------------------------------------------------//
-    virtual const ConstVersionedStoreTag&       AbstractVersionedCollection_getSnapshot         () const = 0;
+    virtual const VersionedStoreTag&       AbstractVersionedCollection_getSnapshot         () const = 0;
     
 public:
 
     //----------------------------------------------------------------//
-    /** \brief  Cast operator to return the ConstVersionedStoreTag holding
+    /** \brief  Cast operator to return the VersionedStoreTag holding
                 the collection.
         
-        \return The ConstVersionedStoreTag holding the collection.
+        \return The VersionedStoreTag holding the collection.
     */
-    operator const ConstVersionedStoreTag& () const {
+    operator const VersionedStoreTag& () const {
     
         return this->getSnapshot ();
     }

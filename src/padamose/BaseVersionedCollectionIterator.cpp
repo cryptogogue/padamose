@@ -30,7 +30,7 @@ BaseVersionedCollectionIterator::BaseVersionedCollectionIterator ( const Abstrac
  
     \throws     VersionedCollectionNotFoundException    No valid state exists for the collection.
 */
-BaseVersionedCollectionIterator::BaseVersionedCollectionIterator ( const ConstVersionedStoreTag& snapshot, string name ) :
+BaseVersionedCollectionIterator::BaseVersionedCollectionIterator ( const VersionedStoreTag& snapshot, string name ) :
     VersionedCollectionSnapshot ( snapshot, name ) {
     
     this->seekFront ();

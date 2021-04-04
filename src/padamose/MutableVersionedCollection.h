@@ -30,7 +30,7 @@ protected:
     void            storeState              ();
     
     //----------------------------------------------------------------//
-    const ConstVersionedStoreTag&       AbstractVersionedCollection_getSnapshot         () const override;
+    const VersionedStoreTag&       AbstractVersionedCollection_getSnapshot         () const override;
     
     //----------------------------------------------------------------//
     /** \brief  Set the value associated with a key. Note that inclusion

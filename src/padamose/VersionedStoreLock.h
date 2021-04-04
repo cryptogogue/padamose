@@ -4,7 +4,7 @@
 #ifndef PADAMOSE_VERSIONEDSTORELOCK_H
 #define PADAMOSE_VERSIONEDSTORELOCK_H
 
-#include <padamose/AbstractVersionedBranchClient.h>
+#include <padamose/VersionedStoreInspector.h>
 
 namespace Padamose {
 
@@ -15,26 +15,22 @@ class AbstractPersistenceProvider;
 //================================================================//
 // TODO: doxygen
 class VersionedStoreLock :
-    public AbstractVersionedBranchClient {
+    public virtual VersionedStoreInspector {
 protected:
 
     //----------------------------------------------------------------//
-    void            lock                            ( const AbstractVersionedBranchClient& other );
-    
-    //----------------------------------------------------------------//
-    void            AbstractVersionedBranchClient_print                     ( string prefix ) const override;
+    void            VersionedStoreRef_setBranch     ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) override;
     
 public:
 
     //----------------------------------------------------------------//
-    void            unlock                          ();
                     VersionedStoreLock              ();
-                    VersionedStoreLock              ( const AbstractVersionedBranchClient& other );
+                    VersionedStoreLock              ( const VersionedStoreRef& other );
     virtual         ~VersionedStoreLock             ();
     
     //----------------------------------------------------------------//
-    VersionedStoreLock& operator = ( const AbstractVersionedBranchClient& other ) {
-        this->lock ( other );
+    VersionedStoreLock& operator = ( const VersionedStoreRef& other ) {
+        this->setBranch ( other );
         return *this;
     }
 };

@@ -1,40 +1,14 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/ConstVersionedStoreTag.h>
-#include <padamose/AbstractPersistenceProvider.h>
+#include <padamose/VersionedStoreInspector.h>
+#include <padamose/AbstractVersionedBranch.h>
 
 namespace Padamose {
 
 //================================================================//
-// ConstVersionedStoreTag
+// VersionedStoreInspector
 //================================================================//
-
-//----------------------------------------------------------------//
-/** \brief Abandons branch and sets version to 0.
-*/
-void ConstVersionedStoreTag::clear () {
-
-    this->setBranch ( NULL, 0 );
-}
-
-//----------------------------------------------------------------//
-ConstVersionedStoreTag::ConstVersionedStoreTag () {
-}
-
-//----------------------------------------------------------------//
-/** \brief Copy a snapshot.
- 
-    \param  other   The snapshot to copy.
-*/
-ConstVersionedStoreTag::ConstVersionedStoreTag ( const AbstractVersionedBranchClient& other ) {
-
-    this->takeSnapshot ( other );
-}
-
-//----------------------------------------------------------------//
-ConstVersionedStoreTag::~ConstVersionedStoreTag () {
-}
 
 //----------------------------------------------------------------//
 /** \brief Recursively searches the branch to find the value for the key. The most recent version
@@ -45,7 +19,7 @@ ConstVersionedStoreTag::~ConstVersionedStoreTag () {
     \param      key         The key.
     \return                 A pointer to the value for the key or NULL.
 */
-Variant ConstVersionedStoreTag::getValueVariant ( string key ) const {
+Variant VersionedStoreInspector::getValueVariant ( string key ) const {
     return this->getValueVariant ( key, this->mVersion );
 }
 
@@ -59,18 +33,8 @@ Variant ConstVersionedStoreTag::getValueVariant ( string key ) const {
     \param      key         The key.
     \return                 A pointer to the value for the key or NULL.
 */
-Variant ConstVersionedStoreTag::getValueVariant ( string key, size_t version ) const {
+Variant VersionedStoreInspector::getValueVariant ( string key, size_t version ) const {
     return this->mSourceBranch ? this->mSourceBranch->getValueVariant ( version <= this->mVersion ? version : this->mVersion, key ) : Variant ();
-}
-
-//----------------------------------------------------------------//
-/** \brief Return the current version.
-
-    \return             The current version.
-*/
-size_t ConstVersionedStoreTag::getVersion () const {
-
-    return this->mVersion;
 }
 
 //----------------------------------------------------------------//
@@ -79,8 +43,7 @@ size_t ConstVersionedStoreTag::getVersion () const {
     \param      key         The key.
     \return                 TRUE if the key is found. FALSE if not.
 */
-bool ConstVersionedStoreTag::hasKey ( string key ) const {
-
+bool VersionedStoreInspector::hasKey ( string key ) const {
     return this->mSourceBranch ? this->mSourceBranch->hasKey ( this->mVersion, key ) : false;
 }
 
@@ -90,8 +53,7 @@ bool ConstVersionedStoreTag::hasKey ( string key ) const {
     \param  key     The key.
     \return         True if the value exists. False if it doesn't.
 */
-bool ConstVersionedStoreTag::hasValue ( string key ) const {
-
+bool VersionedStoreInspector::hasValue ( string key ) const {
     return this->hasValue ( key, this->mVersion );
 }
 
@@ -104,19 +66,16 @@ bool ConstVersionedStoreTag::hasValue ( string key ) const {
     \param  key     The key.
     \return         True if the value exists. False if it doesn't.
 */
-bool ConstVersionedStoreTag::hasValue ( string key, size_t version ) const {
-
+bool VersionedStoreInspector::hasValue ( string key, size_t version ) const {
     return ( !this->getValueVariant ( key, version ).isNull ());
 }
 
 //----------------------------------------------------------------//
-/** \brief Set the debug name.
- 
-    \param  debugName   The debug name.
-*/
-void ConstVersionedStoreTag::setDebugName ( string debugName ) {
+VersionedStoreInspector::VersionedStoreInspector () {
+}
 
-    this->mDebugName = debugName;
+//----------------------------------------------------------------//
+VersionedStoreInspector::~VersionedStoreInspector () {
 }
 
 } // namespace Padamose

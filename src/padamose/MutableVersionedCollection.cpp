@@ -207,9 +207,9 @@ void MutableVersionedCollection::storeState () {
 /** \brief  Implementation of the pure virtual base method to return
             the versioned snapshot associated with the container.
 
-    \return The VersionedStoreTag (as a ConstVersionedStoreTag).
+    \return The VersionedStoreTag (as a VersionedStoreTag).
 */
-const ConstVersionedStoreTag& MutableVersionedCollection::AbstractVersionedCollection_getSnapshot () const {
+const VersionedStoreTag& MutableVersionedCollection::AbstractVersionedCollection_getSnapshot () const {
 
     return this->mStore;
 }

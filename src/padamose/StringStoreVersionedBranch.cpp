@@ -2,8 +2,9 @@
 // http://cryptogogue.com
 
 #include <padamose/AbstractStringStore.h>
+#include <padamose/EphemeralVersionedBranch.h>
 #include <padamose/StringStoreVersionedBranch.h>
-#include <padamose/ConstVersionedStoreTag.h>
+#include <padamose/VersionedStoreTag.h>
 
 namespace Padamose {
 
@@ -189,7 +190,7 @@ StringStoreVersionedBranch::StringStoreVersionedBranch ( shared_ptr < AbstractSt
 StringStoreVersionedBranch::~StringStoreVersionedBranch () {
 
     this->mProvider->eraseBranch ( *this );
-    this->setBranch ( NULL );
+    this->setBranch ( NULL, 0 );
 
     if ( !this->mProvider->isFrozen ()) {
         this->AbstractVersionedBranch_truncate ( this->mVersion );
@@ -403,7 +404,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVe
     assert ( other.getDirectReferenceCount () == 0 );
     assert ( this->mLockCount == 0 );
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchOrLeaf_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
     
     this->optimize ();
@@ -597,7 +598,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void StringStoreVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidChange () {
+void StringStoreVersionedBranch::AbstractVersionedBranchOrLeaf_sourceBranchDidChange () {
 
     AbstractStringStore& store = *this->mProvider;
     string keyForSourceBranchID = this->formatKeyForSourceBranchID ();

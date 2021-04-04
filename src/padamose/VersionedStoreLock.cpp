@@ -11,43 +11,19 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
-void VersionedStoreLock::lock ( const AbstractVersionedBranchClient& other ) {
-
-    if (( this->mSourceBranch == other.mSourceBranch ) && ( this->mVersion == other.mVersion )) return;
-    
-    this->unlock ();
-    
-    this->setBranch ( other.mSourceBranch, other.mVersion );
-    
-    if ( this->mSourceBranch ) {
-        this->mSourceBranch->lock ();
-    }
-}
-
-//----------------------------------------------------------------//
-void VersionedStoreLock::unlock () {
-
-    if ( this->mSourceBranch ) {
-        shared_ptr < AbstractVersionedBranch > sourceBranch = this->mSourceBranch;
-        this->setBranch ( NULL );
-        sourceBranch->unlock ();
-    }
-}
-
-//----------------------------------------------------------------//
 VersionedStoreLock::VersionedStoreLock () {
 }
 
 //----------------------------------------------------------------//
-VersionedStoreLock::VersionedStoreLock ( const AbstractVersionedBranchClient& other ) {
+VersionedStoreLock::VersionedStoreLock ( const VersionedStoreRef& other ) {
     
-    this->lock ( other );
+    this->setBranch ( other );
 }
 
 //----------------------------------------------------------------//
 VersionedStoreLock::~VersionedStoreLock () {
 
-    this->unlock ();
+    this->setBranch ( NULL );
 }
 
 //================================================================//
@@ -55,9 +31,24 @@ VersionedStoreLock::~VersionedStoreLock () {
 //================================================================//
 
 //----------------------------------------------------------------//
-void VersionedStoreLock::AbstractVersionedBranchClient_print ( string prefix ) const {
+// TODO: doxygen
+void VersionedStoreLock::VersionedStoreRef_setBranch ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
 
-    LGN_LOG ( PDM_FILTER_TREE, INFO, "%s[%d]: lock %p", prefix.c_str (), ( int )this->mVersion, this );
+    if (( this->mSourceBranch == branch ) && ( this->mVersion == version )) return;
+    
+    if ( this->mSourceBranch != branch ) {
+    
+        if ( this->mSourceBranch ) {
+            this->mSourceBranch->unlock ();
+        }
+        
+        if ( branch ) {
+            branch->lock ();
+        }
+    }
+    
+    this->mSourceBranch = branch;
+    this->mVersion = version;
 }
 
 } // namespace Padamose

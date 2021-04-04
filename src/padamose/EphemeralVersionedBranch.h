@@ -6,13 +6,13 @@
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractVersionedBranch.h>
-#include <padamose/AbstractVersionedBranchClient.h>
+#include <padamose/AbstractVersionedBranchOrLeaf.h>
 #include <padamose/EphemeralValueStack.h>
 
 namespace Padamose {
 
-class AbstractVersionedBranchClient;
-class ConstVersionedStoreTag;
+class AbstractVersionedBranchOrLeaf;
+class VersionedStoreTag;
 
 //================================================================//
 // EphemeralVersionedBranch

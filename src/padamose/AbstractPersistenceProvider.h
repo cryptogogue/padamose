@@ -21,24 +21,24 @@ protected:
 
     friend class AbstractPersistentVersionedBranch;
     friend class VersionedStoreTag;
-    friend class ConstVersionedStoreTag;
+    friend class VersionedStoreTag;
 
-    map < string, ConstVersionedStoreTag >  mTags;
+    map < string, VersionedStoreTag >  mTags;
     bool                                    mIsFrozen;
 
     //----------------------------------------------------------------//
-    void                                begin           ();
-    void                                commit          ();
-    void                                freeze          ();
-    const ConstVersionedStoreTag&       getTag          ( string branchName ) const;
-    bool                                hasTag          ( string branchName ) const;
+    void                            begin           ();
+    void                            commit          ();
+    void                            freeze          ();
+    const VersionedStoreTag&        getTag          ( string branchName ) const;
+    bool                            hasTag          ( string branchName ) const;
     
     //----------------------------------------------------------------//
     virtual void                                                AbstractPersistenceProvider_begin                   () = 0;
     virtual void                                                AbstractPersistenceProvider_commit                  () = 0;
     virtual void                                                AbstractPersistenceProvider_flush                   () = 0;
     virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () = 0;
-    virtual void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const ConstVersionedStoreTag* snapshot ) = 0;
+    virtual void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreTag* snapshot ) = 0;
     
 public:
 
@@ -48,7 +48,7 @@ public:
     void                                                flush                                   ();
     bool                                                isFrozen                                () const;
     shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ();
-    void                                                persist                                 ( AbstractVersionedBranchClient& client, string tagName );
+    void                                                persist                                 ( VersionedStoreTag& client, string tagName );
     VersionedStoreTag                                   restore                                 ( string tagName );
 };
 

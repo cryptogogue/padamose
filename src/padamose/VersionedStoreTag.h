@@ -5,7 +5,8 @@
 #define PADAMOSE_VERSIONEDSTORETAG_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/ConstVersionedStoreTag.h>
+#include <padamose/AbstractVersionedBranch.h>
+#include <padamose/VersionedStoreInspector.h>
 
 namespace Padamose {
 
@@ -15,7 +16,7 @@ namespace Padamose {
 /** \brief VersionedStoreTag is a key/value store that can be rewound and branched into multiple
     versions.
  
-    The ConstVersionedStoreTag class represents a cursor into the versioned key/value store. The database
+    The VersionedStoreTag class represents a cursor into the versioned key/value store. The database
     itself is held in a series of branches (VersionedBranch). Branches may have multiple
     dependencies in the form of cursors and child branches.
  
@@ -33,7 +34,7 @@ namespace Padamose {
     Two iterator implementations are provided: VersionedStoreIterator and VersionedValueIterator.
     VersionedStoreIterator iterates through versions sequentially. VersionedValueIterator only
     visits versions where the value being iterated was set or changed. Both iterators inherit
-    from ConstVersionedStoreTag and thus give access to any value in the store.
+    from VersionedStoreTag and thus give access to any value in the store.
  
     Iterators are faster moving backward through the version history. Due to the branching nature
     of the store, iterating forward may incur additional overhead when a fork in a branch is
@@ -53,7 +54,8 @@ namespace Padamose {
     a way to back it to an in-memory database server persisted to storage media, such as Redis.
 */
 class VersionedStoreTag :
-    public ConstVersionedStoreTag {
+    public virtual VersionedStoreInspector,
+    public virtual AbstractVersionedBranchOrLeaf {
 protected:
 
     //----------------------------------------------------------------//
@@ -68,9 +70,20 @@ public:
     void            pushVersion                 ();
     void            revert                      ( size_t version );
     void            revertAndClear              ( size_t version );
+    void            takeSnapshot                ( const VersionedStoreTag& other );
                     VersionedStoreTag           ();
-                    VersionedStoreTag           ( const AbstractVersionedBranchClient& other );
+                    VersionedStoreTag           ( const VersionedStoreTag& other );
                     ~VersionedStoreTag          ();
+
+    //----------------------------------------------------------------//
+    /** \brief  Implements assignment by calling takeSnapshot().
+     
+        \param  other   The version to snapshot.
+    */
+    VersionedStoreTag& operator = ( const VersionedStoreTag& other ) {
+        this->setBranch ( other );
+        return *this;
+    }
 
     //----------------------------------------------------------------//
     /** \brief  Sets or overwrites the value for the corresponding key at the

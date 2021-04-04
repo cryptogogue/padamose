@@ -1,6 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
+#include <padamose/AbstractVersionedBranch.h>
 #include <padamose/VersionedStoreIterator.h>
 
 namespace Padamose {
@@ -42,7 +43,7 @@ bool VersionedStoreIterator::next () {
     }
     else if ( this->mState != NO_NEXT ) {
 
-        if ( this->mVersion < this->mAnchor.mVersion ) {
+        if ( this->mVersion < this->mAnchor.getVersion ()) {
             this->seek ( this->mVersion + 1 );
         }
         else {
@@ -102,7 +103,7 @@ void VersionedStoreIterator::seek ( size_t version ) {
     
         if ( this->mVersion > this->mTopVersion ) {
             
-            this->setBranch ( this->mAnchor.mSourceBranch, this->mAnchor.mVersion ); // overwrites this->mVersion
+            this->setBranch ( this->mAnchor ); // overwrites this->mVersion
             this->mTopVersion = this->mVersion;
             
             if ( version < this->mVersion ) {
@@ -119,14 +120,16 @@ void VersionedStoreIterator::seek ( size_t version ) {
 
     \param  client          Snapshot to use as the upper bound for iteration.
 */
-VersionedStoreIterator::VersionedStoreIterator ( const AbstractVersionedBranchClient& client ) :
+VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreRef& client ) :
     mAnchor ( client ) {
 
-    if ( this->mAnchor.mSourceBranch && ( this->mAnchor.mSourceBranch->getTopVersion () > 0 )) {
-        this->takeSnapshot ( client );
+    VersionedStoreRef::ConstBranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
+
+    if ( sourceBranch && ( sourceBranch->getTopVersion () > 0 )) {
+        this->setBranch ( client );
         this->mTopVersion = this->mVersion + 1;
     }
-    this->mState = this->mSourceBranch ? VALID : EMPTY;
+    this->mState = sourceBranch ? VALID : EMPTY;
 }
 
 //----------------------------------------------------------------//
@@ -137,7 +140,7 @@ VersionedStoreIterator::VersionedStoreIterator ( const AbstractVersionedBranchCl
     \param  client          Snapshot to use as the upper bound for iteration.
     \param  version         Version to seek back to. Must be equal to or less than the upper bound.
 */
-VersionedStoreIterator::VersionedStoreIterator ( const AbstractVersionedBranchClient& client, size_t version ) :
+VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreRef& client, size_t version ) :
     VersionedStoreIterator ( client ) {
 
     this->seek ( version );

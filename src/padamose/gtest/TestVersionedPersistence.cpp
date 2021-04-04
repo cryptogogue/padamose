@@ -42,7 +42,7 @@ TEST ( StringPersistence, test_string_persistence ) {
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
     
     testWithProvider ( *stringStore );
-    ConstVersionedStoreTag snapshot  = stringStore->restore ( "master" );
+    VersionedStoreTag snapshot  = stringStore->restore ( "master" );
     
     stringStore->dump ();
 

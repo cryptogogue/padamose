@@ -1,19 +1,17 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_CONSTVERSIONEDSTORETAG_H
-#define PADAMOSE_CONSTVERSIONEDSTORETAG_H
+#ifndef PADAMOSE_VERSIONEDSTOREINSPECTOR_H
+#define PADAMOSE_VERSIONEDSTOREINSPECTOR_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractVersionedBranch.h>
-#include <padamose/AbstractVersionedBranchClient.h>
-
-#include <padamose/EphemeralVersionedBranch.h>
+#include <padamose/Variant.h>
+#include <padamose/VersionedStoreRef.h>
 
 namespace Padamose {
 
 //================================================================//
-// ConstVersionedStoreTag
+// VersionedStoreInspector
 //================================================================//
 /** \brief Common base implementation for versioned store iterators.
     Contains only read-only methods and getters.
@@ -22,40 +20,18 @@ namespace Padamose {
     was originally part of VersionedStoreTag, but was broken out into a separate base class
     to avoid exposing mutators through iterator implementations, which are read-only.
 */
-class ConstVersionedStoreTag :
-    public AbstractVersionedBranchClient {
-protected:
-
-    friend class AbstractPersistenceProvider;
-    friend class AbstractVersionedCollection;
-    friend class BaseVersionedCollectionIterator;
-    friend class AbstractVersionedValueIterator;
-    friend class MutableVersionedCollection;
-    friend class VersionedBranch;
-    friend class VersionedMap;
-    friend class VersionedList;
-    friend class VersionedStoreIterator;
-    
-    template < typename > friend class VersionedValue;
-    template < typename > friend class VersionedValueIterator;
-
-    string          mDebugName;
-    
+class VersionedStoreInspector :
+    public virtual VersionedStoreRef {
 public:
 
     //----------------------------------------------------------------//
-    void            clear                           ();
-                    ConstVersionedStoreTag          ();
-                    ConstVersionedStoreTag          ( const AbstractVersionedBranchClient& other );
-                    ConstVersionedStoreTag          ( shared_ptr < AbstractPersistenceProvider > provider, string branchName );
-    virtual         ~ConstVersionedStoreTag         ();
-    Variant         getValueVariant                 ( string key ) const;
-    Variant         getValueVariant                 ( string key, size_t version ) const;
-    size_t          getVersion                      () const;
-    bool            hasKey                          ( string key ) const;
-    bool            hasValue                        ( string key ) const;
-    bool            hasValue                        ( string key, size_t version ) const;
-    void            setDebugName                    ( string debugName );
+    Variant         getValueVariant             ( string key ) const;
+    Variant         getValueVariant             ( string key, size_t version ) const;
+    bool            hasKey                      ( string key ) const;
+    bool            hasValue                    ( string key ) const;
+    bool            hasValue                    ( string key, size_t version ) const;
+                    VersionedStoreInspector            ();
+    virtual         ~VersionedStoreInspector           ();
     
     //----------------------------------------------------------------//
     /** \brief  Return a copy of the value for a key. Throws a KeyNotFoundException exception

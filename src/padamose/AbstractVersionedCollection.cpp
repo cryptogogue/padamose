@@ -61,7 +61,7 @@ string AbstractVersionedCollection::getName () const {
 // TODO: doxygen
 VersionedCollectionNode AbstractVersionedCollection::getNode ( string key ) const {
 
-    const ConstVersionedStoreTag& snapshot = this->getSnapshot ();
+    const VersionedStoreTag& snapshot = this->getSnapshot ();
 
     VersionedCollectionNode node;
     
@@ -93,11 +93,11 @@ size_t AbstractVersionedCollection::getSize () const {
 }
 
 //----------------------------------------------------------------//
-/** \brief  Returns the ConstVersionedStoreTag holding the collection.
+/** \brief  Returns the VersionedStoreTag holding the collection.
 
-    \return The ConstVersionedStoreTag holding the collection.
+    \return The VersionedStoreTag holding the collection.
 */
-const ConstVersionedStoreTag& AbstractVersionedCollection::getSnapshot () const {
+const VersionedStoreTag& AbstractVersionedCollection::getSnapshot () const {
 
     return AbstractVersionedCollection_getSnapshot ();
 }
@@ -118,7 +118,7 @@ bool AbstractVersionedCollection::hasKey ( string key ) const {
 // TODO: doxygen
 void AbstractVersionedCollection::loadState () {
     
-    const ConstVersionedStoreTag& snapshot = this->getSnapshot ();
+    const VersionedStoreTag& snapshot = this->getSnapshot ();
 
     this->mState.mHead  = snapshot.getValue < u64 >( this->mName + ".head" );
     this->mState.mTail  = snapshot.getValue < u64 >( this->mName + ".tail" );

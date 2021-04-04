@@ -50,9 +50,9 @@ void AbstractPersistenceProvider::freeze () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-const ConstVersionedStoreTag& AbstractPersistenceProvider::getTag ( string branchName ) const {
+const VersionedStoreTag& AbstractPersistenceProvider::getTag ( string branchName ) const {
 
-    map < string, ConstVersionedStoreTag >::const_iterator tagIt = this->mTags.find ( branchName );
+    map < string, VersionedStoreTag >::const_iterator tagIt = this->mTags.find ( branchName );
     assert ( tagIt != this->mTags.end ()); // TODO: throw exception
     return tagIt->second;
 }
@@ -61,7 +61,7 @@ const ConstVersionedStoreTag& AbstractPersistenceProvider::getTag ( string branc
 // TODO: doxygen
 bool AbstractPersistenceProvider::hasTag ( string branchName ) const {
 
-    map < string, ConstVersionedStoreTag >::const_iterator tagIt = this->mTags.find ( branchName );
+    map < string, VersionedStoreTag >::const_iterator tagIt = this->mTags.find ( branchName );
     return ( tagIt != this->mTags.end ());
 }
 
@@ -79,16 +79,16 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractPersistenceProvider::ma
 }
 
 //----------------------------------------------------------------//
-void AbstractPersistenceProvider::persist ( AbstractVersionedBranchClient& client, string tagName ) {
+void AbstractPersistenceProvider::persist ( VersionedStoreTag& client, string tagName ) {
 
-    AbstractVersionedBranchClient::BranchPtr branch = client.getSourceBranch ();
+    AbstractVersionedBranchOrLeaf::BranchPtr branch = client.getSourceBranch ();
     if ( !client.getSourceBranch () ) return;
 
     try {
 
         this->begin ();
 
-        ConstVersionedStoreTag& tag = this->mTags [ tagName ];
+        VersionedStoreTag& tag = this->mTags [ tagName ];
         tag.takeSnapshot ( client );
         branch->persistSelf ( *this );
         this->AbstractPersistenceProvider_tagDidChange ( tagName, &tag );
@@ -105,7 +105,7 @@ void AbstractPersistenceProvider::persist ( AbstractVersionedBranchClient& clien
 //----------------------------------------------------------------//
 VersionedStoreTag AbstractPersistenceProvider::restore ( string tagName ) {
 
-    map < string, ConstVersionedStoreTag >::const_iterator tagIt = this->mTags.find ( tagName );
+    map < string, VersionedStoreTag >::const_iterator tagIt = this->mTags.find ( tagName );
     assert ( tagIt != this->mTags.end ()); // TODO: throw exception
     return VersionedStoreTag ( tagIt->second );
 }

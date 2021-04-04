@@ -1,6 +1,7 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
+#include <padamose/EphemeralVersionedBranch.h>
 #include <padamose/VersionedStoreTag.h>
 
 namespace Padamose {
@@ -86,20 +87,25 @@ void VersionedStoreTag::prepareForSetValue () {
 
     this->affirmBranch ();
     
-    size_t dependencies = this->mSourceBranch->countDependencies ();
-    if ( dependencies > 1 ) {
+    bool fork = this->mSourceBranch->isLocked ();
     
-        size_t immutableTop = this->mSourceBranch->findImmutableTop ( this );
-        LGN_LOG ( PDM_FILTER_ROOT, INFO, "immutableTop: %d", ( int )immutableTop );
-        
-        if ( this->mVersion < immutableTop ) {
-        
-            LGN_LOG ( PDM_FILTER_ROOT, INFO, "SPLIT!" );
-        
-            this->mSourceBranch->eraseClient ( *this );
-            this->mSourceBranch = this->mSourceBranch->fork ( this->mVersion );
-            this->mSourceBranch->insertClient ( *this );
+    if ( !fork ) {
+        size_t dependencies = this->mSourceBranch->countDependencies ();
+        if ( dependencies > 1 ) {
+            size_t immutableTop = this->mSourceBranch->findImmutableTop ( this );
+            LGN_LOG ( PDM_FILTER_ROOT, INFO, "immutableTop: %d", ( int )immutableTop );
+            
+            fork = ( this->mVersion < immutableTop );
         }
+    }
+    
+    if ( fork ) {
+    
+        LGN_LOG ( PDM_FILTER_ROOT, INFO, "SPLIT!" );
+    
+        this->mSourceBranch->eraseClient ( *this );
+        this->mSourceBranch = this->mSourceBranch->fork ( this->mVersion );
+        this->mSourceBranch->insertClient ( *this );
     }
 }
 
@@ -185,12 +191,26 @@ void VersionedStoreTag::revertAndClear ( size_t version ) {
 }
 
 //----------------------------------------------------------------//
+/** \brief Copy a snapshot.
+
+    This is a relatively low-cost operation. Taking a snapshot will
+    add a dependency on the shared branch but won't do anything else
+    until the branch is altered.
+ 
+    \param  other   The snapshot to copy.
+*/
+void VersionedStoreTag::takeSnapshot ( const VersionedStoreTag& other ) {
+    
+    this->setBranch ( other );
+}
+
+//----------------------------------------------------------------//
 VersionedStoreTag::VersionedStoreTag () {
 }
 
 //----------------------------------------------------------------//
-VersionedStoreTag::VersionedStoreTag ( const AbstractVersionedBranchClient& other ) :
-    ConstVersionedStoreTag ( other ) {
+VersionedStoreTag::VersionedStoreTag ( const VersionedStoreTag& other ) :
+    VersionedStoreRef ( other ) {
 }
 
 //----------------------------------------------------------------//

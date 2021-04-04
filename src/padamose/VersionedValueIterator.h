@@ -5,7 +5,8 @@
 #define PADAMOSE_VERSIONEDVALUEITERATOR_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/ConstVersionedStoreTag.h>
+#include <padamose/VersionedStoreInspector.h>
+#include <padamose/VersionedStoreLock.h>
 
 namespace Padamose {
 
@@ -34,10 +35,10 @@ namespace Padamose {
 */
 template < typename TYPE >
 class VersionedValueIterator :
-    public ConstVersionedStoreTag {
+    public virtual VersionedStoreInspector {
 protected:
 
-    friend class ConstVersionedStoreTag;
+    friend class VersionedStoreTag;
 
     enum {
         VALID,
@@ -49,7 +50,7 @@ protected:
     };
 
     /// The anchor snapshot.
-    ConstVersionedStoreTag      mAnchor;
+    VersionedStoreLock          mAnchor;
     
     /// Key of the value being iterated.
     string                      mKey;
@@ -71,8 +72,8 @@ protected:
     */
     void seekNext ( shared_ptr < AbstractVersionedBranch > prevBranch ) {
         
-        shared_ptr < AbstractVersionedBranch > branch = this->mAnchor.mSourceBranch;
-        size_t top = this->mAnchor.mVersion + 1;
+        shared_ptr < AbstractVersionedBranch > branch = this->mAnchor.getSourceBranch ();
+        size_t top = this->mAnchor.getVersion () + 1;
 
         shared_ptr < AbstractVersionedBranch > bestBranch;
 
@@ -283,12 +284,14 @@ public:
         \param  client      Snapshot to use as the upper bound for iteration.
         \param  key         Key of the value to be iterated.
     */
-    VersionedValueIterator ( const AbstractVersionedBranchClient& client, string key ) :
+    VersionedValueIterator ( const AbstractVersionedBranchOrLeaf& client, string key ) :
         mAnchor ( client ),
         mKey ( key ) {
         
-        if ( this->mAnchor.mSourceBranch ) {
-            this->seekPrev ( this->mAnchor.mSourceBranch, this->mAnchor.mVersion + 1 );
+        VersionedStoreRef::BranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
+        
+        if ( sourceBranch ) {
+            this->seekPrev ( sourceBranch, this->mAnchor.getVersion () + 1 );
         }
     }
     
