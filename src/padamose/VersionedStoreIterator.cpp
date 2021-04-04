@@ -117,13 +117,13 @@ void VersionedStoreIterator::seek ( size_t version ) {
 /** \brief Initialize the iterator with a given snapshot. Upper bound for
     iteration is the current version of the snapshot.
 
-    \param  versionedStore  Snapshot to use as the upper bound for iteration.
+    \param  client          Snapshot to use as the upper bound for iteration.
 */
-VersionedStoreIterator::VersionedStoreIterator ( const ConstVersionedStoreTag& versionedStore ) :
-    mAnchor ( versionedStore ) {
+VersionedStoreIterator::VersionedStoreIterator ( const AbstractVersionedBranchClient& client ) :
+    mAnchor ( client ) {
 
     if ( this->mAnchor.mSourceBranch && ( this->mAnchor.mSourceBranch->getTopVersion () > 0 )) {
-        this->takeSnapshot ( versionedStore );
+        this->takeSnapshot ( client );
         this->mTopVersion = this->mVersion + 1;
     }
     this->mState = this->mSourceBranch ? VALID : EMPTY;
@@ -134,11 +134,11 @@ VersionedStoreIterator::VersionedStoreIterator ( const ConstVersionedStoreTag& v
     a specific version. Upper bound for iteration is the current version
     of the snapshot.
 
-    \param  versionedStore  Snapshot to use as the upper bound for iteration.
+    \param  client          Snapshot to use as the upper bound for iteration.
     \param  version         Version to seek back to. Must be equal to or less than the upper bound.
 */
-VersionedStoreIterator::VersionedStoreIterator ( const ConstVersionedStoreTag& versionedStore, size_t version ) :
-    VersionedStoreIterator ( versionedStore ) {
+VersionedStoreIterator::VersionedStoreIterator ( const AbstractVersionedBranchClient& client, size_t version ) :
+    VersionedStoreIterator ( client ) {
 
     this->seek ( version );
 }

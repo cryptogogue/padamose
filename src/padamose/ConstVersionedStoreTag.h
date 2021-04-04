@@ -12,8 +12,6 @@
 
 namespace Padamose {
 
-class AbstractPersistenceProvider;
-
 //================================================================//
 // ConstVersionedStoreTag
 //================================================================//
@@ -41,16 +39,7 @@ protected:
     template < typename > friend class VersionedValue;
     template < typename > friend class VersionedValueIterator;
 
-    #ifdef _DEBUG
-        /// Available in debug builds to add an easily readable name to snapshots.
-        string                                      mDebugName;
-    #endif
-
-    shared_ptr < AbstractPersistenceProvider >      mProvider;
-
-    //----------------------------------------------------------------//
-    void            affirmBranch                    ();
-    void            setPersistenceProvider          ( shared_ptr < AbstractPersistenceProvider > provider );
+    string          mDebugName;
     
     //----------------------------------------------------------------//
     bool            AbstractVersionedBranchClient_canJoin                   () const override;
@@ -64,30 +53,17 @@ public:
 
     //----------------------------------------------------------------//
     void            clear                           ();
+                    ConstVersionedStoreTag          ();
+                    ConstVersionedStoreTag          ( const AbstractVersionedBranchClient& other );
+                    ConstVersionedStoreTag          ( shared_ptr < AbstractPersistenceProvider > provider, string branchName );
+    virtual         ~ConstVersionedStoreTag         ();
     Variant         getValueVariant                 ( string key ) const;
     Variant         getValueVariant                 ( string key, size_t version ) const;
     size_t          getVersion                      () const;
     bool            hasKey                          ( string key ) const;
     bool            hasValue                        ( string key ) const;
     bool            hasValue                        ( string key, size_t version ) const;
-    void            persist                         ( shared_ptr < AbstractPersistenceProvider > provider, string branchName );
     void            setDebugName                    ( string debugName );
-    void            takeSnapshot                    ( const ConstVersionedStoreTag& other );
-    void            takeSnapshot                    ( shared_ptr < AbstractPersistenceProvider > provider, string branchName );
-                    ConstVersionedStoreTag          ();
-                    ConstVersionedStoreTag          ( const ConstVersionedStoreTag& other );
-                    ConstVersionedStoreTag          ( shared_ptr < AbstractPersistenceProvider > provider, string branchName );
-    virtual         ~ConstVersionedStoreTag         ();
-    
-    //----------------------------------------------------------------//
-    /** \brief  Implements assignment by calling takeSnapshot().
-     
-        \param  other   The version to snapshot.
-    */
-    ConstVersionedStoreTag& operator = ( ConstVersionedStoreTag& other ) {
-        this->takeSnapshot ( other );
-        return *this;
-    }
     
     //----------------------------------------------------------------//
     /** \brief  Return a copy of the value for a key. Throws a KeyNotFoundException exception

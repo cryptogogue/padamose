@@ -22,18 +22,17 @@ TEST ( StringPersistence, test_new_branch ) {
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
     
     {
-        VersionedStoreTag store;
-        store.persist ( stringStore, "master" );
-        store.setValue < string >( KEY0, STR0 );
-        store.persist ( stringStore, "master" );
+        VersionedStoreTag tag;
+        stringStore->persist ( tag, "master" );
+        tag.setValue < string >( KEY0, STR0 );
+        stringStore->persist ( tag, "master" );
     }
     
     stringStore->dump ();
     
     {
-        VersionedStoreTag store;
-        store.takeSnapshot ( stringStore, "master" );
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
+        VersionedStoreTag tag = stringStore->restore ( "master" );
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR0 );
     }
 }
 
@@ -42,8 +41,8 @@ TEST ( StringPersistence, test_string_persistence ) {
 
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
     
-    testWithProvider ( stringStore );
-    ConstVersionedStoreTag snapshot ( stringStore, "master" );
+    testWithProvider ( *stringStore );
+    ConstVersionedStoreTag snapshot  = stringStore->restore ( "master" );
     
     stringStore->dump ();
 
@@ -55,13 +54,13 @@ TEST ( StringPersistence, test_string_persistence ) {
     stringStore->dump ();
     printf ( "done\n" );
     
-    VersionedStoreTag store ( stringStore, "master" );
+    VersionedStoreTag tag = stringStore->restore ( "master" );
 
-    ASSERT_EQ ( store.getVersion (), 3 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
+    ASSERT_EQ ( tag.getVersion (), 3 );
+    ASSERT_EQ ( tag.getValue < string >( KEY0, 0 ), STR0 );
+    ASSERT_EQ ( tag.getValue < string >( KEY0, 1 ), STR1 );
+    ASSERT_EQ ( tag.getValue < string >( KEY0, 2 ), STR2 );
+    ASSERT_EQ ( tag.getValue < string >( KEY0, 3 ), STR3 );
 }
 
 //----------------------------------------------------------------//
@@ -70,24 +69,24 @@ TEST ( StringPersistence, test_persistence ) {
     shared_ptr < DebugStringStore > stringStore = make_shared < DebugStringStore >();
     
     {
-        VersionedStoreTag store;
-        store.setValue < string >( KEY0, STR0 );
-        store.pushVersion ();
-        store.persist ( stringStore, "master" );
+        VersionedStoreTag tag;
+        tag.setValue < string >( KEY0, STR0 );
+        tag.pushVersion ();
+        stringStore->persist ( tag, "master" );
 
-        ASSERT_EQ ( store.getVersion (), 1 );
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
+        ASSERT_EQ ( tag.getVersion (), 1 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR0 );
         
-        store.setValue < string >( KEY0, STR1 );
-        store.pushVersion ();
+        tag.setValue < string >( KEY0, STR1 );
+        tag.pushVersion ();
     }
     
     stringStore->dump ();
     
-    VersionedStoreTag store ( stringStore, "master" );
+    VersionedStoreTag tag = stringStore->restore ( "master" );
     
-    ASSERT_EQ ( store.getVersion (), 1 );
-    ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
+    ASSERT_EQ ( tag.getVersion (), 1 );
+    ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR0 );
     
     printf ( "OK!\n" );
 }
@@ -97,26 +96,45 @@ TEST ( StringPersistence, test_branch_consolidation ) {
 
     shared_ptr < DebugStringStore > provider = make_shared < DebugStringStore >();
     
-    VersionedStoreTag store;
+    VersionedStoreTag tag;
     
-    store.setValue < string >( "KEY", "VERSION 0" );
-    store.pushVersion ();
-    store.persist ( provider, "master" );
-    store.printTree ();
+    tag.setValue < string >( "KEY", "VERSION 0" );
+    tag.pushVersion ();
+    provider->persist ( tag, "master" );
+    tag.printTree ();
     provider->dump ();
 
-    store.setValue < string >( "KEY", "VERSION 1" );
-    store.pushVersion ();
-    store.persist ( provider, "master" );
-    store.printTree ();
+    tag.setValue < string >( "KEY", "VERSION 1" );
+    tag.pushVersion ();
+    provider->persist ( tag, "master" );
+    tag.printTree ();
     provider->dump ();
 
-    VersionedStoreTag store2 ( store );
+    VersionedStoreTag tag2 ( tag );
 
-    store.setValue < string >( "KEY", "VERSION 2" );
-    store.pushVersion ();
-    store.persist ( provider, "master" );
-    store.printTree ();
+    tag.setValue < string >( "KEY", "VERSION 2" );
+    tag.pushVersion ();
+    provider->persist ( tag, "master" );
+    tag.printTree ();
+    provider->dump ();
+}
+
+//----------------------------------------------------------------//
+TEST ( StringPersistence, test_persistence_immutability ) {
+
+    shared_ptr < DebugStringStore > provider = make_shared < DebugStringStore >();
+    
+    VersionedStoreTag tag;
+    
+    tag.setValue < string >( "KEY", "VERSION 0" );
+    tag.pushVersion ();
+    provider->persist ( tag, "master" );
+    tag.printTree ();
+    provider->dump ();
+
+    tag.setValue < string >( "KEY", "VERSION 1" );
+    tag.pushVersion ();
+    tag.printTree ();
     provider->dump ();
 }
 

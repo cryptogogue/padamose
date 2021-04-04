@@ -23,68 +23,68 @@ bool exists ( cc8* filename ) {
 }
 
 //----------------------------------------------------------------//
-void testWithProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
+void testWithProvider ( AbstractPersistenceProvider& provider ) {
 
     {
-        VersionedStoreTag store;
+        VersionedStoreTag tag;
 
-        store.setValue < string >( KEY0, STR0 );
-        store.pushVersion (); // version 1
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR0 );
+        tag.setValue < string >( KEY0, STR0 );
+        tag.pushVersion (); // version 1
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR0 );
         
-        store.setValue < string >( KEY0, STR1 );
-        store.pushVersion (); // version 2
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR1 );
+        tag.setValue < string >( KEY0, STR1 );
+        tag.pushVersion (); // version 2
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR1 );
         
-        store.persist ( provider, "master" );
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR1 );
+        provider.persist ( tag, "master" );
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR1 );
         
-        store.setValue < string >( KEY0, STR2 );
-        store.pushVersion (); // version 3
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR2 );
+        tag.setValue < string >( KEY0, STR2 );
+        tag.pushVersion (); // version 3
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR2 );
         
-        store.persist ( provider, "master" );
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR2 );
+        provider.persist ( tag, "master" );
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR2 );
         
-        store.setValue < string >( KEY0, STR3 );
-        ASSERT_EQ ( store.getVersion (), 3 );
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR3 );
+        tag.setValue < string >( KEY0, STR3 );
+        ASSERT_EQ ( tag.getVersion (), 3 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR3 );
         
-        store.persist ( provider, "master" );
+        provider.persist ( tag, "master" );
     }
 
-    VersionedStoreTag store ( provider, "master" );
+    VersionedStoreTag tag = provider.restore ( "master" );
 
-    ASSERT_EQ ( store.getVersion (), 3 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
-    ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
+    ASSERT_EQ ( tag.getVersion (), 3 );
+    ASSERT_EQ ( tag.getValue < string >( KEY0, 0 ), STR0 );
+    ASSERT_EQ ( tag.getValue < string >( KEY0, 1 ), STR1 );
+    ASSERT_EQ ( tag.getValue < string >( KEY0, 2 ), STR2 );
+    ASSERT_EQ ( tag.getValue < string >( KEY0, 3 ), STR3 );
     
     // iterate by version
-    VersionedStoreIterator storeIt ( store );
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR3 );
+    VersionedStoreIterator tagIt ( tag );
+    ASSERT_EQ ( tagIt.getValue < string >( KEY0 ), STR3 );
     
-    storeIt.prev ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR2 );
+    tagIt.prev ();
+    ASSERT_EQ ( tagIt.getValue < string >( KEY0 ), STR2 );
     
-    storeIt.prev ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR1 );
+    tagIt.prev ();
+    ASSERT_EQ ( tagIt.getValue < string >( KEY0 ), STR1 );
     
-    storeIt.prev ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR0 );
+    tagIt.prev ();
+    ASSERT_EQ ( tagIt.getValue < string >( KEY0 ), STR0 );
     
-    storeIt.next ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR1 );
+    tagIt.next ();
+    ASSERT_EQ ( tagIt.getValue < string >( KEY0 ), STR1 );
     
-    storeIt.next ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR2 );
+    tagIt.next ();
+    ASSERT_EQ ( tagIt.getValue < string >( KEY0 ), STR2 );
     
-    storeIt.next ();
-    ASSERT_EQ ( storeIt.getValue < string >( KEY0 ), STR3 );
+    tagIt.next ();
+    ASSERT_EQ ( tagIt.getValue < string >( KEY0 ), STR3 );
     
     // iterate by value
-    VersionedValueIterator < string > valueIt ( store, KEY0 );
+    VersionedValueIterator < string > valueIt ( tag, KEY0 );
     ASSERT_EQ ( valueIt.value (), STR3 );
     
     valueIt.prev ();

@@ -85,8 +85,8 @@ public:
     bool                next                                ();
     bool                prev                                ();
     void                seek                                ( size_t version );
-                        VersionedStoreIterator              ( const ConstVersionedStoreTag& versionedStore );
-                        VersionedStoreIterator              ( const ConstVersionedStoreTag& versionedStore, size_t version );
+                        VersionedStoreIterator              ( const AbstractVersionedBranchClient& client );
+                        VersionedStoreIterator              ( const AbstractVersionedBranchClient& client, size_t version );
     virtual             ~VersionedStoreIterator             ();
 };
 

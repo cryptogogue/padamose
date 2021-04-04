@@ -295,7 +295,7 @@ size_t EphemeralVersionedBranch::AbstractVersionedBranchClient_getVersionDepende
 void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& other ) {
 
     assert ( other.getDirectReferenceCount () == 0 );
-    assert ( this->mDirectReferenceCount == 0 );
+    assert ( this->mLockCount == 0 );
 
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
@@ -312,7 +312,7 @@ void EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abstra
     \return     True if the branch has any direct references. False otherwise.
 */
 bool EphemeralVersionedBranch::AbstractVersionedBranchClient_preventJoin () const {
-    return ( this->mDirectReferenceCount > 0 );
+    return ( this->mLockCount > 0 );
 }
 
 //----------------------------------------------------------------//

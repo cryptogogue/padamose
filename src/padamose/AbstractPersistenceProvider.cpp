@@ -79,11 +79,35 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractPersistenceProvider::ma
 }
 
 //----------------------------------------------------------------//
-void AbstractPersistenceProvider::tagBranch ( AbstractVersionedBranch& branch, string branchName, size_t version ) {
+void AbstractPersistenceProvider::persist ( AbstractVersionedBranchClient& client, string tagName ) {
 
-    ConstVersionedStoreTag& tag = this->mTags [ branchName ];
-    tag.setBranch ( branch.shared_from_this (), version );
-    this->AbstractPersistenceProvider_tagDidChange ( branchName, &tag );
+    AbstractVersionedBranchClient::BranchPtr branch = client.getSourceBranch ();
+    if ( !client.getSourceBranch () ) return;
+
+    try {
+
+        this->begin ();
+
+        ConstVersionedStoreTag& tag = this->mTags [ tagName ];
+        tag.takeSnapshot ( client );
+        branch->persistSelf ( *this );
+        this->AbstractPersistenceProvider_tagDidChange ( tagName, &tag );
+        
+        this->commit ();
+    }
+    catch ( ... ) {
+
+        // TODO: try to recover and gracefully report the error
+        exit ( 1 );
+    }
+}
+
+//----------------------------------------------------------------//
+VersionedStoreTag AbstractPersistenceProvider::restore ( string tagName ) {
+
+    map < string, ConstVersionedStoreTag >::const_iterator tagIt = this->mTags.find ( tagName );
+    assert ( tagIt != this->mTags.end ()); // TODO: throw exception
+    return VersionedStoreTag ( tagIt->second );
 }
 
 } // namespace Padamose

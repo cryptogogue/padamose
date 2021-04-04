@@ -10,6 +10,17 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
+/** \brief Create a branch if none exists and add self as client.
+*/
+void VersionedStoreTag::affirmBranch () {
+
+    if ( !this->mSourceBranch ) {
+        assert ( this->mVersion == 0 );
+        this->setBranch ( make_shared < EphemeralVersionedBranch >(), this->mVersion );
+    }
+}
+
+//----------------------------------------------------------------//
 /** \brief Creates a new branch if there are any dependencies above
     the current version.
 
@@ -142,7 +153,7 @@ void VersionedStoreTag::revert ( size_t version ) {
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreTag::rewind ( %d )", ( int )version );
 
     if ( version > this->mVersion ) throw VersionOutOfBoundsException ();
-    
+
     if (( this->mSourceBranch ) && ( version < this->mVersion )) {
     
         shared_ptr < AbstractVersionedBranch > branch = this->mSourceBranch;
@@ -178,15 +189,8 @@ VersionedStoreTag::VersionedStoreTag () {
 }
 
 //----------------------------------------------------------------//
-VersionedStoreTag::VersionedStoreTag ( ConstVersionedStoreTag& other ) :
+VersionedStoreTag::VersionedStoreTag ( const AbstractVersionedBranchClient& other ) :
     ConstVersionedStoreTag ( other ) {
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-VersionedStoreTag::VersionedStoreTag ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
-
-    this->takeSnapshot ( provider, branchName );
 }
 
 //----------------------------------------------------------------//

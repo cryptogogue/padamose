@@ -5,7 +5,7 @@
 #define PADAMOSE_ABSTRACTPERSISTENCEPROVIDER_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/ConstVersionedStoreTag.h>
+#include <padamose/VersionedStoreTag.h>
 
 namespace Padamose {
 
@@ -48,7 +48,8 @@ public:
     void                                                flush                                   ();
     bool                                                isFrozen                                () const;
     shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ();
-    void                                                tagBranch                               ( AbstractVersionedBranch& branch, string branchName, size_t version );
+    void                                                persist                                 ( AbstractVersionedBranchClient& client, string tagName );
+    VersionedStoreTag                                   restore                                 ( string tagName );
 };
 
 } // namespace Padamose

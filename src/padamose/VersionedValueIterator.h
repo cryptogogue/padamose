@@ -90,10 +90,10 @@ protected:
 
         if ( bestBranch ) {
 
-            bestBranch->mDirectReferenceCount++;
+            bestBranch->lock ();
 
             if ( this->mSourceBranch ) {
-                this->mSourceBranch->mDirectReferenceCount--;
+                this->mSourceBranch->unlock ();
             }
 
             this->mFirstVersion = first;
@@ -126,10 +126,10 @@ protected:
 
             if ( branch->getValueVersionExtents ( this->mKey, top - 1, first, last )) {
 
-                branch->mDirectReferenceCount++;
+                branch->lock ();
 
                 if ( this->mSourceBranch ) {
-                    this->mSourceBranch->mDirectReferenceCount--;
+                    this->mSourceBranch->unlock ();
                 }
 
                 this->mFirstVersion = first;
@@ -280,11 +280,11 @@ public:
         key of the value to iterate. Internal type of the key must match the
         template type.
 
-        \param  versionedStore  Snapshot to use as the upper bound for iteration.
-        \param  key             Key of the value to be iterated.
+        \param  client      Snapshot to use as the upper bound for iteration.
+        \param  key         Key of the value to be iterated.
     */
-    VersionedValueIterator ( const ConstVersionedStoreTag& versionedStore, string key ) :
-        mAnchor ( versionedStore ),
+    VersionedValueIterator ( const AbstractVersionedBranchClient& client, string key ) :
+        mAnchor ( client ),
         mKey ( key ) {
         
         if ( this->mAnchor.mSourceBranch ) {
@@ -295,7 +295,7 @@ public:
     //----------------------------------------------------------------//
     ~VersionedValueIterator () {
         if ( this->mSourceBranch ) {
-            this->mSourceBranch->mDirectReferenceCount--;
+            this->mSourceBranch->unlock ();
         }
     }
 };

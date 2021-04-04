@@ -5,7 +5,6 @@
 #define PADAMOSE_VERSIONEDSTORETAG_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractPersistenceProvider.h>
 #include <padamose/ConstVersionedStoreTag.h>
 
 namespace Padamose {
@@ -58,6 +57,7 @@ class VersionedStoreTag :
 protected:
 
     //----------------------------------------------------------------//
+    void            affirmBranch                ();
     void            prepareForSetValue          ();
     
 public:
@@ -69,19 +69,8 @@ public:
     void            revert                      ( size_t version );
     void            revertAndClear              ( size_t version );
                     VersionedStoreTag           ();
-                    VersionedStoreTag           ( ConstVersionedStoreTag& other );
-                    VersionedStoreTag           ( shared_ptr < AbstractPersistenceProvider > persistence, string branch );
+                    VersionedStoreTag           ( const AbstractVersionedBranchClient& other );
                     ~VersionedStoreTag          ();
-    
-    //----------------------------------------------------------------//
-    /** \brief  Implements assignment by calling takeSnapshot().
-     
-        \param  other   The version to snapshot.
-    */
-    VersionedStoreTag& operator = ( ConstVersionedStoreTag& other ) {
-        this->takeSnapshot ( other );
-        return *this;
-    }
 
     //----------------------------------------------------------------//
     /** \brief  Sets or overwrites the value for the corresponding key at the

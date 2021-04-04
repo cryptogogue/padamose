@@ -11,23 +11,29 @@ namespace Padamose {
 //================================================================//
 
 //----------------------------------------------------------------//
-/** \brief Create a branch if none exists and add self as client.
-*/
-void ConstVersionedStoreTag::affirmBranch () {
-
-    if ( !this->mSourceBranch ) {
-        assert ( this->mVersion == 0 );
-        this->setBranch ( make_shared < EphemeralVersionedBranch >(), this->mVersion );
-    }
-}
-
-//----------------------------------------------------------------//
 /** \brief Abandons branch and sets version to 0.
 */
 void ConstVersionedStoreTag::clear () {
 
     this->setBranch ( NULL, 0 );
-    this->mProvider = NULL;
+}
+
+//----------------------------------------------------------------//
+ConstVersionedStoreTag::ConstVersionedStoreTag () {
+}
+
+//----------------------------------------------------------------//
+/** \brief Copy a snapshot.
+ 
+    \param  other   The snapshot to copy.
+*/
+ConstVersionedStoreTag::ConstVersionedStoreTag ( const AbstractVersionedBranchClient& other ) {
+
+    this->takeSnapshot ( other );
+}
+
+//----------------------------------------------------------------//
+ConstVersionedStoreTag::~ConstVersionedStoreTag () {
 }
 
 //----------------------------------------------------------------//
@@ -85,6 +91,7 @@ bool ConstVersionedStoreTag::hasKey ( string key ) const {
     \return         True if the value exists. False if it doesn't.
 */
 bool ConstVersionedStoreTag::hasValue ( string key ) const {
+
     return this->hasValue ( key, this->mVersion );
 }
 
@@ -103,106 +110,13 @@ bool ConstVersionedStoreTag::hasValue ( string key, size_t version ) const {
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
-void ConstVersionedStoreTag::persist ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
-
-    if ( this->mSourceBranch ) {
-    
-        try {
-        
-            provider->begin ();
-    
-            this->setPersistenceProvider ( provider );
-            this->mSourceBranch->persistSelf ( this->mProvider );
-            this->mProvider->tagBranch ( *this->mSourceBranch, branchName, this->mVersion );
-            
-            provider->commit ();
-        }
-        catch ( ... ) {
-        
-            // TODO: try to recover and gracefully report the error
-            exit ( 1 );
-        }
-    }
-}
-
-//----------------------------------------------------------------//
-/** \brief Set the debug name. Implemented in _DEBUG builds only. Otehrwise a no-op.
+/** \brief Set the debug name.
  
     \param  debugName   The debug name.
 */
 void ConstVersionedStoreTag::setDebugName ( string debugName ) {
-    UNUSED ( debugName );
 
-    #ifdef _DEBUG
-        this->mDebugName = debugName;
-    #endif
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void ConstVersionedStoreTag::setPersistenceProvider ( shared_ptr < AbstractPersistenceProvider > provider ) {
-
-    assert ( provider ); // TODO: throw exception
-
-    if ( this->mProvider ) {
-        assert ( this->mProvider == provider ); // TODO: throw exception
-    }
-    else {
-        this->mProvider = provider;
-    }
-}
-
-//----------------------------------------------------------------//
-/** \brief Copy a snapshot.
-
-    This is a relatively low-cost operation. Taking a snapshot will
-    add a dependency on the shared branch but won'y do anything else
-    until the branch is altered.
- 
-    \param  other   The snapshot to copy.
-*/
-void ConstVersionedStoreTag::takeSnapshot ( const ConstVersionedStoreTag& other ) {
-
-    this->setBranch ( other.mSourceBranch, other.mVersion );
-    this->mProvider = other.mProvider;
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void ConstVersionedStoreTag::takeSnapshot ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
-
-    assert ( provider ); // TODO: throw exception
-
-    if ( provider->hasTag ( branchName )) {
-        this->takeSnapshot ( provider->getTag ( branchName ));
-        this->setPersistenceProvider ( provider ); // DO THIS *AFTER* takeSnapshot ()
-    }
-}
-
-//----------------------------------------------------------------//
-ConstVersionedStoreTag::ConstVersionedStoreTag () {
-}
-
-//----------------------------------------------------------------//
-/** \brief Copy a snapshot.
- 
-    \param  other   The snapshot to copy.
-*/
-ConstVersionedStoreTag::ConstVersionedStoreTag ( const ConstVersionedStoreTag& other ) {
-
-    this->takeSnapshot ( other );
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-ConstVersionedStoreTag::ConstVersionedStoreTag ( shared_ptr < AbstractPersistenceProvider > provider, string branchName ) {
-
-    this->takeSnapshot ( provider, branchName );
-}
-
-//----------------------------------------------------------------//
-ConstVersionedStoreTag::~ConstVersionedStoreTag () {
+    this->mDebugName = debugName;
 }
 
 //================================================================//

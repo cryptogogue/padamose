@@ -398,12 +398,12 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < 
 void StringStoreVersionedBranch::AbstractVersionedBranch_print ( string prefix ) const {
 
     LGN_LOG ( PDM_FILTER_TREE, INFO,
-        "%s[%d-%d]: stringStore %p (refs: %d)\n",
+        "%s[%d-%d]: stringStore %p (refs: %d)",
         prefix.c_str (),
         ( int )this->mVersion,
         ( int )this->getTopVersion (),
         this,
-        ( int )this->mDirectReferenceCount
+        ( int )this->mLockCount
     );
 }
 
@@ -588,7 +588,7 @@ size_t StringStoreVersionedBranch::AbstractVersionedBranchClient_getVersionDepen
 void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( AbstractVersionedBranch& other ) {
 
     assert ( other.getDirectReferenceCount () == 0 );
-    assert ( this->mDirectReferenceCount == 0 );
+    assert ( this->mLockCount == 0 );
 
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
@@ -628,7 +628,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranchClient_joinBranch ( Abst
     \return     True if the branch has any direct references. False otherwise.
 */
 bool StringStoreVersionedBranch::AbstractVersionedBranchClient_preventJoin () const {
-    return ( this->mDirectReferenceCount > 0 );
+    return ( this->mLockCount > 0 );
 }
 
 //----------------------------------------------------------------//

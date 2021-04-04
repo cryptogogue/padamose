@@ -12,7 +12,7 @@ namespace Test {
 
 //----------------------------------------------------------------//
 bool    exists              ( cc8* filename );
-void    testWithProvider    ( shared_ptr < AbstractPersistenceProvider > provider );
+void    testWithProvider    ( AbstractPersistenceProvider& provider );
 
 } // namespace Test
 } // namespace Padamose

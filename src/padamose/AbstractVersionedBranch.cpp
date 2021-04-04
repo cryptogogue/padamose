@@ -14,7 +14,7 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
 AbstractVersionedBranch::AbstractVersionedBranch () :
-    mDirectReferenceCount ( 0 ) {
+    mLockCount ( 0 ) {
 }
 
 //----------------------------------------------------------------//
@@ -22,7 +22,7 @@ AbstractVersionedBranch::AbstractVersionedBranch () :
 */
 AbstractVersionedBranch::~AbstractVersionedBranch () {
 
-    assert ( this->mDirectReferenceCount == 0 );
+    assert ( this->mLockCount == 0 );
 }
 
 //----------------------------------------------------------------//
@@ -96,7 +96,7 @@ shared_ptr < AbstractVersionedBranch > AbstractVersionedBranch::fork ( size_t ba
 // TODO: doxygen
 size_t AbstractVersionedBranch::getDirectReferenceCount () const {
 
-    return this->mDirectReferenceCount;
+    return this->mLockCount;
 }
 
 //----------------------------------------------------------------//
@@ -202,6 +202,12 @@ bool AbstractVersionedBranch::isPersistent () const {
 }
 
 //----------------------------------------------------------------//
+void AbstractVersionedBranch::lock () {
+
+    this->mLockCount++;
+}
+
+//----------------------------------------------------------------//
 /** \brief Attempts to optimize the branch.
 
     "Optimizing" a branch means two things: trim any unused versions from the
@@ -228,14 +234,17 @@ bool AbstractVersionedBranch::isPersistent () const {
 */
 void AbstractVersionedBranch::optimize () {
 
+    if ( this->preventJoin ()) return; // don't allow join if there are any direct references to the current branch. (May be over-cautious.)
+
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::optimize ()" );
     
     // use one loop to find the immutable top and to identify a child branch that
     // may be joined to the parent branch.
     
     size_t immutableTop = this->mVersion; // immutable top won't be less than the branch's base version.
-    bool preventJoin = this->preventJoin (); // don't allow join if there are any direct references to the current branch. (May be over-cautious.)
     AbstractVersionedBranchClient* bestJoin = NULL; // a join will be performed if this is non-NULL.
+    
+    bool preventJoin = false;
     
     // loop through every client...
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "evaluating clients for possible concatenation..." );
@@ -300,15 +309,15 @@ void AbstractVersionedBranch::optimize () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranch::persistSelf ( shared_ptr < AbstractPersistenceProvider > provider ) {
+void AbstractVersionedBranch::persistSelf ( AbstractPersistenceProvider& provider ) {
     
     if ( this->isPersistent ()) return;
     
     if ( this->mSourceBranch ) {
         this->mSourceBranch->persistSelf ( provider );
     }
-    shared_ptr < AbstractPersistentVersionedBranch > persist = provider->makePersistentBranch ();
-    assert ( persist->getProvider () == provider.get ());
+    shared_ptr < AbstractPersistentVersionedBranch > persist = provider.makePersistentBranch ();
+    assert ( persist->getProvider () == &provider );
     
     // set the source branch and version manually
     persist->mSourceBranch = this->mSourceBranch;
@@ -320,9 +329,8 @@ void AbstractVersionedBranch::persistSelf ( shared_ptr < AbstractPersistenceProv
     // force an update
     persist->AbstractVersionedBranchClient_sourceBranchDidChange ();
     
-    weak_ptr < AbstractVersionedBranch > weakSelf = this->shared_from_this ();
+    shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
     this->AbstractVersionedBranch_persist ( persist ); // this should move over all clients and orphan the branch
-    assert ( weakSelf.expired ());
 }
 
 //----------------------------------------------------------------//
@@ -357,6 +365,17 @@ void AbstractVersionedBranch::truncate ( size_t topVersion ) {
     this->AbstractVersionedBranch_truncate ( topVersion );
 }
 
+//----------------------------------------------------------------//
+void AbstractVersionedBranch::unlock () {
+
+    if ( this->mLockCount ) {
+        this->mLockCount--;
+        if ( this->mLockCount == 0 ) {
+            this->optimize ();
+        }
+    }
+}
+
 //================================================================//
 // overrides
 //================================================================//
@@ -371,7 +390,7 @@ void AbstractVersionedBranch::AbstractVersionedBranch_print ( string prefix ) co
         ( int )this->mVersion,
         ( int )this->getTopVersion (),
         this,
-        ( int )this->mDirectReferenceCount
+        ( int )this->mLockCount
     );
 }
 
@@ -423,7 +442,7 @@ void AbstractVersionedBranch::AbstractVersionedBranchClient_print ( string prefi
     \return     True if the branch has any direct references. False otherwise.
 */
 bool AbstractVersionedBranch::AbstractVersionedBranchClient_preventJoin () const {
-    return ( this->mDirectReferenceCount > 0 );
+    return ( this->mLockCount > 0 );
 }
 
 } // namespace Padamose

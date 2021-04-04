@@ -28,15 +28,19 @@ void cleanup () {
     ASSERT_EQ ( remove ( SQLITE_FILE ), 0 );
     ASSERT_EQ ( exists ( SQLITE_FILE ), false );
     
-    ASSERT_EQ ( remove ( SQLITE_FILE_SHM ), 0 );
-    ASSERT_EQ ( exists ( SQLITE_FILE_SHM ), false );
+    if ( exists ( SQLITE_FILE_SHM )) {
+        ASSERT_EQ ( remove ( SQLITE_FILE_SHM ), 0 );
+        ASSERT_EQ ( exists ( SQLITE_FILE_SHM ), false );
+    }
     
-    ASSERT_EQ ( remove ( SQLITE_FILE_WAL ), 0 );
-    ASSERT_EQ ( exists ( SQLITE_FILE_WAL ), false );
+    if ( exists ( SQLITE_FILE_WAL )) {
+        ASSERT_EQ ( remove ( SQLITE_FILE_WAL ), 0 );
+        ASSERT_EQ ( exists ( SQLITE_FILE_WAL ), false );
+    }
 }
 
 //----------------------------------------------------------------//
-TEST ( SQLitePersistence, test_sqlite_string_store ) {
+TEST ( SQLitePersistence, test_sqlite_string_tag ) {
 
     if ( exists ( SQLITE_FILE )) {
         remove ( SQLITE_FILE );
@@ -44,36 +48,36 @@ TEST ( SQLitePersistence, test_sqlite_string_store ) {
     ASSERT_EQ ( exists ( SQLITE_FILE ), false );
 
     {
-        SQLiteStringStore store;
-        store.open ( SQLITE_FILE );
+        SQLiteStringStore stringStore;
+        stringStore.open ( SQLITE_FILE );
 
-        ASSERT_EQ (( bool )store, true );
+        ASSERT_EQ (( bool )stringStore, true );
         ASSERT_EQ ( exists ( SQLITE_FILE ), true );
 
-        ASSERT_EQ ( store.hasString ( KEY0 ), false );
+        ASSERT_EQ ( stringStore.hasString ( KEY0 ), false );
         
-        store.setString ( KEY0, STR0 );
+        stringStore.setString ( KEY0, STR0 );
         
-        ASSERT_EQ ( store.hasString ( KEY0 ), true );
-        ASSERT_EQ ( store.getString ( KEY0 ), STR0 );
+        ASSERT_EQ ( stringStore.hasString ( KEY0 ), true );
+        ASSERT_EQ ( stringStore.getString ( KEY0 ), STR0 );
         
-        store.setString ( KEY0, STR1 );
+        stringStore.setString ( KEY0, STR1 );
         
-        ASSERT_EQ ( store.hasString ( KEY0 ), true );
-        ASSERT_EQ ( store.getString ( KEY0 ), STR1 );
+        ASSERT_EQ ( stringStore.hasString ( KEY0 ), true );
+        ASSERT_EQ ( stringStore.getString ( KEY0 ), STR1 );
         
-        store.eraseString ( KEY0 );
+        stringStore.eraseString ( KEY0 );
         
-        ASSERT_EQ ( store.hasString ( KEY0 ), false );
+        ASSERT_EQ ( stringStore.hasString ( KEY0 ), false );
         
-        store.setString ( KEY0, STR2 );
+        stringStore.setString ( KEY0, STR2 );
         
-        ASSERT_EQ ( store.hasString ( KEY0 ), true );
-        ASSERT_EQ ( store.getString ( KEY0 ), STR2 );
+        ASSERT_EQ ( stringStore.hasString ( KEY0 ), true );
+        ASSERT_EQ ( stringStore.getString ( KEY0 ), STR2 );
         
-        store.clear ();
+        stringStore.clear ();
         
-        ASSERT_EQ ( store.hasString ( KEY0 ), false );
+        ASSERT_EQ ( stringStore.hasString ( KEY0 ), false );
     }
 
     cleanup ();
@@ -84,31 +88,31 @@ TEST ( SQLitePersistence, test_sqlite_persistence ) {
 
     {
         shared_ptr < SQLiteStringStore > stringStore = SQLiteStringStore::make ( SQLITE_FILE );
-        testWithProvider ( stringStore );
+        testWithProvider ( *stringStore );
 
-        VersionedStoreTag store ( stringStore, "master" );
+        VersionedStoreTag tag = stringStore->restore ( "master" );
 
-        ASSERT_EQ ( store.getVersion (), 3 );
-        ASSERT_EQ ( store.getValue < string >( KEY0, 0 ), STR0 );
-        ASSERT_EQ ( store.getValue < string >( KEY0, 1 ), STR1 );
-        ASSERT_EQ ( store.getValue < string >( KEY0, 2 ), STR2 );
-        ASSERT_EQ ( store.getValue < string >( KEY0, 3 ), STR3 );
+        ASSERT_EQ ( tag.getVersion (), 3 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0, 0 ), STR0 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0, 1 ), STR1 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0, 2 ), STR2 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0, 3 ), STR3 );
         
-        store.revert ( 2 );
+        tag.revert ( 2 );
         
-        ASSERT_EQ ( store.getVersion (), 2 );
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR2 );
+        ASSERT_EQ ( tag.getVersion (), 2 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR2 );
         
-        store.persist ( stringStore, "master" );
+        stringStore->persist ( tag, "master" );
     }
     
     {
         shared_ptr < SQLiteStringStore > stringStore = SQLiteStringStore::make ( SQLITE_FILE );
         
-        VersionedStoreTag store ( stringStore, "master" );
+        VersionedStoreTag tag = stringStore->restore ( "master" );
         
-        ASSERT_EQ ( store.getVersion (), 2 );
-        ASSERT_EQ ( store.getValue < string >( KEY0 ), STR2 );
+        ASSERT_EQ ( tag.getVersion (), 2 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR2 );
     }
     
     cleanup ();

@@ -41,8 +41,9 @@ protected:
 
     friend class AbstractVersionedBranchClient;
     friend class AbstractVersionedValueIterator;
-    friend class VersionedStoreTag;
     friend class ConstVersionedStoreTag;
+    friend class VersionedStoreLock;
+    friend class VersionedStoreTag;
     friend class VersionedStoreIterator;
     template < typename > friend class VersionedValue;
     template < typename > friend class VersionedValueIterator;
@@ -51,11 +52,13 @@ protected:
     set < AbstractVersionedBranchClient* >      mClients;
 
     /// The number of clients holding direct references to branch internals. A nonzero direct reference count will prevent optimization of the branch.
-    size_t                                      mDirectReferenceCount;
+    size_t                                      mLockCount;
 
     //----------------------------------------------------------------//
+    void            lock                        ();
     void            transferClients             ( AbstractVersionedBranch& other );
     void            truncate                    ( size_t topVersion );
+    void            unlock                      ();
 
     //----------------------------------------------------------------//
     bool            AbstractVersionedBranchClient_canJoin                   () const override;
@@ -97,7 +100,7 @@ public:
     void                                        insertClient                    ( AbstractVersionedBranchClient& client );
     bool                                        isPersistent                    () const;
     void                                        optimize                        ();
-    void                                        persistSelf                     ( shared_ptr < AbstractPersistenceProvider > provider );
+    void                                        persistSelf                     ( AbstractPersistenceProvider& provider );
     void                                        setValueVariant                 ( size_t version, string key, const Variant& value );
 };
 

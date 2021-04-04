@@ -37,15 +37,15 @@ public:
 
     //----------------------------------------------------------------//
     void            clear                   ();
-    void            open                    ( string filename, string prefix = "" );
+    void            open                    ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE );
                     SQLiteStringStore       ();
     virtual         ~SQLiteStringStore      ();
     
     //----------------------------------------------------------------//
-    static shared_ptr < SQLiteStringStore > make ( string filename, string prefix = "" ) {
+    static shared_ptr < SQLiteStringStore > make ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE ) {
     
         shared_ptr < SQLiteStringStore > store = make_shared < SQLiteStringStore >();
-        store->open ( filename, prefix );
+        store->open ( filename, flags );
         return store;
     }
 };

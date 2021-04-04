@@ -19,11 +19,14 @@
 #include <padamose/RedisServerProc.h>
 #include <padamose/RedisStringStore.h>
 #include <padamose/StringStoreVersionedBranch.h>
+#include <padamose/SQLite.h>
+#include <padamose/SQLiteStringStore.h>
 #include <padamose/Variant.h>
 #include <padamose/VersionedCollectionSnapshot.h>
 #include <padamose/VersionedCollectionIterator.h>
 #include <padamose/VersionedMap.h>
 #include <padamose/VersionedList.h>
+#include <padamose/VersionedStoreLock.h>
 #include <padamose/VersionedStoreTag.h>
 #include <padamose/VersionedStoreIterator.h>
 #include <padamose/VersionedValueIterator.h>

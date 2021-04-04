@@ -56,9 +56,23 @@ size_t AbstractVersionedBranchClient::getJoinScore () const {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-const AbstractVersionedBranch* AbstractVersionedBranchClient::getSourceBranch () const {
+AbstractVersionedBranchClient::BranchPtr AbstractVersionedBranchClient::getSourceBranch () {
 
-    return this->mSourceBranch.get ();
+    return this->mSourceBranch;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+AbstractVersionedBranchClient::ConstBranchPtr AbstractVersionedBranchClient::getSourceBranch () const {
+
+    return this->mSourceBranch;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+size_t AbstractVersionedBranchClient::getVersion () const {
+
+    return this->mVersion;
 }
 
 //----------------------------------------------------------------//
@@ -94,6 +108,8 @@ bool AbstractVersionedBranchClient::preventJoin () const {
 //----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractVersionedBranchClient::printTree () const {
+
+    LGN_LOG ( PDM_FILTER_TREE, INFO, "PRINT TREE" );
 
     const AbstractVersionedBranchClient* base = this;
     while ( base->mSourceBranch ) {
@@ -166,6 +182,21 @@ void AbstractVersionedBranchClient::setBranch ( shared_ptr < AbstractVersionedBr
         this->AbstractVersionedBranchClient_sourceBranchDidChange ();
     }
 }
+
+//----------------------------------------------------------------//
+/** \brief Copy a snapshot.
+
+    This is a relatively low-cost operation. Taking a snapshot will
+    add a dependency on the shared branch but won't do anything else
+    until the branch is altered.
+ 
+    \param  other   The snapshot to copy.
+*/
+void AbstractVersionedBranchClient::takeSnapshot ( const AbstractVersionedBranchClient& other ) {
+    
+    this->setBranch ( other.mSourceBranch, other.mVersion );
+}
+
 
 //================================================================//
 // overrides

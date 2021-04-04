@@ -26,10 +26,16 @@ class AbstractVersionedBranch;
     single-line virtual methods than to complicate the client bookkeeping.
 */
 class AbstractVersionedBranchClient {
+public:
+
+    typedef shared_ptr < AbstractVersionedBranch >          BranchPtr;
+    typedef shared_ptr < const AbstractVersionedBranch >    ConstBranchPtr;
+
 protected:
 
     friend class AbstractVersionedBranch;
     friend class EphemeralVersionedBranch;
+    friend class VersionedStoreLock;
 
     /// The source (or parent) branch for this client. May be NULL.
     shared_ptr < AbstractVersionedBranch >      mSourceBranch;
@@ -56,13 +62,26 @@ protected:
 public:
 
     //----------------------------------------------------------------//
-                                        AbstractVersionedBranchClient           ();
-    virtual                             ~AbstractVersionedBranchClient          ();
-    size_t                              countBranches                           () const;
-    const AbstractVersionedBranch*      getSourceBranch                         () const;
-    void                                printTree                               () const;
-    void                                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch );
-    void                                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
+                        AbstractVersionedBranchClient           ();
+    virtual             ~AbstractVersionedBranchClient          ();
+    size_t              countBranches                           () const;
+    BranchPtr           getSourceBranch                         ();
+    ConstBranchPtr      getSourceBranch                         () const;
+    size_t              getVersion                              () const;
+    void                printTree                               () const;
+    void                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch );
+    void                setBranch                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
+    void                takeSnapshot                            ( const AbstractVersionedBranchClient& other );
+    
+    //----------------------------------------------------------------//
+    /** \brief  Implements assignment by calling takeSnapshot().
+     
+        \param  other   The version to snapshot.
+    */
+    AbstractVersionedBranchClient& operator = ( AbstractVersionedBranchClient& other ) {
+        this->takeSnapshot ( other );
+        return *this;
+    }
 };
 
 } // namespace Padamose
