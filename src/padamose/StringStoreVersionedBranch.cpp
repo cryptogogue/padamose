@@ -190,7 +190,7 @@ StringStoreVersionedBranch::StringStoreVersionedBranch ( shared_ptr < AbstractSt
 StringStoreVersionedBranch::~StringStoreVersionedBranch () {
 
     this->mProvider->eraseBranch ( *this );
-    this->setBranch ( NULL, 0 );
+    this->setParent ( NULL, 0 );
 
     if ( !this->mProvider->isFrozen ()) {
         this->AbstractVersionedBranch_truncate ( this->mVersion );
@@ -235,7 +235,7 @@ shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersi
 
     assert (( this->mVersion <= baseVersion ) && ( baseVersion <= this->getTopVersion ()));
 
-    child->setBranch ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
+    child->setParent ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
 
     string keyforBaseLayerSize = this->formatKeyForLayerSizeByVersion ( baseVersion );
     size_t baseLayerSize = store.get < u64 >( keyforBaseLayerSize, 0 );

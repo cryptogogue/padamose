@@ -9,6 +9,7 @@
 #include <padamose/AbstractStringStore.h>
 #include <padamose/AbstractVersionedBranchOrLeaf.h>
 #include <padamose/AbstractVersionedCollection.h>
+#include <padamose/AbstractVersionedStoreInspector.h>
 #include <padamose/BaseVersionedCollectionIterator.h>
 #include <padamose/DebugStringStore.h>
 #include <padamose/EphemeralValueStack.h>

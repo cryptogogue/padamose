@@ -93,10 +93,14 @@
 		CD9C39282618557400AE8782 /* TestLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C39272618557400AE8782 /* TestLock.cpp */; };
 		CD9C392B2618592200AE8782 /* VersionedStoreLock.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C39292618592200AE8782 /* VersionedStoreLock.h */; };
 		CD9C392C2618592200AE8782 /* VersionedStoreLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C392A2618592200AE8782 /* VersionedStoreLock.cpp */; };
-		CD9C39362619B3C300AE8782 /* VersionedStoreInspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C39342619B3C300AE8782 /* VersionedStoreInspector.cpp */; };
 		CD9C39372619B3C300AE8782 /* VersionedStoreInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C39352619B3C300AE8782 /* VersionedStoreInspector.h */; };
 		CD9C39392619B7C900AE8782 /* VersionedStoreRef.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C39382619B7C900AE8782 /* VersionedStoreRef.h */; };
-		CD9C393B2619C88C00AE8782 /* VersionedStoreRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C393A2619C88C00AE8782 /* VersionedStoreRef.cpp */; };
+		CD9C3941261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C393F261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp */; };
+		CD9C3942261AB04000AE8782 /* AbstractVersionedStoreInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C3940261AB04000AE8782 /* AbstractVersionedStoreInspector.h */; };
+		CD9C3945261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C3943261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp */; };
+		CD9C3946261AF7A900AE8782 /* AbstractVersionedStoreTag.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C3944261AF7A900AE8782 /* AbstractVersionedStoreTag.h */; };
+		CD9C394A261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C3948261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp */; };
+		CD9C394B261B206800AE8782 /* AbstractHasVersionedStoreRef.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C3949261B206800AE8782 /* AbstractHasVersionedStoreRef.h */; };
 		CD9FE5D12256E0A1009B4144 /* DebugStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */; };
 		CD9FE5D42256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */; };
 		CD9FE5D52256E8E4009B4144 /* AbstractPersistentVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */; };
@@ -145,7 +149,6 @@
 		CD9FE69222697F87009B4144 /* RedisServerProc.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE69022697F87009B4144 /* RedisServerProc.h */; };
 		CD9FE69422698141009B4144 /* padamose-hiredis.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE69322698141009B4144 /* padamose-hiredis.h */; };
 		CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */; };
-		CDA06FF221570FDF003FA0C3 /* VersionedStoreTag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF021570FDF003FA0C3 /* VersionedStoreTag.cpp */; };
 		CDA06FF321570FDF003FA0C3 /* VersionedStoreTag.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF121570FDF003FA0C3 /* VersionedStoreTag.h */; };
 		CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchOrLeaf.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchOrLeaf.h */; };
 		CDA06FF921587771003FA0C3 /* AbstractVersionedBranchOrLeaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF821587771003FA0C3 /* AbstractVersionedBranchOrLeaf.cpp */; };
@@ -331,10 +334,14 @@
 		CD9C39272618557400AE8782 /* TestLock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestLock.cpp; path = src/padamose/gtest/TestLock.cpp; sourceTree = "<group>"; };
 		CD9C39292618592200AE8782 /* VersionedStoreLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStoreLock.h; path = src/padamose/VersionedStoreLock.h; sourceTree = "<group>"; };
 		CD9C392A2618592200AE8782 /* VersionedStoreLock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStoreLock.cpp; path = src/padamose/VersionedStoreLock.cpp; sourceTree = "<group>"; };
-		CD9C39342619B3C300AE8782 /* VersionedStoreInspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStoreInspector.cpp; path = src/padamose/VersionedStoreInspector.cpp; sourceTree = "<group>"; };
 		CD9C39352619B3C300AE8782 /* VersionedStoreInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStoreInspector.h; path = src/padamose/VersionedStoreInspector.h; sourceTree = "<group>"; };
 		CD9C39382619B7C900AE8782 /* VersionedStoreRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStoreRef.h; path = src/padamose/VersionedStoreRef.h; sourceTree = "<group>"; };
-		CD9C393A2619C88C00AE8782 /* VersionedStoreRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStoreRef.cpp; path = src/padamose/VersionedStoreRef.cpp; sourceTree = "<group>"; };
+		CD9C393F261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedStoreInspector.cpp; path = src/padamose/AbstractVersionedStoreInspector.cpp; sourceTree = "<group>"; };
+		CD9C3940261AB04000AE8782 /* AbstractVersionedStoreInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedStoreInspector.h; path = src/padamose/AbstractVersionedStoreInspector.h; sourceTree = "<group>"; };
+		CD9C3943261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedStoreTag.cpp; path = src/padamose/AbstractVersionedStoreTag.cpp; sourceTree = "<group>"; };
+		CD9C3944261AF7A900AE8782 /* AbstractVersionedStoreTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedStoreTag.h; path = src/padamose/AbstractVersionedStoreTag.h; sourceTree = "<group>"; };
+		CD9C3948261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractHasVersionedStoreRef.cpp; path = src/padamose/AbstractHasVersionedStoreRef.cpp; sourceTree = "<group>"; };
+		CD9C3949261B206800AE8782 /* AbstractHasVersionedStoreRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractHasVersionedStoreRef.h; path = src/padamose/AbstractHasVersionedStoreRef.h; sourceTree = "<group>"; };
 		CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugStringStore.cpp; path = src/padamose/DebugStringStore.cpp; sourceTree = "<group>"; };
 		CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractPersistentVersionedBranch.cpp; path = src/padamose/AbstractPersistentVersionedBranch.cpp; sourceTree = "<group>"; };
 		CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPersistentVersionedBranch.h; path = src/padamose/AbstractPersistentVersionedBranch.h; sourceTree = "<group>"; };
@@ -384,7 +391,6 @@
 		CD9FE69022697F87009B4144 /* RedisServerProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RedisServerProc.h; path = src/padamose/RedisServerProc.h; sourceTree = "<group>"; };
 		CD9FE69322698141009B4144 /* padamose-hiredis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "padamose-hiredis.h"; path = "src/padamose/padamose-hiredis.h"; sourceTree = "<group>"; };
 		CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStoreIterators.cpp; path = src/padamose/gtest/TestVersionedStoreIterators.cpp; sourceTree = "<group>"; };
-		CDA06FF021570FDF003FA0C3 /* VersionedStoreTag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStoreTag.cpp; path = src/padamose/VersionedStoreTag.cpp; sourceTree = "<group>"; };
 		CDA06FF121570FDF003FA0C3 /* VersionedStoreTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStoreTag.h; path = src/padamose/VersionedStoreTag.h; sourceTree = "<group>"; };
 		CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchOrLeaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedBranchOrLeaf.h; path = src/padamose/AbstractVersionedBranchOrLeaf.h; sourceTree = "<group>"; };
 		CDA06FF821587771003FA0C3 /* AbstractVersionedBranchOrLeaf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedBranchOrLeaf.cpp; path = src/padamose/AbstractVersionedBranchOrLeaf.cpp; sourceTree = "<group>"; };
@@ -589,8 +595,6 @@
 				CDB4059A224467E500200C78 /* Variant.h */,
 				CD9C392A2618592200AE8782 /* VersionedStoreLock.cpp */,
 				CD9C39292618592200AE8782 /* VersionedStoreLock.h */,
-				CDA06FF021570FDF003FA0C3 /* VersionedStoreTag.cpp */,
-				CDA06FF121570FDF003FA0C3 /* VersionedStoreTag.h */,
 				CD240D2F21363CE000FF8812 /* VersionedStoreIterator.cpp */,
 				CD240D3021363CE000FF8812 /* VersionedStoreIterator.h */,
 				CD240D2721327F6600FF8812 /* VersionedValueIterator.h */,
@@ -775,14 +779,19 @@
 				CDB40590223EE24800200C78 /* AbstractVersionedBranch.h */,
 				CDA06FF821587771003FA0C3 /* AbstractVersionedBranchOrLeaf.cpp */,
 				CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchOrLeaf.h */,
+				CD9C3948261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp */,
+				CD9C3949261B206800AE8782 /* AbstractHasVersionedStoreRef.h */,
+				CD9C393F261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp */,
+				CD9C3940261AB04000AE8782 /* AbstractVersionedStoreInspector.h */,
+				CD9C3943261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp */,
+				CD9C3944261AF7A900AE8782 /* AbstractVersionedStoreTag.h */,
 				CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */,
 				CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */,
 				CD561DBB210730ED008B06C7 /* EphemeralVersionedBranch.cpp */,
 				CD561DBC210730ED008B06C7 /* EphemeralVersionedBranch.h */,
-				CD9C39342619B3C300AE8782 /* VersionedStoreInspector.cpp */,
 				CD9C39352619B3C300AE8782 /* VersionedStoreInspector.h */,
-				CD9C393A2619C88C00AE8782 /* VersionedStoreRef.cpp */,
 				CD9C39382619B7C900AE8782 /* VersionedStoreRef.h */,
+				CDA06FF121570FDF003FA0C3 /* VersionedStoreTag.h */,
 			);
 			name = branch;
 			sourceTree = "<group>";
@@ -878,6 +887,7 @@
 				CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */,
 				CD19DEE325930C820007ACF0 /* SQLite.h in Headers */,
 				CDF903AE21A0A70B00C1930B /* VersionedList.h in Headers */,
+				CD9C3942261AB04000AE8782 /* AbstractVersionedStoreInspector.h in Headers */,
 				CD9FE69222697F87009B4144 /* RedisServerProc.h in Headers */,
 				CD240D3221363CE000FF8812 /* VersionedStoreIterator.h in Headers */,
 				CDA06FF321570FDF003FA0C3 /* VersionedStoreTag.h in Headers */,
@@ -891,6 +901,8 @@
 				CDB4058C223ED61300200C78 /* AbstractStringStore.h in Headers */,
 				CD9FE69422698141009B4144 /* padamose-hiredis.h in Headers */,
 				CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */,
+				CD9C3946261AF7A900AE8782 /* AbstractVersionedStoreTag.h in Headers */,
+				CD9C394B261B206800AE8782 /* AbstractHasVersionedStoreRef.h in Headers */,
 				CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */,
 				CD9C39372619B3C300AE8782 /* VersionedStoreInspector.h in Headers */,
 			);
@@ -1193,18 +1205,18 @@
 				CDD6CE2E21A6388600DB7C10 /* VersionedMap.cpp in Sources */,
 				CDF903B521A1482D00C1930B /* AbstractVersionedCollection.cpp in Sources */,
 				CD240D3121363CE000FF8812 /* VersionedStoreIterator.cpp in Sources */,
-				CD9C393B2619C88C00AE8782 /* VersionedStoreRef.cpp in Sources */,
+				CD9C394A261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp in Sources */,
 				CD9B810721AA35E30039B645 /* BaseVersionedCollectionIterator.cpp in Sources */,
+				CD9C3941261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp in Sources */,
 				CD9FE5D42256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp in Sources */,
 				CDB40586223ED4DD00200C78 /* AbstractPersistenceProvider.cpp in Sources */,
+				CD9C3945261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp in Sources */,
 				CD9FE684226838EC009B4144 /* RedisStringStore.cpp in Sources */,
 				CDF903B121A1455700C1930B /* VersionedCollectionSnapshot.cpp in Sources */,
-				CD9C39362619B3C300AE8782 /* VersionedStoreInspector.cpp in Sources */,
 				CD9FE5D12256E0A1009B4144 /* DebugStringStore.cpp in Sources */,
 				CDB4058B223ED61300200C78 /* AbstractStringStore.cpp in Sources */,
 				CDF903AD21A0A70B00C1930B /* VersionedList.cpp in Sources */,
 				CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */,
-				CDA06FF221570FDF003FA0C3 /* VersionedStoreTag.cpp in Sources */,
 				CD9FE69122697F87009B4144 /* RedisServerProc.cpp in Sources */,
 				CD85B1CF228F3091000C2A54 /* Variant.cpp in Sources */,
 			);
@@ -1325,7 +1337,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"SQLITE_THREADSAFE=2",
+					"SQLITE_THREADSAFE=1",
 					"SQLITE_DEFAULT_MEMSTATUS=0",
 					SQLITE_OMIT_DECLTYPE,
 					SQLITE_OMIT_PROGRESS_CALLBACK,
@@ -1353,7 +1365,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"SQLITE_THREADSAFE=2",
+					"SQLITE_THREADSAFE=1",
 					"SQLITE_DEFAULT_MEMSTATUS=0",
 					SQLITE_OMIT_DECLTYPE,
 					SQLITE_OMIT_PROGRESS_CALLBACK,

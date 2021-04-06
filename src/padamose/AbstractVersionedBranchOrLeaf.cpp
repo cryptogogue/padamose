@@ -29,6 +29,12 @@ AbstractVersionedBranchOrLeaf::BranchPtr AbstractVersionedBranchOrLeaf::asBranch
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+void AbstractVersionedBranchOrLeaf::clear () {
+    this->setParent ( NULL, 0 );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 size_t AbstractVersionedBranchOrLeaf::countBranches () const {
 
     size_t count = 1;
@@ -81,32 +87,6 @@ void AbstractVersionedBranchOrLeaf::setDebugName ( string debugName ) {
     this->mDebugName = debugName;
 }
 
-//================================================================//
-// overrides
-//================================================================//
-
-//----------------------------------------------------------------//
-AbstractVersionedBranchOrLeaf::BranchPtr AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_asBranch () {
-    return NULL;
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-size_t AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_getVersionDependency () const {
-    return this->mVersion + 1;
-}
-
-//----------------------------------------------------------------//
-void AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_print ( string prefix ) const {
-
-    LGN_LOG ( PDM_FILTER_TREE, INFO, "%s[%d]: client %p", prefix.c_str (), ( int )this->mVersion, this );
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_sourceBranchDidChange () {
-}
-
 //----------------------------------------------------------------//
 /** \brief Remove the client from the existing branch (if any) and add
     it to the new branch. Update the client's version.
@@ -123,7 +103,7 @@ void AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_sourceBranchDi
     \param  branch      The new branch for the snapshot.
     \param  version     The version referenced by the snapshot.
 */
-void AbstractVersionedBranchOrLeaf::VersionedStoreRef_setBranch ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
+void AbstractVersionedBranchOrLeaf::setParent ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
 
     bool didChange = false;
     weak_ptr < AbstractVersionedBranch > prevBranchWeak;
@@ -132,7 +112,7 @@ void AbstractVersionedBranchOrLeaf::VersionedStoreRef_setBranch ( shared_ptr < A
         
         didChange = true;
         
-        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreTag::setBranch () - changing branch" );
+        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreTag::setParent () - changing branch" );
         
         if ( this->mSourceBranch ) {
             prevBranchWeak = this->mSourceBranch;
@@ -160,6 +140,32 @@ void AbstractVersionedBranchOrLeaf::VersionedStoreRef_setBranch ( shared_ptr < A
     if ( didChange ) {
         this->AbstractVersionedBranchOrLeaf_sourceBranchDidChange ();
     }
+}
+
+//================================================================//
+// overrides
+//================================================================//
+
+//----------------------------------------------------------------//
+AbstractVersionedBranchOrLeaf::BranchPtr AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_asBranch () {
+    return NULL;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+size_t AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_getVersionDependency () const {
+    return this->mVersion + 1;
+}
+
+//----------------------------------------------------------------//
+void AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_print ( string prefix ) const {
+
+    LGN_LOG ( PDM_FILTER_TREE, INFO, "%s[%d]: client %p", prefix.c_str (), ( int )this->mVersion, this );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_sourceBranchDidChange () {
 }
 
 } // namespace Padamose

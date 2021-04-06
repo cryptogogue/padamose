@@ -5,31 +5,55 @@
 #define PADAMOSE_VERSIONEDSTOREREF_H
 
 #include <padamose/padamose-common.h>
+#include <padamose/AbstractHasVersionedStoreRef.h>
 
 namespace Padamose {
 
 class AbstractVersionedBranch;
+class AbstractVersionedStoreInspector;
+class AbstractVersionedStoreTag;
 
 //================================================================//
 // VersionedStoreRef
 //================================================================//
 // TODO: doxygen
-class VersionedStoreRef {
-public:
-
-    typedef shared_ptr < AbstractVersionedBranch >          BranchPtr;
-    typedef shared_ptr < const AbstractVersionedBranch >    ConstBranchPtr;
-    
+class VersionedStoreRef :
+    public virtual AbstractHasVersionedStoreRef {
 protected:
 
+    friend class AbstractHasVersionedStoreRef;
+    friend class AbstractVersionedStoreInspector;
+    friend class AbstractVersionedStoreTag;
+    friend class VersionedStoreInspector;
+    friend class VersionedStoreLock;
+
     /// The source (or parent) branch for this client. May be NULL.
-    shared_ptr < AbstractVersionedBranch >      mSourceBranch;
+    mutable shared_ptr < AbstractVersionedBranch >  mSourceBranch;
     
     /// The current (or base) version for this client.
-    size_t                                      mVersion;
+    size_t                                          mVersion;
 
     //----------------------------------------------------------------//
-    virtual void    VersionedStoreRef_setBranch     ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
+    void setBranch ( const VersionedStoreRef& other ) {
+        this->mSourceBranch = other.mSourceBranch;
+        this->mVersion = other.mVersion;
+    }
+
+    //----------------------------------------------------------------//
+    void setBranch ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
+        this->mSourceBranch = branch;
+        this->mVersion = version;
+    }
+
+    //----------------------------------------------------------------//
+    VersionedStoreRef& AbstractHasVersionedStoreRef_getRef () override {
+        return *this;
+    }
+
+    //----------------------------------------------------------------//
+    const VersionedStoreRef& AbstractHasVersionedStoreRef_getRef () const override {
+        return *this;
+    }
 
 public:
     
@@ -40,15 +64,13 @@ public:
     }
     
     //----------------------------------------------------------------//
-    void                clear                       ();
-    BranchPtr           getSourceBranch             ();
-    ConstBranchPtr      getSourceBranch             () const;
-    size_t              getVersion                  () const;
-    void                setBranch                   ( const VersionedStoreRef& other );
-    void                setBranch                   ( shared_ptr < AbstractVersionedBranch > branch );
-    void                setBranch                   ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
-                        VersionedStoreRef           ();
-    virtual             ~VersionedStoreRef          ();
+    VersionedStoreRef () :
+        mVersion ( 0 ) {
+    }
+    
+    //----------------------------------------------------------------//
+    ~VersionedStoreRef () {
+    }
 };
 
 } // namespace Padamose

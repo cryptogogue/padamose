@@ -120,13 +120,13 @@ void VersionedStoreIterator::seek ( size_t version ) {
 
     \param  client          Snapshot to use as the upper bound for iteration.
 */
-VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreRef& client ) :
-    mAnchor ( client ) {
+VersionedStoreIterator::VersionedStoreIterator ( VersionedStoreLock& lock ) :
+    mAnchor ( lock ) {
 
-    VersionedStoreRef::ConstBranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
+    ConstBranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
 
     if ( sourceBranch && ( sourceBranch->getTopVersion () > 0 )) {
-        this->setBranch ( client );
+        this->setBranch ( lock );
         this->mTopVersion = this->mVersion + 1;
     }
     this->mState = sourceBranch ? VALID : EMPTY;
@@ -140,8 +140,8 @@ VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreRef& client
     \param  client          Snapshot to use as the upper bound for iteration.
     \param  version         Version to seek back to. Must be equal to or less than the upper bound.
 */
-VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreRef& client, size_t version ) :
-    VersionedStoreIterator ( client ) {
+VersionedStoreIterator::VersionedStoreIterator ( VersionedStoreLock& lock, size_t version ) :
+    VersionedStoreIterator ( lock ) {
 
     this->seek ( version );
 }

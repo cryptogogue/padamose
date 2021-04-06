@@ -10,7 +10,8 @@ namespace Test {
 //----------------------------------------------------------------//
 void testVersionedStoreIterator ( VersionedStoreTag& store, string key, const vector < string > expected ) {
 
-    VersionedStoreIterator storeIt ( store );
+    VersionedStoreLock lock ( store );
+    VersionedStoreIterator storeIt ( lock );
 
     size_t idx = expected.size ();
 
@@ -30,7 +31,8 @@ void testVersionedStoreIterator ( VersionedStoreTag& store, string key, const ve
 //----------------------------------------------------------------//
 void testVersionedValueIterator ( VersionedStoreTag& store, string key, const vector < string > expected ) {
 
-    VersionedValueIterator < string > valueIt ( store, key );
+    VersionedStoreLock lock ( store );
+    VersionedValueIterator < string > valueIt ( lock, key );
 
     size_t idx = expected.size ();
 

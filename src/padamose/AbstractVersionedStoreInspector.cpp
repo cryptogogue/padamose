@@ -1,14 +1,23 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#include <padamose/VersionedStoreInspector.h>
 #include <padamose/AbstractVersionedBranch.h>
+#include <padamose/AbstractVersionedStoreInspector.h>
+#include <padamose/VersionedStoreRef.h>
 
 namespace Padamose {
 
 //================================================================//
-// VersionedStoreInspector
+// AbstractVersionedStoreInspector
 //================================================================//
+
+//----------------------------------------------------------------//
+AbstractVersionedStoreInspector::AbstractVersionedStoreInspector () {
+}
+
+//----------------------------------------------------------------//
+AbstractVersionedStoreInspector::~AbstractVersionedStoreInspector () {
+}
 
 //----------------------------------------------------------------//
 /** \brief Recursively searches the branch to find the value for the key. The most recent version
@@ -19,8 +28,8 @@ namespace Padamose {
     \param      key         The key.
     \return                 A pointer to the value for the key or NULL.
 */
-Variant VersionedStoreInspector::getValueVariant ( string key ) const {
-    return this->getValueVariant ( key, this->mVersion );
+Variant AbstractVersionedStoreInspector::getValueVariant ( string key ) const {
+    return this->getValueVariant ( key, this->getRef ().mVersion );
 }
 
 //----------------------------------------------------------------//
@@ -33,8 +42,9 @@ Variant VersionedStoreInspector::getValueVariant ( string key ) const {
     \param      key         The key.
     \return                 A pointer to the value for the key or NULL.
 */
-Variant VersionedStoreInspector::getValueVariant ( string key, size_t version ) const {
-    return this->mSourceBranch ? this->mSourceBranch->getValueVariant ( version <= this->mVersion ? version : this->mVersion, key ) : Variant ();
+Variant AbstractVersionedStoreInspector::getValueVariant ( string key, size_t version ) const {
+    const VersionedStoreRef& ref = this->getRef ();
+    return ref.mSourceBranch ? ref.mSourceBranch->getValueVariant ( version <= ref.mVersion ? version : ref.mVersion, key ) : Variant ();
 }
 
 //----------------------------------------------------------------//
@@ -43,8 +53,9 @@ Variant VersionedStoreInspector::getValueVariant ( string key, size_t version ) 
     \param      key         The key.
     \return                 TRUE if the key is found. FALSE if not.
 */
-bool VersionedStoreInspector::hasKey ( string key ) const {
-    return this->mSourceBranch ? this->mSourceBranch->hasKey ( this->mVersion, key ) : false;
+bool AbstractVersionedStoreInspector::hasKey ( string key ) const {
+    const VersionedStoreRef& ref = this->getRef ();
+    return ref.mSourceBranch ? ref.mSourceBranch->hasKey ( ref.mVersion, key ) : false;
 }
 
 //----------------------------------------------------------------//
@@ -53,8 +64,8 @@ bool VersionedStoreInspector::hasKey ( string key ) const {
     \param  key     The key.
     \return         True if the value exists. False if it doesn't.
 */
-bool VersionedStoreInspector::hasValue ( string key ) const {
-    return this->hasValue ( key, this->mVersion );
+bool AbstractVersionedStoreInspector::hasValue ( string key ) const {
+    return this->hasValue ( key, this->getRef ().mVersion );
 }
 
 //----------------------------------------------------------------//
@@ -66,16 +77,8 @@ bool VersionedStoreInspector::hasValue ( string key ) const {
     \param  key     The key.
     \return         True if the value exists. False if it doesn't.
 */
-bool VersionedStoreInspector::hasValue ( string key, size_t version ) const {
+bool AbstractVersionedStoreInspector::hasValue ( string key, size_t version ) const {
     return ( !this->getValueVariant ( key, version ).isNull ());
-}
-
-//----------------------------------------------------------------//
-VersionedStoreInspector::VersionedStoreInspector () {
-}
-
-//----------------------------------------------------------------//
-VersionedStoreInspector::~VersionedStoreInspector () {
 }
 
 } // namespace Padamose

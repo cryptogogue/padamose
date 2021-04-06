@@ -16,21 +16,23 @@ class AbstractPersistenceProvider;
 // TODO: doxygen
 class VersionedStoreLock :
     public virtual VersionedStoreInspector {
-protected:
-
+    
     //----------------------------------------------------------------//
-    void            VersionedStoreRef_setBranch     ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) override;
+    void                        lock                            ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
     
 public:
 
     //----------------------------------------------------------------//
-                    VersionedStoreLock              ();
-                    VersionedStoreLock              ( const VersionedStoreRef& other );
-    virtual         ~VersionedStoreLock             ();
+    void                        lock                            ( VersionedStoreRef& other );
+//    VersionedStoreInspector     seek                            ( size_t version );
+    void                        unlock                          ();
+                                VersionedStoreLock              ();
+                                VersionedStoreLock              ( VersionedStoreRef& other );
+    virtual                     ~VersionedStoreLock             ();
     
     //----------------------------------------------------------------//
-    VersionedStoreLock& operator = ( const VersionedStoreRef& other ) {
-        this->setBranch ( other );
+    VersionedStoreLock& operator = ( VersionedStoreRef& other ) {
+        this->lock ( other.getSourceBranch (), other.getVersion ());
         return *this;
     }
 };

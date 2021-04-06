@@ -35,7 +35,7 @@ TEST ( Lock, test_lock_unlock ) {
     store.revert ( 1 );
     store.printTree ();
     
-    lock.clear ();
+    lock.unlock ();
     store.printTree ();
 }
 

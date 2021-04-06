@@ -50,7 +50,7 @@ protected:
     };
 
     /// The anchor snapshot.
-    VersionedStoreLock          mAnchor;
+    const VersionedStoreLock&   mAnchor;
     
     /// Key of the value being iterated.
     string                      mKey;
@@ -91,11 +91,11 @@ protected:
 
         if ( bestBranch ) {
 
-            bestBranch->lock ();
-
-            if ( this->mSourceBranch ) {
-                this->mSourceBranch->unlock ();
-            }
+//            bestBranch->lock ();
+//
+//            if ( this->mSourceBranch ) {
+//                this->mSourceBranch->unlock ();
+//            }
 
             this->mFirstVersion = first;
             this->mLastVersion = last;
@@ -127,11 +127,11 @@ protected:
 
             if ( branch->getValueVersionExtents ( this->mKey, top - 1, first, last )) {
 
-                branch->lock ();
-
-                if ( this->mSourceBranch ) {
-                    this->mSourceBranch->unlock ();
-                }
+//                branch->lock ();
+//
+//                if ( this->mSourceBranch ) {
+//                    this->mSourceBranch->unlock ();
+//                }
 
                 this->mFirstVersion = first;
                 this->mLastVersion = last;
@@ -284,8 +284,8 @@ public:
         \param  client      Snapshot to use as the upper bound for iteration.
         \param  key         Key of the value to be iterated.
     */
-    VersionedValueIterator ( const AbstractVersionedBranchOrLeaf& client, string key ) :
-        mAnchor ( client ),
+    VersionedValueIterator ( VersionedStoreLock& lock, string key ) :
+        mAnchor ( lock ),
         mKey ( key ) {
         
         VersionedStoreRef::BranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
@@ -297,9 +297,9 @@ public:
     
     //----------------------------------------------------------------//
     ~VersionedValueIterator () {
-        if ( this->mSourceBranch ) {
-            this->mSourceBranch->unlock ();
-        }
+//        if ( this->mSourceBranch ) {
+//            this->mSourceBranch->unlock ();
+//        }
     }
 };
 

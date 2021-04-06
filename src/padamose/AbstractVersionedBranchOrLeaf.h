@@ -5,6 +5,7 @@
 #define PADAMOSE_ABSTRACTVERSIONEDBRANCHORLEAF_H
 
 #include <padamose/padamose-common.h>
+#include <padamose/AbstractHasVersionedStoreRef.h>
 #include <padamose/VersionedStoreRef.h>
 
 namespace Padamose {
@@ -46,16 +47,17 @@ protected:
     virtual size_t      AbstractVersionedBranchOrLeaf_getVersionDependency      () const;
     virtual void        AbstractVersionedBranchOrLeaf_print                     ( string prefix ) const;
     virtual void        AbstractVersionedBranchOrLeaf_sourceBranchDidChange     ();
-    void                VersionedStoreRef_setBranch                             ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
 
 public:
 
     //----------------------------------------------------------------//
                         AbstractVersionedBranchOrLeaf           ();
     virtual             ~AbstractVersionedBranchOrLeaf          ();
+    void                clear                                   ();
     size_t              countBranches                           () const;
     void                printTree                               () const;
     void                setDebugName                            ( string debugName );
+    void                setParent                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
 };
 
 } // namespace Padamose

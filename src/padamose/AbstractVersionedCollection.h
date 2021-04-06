@@ -116,7 +116,7 @@ protected:
     //----------------------------------------------------------------//
     static string                       encodeNodeID            ( size_t nodeID );
     VersionedCollectionNode             getNode                 ( string key ) const;
-    const VersionedStoreTag&       getSnapshot             () const;
+    const VersionedStoreTag&            getSnapshot             () const;
     void                                loadState               ();
     size_t                              lookupNodeID            ( string key ) const;
     void                                pushNode                ( size_t nodeID, string nodeKey );

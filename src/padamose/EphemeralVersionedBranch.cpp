@@ -77,7 +77,7 @@ shared_ptr < AbstractVersionedBranch > EphemeralVersionedBranch::AbstractVersion
     
     assert ( this->mVersion <= baseVersion );
 
-    child->setBranch ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
+    child->setParent ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
 
     map < size_t, Layer >::const_iterator layerIt = this->mLayers.find ( baseVersion );
     if ( layerIt != this->mLayers.cend ()) {

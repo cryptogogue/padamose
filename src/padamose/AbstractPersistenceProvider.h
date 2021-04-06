@@ -23,7 +23,7 @@ protected:
     friend class VersionedStoreTag;
     friend class VersionedStoreTag;
 
-    map < string, VersionedStoreTag >  mTags;
+    map < string, VersionedStoreTag >       mTags;
     bool                                    mIsFrozen;
 
     //----------------------------------------------------------------//
@@ -48,7 +48,7 @@ public:
     void                                                flush                                   ();
     bool                                                isFrozen                                () const;
     shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ();
-    void                                                persist                                 ( VersionedStoreTag& client, string tagName );
+    void                                                persist                                 ( VersionedStoreTag& tag, string tagName );
     VersionedStoreTag                                   restore                                 ( string tagName );
 };
 

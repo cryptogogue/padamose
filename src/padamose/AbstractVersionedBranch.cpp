@@ -293,13 +293,17 @@ void AbstractVersionedBranch::optimize () {
 
             assert ( !branch->isLocked ());
 
-            // the "join score" is just the length of the branch. if we don't yet have a join
-            // candidate, pick the current client. if we already have a candidate, pick the
-            // one with the higher join score.
-            if (( !bestJoin ) || ( bestJoin->getTopVersion () < branch->getTopVersion ())) {
-                LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
-                LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
-                bestJoin = branch;
+            // if there are no dependencies, then it's a dead branch, so don't consider it.
+            if ( branch->countDependencies ()) {
+
+                // the "join score" is just the length of the branch. if we don't yet have a join
+                // candidate, pick the current client. if we already have a candidate, pick the
+                // one with the higher join score.
+                if (( !bestJoin ) || ( bestJoin->getTopVersion () < branch->getTopVersion ())) {
+                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
+                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
+                    bestJoin = branch;
+                }
             }
         }
     }
@@ -353,8 +357,6 @@ void AbstractVersionedBranch::setValueVariant ( size_t version, string key, cons
 // TODO: doxygen
 void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other ) {
 
-    if ( this->isLocked ()) return;
-
     shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
 
     // copy the clients
@@ -387,8 +389,7 @@ void AbstractVersionedBranch::unlock () {
         if ( this->mSourceBranch ) {
             this->mSourceBranch->unlock ();
         }
-        
-        if ( this->mLockCount == 0 ) {
+        else if ( this->mLockCount == 0 ) {
             this->optimize ();
         }
     }

@@ -137,7 +137,7 @@ void AbstractStringStore::loadFromStore () {
         assert ( branch );
         
         VersionedStoreTag& tag = this->mTags [ tagName ];
-        tag.setBranch ( branch, version );
+        tag.setParent ( branch, version );
     }
 }
 

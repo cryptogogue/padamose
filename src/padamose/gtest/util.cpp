@@ -61,8 +61,11 @@ void testWithProvider ( AbstractPersistenceProvider& provider ) {
     ASSERT_EQ ( tag.getValue < string >( KEY0, 2 ), STR2 );
     ASSERT_EQ ( tag.getValue < string >( KEY0, 3 ), STR3 );
     
+    // get a lock
+    VersionedStoreLock lock ( tag );
+    
     // iterate by version
-    VersionedStoreIterator tagIt ( tag );
+    VersionedStoreIterator tagIt ( lock );
     ASSERT_EQ ( tagIt.getValue < string >( KEY0 ), STR3 );
     
     tagIt.prev ();
@@ -84,7 +87,7 @@ void testWithProvider ( AbstractPersistenceProvider& provider ) {
     ASSERT_EQ ( tagIt.getValue < string >( KEY0 ), STR3 );
     
     // iterate by value
-    VersionedValueIterator < string > valueIt ( tag, KEY0 );
+    VersionedValueIterator < string > valueIt ( lock, KEY0 );
     ASSERT_EQ ( valueIt.value (), STR3 );
     
     valueIt.prev ();

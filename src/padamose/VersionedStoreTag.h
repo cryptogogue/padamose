@@ -5,7 +5,8 @@
 #define PADAMOSE_VERSIONEDSTORETAG_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractVersionedBranch.h>
+#include <padamose/AbstractVersionedStoreTag.h>
+#include <padamose/AbstractVersionedBranchOrLeaf.h>
 #include <padamose/VersionedStoreInspector.h>
 
 namespace Padamose {
@@ -54,49 +55,42 @@ namespace Padamose {
     a way to back it to an in-memory database server persisted to storage media, such as Redis.
 */
 class VersionedStoreTag :
-    public virtual VersionedStoreInspector,
-    public virtual AbstractVersionedBranchOrLeaf {
+    public virtual AbstractVersionedStoreTag,
+    public virtual AbstractVersionedBranchOrLeaf,
+    public virtual VersionedStoreInspector {
 protected:
 
     //----------------------------------------------------------------//
-    void            affirmBranch                ();
-    void            prepareForSetValue          ();
-    
-public:
-
-    //----------------------------------------------------------------//
-    void            clearVersion                ();
-    void            popVersion                  ();
-    void            pushVersion                 ();
-    void            revert                      ( size_t version );
-    void            revertAndClear              ( size_t version );
-    void            takeSnapshot                ( const VersionedStoreTag& other );
-                    VersionedStoreTag           ();
-                    VersionedStoreTag           ( const VersionedStoreTag& other );
-                    ~VersionedStoreTag          ();
-
-    //----------------------------------------------------------------//
-    /** \brief  Implements assignment by calling takeSnapshot().
-     
-        \param  other   The version to snapshot.
-    */
-    VersionedStoreTag& operator = ( const VersionedStoreTag& other ) {
-        this->setBranch ( other );
+    VersionedStoreTag& AbstractVersionedStoreTag_getTag () override {
         return *this;
     }
 
+public:
+
     //----------------------------------------------------------------//
-    /** \brief  Sets or overwrites the value for the corresponding key at the
-                current version.
-     
-        \param  key         The key.
-        \param  value       The value.
-    */
-    template < typename TYPE >
-    void setValue ( string key, const TYPE& value ) {
-        this->prepareForSetValue ();
-        assert ( this->mSourceBranch );
-        this->mSourceBranch->setValueVariant ( this->mVersion, key, Variant ( value ));
+    VersionedStoreTag () {
+    }
+
+    //----------------------------------------------------------------//
+    VersionedStoreTag ( const AbstractVersionedStoreTag& other ) {
+        this->setParent ( other.getSourceBranch (), other.getVersion ());
+    }
+    
+    //----------------------------------------------------------------//
+    VersionedStoreTag ( const VersionedStoreTag& other ) {
+        this->setParent ( other.getSourceBranch (), other.getVersion ());
+    }
+    
+    //----------------------------------------------------------------//
+    VersionedStoreTag& operator = ( const AbstractVersionedStoreTag& other ) {
+        this->takeSnapshot ( other );
+        return *this;
+    }
+    
+    //----------------------------------------------------------------//
+    VersionedStoreTag& operator = ( const VersionedStoreTag& other ) {
+        this->takeSnapshot ( other );
+        return *this;
     }
 };
 
