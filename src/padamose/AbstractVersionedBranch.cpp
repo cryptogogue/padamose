@@ -40,7 +40,7 @@ size_t AbstractVersionedBranch::countDependencies () const {
 
     \param      client      Client to erase.
 */
-void AbstractVersionedBranch::eraseClient ( AbstractVersionedBranchOrLeaf& client ) {
+void AbstractVersionedBranch::eraseClient ( AbstractVersionedBranchClient& client ) {
 
     this->mClients.erase ( &client );
 }
@@ -60,16 +60,16 @@ void AbstractVersionedBranch::eraseClient ( AbstractVersionedBranchOrLeaf& clien
     \param      ignore      Client to ignore (or NULL).
     \return                 The upper limit of immutable versions.
 */
-size_t AbstractVersionedBranch::findImmutableTop ( const AbstractVersionedBranchOrLeaf* ignore ) const {
+size_t AbstractVersionedBranch::findImmutableTop ( const AbstractVersionedBranchClient* ignore ) const {
 
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::findImmutableTop ()" );
 
     size_t immutableTop = this->getVersionDependency ();
 
-    set < AbstractVersionedBranchOrLeaf* >::const_iterator clientIt = this->mClients.cbegin ();
+    set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
     for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
 
-        const AbstractVersionedBranchOrLeaf* client = *clientIt;
+        const AbstractVersionedBranchClient* client = *clientIt;
         if ( client != ignore ) {
         
             size_t clientVersion = client->getVersionDependency ();
@@ -189,7 +189,7 @@ bool AbstractVersionedBranch::hasKey ( size_t version, string key ) const {
 /** \brief Inserts a client into the branch's client set. Inserting a client
     adds a dependency on a specific layer in the branch.
 */
-void AbstractVersionedBranch::insertClient ( AbstractVersionedBranchOrLeaf& client ) {
+void AbstractVersionedBranch::insertClient ( AbstractVersionedBranchClient& client ) {
 
     this->mClients.insert ( &client );
 }
@@ -262,10 +262,10 @@ void AbstractVersionedBranch::optimize () {
         
     // loop through every client...
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "evaluating clients for possible concatenation..." );
-    set < AbstractVersionedBranchOrLeaf* >::const_iterator clientIt = this->mClients.cbegin ();
+    set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
     for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
 
-        AbstractVersionedBranchOrLeaf* client = *clientIt;
+        AbstractVersionedBranchClient* client = *clientIt;
         LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "client %p", client );
         
         size_t clientVersion = client->getVersionDependency (); // store the client's version dependency to avoid extra function calls.
@@ -341,7 +341,7 @@ void AbstractVersionedBranch::persistSelf ( AbstractPersistenceProvider& provide
     }
     
     // force an update
-    persist->AbstractVersionedBranchOrLeaf_sourceBranchDidChange ();
+    persist->AbstractVersionedBranchClient_sourceBranchDidChange ();
     
     shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
     this->AbstractVersionedBranch_persist ( persist ); // this should move over all clients and orphan the branch
@@ -360,9 +360,9 @@ void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other )
     shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
 
     // copy the clients
-    set < AbstractVersionedBranchOrLeaf* >::iterator clientIt = this->mClients.begin ();
+    set < AbstractVersionedBranchClient* >::iterator clientIt = this->mClients.begin ();
     for ( ; clientIt != this->mClients.end (); ++clientIt ) {
-        AbstractVersionedBranchOrLeaf* client = *clientIt;
+        AbstractVersionedBranchClient* client = *clientIt;
         other.insertClient ( *client );
         client->mSourceBranch = other.shared_from_this ();
     }
@@ -415,7 +415,7 @@ void AbstractVersionedBranch::AbstractVersionedBranch_print ( string prefix ) co
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-AbstractVersionedBranch::BranchPtr AbstractVersionedBranch::AbstractVersionedBranchOrLeaf_asBranch () {
+AbstractVersionedBranch::BranchPtr AbstractVersionedBranch::AbstractVersionedBranchClient_asBranch () {
     return this->shared_from_this ();
 }
 
@@ -425,22 +425,22 @@ AbstractVersionedBranch::BranchPtr AbstractVersionedBranch::AbstractVersionedBra
  
     \return     The base version.
 */
-size_t AbstractVersionedBranch::AbstractVersionedBranchOrLeaf_getVersionDependency () const {
+size_t AbstractVersionedBranch::AbstractVersionedBranchClient_getVersionDependency () const {
     return this->mVersion;
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranch::AbstractVersionedBranchOrLeaf_print ( string prefix ) const {
+void AbstractVersionedBranch::AbstractVersionedBranchClient_print ( string prefix ) const {
 
     this->AbstractVersionedBranch_print ( prefix );
     
     prefix += "....";
     
-    set < AbstractVersionedBranchOrLeaf* >::const_iterator clientIt = this->mClients.cbegin ();
+    set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
     for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
-        AbstractVersionedBranchOrLeaf* client = *clientIt;
-        client->AbstractVersionedBranchOrLeaf_print ( prefix );
+        AbstractVersionedBranchClient* client = *clientIt;
+        client->AbstractVersionedBranchClient_print ( prefix );
     }
 }
 

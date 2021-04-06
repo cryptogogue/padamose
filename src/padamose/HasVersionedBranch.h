@@ -1,28 +1,26 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_VERSIONEDSTOREREF_H
-#define PADAMOSE_VERSIONEDSTOREREF_H
+#ifndef PADAMOSE_HASVERSIONEDREF_H
+#define PADAMOSE_HASVERSIONEDREF_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractHasVersionedStoreRef.h>
+#include <padamose/AbstractHasVersionedBranch.h>
 
 namespace Padamose {
 
 class AbstractVersionedBranch;
-class AbstractVersionedStoreInspector;
 class AbstractVersionedStoreTag;
 
 //================================================================//
-// VersionedStoreRef
+// HasVersionedBranch
 //================================================================//
 // TODO: doxygen
-class VersionedStoreRef :
-    public virtual AbstractHasVersionedStoreRef {
+class HasVersionedBranch :
+    public virtual AbstractHasVersionedBranch {
 protected:
 
-    friend class AbstractHasVersionedStoreRef;
-    friend class AbstractVersionedStoreInspector;
+    friend class AbstractHasVersionedBranch;
     friend class AbstractVersionedStoreTag;
     friend class VersionedStoreInspector;
     friend class VersionedStoreLock;
@@ -34,7 +32,7 @@ protected:
     size_t                                          mVersion;
 
     //----------------------------------------------------------------//
-    void setBranch ( const VersionedStoreRef& other ) {
+    void setBranch ( const HasVersionedBranch& other ) {
         this->mSourceBranch = other.mSourceBranch;
         this->mVersion = other.mVersion;
     }
@@ -46,12 +44,12 @@ protected:
     }
 
     //----------------------------------------------------------------//
-    VersionedStoreRef& AbstractHasVersionedStoreRef_getRef () override {
+    HasVersionedBranch& AbstractHasVersionedBranch_getRef () override {
         return *this;
     }
 
     //----------------------------------------------------------------//
-    const VersionedStoreRef& AbstractHasVersionedStoreRef_getRef () const override {
+    const HasVersionedBranch& AbstractHasVersionedBranch_getRef () const override {
         return *this;
     }
 
@@ -64,12 +62,12 @@ public:
     }
     
     //----------------------------------------------------------------//
-    VersionedStoreRef () :
+    HasVersionedBranch () :
         mVersion ( 0 ) {
     }
     
     //----------------------------------------------------------------//
-    ~VersionedStoreRef () {
+    ~HasVersionedBranch () {
     }
 };
 

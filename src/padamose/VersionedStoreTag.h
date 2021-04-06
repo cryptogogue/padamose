@@ -6,8 +6,8 @@
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractVersionedStoreTag.h>
-#include <padamose/AbstractVersionedBranchOrLeaf.h>
-#include <padamose/VersionedStoreInspector.h>
+#include <padamose/AbstractVersionedBranchClient.h>
+#include <padamose/HasVersionedBranch.h>
 
 namespace Padamose {
 
@@ -55,9 +55,9 @@ namespace Padamose {
     a way to back it to an in-memory database server persisted to storage media, such as Redis.
 */
 class VersionedStoreTag :
+    public virtual HasVersionedBranch,
     public virtual AbstractVersionedStoreTag,
-    public virtual AbstractVersionedBranchOrLeaf,
-    public virtual VersionedStoreInspector {
+    public virtual AbstractVersionedBranchClient {
 protected:
 
     //----------------------------------------------------------------//

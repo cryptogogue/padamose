@@ -93,14 +93,11 @@
 		CD9C39282618557400AE8782 /* TestLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C39272618557400AE8782 /* TestLock.cpp */; };
 		CD9C392B2618592200AE8782 /* VersionedStoreLock.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C39292618592200AE8782 /* VersionedStoreLock.h */; };
 		CD9C392C2618592200AE8782 /* VersionedStoreLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C392A2618592200AE8782 /* VersionedStoreLock.cpp */; };
-		CD9C39372619B3C300AE8782 /* VersionedStoreInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C39352619B3C300AE8782 /* VersionedStoreInspector.h */; };
-		CD9C39392619B7C900AE8782 /* VersionedStoreRef.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C39382619B7C900AE8782 /* VersionedStoreRef.h */; };
-		CD9C3941261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C393F261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp */; };
-		CD9C3942261AB04000AE8782 /* AbstractVersionedStoreInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C3940261AB04000AE8782 /* AbstractVersionedStoreInspector.h */; };
+		CD9C39392619B7C900AE8782 /* HasVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C39382619B7C900AE8782 /* HasVersionedBranch.h */; };
 		CD9C3945261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C3943261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp */; };
 		CD9C3946261AF7A900AE8782 /* AbstractVersionedStoreTag.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C3944261AF7A900AE8782 /* AbstractVersionedStoreTag.h */; };
-		CD9C394A261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C3948261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp */; };
-		CD9C394B261B206800AE8782 /* AbstractHasVersionedStoreRef.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C3949261B206800AE8782 /* AbstractHasVersionedStoreRef.h */; };
+		CD9C394A261B206800AE8782 /* AbstractHasVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9C3948261B206800AE8782 /* AbstractHasVersionedBranch.cpp */; };
+		CD9C394B261B206800AE8782 /* AbstractHasVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9C3949261B206800AE8782 /* AbstractHasVersionedBranch.h */; };
 		CD9FE5D12256E0A1009B4144 /* DebugStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */; };
 		CD9FE5D42256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */; };
 		CD9FE5D52256E8E4009B4144 /* AbstractPersistentVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */; };
@@ -150,8 +147,8 @@
 		CD9FE69422698141009B4144 /* padamose-hiredis.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE69322698141009B4144 /* padamose-hiredis.h */; };
 		CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4E816C21057DD1007DA585 /* TestVersionedStore.cpp */; };
 		CDA06FF321570FDF003FA0C3 /* VersionedStoreTag.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF121570FDF003FA0C3 /* VersionedStoreTag.h */; };
-		CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchOrLeaf.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchOrLeaf.h */; };
-		CDA06FF921587771003FA0C3 /* AbstractVersionedBranchOrLeaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF821587771003FA0C3 /* AbstractVersionedBranchOrLeaf.cpp */; };
+		CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchClient.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */; };
+		CDA06FF921587771003FA0C3 /* AbstractVersionedBranchClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */; };
 		CDA06FFA21588EB3003FA0C3 /* TestVersionedStoreIterators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */; };
 		CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */; };
 		CDA06FFF2159A79C003FA0C3 /* EphemeralValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */; };
@@ -334,14 +331,11 @@
 		CD9C39272618557400AE8782 /* TestLock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestLock.cpp; path = src/padamose/gtest/TestLock.cpp; sourceTree = "<group>"; };
 		CD9C39292618592200AE8782 /* VersionedStoreLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStoreLock.h; path = src/padamose/VersionedStoreLock.h; sourceTree = "<group>"; };
 		CD9C392A2618592200AE8782 /* VersionedStoreLock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedStoreLock.cpp; path = src/padamose/VersionedStoreLock.cpp; sourceTree = "<group>"; };
-		CD9C39352619B3C300AE8782 /* VersionedStoreInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStoreInspector.h; path = src/padamose/VersionedStoreInspector.h; sourceTree = "<group>"; };
-		CD9C39382619B7C900AE8782 /* VersionedStoreRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStoreRef.h; path = src/padamose/VersionedStoreRef.h; sourceTree = "<group>"; };
-		CD9C393F261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedStoreInspector.cpp; path = src/padamose/AbstractVersionedStoreInspector.cpp; sourceTree = "<group>"; };
-		CD9C3940261AB04000AE8782 /* AbstractVersionedStoreInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedStoreInspector.h; path = src/padamose/AbstractVersionedStoreInspector.h; sourceTree = "<group>"; };
+		CD9C39382619B7C900AE8782 /* HasVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HasVersionedBranch.h; path = src/padamose/HasVersionedBranch.h; sourceTree = "<group>"; };
 		CD9C3943261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedStoreTag.cpp; path = src/padamose/AbstractVersionedStoreTag.cpp; sourceTree = "<group>"; };
 		CD9C3944261AF7A900AE8782 /* AbstractVersionedStoreTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedStoreTag.h; path = src/padamose/AbstractVersionedStoreTag.h; sourceTree = "<group>"; };
-		CD9C3948261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractHasVersionedStoreRef.cpp; path = src/padamose/AbstractHasVersionedStoreRef.cpp; sourceTree = "<group>"; };
-		CD9C3949261B206800AE8782 /* AbstractHasVersionedStoreRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractHasVersionedStoreRef.h; path = src/padamose/AbstractHasVersionedStoreRef.h; sourceTree = "<group>"; };
+		CD9C3948261B206800AE8782 /* AbstractHasVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractHasVersionedBranch.cpp; path = src/padamose/AbstractHasVersionedBranch.cpp; sourceTree = "<group>"; };
+		CD9C3949261B206800AE8782 /* AbstractHasVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractHasVersionedBranch.h; path = src/padamose/AbstractHasVersionedBranch.h; sourceTree = "<group>"; };
 		CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugStringStore.cpp; path = src/padamose/DebugStringStore.cpp; sourceTree = "<group>"; };
 		CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractPersistentVersionedBranch.cpp; path = src/padamose/AbstractPersistentVersionedBranch.cpp; sourceTree = "<group>"; };
 		CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPersistentVersionedBranch.h; path = src/padamose/AbstractPersistentVersionedBranch.h; sourceTree = "<group>"; };
@@ -392,8 +386,8 @@
 		CD9FE69322698141009B4144 /* padamose-hiredis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "padamose-hiredis.h"; path = "src/padamose/padamose-hiredis.h"; sourceTree = "<group>"; };
 		CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVersionedStoreIterators.cpp; path = src/padamose/gtest/TestVersionedStoreIterators.cpp; sourceTree = "<group>"; };
 		CDA06FF121570FDF003FA0C3 /* VersionedStoreTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedStoreTag.h; path = src/padamose/VersionedStoreTag.h; sourceTree = "<group>"; };
-		CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchOrLeaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedBranchOrLeaf.h; path = src/padamose/AbstractVersionedBranchOrLeaf.h; sourceTree = "<group>"; };
-		CDA06FF821587771003FA0C3 /* AbstractVersionedBranchOrLeaf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedBranchOrLeaf.cpp; path = src/padamose/AbstractVersionedBranchOrLeaf.cpp; sourceTree = "<group>"; };
+		CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractVersionedBranchClient.h; path = src/padamose/AbstractVersionedBranchClient.h; sourceTree = "<group>"; };
+		CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedBranchClient.cpp; path = src/padamose/AbstractVersionedBranchClient.cpp; sourceTree = "<group>"; };
 		CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EphemeralValueStack.cpp; path = src/padamose/EphemeralValueStack.cpp; sourceTree = "<group>"; };
 		CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EphemeralValueStack.h; path = src/padamose/EphemeralValueStack.h; sourceTree = "<group>"; };
 		CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractPersistenceProvider.cpp; path = src/padamose/AbstractPersistenceProvider.cpp; sourceTree = "<group>"; };
@@ -597,6 +591,7 @@
 				CD9C39292618592200AE8782 /* VersionedStoreLock.h */,
 				CD240D2F21363CE000FF8812 /* VersionedStoreIterator.cpp */,
 				CD240D3021363CE000FF8812 /* VersionedStoreIterator.h */,
+				CDA06FF121570FDF003FA0C3 /* VersionedStoreTag.h */,
 				CD240D2721327F6600FF8812 /* VersionedValueIterator.h */,
 				CDB4058D223ED67A00200C78 /* padamose.h */,
 				CD5C62FA20B4F7B10038EE98 /* padamose-common.h */,
@@ -775,23 +770,19 @@
 		CDB40597223EE37000200C78 /* branch */ = {
 			isa = PBXGroup;
 			children = (
+				CD9C3948261B206800AE8782 /* AbstractHasVersionedBranch.cpp */,
+				CD9C3949261B206800AE8782 /* AbstractHasVersionedBranch.h */,
 				CDB4058F223EE24800200C78 /* AbstractVersionedBranch.cpp */,
 				CDB40590223EE24800200C78 /* AbstractVersionedBranch.h */,
-				CDA06FF821587771003FA0C3 /* AbstractVersionedBranchOrLeaf.cpp */,
-				CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchOrLeaf.h */,
-				CD9C3948261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp */,
-				CD9C3949261B206800AE8782 /* AbstractHasVersionedStoreRef.h */,
-				CD9C393F261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp */,
-				CD9C3940261AB04000AE8782 /* AbstractVersionedStoreInspector.h */,
+				CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */,
+				CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */,
 				CD9C3943261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp */,
 				CD9C3944261AF7A900AE8782 /* AbstractVersionedStoreTag.h */,
 				CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */,
 				CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */,
 				CD561DBB210730ED008B06C7 /* EphemeralVersionedBranch.cpp */,
 				CD561DBC210730ED008B06C7 /* EphemeralVersionedBranch.h */,
-				CD9C39352619B3C300AE8782 /* VersionedStoreInspector.h */,
-				CD9C39382619B7C900AE8782 /* VersionedStoreRef.h */,
-				CDA06FF121570FDF003FA0C3 /* VersionedStoreTag.h */,
+				CD9C39382619B7C900AE8782 /* HasVersionedBranch.h */,
 			);
 			name = branch;
 			sourceTree = "<group>";
@@ -887,24 +878,22 @@
 				CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */,
 				CD19DEE325930C820007ACF0 /* SQLite.h in Headers */,
 				CDF903AE21A0A70B00C1930B /* VersionedList.h in Headers */,
-				CD9C3942261AB04000AE8782 /* AbstractVersionedStoreInspector.h in Headers */,
 				CD9FE69222697F87009B4144 /* RedisServerProc.h in Headers */,
 				CD240D3221363CE000FF8812 /* VersionedStoreIterator.h in Headers */,
 				CDA06FF321570FDF003FA0C3 /* VersionedStoreTag.h in Headers */,
 				CDB40592223EE24800200C78 /* AbstractVersionedBranch.h in Headers */,
 				CD240D2821327F6600FF8812 /* VersionedValueIterator.h in Headers */,
-				CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchOrLeaf.h in Headers */,
+				CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchClient.h in Headers */,
 				CD9FE5D52256E8E4009B4144 /* AbstractPersistentVersionedBranch.h in Headers */,
 				CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */,
 				CD9FE685226838EC009B4144 /* RedisStringStore.h in Headers */,
-				CD9C39392619B7C900AE8782 /* VersionedStoreRef.h in Headers */,
+				CD9C39392619B7C900AE8782 /* HasVersionedBranch.h in Headers */,
 				CDB4058C223ED61300200C78 /* AbstractStringStore.h in Headers */,
 				CD9FE69422698141009B4144 /* padamose-hiredis.h in Headers */,
 				CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */,
 				CD9C3946261AF7A900AE8782 /* AbstractVersionedStoreTag.h in Headers */,
-				CD9C394B261B206800AE8782 /* AbstractHasVersionedStoreRef.h in Headers */,
+				CD9C394B261B206800AE8782 /* AbstractHasVersionedBranch.h in Headers */,
 				CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */,
-				CD9C39372619B3C300AE8782 /* VersionedStoreInspector.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,7 +1186,7 @@
 				CDF29045224EF0C20028719C /* StringStoreVersionedBranch.cpp in Sources */,
 				CDB40591223EE24800200C78 /* AbstractVersionedBranch.cpp in Sources */,
 				CD07CDE121A74A2600C9C8DB /* MutableVersionedCollection.cpp in Sources */,
-				CDA06FF921587771003FA0C3 /* AbstractVersionedBranchOrLeaf.cpp in Sources */,
+				CDA06FF921587771003FA0C3 /* AbstractVersionedBranchClient.cpp in Sources */,
 				CD9C392C2618592200AE8782 /* VersionedStoreLock.cpp in Sources */,
 				CD561DBD210730ED008B06C7 /* EphemeralVersionedBranch.cpp in Sources */,
 				CD19DEE425930C820007ACF0 /* SQLite.cpp in Sources */,
@@ -1205,9 +1194,8 @@
 				CDD6CE2E21A6388600DB7C10 /* VersionedMap.cpp in Sources */,
 				CDF903B521A1482D00C1930B /* AbstractVersionedCollection.cpp in Sources */,
 				CD240D3121363CE000FF8812 /* VersionedStoreIterator.cpp in Sources */,
-				CD9C394A261B206800AE8782 /* AbstractHasVersionedStoreRef.cpp in Sources */,
+				CD9C394A261B206800AE8782 /* AbstractHasVersionedBranch.cpp in Sources */,
 				CD9B810721AA35E30039B645 /* BaseVersionedCollectionIterator.cpp in Sources */,
-				CD9C3941261AB04000AE8782 /* AbstractVersionedStoreInspector.cpp in Sources */,
 				CD9FE5D42256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp in Sources */,
 				CDB40586223ED4DD00200C78 /* AbstractPersistenceProvider.cpp in Sources */,
 				CD9C3945261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp in Sources */,

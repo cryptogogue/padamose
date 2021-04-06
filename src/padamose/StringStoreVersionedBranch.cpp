@@ -404,12 +404,13 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVe
     assert ( other.getDirectReferenceCount () == 0 );
     assert ( this->mLockCount == 0 );
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchOrLeaf_joinBranch ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
     
     this->optimize ();
     
     AbstractStringStore& store = *this->mProvider;
+    store.begin ();
 
     string keyForTopVersion = this->formatKeyForTopVersion ();
     size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
@@ -433,6 +434,8 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVe
         }
     }
     this->transferClients ( other );
+    
+    store.commit ();
 }
 
 //----------------------------------------------------------------//
@@ -473,6 +476,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
     assert ( this->mVersion <= version );
 
     AbstractStringStore& store = *this->mProvider;
+    store.begin ();
 
     string keyForValueByVersion = this->formatKeyForValueByVersion ( key, version );
 
@@ -536,6 +540,8 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
     
     // set the value
     store.setString ( keyForValueByVersion, value.get < string >());
+    
+    store.commit ();
 }
 
 //----------------------------------------------------------------//
@@ -554,6 +560,8 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
     size_t version = store.get < u64 >( keyForTopVersion, 0 );
     
     if ( version <= topVersion ) return;
+    
+    store.begin ();
     
     do {
         version--;
@@ -594,14 +602,18 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
     if ( version == this->mVersion ) {
         store.eraseString ( keyForTopVersion );
     }
+    
+    store.commit ();
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void StringStoreVersionedBranch::AbstractVersionedBranchOrLeaf_sourceBranchDidChange () {
+void StringStoreVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidChange () {
 
     AbstractStringStore& store = *this->mProvider;
     string keyForSourceBranchID = this->formatKeyForSourceBranchID ();
+
+    store.begin ();
 
     if ( this->mSourceBranch ) {
         string sourceBranchID = this->mProvider->getIDForBranch ( *this->mSourceBranch );
@@ -613,6 +625,8 @@ void StringStoreVersionedBranch::AbstractVersionedBranchOrLeaf_sourceBranchDidCh
     
     string keyForVersion = this->formatKeyForVersion ();
     store.set < u64 >( keyForVersion, this->mVersion );
+    
+    store.commit ();
 }
 
 } // namespace Padamose

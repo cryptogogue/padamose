@@ -81,7 +81,7 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractPersistenceProvider::ma
 //----------------------------------------------------------------//
 void AbstractPersistenceProvider::persist ( VersionedStoreTag& tag, string tagName ) {
 
-    VersionedStoreRef::BranchPtr branch = tag.getSourceBranch ();
+    HasVersionedBranch::BranchPtr branch = tag.getSourceBranch ();
     if ( !branch ) return;
 
     try {

@@ -234,7 +234,7 @@ void AbstractVersionedStoreTag::setValueVariant ( string key, const Variant& val
     \param  other   The snapshot to copy.
 */
 void AbstractVersionedStoreTag::takeSnapshot ( const AbstractVersionedStoreTag& other ) {
-    const VersionedStoreRef& ref = other.getRef ();
+    const HasVersionedBranch& ref = other.getRef ();
     this->getTag ().setParent ( ref.getSourceBranch (), ref.getVersion ());
 }
 

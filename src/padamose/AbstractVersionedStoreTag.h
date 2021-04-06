@@ -5,8 +5,8 @@
 #define PADAMOSE_ABSTRACTVERSIONEDSTORETAG_H
 
 #include <padamose/padamose-common.h>
+#include <padamose/AbstractHasVersionedBranch.h>
 #include <padamose/AbstractVersionedBranch.h>
-#include <padamose/VersionedStoreInspector.h>
 
 namespace Padamose {
 
@@ -17,10 +17,10 @@ class VersionedStoreTag;
 //================================================================//
 // TODO: doxygen
 class AbstractVersionedStoreTag :
-    public virtual AbstractVersionedStoreInspector {
+    public virtual AbstractHasVersionedBranch {
 protected:
 
-    friend class VersionedStoreRef;
+    friend class HasVersionedBranch;
 
     //----------------------------------------------------------------//
     void                    affirmBranch                        ();

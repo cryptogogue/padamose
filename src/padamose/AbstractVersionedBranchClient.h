@@ -1,12 +1,12 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_ABSTRACTVERSIONEDBRANCHORLEAF_H
-#define PADAMOSE_ABSTRACTVERSIONEDBRANCHORLEAF_H
+#ifndef PADAMOSE_ABSTRACTVERSIONEDBRANCHCLIENT_H
+#define PADAMOSE_ABSTRACTVERSIONEDBRANCHCLIENT_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/AbstractHasVersionedStoreRef.h>
-#include <padamose/VersionedStoreRef.h>
+#include <padamose/AbstractHasVersionedBranch.h>
+#include <padamose/HasVersionedBranch.h>
 
 namespace Padamose {
 
@@ -14,7 +14,7 @@ class AbstractPersistenceProvider;
 class AbstractVersionedBranch;
 
 //================================================================//
-// AbstractVersionedBranchOrLeaf
+// AbstractVersionedBranchClient
 //================================================================//
 /** \brief Base class for AbstractVersionedBranch clients. Branch client types
     include branches (parent-to-child) as well as snapshots and iterators.
@@ -27,8 +27,8 @@ class AbstractVersionedBranch;
     In practice, it is easier and cleaner to implement a handful of
     single-line virtual methods than to complicate the client bookkeeping.
 */
-class AbstractVersionedBranchOrLeaf :
-    public virtual VersionedStoreRef,
+class AbstractVersionedBranchClient :
+    public virtual HasVersionedBranch,
     public enable_shared_from_this < AbstractVersionedBranch > {
 protected:
 
@@ -43,16 +43,16 @@ protected:
     size_t              getVersionDependency                    () const;
 
     //----------------------------------------------------------------//
-    virtual BranchPtr   AbstractVersionedBranchOrLeaf_asBranch                  ();
-    virtual size_t      AbstractVersionedBranchOrLeaf_getVersionDependency      () const;
-    virtual void        AbstractVersionedBranchOrLeaf_print                     ( string prefix ) const;
-    virtual void        AbstractVersionedBranchOrLeaf_sourceBranchDidChange     ();
+    virtual BranchPtr   AbstractVersionedBranchClient_asBranch                  ();
+    virtual size_t      AbstractVersionedBranchClient_getVersionDependency      () const;
+    virtual void        AbstractVersionedBranchClient_print                     ( string prefix ) const;
+    virtual void        AbstractVersionedBranchClient_sourceBranchDidChange     ();
 
 public:
 
     //----------------------------------------------------------------//
-                        AbstractVersionedBranchOrLeaf           ();
-    virtual             ~AbstractVersionedBranchOrLeaf          ();
+                        AbstractVersionedBranchClient           ();
+    virtual             ~AbstractVersionedBranchClient          ();
     void                clear                                   ();
     size_t              countBranches                           () const;
     void                printTree                               () const;

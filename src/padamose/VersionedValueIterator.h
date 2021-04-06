@@ -5,7 +5,6 @@
 #define PADAMOSE_VERSIONEDVALUEITERATOR_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/VersionedStoreInspector.h>
 #include <padamose/VersionedStoreLock.h>
 
 namespace Padamose {
@@ -35,7 +34,7 @@ namespace Padamose {
 */
 template < typename TYPE >
 class VersionedValueIterator :
-    public virtual VersionedStoreInspector {
+    public virtual HasVersionedBranch {
 protected:
 
     friend class VersionedStoreTag;
@@ -91,12 +90,6 @@ protected:
 
         if ( bestBranch ) {
 
-//            bestBranch->lock ();
-//
-//            if ( this->mSourceBranch ) {
-//                this->mSourceBranch->unlock ();
-//            }
-
             this->mFirstVersion = first;
             this->mLastVersion = last;
 
@@ -126,12 +119,6 @@ protected:
             size_t last;
 
             if ( branch->getValueVersionExtents ( this->mKey, top - 1, first, last )) {
-
-//                branch->lock ();
-//
-//                if ( this->mSourceBranch ) {
-//                    this->mSourceBranch->unlock ();
-//                }
 
                 this->mFirstVersion = first;
                 this->mLastVersion = last;
@@ -284,11 +271,11 @@ public:
         \param  client      Snapshot to use as the upper bound for iteration.
         \param  key         Key of the value to be iterated.
     */
-    VersionedValueIterator ( VersionedStoreLock& lock, string key ) :
+    VersionedValueIterator ( const VersionedStoreLock& lock, string key ) :
         mAnchor ( lock ),
         mKey ( key ) {
         
-        VersionedStoreRef::BranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
+        HasVersionedBranch::BranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
         
         if ( sourceBranch ) {
             this->seekPrev ( sourceBranch, this->mAnchor.getVersion () + 1 );
@@ -297,9 +284,6 @@ public:
     
     //----------------------------------------------------------------//
     ~VersionedValueIterator () {
-//        if ( this->mSourceBranch ) {
-//            this->mSourceBranch->unlock ();
-//        }
     }
 };
 

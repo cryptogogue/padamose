@@ -56,7 +56,7 @@ private:
     void                AbstractVersionedBranch_print                           ( string prefix ) const override;
     void                AbstractVersionedBranch_setValueVariant                 ( size_t version, string key, const Variant& value ) override;
     void                AbstractVersionedBranch_truncate                        ( size_t topVersion ) override;
-    void                AbstractVersionedBranchOrLeaf_sourceBranchDidChange     () override;
+    void                AbstractVersionedBranchClient_sourceBranchDidChange     () override;
 
 public:
 

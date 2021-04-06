@@ -2,22 +2,48 @@
 // http://cryptogogue.com
 
 #include <padamose/AbstractVersionedBranch.h>
-#include <padamose/AbstractVersionedStoreInspector.h>
-#include <padamose/VersionedStoreRef.h>
+#include <padamose/AbstractHasVersionedBranch.h>
+#include <padamose/HasVersionedBranch.h>
 
 namespace Padamose {
 
 //================================================================//
-// AbstractVersionedStoreInspector
+// AbstractHasVersionedBranch
 //================================================================//
 
 //----------------------------------------------------------------//
-AbstractVersionedStoreInspector::AbstractVersionedStoreInspector () {
+AbstractHasVersionedBranch::AbstractHasVersionedBranch () {
 }
 
 //----------------------------------------------------------------//
-AbstractVersionedStoreInspector::~AbstractVersionedStoreInspector () {
+AbstractHasVersionedBranch::~AbstractHasVersionedBranch () {
 }
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+HasVersionedBranch& AbstractHasVersionedBranch::getRef () {
+    return this->AbstractHasVersionedBranch_getRef ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+const HasVersionedBranch& AbstractHasVersionedBranch::getRef () const {
+    return this->AbstractHasVersionedBranch_getRef ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+HasVersionedBranch::BranchPtr AbstractHasVersionedBranch::getSourceBranch () const {
+    return this->getRef ().mSourceBranch;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+size_t AbstractHasVersionedBranch::getVersion () const {
+    return this->getRef ().mVersion;
+}
+
+
 
 //----------------------------------------------------------------//
 /** \brief Recursively searches the branch to find the value for the key. The most recent version
@@ -28,7 +54,7 @@ AbstractVersionedStoreInspector::~AbstractVersionedStoreInspector () {
     \param      key         The key.
     \return                 A pointer to the value for the key or NULL.
 */
-Variant AbstractVersionedStoreInspector::getValueVariant ( string key ) const {
+Variant AbstractHasVersionedBranch::getValueVariant ( string key ) const {
     return this->getValueVariant ( key, this->getRef ().mVersion );
 }
 
@@ -42,8 +68,8 @@ Variant AbstractVersionedStoreInspector::getValueVariant ( string key ) const {
     \param      key         The key.
     \return                 A pointer to the value for the key or NULL.
 */
-Variant AbstractVersionedStoreInspector::getValueVariant ( string key, size_t version ) const {
-    const VersionedStoreRef& ref = this->getRef ();
+Variant AbstractHasVersionedBranch::getValueVariant ( string key, size_t version ) const {
+    const HasVersionedBranch& ref = this->getRef ();
     return ref.mSourceBranch ? ref.mSourceBranch->getValueVariant ( version <= ref.mVersion ? version : ref.mVersion, key ) : Variant ();
 }
 
@@ -53,8 +79,8 @@ Variant AbstractVersionedStoreInspector::getValueVariant ( string key, size_t ve
     \param      key         The key.
     \return                 TRUE if the key is found. FALSE if not.
 */
-bool AbstractVersionedStoreInspector::hasKey ( string key ) const {
-    const VersionedStoreRef& ref = this->getRef ();
+bool AbstractHasVersionedBranch::hasKey ( string key ) const {
+    const HasVersionedBranch& ref = this->getRef ();
     return ref.mSourceBranch ? ref.mSourceBranch->hasKey ( ref.mVersion, key ) : false;
 }
 
@@ -64,7 +90,7 @@ bool AbstractVersionedStoreInspector::hasKey ( string key ) const {
     \param  key     The key.
     \return         True if the value exists. False if it doesn't.
 */
-bool AbstractVersionedStoreInspector::hasValue ( string key ) const {
+bool AbstractHasVersionedBranch::hasValue ( string key ) const {
     return this->hasValue ( key, this->getRef ().mVersion );
 }
 
@@ -77,8 +103,9 @@ bool AbstractVersionedStoreInspector::hasValue ( string key ) const {
     \param  key     The key.
     \return         True if the value exists. False if it doesn't.
 */
-bool AbstractVersionedStoreInspector::hasValue ( string key, size_t version ) const {
+bool AbstractHasVersionedBranch::hasValue ( string key, size_t version ) const {
     return ( !this->getValueVariant ( key, version ).isNull ());
 }
+
 
 } // namespace Padamose

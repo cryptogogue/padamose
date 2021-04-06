@@ -1,30 +1,49 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_ABSTRACTVERSIONEDSTOREINSPECTOR_H
-#define PADAMOSE_ABSTRACTVERSIONEDSTOREINSPECTOR_H
+#ifndef PADAMOSE_ABSTRACTHASHVERSIONEDBRANCH_H
+#define PADAMOSE_ABSTRACTHASHVERSIONEDBRANCH_H
 
 #include <padamose/padamose-common.h>
 #include <padamose/Variant.h>
-#include <padamose/AbstractHasVersionedStoreRef.h>
 
 namespace Padamose {
 
+class AbstractVersionedBranch;
+class HasVersionedBranch;
+
 //================================================================//
-// AbstractVersionedStoreInspector
+// AbstractHasVersionedBranch
 //================================================================//
-/// TODO: doxygen
-class AbstractVersionedStoreInspector :
-    public virtual AbstractHasVersionedStoreRef {
+// TODO: doxygen
+class AbstractHasVersionedBranch {
+public:
+
+    typedef shared_ptr < const AbstractVersionedBranch >    ConstBranchPtr;
+    typedef shared_ptr < AbstractVersionedBranch >          BranchPtr;
+
 protected:
 
-    friend class VersionedStoreRef;
+    friend class HasVersionedBranch;
+
+    //----------------------------------------------------------------//
+    virtual HasVersionedBranch&          AbstractHasVersionedBranch_getRef     () = 0;
+    virtual const HasVersionedBranch&    AbstractHasVersionedBranch_getRef     () const = 0;
 
 public:
 
     //----------------------------------------------------------------//
-                                AbstractVersionedStoreInspector         ();
-    virtual                     ~AbstractVersionedStoreInspector        ();
+                                    AbstractHasVersionedBranch              ();
+    virtual                         ~AbstractHasVersionedBranch             ();
+    HasVersionedBranch&             getRef                                  ();
+    const HasVersionedBranch&       getRef                                  () const;
+    BranchPtr                       getSourceBranch                         () const;
+    size_t                          getVersion                              () const;
+    
+    
+    
+    
+    //----------------------------------------------------------------//
     Variant                     getValueVariant                         ( string key ) const;
     Variant                     getValueVariant                         ( string key, size_t version ) const;
     bool                        hasKey                                  ( string key ) const;
@@ -41,7 +60,7 @@ public:
     */
     template < typename TYPE >
     TYPE getValue ( string key ) const {
-        return this->getValue < TYPE >( key, this->getRef ().mVersion );
+        return this->getValue < TYPE >( key, this->getVersion ());
     }
     
     //----------------------------------------------------------------//
@@ -74,7 +93,7 @@ public:
     */
     template < typename TYPE >
     TYPE getValueOrFallback ( string key, const TYPE& fallback ) const {
-        return this->getValueOrFallback < TYPE >( key, this->getRef ().mVersion, fallback );
+        return this->getValueOrFallback < TYPE >( key, this->getVersion (), fallback );
     }
 
     //----------------------------------------------------------------//
@@ -100,7 +119,7 @@ public:
     // TODO: doxygen
     template < typename TYPE >
     bool hasValueWithType ( string key ) const {
-        return this->hasValueWithType < TYPE >( key, this->getRef ().mVersion );
+        return this->hasValueWithType < TYPE >( key, this->getVersion ());
     }
     
     //----------------------------------------------------------------//

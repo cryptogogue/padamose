@@ -5,7 +5,6 @@
 #define PADAMOSE_VERSIONEDSTOREITERATOR_H
 
 #include <padamose/padamose-common.h>
-#include <padamose/VersionedStoreInspector.h>
 #include <padamose/VersionedStoreLock.h>
 
 namespace Padamose {
@@ -32,7 +31,7 @@ class AbstractValueStack;
     in the opposite direction.
 */
 class VersionedStoreIterator :
-    public virtual VersionedStoreInspector {
+    public virtual HasVersionedBranch {
 protected:
 
     enum {
@@ -86,8 +85,8 @@ public:
     bool                next                                ();
     bool                prev                                ();
     void                seek                                ( size_t version );
-                        VersionedStoreIterator              ( VersionedStoreLock& lock );
-                        VersionedStoreIterator              ( VersionedStoreLock& lock, size_t version );
+                        VersionedStoreIterator              ( const VersionedStoreLock& lock );
+                        VersionedStoreIterator              ( const VersionedStoreLock& lock, size_t version );
     virtual             ~VersionedStoreIterator             ();
 };
 

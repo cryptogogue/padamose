@@ -3,39 +3,39 @@
 
 #include <padamose/AbstractPersistenceProvider.h>
 #include <padamose/AbstractVersionedBranch.h>
-#include <padamose/AbstractVersionedBranchOrLeaf.h>
+#include <padamose/AbstractVersionedBranchClient.h>
 
 namespace Padamose {
 
 //================================================================//
-// AbstractVersionedBranchOrLeaf
+// AbstractVersionedBranchClient
 //================================================================//
 
 //----------------------------------------------------------------//
-AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf () {
+AbstractVersionedBranchClient::AbstractVersionedBranchClient () {
 }
 
 //----------------------------------------------------------------//
-AbstractVersionedBranchOrLeaf::~AbstractVersionedBranchOrLeaf () {
+AbstractVersionedBranchClient::~AbstractVersionedBranchClient () {
     if ( this->mSourceBranch ) {
         this->mSourceBranch->eraseClient ( *this );
     }
 }
 
 //----------------------------------------------------------------//
-AbstractVersionedBranchOrLeaf::BranchPtr AbstractVersionedBranchOrLeaf::asBranch () {
-    return this->AbstractVersionedBranchOrLeaf_asBranch ();
+AbstractVersionedBranchClient::BranchPtr AbstractVersionedBranchClient::asBranch () {
+    return this->AbstractVersionedBranchClient_asBranch ();
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranchOrLeaf::clear () {
+void AbstractVersionedBranchClient::clear () {
     this->setParent ( NULL, 0 );
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-size_t AbstractVersionedBranchOrLeaf::countBranches () const {
+size_t AbstractVersionedBranchClient::countBranches () const {
 
     size_t count = 1;
     shared_ptr < AbstractVersionedBranch > cursor = this->mSourceBranch;
@@ -60,21 +60,21 @@ size_t AbstractVersionedBranchOrLeaf::countBranches () const {
  
     \return             The dependent version.
 */
-size_t AbstractVersionedBranchOrLeaf::getVersionDependency () const {
-    return this->AbstractVersionedBranchOrLeaf_getVersionDependency ();
+size_t AbstractVersionedBranchClient::getVersionDependency () const {
+    return this->AbstractVersionedBranchClient_getVersionDependency ();
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranchOrLeaf::printTree () const {
+void AbstractVersionedBranchClient::printTree () const {
 
     LGN_LOG ( PDM_FILTER_TREE, INFO, "PRINT TREE" );
 
-    const AbstractVersionedBranchOrLeaf* base = this;
+    const AbstractVersionedBranchClient* base = this;
     while ( base->mSourceBranch ) {
         base = base->mSourceBranch.get ();
     }
-    base->AbstractVersionedBranchOrLeaf_print ( "" );
+    base->AbstractVersionedBranchClient_print ( "" );
 }
 
 //----------------------------------------------------------------//
@@ -82,7 +82,7 @@ void AbstractVersionedBranchOrLeaf::printTree () const {
  
     \param  debugName   The debug name.
 */
-void AbstractVersionedBranchOrLeaf::setDebugName ( string debugName ) {
+void AbstractVersionedBranchClient::setDebugName ( string debugName ) {
 
     this->mDebugName = debugName;
 }
@@ -103,7 +103,7 @@ void AbstractVersionedBranchOrLeaf::setDebugName ( string debugName ) {
     \param  branch      The new branch for the snapshot.
     \param  version     The version referenced by the snapshot.
 */
-void AbstractVersionedBranchOrLeaf::setParent ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
+void AbstractVersionedBranchClient::setParent ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
 
     bool didChange = false;
     weak_ptr < AbstractVersionedBranch > prevBranchWeak;
@@ -138,7 +138,7 @@ void AbstractVersionedBranchOrLeaf::setParent ( shared_ptr < AbstractVersionedBr
     }
     
     if ( didChange ) {
-        this->AbstractVersionedBranchOrLeaf_sourceBranchDidChange ();
+        this->AbstractVersionedBranchClient_sourceBranchDidChange ();
     }
 }
 
@@ -147,25 +147,25 @@ void AbstractVersionedBranchOrLeaf::setParent ( shared_ptr < AbstractVersionedBr
 //================================================================//
 
 //----------------------------------------------------------------//
-AbstractVersionedBranchOrLeaf::BranchPtr AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_asBranch () {
+AbstractVersionedBranchClient::BranchPtr AbstractVersionedBranchClient::AbstractVersionedBranchClient_asBranch () {
     return NULL;
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-size_t AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_getVersionDependency () const {
+size_t AbstractVersionedBranchClient::AbstractVersionedBranchClient_getVersionDependency () const {
     return this->mVersion + 1;
 }
 
 //----------------------------------------------------------------//
-void AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_print ( string prefix ) const {
+void AbstractVersionedBranchClient::AbstractVersionedBranchClient_print ( string prefix ) const {
 
     LGN_LOG ( PDM_FILTER_TREE, INFO, "%s[%d]: client %p", prefix.c_str (), ( int )this->mVersion, this );
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranchOrLeaf::AbstractVersionedBranchOrLeaf_sourceBranchDidChange () {
+void AbstractVersionedBranchClient::AbstractVersionedBranchClient_sourceBranchDidChange () {
 }
 
 } // namespace Padamose
