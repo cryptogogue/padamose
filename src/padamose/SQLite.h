@@ -89,6 +89,7 @@ protected:
     friend class SQLiteResult;
 
     sqlite3*                mDB;
+    size_t                  mTransactionDepth;
 
     //----------------------------------------------------------------//
     SQLiteResult            innerExec               ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow );
@@ -107,7 +108,9 @@ public:
     }
 
     //----------------------------------------------------------------//
+    SQLiteResult            beginTransaction        ();
     SQLiteResult            close                   ();
+    SQLiteResult            commitTransaction       ();
     SQLiteResult            exec                    ( string sql );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow );

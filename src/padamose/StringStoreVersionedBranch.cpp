@@ -103,22 +103,6 @@ string StringStoreVersionedBranch::formatKeyForVersion () const {
     return stream.str ();
 }
 
-////----------------------------------------------------------------//
-//// TODO: doxygen
-//AbstractStringStore& StringStoreVersionedBranch::getStore () {
-//
-//    assert ( this->mProvider.mStore ); // TODO: throw exception
-//    return *this->mProvider.mStore;
-//}
-
-////----------------------------------------------------------------//
-//// TODO: doxygen
-//const AbstractStringStore& StringStoreVersionedBranch::getStoreConst () const {
-//
-//    assert ( this->mProvider.mStore ); // TODO: throw exception
-//    return *this->mProvider.mStore;
-//}
-
 //----------------------------------------------------------------//
 // TODO: doxygen
 Variant StringStoreVersionedBranch::getValueVariantForVersion ( string key, size_t version ) const {
@@ -203,8 +187,23 @@ StringStoreVersionedBranch::~StringStoreVersionedBranch () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-StringStoreVersionedBranch::ConstProviderPtr StringStoreVersionedBranch::AbstractPersistentVersionedBranch_getProvider () const {
+void StringStoreVersionedBranch::AbstractVersionedBranch_begin () {
 
+    assert ( this->mProvider );
+    return this->mProvider->begin ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void StringStoreVersionedBranch::AbstractVersionedBranch_commit () {
+
+    assert ( this->mProvider );
+    return this->mProvider->commit ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+StringStoreVersionedBranch::ConstProviderPtr StringStoreVersionedBranch::AbstractPersistentVersionedBranch_getProvider () const {
     return this->mProvider;
 }
 
@@ -229,7 +228,8 @@ StringStoreVersionedBranch::ConstProviderPtr StringStoreVersionedBranch::Abstrac
 */
 shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersionedBranch_fork ( size_t baseVersion ) {
     
-    const AbstractStringStore& store = *this->mProvider;
+    AbstractStringStore& store = *this->mProvider;
+    store.begin ();
     
     shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
 
@@ -249,6 +249,8 @@ shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersi
         assert ( !value.isNull ());
         child->setValueVariant ( baseVersion, valueName, value );
     }
+    
+    store.commit ();
     return child;
 }
 
@@ -407,11 +409,11 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVe
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
     
-    this->optimize ();
-    
     AbstractStringStore& store = *this->mProvider;
     store.begin ();
-
+    
+    this->optimize ();
+    
     string keyForTopVersion = this->formatKeyForTopVersion ();
     size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
     size_t versionCount = topVersion - this->mVersion;
@@ -558,7 +560,6 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
 
     string keyForTopVersion = this->formatKeyForTopVersion ();
     size_t version = store.get < u64 >( keyForTopVersion, 0 );
-    
     if ( version <= topVersion ) return;
     
     store.begin ();

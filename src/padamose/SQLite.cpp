@@ -149,12 +149,43 @@ SQLiteResult::SQLiteResult ( const SQLiteResult& other ) {
 //================================================================//
 
 //----------------------------------------------------------------//
+SQLiteResult SQLite::beginTransaction () {
+
+    SQLiteResult result;
+
+    if ( this->mTransactionDepth == 0 ) {
+        result = this->exec ( "BEGIN TRANSACTION" );
+        if ( result ) {
+            this->mTransactionDepth++;
+        }
+    }
+    return result;
+}
+
+//----------------------------------------------------------------//
 SQLiteResult SQLite::close () {
 
     SQLiteResult closeResult = this->mDB ? SQLiteResult ( *this, sqlite3_close ( this->mDB )) : SQLiteResult ();
 
     this->mDB = NULL;
+    this->mTransactionDepth = 0;
     return closeResult;
+}
+
+//----------------------------------------------------------------//
+SQLiteResult SQLite::commitTransaction () {
+
+    SQLiteResult result;
+
+    if ( this->mTransactionDepth == 1 ) {
+        result = this->exec ( "COMMIT" );
+    }
+    
+    if ( result ) {
+        this->mTransactionDepth--;
+    }
+    
+    return result;
 }
 
 //----------------------------------------------------------------//
@@ -257,7 +288,8 @@ SQLiteResult SQLite::prepare ( string sql, sqlite3_stmt** stmt, SQLPrepareCallba
 
 //----------------------------------------------------------------//
 SQLite::SQLite () :
-    mDB ( NULL ) {
+    mDB ( NULL ),
+    mTransactionDepth ( 0 ) {
 }
 
 //----------------------------------------------------------------//

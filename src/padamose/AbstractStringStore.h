@@ -43,7 +43,6 @@ protected:
                                                     AbstractStringStore                     ();
 
     //----------------------------------------------------------------//
-    void                                                AbstractPersistenceProvider_flush                   () override;
     shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () override;
     void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreTag* snapshot ) override;
 

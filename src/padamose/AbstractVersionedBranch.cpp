@@ -21,8 +21,19 @@ AbstractVersionedBranch::AbstractVersionedBranch () :
 /** \brief Asserts that no direct references remain.
 */
 AbstractVersionedBranch::~AbstractVersionedBranch () {
-
     assert ( this->mLockCount == 0 );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::begin () {
+    this->AbstractVersionedBranch_begin ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::commit () {
+    this->AbstractVersionedBranch_commit ();
 }
 
 //----------------------------------------------------------------//
@@ -212,7 +223,9 @@ bool AbstractVersionedBranch::isPersistent () const {
     appends the contents of the client to the given branch.
 */
 void AbstractVersionedBranch::joinBranch ( AbstractVersionedBranch& branch ) {
+    this->begin ();
     this->AbstractVersionedBranch_joinBranch ( branch );
+    this->commit ();
 }
 
 //----------------------------------------------------------------//
@@ -251,6 +264,8 @@ void AbstractVersionedBranch::lock () {
 void AbstractVersionedBranch::optimize () {
 
     if ( this->isLocked ()) return; // don't allow join if there are any direct references to the current branch. (May be over-cautious.)
+
+    this->begin ();
 
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::optimize ()" );
     
@@ -319,6 +334,8 @@ void AbstractVersionedBranch::optimize () {
         assert ( bestJoin->getVersionDependency () >= immutableTop );
         bestJoin->joinBranch ( *this );
     }
+    
+    this->commit ();
 }
 
 //----------------------------------------------------------------//
@@ -376,11 +393,15 @@ void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other )
 void AbstractVersionedBranch::truncate ( size_t topVersion ) {
 
     if ( this->isLocked ()) return;
+    this->begin ();
     this->AbstractVersionedBranch_truncate ( topVersion );
+    this->commit ();
 }
 
 //----------------------------------------------------------------//
 void AbstractVersionedBranch::unlock () {
+
+    this->begin ();
 
     if ( this->mLockCount ) {
     
@@ -393,11 +414,23 @@ void AbstractVersionedBranch::unlock () {
             this->optimize ();
         }
     }
+    
+    this->commit ();
 }
 
 //================================================================//
 // overrides
 //================================================================//
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::AbstractVersionedBranch_begin () {
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::AbstractVersionedBranch_commit () {
+}
 
 //----------------------------------------------------------------//
 // TODO: doxygen

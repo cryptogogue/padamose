@@ -27,6 +27,7 @@ void AbstractVersionedStoreTag::affirmBranch () {
     VersionedStoreTag& tag = this->getTag ();
 
     if ( !tag.mSourceBranch ) {
+        
         assert ( tag.mVersion == 0 );
         tag.setParent ( make_shared < EphemeralVersionedBranch >(), tag.mVersion );
     }
@@ -45,6 +46,7 @@ void AbstractVersionedStoreTag::clearVersion () {
 
     VersionedStoreTag& tag = this->getTag ();
     size_t version = tag.mVersion;
+        
     this->popVersion ();
     if ( version > 0 ) {
         this->pushVersion ();
@@ -108,6 +110,7 @@ void AbstractVersionedStoreTag::prepareForSetValue () {
     this->affirmBranch ();
 
     VersionedStoreTag& tag = this->getTag ();
+    assert ( tag.mSourceBranch );
     bool fork = tag.mSourceBranch->isLocked ();
     
     if ( !fork ) {
@@ -124,9 +127,11 @@ void AbstractVersionedStoreTag::prepareForSetValue () {
     
         LGN_LOG ( PDM_FILTER_ROOT, INFO, "SPLIT!" );
     
+        tag.mSourceBranch->begin ();
         tag.mSourceBranch->eraseClient ( tag );
         tag.mSourceBranch = tag.mSourceBranch->fork ( tag.mVersion );
         tag.mSourceBranch->insertClient ( tag );
+        tag.mSourceBranch->commit ();
     }
 }
 
@@ -203,7 +208,10 @@ void AbstractVersionedStoreTag::revert ( size_t version ) {
         branch->insertClient ( tag );
         tag.mSourceBranch = branch;
         tag.mVersion = version;
+        
+        tag.mSourceBranch->begin ();
         tag.mSourceBranch->optimize ();
+        tag.mSourceBranch->commit ();
     }
 }
 
@@ -211,6 +219,8 @@ void AbstractVersionedStoreTag::revert ( size_t version ) {
 // TODO: doxygen
 void AbstractVersionedStoreTag::revertAndClear ( size_t version ) {
 
+    VersionedStoreTag& tag = this->getTag ();
+    
     this->revert ( version );
     this->clearVersion ();
 }
@@ -218,10 +228,25 @@ void AbstractVersionedStoreTag::revertAndClear ( size_t version ) {
 //----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractVersionedStoreTag::setValueVariant ( string key, const Variant& value ) {
-    this->prepareForSetValue ();
+
     VersionedStoreTag& tag = this->getTag ();
+    bool cleanup = false;
+    
+    if ( tag.mSourceBranch ) {
+        tag.mSourceBranch->begin ();
+        cleanup = true;
+    }
+    
+    this->prepareForSetValue ();
+    
     assert ( tag.mSourceBranch );
+    tag.mSourceBranch->begin ();
     tag.mSourceBranch->setValueVariant ( tag.mVersion, key, value );
+    tag.mSourceBranch->commit ();
+    
+    if ( cleanup ) {
+        tag.mSourceBranch->commit ();
+    }
 }
 
 //----------------------------------------------------------------//
@@ -234,8 +259,11 @@ void AbstractVersionedStoreTag::setValueVariant ( string key, const Variant& val
     \param  other   The snapshot to copy.
 */
 void AbstractVersionedStoreTag::takeSnapshot ( const AbstractVersionedStoreTag& other ) {
+    
+    VersionedStoreTag& tag = this->getTag ();
+    
     const HasVersionedBranch& ref = other.getRef ();
-    this->getTag ().setParent ( ref.getSourceBranch (), ref.getVersion ());
+    tag.setParent ( ref.getSourceBranch (), ref.getVersion ());
 }
 
 } // namespace Padamose

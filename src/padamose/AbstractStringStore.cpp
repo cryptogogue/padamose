@@ -116,6 +116,8 @@ void AbstractStringStore::insertBranch ( shared_ptr < StringStoreVersionedBranch
 // TODO: doxygen
 void AbstractStringStore::loadFromStore () {
 
+    this->begin ();
+
     string keyForTagListSize = this->formatKeyForTagListSize ();
     size_t tagListSize = this->get < u64 >( keyForTagListSize, 0 );
 
@@ -139,6 +141,8 @@ void AbstractStringStore::loadFromStore () {
         VersionedStoreTag& tag = this->mTags [ tagName ];
         tag.setParent ( branch, version );
     }
+    
+    this->commit ();
 }
 
 //----------------------------------------------------------------//
@@ -193,11 +197,6 @@ AbstractStringStore::~AbstractStringStore () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractStringStore::AbstractPersistenceProvider_flush () {
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
 shared_ptr < AbstractPersistentVersionedBranch > AbstractStringStore::AbstractPersistenceProvider_makePersistentBranch () {
 
     string branchID = this->makeBranchID ();
@@ -211,6 +210,8 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractStringStore::AbstractPe
 //----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractStringStore::AbstractPersistenceProvider_tagDidChange ( string name, const VersionedStoreTag* snapshot ) {
+    
+    this->begin ();
     
     string keyForBranchIDByTagName = this->formatKeyForBranchIDByTagName ( name );
     string prevBranchID = this->get < string >( keyForBranchIDByTagName, "" );
@@ -253,6 +254,8 @@ void AbstractStringStore::AbstractPersistenceProvider_tagDidChange ( string name
         this->eraseString ( keyForBranchIDByTagName );
         this->eraseString ( keyForVersionByTagName );
     }
+    
+    this->commit ();
 }
 
 } // namespace Padamose
