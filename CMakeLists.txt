@@ -33,12 +33,14 @@ target_include_directories ( padamose
 
 target_sources ( padamose
     PRIVATE
+        src/padamose/AbstractHasVersionedBranch.cpp
         src/padamose/AbstractPersistenceProvider.cpp
         src/padamose/AbstractPersistentVersionedBranch.cpp
         src/padamose/AbstractStringStore.cpp
         src/padamose/AbstractVersionedBranch.cpp
         src/padamose/AbstractVersionedBranchClient.cpp
         src/padamose/AbstractVersionedCollection.cpp
+        src/padamose/AbstractVersionedStoreTag.cpp
         src/padamose/BaseVersionedCollectionIterator.cpp
         src/padamose/DebugStringStore.cpp
         src/padamose/EphemeralValueStack.cpp
@@ -53,9 +55,8 @@ target_sources ( padamose
         src/padamose/VersionedCollectionSnapshot.cpp
         src/padamose/VersionedList.cpp
         src/padamose/VersionedMap.cpp
-        src/padamose/VersionedStore.cpp
         src/padamose/VersionedStoreIterator.cpp
-        src/padamose/VersionedStoreSnapshot.cpp
+        src/padamose/VersionedStoreLock.cpp
 )
 
 #install ( TARGETS padamose EXPORT libpadamose ARCHIVE DESTINATION lib)

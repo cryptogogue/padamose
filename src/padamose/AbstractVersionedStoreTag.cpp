@@ -218,8 +218,6 @@ void AbstractVersionedStoreTag::revert ( size_t version ) {
 //----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractVersionedStoreTag::revertAndClear ( size_t version ) {
-
-    VersionedStoreTag& tag = this->getTag ();
     
     this->revert ( version );
     this->clearVersion ();
