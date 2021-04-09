@@ -215,13 +215,13 @@ StringStoreVersionedBranch::ConstProviderPtr StringStoreVersionedBranch::Abstrac
     top (i.e. other clients or children depend on later versions) then all values set in that
     version must be copied into the child branch.
  
-    The given version must be greated than or equal to the base version of the parent branch. (We
+    The given version must be greater than or equal to the base version of the parent branch. (We
     could iterate back through the list of branches if an earlier version is given, but for the
     use case of this constructor, that functionality isn't needed.)
  
     There is a special case when a child branch is created with a base version of zero. Since
     there are no earlier versions, the parent branch's version may still be copied from, but no
-    parent is set in the child. The child becomes a new root and thus has no parents.
+    parent is set in the child. The child becomes a new root and thus has no parent.
  
     \param      parent          Parent branch.
     \param      baseVersion     Base version of the child branch.
@@ -233,7 +233,7 @@ shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersi
     
     shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
 
-    assert (( this->mVersion <= baseVersion ) && ( baseVersion <= this->getTopVersion ()));
+    assert ( this->mVersion <= baseVersion );
 
     child->setParent ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
 
