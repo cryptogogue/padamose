@@ -490,6 +490,7 @@
 		CD19DEE025930C5A0007ACF0 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				CDF903A8219E2D1400C1930B /* Exceptions.h */,
 				CD9FE68F22697F87009B4144 /* RedisServerProc.cpp */,
 				CD9FE69022697F87009B4144 /* RedisServerProc.h */,
 				CD19DEE225930C820007ACF0 /* SQLite.cpp */,
@@ -588,11 +589,11 @@
 		CD5C62F320B4F7A70038EE98 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				CDB40597223EE37000200C78 /* branch */,
 				CDD6CE2B21A626E700DB7C10 /* collection */,
+				CDAC9F522624BE5800DCA201 /* ephemeral */,
+				CDB40597223EE37000200C78 /* foundation */,
 				CDB40588223ED5DC00200C78 /* persistence */,
 				CD19DEE025930C5A0007ACF0 /* util */,
-				CDF903A8219E2D1400C1930B /* Exceptions.h */,
 				CD85B1CE228F3091000C2A54 /* Variant.cpp */,
 				CDB4059A224467E500200C78 /* Variant.h */,
 				CD9C392A2618592200AE8782 /* VersionedStoreLock.cpp */,
@@ -782,6 +783,17 @@
 			name = sqlite;
 			sourceTree = "<group>";
 		};
+		CDAC9F522624BE5800DCA201 /* ephemeral */ = {
+			isa = PBXGroup;
+			children = (
+				CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */,
+				CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */,
+				CD561DBB210730ED008B06C7 /* EphemeralVersionedBranch.cpp */,
+				CD561DBC210730ED008B06C7 /* EphemeralVersionedBranch.h */,
+			);
+			name = ephemeral;
+			sourceTree = "<group>";
+		};
 		CDB40588223ED5DC00200C78 /* persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -795,7 +807,7 @@
 			name = persistence;
 			sourceTree = "<group>";
 		};
-		CDB40597223EE37000200C78 /* branch */ = {
+		CDB40597223EE37000200C78 /* foundation */ = {
 			isa = PBXGroup;
 			children = (
 				CD9C3948261B206800AE8782 /* AbstractHasVersionedBranch.cpp */,
@@ -806,13 +818,9 @@
 				CDA06FF6215875D1003FA0C3 /* AbstractVersionedBranchClient.h */,
 				CD9C3943261AF7A900AE8782 /* AbstractVersionedStoreTag.cpp */,
 				CD9C3944261AF7A900AE8782 /* AbstractVersionedStoreTag.h */,
-				CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */,
-				CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */,
-				CD561DBB210730ED008B06C7 /* EphemeralVersionedBranch.cpp */,
-				CD561DBC210730ED008B06C7 /* EphemeralVersionedBranch.h */,
 				CD9C39382619B7C900AE8782 /* HasVersionedBranch.h */,
 			);
-			name = branch;
+			name = foundation;
 			sourceTree = "<group>";
 		};
 		CDD6CE2B21A626E700DB7C10 /* collection */ = {
