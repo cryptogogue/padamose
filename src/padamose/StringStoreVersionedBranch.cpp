@@ -411,9 +411,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVe
     
     AbstractStringStore& store = *this->mProvider;
     store.begin ();
-    
-    this->optimize ();
-    
+        
     string keyForTopVersion = this->formatKeyForTopVersion ();
     size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
     size_t versionCount = topVersion - this->mVersion;
@@ -489,7 +487,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
         
         string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( version );
         size_t indexInLayer = store.get < u64 >( keyForLayerSizeByVersion, 0 );
-        store.set < u64 >( keyForLayerSizeByVersion, indexInLayer + 1 ); // later gets one item bigger
+        store.set < u64 >( keyForLayerSizeByVersion, indexInLayer + 1 ); // layer gets one item bigger
         
         string keyForValueNameByIndexInLayer = this->formatKeyForValueNameByIndexInLayer ( version, indexInLayer );
         store.set < string >( keyForValueNameByIndexInLayer, key ); // add value name to layer
@@ -602,6 +600,9 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
     
     if ( version == this->mVersion ) {
         store.eraseString ( keyForTopVersion );
+    }
+    else {
+        store.set < u64 >( keyForTopVersion, version );
     }
     
     store.commit ();

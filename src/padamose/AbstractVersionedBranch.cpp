@@ -265,6 +265,10 @@ void AbstractVersionedBranch::optimize () {
 
     if ( this->isLocked ()) return; // don't allow join if there are any direct references to the current branch. (May be over-cautious.)
 
+    if ( this->mSourceBranch ) {
+        this->mSourceBranch->optimize ();
+    }
+
     this->begin ();
 
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::optimize ()" );
@@ -315,9 +319,11 @@ void AbstractVersionedBranch::optimize () {
                 // candidate, pick the current client. if we already have a candidate, pick the
                 // one with the higher join score.
                 if (( !bestJoin ) || ( bestJoin->getTopVersion () < branch->getTopVersion ())) {
-                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
-                    LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
-                    bestJoin = branch;
+                    if ( this->isPersistent () == branch->isPersistent ()) {
+                        LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
+                        LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
+                        bestJoin = branch;
+                    }
                 }
             }
         }
@@ -346,7 +352,16 @@ void AbstractVersionedBranch::persistSelf ( AbstractPersistenceProvider& provide
     
     if ( this->mSourceBranch ) {
         this->mSourceBranch->persistSelf ( provider );
+        if ( !this->mSourceBranch->isLocked ()) {
+            size_t immutableTop = this->mSourceBranch->findImmutableTop ();
+            if ( this->mVersion >= immutableTop ) {
+                this->mSourceBranch->truncate ( immutableTop );
+                this->joinBranch ( *this->mSourceBranch );
+                return;
+            }
+        }
     }
+
     shared_ptr < AbstractPersistentVersionedBranch > persist = provider.makePersistentBranch ();
     assert ( &( *persist->getProvider ()) == &provider );
     

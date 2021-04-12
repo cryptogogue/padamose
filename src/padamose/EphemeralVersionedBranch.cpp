@@ -202,7 +202,6 @@ void EphemeralVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVers
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
     
-    this->optimize ();
     this->copyValues ( other );
     this->transferClients ( other );
 }

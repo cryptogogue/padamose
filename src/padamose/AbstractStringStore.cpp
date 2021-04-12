@@ -142,6 +142,13 @@ void AbstractStringStore::loadFromStore () {
         tag.setParent ( branch, version );
     }
     
+    std::map < string, weak_ptr < StringStoreVersionedBranch >>::iterator branchIt = this->mBranchesByID.begin ();
+    for ( ; branchIt != this->mBranchesByID.end (); ++branchIt ) {
+    
+        shared_ptr < StringStoreVersionedBranch > branch = branchIt->second.lock ();
+        branch->optimize ();
+    }
+    
     this->commit ();
 }
 

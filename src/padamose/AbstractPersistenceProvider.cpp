@@ -78,14 +78,14 @@ void AbstractPersistenceProvider::persist ( VersionedStoreTag& tag, string tagNa
     if ( !branch ) return;
 
     try {
-
         this->begin ();
 
         VersionedStoreTag& persistedTag = this->mTags [ tagName ];
         persistedTag.takeSnapshot ( tag );
+                
         branch->persistSelf ( *this );
         this->AbstractPersistenceProvider_tagDidChange ( tagName, &persistedTag );
-        
+                
         this->commit ();
     }
     catch ( ... ) {
