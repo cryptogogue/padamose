@@ -146,6 +146,9 @@ void AbstractStringStore::loadFromStore () {
     for ( ; branchIt != this->mBranchesByID.end (); ++branchIt ) {
     
         shared_ptr < StringStoreVersionedBranch > branch = branchIt->second.lock ();
+        if ( !branch ) continue;
+        
+        branch->printTree ();
         branch->optimize ();
     }
     
