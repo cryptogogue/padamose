@@ -39,11 +39,9 @@ protected:
     string              mDebugName;
     
     //----------------------------------------------------------------//
-    BranchPtr           asBranch                                ();
     size_t              getVersionDependency                    () const;
 
     //----------------------------------------------------------------//
-    virtual BranchPtr   AbstractVersionedBranchClient_asBranch                  ();
     virtual size_t      AbstractVersionedBranchClient_getVersionDependency      () const;
     virtual void        AbstractVersionedBranchClient_print                     ( string prefix ) const;
     virtual void        AbstractVersionedBranchClient_sourceBranchDidChange     ();

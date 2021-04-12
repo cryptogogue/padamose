@@ -152,6 +152,10 @@
 		CDA06FFA21588EB3003FA0C3 /* TestVersionedStoreIterators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FDE21541FE3003FA0C3 /* TestVersionedStoreIterators.cpp */; };
 		CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */; };
 		CDA06FFF2159A79C003FA0C3 /* EphemeralValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */; };
+		CDAC9F48262449D900DCA201 /* SQLitePersistenceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = CDAC9F46262449D900DCA201 /* SQLitePersistenceProvider.h */; };
+		CDAC9F49262449D900DCA201 /* SQLitePersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDAC9F47262449D900DCA201 /* SQLitePersistenceProvider.cpp */; };
+		CDAC9F4D26244A1400DCA201 /* SQLiteVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CDAC9F4B26244A1400DCA201 /* SQLiteVersionedBranch.h */; };
+		CDAC9F4E26244A1400DCA201 /* SQLiteVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDAC9F4C26244A1400DCA201 /* SQLiteVersionedBranch.cpp */; };
 		CDB40586223ED4DD00200C78 /* AbstractPersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */; };
 		CDB40587223ED4DD00200C78 /* AbstractPersistenceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */; };
 		CDB4058B223ED61300200C78 /* AbstractStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40589223ED61300200C78 /* AbstractStringStore.cpp */; };
@@ -390,6 +394,10 @@
 		CDA06FF821587771003FA0C3 /* AbstractVersionedBranchClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractVersionedBranchClient.cpp; path = src/padamose/AbstractVersionedBranchClient.cpp; sourceTree = "<group>"; };
 		CDA06FFC2159A79B003FA0C3 /* EphemeralValueStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EphemeralValueStack.cpp; path = src/padamose/EphemeralValueStack.cpp; sourceTree = "<group>"; };
 		CDA06FFD2159A79C003FA0C3 /* EphemeralValueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EphemeralValueStack.h; path = src/padamose/EphemeralValueStack.h; sourceTree = "<group>"; };
+		CDAC9F46262449D900DCA201 /* SQLitePersistenceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLitePersistenceProvider.h; path = src/padamose/SQLitePersistenceProvider.h; sourceTree = "<group>"; };
+		CDAC9F47262449D900DCA201 /* SQLitePersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLitePersistenceProvider.cpp; path = src/padamose/SQLitePersistenceProvider.cpp; sourceTree = "<group>"; };
+		CDAC9F4B26244A1400DCA201 /* SQLiteVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLiteVersionedBranch.h; path = src/padamose/SQLiteVersionedBranch.h; sourceTree = "<group>"; };
+		CDAC9F4C26244A1400DCA201 /* SQLiteVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLiteVersionedBranch.cpp; path = src/padamose/SQLiteVersionedBranch.cpp; sourceTree = "<group>"; };
 		CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractPersistenceProvider.cpp; path = src/padamose/AbstractPersistenceProvider.cpp; sourceTree = "<group>"; };
 		CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPersistenceProvider.h; path = src/padamose/AbstractPersistenceProvider.h; sourceTree = "<group>"; };
 		CDB40589223ED61300200C78 /* AbstractStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractStringStore.cpp; path = src/padamose/AbstractStringStore.cpp; sourceTree = "<group>"; };
@@ -746,13 +754,9 @@
 			name = "reproc++";
 			sourceTree = "<group>";
 		};
-		CDB40588223ED5DC00200C78 /* persistence */ = {
+		CDAC9F452624499700DCA201 /* stringstore */ = {
 			isa = PBXGroup;
 			children = (
-				CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */,
-				CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */,
-				CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */,
-				CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */,
 				CDB40589223ED61300200C78 /* AbstractStringStore.cpp */,
 				CDB4058A223ED61300200C78 /* AbstractStringStore.h */,
 				CD9FE5D02256E0A1009B4144 /* DebugStringStore.cpp */,
@@ -763,6 +767,30 @@
 				CD19DECE2592F2A40007ACF0 /* SQLiteStringStore.h */,
 				CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */,
 				CDB40594223EE36C00200C78 /* StringStoreVersionedBranch.h */,
+			);
+			name = stringstore;
+			sourceTree = "<group>";
+		};
+		CDAC9F4A262449DC00DCA201 /* sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				CDAC9F47262449D900DCA201 /* SQLitePersistenceProvider.cpp */,
+				CDAC9F46262449D900DCA201 /* SQLitePersistenceProvider.h */,
+				CDAC9F4C26244A1400DCA201 /* SQLiteVersionedBranch.cpp */,
+				CDAC9F4B26244A1400DCA201 /* SQLiteVersionedBranch.h */,
+			);
+			name = sqlite;
+			sourceTree = "<group>";
+		};
+		CDB40588223ED5DC00200C78 /* persistence */ = {
+			isa = PBXGroup;
+			children = (
+				CDAC9F452624499700DCA201 /* stringstore */,
+				CDAC9F4A262449DC00DCA201 /* sqlite */,
+				CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */,
+				CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */,
+				CD9FE5D22256E8E4009B4144 /* AbstractPersistentVersionedBranch.cpp */,
+				CD9FE5D32256E8E4009B4144 /* AbstractPersistentVersionedBranch.h */,
 			);
 			name = persistence;
 			sourceTree = "<group>";
@@ -886,11 +914,13 @@
 				CDA06FF7215875D1003FA0C3 /* AbstractVersionedBranchClient.h in Headers */,
 				CD9FE5D52256E8E4009B4144 /* AbstractPersistentVersionedBranch.h in Headers */,
 				CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */,
+				CDAC9F48262449D900DCA201 /* SQLitePersistenceProvider.h in Headers */,
 				CD9FE685226838EC009B4144 /* RedisStringStore.h in Headers */,
 				CD9C39392619B7C900AE8782 /* HasVersionedBranch.h in Headers */,
 				CDB4058C223ED61300200C78 /* AbstractStringStore.h in Headers */,
 				CD9FE69422698141009B4144 /* padamose-hiredis.h in Headers */,
 				CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */,
+				CDAC9F4D26244A1400DCA201 /* SQLiteVersionedBranch.h in Headers */,
 				CD9C3946261AF7A900AE8782 /* AbstractVersionedStoreTag.h in Headers */,
 				CD9C394B261B206800AE8782 /* AbstractHasVersionedBranch.h in Headers */,
 				CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */,
@@ -1186,6 +1216,7 @@
 				CDF29045224EF0C20028719C /* StringStoreVersionedBranch.cpp in Sources */,
 				CDB40591223EE24800200C78 /* AbstractVersionedBranch.cpp in Sources */,
 				CD07CDE121A74A2600C9C8DB /* MutableVersionedCollection.cpp in Sources */,
+				CDAC9F4E26244A1400DCA201 /* SQLiteVersionedBranch.cpp in Sources */,
 				CDA06FF921587771003FA0C3 /* AbstractVersionedBranchClient.cpp in Sources */,
 				CD9C392C2618592200AE8782 /* VersionedStoreLock.cpp in Sources */,
 				CD561DBD210730ED008B06C7 /* EphemeralVersionedBranch.cpp in Sources */,
@@ -1207,6 +1238,7 @@
 				CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */,
 				CD9FE69122697F87009B4144 /* RedisServerProc.cpp in Sources */,
 				CD85B1CF228F3091000C2A54 /* Variant.cpp in Sources */,
+				CDAC9F49262449D900DCA201 /* SQLitePersistenceProvider.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

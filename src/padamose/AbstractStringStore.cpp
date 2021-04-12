@@ -22,7 +22,6 @@ shared_ptr < StringStoreVersionedBranch > AbstractStringStore::affirmBranch ( st
     }
 
     shared_ptr < StringStoreVersionedBranch > branch = make_shared < StringStoreVersionedBranch >( this->shared_from_this (), branchID );
-    branch->loadFromStore ();
     this->insertBranch ( branch );
     
     return branch;
@@ -213,11 +212,11 @@ AbstractStringStore::~AbstractStringStore () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-shared_ptr < AbstractPersistentVersionedBranch > AbstractStringStore::AbstractPersistenceProvider_makePersistentBranch () {
+shared_ptr < AbstractPersistentVersionedBranch > AbstractStringStore::AbstractPersistenceProvider_makePersistentBranch ( AbstractVersionedBranch& from ) {
 
     string branchID = this->makeBranchID ();
     
-    shared_ptr < StringStoreVersionedBranch > branch = make_shared < StringStoreVersionedBranch >( this->shared_from_this (), branchID );
+    shared_ptr < StringStoreVersionedBranch > branch = make_shared < StringStoreVersionedBranch >( this->shared_from_this (), from, branchID );
     this->insertBranch ( branch );
     
     return branch;

@@ -34,7 +34,7 @@ protected:
     //----------------------------------------------------------------//
     virtual void                                                AbstractPersistenceProvider_begin                   () = 0;
     virtual void                                                AbstractPersistenceProvider_commit                  () = 0;
-    virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    () = 0;
+    virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    ( AbstractVersionedBranch& from ) = 0;
     virtual void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreTag* snapshot ) = 0;
     
 public:
@@ -46,7 +46,7 @@ public:
     void                                                commit                                  ();
     void                                                flush                                   ();
     bool                                                isFrozen                                () const;
-    shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ();
+    shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ( AbstractVersionedBranch& from );
     void                                                persist                                 ( VersionedStoreTag& tag, string tagName );
     VersionedStoreTag                                   restore                                 ( string tagName );
 };

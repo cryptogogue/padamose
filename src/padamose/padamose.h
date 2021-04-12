@@ -23,7 +23,9 @@
 #include <padamose/RedisStringStore.h>
 #include <padamose/StringStoreVersionedBranch.h>
 #include <padamose/SQLite.h>
+#include <padamose/SQLitePersistenceProvider.h>
 #include <padamose/SQLiteStringStore.h>
+#include <padamose/SQLiteVersionedBranch.h>
 #include <padamose/Variant.h>
 #include <padamose/VersionedCollectionSnapshot.h>
 #include <padamose/VersionedCollectionIterator.h>

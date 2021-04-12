@@ -60,7 +60,6 @@ protected:
     void            unlock                          ();
 
     //----------------------------------------------------------------//
-    BranchPtr       AbstractVersionedBranchClient_asBranch                  () override;
     size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
     void            AbstractVersionedBranchClient_print                     ( string prefix ) const override;
 

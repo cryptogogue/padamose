@@ -66,9 +66,9 @@ bool AbstractPersistenceProvider::isFrozen () const {
 }
 
 //----------------------------------------------------------------//
-shared_ptr < AbstractPersistentVersionedBranch > AbstractPersistenceProvider::makePersistentBranch () {
+shared_ptr < AbstractPersistentVersionedBranch > AbstractPersistenceProvider::makePersistentBranch ( AbstractVersionedBranch& from ) {
 
-    return this->AbstractPersistenceProvider_makePersistentBranch ();
+    return this->AbstractPersistenceProvider_makePersistentBranch ( from );
 }
 
 //----------------------------------------------------------------//

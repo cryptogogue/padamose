@@ -23,11 +23,6 @@ AbstractVersionedBranchClient::~AbstractVersionedBranchClient () {
 }
 
 //----------------------------------------------------------------//
-AbstractVersionedBranchClient::BranchPtr AbstractVersionedBranchClient::asBranch () {
-    return this->AbstractVersionedBranchClient_asBranch ();
-}
-
-//----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractVersionedBranchClient::clear () {
     this->setParent ( NULL, 0 );
@@ -145,11 +140,6 @@ void AbstractVersionedBranchClient::setParent ( shared_ptr < AbstractVersionedBr
 //================================================================//
 // overrides
 //================================================================//
-
-//----------------------------------------------------------------//
-AbstractVersionedBranchClient::BranchPtr AbstractVersionedBranchClient::AbstractVersionedBranchClient_asBranch () {
-    return NULL;
-}
 
 //----------------------------------------------------------------//
 // TODO: doxygen

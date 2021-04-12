@@ -1,46 +1,37 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_STRINGSTOREVERSIONEDBRANCH_H
-#define PADAMOSE_STRINGSTOREVERSIONEDBRANCH_H
+#ifndef PADAMOSE_SQLITEVERSIONEDBRANCH_H
+#define PADAMOSE_SQLITEVERSIONEDBRANCH_H
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractPersistentVersionedBranch.h>
-#include <padamose/AbstractStringStore.h>
+#include <padamose/SQLitePersistenceProvider.h>
 
 namespace Padamose {
 
 //================================================================//
-// StringStoreVersionedBranch
+// SQLiteVersionedBranch
 //================================================================//
 // TODO: doxygen
-class StringStoreVersionedBranch :
+class SQLiteVersionedBranch :
     public AbstractPersistentVersionedBranch {
 private:
 
-    friend class AbstractStringStore;
+    friend class SQLitePersistenceProvider;
 
     static const size_t INVALID_LAYER_INDEX             = ( size_t )-1;
     static const size_t INVALID_VERSION                 = ( size_t )-1;
 
-    string                                  mBranchID;
-    string                                  mBranchIDWithPrefix;
-    shared_ptr < AbstractStringStore >      mProvider;
+    u64                                         mBranchID;
+    u64                                         mTopVersion;
+    shared_ptr < SQLitePersistenceProvider >    mProvider;
 
     //----------------------------------------------------------------//
-    string              formatKeyForLayerSizeByVersion              ( size_t version ) const;
-    string              formatKeyForSourceBranchID                  () const;
-    string              formatKeyForTopVersion                      () const;
-    string              formatKeyForValueByVersion                  ( string key, size_t version ) const;
-    string              formatKeyForValueNameByIndexInLayer         ( size_t version, size_t indexInLayer ) const;
-    string              formatKeyForValueStackIndexByVersion        ( string key, size_t version ) const;
-    string              formatKeyForValueStackSize                  ( string key ) const;
-    string              formatKeyForValueStackType                  ( string key ) const;
-    string              formatKeyForValueVersionByStackIndex        ( string key, size_t stackIndex ) const;
-    string              formatKeyForVersion                         () const;
+    SQLite&             getDB                                       () const;
     Variant             getValueVariantForVersion                   ( string key, size_t version ) const;
     void                loadFromStore                               ();
-    void                setPrefix                                   ( string prefix );
+    void                setTopVersion                               ( u64 topVersion );
 
     //----------------------------------------------------------------//
     ConstProviderPtr    AbstractPersistentVersionedBranch_getProvider           () const override;
@@ -64,9 +55,9 @@ private:
 public:
 
     //----------------------------------------------------------------//
-                        StringStoreVersionedBranch                  ( shared_ptr < AbstractStringStore > provider, string branchID );
-                        StringStoreVersionedBranch                  ( shared_ptr < AbstractStringStore > provider, AbstractVersionedBranch& from, string branchID );
-                        ~StringStoreVersionedBranch                 ();
+                        SQLiteVersionedBranch                  ( shared_ptr < SQLitePersistenceProvider > provider, u64 branchID );
+                        SQLiteVersionedBranch                  ( shared_ptr < SQLitePersistenceProvider > provider, AbstractVersionedBranch& from );
+                        ~SQLiteVersionedBranch                 ();
 };
 
 } // namespace Padamose

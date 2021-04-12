@@ -148,7 +148,7 @@ void StringStoreVersionedBranch::loadFromStore () {
     string keyForSourceBranchID = this->formatKeyForSourceBranchID ();
     string sourceBranchID = store.get < string >( keyForSourceBranchID, "" );
     if ( sourceBranchID.size ()) {
-        this->mSourceBranch = this->mProvider->affirmBranch ( sourceBranchID )->shared_from_this ();
+        this->mSourceBranch = this->mProvider->affirmBranch ( sourceBranchID );
     }
     
     if ( this->mSourceBranch ) {
@@ -158,15 +158,45 @@ void StringStoreVersionedBranch::loadFromStore () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+void StringStoreVersionedBranch::setPrefix ( string prefix ) {
+
+    ostringstream stream;
+    stream << prefix << this->mBranchID;
+    this->mBranchIDWithPrefix = stream.str ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 StringStoreVersionedBranch::StringStoreVersionedBranch ( shared_ptr < AbstractStringStore > provider, string branchID ) :
     mBranchID ( branchID ),
+    mBranchIDWithPrefix ( branchID ),
     mProvider ( provider ) {
     
     assert ( provider );
     
-    ostringstream stream;
-    stream << provider->getPrefix () << this->mBranchID;
-    this->mBranchIDWithPrefix = stream.str ();
+    this->setPrefix ( provider->getPrefix ());
+    this->loadFromStore ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+StringStoreVersionedBranch::StringStoreVersionedBranch ( shared_ptr < AbstractStringStore > provider, AbstractVersionedBranch& from, string branchID ) :
+    mBranchID ( branchID ),
+    mBranchIDWithPrefix ( branchID ),
+    mProvider ( provider ) {
+    
+    assert ( provider );
+    
+    this->setPrefix ( provider->getPrefix ());
+    
+    // set the source branch and version manually
+    this->mSourceBranch     = from.getSourceBranch ();
+    this->mVersion          = from.getVersion ();
+    if ( this->mSourceBranch ) {
+        this->mSourceBranch->insertClient ( *this );
+    }
+    
+    this->AbstractVersionedBranchClient_sourceBranchDidChange ();
 }
 
 //----------------------------------------------------------------//

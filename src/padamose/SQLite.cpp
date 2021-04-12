@@ -22,15 +22,54 @@ void SQLiteStatement::affirmColumnNames () const {
 }
 
 //----------------------------------------------------------------//
+void SQLiteStatement::bind ( int key, bool value ) {
+
+    sqlite3_bind_int ( this->mStmt, key, value ? 1 : 0 );
+}
+
+//----------------------------------------------------------------//
+void SQLiteStatement::bind ( int key, double value ) {
+
+    sqlite3_bind_double ( this->mStmt, key, value );
+}
+
+//----------------------------------------------------------------//
 void SQLiteStatement::bind ( int key, int value ) {
 
     sqlite3_bind_int ( this->mStmt, key, value );
 }
 
 //----------------------------------------------------------------//
+void SQLiteStatement::bind ( int key, s64 value ) {
+
+    sqlite3_bind_int64 ( this->mStmt, key, value );
+}
+
+//----------------------------------------------------------------//
 void SQLiteStatement::bind ( int key, string value ) {
 
     sqlite3_bind_text ( this->mStmt, key, value.c_str (), ( int )value.size (), SQLITE_TRANSIENT );
+}
+
+//----------------------------------------------------------------//
+void SQLiteStatement::bind ( int key, u64 value ) {
+
+    assert ( !( value & 0x800000000000000 ));
+    sqlite3_bind_int64 ( this->mStmt, key, ( s64 )value );
+}
+
+//----------------------------------------------------------------//
+template <>
+bool SQLiteStatement::getValue < bool >( int idx ) const {
+	
+	return ( int )sqlite3_column_int ( this->mStmt, idx );
+}
+
+//----------------------------------------------------------------//
+template <>
+double SQLiteStatement::getValue < double >( int idx ) const {
+	
+	return ( double )sqlite3_column_double ( this->mStmt, idx );
 }
 
 //----------------------------------------------------------------//
@@ -42,10 +81,25 @@ int SQLiteStatement::getValue < int >( int idx ) const {
 
 //----------------------------------------------------------------//
 template <>
+s64 SQLiteStatement::getValue < s64 >( int idx ) const {
+	
+	return ( s64 )sqlite3_column_int64 ( this->mStmt, idx );
+}
+
+//----------------------------------------------------------------//
+template <>
 string SQLiteStatement::getValue < string >( int idx ) const {
 	
 	return ( cc8* )sqlite3_column_text ( this->mStmt, idx );
 }
+
+//----------------------------------------------------------------//
+template <>
+u64 SQLiteStatement::getValue < u64 >( int idx ) const {
+	
+	return ( u64 )sqlite3_column_int64 ( this->mStmt, idx );
+}
+
 
 //----------------------------------------------------------------//
 SQLiteStatement::SQLiteStatement ( sqlite3_stmt* stmt ) :

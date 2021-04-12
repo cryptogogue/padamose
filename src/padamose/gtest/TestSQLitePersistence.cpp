@@ -25,8 +25,10 @@ static cc8* SQLITE_FILE_WAL     = "sqlite-test.db-wal";
 //----------------------------------------------------------------//
 void cleanup () {
 
-    ASSERT_EQ ( remove ( SQLITE_FILE ), 0 );
-    ASSERT_EQ ( exists ( SQLITE_FILE ), false );
+    if ( exists ( SQLITE_FILE )) {
+        ASSERT_EQ ( remove ( SQLITE_FILE ), 0 );
+        ASSERT_EQ ( exists ( SQLITE_FILE ), false );
+    }
     
     if ( exists ( SQLITE_FILE_SHM )) {
         ASSERT_EQ ( remove ( SQLITE_FILE_SHM ), 0 );
@@ -40,7 +42,7 @@ void cleanup () {
 }
 
 //----------------------------------------------------------------//
-TEST ( SQLitePersistence, test_sqlite_string_tag ) {
+TEST ( SQLiteStringStore, test_sqlite_string_tag ) {
 
     if ( exists ( SQLITE_FILE )) {
         remove ( SQLITE_FILE );
@@ -84,7 +86,7 @@ TEST ( SQLitePersistence, test_sqlite_string_tag ) {
 }
 
 //----------------------------------------------------------------//
-TEST ( SQLitePersistence, test_sqlite_persistence ) {
+TEST ( SQLiteStringStore, test_sqlite_persistence ) {
 
     {
         shared_ptr < SQLiteStringStore > stringStore = SQLiteStringStore::make ( SQLITE_FILE );
@@ -97,19 +99,56 @@ TEST ( SQLitePersistence, test_sqlite_persistence ) {
         ASSERT_EQ ( tag.getValue < string >( KEY0, 1 ), STR1 );
         ASSERT_EQ ( tag.getValue < string >( KEY0, 2 ), STR2 );
         ASSERT_EQ ( tag.getValue < string >( KEY0, 3 ), STR3 );
+
+        tag.revert ( 2 );
+
+        ASSERT_EQ ( tag.getVersion (), 2 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR2 );
+
+        stringStore->persist ( tag, "master" );
+    }
+
+    {
+        shared_ptr < SQLiteStringStore > stringStore = SQLiteStringStore::make ( SQLITE_FILE );
+
+        VersionedStoreTag tag = stringStore->restore ( "master" );
+
+        ASSERT_EQ ( tag.getVersion (), 2 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR2 );
+    }
+
+    cleanup ();
+}
+
+//----------------------------------------------------------------//
+TEST ( SQLitePersistenceProvider, test_sqlite_persistence ) {
+
+    cleanup ();
+
+    {
+        shared_ptr < SQLitePersistenceProvider > provider = SQLitePersistenceProvider::make ( SQLITE_FILE );
+        testWithProvider ( *provider );
+
+        VersionedStoreTag tag = provider->restore ( "master" );
+
+        ASSERT_EQ ( tag.getVersion (), 3 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0, 0 ), STR0 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0, 1 ), STR1 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0, 2 ), STR2 );
+        ASSERT_EQ ( tag.getValue < string >( KEY0, 3 ), STR3 );
         
         tag.revert ( 2 );
         
         ASSERT_EQ ( tag.getVersion (), 2 );
         ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR2 );
         
-        stringStore->persist ( tag, "master" );
+        provider->persist ( tag, "master" );
     }
     
     {
-        shared_ptr < SQLiteStringStore > stringStore = SQLiteStringStore::make ( SQLITE_FILE );
+        shared_ptr < SQLitePersistenceProvider > provider = SQLitePersistenceProvider::make ( SQLITE_FILE );
         
-        VersionedStoreTag tag = stringStore->restore ( "master" );
+        VersionedStoreTag tag = provider->restore ( "master" );
         
         ASSERT_EQ ( tag.getVersion (), 2 );
         ASSERT_EQ ( tag.getValue < string >( KEY0 ), STR2 );

@@ -277,7 +277,7 @@ void AbstractVersionedBranch::optimize () {
     // may be joined to the parent branch.
     
     size_t immutableTop = this->mVersion; // immutable top won't be less than the branch's base version.
-    BranchPtr bestJoin = NULL; // a join will be performed if this is non-NULL.
+    AbstractVersionedBranch* bestJoin = NULL; // a join will be performed if this is non-NULL.
         
     // loop through every client...
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "evaluating clients for possible concatenation..." );
@@ -303,7 +303,7 @@ void AbstractVersionedBranch::optimize () {
             bestJoin = NULL;
         }
         
-        BranchPtr branch = client->asBranch ();
+        AbstractVersionedBranch* branch = dynamic_cast < AbstractVersionedBranch* >( client );
         
         // if nothing is preventing a join, check to see if we can (and should) select
         // the current client as our new candidate for join. only conder client if dependency
@@ -362,18 +362,8 @@ void AbstractVersionedBranch::persistSelf ( AbstractPersistenceProvider& provide
         }
     }
 
-    shared_ptr < AbstractPersistentVersionedBranch > persist = provider.makePersistentBranch ();
+    shared_ptr < AbstractPersistentVersionedBranch > persist = provider.makePersistentBranch ( *this );
     assert ( &( *persist->getProvider ()) == &provider );
-    
-    // set the source branch and version manually
-    persist->mSourceBranch = this->mSourceBranch;
-    persist->mVersion = this->mVersion;
-    if ( persist->mSourceBranch ) {
-        persist->mSourceBranch->insertClient ( *persist );
-    }
-    
-    // force an update
-    persist->AbstractVersionedBranchClient_sourceBranchDidChange ();
     
     shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
     this->AbstractVersionedBranch_persist ( persist ); // this should move over all clients and orphan the branch
@@ -459,12 +449,6 @@ void AbstractVersionedBranch::AbstractVersionedBranch_print ( string prefix ) co
         this,
         ( int )this->mLockCount
     );
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-AbstractVersionedBranch::BranchPtr AbstractVersionedBranch::AbstractVersionedBranchClient_asBranch () {
-    return this->shared_from_this ();
 }
 
 //----------------------------------------------------------------//

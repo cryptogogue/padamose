@@ -33,8 +33,12 @@ public:
     }
 
     //----------------------------------------------------------------//
+    void            bind                    ( int key, bool value );
+    void            bind                    ( int key, double value );
     void            bind                    ( int key, int value );
+    void            bind                    ( int key, s64 value );
     void            bind                    ( int key, string value );
+    void            bind                    ( int key, u64 value );
                     SQLiteStatement         ( sqlite3_stmt* stmt );
                     ~SQLiteStatement        ();
     
@@ -50,8 +54,12 @@ public:
 };
 
 //----------------------------------------------------------------//
+template <> bool        SQLiteStatement::getValue < bool >          ( int idx ) const;
+template <> double      SQLiteStatement::getValue < double >        ( int idx ) const;
 template <> int         SQLiteStatement::getValue < int >           ( int idx ) const;
+template <> s64         SQLiteStatement::getValue < s64 >           ( int idx ) const;
 template <> string      SQLiteStatement::getValue < string >        ( int idx ) const;
+template <> u64         SQLiteStatement::getValue < u64 >           ( int idx ) const;
 
 //================================================================//
 // SQLiteResult
