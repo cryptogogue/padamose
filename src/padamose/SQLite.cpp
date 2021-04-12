@@ -243,16 +243,16 @@ SQLiteResult SQLite::open ( string filename, int flags ) {
         return result;
     }
     
-//    string mode;
-//    SQLiteResult pragmaResult = this->exec ( "PRAGMA journal_mode=WAL", NULL,
-//        
-//        //--------------------------------//
-//        [ & ]( int, const SQLiteStatement& stmt ) {
-//            mode = stmt.getValue < string >( 0 );
-//        }
-//    );
-//    pragmaResult.reportWithAssert ();
-//    assert (( mode == "wal" ) || ( mode == "" ));
+    string mode;
+    SQLiteResult pragmaResult = this->exec ( "PRAGMA journal_mode=WAL", NULL,
+        
+        //--------------------------------//
+        [ & ]( int, const SQLiteStatement& stmt ) {
+            mode = stmt.getValue < string >( 0 );
+        }
+    );
+    pragmaResult.reportWithAssert ();
+    assert (( mode == "wal" ) || ( mode == "" ));
     
     return result;
 }
