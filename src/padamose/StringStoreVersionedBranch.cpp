@@ -487,34 +487,24 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
         
         string keyForLayerSizeByVersion = this->formatKeyForLayerSizeByVersion ( version );
         size_t indexInLayer = store.get < u64 >( keyForLayerSizeByVersion, 0 );
-        store.set < u64 >( keyForLayerSizeByVersion, indexInLayer + 1 ); // layer gets one item bigger
         
         string keyForValueNameByIndexInLayer = this->formatKeyForValueNameByIndexInLayer ( version, indexInLayer );
-        store.set < string >( keyForValueNameByIndexInLayer, key ); // add value name to layer
-        
         string keyForTopVersion = this->formatKeyForTopVersion ();
+        
         size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
-        if ( topVersion <= version ) {
-            store.set < u64 >( keyForTopVersion, version + 1 );
-        }
         
         // push the value onto the value stack.
         
         string keyForValueStackSize = this->formatKeyForValueStackSize ( key );
         size_t valueStackIndex = store.get < u64 >( keyForValueStackSize, 0 );
         
-        if ( version < ( this->mVersion + valueStackIndex )) {
-            
-            LOG_F ( INFO, "Padamose is about to crash" );
-            LOG_F ( INFO, "KEY: %s", key.c_str ());
-            LOG_F ( INFO, "this->mVersion: %d", ( int )this->mVersion );
-            LOG_F ( INFO, "valueStackIndex: %d", ( int )valueStackIndex );
-            LOG_F ( INFO, "version: %d", ( int )version );
-            LOG_F ( INFO, "keyForValueStackSize: %s", keyForValueStackSize.c_str ());
+        store.set < u64 >( keyForLayerSizeByVersion, indexInLayer + 1 ); // layer gets one item bigger
+        store.set < string >( keyForValueNameByIndexInLayer, key ); // add value name to layer
+        
+        if ( topVersion <= version ) {
+            store.set < u64 >( keyForTopVersion, version + 1 );
         }
         
-        // TODO: make this check more robust
-        assert (( this->mVersion + valueStackIndex ) <= version ); // we don't support inserting into the middle of a stack.
         store.set < u64 >( keyForValueStackSize, valueStackIndex + 1 ); // new value stack top.
         
         // this is the first entry in the stack, so also set the type.

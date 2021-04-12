@@ -142,14 +142,20 @@ void AbstractStringStore::loadFromStore () {
         tag.setParent ( branch, version );
     }
     
+    std::vector < weak_ptr < StringStoreVersionedBranch >> branches;
     std::map < string, weak_ptr < StringStoreVersionedBranch >>::iterator branchIt = this->mBranchesByID.begin ();
     for ( ; branchIt != this->mBranchesByID.end (); ++branchIt ) {
+        branches.push_back ( branchIt->second );
+    }
     
-        shared_ptr < StringStoreVersionedBranch > branch = branchIt->second.lock ();
+    for ( size_t i = 0; i < branches.size (); ++i ) {
+    
+        shared_ptr < StringStoreVersionedBranch > branch = branches [ i ].lock ();
         if ( !branch ) continue;
         
         branch->printTree ();
         branch->optimize ();
+        branch->printTree ();
     }
     
     this->commit ();
