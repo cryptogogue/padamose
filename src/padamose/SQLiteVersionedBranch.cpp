@@ -330,6 +330,8 @@ size_t SQLiteVersionedBranch::AbstractVersionedBranch_getValuePrevVersion ( stri
 // TODO: doxygen
 Variant SQLiteVersionedBranch::AbstractVersionedBranch_getValueVariant ( size_t version, string key ) const {
 
+    LGN_LOG_SCOPE ( PDM_FILTER_SQLSTORE, INFO, __PRETTY_FUNCTION__ );
+
     Variant variant;
     if (( this->mTopVersion == this->mVersion ) || ( this->mVersion > version )) return variant;
 
