@@ -3,6 +3,7 @@
 
 #include <padamose/AbstractStringStore.h>
 #include <padamose/EphemeralVersionedBranch.h>
+#include <padamose/SQLitePersistenceProvider.h>
 #include <padamose/SQLiteVersionedBranch.h>
 #include <padamose/VersionedStoreTag.h>
 

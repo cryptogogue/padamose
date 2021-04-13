@@ -50,7 +50,9 @@ target_sources ( padamose
         src/padamose/RedisServerProc.cpp
         src/padamose/RedisStringStore.cpp
         src/padamose/SQLite.cpp
+        src/padamose/SQLitePersistenceProvider.cpp
         src/padamose/SQLiteStringStore.cpp
+        src/padamose/SQLiteVersionedBranch.cpp
         src/padamose/StringStoreVersionedBranch.cpp
         src/padamose/Variant.cpp
         src/padamose/VersionedCollectionSnapshot.cpp

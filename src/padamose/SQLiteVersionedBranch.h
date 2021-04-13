@@ -6,9 +6,10 @@
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractPersistentVersionedBranch.h>
-#include <padamose/SQLitePersistenceProvider.h>
 
 namespace Padamose {
+
+class SQLitePersistenceProvider;
 
 //================================================================//
 // SQLiteVersionedBranch

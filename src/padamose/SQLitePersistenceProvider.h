@@ -58,7 +58,7 @@ public:
 
     //----------------------------------------------------------------//
     static shared_ptr < SQLitePersistenceProvider > make ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE ) {
-    
+
         shared_ptr < SQLitePersistenceProvider > store = make_shared < SQLitePersistenceProvider >();
         store->open ( filename, flags );
         return store;
