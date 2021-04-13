@@ -13,6 +13,7 @@
 #include <padamose/AbstractVersionedCollection.h>
 #include <padamose/AbstractVersionedStoreTag.h>
 #include <padamose/BaseVersionedCollectionIterator.h>
+#include <padamose/BranchInspector.h>
 #include <padamose/DebugStringStore.h>
 #include <padamose/EphemeralValueStack.h>
 #include <padamose/EphemeralVersionedBranch.h>

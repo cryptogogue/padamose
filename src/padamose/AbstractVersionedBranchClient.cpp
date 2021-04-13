@@ -41,6 +41,17 @@ size_t AbstractVersionedBranchClient::countBranches () const {
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+BranchInspector AbstractVersionedBranchClient::getBranchInspector ( size_t depth ) {
+
+    shared_ptr < AbstractVersionedBranch > cursor = this->mSourceBranch;
+    for ( size_t i = 0; cursor && ( i < depth ); ++i ) {
+        cursor = cursor ? cursor->mSourceBranch : NULL;
+    }
+    return BranchInspector ( cursor );
+}
+
+//----------------------------------------------------------------//
 /** \brief Return the version depended on in the branch by this snapshot.
     This version must not be altered by any other snapshot.
 
@@ -101,7 +112,7 @@ void AbstractVersionedBranchClient::setDebugName ( string debugName ) {
 void AbstractVersionedBranchClient::setParent ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
 
     bool didChange = false;
-    weak_ptr < AbstractVersionedBranch > prevBranchWeak;
+    weak_ptr < AbstractVersionedBranch > prevBranchWeak = this->mSourceBranch;
 
     if ( this->mSourceBranch != branch ) {
         
@@ -110,7 +121,6 @@ void AbstractVersionedBranchClient::setParent ( shared_ptr < AbstractVersionedBr
         LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "VersionedStoreTag::setParent () - changing branch" );
         
         if ( this->mSourceBranch ) {
-            prevBranchWeak = this->mSourceBranch;
             this->mSourceBranch->eraseClient ( *this );
         }
         

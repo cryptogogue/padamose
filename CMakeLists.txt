@@ -42,6 +42,7 @@ target_sources ( padamose
         src/padamose/AbstractVersionedCollection.cpp
         src/padamose/AbstractVersionedStoreTag.cpp
         src/padamose/BaseVersionedCollectionIterator.cpp
+        src/padamose/BranchInspector.cpp
         src/padamose/DebugStringStore.cpp
         src/padamose/EphemeralValueStack.cpp
         src/padamose/EphemeralVersionedBranch.cpp

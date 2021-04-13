@@ -53,7 +53,6 @@
 		CD19DEE425930C820007ACF0 /* SQLite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD19DEE225930C820007ACF0 /* SQLite.cpp */; };
 		CD19DEEA2593DF790007ACF0 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19DEE82593DF790007ACF0 /* util.h */; };
 		CD19DEEB2593DF790007ACF0 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD19DEE92593DF790007ACF0 /* util.cpp */; };
-		CD19DEEE2593E1AE0007ACF0 /* TestSQLitePersistence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD19DEED2593E1AE0007ACF0 /* TestSQLitePersistence.cpp */; };
 		CD19DEEF2593E4B50007ACF0 /* libsqlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD19DEB92592DE330007ACF0 /* libsqlite.a */; };
 		CD19DEF32593E4DF0007ACF0 /* sqlite3ext.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19DEF02593E4DF0007ACF0 /* sqlite3ext.h */; };
 		CD19DEF42593E4DF0007ACF0 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = CD19DEF12593E4DF0007ACF0 /* sqlite3.h */; };
@@ -156,6 +155,10 @@
 		CDAC9F49262449D900DCA201 /* SQLitePersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDAC9F47262449D900DCA201 /* SQLitePersistenceProvider.cpp */; };
 		CDAC9F4D26244A1400DCA201 /* SQLiteVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CDAC9F4B26244A1400DCA201 /* SQLiteVersionedBranch.h */; };
 		CDAC9F4E26244A1400DCA201 /* SQLiteVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDAC9F4C26244A1400DCA201 /* SQLiteVersionedBranch.cpp */; };
+		CDAC9F55262595FF00DCA201 /* TestPersistenceProviders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDAC9F532625906B00DCA201 /* TestPersistenceProviders.cpp */; };
+		CDAC9F5E2625A0DD00DCA201 /* TestStringStores.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDAC9F5D2625A0DD00DCA201 /* TestStringStores.cpp */; };
+		CDAC9F612625A6A500DCA201 /* BranchInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = CDAC9F602625A6A500DCA201 /* BranchInspector.h */; };
+		CDAC9F632625AAE000DCA201 /* BranchInspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDAC9F622625AAE000DCA201 /* BranchInspector.cpp */; };
 		CDB40586223ED4DD00200C78 /* AbstractPersistenceProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */; };
 		CDB40587223ED4DD00200C78 /* AbstractPersistenceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */; };
 		CDB4058B223ED61300200C78 /* AbstractStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40589223ED61300200C78 /* AbstractStringStore.cpp */; };
@@ -293,7 +296,6 @@
 		CD19DEE82593DF790007ACF0 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = src/padamose/gtest/util.h; sourceTree = "<group>"; };
 		CD19DEE92593DF790007ACF0 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = util.cpp; path = src/padamose/gtest/util.cpp; sourceTree = "<group>"; };
 		CD19DEEC2593E0AB0007ACF0 /* TestRedisPersistence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TestRedisPersistence.cpp; path = src/padamose/gtest/TestRedisPersistence.cpp; sourceTree = "<group>"; };
-		CD19DEED2593E1AE0007ACF0 /* TestSQLitePersistence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSQLitePersistence.cpp; path = src/padamose/gtest/TestSQLitePersistence.cpp; sourceTree = "<group>"; };
 		CD19DEF02593E4DF0007ACF0 /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3ext.h; path = "3rd-party/sqlite-3.34.0/sqlite3ext.h"; sourceTree = "<group>"; };
 		CD19DEF12593E4DF0007ACF0 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = "3rd-party/sqlite-3.34.0/sqlite3.h"; sourceTree = "<group>"; };
 		CD19DEF22593E4DF0007ACF0 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "3rd-party/sqlite-3.34.0/sqlite3.c"; sourceTree = "<group>"; };
@@ -398,6 +400,12 @@
 		CDAC9F47262449D900DCA201 /* SQLitePersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLitePersistenceProvider.cpp; path = src/padamose/SQLitePersistenceProvider.cpp; sourceTree = "<group>"; };
 		CDAC9F4B26244A1400DCA201 /* SQLiteVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLiteVersionedBranch.h; path = src/padamose/SQLiteVersionedBranch.h; sourceTree = "<group>"; };
 		CDAC9F4C26244A1400DCA201 /* SQLiteVersionedBranch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLiteVersionedBranch.cpp; path = src/padamose/SQLiteVersionedBranch.cpp; sourceTree = "<group>"; };
+		CDAC9F532625906B00DCA201 /* TestPersistenceProviders.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestPersistenceProviders.cpp; path = src/padamose/gtest/TestPersistenceProviders.cpp; sourceTree = "<group>"; };
+		CDAC9F5626259D0C00DCA201 /* SQLiteLocalDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLiteLocalDB.h; path = src/padamose/gtest/SQLiteLocalDB.h; sourceTree = "<group>"; };
+		CDAC9F5B26259EE300DCA201 /* TestWithFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestWithFactory.h; path = src/padamose/gtest/TestWithFactory.h; sourceTree = "<group>"; };
+		CDAC9F5D2625A0DD00DCA201 /* TestStringStores.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestStringStores.cpp; path = src/padamose/gtest/TestStringStores.cpp; sourceTree = "<group>"; };
+		CDAC9F602625A6A500DCA201 /* BranchInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BranchInspector.h; path = src/padamose/BranchInspector.h; sourceTree = "<group>"; };
+		CDAC9F622625AAE000DCA201 /* BranchInspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BranchInspector.cpp; path = src/padamose/BranchInspector.cpp; sourceTree = "<group>"; };
 		CDB40584223ED4DD00200C78 /* AbstractPersistenceProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractPersistenceProvider.cpp; path = src/padamose/AbstractPersistenceProvider.cpp; sourceTree = "<group>"; };
 		CDB40585223ED4DD00200C78 /* AbstractPersistenceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractPersistenceProvider.h; path = src/padamose/AbstractPersistenceProvider.h; sourceTree = "<group>"; };
 		CDB40589223ED61300200C78 /* AbstractStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AbstractStringStore.cpp; path = src/padamose/AbstractStringStore.cpp; sourceTree = "<group>"; };
@@ -508,17 +516,11 @@
 			name = redis;
 			sourceTree = "<group>";
 		};
-		CD19DEE62593DF350007ACF0 /* sqlite */ = {
-			isa = PBXGroup;
-			children = (
-				CD19DEED2593E1AE0007ACF0 /* TestSQLitePersistence.cpp */,
-			);
-			name = sqlite;
-			sourceTree = "<group>";
-		};
 		CD19DEE72593DF480007ACF0 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				CDAC9F5B26259EE300DCA201 /* TestWithFactory.h */,
+				CDAC9F5626259D0C00DCA201 /* SQLiteLocalDB.h */,
 				CD19DEE92593DF790007ACF0 /* util.cpp */,
 				CD19DEE82593DF790007ACF0 /* util.h */,
 			);
@@ -571,11 +573,12 @@
 			isa = PBXGroup;
 			children = (
 				CD19DEE52593DF2C0007ACF0 /* redis */,
-				CD19DEE62593DF350007ACF0 /* sqlite */,
 				CD19DEE72593DF480007ACF0 /* util */,
 				CDF903AA219F99D400C1930B /* gtest-helpers.h */,
 				CD4E816B21057DD1007DA585 /* main-gtest.cpp */,
 				CD9C39272618557400AE8782 /* TestLock.cpp */,
+				CDAC9F532625906B00DCA201 /* TestPersistenceProviders.cpp */,
+				CDAC9F5D2625A0DD00DCA201 /* TestStringStores.cpp */,
 				CDB4059C2245596600200C78 /* TestVariant.cpp */,
 				CDF903B721A14C5400C1930B /* TestVersionedList.cpp */,
 				CD3C7C3721A7320300CBA572 /* TestVersionedMap.cpp */,
@@ -590,6 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				CDD6CE2B21A626E700DB7C10 /* collection */,
+				CDAC9F5F2625A68100DCA201 /* diagnostic */,
 				CDAC9F522624BE5800DCA201 /* ephemeral */,
 				CDB40597223EE37000200C78 /* foundation */,
 				CDB40588223ED5DC00200C78 /* persistence */,
@@ -794,6 +798,15 @@
 			name = ephemeral;
 			sourceTree = "<group>";
 		};
+		CDAC9F5F2625A68100DCA201 /* diagnostic */ = {
+			isa = PBXGroup;
+			children = (
+				CDAC9F622625AAE000DCA201 /* BranchInspector.cpp */,
+				CDAC9F602625A6A500DCA201 /* BranchInspector.h */,
+			);
+			name = diagnostic;
+			sourceTree = "<group>";
+		};
 		CDB40588223ED5DC00200C78 /* persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -932,6 +945,7 @@
 				CD9C3946261AF7A900AE8782 /* AbstractVersionedStoreTag.h in Headers */,
 				CD9C394B261B206800AE8782 /* AbstractHasVersionedBranch.h in Headers */,
 				CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */,
+				CDAC9F612625A6A500DCA201 /* BranchInspector.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1206,12 +1220,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD4E81732105802E007DA585 /* main-gtest.cpp in Sources */,
-				CD19DEEE2593E1AE0007ACF0 /* TestSQLitePersistence.cpp in Sources */,
 				CD3C7C3821A7320300CBA572 /* TestVersionedMap.cpp in Sources */,
 				CDF2903A224D4D870028719C /* TestVersionedPersistence.cpp in Sources */,
 				CD9C39282618557400AE8782 /* TestLock.cpp in Sources */,
 				CDF903B821A14C5400C1930B /* TestVersionedList.cpp in Sources */,
 				CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */,
+				CDAC9F5E2625A0DD00DCA201 /* TestStringStores.cpp in Sources */,
+				CDAC9F55262595FF00DCA201 /* TestPersistenceProviders.cpp in Sources */,
 				CDA06FFA21588EB3003FA0C3 /* TestVersionedStoreIterators.cpp in Sources */,
 				CDB4059E2245602500200C78 /* TestVariant.cpp in Sources */,
 			);
@@ -1246,6 +1261,7 @@
 				CDA06FFE2159A79C003FA0C3 /* EphemeralValueStack.cpp in Sources */,
 				CD9FE69122697F87009B4144 /* RedisServerProc.cpp in Sources */,
 				CD85B1CF228F3091000C2A54 /* Variant.cpp in Sources */,
+				CDAC9F632625AAE000DCA201 /* BranchInspector.cpp in Sources */,
 				CDAC9F49262449D900DCA201 /* SQLitePersistenceProvider.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

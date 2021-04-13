@@ -107,5 +107,4 @@ bool AbstractHasVersionedBranch::hasValue ( string key, size_t version ) const {
     return ( !this->getValueVariant ( key, version ).isNull ());
 }
 
-
 } // namespace Padamose

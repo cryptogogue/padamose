@@ -74,16 +74,15 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractPersistenceProvider::ma
 //----------------------------------------------------------------//
 void AbstractPersistenceProvider::persist ( VersionedStoreTag& tag, string tagName ) {
 
-    HasVersionedBranch::BranchPtr branch = tag.getSourceBranch ();
-    if ( !branch ) return;
+    if ( !tag.getSourceBranch ()) return;
 
     try {
         this->begin ();
 
         VersionedStoreTag& persistedTag = this->mTags [ tagName ];
         persistedTag.takeSnapshot ( tag );
-                
-        branch->persistSelf ( *this );
+        persistedTag.getSourceBranch ()->persistSelf ( *this );
+
         this->AbstractPersistenceProvider_tagDidChange ( tagName, &persistedTag );
                 
         this->commit ();

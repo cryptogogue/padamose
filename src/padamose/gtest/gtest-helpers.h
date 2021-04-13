@@ -11,4 +11,12 @@
     catch ( exceptionType ) {}                          \
     catch ( ... ) { FAIL (); }
 
+static const char* KEY0     = "test0";
+static const char* KEY1     = "test1";
+static const char* STR0     = "abc";
+static const char* STR1     = "def";
+static const char* STR2     = "ghi";
+static const char* STR3     = "jkl";
+static const char* STR4     = "mno";
+
 #endif

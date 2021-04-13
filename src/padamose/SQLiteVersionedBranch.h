@@ -28,8 +28,8 @@ private:
     shared_ptr < SQLitePersistenceProvider >    mProvider;
 
     //----------------------------------------------------------------//
+    void                deleteBranch                                ();
     SQLite&             getDB                                       () const;
-    Variant             getValueVariantForVersion                   ( string key, size_t version ) const;
     void                loadFromStore                               ();
     void                setTopVersion                               ( u64 topVersion );
 

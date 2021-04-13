@@ -38,17 +38,12 @@ public:
     HasVersionedBranch&             getRef                                  ();
     const HasVersionedBranch&       getRef                                  () const;
     BranchPtr                       getSourceBranch                         () const;
+    Variant                         getValueVariant                         ( string key ) const;
+    Variant                         getValueVariant                         ( string key, size_t version ) const;
     size_t                          getVersion                              () const;
-    
-    
-    
-    
-    //----------------------------------------------------------------//
-    Variant                     getValueVariant                         ( string key ) const;
-    Variant                     getValueVariant                         ( string key, size_t version ) const;
-    bool                        hasKey                                  ( string key ) const;
-    bool                        hasValue                                ( string key ) const;
-    bool                        hasValue                                ( string key, size_t version ) const;
+    bool                            hasKey                                  ( string key ) const;
+    bool                            hasValue                                ( string key ) const;
+    bool                            hasValue                                ( string key, size_t version ) const;
     
     //----------------------------------------------------------------//
     /** \brief  Return a copy of the value for a key. Throws a KeyNotFoundException exception

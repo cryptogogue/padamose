@@ -196,8 +196,8 @@ bool EphemeralVersionedBranch::AbstractVersionedBranch_isPersistent () const {
 */
 void EphemeralVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersionedBranch& other ) {
 
-    assert ( other.getDirectReferenceCount () == 0 );
-    assert ( this->mLockCount == 0 );
+    assert ( !other.isLocked ());
+    assert ( !this->isLocked ());
 
     LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::AbstractVersionedBranchClient_joinBranch ()" );
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );

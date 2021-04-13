@@ -152,9 +152,7 @@ void AbstractStringStore::loadFromStore () {
         shared_ptr < StringStoreVersionedBranch > branch = branches [ i ].lock ();
         if ( !branch ) continue;
         
-        branch->printTree ();
         branch->optimize ();
-        branch->printTree ();
     }
     
     this->commit ();

@@ -91,7 +91,6 @@ public:
     void            eraseClient                     ( AbstractVersionedBranchClient& client );
     size_t          findImmutableTop                ( const AbstractVersionedBranchClient* ignore = NULL ) const;
     BranchPtr       fork                            ( size_t baseVersion );
-    size_t          getDirectReferenceCount         () const;
     size_t          getTopVersion                   () const;
     size_t          getValueNextVersion             ( string key, size_t version ) const;
     size_t          getValuePrevVersion             ( string key, size_t version ) const;

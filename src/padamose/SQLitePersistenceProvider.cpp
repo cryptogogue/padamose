@@ -4,8 +4,6 @@
 #include <padamose/SQLitePersistenceProvider.h>
 #include <padamose/SQLiteVersionedBranch.h>
 
-#define SQL_STR(...) #__VA_ARGS__
-
 namespace Padamose {
 
 //================================================================//
@@ -97,9 +95,7 @@ void SQLitePersistenceProvider::loadFromStore () {
         shared_ptr < SQLiteVersionedBranch > branch = branches [ i ].lock ();
         if ( !branch ) continue;
 
-        branch->printTree ();
         branch->optimize ();
-        branch->printTree ();
     }
 
     this->commit ();

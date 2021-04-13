@@ -14,18 +14,44 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+void SQLiteVersionedBranch::deleteBranch () {
+
+    this->begin ();
+
+    SQLite& db = this->getDB ();
+
+    SQLiteResult result = db.exec (
+        
+        "DELETE FROM branches WHERE rowid IS ?1",
+        
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, this->mBranchID );
+        }
+    );
+    result.reportWithAssert ();
+    
+    result = db.exec (
+        
+        "DELETE FROM tuples WHERE branchID IS ?1",
+        
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, this->mBranchID );
+        }
+    );
+    result.reportWithAssert ();
+    
+    this->commit ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 SQLite& SQLiteVersionedBranch::getDB () const {
 
     assert ( this->mProvider );
     assert ( this->mProvider->mDB );
     return this->mProvider->mDB;
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-Variant SQLiteVersionedBranch::getValueVariantForVersion ( string key, size_t version ) const {
-
-    return Variant ();
 }
 
 //----------------------------------------------------------------//
@@ -140,12 +166,12 @@ SQLiteVersionedBranch::SQLiteVersionedBranch ( shared_ptr < SQLitePersistencePro
 // TODO: doxygen
 SQLiteVersionedBranch::~SQLiteVersionedBranch () {
 
+    if ( !this->mProvider->isFrozen ()) {
+        this->deleteBranch ();
+    }
+
     this->mProvider->eraseBranch ( *this );
     this->setParent ( NULL, 0 );
-
-    if ( !this->mProvider->isFrozen ()) {
-        this->AbstractVersionedBranch_truncate ( this->mVersion );
-    }
 }
 
 //================================================================//
@@ -195,40 +221,39 @@ SQLiteVersionedBranch::ConstProviderPtr SQLiteVersionedBranch::AbstractPersisten
 */
 shared_ptr < AbstractVersionedBranch > SQLiteVersionedBranch::AbstractVersionedBranch_fork ( size_t baseVersion ) {
     
-    SQLitePersistenceProvider& store = *this->mProvider;
-    store.begin ();
-    
     shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
 
     assert ( this->mVersion <= baseVersion );
 
     child->setParent ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
 
-    SQLite& db = this->getDB ();
+    if ( baseVersion < this->mTopVersion ) {
 
-    // TODO: this is lazy; requires two calls for every value in layer
-    SQLiteResult result = db.exec (
-        
-        "SELECT key FROM tuples WHERE branchID IS ?1 AND version IS ?2",
-        
-        //--------------------------------//
-        [ & ]( SQLiteStatement& stmt ) {
-            stmt.bind ( 1, this->mBranchID );
-            stmt.bind ( 2, ( u64 )baseVersion );
-        },
-        
-        //--------------------------------//
-        [ & ]( int, const SQLiteStatement& stmt ) {
+        SQLite& db = this->getDB ();
+
+        // TODO: this is lazy; requires two calls for every value in layer
+        SQLiteResult result = db.exec (
             
-            string key = stmt.getValue < string >( 0 );
+            "SELECT key FROM tuples WHERE branchID IS ?1 AND version IS ?2",
             
-            Variant variant = this->getValueVariantForVersion ( key, baseVersion );
-            child->setValueVariant ( baseVersion, key, variant );
-        }
-    );
-    result.reportWithAssert ();
+            //--------------------------------//
+            [ & ]( SQLiteStatement& stmt ) {
+                stmt.bind ( 1, this->mBranchID );
+                stmt.bind ( 2, ( u64 )baseVersion );
+            },
+            
+            //--------------------------------//
+            [ & ]( int, const SQLiteStatement& stmt ) {
+                
+                string key = stmt.getValue < string >( 0 );
+                
+                Variant variant = this->AbstractVersionedBranch_getValueVariant ( baseVersion, key );
+                child->setValueVariant ( baseVersion, key, variant );
+            }
+        );
+        result.reportWithAssert ();
+    }
     
-    store.commit ();
     return child;
 }
 
@@ -303,7 +328,9 @@ size_t SQLiteVersionedBranch::AbstractVersionedBranch_getValuePrevVersion ( stri
 Variant SQLiteVersionedBranch::AbstractVersionedBranch_getValueVariant ( size_t version, string key ) const {
 
     Variant variant;
-    if ( this->mVersion > version ) return variant;
+    if (( this->mTopVersion == this->mVersion ) || ( this->mVersion > version )) return variant;
+
+    version = version < this->mTopVersion ? version : this->mTopVersion - 1;
 
     SQLite& db = this->getDB ();
 
@@ -455,7 +482,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersion
     
     SQLite& db = this->getDB ();
     
-    // TODO: check receiving branch top < this->mVersion
+    assert ( otherSQL->mTopVersion <= this->mVersion );
     
     SQLiteResult result = db.exec (
     
@@ -469,7 +496,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersion
     );
     result.reportWithAssert ();
     
-    // TODO: set receiving branch top = this->mTop
+    otherSQL->setTopVersion ( this->mTopVersion );
     
     this->transferClients ( other );
 }
@@ -511,9 +538,16 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t ver
 
     SQLite& db = this->getDB ();
 
+    //"INSERT OR REPLACE INTO tuples ( branchID, version, key, type, stringVal, intVal, realVal ) VALUES ( ?1, ?2, ?3, ?4, ?5, ?6, ?7 ) ON CONFLICT DO NOTHING",
+
     SQLiteResult result = db.exec (
         
-        "INSERT OR REPLACE INTO tuples ( branchID, version, key, type, stringVal, intVal, realVal ) VALUES ( ?1, ?2, ?3, ?4, ?5, ?6, ?7 ) ON CONFLICT DO NOTHING",
+        SQL_STR (
+            INSERT INTO tuples ( branchID, version, key, type, stringVal, intVal, realVal ) VALUES ( ?1, ?2, ?3, ?4, ?5, ?6, ?7 )
+            ON CONFLICT ( branchID, version, key )
+            DO UPDATE
+            SET type = excluded.type, stringVal = excluded.stringVal, intVal = excluded.intVal, realVal = excluded.realVal
+        ),
         
         //--------------------------------//
         [ & ]( SQLiteStatement& stmt ) {
@@ -551,9 +585,11 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t ver
             stmt.bind ( 7, realVal );
         }
     );
+    result.reportWithAssert ();
     
-    if ( this->mTopVersion < version ) {
-        this->setTopVersion ( version );
+    size_t top = version + 1;
+    if ( this->mTopVersion < top ) {
+        this->setTopVersion ( top );
     }
 }
 
@@ -566,6 +602,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t ver
 void SQLiteVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVersion ) {
     
     if ( this->mTopVersion <= topVersion ) return;
+    topVersion = topVersion < this->mVersion ? this->mVersion : topVersion;
     
     SQLite& db = this->getDB ();
     
@@ -578,15 +615,12 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVersion
         //--------------------------------//
         [ & ]( SQLiteStatement& stmt ) {
             stmt.bind ( 1, this->mBranchID );
-            stmt.bind ( 1, ( u64 )topVersion );
+            stmt.bind ( 2, ( u64 )topVersion );
         }
     );
     result.reportWithAssert ();
     
-    if ( this->mVersion == topVersion ) {
-        // TODO: delete branch?
-        return;
-    }
+    this->setTopVersion ( topVersion );
 }
 
 //----------------------------------------------------------------//

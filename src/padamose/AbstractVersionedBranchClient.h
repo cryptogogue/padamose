@@ -6,6 +6,7 @@
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractHasVersionedBranch.h>
+#include <padamose/BranchInspector.h>
 #include <padamose/HasVersionedBranch.h>
 
 namespace Padamose {
@@ -53,6 +54,7 @@ public:
     virtual             ~AbstractVersionedBranchClient          ();
     void                clear                                   ();
     size_t              countBranches                           () const;
+    BranchInspector     getBranchInspector                      ( size_t depth );
     void                printTree                               () const;
     void                setDebugName                            ( string debugName );
     void                setParent                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );

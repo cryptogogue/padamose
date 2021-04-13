@@ -105,13 +105,6 @@ shared_ptr < AbstractVersionedBranch > AbstractVersionedBranch::fork ( size_t ba
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-size_t AbstractVersionedBranch::getDirectReferenceCount () const {
-
-    return this->mLockCount;
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
 size_t AbstractVersionedBranch::getTopVersion () const {
 
     return this->AbstractVersionedBranch_getTopVersion ();

@@ -7,6 +7,8 @@
 #include <padamose/padamose-common.h>
 #include <sqlite3.h>
 
+#define SQL_STR(...) #__VA_ARGS__
+
 namespace Padamose {
 
 class SQLite;
