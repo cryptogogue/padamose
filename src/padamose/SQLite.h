@@ -41,6 +41,7 @@ public:
     void            bind                    ( int key, s64 value );
     void            bind                    ( int key, string value );
     void            bind                    ( int key, u64 value );
+    bool            isNull                  ( int idx ) const;
                     SQLiteStatement         ( sqlite3_stmt* stmt );
                     ~SQLiteStatement        ();
     

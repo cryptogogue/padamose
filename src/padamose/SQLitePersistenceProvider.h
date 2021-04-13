@@ -41,18 +41,8 @@ protected:
     void                                                AbstractPersistenceProvider_begin                   () override;
     void                                                AbstractPersistenceProvider_commit                  () override;
     shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    ( AbstractVersionedBranch& from ) override;
-    void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreTag* snapshot ) override;
-
-    //----------------------------------------------------------------//
-    template < typename TYPE >
-    TYPE get ( string key, const TYPE value ) const {
-        return value;
-    }
-    
-    //----------------------------------------------------------------//
-    template < typename TYPE >
-    void set ( string key, const TYPE value ) {
-    }
+    void                                                AbstractPersistenceProvider_removeTag               ( const PersistenceTag& tag ) override;
+    void                                                AbstractPersistenceProvider_tagDidChange            ( const PersistenceTag& tag ) override;
 
 public:
 

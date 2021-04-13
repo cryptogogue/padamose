@@ -44,7 +44,8 @@ protected:
 
     //----------------------------------------------------------------//
     shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    ( AbstractVersionedBranch& from ) override;
-    void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreTag* snapshot ) override;
+    void                                                AbstractPersistenceProvider_removeTag               ( const PersistenceTag& tag ) override;
+    void                                                AbstractPersistenceProvider_tagDidChange            ( const PersistenceTag& tag ) override;
 
     //----------------------------------------------------------------//
     virtual void        AbstractStringStore_eraseString         ( string key ) = 0;

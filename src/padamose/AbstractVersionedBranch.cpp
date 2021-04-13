@@ -216,9 +216,7 @@ bool AbstractVersionedBranch::isPersistent () const {
     appends the contents of the client to the given branch.
 */
 void AbstractVersionedBranch::joinBranch ( AbstractVersionedBranch& branch ) {
-    this->begin ();
     this->AbstractVersionedBranch_joinBranch ( branch );
-    this->commit ();
 }
 
 //----------------------------------------------------------------//
@@ -380,6 +378,7 @@ void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other )
         AbstractVersionedBranchClient* client = *clientIt;
         other.insertClient ( *client );
         client->mSourceBranch = other.shared_from_this ();
+        client->AbstractVersionedBranchClient_sourceBranchDidChange ();
     }
     this->mClients.clear ();
     

@@ -59,6 +59,12 @@ void SQLiteStatement::bind ( int key, u64 value ) {
 }
 
 //----------------------------------------------------------------//
+bool SQLiteStatement::isNull ( int idx ) const {
+
+    return ( sqlite3_column_type ( this->mStmt, idx ) == SQLITE_NULL );
+}
+
+//----------------------------------------------------------------//
 template <>
 bool SQLiteStatement::getValue < bool >( int idx ) const {
 	

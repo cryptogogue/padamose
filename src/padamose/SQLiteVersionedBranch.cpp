@@ -22,7 +22,7 @@ void SQLiteVersionedBranch::deleteBranch () {
 
     SQLiteResult result = db.exec (
         
-        "DELETE FROM branches WHERE rowid IS ?1",
+        "DELETE FROM branches WHERE branchID IS ?1",
         
         //--------------------------------//
         [ & ]( SQLiteStatement& stmt ) {
@@ -64,7 +64,7 @@ void SQLiteVersionedBranch::loadFromStore () {
 
     SQLiteResult result = db.exec (
         
-        "SELECT sourceBranchID, version, top FROM branches WHERE rowid IS ?1",
+        "SELECT sourceBranchID, version, top FROM branches WHERE branchID IS ?1",
         
         //--------------------------------//
         [ & ]( SQLiteStatement& stmt ) {
@@ -98,7 +98,7 @@ void SQLiteVersionedBranch::setTopVersion ( u64 topVersion ) {
     
     SQLiteResult result = db.exec (
     
-        "UPDATE branches SET top = ?1 WHERE rowid IS ?2",
+        "UPDATE branches SET top = ?1 WHERE branchID IS ?2",
         
         //--------------------------------//
         [ & ]( SQLiteStatement& stmt ) {
@@ -131,9 +131,9 @@ SQLiteVersionedBranch::SQLiteVersionedBranch ( shared_ptr < SQLitePersistencePro
     
     assert ( provider );
     
-    SQLiteVersionedBranch* sourceBranch = dynamic_cast < SQLiteVersionedBranch* >( this->mSourceBranch.get ());
-    u64 sourceBranchID  = sourceBranch ? sourceBranch->mBranchID : 0;
-    u64 version         = from.getVersion ();
+    SQLiteVersionedBranch* sourceAsSQL     = dynamic_cast < SQLiteVersionedBranch* >( from.getSourceBranch ().get ());
+    u64 sourceBranchID                      = sourceAsSQL ? sourceAsSQL->mBranchID : 0;
+    u64 version                             = from.getVersion ();
     
     SQLite& db = this->getDB ();
         
@@ -286,7 +286,8 @@ size_t SQLiteVersionedBranch::AbstractVersionedBranch_getValueNextVersion ( stri
         
         //--------------------------------//
         [ & ]( int, const SQLiteStatement& stmt ) {
-                        
+            
+            assert ( !stmt.isNull ( 0 ));
             version = ( size_t )stmt.getValue < u64 >( 0 );
         }
     );
@@ -314,7 +315,8 @@ size_t SQLiteVersionedBranch::AbstractVersionedBranch_getValuePrevVersion ( stri
         
         //--------------------------------//
         [ & ]( int, const SQLiteStatement& stmt ) {
-                        
+            
+            assert ( !stmt.isNull ( 0 ));
             version = ( size_t )stmt.getValue < u64 >( 0 );
         }
     );
@@ -347,6 +349,8 @@ Variant SQLiteVersionedBranch::AbstractVersionedBranch_getValueVariant ( size_t 
         
         //--------------------------------//
         [ & ]( int, const SQLiteStatement& stmt ) {
+            
+            if ( stmt.isNull ( 4 )) return;
             
             int type = stmt.getValue < int >( 0 );
             
@@ -396,7 +400,9 @@ bool SQLiteVersionedBranch::AbstractVersionedBranch_getValueVersionExtents ( str
         
         //--------------------------------//
         [ & ]( int, const SQLiteStatement& stmt ) {
-                        
+            
+            if ( stmt.isNull ( 0 )) return;
+            
             first = ( size_t )stmt.getValue < u64 >( 0 );
             found = true;
         }
@@ -418,7 +424,8 @@ bool SQLiteVersionedBranch::AbstractVersionedBranch_getValueVersionExtents ( str
         
         //--------------------------------//
         [ & ]( int, const SQLiteStatement& stmt ) {
-                        
+            
+            assert ( !stmt.isNull ( 0 ));
             last = ( size_t )stmt.getValue < u64 >( 0 );
         }
     );
@@ -431,13 +438,15 @@ bool SQLiteVersionedBranch::AbstractVersionedBranch_getValueVersionExtents ( str
 // TODO: doxygen
 bool SQLiteVersionedBranch::AbstractVersionedBranch_hasKey ( string key, size_t upperBound ) const {
 
+    if (( this->mTopVersion == this->mVersion ) || ( this->mVersion > upperBound )) return false;
+
     SQLite& db = this->getDB ();
 
     bool exists = false;
     
     SQLiteResult result = db.exec (
     
-        "SELECT EXISTS ( SELECT 1 FROM tuples WHERE branchID = ?1 AND version < ?2 AND key = ?3 )",
+        "SELECT 1 FROM tuples WHERE branchID = ?1 AND version <= ?2 AND key = ?3",
         
         //--------------------------------//
         [ & ]( SQLiteStatement& stmt ) {
@@ -453,7 +462,7 @@ bool SQLiteVersionedBranch::AbstractVersionedBranch_hasKey ( string key, size_t 
     );
     result.reportWithAssert ();
 
-    return result;
+    return exists;
 }
 
 //----------------------------------------------------------------//
@@ -634,7 +643,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidChange 
     
     SQLiteResult result = db.exec (
     
-        "UPDATE branches SET sourceBranchID = ?1 WHERE rowid IS ?2",
+        "UPDATE branches SET sourceBranchID = ?1 WHERE branchID IS ?2",
         
         //--------------------------------//
         [ & ]( SQLiteStatement& stmt ) {

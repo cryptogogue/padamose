@@ -222,52 +222,61 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractStringStore::AbstractPe
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractStringStore::AbstractPersistenceProvider_tagDidChange ( string name, const VersionedStoreTag* snapshot ) {
+void AbstractStringStore::AbstractPersistenceProvider_removeTag ( const PersistenceTag& tag ) {
+
+    this->begin ();
+
+    string name = tag.getName ();
+    string keyForBranchIDByTagName = this->formatKeyForBranchIDByTagName ( name );
+    string keyForVersionByTagName = this->formatKeyForVersionByTagName ( name );
+    
+    string keyForTagListSize = this->formatKeyForTagListSize ();
+    size_t tagListSize = this->get < u64 >( keyForTagListSize, 0 );
+
+    size_t cursor = 0;
+    for ( size_t i = 0; i < tagListSize; ++i ) {
+        string keyForTagNameByTagListIndex = this->formatKeyForTagNameByTagListIndex ( i );
+        string moveName = this->get < string >( keyForTagNameByTagListIndex, "" );
+        assert ( moveName.size ());
+        if ( moveName != name ) {
+            keyForTagNameByTagListIndex = this->formatKeyForTagNameByTagListIndex ( cursor++ );
+            this->set < string >( keyForTagNameByTagListIndex, moveName );
+        }
+    }
+    assert ( cursor == ( tagListSize - 1 ));
+    this->eraseString ( keyForBranchIDByTagName );
+    this->eraseString ( keyForVersionByTagName );
+    
+    this->commit ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractStringStore::AbstractPersistenceProvider_tagDidChange ( const PersistenceTag& tag ) {
     
     this->begin ();
     
+    string name = tag.getName ();
     string keyForBranchIDByTagName = this->formatKeyForBranchIDByTagName ( name );
     string prevBranchID = this->get < string >( keyForBranchIDByTagName, "" );
     
     string keyForVersionByTagName = this->formatKeyForVersionByTagName ( name );
-    
-    if ( snapshot ) {
-    
-        string branchID = this->getIDForBranch ( *snapshot->getSourceBranch ());
-        assert ( branchID.size ());
         
-        if ( !prevBranchID.size ()) {
-            string keyForTagListSize = this->formatKeyForTagListSize ();
-            size_t tagListIndex = this->get < u64 >( keyForTagListSize, 0 );
-            
-            string keyForTagNameByTagListIndex = this->formatKeyForTagNameByTagListIndex ( tagListIndex );
-            this->set < string >( keyForTagNameByTagListIndex, name );
-            this->set < u64 >( keyForTagListSize, tagListIndex + 1 );
-        }
-        
-        this->set < string >( keyForBranchIDByTagName, branchID );
-        this->set < u64 >( keyForVersionByTagName, snapshot->getVersion ());
-    }
-    else if ( prevBranchID.size ()) {
+    string branchID = this->getIDForBranch ( *tag.getSourceBranch ());
+    assert ( branchID.size ());
     
+    if ( !prevBranchID.size ()) {
         string keyForTagListSize = this->formatKeyForTagListSize ();
-        size_t tagListSize = this->get < u64 >( keyForTagListSize, 0 );
+        size_t tagListIndex = this->get < u64 >( keyForTagListSize, 0 );
         
-        size_t cursor = 0;
-        for ( size_t i = 0; i < tagListSize; ++i ) {
-            string keyForTagNameByTagListIndex = this->formatKeyForTagNameByTagListIndex ( i );
-            string moveName = this->get < string >( keyForTagNameByTagListIndex, "" );
-            assert ( moveName.size ());
-            if ( moveName != name ) {
-                keyForTagNameByTagListIndex = this->formatKeyForTagNameByTagListIndex ( cursor++ );
-                this->set < string >( keyForTagNameByTagListIndex, moveName );
-            }
-        }
-        assert ( cursor == ( tagListSize - 1 ));
-        this->eraseString ( keyForBranchIDByTagName );
-        this->eraseString ( keyForVersionByTagName );
+        string keyForTagNameByTagListIndex = this->formatKeyForTagNameByTagListIndex ( tagListIndex );
+        this->set < string >( keyForTagNameByTagListIndex, name );
+        this->set < u64 >( keyForTagListSize, tagListIndex + 1 );
     }
     
+    this->set < string >( keyForBranchIDByTagName, branchID );
+    this->set < u64 >( keyForVersionByTagName, tag.getVersion ());
+
     this->commit ();
 }
 

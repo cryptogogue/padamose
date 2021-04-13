@@ -9,8 +9,32 @@
 
 namespace Padamose {
 
+class AbstractPersistenceProvider;
 class AbstractPersistentVersionedBranch;
 class AbstractVersionedBranch;
+
+//================================================================//
+// PersistenceTag
+//================================================================//
+class PersistenceTag :
+    public VersionedStoreTag {
+protected:
+
+    friend class AbstractPersistenceProvider;
+
+    string                          mTagName;
+    AbstractPersistenceProvider*    mOwner;
+
+    //----------------------------------------------------------------//
+    void            AbstractVersionedBranchClient_sourceBranchDidChange     () override;
+
+public:
+
+    //----------------------------------------------------------------//
+    string          getName                 () const;
+                    PersistenceTag          ();
+                    ~PersistenceTag         ();
+};
 
 //================================================================//
 // AbstractPersistenceProvider
@@ -20,22 +44,24 @@ class AbstractPersistenceProvider {
 protected:
 
     friend class AbstractPersistentVersionedBranch;
+    friend class PersistenceTag;
     friend class VersionedStoreTag;
     friend class VersionedStoreTag;
 
-    map < string, VersionedStoreTag >       mTags;
-    bool                                    mIsFrozen;
+    map < string, PersistenceTag >      mTags;
+    bool                                mIsFrozen;
 
     //----------------------------------------------------------------//
-    void                            freeze          ();
-    const VersionedStoreTag&        getTag          ( string branchName ) const;
-    bool                            hasTag          ( string branchName ) const;
+    void                                freeze          ();
+    const VersionedStoreTag&            getTag          ( string branchName ) const;
+    bool                                hasTag          ( string branchName ) const;
     
     //----------------------------------------------------------------//
     virtual void                                                AbstractPersistenceProvider_begin                   () = 0;
     virtual void                                                AbstractPersistenceProvider_commit                  () = 0;
     virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    ( AbstractVersionedBranch& from ) = 0;
-    virtual void                                                AbstractPersistenceProvider_tagDidChange            ( string name, const VersionedStoreTag* snapshot ) = 0;
+    virtual void                                                AbstractPersistenceProvider_removeTag               ( const PersistenceTag& tag ) = 0;
+    virtual void                                                AbstractPersistenceProvider_tagDidChange            ( const PersistenceTag& tag ) = 0;
     
 public:
 
@@ -48,6 +74,7 @@ public:
     bool                                                isFrozen                                () const;
     shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ( AbstractVersionedBranch& from );
     void                                                persist                                 ( VersionedStoreTag& tag, string tagName );
+    void                                                remove                                  ( string tagName );
     VersionedStoreTag                                   restore                                 ( string tagName );
 };
 

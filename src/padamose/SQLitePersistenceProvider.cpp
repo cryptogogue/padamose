@@ -123,6 +123,7 @@ void SQLitePersistenceProvider::open ( string filename, int flags ) {
     // branches
     result = this->mDB.exec ( SQL_STR (
         CREATE TABLE IF NOT EXISTS branches (
+            branchID        INTEGER                 PRIMARY KEY,
             sourceBranchID  INTEGER                 NOT NULL DEFAULT 0,
             version         INTEGER                 NOT NULL DEFAULT 0,
             top             INTEGER                 NOT NULL DEFAULT 0,
@@ -148,7 +149,7 @@ void SQLitePersistenceProvider::open ( string filename, int flags ) {
     
     // indices
 
-    result = this->mDB.exec ( SQL_STR ( CREATE UNIQUE INDEX IF NOT EXISTS tuplesIndex ON tuples ( branchID, version, key )));
+    result = this->mDB.exec ( SQL_STR ( CREATE UNIQUE INDEX IF NOT EXISTS tuplesIndex ON tuples ( version, key, branchID )));
     result.reportWithAssert ();
     
     this->loadFromStore ();
@@ -197,42 +198,52 @@ shared_ptr < AbstractPersistentVersionedBranch > SQLitePersistenceProvider::Abst
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void SQLitePersistenceProvider::AbstractPersistenceProvider_tagDidChange ( string name, const VersionedStoreTag* snapshot ) {
+void SQLitePersistenceProvider::AbstractPersistenceProvider_removeTag ( const PersistenceTag& tag ) {
+
+    string name = tag.getName ();
 
     assert ( this->mDB );
 
     this->begin ();
+
+    SQLiteResult result = this->mDB.exec (
+
+        "DELETE FROM tags WHERE name = ?1",
+
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, name );
+        }
+    );
+    result.reportWithAssert ();
     
-    if ( snapshot ) {
+    this->commit ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void SQLitePersistenceProvider::AbstractPersistenceProvider_tagDidChange ( const PersistenceTag& tag ) {
+
+    string name = tag.getName ();
+
+    assert ( this->mDB );
+
+    this->begin ();
+        
+    u64 branchID = this->getIDForBranch ( *tag.getSourceBranch ());
     
-        u64 branchID = this->getIDForBranch ( *snapshot->getSourceBranch ());
-        
-        SQLiteResult result = this->mDB.exec (
-        
-            "INSERT OR REPLACE INTO tags ( name, branchID, version ) VALUES ( ?1, ?2, ?3 )",
-            
-            //--------------------------------//
-            [ & ]( SQLiteStatement& stmt ) {
-                stmt.bind ( 1, name );
-                stmt.bind ( 2, branchID );
-                stmt.bind ( 3, ( u64 )snapshot->getVersion ());
-            }
-        );
-        result.reportWithAssert ();
-    }
-    else {
+    SQLiteResult result = this->mDB.exec (
     
-        SQLiteResult result = this->mDB.exec (
+        "INSERT OR REPLACE INTO tags ( name, branchID, version ) VALUES ( ?1, ?2, ?3 )",
         
-            "DELETE FROM tags WHERE name = ?1",
-            
-            //--------------------------------//
-            [ & ]( SQLiteStatement& stmt ) {
-                stmt.bind ( 1, name );
-            }
-        );
-        result.reportWithAssert ();
-    }
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, name );
+            stmt.bind ( 2, branchID );
+            stmt.bind ( 3, ( u64 )tag.getVersion ());
+        }
+    );
+    result.reportWithAssert ();
     
     this->commit ();
 }
