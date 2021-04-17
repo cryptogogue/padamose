@@ -55,6 +55,7 @@ protected:
 
     //----------------------------------------------------------------//
     void            lock                            ();
+    void            optimizeInner                   ();
     void            transferClients                 ( AbstractVersionedBranch& other );
     void            truncate                        ( size_t topVersion );
     void            unlock                          ();

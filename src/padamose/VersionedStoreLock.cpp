@@ -13,28 +13,25 @@ namespace Padamose {
 //----------------------------------------------------------------//
 // TODO: doxygen
 void VersionedStoreLock::lock ( const HasVersionedBranch& other ) {
-    this->lock ( other.getSourceBranch (), other.getVersion ());
-}
 
-//----------------------------------------------------------------//
-// TODO: doxygen
-void VersionedStoreLock::lock ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
+    this->unlock ();
+
+    this->mSourceBranch = other.getSourceBranch ();
+    this->mVersion = other.getVersion ();
 
     if ( this->mSourceBranch ) {
-        this->mSourceBranch->unlock ();
+        this->mSourceBranch->lock ();
     }
-    
-    if ( branch ) {
-        branch->lock ();
-    }
-
-    this->mSourceBranch = branch;
-    this->mVersion = version;
 }
 
 //----------------------------------------------------------------//
 void VersionedStoreLock::unlock () {
-    this->lock ( NULL, 0 );
+    
+    if ( this->mSourceBranch ) {
+        this->mSourceBranch->unlock ();
+        this->mSourceBranch->optimize ();
+        this->mSourceBranch = NULL;
+    }
 }
 
 //----------------------------------------------------------------//
@@ -43,7 +40,7 @@ VersionedStoreLock::VersionedStoreLock () {
 
 //----------------------------------------------------------------//
 VersionedStoreLock::VersionedStoreLock ( const HasVersionedBranch& other ) {
-    this->lock ( other.getSourceBranch (), other.getVersion ());
+    this->lock ( other );
 }
 
 //----------------------------------------------------------------//

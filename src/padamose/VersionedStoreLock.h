@@ -15,11 +15,7 @@ class AbstractPersistenceProvider;
 //================================================================//
 // TODO: doxygen
 class VersionedStoreLock :
-    public virtual HasVersionedBranch {
-    
-    //----------------------------------------------------------------//
-    void                        lock                            ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
-    
+    public virtual HasVersionedBranch {    
 public:
 
     //----------------------------------------------------------------//
@@ -31,7 +27,7 @@ public:
     
     //----------------------------------------------------------------//
     VersionedStoreLock& operator = ( HasVersionedBranch& other ) {
-        this->lock ( other.getSourceBranch (), other.getVersion ());
+        this->lock ( other );
         return *this;
     }
 };

@@ -253,17 +253,31 @@ void AbstractVersionedBranch::lock () {
     count maintained by the VersionedValue object.
 */
 void AbstractVersionedBranch::optimize () {
+    
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, __PRETTY_FUNCTION__ );
 
-    if ( this->isLocked ()) return; // don't allow join if there are any direct references to the current branch. (May be over-cautious.)
+    if ( this->isLocked ()) return; // don't allow join if there are any direct references to the current branch.
+
+    this->begin ();
 
     if ( this->mSourceBranch ) {
         this->mSourceBranch->optimize ();
     }
 
-    this->begin ();
-
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::optimize ()" );
+    this->optimizeInner ();
     
+    this->commit ();
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::optimizeInner () {
+
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, __PRETTY_FUNCTION__ );
+
+    // recursive optimize may have removed clients
+    if ( !this->mClients.size ()) return;
+
     // use one loop to find the immutable top and to identify a child branch that
     // may be joined to the parent branch.
     
@@ -330,9 +344,8 @@ void AbstractVersionedBranch::optimize () {
     if ( bestJoin ) {
         assert ( bestJoin->getVersionDependency () >= immutableTop );
         bestJoin->joinBranch ( *this );
+        this->optimizeInner ();
     }
-    
-    this->commit ();
 }
 
 //----------------------------------------------------------------//
@@ -406,9 +419,6 @@ void AbstractVersionedBranch::unlock () {
     
         if ( this->mSourceBranch ) {
             this->mSourceBranch->unlock ();
-        }
-        else if ( this->mLockCount == 0 ) {
-            this->optimize ();
         }
     }
     
