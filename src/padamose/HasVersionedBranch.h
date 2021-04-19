@@ -32,15 +32,15 @@ protected:
     size_t                                          mVersion;
 
     //----------------------------------------------------------------//
-    void setBranch ( const HasVersionedBranch& other ) {
-        this->mSourceBranch = other.mSourceBranch;
-        this->mVersion = other.mVersion;
+    void setBranch ( const AbstractHasVersionedBranch& other ) {
+        this->mSourceBranch     = other.getSourceBranch ();
+        this->mVersion          = other.getVersion ();
     }
 
     //----------------------------------------------------------------//
     void setBranch ( shared_ptr < AbstractVersionedBranch > branch, size_t version ) {
-        this->mSourceBranch = branch;
-        this->mVersion = version;
+        this->mSourceBranch     = branch;
+        this->mVersion          = version;
     }
 
     //----------------------------------------------------------------//

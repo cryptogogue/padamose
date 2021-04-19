@@ -45,7 +45,7 @@ protected:
     };
 
     /// The anchor snapshot.
-    const VersionedStoreLock&   mAnchor;
+    VersionedStoreLock          mAnchor;
     
     /// Internal state of the iterator.
     int                         mState;
@@ -85,8 +85,8 @@ public:
     bool                next                                ();
     bool                prev                                ();
     void                seek                                ( size_t version );
-                        VersionedStoreIterator              ( const VersionedStoreLock& lock );
-                        VersionedStoreIterator              ( const VersionedStoreLock& lock, size_t version );
+                        VersionedStoreIterator              ( const AbstractHasVersionedBranch& other );
+                        VersionedStoreIterator              ( const AbstractHasVersionedBranch& other, size_t version );
     virtual             ~VersionedStoreIterator             ();
 };
 

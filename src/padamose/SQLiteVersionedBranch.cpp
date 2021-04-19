@@ -571,7 +571,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t ver
             stmt.bind ( 4, ( u64 )type );
             
             string stringVal;
-            int intVal      = 0;
+            s64 intVal      = 0;
             double realVal  = 0;
             
             switch ( type ) {
@@ -582,11 +582,14 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t ver
                     realVal = value.get < double >();
                     break;
                 case Variant::INT64_VARIANT:
-                    intVal = ( int )value.get < u64 >();
+                    intVal = value.get < s64 >();
                     break;
-                case Variant::UINT64_VARIANT:
-                    intVal = ( int )value.get < u64 >();
+                case Variant::UINT64_VARIANT: {
+                    u64 uintVal = value.get < u64 >();
+                    intVal = ( s64 )uintVal;
+                    assert ( intVal == uintVal );
                     break;
+                }
                 case Variant::STRING_VARIANT:
                     stringVal = value.get < string >();
                     break;

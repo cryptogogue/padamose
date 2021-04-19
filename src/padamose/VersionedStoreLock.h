@@ -19,14 +19,14 @@ class VersionedStoreLock :
 public:
 
     //----------------------------------------------------------------//
-    void                        lock                            ( const HasVersionedBranch& other );
+    void                        lock                            ( const AbstractHasVersionedBranch& other );
     void                        unlock                          ();
                                 VersionedStoreLock              ();
-                                VersionedStoreLock              ( const HasVersionedBranch& other );
+                                VersionedStoreLock              ( const AbstractHasVersionedBranch& other );
     virtual                     ~VersionedStoreLock             ();
     
     //----------------------------------------------------------------//
-    VersionedStoreLock& operator = ( HasVersionedBranch& other ) {
+    VersionedStoreLock& operator = ( AbstractHasVersionedBranch& other ) {
         this->lock ( other );
         return *this;
     }

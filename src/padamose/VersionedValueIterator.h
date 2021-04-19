@@ -49,7 +49,7 @@ protected:
     };
 
     /// The anchor snapshot.
-    const VersionedStoreLock&   mAnchor;
+    VersionedStoreLock          mAnchor;
     
     /// Key of the value being iterated.
     string                      mKey;
@@ -271,8 +271,8 @@ public:
         \param  client      Snapshot to use as the upper bound for iteration.
         \param  key         Key of the value to be iterated.
     */
-    VersionedValueIterator ( const VersionedStoreLock& lock, string key ) :
-        mAnchor ( lock ),
+    VersionedValueIterator ( const AbstractHasVersionedBranch& other, string key ) :
+        mAnchor ( other ),
         mKey ( key ) {
         
         HasVersionedBranch::BranchPtr sourceBranch = this->mAnchor.getSourceBranch ();

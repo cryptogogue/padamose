@@ -12,7 +12,7 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void VersionedStoreLock::lock ( const HasVersionedBranch& other ) {
+void VersionedStoreLock::lock ( const AbstractHasVersionedBranch& other ) {
 
     this->unlock ();
 
@@ -39,7 +39,7 @@ VersionedStoreLock::VersionedStoreLock () {
 }
 
 //----------------------------------------------------------------//
-VersionedStoreLock::VersionedStoreLock ( const HasVersionedBranch& other ) {
+VersionedStoreLock::VersionedStoreLock ( const AbstractHasVersionedBranch& other ) {
     this->lock ( other );
 }
 

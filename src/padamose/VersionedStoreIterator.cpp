@@ -90,8 +90,8 @@ void VersionedStoreIterator::seek ( size_t version ) {
     
         shared_ptr < AbstractVersionedBranch > branch = this->mSourceBranch;
     
-        while ( branch && !(( branch->mVersion <= version ) && ( version <= this->mTopVersion ))) {
-            this->mTopVersion = branch->mVersion - 1;
+        while ( branch && ( branch->mVersion > version )) {
+            this->mTopVersion = branch->mVersion;
             branch = branch->mSourceBranch;
         }
         assert ( branch );
@@ -101,10 +101,10 @@ void VersionedStoreIterator::seek ( size_t version ) {
     
         this->mVersion = version;
     
-        if ( this->mVersion > this->mTopVersion ) {
+        if ( this->mVersion >= this->mTopVersion ) {
             
             this->setBranch ( this->mAnchor ); // overwrites this->mVersion
-            this->mTopVersion = this->mVersion;
+            this->mTopVersion = this->mVersion + 1;
             
             if ( version < this->mVersion ) {
                 this->seek ( version );
@@ -120,13 +120,13 @@ void VersionedStoreIterator::seek ( size_t version ) {
 
     \param  client          Snapshot to use as the upper bound for iteration.
 */
-VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreLock& lock ) :
-    mAnchor ( lock ) {
+VersionedStoreIterator::VersionedStoreIterator ( const AbstractHasVersionedBranch& other ) :
+    mAnchor ( other ) {
 
     ConstBranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
 
     if ( sourceBranch && ( sourceBranch->getTopVersion () > 0 )) {
-        this->setBranch ( lock );
+        this->setBranch ( other );
         this->mTopVersion = this->mVersion + 1;
     }
     this->mState = sourceBranch ? VALID : EMPTY;
@@ -140,8 +140,8 @@ VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreLock& lock 
     \param  client          Snapshot to use as the upper bound for iteration.
     \param  version         Version to seek back to. Must be equal to or less than the upper bound.
 */
-VersionedStoreIterator::VersionedStoreIterator ( const VersionedStoreLock& lock, size_t version ) :
-    VersionedStoreIterator ( lock ) {
+VersionedStoreIterator::VersionedStoreIterator ( const AbstractHasVersionedBranch& other, size_t version ) :
+    VersionedStoreIterator ( other ) {
 
     this->seek ( version );
 }
