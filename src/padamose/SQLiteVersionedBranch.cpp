@@ -587,7 +587,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t ver
                 case Variant::UINT64_VARIANT: {
                     u64 uintVal = value.get < u64 >();
                     intVal = ( s64 )uintVal;
-                    assert ( intVal == uintVal );
+                    assert ( *(( u32* )&intVal ) == *(( u32* )&uintVal ));
                     break;
                 }
                 case Variant::STRING_VARIANT:
