@@ -132,6 +132,8 @@ SQLiteVersionedBranch::SQLiteVersionedBranch ( shared_ptr < SQLitePersistencePro
     
     assert ( provider );
     
+    provider->begin ();
+    
     SQLiteVersionedBranch* sourceAsSQL     = dynamic_cast < SQLiteVersionedBranch* >( from.getSourceBranch ().get ());
     u64 sourceBranchID                      = sourceAsSQL ? sourceAsSQL->mBranchID : 0;
     u64 version                             = from.getVersion ();
@@ -153,6 +155,18 @@ SQLiteVersionedBranch::SQLiteVersionedBranch ( shared_ptr < SQLitePersistencePro
     
     this->mBranchID = sqlite3_last_insert_rowid ( db );
     
+    // clean up any straggling tuples; sqlite seems to occasionally reuse id's
+    result = db.exec (
+    
+        "DELETE FROM tuples WHERE branchID = $1",
+        
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, this->mBranchID );
+        }
+    );
+    result.reportWithAssert ();
+    
     // set the source branch and version manually
     this->mSourceBranch     = from.getSourceBranch ();
     this->mVersion          = version;
@@ -161,6 +175,8 @@ SQLiteVersionedBranch::SQLiteVersionedBranch ( shared_ptr < SQLitePersistencePro
     if ( this->mSourceBranch ) {
         this->mSourceBranch->insertClient ( *this );
     }
+    
+    provider->commit ();
 }
 
 //----------------------------------------------------------------//
