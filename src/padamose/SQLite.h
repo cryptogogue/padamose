@@ -125,7 +125,7 @@ public:
     SQLiteResult            exec                    ( string sql );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow );
-    SQLiteResult            open                    ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE );
+    SQLiteResult            open                    ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, bool enableWAL = false );
                             SQLite                  ();
                             SQLite                  ( string filename );
                             ~SQLite                 ();

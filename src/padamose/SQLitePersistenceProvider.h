@@ -52,15 +52,15 @@ public:
     }
 
     //----------------------------------------------------------------//
-    void                open                            ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE );
+    void                open                            ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, bool enableWAL = false );
                         SQLitePersistenceProvider       ();
     virtual             ~SQLitePersistenceProvider      ();
 
     //----------------------------------------------------------------//
-    static shared_ptr < SQLitePersistenceProvider > make ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE ) {
+    static shared_ptr < SQLitePersistenceProvider > make ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, bool enableWAL = false ) {
 
         shared_ptr < SQLitePersistenceProvider > store = make_shared < SQLitePersistenceProvider >();
-        store->open ( filename, flags );
+        store->open ( filename, flags, enableWAL );
         return store;
     }
 };

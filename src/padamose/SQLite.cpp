@@ -294,7 +294,7 @@ SQLiteResult SQLite::innerExec ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow ) 
 }
 
 //----------------------------------------------------------------//
-SQLiteResult SQLite::open ( string filename, int flags ) {
+SQLiteResult SQLite::open ( string filename, int flags, bool enableWAL ) {
 
     SQLiteResult result ( *this, sqlite3_open_v2 ( filename.c_str (), &this->mDB, flags, NULL ));
     if ( !result ) {
@@ -302,17 +302,19 @@ SQLiteResult SQLite::open ( string filename, int flags ) {
         this->mDB = NULL;
         return result;
     }
-    
-    string mode;
-    SQLiteResult pragmaResult = this->exec ( "PRAGMA journal_mode=WAL", NULL,
-        
-        //--------------------------------//
-        [ & ]( int, const SQLiteStatement& stmt ) {
-            mode = stmt.getValue < string >( 0 );
-        }
-    );
-    pragmaResult.reportWithAssert ();
-    assert (( mode == "wal" ) || ( mode == "" ));
+
+    if ( enableWAL ) {
+        string mode;
+        SQLiteResult pragmaResult = this->exec ( "PRAGMA journal_mode=WAL", NULL,
+            
+            //--------------------------------//
+            [ & ]( int, const SQLiteStatement& stmt ) {
+                mode = stmt.getValue < string >( 0 );
+            }
+        );
+        pragmaResult.reportWithAssert ();
+        assert (( mode == "wal" ) || ( mode == "" ));
+    }
     
     return result;
 }
