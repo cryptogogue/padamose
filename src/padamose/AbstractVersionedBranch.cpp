@@ -342,7 +342,7 @@ void AbstractVersionedBranch::optimizeInner () {
     
     // if we have a join candidate, perform the join.
     if ( bestJoin ) {
-        assert ( bestJoin->getVersionDependency () >= immutableTop );
+        assert ( immutableTop <= bestJoin->mVersion );
         bestJoin->joinBranch ( *this );
         this->optimizeInner ();
     }
