@@ -566,6 +566,12 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t ver
 
     SQLite& db = this->getDB ();
 
+    // HACK: give some cycles back
+    static int count = 0;
+    if (( count++ % 32 ) == 0 ) {
+        sqlite3_sleep ( 10 );
+    }
+
     //"INSERT OR REPLACE INTO tuples ( branchID, version, key, type, stringVal, intVal, realVal ) VALUES ( ?1, ?2, ?3, ?4, ?5, ?6, ?7 ) ON CONFLICT DO NOTHING",
 
     SQLiteResult result = db.exec (
