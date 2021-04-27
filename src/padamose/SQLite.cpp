@@ -294,16 +294,18 @@ SQLiteResult SQLite::innerExec ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow ) 
 }
 
 //----------------------------------------------------------------//
-SQLiteResult SQLite::open ( string filename, int flags, bool enableWAL ) {
+SQLiteResult SQLite::open ( string filename, SQLiteConfig config ) {
 
-    SQLiteResult result ( *this, sqlite3_open_v2 ( filename.c_str (), &this->mDB, flags, NULL ));
+    assert ( config.mJournalMode != SQLiteConfig::JOURNAL_MODE_UNKNOWN );
+
+    SQLiteResult result ( *this, sqlite3_open_v2 ( filename.c_str (), &this->mDB, config.mFlags, NULL ));
     if ( !result ) {
         sqlite3_close ( this->mDB );
         this->mDB = NULL;
         return result;
     }
 
-    if ( enableWAL ) {
+    if ( config.mJournalMode == SQLiteConfig::JOURNAL_MODE_WAL ) {
         string mode;
         SQLiteResult pragmaResult = this->exec ( "PRAGMA journal_mode=WAL", NULL,
             

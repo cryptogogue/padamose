@@ -20,9 +20,9 @@ void SQLiteStringStore::clear () {
 }
 
 //----------------------------------------------------------------//
-void SQLiteStringStore::open ( string filename, int flags ) {
+void SQLiteStringStore::open ( string filename, SQLiteConfig config ) {
 
-    this->mDB.open ( filename, flags );
+    this->mDB.open ( filename, config );
     assert ( this->mDB );
 
     this->mDB.exec ( "CREATE TABLE IF NOT EXISTS padamose ( key TEXT PRIMARY KEY, value TEXT NOT NULL )" );

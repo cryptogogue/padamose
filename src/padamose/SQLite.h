@@ -87,10 +87,43 @@ public:
 };
 
 //================================================================//
+// SQLiteConfig
+//================================================================//
+class SQLiteConfig {
+public:
+
+    enum JournalMode {
+        JOURNAL_MODE_ROLLBACK,
+        JOURNAL_MODE_WAL,
+        JOURNAL_MODE_UNKNOWN,
+    };
+
+    int             mFlags;
+    JournalMode     mJournalMode;
+    
+    //----------------------------------------------------------------//
+    SQLiteConfig () :
+        mFlags ( SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE ),
+        mJournalMode ( JOURNAL_MODE_WAL ) {
+    }
+    
+    //----------------------------------------------------------------//
+    SQLiteConfig ( int flags, JournalMode journalMode ) :
+        mFlags ( flags ),
+        mJournalMode ( journalMode ) {
+    }
+};
+
+//================================================================//
 // SQLite
 //================================================================//
 class SQLite {
 public:
+
+//    enum ExecType {
+//        READ,
+//        WRITE,
+//    };
 
     typedef std::function < void ( SQLiteStatement& )>                  SQLPrepareCallbackFunc;
     typedef std::function < void ( int, const SQLiteStatement& )>       SQLRowCallbackFunc;
@@ -125,7 +158,7 @@ public:
     SQLiteResult            exec                    ( string sql );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow );
-    SQLiteResult            open                    ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, bool enableWAL = false );
+    SQLiteResult            open                    ( string filename, SQLiteConfig config = SQLiteConfig ());
                             SQLite                  ();
                             SQLite                  ( string filename );
                             ~SQLite                 ();

@@ -31,11 +31,11 @@ protected:
     std::map < const AbstractVersionedBranch*, u64 >        mIDsByBranch;
     
     //----------------------------------------------------------------//
-    shared_ptr < SQLiteVersionedBranch >            affirmBranch                            ( u64 branchID );
-    void                                            eraseBranch                             ( SQLiteVersionedBranch& branch );
-    u64                                             getIDForBranch                          ( const AbstractVersionedBranch& branch ) const;
-    void                                            insertBranch                            ( shared_ptr < SQLiteVersionedBranch > branch );
-    void                                            loadFromStore                           ();
+    shared_ptr < SQLiteVersionedBranch >                affirmBranch                            ( u64 branchID );
+    void                                                eraseBranch                             ( SQLiteVersionedBranch& branch );
+    u64                                                 getIDForBranch                          ( const AbstractVersionedBranch& branch ) const;
+    void                                                insertBranch                            ( shared_ptr < SQLiteVersionedBranch > branch );
+    void                                                loadFromStore                           ();
 
     //----------------------------------------------------------------//
     void                                                AbstractPersistenceProvider_begin                   () override;
@@ -52,15 +52,15 @@ public:
     }
 
     //----------------------------------------------------------------//
-    void                open                            ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, bool enableWAL = false );
+    void                open                            ( string filename, SQLiteConfig config = SQLiteConfig ());
                         SQLitePersistenceProvider       ();
     virtual             ~SQLitePersistenceProvider      ();
 
     //----------------------------------------------------------------//
-    static shared_ptr < SQLitePersistenceProvider > make ( string filename, int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, bool enableWAL = false ) {
+    static shared_ptr < SQLitePersistenceProvider > make ( string filename, SQLiteConfig config = SQLiteConfig ()) {
 
         shared_ptr < SQLitePersistenceProvider > store = make_shared < SQLitePersistenceProvider >();
-        store->open ( filename, flags, enableWAL );
+        store->open ( filename, config );
         return store;
     }
 };

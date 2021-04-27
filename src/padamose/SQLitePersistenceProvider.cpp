@@ -102,9 +102,9 @@ void SQLitePersistenceProvider::loadFromStore () {
 }
 
 //----------------------------------------------------------------//
-void SQLitePersistenceProvider::open ( string filename, int flags, bool enableWAL ) {
+void SQLitePersistenceProvider::open ( string filename, SQLiteConfig config ) {
 
-    SQLiteResult result = this->mDB.open ( filename, flags, enableWAL );
+    SQLiteResult result = this->mDB.open ( filename, config );
     result.reportWithAssert ();
     assert ( this->mDB );
     
