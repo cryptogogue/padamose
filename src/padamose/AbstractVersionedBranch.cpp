@@ -25,18 +25,6 @@ AbstractVersionedBranch::~AbstractVersionedBranch () {
 }
 
 //----------------------------------------------------------------//
-// TODO: doxygen
-void AbstractVersionedBranch::begin () {
-    this->AbstractVersionedBranch_begin ();
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void AbstractVersionedBranch::commit () {
-    this->AbstractVersionedBranch_commit ();
-}
-
-//----------------------------------------------------------------//
 /** \brief Returns the total number of dependencies (i.e. clients).
 
     \return     Total clients.
@@ -98,9 +86,15 @@ size_t AbstractVersionedBranch::findImmutableTop ( const AbstractVersionedBranch
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-shared_ptr < AbstractVersionedBranch > AbstractVersionedBranch::fork ( size_t baseVersion ) {
+shared_ptr < AbstractVersionedBranch > AbstractVersionedBranch::fork ( AbstractVersionedBranchClient& client, size_t baseVersion ) {
 
-    return this->AbstractVersionedBranch_fork ( baseVersion );
+    shared_ptr < AbstractVersionedBranch > child = this->AbstractVersionedBranch_fork ( baseVersion );
+    
+    this->eraseClient ( client );
+    client.mSourceBranch = child;
+    child->insertClient ( client );
+    
+    return child;
 }
 
 //----------------------------------------------------------------//
@@ -258,7 +252,7 @@ void AbstractVersionedBranch::optimize () {
 
     if ( this->isLocked ()) return; // don't allow join if there are any direct references to the current branch.
 
-    this->begin ();
+//    this->begin ();
 
     if ( this->mSourceBranch ) {
         this->mSourceBranch->optimize ();
@@ -266,7 +260,7 @@ void AbstractVersionedBranch::optimize () {
 
     this->optimizeInner ();
     
-    this->commit ();
+//    this->commit ();
 }
 
 //----------------------------------------------------------------//
@@ -403,15 +397,11 @@ void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other )
 void AbstractVersionedBranch::truncate ( size_t topVersion ) {
 
     if ( this->isLocked ()) return;
-    this->begin ();
     this->AbstractVersionedBranch_truncate ( topVersion );
-    this->commit ();
 }
 
 //----------------------------------------------------------------//
 void AbstractVersionedBranch::unlock () {
-
-    this->begin ();
 
     if ( this->mLockCount ) {
     
@@ -421,23 +411,11 @@ void AbstractVersionedBranch::unlock () {
             this->mSourceBranch->unlock ();
         }
     }
-    
-    this->commit ();
 }
 
 //================================================================//
 // overrides
 //================================================================//
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void AbstractVersionedBranch::AbstractVersionedBranch_begin () {
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void AbstractVersionedBranch::AbstractVersionedBranch_commit () {
-}
 
 //----------------------------------------------------------------//
 // TODO: doxygen

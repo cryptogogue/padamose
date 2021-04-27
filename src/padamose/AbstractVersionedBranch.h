@@ -65,8 +65,6 @@ protected:
     void            AbstractVersionedBranchClient_print                     ( string prefix ) const override;
 
     //----------------------------------------------------------------//
-    virtual void            AbstractVersionedBranch_begin                       ();
-    virtual void            AbstractVersionedBranch_commit                      ();
     virtual BranchPtr       AbstractVersionedBranch_fork                        ( size_t baseVersion ) = 0;
     virtual size_t          AbstractVersionedBranch_getTopVersion               () const = 0;
     virtual size_t          AbstractVersionedBranch_getValueNextVersion         ( string key, size_t version ) const = 0;
@@ -86,12 +84,10 @@ public:
     //----------------------------------------------------------------//
                     AbstractVersionedBranch         ();
                     ~AbstractVersionedBranch        ();
-    void            begin                           ();
-    void            commit                          ();
     size_t          countDependencies               () const;
     void            eraseClient                     ( AbstractVersionedBranchClient& client );
     size_t          findImmutableTop                ( const AbstractVersionedBranchClient* ignore = NULL ) const;
-    BranchPtr       fork                            ( size_t baseVersion );
+    BranchPtr       fork                            ( AbstractVersionedBranchClient& client, size_t baseVersion );
     size_t          getTopVersion                   () const;
     size_t          getValueNextVersion             ( string key, size_t version ) const;
     size_t          getValuePrevVersion             ( string key, size_t version ) const;

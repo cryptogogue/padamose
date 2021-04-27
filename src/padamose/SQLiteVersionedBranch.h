@@ -36,8 +36,6 @@ private:
 
     //----------------------------------------------------------------//
     ConstProviderPtr    AbstractPersistentVersionedBranch_getProvider           () const override;
-    void                AbstractVersionedBranch_begin                           () override;
-    void                AbstractVersionedBranch_commit                          () override;
     BranchPtr           AbstractVersionedBranch_fork                            ( size_t baseVersion ) override;
     size_t              AbstractVersionedBranch_getTopVersion                   () const override;
     size_t              AbstractVersionedBranch_getValueNextVersion             ( string key, size_t version ) const override;

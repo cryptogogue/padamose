@@ -43,8 +43,6 @@ size_t AbstractHasVersionedBranch::getVersion () const {
     return this->getRef ().mVersion;
 }
 
-
-
 //----------------------------------------------------------------//
 /** \brief Recursively searches the branch to find the value for the key. The most recent version
     equal to or earlier will be returned.

@@ -127,11 +127,7 @@ void AbstractVersionedStoreTag::prepareForSetValue () {
     
         LGN_LOG ( PDM_FILTER_ROOT, INFO, "SPLIT!" );
     
-        tag.mSourceBranch->begin ();
-        tag.mSourceBranch->eraseClient ( tag );
-        tag.mSourceBranch = tag.mSourceBranch->fork ( tag.mVersion );
-        tag.mSourceBranch->insertClient ( tag );
-        tag.mSourceBranch->commit ();
+        tag.mSourceBranch = tag.mSourceBranch->fork ( tag, tag.mVersion );
     }
 }
 
@@ -165,9 +161,7 @@ void AbstractVersionedStoreTag::pushVersion () {
     
         LGN_LOG ( PDM_FILTER_ROOT, INFO, "SPLIT" );
     
-        tag.mSourceBranch->eraseClient ( tag );
-        tag.mSourceBranch = tag.mSourceBranch->fork ( tag.mVersion - 1 );
-        tag.mSourceBranch->insertClient ( tag );
+        tag.mSourceBranch->fork ( tag, tag.mVersion - 1 );
     }
 }
 
@@ -209,9 +203,7 @@ void AbstractVersionedStoreTag::revert ( size_t version ) {
         tag.mSourceBranch = branch;
         tag.mVersion = version;
         
-        tag.mSourceBranch->begin ();
         tag.mSourceBranch->optimize ();
-        tag.mSourceBranch->commit ();
     }
 }
 
@@ -228,23 +220,11 @@ void AbstractVersionedStoreTag::revertAndClear ( size_t version ) {
 void AbstractVersionedStoreTag::setValueVariant ( string key, const Variant& value ) {
 
     VersionedStoreTag& tag = this->getTag ();
-    bool cleanup = false;
-    
-    if ( tag.mSourceBranch ) {
-        tag.mSourceBranch->begin ();
-        cleanup = true;
-    }
     
     this->prepareForSetValue ();
     
     assert ( tag.mSourceBranch );
-    tag.mSourceBranch->begin ();
     tag.mSourceBranch->setValueVariant ( tag.mVersion, key, value );
-    tag.mSourceBranch->commit ();
-    
-    if ( cleanup ) {
-        tag.mSourceBranch->commit ();
-    }
 }
 
 //----------------------------------------------------------------//

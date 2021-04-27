@@ -62,8 +62,6 @@ void SQLitePersistenceProvider::loadFromStore () {
 
     assert ( this->mDB );
 
-    this->begin ();
-
     SQLiteResult result = this->mDB.exec (
         
         "SELECT name, branchID, version FROM tags", NULL,
@@ -97,8 +95,6 @@ void SQLitePersistenceProvider::loadFromStore () {
 
         branch->optimize ();
     }
-
-    this->commit ();
 }
 
 //----------------------------------------------------------------//

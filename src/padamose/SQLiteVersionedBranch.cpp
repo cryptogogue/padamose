@@ -17,7 +17,7 @@ namespace Padamose {
 // TODO: doxygen
 void SQLiteVersionedBranch::deleteBranch () {
 
-    this->begin ();
+    this->mProvider->begin ();
 
     SQLite& db = this->getDB ();
 
@@ -43,7 +43,7 @@ void SQLiteVersionedBranch::deleteBranch () {
     );
     result.reportWithAssert ();
     
-    this->commit ();
+    this->mProvider->commit ();
 }
 
 //----------------------------------------------------------------//
@@ -197,22 +197,6 @@ SQLiteVersionedBranch::~SQLiteVersionedBranch () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void SQLiteVersionedBranch::AbstractVersionedBranch_begin () {
-
-    assert ( this->mProvider );
-    return this->mProvider->begin ();
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void SQLiteVersionedBranch::AbstractVersionedBranch_commit () {
-
-    assert ( this->mProvider );
-    return this->mProvider->commit ();
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
 SQLiteVersionedBranch::ConstProviderPtr SQLiteVersionedBranch::AbstractPersistentVersionedBranch_getProvider () const {
     return this->mProvider;
 }
@@ -238,10 +222,9 @@ SQLiteVersionedBranch::ConstProviderPtr SQLiteVersionedBranch::AbstractPersisten
 */
 shared_ptr < AbstractVersionedBranch > SQLiteVersionedBranch::AbstractVersionedBranch_fork ( size_t baseVersion ) {
     
-    shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
-
     assert ( this->mVersion <= baseVersion );
-
+    
+    shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
     child->setParent ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
 
     if ( baseVersion < this->mTopVersion ) {
@@ -505,6 +488,8 @@ bool SQLiteVersionedBranch::AbstractVersionedBranch_isPersistent () const {
 */
 void SQLiteVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersionedBranch& other ) {
 
+    this->mProvider->begin ();
+
     SQLiteVersionedBranch* otherSQL = dynamic_cast < SQLiteVersionedBranch* >( &other );
     assert ( otherSQL );
     
@@ -527,6 +512,8 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersion
     otherSQL->setTopVersion ( this->mTopVersion );
     
     this->transferClients ( other );
+    
+    this->mProvider->commit ();
 }
 
 //----------------------------------------------------------------//

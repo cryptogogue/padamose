@@ -72,7 +72,7 @@ shared_ptr < const EphemeralValueStack > EphemeralVersionedBranch::findValueStac
     \param      baseVersion     Base version of the child branch.
 */
 shared_ptr < AbstractVersionedBranch > EphemeralVersionedBranch::AbstractVersionedBranch_fork ( size_t baseVersion ) {
-    
+        
     shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
     
     assert ( this->mVersion <= baseVersion );
@@ -100,6 +100,7 @@ shared_ptr < AbstractVersionedBranch > EphemeralVersionedBranch::AbstractVersion
             toStack->copyValueFrom ( *fromStack, baseVersion );
         }
     }
+    
     return child;
 }
 

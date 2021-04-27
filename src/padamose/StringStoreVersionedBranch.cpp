@@ -217,22 +217,6 @@ StringStoreVersionedBranch::~StringStoreVersionedBranch () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void StringStoreVersionedBranch::AbstractVersionedBranch_begin () {
-
-    assert ( this->mProvider );
-    return this->mProvider->begin ();
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
-void StringStoreVersionedBranch::AbstractVersionedBranch_commit () {
-
-    assert ( this->mProvider );
-    return this->mProvider->commit ();
-}
-
-//----------------------------------------------------------------//
-// TODO: doxygen
 StringStoreVersionedBranch::ConstProviderPtr StringStoreVersionedBranch::AbstractPersistentVersionedBranch_getProvider () const {
     return this->mProvider;
 }
@@ -258,14 +242,12 @@ StringStoreVersionedBranch::ConstProviderPtr StringStoreVersionedBranch::Abstrac
 */
 shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersionedBranch_fork ( size_t baseVersion ) {
     
-    AbstractStringStore& store = *this->mProvider;
-    store.begin ();
+    assert ( this->mVersion <= baseVersion );
     
     shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
-
-    assert ( this->mVersion <= baseVersion );
-
     child->setParent ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
+
+    AbstractStringStore& store = *this->mProvider;
 
     string keyforBaseLayerSize = this->formatKeyForLayerSizeByVersion ( baseVersion );
     size_t baseLayerSize = store.get < u64 >( keyforBaseLayerSize, 0 );
@@ -280,7 +262,6 @@ shared_ptr < AbstractVersionedBranch > StringStoreVersionedBranch::AbstractVersi
         child->setValueVariant ( baseVersion, valueName, value );
     }
     
-    store.commit ();
     return child;
 }
 

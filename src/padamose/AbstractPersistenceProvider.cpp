@@ -107,7 +107,6 @@ void AbstractPersistenceProvider::persist ( VersionedStoreTag& tag, string tagNa
     if ( !tag.getSourceBranch ()) return;
 
     try {
-        this->begin ();
 
         PersistenceTag& persistedTag = this->mTags [ tagName ];
         
@@ -118,8 +117,6 @@ void AbstractPersistenceProvider::persist ( VersionedStoreTag& tag, string tagNa
         persistedTag.getSourceBranch ()->persistSelf ( *this );
         
         this->AbstractPersistenceProvider_tagDidChange ( persistedTag );
-        
-        this->commit ();
     }
     catch ( ... ) {
 
