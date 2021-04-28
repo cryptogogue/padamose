@@ -72,15 +72,15 @@ size_t AbstractVersionedBranchClient::getVersionDependency () const {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranchClient::printTree () const {
+void AbstractVersionedBranchClient::printTree ( string lgnFilter ) const {
 
-    LGN_LOG ( PDM_FILTER_TREE, INFO, "PRINT TREE" );
+    LGN_LOG ( lgnFilter.c_str (), INFO, "PRINT TREE" );
 
     const AbstractVersionedBranchClient* base = this;
     while ( base->mSourceBranch ) {
         base = base->mSourceBranch.get ();
     }
-    base->AbstractVersionedBranchClient_print ( "" );
+    base->AbstractVersionedBranchClient_print ( lgnFilter, "" );
 }
 
 //----------------------------------------------------------------//
@@ -158,9 +158,9 @@ size_t AbstractVersionedBranchClient::AbstractVersionedBranchClient_getVersionDe
 }
 
 //----------------------------------------------------------------//
-void AbstractVersionedBranchClient::AbstractVersionedBranchClient_print ( string prefix ) const {
+void AbstractVersionedBranchClient::AbstractVersionedBranchClient_print ( string lgnFilter, string prefix ) const {
 
-    LGN_LOG ( PDM_FILTER_TREE, INFO, "%s[%d]: client %p", prefix.c_str (), ( int )this->mVersion, this );
+    LGN_LOG ( lgnFilter.c_str (), INFO, "%s[%d]: client %p", prefix.c_str (), ( int )this->mVersion, this );
 }
 
 //----------------------------------------------------------------//

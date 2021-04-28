@@ -46,7 +46,7 @@ private:
     bool                AbstractVersionedBranch_isPersistent                    () const override;
     void                AbstractVersionedBranch_joinBranch                      ( AbstractVersionedBranch& other ) override;
     void                AbstractVersionedBranch_persist                         ( shared_ptr < AbstractPersistentVersionedBranch > persist ) override;
-    void                AbstractVersionedBranch_print                           ( string prefix ) const override;
+    void                AbstractVersionedBranch_print                           ( string lgnFilter, string prefix ) const override;
     void                AbstractVersionedBranch_setValueVariant                 ( size_t version, string key, const Variant& value ) override;
     void                AbstractVersionedBranch_truncate                        ( size_t topVersion ) override;
     void                AbstractVersionedBranchClient_sourceBranchDidChange     () override;

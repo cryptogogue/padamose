@@ -252,15 +252,11 @@ void AbstractVersionedBranch::optimize () {
 
     if ( this->isLocked ()) return; // don't allow join if there are any direct references to the current branch.
 
-//    this->begin ();
-
     if ( this->mSourceBranch ) {
         this->mSourceBranch->optimize ();
     }
 
     this->optimizeInner ();
-    
-//    this->commit ();
 }
 
 //----------------------------------------------------------------//
@@ -419,9 +415,9 @@ void AbstractVersionedBranch::unlock () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranch::AbstractVersionedBranch_print ( string prefix ) const {
+void AbstractVersionedBranch::AbstractVersionedBranch_print ( string lgnFilter, string prefix ) const {
 
-    LGN_LOG ( PDM_FILTER_TREE, INFO,
+    LGN_LOG ( lgnFilter.c_str (), INFO,
         "%s[%d-%d]: branch %p (refs: %d)",
         prefix.c_str (),
         ( int )this->mVersion,
@@ -443,16 +439,16 @@ size_t AbstractVersionedBranch::AbstractVersionedBranchClient_getVersionDependen
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranch::AbstractVersionedBranchClient_print ( string prefix ) const {
+void AbstractVersionedBranch::AbstractVersionedBranchClient_print ( string lgnFilter, string prefix ) const {
 
-    this->AbstractVersionedBranch_print ( prefix );
+    this->AbstractVersionedBranch_print ( lgnFilter, prefix );
     
     prefix += "....";
     
     set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
     for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
         AbstractVersionedBranchClient* client = *clientIt;
-        client->AbstractVersionedBranchClient_print ( prefix );
+        client->AbstractVersionedBranchClient_print ( lgnFilter, prefix );
     }
 }
 

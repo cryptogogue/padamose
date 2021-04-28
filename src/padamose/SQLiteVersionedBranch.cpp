@@ -488,7 +488,8 @@ bool SQLiteVersionedBranch::AbstractVersionedBranch_isPersistent () const {
 */
 void SQLiteVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersionedBranch& other ) {
 
-    this->mProvider->begin ();
+    shared_ptr < SQLitePersistenceProvider > provider = this->mProvider;
+    provider->begin ();
 
     SQLiteVersionedBranch* otherSQL = dynamic_cast < SQLiteVersionedBranch* >( &other );
     assert ( otherSQL );
@@ -513,7 +514,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersion
     
     this->transferClients ( other );
     
-    this->mProvider->commit ();
+    provider->commit ();
 }
 
 //----------------------------------------------------------------//
@@ -525,9 +526,9 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < Abstr
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void SQLiteVersionedBranch::AbstractVersionedBranch_print ( string prefix ) const {
+void SQLiteVersionedBranch::AbstractVersionedBranch_print ( string lgnFilter, string prefix ) const {
 
-    LGN_LOG ( PDM_FILTER_TREE, INFO,
+    LGN_LOG ( lgnFilter.c_str (), INFO,
         "%s[%d-%d]: sqlite %p (refs: %d)",
         prefix.c_str (),
         ( int )this->mVersion,

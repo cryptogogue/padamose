@@ -44,7 +44,7 @@ protected:
 
     //----------------------------------------------------------------//
     virtual size_t      AbstractVersionedBranchClient_getVersionDependency      () const;
-    virtual void        AbstractVersionedBranchClient_print                     ( string prefix ) const;
+    virtual void        AbstractVersionedBranchClient_print                     ( string lgnFilter, string prefix ) const;
     virtual void        AbstractVersionedBranchClient_sourceBranchDidChange     ();
 
 public:
@@ -55,7 +55,7 @@ public:
     void                clear                                   ();
     size_t              countBranches                           () const;
     BranchInspector     getBranchInspector                      ( size_t depth );
-    void                printTree                               () const;
+    void                printTree                               ( string lgnFilter = PDM_FILTER_TREE ) const;
     void                setDebugName                            ( string debugName );
     void                setParent                               ( shared_ptr < AbstractVersionedBranch > branch, size_t version );
 };
