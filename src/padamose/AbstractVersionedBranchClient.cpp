@@ -74,8 +74,6 @@ size_t AbstractVersionedBranchClient::getVersionDependency () const {
 // TODO: doxygen
 void AbstractVersionedBranchClient::printTree ( string lgnFilter ) const {
 
-    LGN_LOG ( lgnFilter.c_str (), INFO, "PRINT TREE" );
-
     const AbstractVersionedBranchClient* base = this;
     while ( base->mSourceBranch ) {
         base = base->mSourceBranch.get ();
