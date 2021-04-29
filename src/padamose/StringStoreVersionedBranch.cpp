@@ -461,7 +461,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < 
 void StringStoreVersionedBranch::AbstractVersionedBranch_print ( string prefix, string lgnFilter ) const {
 
     LGN_LOG ( lgnFilter.c_str (), INFO,
-        "%s[%d-%d]: stringStore %p (refs: %d)",
+        "%s[%d-%d]: stringStore %p (locks: %d)",
         prefix.c_str (),
         ( int )this->mVersion,
         ( int )this->getTopVersion (),

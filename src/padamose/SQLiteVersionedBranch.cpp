@@ -539,7 +539,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < Abstr
 void SQLiteVersionedBranch::AbstractVersionedBranch_print ( string prefix, string lgnFilter ) const {
 
     LGN_LOG ( lgnFilter.c_str (), INFO,
-        "%s[%d-%d]: sqlite %p (refs: %d)",
+        "%s[%d-%d]: sqlite %p (locks: %d)",
         prefix.c_str (),
         ( int )this->mVersion,
         ( int )this->getTopVersion (),

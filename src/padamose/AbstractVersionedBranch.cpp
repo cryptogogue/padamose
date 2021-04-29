@@ -428,7 +428,7 @@ void AbstractVersionedBranch::unlock () {
 void AbstractVersionedBranch::AbstractVersionedBranch_print ( string prefix, string lgnFilter ) const {
 
     LGN_LOG ( lgnFilter.c_str (), INFO,
-        "%s[%d-%d]: branch %p (refs: %d)",
+        "%s[%d-%d]: branch %p (locks: %d)",
         prefix.c_str (),
         ( int )this->mVersion,
         ( int )this->getTopVersion (),
@@ -465,6 +465,7 @@ void AbstractVersionedBranch::AbstractVersionedBranchClient_print ( string prefi
 //----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractVersionedBranch::AbstractVersionedBranch_printVersion ( size_t version, string lgnFilter ) const {
+    UNUSED ( version );
 
     LGN_LOG ( lgnFilter.c_str (), INFO, "Version print unsupported for this branch type." );
 }
