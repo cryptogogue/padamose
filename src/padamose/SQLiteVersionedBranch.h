@@ -32,6 +32,7 @@ private:
     void                deleteBranch                                ();
     SQLite&             getDB                                       () const;
     void                loadFromStore                               ();
+    static Variant      readVariant                                 ( const SQLiteStatement& stmt, int idx = 0 );
     void                setTopVersion                               ( u64 topVersion );
 
     //----------------------------------------------------------------//
@@ -46,7 +47,8 @@ private:
     bool                AbstractVersionedBranch_isPersistent                    () const override;
     void                AbstractVersionedBranch_joinBranch                      ( AbstractVersionedBranch& other ) override;
     void                AbstractVersionedBranch_persist                         ( shared_ptr < AbstractPersistentVersionedBranch > persist ) override;
-    void                AbstractVersionedBranch_print                           ( string lgnFilter, string prefix ) const override;
+    void                AbstractVersionedBranch_print                           ( string prefix, string lgnFilter ) const override;
+    void                AbstractVersionedBranch_printVersion                    ( size_t version, string lgnFilter ) const override;
     void                AbstractVersionedBranch_setValueVariant                 ( size_t version, string key, const Variant& value ) override;
     void                AbstractVersionedBranch_truncate                        ( size_t topVersion ) override;
     void                AbstractVersionedBranchClient_sourceBranchDidChange     () override;

@@ -91,6 +91,34 @@ void SQLiteVersionedBranch::loadFromStore () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
+Variant SQLiteVersionedBranch::readVariant ( const SQLiteStatement& stmt, int idx ) {
+
+    Variant variant;
+            
+    int type = stmt.getValue < int >( idx );
+    
+    switch ( type ) {
+        case Variant::BOOL_VARIANT:
+            variant = stmt.getValue < bool >( idx + 2 );
+            break;
+        case Variant::DOUBLE_VARIANT:
+            variant = stmt.getValue < double >( idx + 3 );
+            break;
+        case Variant::INT64_VARIANT:
+            variant = stmt.getValue < s64 >( idx + 2 );
+            break;
+        case Variant::UINT64_VARIANT:
+            variant = stmt.getValue < u64 >( idx + 2 );
+            break;
+        case Variant::STRING_VARIANT:
+            variant = stmt.getValue < string >( idx + 1 );
+            break;
+    }
+    return variant;
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
 void SQLiteVersionedBranch::setTopVersion ( u64 topVersion ) {
 
     if ( this->mTopVersion == topVersion ) return;
@@ -354,25 +382,7 @@ Variant SQLiteVersionedBranch::AbstractVersionedBranch_getValueVariant ( size_t 
             
             if ( stmt.isNull ( 4 )) return;
             
-            int type = stmt.getValue < int >( 0 );
-            
-            switch ( type ) {
-                case Variant::BOOL_VARIANT:
-                    variant = stmt.getValue < bool >( 2 );
-                    break;
-                case Variant::DOUBLE_VARIANT:
-                    variant = stmt.getValue < double >( 3 );
-                    break;
-                case Variant::INT64_VARIANT:
-                    variant = stmt.getValue < s64 >( 2 );
-                    break;
-                case Variant::UINT64_VARIANT:
-                    variant = stmt.getValue < u64 >( 2 );
-                    break;
-                case Variant::STRING_VARIANT:
-                    variant = stmt.getValue < string >( 1 );
-                    break;
-            }
+            variant = SQLiteVersionedBranch::readVariant ( stmt );
         }
     );
     result.reportWithAssert ();
@@ -526,7 +536,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < Abstr
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void SQLiteVersionedBranch::AbstractVersionedBranch_print ( string lgnFilter, string prefix ) const {
+void SQLiteVersionedBranch::AbstractVersionedBranch_print ( string prefix, string lgnFilter ) const {
 
     LGN_LOG ( lgnFilter.c_str (), INFO,
         "%s[%d-%d]: sqlite %p (refs: %d)",
@@ -536,6 +546,36 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_print ( string lgnFilter, st
         this,
         ( int )this->mLockCount
     );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void SQLiteVersionedBranch::AbstractVersionedBranch_printVersion ( size_t version, string lgnFilter ) const {
+
+    LGN_LOG ( lgnFilter.c_str (), INFO, "BRANCH: %p VERSION: %d TYPE: sqlite", this, ( int )version );
+
+    SQLite& db = this->getDB ();
+
+    SQLiteResult result = db.exec (
+        
+        "SELECT key, type, stringVal, intVal, realVal FROM tuples WHERE branchID IS ?1 AND version == ?2",
+        
+        //--------------------------------//
+        [ & ]( SQLiteStatement& stmt ) {
+            stmt.bind ( 1, ( int )this->mBranchID );
+            stmt.bind ( 2, ( int )version );
+        },
+        
+        //--------------------------------//
+        [ & ]( int, const SQLiteStatement& stmt ) {
+            
+            string key = stmt.getValue < string >( 0 );
+            Variant variant = SQLiteVersionedBranch::readVariant ( stmt, 1 );
+            
+            LGN_LOG ( lgnFilter.c_str (), INFO, "    %d - ( %s: %s )", ( int )version, key.c_str (), variant.get < string >().c_str ());
+        }
+    );
+    result.reportWithAssert ();
 }
 
 //----------------------------------------------------------------//

@@ -458,7 +458,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < 
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void StringStoreVersionedBranch::AbstractVersionedBranch_print ( string lgnFilter, string prefix ) const {
+void StringStoreVersionedBranch::AbstractVersionedBranch_print ( string prefix, string lgnFilter ) const {
 
     LGN_LOG ( lgnFilter.c_str (), INFO,
         "%s[%d-%d]: stringStore %p (refs: %d)",

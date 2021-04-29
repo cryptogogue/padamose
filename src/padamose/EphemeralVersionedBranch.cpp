@@ -216,6 +216,30 @@ void EphemeralVersionedBranch::AbstractVersionedBranch_persist ( shared_ptr < Ab
 }
 
 //----------------------------------------------------------------//
+// TODO: doxygen
+void EphemeralVersionedBranch::AbstractVersionedBranch_printVersion ( size_t version, string lgnFilter ) const {
+
+    LGN_LOG ( lgnFilter.c_str (), INFO, "BRANCH: %p VERSION: %d TYPE: ephemeral", this, ( int )version );
+
+    map < size_t, Layer >::const_iterator layerIt = this->mLayers.find ( version );
+    if ( layerIt == this->mLayers.cend ()) return;
+    
+    const Layer& fromLayer = layerIt->second;
+    
+    Layer::const_iterator keyIt = fromLayer.cbegin ();
+    for ( ; keyIt != fromLayer.cend (); ++keyIt ) {
+               
+        Variant variant;
+        
+        shared_ptr < const EphemeralValueStack > valueStack = this->findValueStack ( *keyIt );
+        if ( valueStack ) {
+            variant = valueStack->getValueVariant ( version );
+        }
+        LGN_LOG ( lgnFilter.c_str (), INFO, "    %d - ( %s: %s )", ( int )version, keyIt->c_str (), variant.get < string >().c_str ());
+    }
+}
+
+//----------------------------------------------------------------//
 /** \brief Sets a value at the given version. If the version doesn't exist,
     a new layer will be created. Also creates a value stack if none exists. Throws
     a TypeMismatchOnAssignException if a value of a different type has already been

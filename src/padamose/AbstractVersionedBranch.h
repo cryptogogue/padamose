@@ -62,7 +62,7 @@ protected:
 
     //----------------------------------------------------------------//
     size_t          AbstractVersionedBranchClient_getVersionDependency      () const override;
-    void            AbstractVersionedBranchClient_print                     ( string lgnFilter, string prefix ) const override;
+    void            AbstractVersionedBranchClient_print                     ( string prefix, string lgnFilter ) const override;
 
     //----------------------------------------------------------------//
     virtual BranchPtr       AbstractVersionedBranch_fork                        ( size_t baseVersion ) = 0;
@@ -75,7 +75,8 @@ protected:
     virtual bool            AbstractVersionedBranch_isPersistent                () const = 0;
     virtual void            AbstractVersionedBranch_joinBranch                  ( AbstractVersionedBranch& other ) = 0;
     virtual void            AbstractVersionedBranch_persist                     ( shared_ptr < AbstractPersistentVersionedBranch > persist ) = 0;
-    virtual void            AbstractVersionedBranch_print                       ( string lgnFilter, string prefix ) const;
+    virtual void            AbstractVersionedBranch_print                       ( string prefix, string lgnFilter ) const;
+    virtual void            AbstractVersionedBranch_printVersion                ( size_t version, string lgnFilter ) const;
     virtual void            AbstractVersionedBranch_setValueVariant             ( size_t version, string key, const Variant& value ) = 0;
     virtual void            AbstractVersionedBranch_truncate                    ( size_t topVersion ) = 0;
 

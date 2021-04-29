@@ -78,7 +78,24 @@ void AbstractVersionedBranchClient::printTree ( string lgnFilter ) const {
     while ( base->mSourceBranch ) {
         base = base->mSourceBranch.get ();
     }
-    base->AbstractVersionedBranchClient_print ( lgnFilter, "" );
+    base->AbstractVersionedBranchClient_print ( "", lgnFilter );
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranchClient::printVersion ( size_t version, string lgnFilter ) {
+
+    shared_ptr < AbstractVersionedBranch > branch = this->mSourceBranch;
+    while ( branch->mVersion > version ) {
+        branch = branch->mSourceBranch;
+    }
+    
+    if ( branch ) {
+        branch->AbstractVersionedBranch_printVersion ( version, lgnFilter );
+    }
+    else {
+        LGN_LOG ( lgnFilter.c_str (), INFO, "COULD NOT FIND BRANCH FOR VERSION: %d", ( int )version );
+    }
 }
 
 //----------------------------------------------------------------//
@@ -156,7 +173,7 @@ size_t AbstractVersionedBranchClient::AbstractVersionedBranchClient_getVersionDe
 }
 
 //----------------------------------------------------------------//
-void AbstractVersionedBranchClient::AbstractVersionedBranchClient_print ( string lgnFilter, string prefix ) const {
+void AbstractVersionedBranchClient::AbstractVersionedBranchClient_print ( string prefix, string lgnFilter ) const {
 
     LGN_LOG ( lgnFilter.c_str (), INFO, "%s[%d]: client %p", prefix.c_str (), ( int )this->mVersion, this );
 }

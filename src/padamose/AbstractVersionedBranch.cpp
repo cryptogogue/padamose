@@ -415,7 +415,7 @@ void AbstractVersionedBranch::unlock () {
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranch::AbstractVersionedBranch_print ( string lgnFilter, string prefix ) const {
+void AbstractVersionedBranch::AbstractVersionedBranch_print ( string prefix, string lgnFilter ) const {
 
     LGN_LOG ( lgnFilter.c_str (), INFO,
         "%s[%d-%d]: branch %p (refs: %d)",
@@ -439,17 +439,24 @@ size_t AbstractVersionedBranch::AbstractVersionedBranchClient_getVersionDependen
 
 //----------------------------------------------------------------//
 // TODO: doxygen
-void AbstractVersionedBranch::AbstractVersionedBranchClient_print ( string lgnFilter, string prefix ) const {
+void AbstractVersionedBranch::AbstractVersionedBranchClient_print ( string prefix, string lgnFilter ) const {
 
-    this->AbstractVersionedBranch_print ( lgnFilter, prefix );
+    this->AbstractVersionedBranch_print ( prefix, lgnFilter );
     
     prefix += "....";
     
     set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
     for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
         AbstractVersionedBranchClient* client = *clientIt;
-        client->AbstractVersionedBranchClient_print ( lgnFilter, prefix );
+        client->AbstractVersionedBranchClient_print ( prefix, lgnFilter );
     }
+}
+
+//----------------------------------------------------------------//
+// TODO: doxygen
+void AbstractVersionedBranch::AbstractVersionedBranch_printVersion ( size_t version, string lgnFilter ) const {
+
+    LGN_LOG ( lgnFilter.c_str (), INFO, "Version print unsupported for this branch type." );
 }
 
 } // namespace Padamose
