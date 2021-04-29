@@ -33,6 +33,8 @@ using namespace std;
 #include <padamose/Exceptions.h>
 
 #define PDM_FILTER_ROOT             " @PDM           "
+#define PDM_FILTER_LOCK             " @PDM_LOCK      "
+#define PDM_FILTER_OPTIMIZE         " @PDM_OPTIMIZE  "
 #define PDM_FILTER_TREE             " @PDM_TREE      "
 #define PDM_FILTER_SQLITE           " @SQLITE        "
 #define PDM_FILTER_SQLSTORE         " @PDM_SQLSTORE  "

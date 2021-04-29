@@ -552,7 +552,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_print ( string prefix, strin
 // TODO: doxygen
 void SQLiteVersionedBranch::AbstractVersionedBranch_printVersion ( size_t version, string lgnFilter ) const {
 
-    LGN_LOG ( lgnFilter.c_str (), INFO, "BRANCH: %p VERSION: %d TYPE: sqlite", this, ( int )version );
+    LGN_LOG ( lgnFilter.c_str (), INFO, "BRANCH: %p VERSION: %d TYPE: sqlite ID: %d", this, ( int )version, ( int )this->mBranchID );
 
     SQLite& db = this->getDB ();
 

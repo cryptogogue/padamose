@@ -215,6 +215,11 @@ void AbstractVersionedBranch::joinBranch ( AbstractVersionedBranch& branch ) {
 
 //----------------------------------------------------------------//
 void AbstractVersionedBranch::lock () {
+
+    LGN_LOG_SCOPE ( PDM_FILTER_LOCK, INFO, __PRETTY_FUNCTION__ );
+
+    LGN_LOG ( PDM_FILTER_LOCK, INFO, "Lock count: %d++", ( int )this->mLockCount );
+
     this->mLockCount++;
     if ( this->mSourceBranch ) {
         this->mSourceBranch->lock ();
@@ -263,7 +268,7 @@ void AbstractVersionedBranch::optimize () {
 // TODO: doxygen
 void AbstractVersionedBranch::optimizeInner () {
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, __PRETTY_FUNCTION__ );
+    LGN_LOG_SCOPE ( PDM_FILTER_OPTIMIZE, INFO, __PRETTY_FUNCTION__ );
 
     // recursive optimize may have removed clients
     if ( !this->mClients.size ()) return;
@@ -275,12 +280,12 @@ void AbstractVersionedBranch::optimizeInner () {
     AbstractVersionedBranch* bestJoin = NULL; // a join will be performed if this is non-NULL.
         
     // loop through every client...
-    LGN_LOG ( PDM_FILTER_ROOT, INFO, "evaluating clients for possible concatenation..." );
+    LGN_LOG ( PDM_FILTER_OPTIMIZE, INFO, "evaluating clients for possible concatenation..." );
     set < AbstractVersionedBranchClient* >::const_iterator clientIt = this->mClients.cbegin ();
     for ( ; clientIt != this->mClients.cend (); ++clientIt ) {
 
         AbstractVersionedBranchClient* client = *clientIt;
-        LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "client %p", client );
+        LGN_LOG_SCOPE ( PDM_FILTER_OPTIMIZE, INFO, "client %p", client );
         
         size_t clientVersion = client->getVersionDependency (); // store the client's version dependency to avoid extra function calls.
         
@@ -288,7 +293,7 @@ void AbstractVersionedBranch::optimizeInner () {
         // a client with a higher depenency is found.
         if ( immutableTop < clientVersion ) {
         
-            LGN_LOG ( PDM_FILTER_ROOT, INFO, "found new immutable top: %d -> %d", ( int )immutableTop, ( int )clientVersion );
+            LGN_LOG ( PDM_FILTER_OPTIMIZE, INFO, "found new immutable top: %d -> %d", ( int )immutableTop, ( int )clientVersion );
         
             immutableTop = clientVersion;
             
@@ -315,8 +320,8 @@ void AbstractVersionedBranch::optimizeInner () {
                 // one with the higher join score.
                 if (( !bestJoin ) || ( bestJoin->getTopVersion () < branch->getTopVersion ())) {
                     if ( this->isPersistent () == branch->isPersistent ()) {
-                        LGN_LOG ( PDM_FILTER_ROOT, INFO, "found a client that can join!" );
-                        LGN_LOG ( PDM_FILTER_ROOT, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
+                        LGN_LOG ( PDM_FILTER_OPTIMIZE, INFO, "found a client that can join!" );
+                        LGN_LOG ( PDM_FILTER_OPTIMIZE, INFO, "bestJoin dependency: %d", ( int )client->getVersionDependency ());
                         bestJoin = branch;
                     }
                 }
@@ -324,14 +329,15 @@ void AbstractVersionedBranch::optimizeInner () {
         }
     }
     
-    LGN_LOG ( PDM_FILTER_ROOT, INFO, "immutableTop: %d", ( int )immutableTop );
-    LGN_LOG ( PDM_FILTER_ROOT, INFO, "topVersion: %d", ( int )this->getTopVersion ());
+    LGN_LOG ( PDM_FILTER_OPTIMIZE, INFO, "immutableTop: %d", ( int )immutableTop );
+    LGN_LOG ( PDM_FILTER_OPTIMIZE, INFO, "topVersion: %d", ( int )this->getTopVersion ());
     
     // throw away any versions equal to or greater than the immutable top.
     this->truncate ( immutableTop );
     
     // if we have a join candidate, perform the join.
     if ( bestJoin ) {
+        LGN_LOG_SCOPE ( PDM_FILTER_OPTIMIZE, INFO, "Optimizing branch; will merge and recurse." );
         assert ( immutableTop <= bestJoin->mVersion );
         bestJoin->joinBranch ( *this );
         this->optimizeInner ();
@@ -398,6 +404,10 @@ void AbstractVersionedBranch::truncate ( size_t topVersion ) {
 
 //----------------------------------------------------------------//
 void AbstractVersionedBranch::unlock () {
+
+    LGN_LOG_SCOPE ( PDM_FILTER_LOCK, INFO, __PRETTY_FUNCTION__ );
+
+    LGN_LOG ( PDM_FILTER_LOCK, INFO, "Lock count: %d--", ( int )this->mLockCount );
 
     if ( this->mLockCount ) {
     

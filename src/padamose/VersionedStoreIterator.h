@@ -45,7 +45,8 @@ protected:
     };
 
     /// The anchor snapshot.
-    VersionedStoreLock          mAnchor;
+    shared_ptr < AbstractVersionedBranch >  mAnchorBranch;
+    size_t                                  mAnchorVersion;
     
     /// Internal state of the iterator.
     int                         mState;

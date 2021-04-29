@@ -16,7 +16,7 @@ namespace Padamose {
     \return     True if iterator is at current version of store.
 */
 bool VersionedStoreIterator::isCurrent () const {
-    return ( this->isValid () && ( this->getVersion () == this->mAnchor.getVersion ()));
+    return ( this->isValid () && ( this->getVersion () == this->mAnchorVersion ));
 }
 
 //----------------------------------------------------------------//
@@ -43,7 +43,7 @@ bool VersionedStoreIterator::next () {
     }
     else if ( this->mState != NO_NEXT ) {
 
-        if ( this->mVersion < this->mAnchor.getVersion ()) {
+        if ( this->mVersion < this->mAnchorVersion ) {
             this->seek ( this->mVersion + 1 );
         }
         else {
@@ -103,7 +103,7 @@ void VersionedStoreIterator::seek ( size_t version ) {
     
         if ( this->mVersion >= this->mTopVersion ) {
             
-            this->setBranch ( this->mAnchor ); // overwrites this->mVersion
+            this->setBranch ( this->mAnchorBranch, this->mAnchorVersion ); // overwrites this->mVersion
             this->mTopVersion = this->mVersion + 1;
             
             if ( version < this->mVersion ) {
@@ -121,9 +121,10 @@ void VersionedStoreIterator::seek ( size_t version ) {
     \param  client          Snapshot to use as the upper bound for iteration.
 */
 VersionedStoreIterator::VersionedStoreIterator ( const AbstractHasVersionedBranch& other ) :
-    mAnchor ( other ) {
+    mAnchorBranch ( other.getSourceBranch ()),
+    mAnchorVersion ( other.getVersion ()) {
 
-    ConstBranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
+    ConstBranchPtr sourceBranch = this->mAnchorBranch;
 
     if ( sourceBranch && ( sourceBranch->getTopVersion () > 0 )) {
         this->setBranch ( other );

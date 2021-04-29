@@ -49,7 +49,8 @@ protected:
     };
 
     /// The anchor snapshot.
-    VersionedStoreLock          mAnchor;
+    shared_ptr < AbstractVersionedBranch >  mAnchorBranch;
+    size_t                                  mAnchorVersion;
     
     /// Key of the value being iterated.
     string                      mKey;
@@ -71,8 +72,8 @@ protected:
     */
     void seekNext ( shared_ptr < AbstractVersionedBranch > prevBranch ) {
         
-        shared_ptr < AbstractVersionedBranch > branch = this->mAnchor.getSourceBranch ();
-        size_t top = this->mAnchor.getVersion () + 1;
+        shared_ptr < AbstractVersionedBranch > branch = this->mAnchorBranch;
+        size_t top = this->mAnchorVersion + 1;
 
         shared_ptr < AbstractVersionedBranch > bestBranch;
 
@@ -272,13 +273,14 @@ public:
         \param  key         Key of the value to be iterated.
     */
     VersionedValueIterator ( const AbstractHasVersionedBranch& other, string key ) :
-        mAnchor ( other ),
+        mAnchorBranch ( other.getSourceBranch ()),
+        mAnchorVersion ( other.getVersion ()),
         mKey ( key ) {
         
-        HasVersionedBranch::BranchPtr sourceBranch = this->mAnchor.getSourceBranch ();
+        HasVersionedBranch::BranchPtr sourceBranch = this->mAnchorBranch;
         
         if ( sourceBranch ) {
-            this->seekPrev ( sourceBranch, this->mAnchor.getVersion () + 1 );
+            this->seekPrev ( sourceBranch, this->mAnchorVersion + 1 );
         }
     }
     
