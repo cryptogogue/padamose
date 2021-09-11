@@ -9,6 +9,19 @@
 namespace Padamose {
 
 //================================================================//
+// CannotAssignNullException
+//================================================================//
+class CannotAssignNullException :
+    public logic_error {
+public:
+
+    //----------------------------------------------------------------//
+    CannotAssignNullException () :
+        logic_error ( "Cannot assign NULL as a versioned value." ) {
+    }
+};
+
+//================================================================//
 // InvalidMapNameException
 //================================================================//
 class InvalidMapNameException :

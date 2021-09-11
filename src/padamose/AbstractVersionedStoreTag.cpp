@@ -219,12 +219,20 @@ void AbstractVersionedStoreTag::revertAndClear ( size_t version ) {
 // TODO: doxygen
 void AbstractVersionedStoreTag::setValueVariant ( string key, const Variant& value ) {
 
-    VersionedStoreTag& tag = this->getTag ();
-    
-    this->prepareForSetValue ();
-    
-    assert ( tag.mSourceBranch );
-    tag.mSourceBranch->setValueVariant ( tag.mVersion, key, value );
+    if ( value.isNull ()) throw CannotAssignNullException ();
+
+    Variant prevValue = this->getValueVariant ( key );
+    if ( !( prevValue.isNull () || ( prevValue.index () == value.index ()))) throw TypeMismatchOnAssignException ();
+
+    if ( value != prevValue ) {
+
+        VersionedStoreTag& tag = this->getTag ();
+        
+        this->prepareForSetValue ();
+        
+        assert ( tag.mSourceBranch );
+        tag.mSourceBranch->setValueVariant ( tag.mVersion, key, value );
+    }
 }
 
 //----------------------------------------------------------------//

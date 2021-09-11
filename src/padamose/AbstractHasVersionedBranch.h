@@ -107,6 +107,7 @@ public:
     TYPE getValueOrFallback ( string key, size_t version, const TYPE& fallback ) const {
         Variant value = this->getValueVariant ( key, version );
         if ( value.isNull ()) return fallback;
+        if ( !value.isType < TYPE >()) throw TypeMismatchOnGetException ();
         return value.getStrict < TYPE >();
     }
     

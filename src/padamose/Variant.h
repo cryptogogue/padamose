@@ -44,6 +44,30 @@ public:
     }
     
     //----------------------------------------------------------------//
+    bool operator == ( const variant& rhs ) const {
+    
+        // TODO: this should be handled by the STL when we fully move to C++17
+        
+        size_t index = this->index ();
+        if ( index != rhs.index ()) return false;
+        
+        switch ( index ) {
+            case NULL_VARIANT:      return true;
+            case BOOL_VARIANT:      return *std::get_if < bool >( this ) == *std::get_if < bool >( &rhs );
+            case DOUBLE_VARIANT:    return *std::get_if < double >( this ) == *std::get_if < double >( &rhs );
+            case INT64_VARIANT:     return *std::get_if < s64 >( this ) == *std::get_if < s64 >( &rhs );
+            case UINT64_VARIANT:    return *std::get_if < u64 >( this ) == *std::get_if < u64 >( &rhs );
+            case STRING_VARIANT:    return *std::get_if < string >( this ) == *std::get_if < string >( &rhs );
+        }
+        return false;
+    }
+    
+    //----------------------------------------------------------------//
+    bool operator != ( const variant& rhs ) const {
+        return !( *this == rhs );
+    }
+    
+    //----------------------------------------------------------------//
     Variant& operator = ( const variant& rhs ) {
         *( variant* )this = rhs;
         return *this;
@@ -94,13 +118,13 @@ public:
     }
 
     //----------------------------------------------------------------//
-    bool isNull () {
+    bool isNull () const {
         return holds_alternative < NullVariant >( *this );
     }
     
     //----------------------------------------------------------------//
     template < typename TYPE >
-    bool isType () {
+    bool isType () const {
         return holds_alternative < TYPE >( *this );
     }
 
