@@ -168,6 +168,9 @@
 		CDB40592223EE24800200C78 /* AbstractVersionedBranch.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB40590223EE24800200C78 /* AbstractVersionedBranch.h */; };
 		CDB4059B224467E500200C78 /* Variant.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB4059A224467E500200C78 /* Variant.h */; };
 		CDB4059E2245602500200C78 /* TestVariant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB4059C2245596600200C78 /* TestVariant.cpp */; };
+		CDB5E052275A100E0090D749 /* libmysqlclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB5E051275A0FF30090D749 /* libmysqlclient.a */; };
+		CDB5E054275A10550090D749 /* TestMySQL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB5E053275A10550090D749 /* TestMySQL.cpp */; };
+		CDB5E055275A10550090D749 /* TestMySQL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB5E053275A10550090D749 /* TestMySQL.cpp */; };
 		CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */; };
 		CDD6CE2E21A6388600DB7C10 /* VersionedMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */; };
 		CDD6CE2F21A6388600DB7C10 /* VersionedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */; };
@@ -416,6 +419,8 @@
 		CDB40594223EE36C00200C78 /* StringStoreVersionedBranch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringStoreVersionedBranch.h; path = src/padamose/StringStoreVersionedBranch.h; sourceTree = "<group>"; };
 		CDB4059A224467E500200C78 /* Variant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Variant.h; path = src/padamose/Variant.h; sourceTree = "<group>"; };
 		CDB4059C2245596600200C78 /* TestVariant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestVariant.cpp; path = src/padamose/gtest/TestVariant.cpp; sourceTree = "<group>"; };
+		CDB5E051275A0FF30090D749 /* libmysqlclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmysqlclient.a; path = "../../../../../../../../../usr/local/Cellar/mysql-client/8.0.25/lib/libmysqlclient.a"; sourceTree = "<group>"; };
+		CDB5E053275A10550090D749 /* TestMySQL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMySQL.cpp; path = src/padamose/gtest/TestMySQL.cpp; sourceTree = "<group>"; };
 		CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedCollectionIterator.h; path = src/padamose/VersionedCollectionIterator.h; sourceTree = "<group>"; };
 		CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedMap.cpp; path = src/padamose/VersionedMap.cpp; sourceTree = "<group>"; };
 		CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedMap.h; path = src/padamose/VersionedMap.h; sourceTree = "<group>"; };
@@ -456,6 +461,7 @@
 				CD4E81D421059435007DA585 /* libpadamose.a in Frameworks */,
 				CD9FE6812266A01B009B4144 /* libreproc.a in Frameworks */,
 				CD19DEEF2593E4B50007ACF0 /* libsqlite.a in Frameworks */,
+				CDB5E052275A100E0090D749 /* libmysqlclient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +576,7 @@
 		CD4E816621057ADF007DA585 /* gtest */ = {
 			isa = PBXGroup;
 			children = (
+				CDB5E056275A105A0090D749 /* mysql */,
 				CD19DEE52593DF2C0007ACF0 /* redis */,
 				CD19DEE72593DF480007ACF0 /* util */,
 				CDF903AA219F99D400C1930B /* gtest-helpers.h */,
@@ -648,6 +655,7 @@
 				CD4E816621057ADF007DA585 /* gtest */,
 				CD5C62F320B4F7A70038EE98 /* src */,
 				CD9345C32093EB140077BAD4 /* Products */,
+				CDB5E050275A0FDE0090D749 /* libs */,
 				CDED584020BA2008003A2969 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -831,6 +839,22 @@
 				CD9C39382619B7C900AE8782 /* HasVersionedBranch.h */,
 			);
 			name = foundation;
+			sourceTree = "<group>";
+		};
+		CDB5E050275A0FDE0090D749 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				CDB5E051275A0FF30090D749 /* libmysqlclient.a */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		CDB5E056275A105A0090D749 /* mysql */ = {
+			isa = PBXGroup;
+			children = (
+				CDB5E053275A10550090D749 /* TestMySQL.cpp */,
+			);
+			name = mysql;
 			sourceTree = "<group>";
 		};
 		CDD6CE2B21A626E700DB7C10 /* collection */ = {
@@ -1206,6 +1230,7 @@
 				CD4E8117210578D7007DA585 /* gtest-test-part.cc in Sources */,
 				CD4E8111210578D7007DA585 /* gtest-all.cc in Sources */,
 				CD4E8116210578D7007DA585 /* gtest-printers.cc in Sources */,
+				CDB5E055275A10550090D749 /* TestMySQL.cpp in Sources */,
 				CD4E8118210578D7007DA585 /* gtest-typed-test.cc in Sources */,
 				CD4E8115210578D7007DA585 /* gtest-port.cc in Sources */,
 				CD4E8119210578D7007DA585 /* gtest.cc in Sources */,
@@ -1222,6 +1247,7 @@
 				CDF903B821A14C5400C1930B /* TestVersionedList.cpp in Sources */,
 				CDA06FDB214E3FAC003FA0C3 /* TestVersionedStore.cpp in Sources */,
 				CDAC9F5E2625A0DD00DCA201 /* TestStringStores.cpp in Sources */,
+				CDB5E054275A10550090D749 /* TestMySQL.cpp in Sources */,
 				CDAC9F55262595FF00DCA201 /* TestPersistenceProviders.cpp in Sources */,
 				CDA06FFA21588EB3003FA0C3 /* TestVersionedStoreIterators.cpp in Sources */,
 				CDB4059E2245602500200C78 /* TestVariant.cpp in Sources */,
@@ -1591,6 +1617,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					src,
+					"/usr/local/opt/mysql-client/include",
 					"3rd-party/googletest/googletest/include",
 					"3rd-party/hiredis",
 					"3rd-party/lognosis/src",
@@ -1600,7 +1627,7 @@
 					"3rd-party/reproc/reproc++/include",
 					"3rd-party/sqlite-3.34.0",
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "/usr/local/opt/mysql-client/lib";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -1657,6 +1684,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					src,
+					"/usr/local/opt/mysql-client/include",
 					"3rd-party/googletest/googletest/include",
 					"3rd-party/hiredis",
 					"3rd-party/lognosis/src",
@@ -1666,7 +1694,7 @@
 					"3rd-party/reproc/reproc++/include",
 					"3rd-party/sqlite-3.34.0",
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "/usr/local/opt/mysql-client/lib";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
