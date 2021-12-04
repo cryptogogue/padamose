@@ -53,15 +53,15 @@ AbstractPersistenceProvider::~AbstractPersistenceProvider () {
 }
 
 //----------------------------------------------------------------//
-void AbstractPersistenceProvider::begin () {
+void AbstractPersistenceProvider::beginTransaction () {
 
-    this->AbstractPersistenceProvider_begin ();
+    this->AbstractPersistenceProvider_beginTransaction ();
 }
 
 //----------------------------------------------------------------//
-void AbstractPersistenceProvider::commit () {
+void AbstractPersistenceProvider::commitTransaction () {
 
-    this->AbstractPersistenceProvider_commit ();
+    this->AbstractPersistenceProvider_commitTransaction ();
 }
 
 //----------------------------------------------------------------//

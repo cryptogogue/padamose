@@ -21,12 +21,12 @@ protected:
     mutable SQLite  mDB;
      
     //----------------------------------------------------------------//
-    void            AbstractPersistenceProvider_begin       () override;
-    void            AbstractPersistenceProvider_commit      () override;
-    void            AbstractStringStore_eraseString         ( string key ) override;
-    string          AbstractStringStore_getString           ( string key ) const override;
-    bool            AbstractStringStore_hasString           ( string key ) const override;
-    void            AbstractStringStore_setString           ( string key, string value ) override;
+    void            AbstractPersistenceProvider_beginTransaction        () override;
+    void            AbstractPersistenceProvider_commitTransaction       () override;
+    void            AbstractStringStore_eraseString                     ( string key ) override;
+    string          AbstractStringStore_getString                       ( string key ) const override;
+    bool            AbstractStringStore_hasString                       ( string key ) const override;
+    void            AbstractStringStore_setString                       ( string key, string value ) override;
 
 public:
 

@@ -44,14 +44,14 @@ SQLiteStringStore::~SQLiteStringStore () {
 //================================================================//
 
 //----------------------------------------------------------------//
-void SQLiteStringStore::AbstractPersistenceProvider_begin () {
+void SQLiteStringStore::AbstractPersistenceProvider_beginTransaction () {
 
     assert ( this->mDB );
     this->mDB.beginTransaction ();
 }
 
 //----------------------------------------------------------------//
-void SQLiteStringStore::AbstractPersistenceProvider_commit () {
+void SQLiteStringStore::AbstractPersistenceProvider_commitTransaction () {
 
     assert ( this->mDB );
     this->mDB.commitTransaction ();

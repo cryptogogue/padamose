@@ -152,12 +152,13 @@ public:
     }
 
     //----------------------------------------------------------------//
-    SQLiteResult            beginTransaction        ();
+    void                    beginTransaction        ();
     SQLiteResult            close                   ();
-    SQLiteResult            commitTransaction       ();
+    void                    commitTransaction       ();
     SQLiteResult            exec                    ( string sql );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare );
     SQLiteResult            exec                    ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow );
+    size_t                  getTransactionDepth     () const;
     SQLiteResult            open                    ( string filename, SQLiteConfig config = SQLiteConfig ());
                             SQLite                  ();
                             SQLite                  ( string filename );

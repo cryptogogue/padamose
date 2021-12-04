@@ -57,8 +57,8 @@ protected:
     bool                                hasTag          ( string branchName ) const;
     
     //----------------------------------------------------------------//
-    virtual void                                                AbstractPersistenceProvider_begin                   () = 0;
-    virtual void                                                AbstractPersistenceProvider_commit                  () = 0;
+    virtual void                                                AbstractPersistenceProvider_beginTransaction        () = 0;
+    virtual void                                                AbstractPersistenceProvider_commitTransaction       () = 0;
     virtual shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    ( AbstractVersionedBranch& from ) = 0;
     virtual void                                                AbstractPersistenceProvider_removeTag               ( const PersistenceTag& tag ) = 0;
     virtual void                                                AbstractPersistenceProvider_tagDidChange            ( const PersistenceTag& tag ) = 0;
@@ -68,8 +68,8 @@ public:
     //----------------------------------------------------------------//
                                                         AbstractPersistenceProvider             ();
     virtual                                             ~AbstractPersistenceProvider            ();
-    void                                                begin                                   ();
-    void                                                commit                                  ();
+    void                                                beginTransaction                        ();
+    void                                                commitTransaction                       ();
     void                                                flush                                   ();
     bool                                                isFrozen                                () const;
     shared_ptr < AbstractPersistentVersionedBranch >    makePersistentBranch                    ( AbstractVersionedBranch& from );

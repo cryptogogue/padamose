@@ -17,7 +17,7 @@ namespace Padamose {
 // TODO: doxygen
 void SQLiteVersionedBranch::deleteBranch () {
 
-    this->mProvider->begin ();
+    this->mProvider->beginTransaction ();
 
     SQLite& db = this->getDB ();
 
@@ -43,7 +43,7 @@ void SQLiteVersionedBranch::deleteBranch () {
     );
     result.reportWithAssert ();
     
-    this->mProvider->commit ();
+    this->mProvider->commitTransaction ();
 }
 
 //----------------------------------------------------------------//
@@ -160,7 +160,7 @@ SQLiteVersionedBranch::SQLiteVersionedBranch ( shared_ptr < SQLitePersistencePro
     
     assert ( provider );
     
-    provider->begin ();
+    provider->beginTransaction ();
     
     SQLiteVersionedBranch* sourceAsSQL     = dynamic_cast < SQLiteVersionedBranch* >( from.getSourceBranch ().get ());
     u64 sourceBranchID                      = sourceAsSQL ? sourceAsSQL->mBranchID : 0;
@@ -204,7 +204,7 @@ SQLiteVersionedBranch::SQLiteVersionedBranch ( shared_ptr < SQLitePersistencePro
         this->mSourceBranch->insertClient ( *this );
     }
     
-    provider->commit ();
+    provider->commitTransaction ();
 }
 
 //----------------------------------------------------------------//
@@ -499,7 +499,7 @@ bool SQLiteVersionedBranch::AbstractVersionedBranch_isPersistent () const {
 void SQLiteVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersionedBranch& other ) {
 
     shared_ptr < SQLitePersistenceProvider > provider = this->mProvider;
-    provider->begin ();
+    provider->beginTransaction ();
 
     SQLiteVersionedBranch* otherSQL = dynamic_cast < SQLiteVersionedBranch* >( &other );
     assert ( otherSQL );
@@ -524,7 +524,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersion
     
     this->transferClients ( other );
     
-    provider->commit ();
+    provider->commitTransaction ();
 }
 
 //----------------------------------------------------------------//

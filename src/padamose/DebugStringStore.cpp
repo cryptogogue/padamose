@@ -34,11 +34,11 @@ void DebugStringStore::dump () const {
 //================================================================//
 
 //----------------------------------------------------------------//
-void DebugStringStore::AbstractPersistenceProvider_begin () {
+void DebugStringStore::AbstractPersistenceProvider_beginTransaction () {
 }
 
 //----------------------------------------------------------------//
-void DebugStringStore::AbstractPersistenceProvider_commit () {
+void DebugStringStore::AbstractPersistenceProvider_commitTransaction () {
 }
 
 //----------------------------------------------------------------//

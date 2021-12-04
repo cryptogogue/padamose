@@ -169,14 +169,14 @@ SQLitePersistenceProvider::~SQLitePersistenceProvider () {
 //================================================================//
 
 //----------------------------------------------------------------//
-void SQLitePersistenceProvider::AbstractPersistenceProvider_begin () {
+void SQLitePersistenceProvider::AbstractPersistenceProvider_beginTransaction () {
 
     assert ( this->mDB );
     this->mDB.beginTransaction ();
 }
 
 //----------------------------------------------------------------//
-void SQLitePersistenceProvider::AbstractPersistenceProvider_commit () {
+void SQLitePersistenceProvider::AbstractPersistenceProvider_commitTransaction () {
 
     assert ( this->mDB );
     this->mDB.commitTransaction ();
@@ -200,7 +200,7 @@ void SQLitePersistenceProvider::AbstractPersistenceProvider_removeTag ( const Pe
 
     assert ( this->mDB );
 
-    this->begin ();
+    this->beginTransaction ();
 
     SQLiteResult result = this->mDB.exec (
 
@@ -213,7 +213,7 @@ void SQLitePersistenceProvider::AbstractPersistenceProvider_removeTag ( const Pe
     );
     result.reportWithAssert ();
     
-    this->commit ();
+    this->commitTransaction ();
 }
 
 //----------------------------------------------------------------//
@@ -224,7 +224,7 @@ void SQLitePersistenceProvider::AbstractPersistenceProvider_tagDidChange ( const
 
     assert ( this->mDB );
 
-    this->begin ();
+    this->beginTransaction ();
         
     u64 branchID = this->getIDForBranch ( *tag.getSourceBranch ());
     
@@ -241,7 +241,7 @@ void SQLitePersistenceProvider::AbstractPersistenceProvider_tagDidChange ( const
     );
     result.reportWithAssert ();
     
-    this->commit ();
+    this->commitTransaction ();
 }
 
 } // namespace Padamose

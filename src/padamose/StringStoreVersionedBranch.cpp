@@ -421,7 +421,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVe
     LGN_LOG ( PDM_FILTER_ROOT, INFO, "JOINING PARENT BRANCH" );
     
     AbstractStringStore& store = *this->mProvider;
-    store.begin ();
+    store.beginTransaction ();
         
     string keyForTopVersion = this->formatKeyForTopVersion ();
     size_t topVersion = store.get < u64 >( keyForTopVersion, 0 );
@@ -446,7 +446,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVe
     }
     this->transferClients ( other );
     
-    store.commit ();
+    store.commitTransaction ();
 }
 
 //----------------------------------------------------------------//
@@ -487,7 +487,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
     assert ( this->mVersion <= version );
 
     AbstractStringStore& store = *this->mProvider;
-    store.begin ();
+    store.beginTransaction ();
 
     string keyForValueByVersion = this->formatKeyForValueByVersion ( key, version );
 
@@ -542,7 +542,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_
     // set the value
     store.setString ( keyForValueByVersion, value.get < string >());
     
-    store.commit ();
+    store.commitTransaction ();
 }
 
 //----------------------------------------------------------------//
@@ -561,7 +561,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
     size_t version = store.get < u64 >( keyForTopVersion, 0 );
     if ( version <= topVersion ) return;
     
-    store.begin ();
+    store.beginTransaction ();
     
     do {
         version--;
@@ -606,7 +606,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVe
         store.set < u64 >( keyForTopVersion, version );
     }
     
-    store.commit ();
+    store.commitTransaction ();
 }
 
 //----------------------------------------------------------------//
@@ -616,7 +616,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidCh
     AbstractStringStore& store = *this->mProvider;
     string keyForSourceBranchID = this->formatKeyForSourceBranchID ();
 
-    store.begin ();
+    store.beginTransaction ();
 
     if ( this->mSourceBranch ) {
         string sourceBranchID = this->mProvider->getIDForBranch ( *this->mSourceBranch );
@@ -629,7 +629,7 @@ void StringStoreVersionedBranch::AbstractVersionedBranchClient_sourceBranchDidCh
     string keyForVersion = this->formatKeyForVersion ();
     store.set < u64 >( keyForVersion, this->mVersion );
     
-    store.commit ();
+    store.commitTransaction ();
 }
 
 } // namespace Padamose

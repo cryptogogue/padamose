@@ -44,11 +44,11 @@ RedisStringStore::~RedisStringStore () {
 //================================================================//
 
 //----------------------------------------------------------------//
-void RedisStringStore::AbstractPersistenceProvider_begin () {
+void RedisStringStore::AbstractPersistenceProvider_beginTransaction () {
 }
 
 //----------------------------------------------------------------//
-void RedisStringStore::AbstractPersistenceProvider_commit () {
+void RedisStringStore::AbstractPersistenceProvider_commitTransaction () {
 }
 
 //----------------------------------------------------------------//

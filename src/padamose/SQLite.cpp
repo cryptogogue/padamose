@@ -209,17 +209,15 @@ SQLiteResult::SQLiteResult ( const SQLiteResult& other ) {
 //================================================================//
 
 //----------------------------------------------------------------//
-SQLiteResult SQLite::beginTransaction () {
+void SQLite::beginTransaction () {
 
     SQLiteResult result;
 
     if ( this->mTransactionDepth == 0 ) {
         result = this->exec ( "BEGIN TRANSACTION" );
-        if ( result ) {
-            this->mTransactionDepth++;
-        }
+        result.reportWithAssert ();
     }
-    return result;
+    this->mTransactionDepth++;
 }
 
 //----------------------------------------------------------------//
@@ -233,19 +231,17 @@ SQLiteResult SQLite::close () {
 }
 
 //----------------------------------------------------------------//
-SQLiteResult SQLite::commitTransaction () {
+void SQLite::commitTransaction () {
 
     SQLiteResult result;
+    
+    assert ( this->mTransactionDepth > 0 );
 
     if ( this->mTransactionDepth == 1 ) {
         result = this->exec ( "COMMIT" );
+        result.reportWithAssert ();
     }
-    
-    if ( result ) {
-        this->mTransactionDepth--;
-    }
-    
-    return result;
+    this->mTransactionDepth--;
 }
 
 //----------------------------------------------------------------//
@@ -272,6 +268,12 @@ SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRow
     sqlite3_finalize ( stmt );
     
     return result;
+}
+
+//----------------------------------------------------------------//
+size_t SQLite::getTransactionDepth () const {
+
+    return this->mTransactionDepth;
 }
 
 //----------------------------------------------------------------//
@@ -358,7 +360,8 @@ SQLite::SQLite () :
 
 //----------------------------------------------------------------//
 SQLite::SQLite ( string filename ) :
-    mDB ( NULL ) {
+    mDB ( NULL ),
+    mTransactionDepth ( 0 ) {
     
     this->open ( filename );
 }

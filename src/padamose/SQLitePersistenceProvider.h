@@ -38,8 +38,8 @@ protected:
     void                                                loadFromStore                           ();
 
     //----------------------------------------------------------------//
-    void                                                AbstractPersistenceProvider_begin                   () override;
-    void                                                AbstractPersistenceProvider_commit                  () override;
+    void                                                AbstractPersistenceProvider_beginTransaction        () override;
+    void                                                AbstractPersistenceProvider_commitTransaction       () override;
     shared_ptr < AbstractPersistentVersionedBranch >    AbstractPersistenceProvider_makePersistentBranch    ( AbstractVersionedBranch& from ) override;
     void                                                AbstractPersistenceProvider_removeTag               ( const PersistenceTag& tag ) override;
     void                                                AbstractPersistenceProvider_tagDidChange            ( const PersistenceTag& tag ) override;

@@ -115,7 +115,7 @@ void AbstractStringStore::insertBranch ( shared_ptr < StringStoreVersionedBranch
 // TODO: doxygen
 void AbstractStringStore::loadFromStore () {
 
-    this->begin ();
+    this->beginTransaction ();
 
     string keyForTagListSize = this->formatKeyForTagListSize ();
     size_t tagListSize = this->get < u64 >( keyForTagListSize, 0 );
@@ -155,7 +155,7 @@ void AbstractStringStore::loadFromStore () {
         branch->optimize ();
     }
     
-    this->commit ();
+    this->commitTransaction ();
 }
 
 //----------------------------------------------------------------//
@@ -224,7 +224,7 @@ shared_ptr < AbstractPersistentVersionedBranch > AbstractStringStore::AbstractPe
 // TODO: doxygen
 void AbstractStringStore::AbstractPersistenceProvider_removeTag ( const PersistenceTag& tag ) {
 
-    this->begin ();
+    this->beginTransaction ();
 
     string name = tag.getName ();
     string keyForBranchIDByTagName = this->formatKeyForBranchIDByTagName ( name );
@@ -247,14 +247,14 @@ void AbstractStringStore::AbstractPersistenceProvider_removeTag ( const Persiste
     this->eraseString ( keyForBranchIDByTagName );
     this->eraseString ( keyForVersionByTagName );
     
-    this->commit ();
+    this->commitTransaction ();
 }
 
 //----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractStringStore::AbstractPersistenceProvider_tagDidChange ( const PersistenceTag& tag ) {
     
-    this->begin ();
+    this->beginTransaction ();
     
     string name = tag.getName ();
     string keyForBranchIDByTagName = this->formatKeyForBranchIDByTagName ( name );
@@ -277,7 +277,7 @@ void AbstractStringStore::AbstractPersistenceProvider_tagDidChange ( const Persi
     this->set < string >( keyForBranchIDByTagName, branchID );
     this->set < u64 >( keyForVersionByTagName, tag.getVersion ());
 
-    this->commit ();
+    this->commitTransaction ();
 }
 
 } // namespace Padamose
