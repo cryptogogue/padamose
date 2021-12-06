@@ -186,6 +186,8 @@ void SQLitePersistenceProvider::AbstractPersistenceProvider_commitTransaction ()
 // TODO: doxygen
 shared_ptr < AbstractPersistentVersionedBranch > SQLitePersistenceProvider::AbstractPersistenceProvider_makePersistentBranch ( AbstractVersionedBranch& from ) {
 
+    LGN_LOG_SCOPE ( PDM_FILTER_SQLSTORE, INFO, __PRETTY_FUNCTION__ );
+
     shared_ptr < SQLiteVersionedBranch > branch = make_shared < SQLiteVersionedBranch >( this->shared_from_this (), from );
     this->insertBranch ( branch );
 

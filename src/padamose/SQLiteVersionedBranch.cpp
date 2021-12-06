@@ -17,6 +17,8 @@ namespace Padamose {
 // TODO: doxygen
 void SQLiteVersionedBranch::deleteBranch () {
 
+    LGN_LOG_SCOPE ( PDM_FILTER_SQLSTORE, INFO, __PRETTY_FUNCTION__ );
+
     this->mProvider->beginTransaction ();
 
     SQLite& db = this->getDB ();
@@ -250,10 +252,15 @@ SQLiteVersionedBranch::ConstProviderPtr SQLiteVersionedBranch::AbstractPersisten
 */
 shared_ptr < AbstractVersionedBranch > SQLiteVersionedBranch::AbstractVersionedBranch_fork ( size_t baseVersion ) {
     
+    LGN_LOG_SCOPE ( PDM_FILTER_SQLSTORE, INFO, __PRETTY_FUNCTION__ );
+    
     assert ( this->mVersion <= baseVersion );
     
     shared_ptr < EphemeralVersionedBranch > child = make_shared < EphemeralVersionedBranch >();
     child->setParent ( this->mVersion < baseVersion ? this->shared_from_this () : this->mSourceBranch, baseVersion );
+
+    shared_ptr < SQLitePersistenceProvider > provider = this->mProvider;
+    provider->beginTransaction ();
 
     if ( baseVersion < this->mTopVersion ) {
 
@@ -281,6 +288,8 @@ shared_ptr < AbstractVersionedBranch > SQLiteVersionedBranch::AbstractVersionedB
         );
         result.reportWithAssert ();
     }
+    
+    provider->commitTransaction ();
     
     return child;
 }
@@ -356,8 +365,6 @@ size_t SQLiteVersionedBranch::AbstractVersionedBranch_getValuePrevVersion ( stri
 //----------------------------------------------------------------//
 // TODO: doxygen
 Variant SQLiteVersionedBranch::AbstractVersionedBranch_getValueVariant ( size_t version, string key ) const {
-
-    LGN_LOG_SCOPE ( PDM_FILTER_SQLSTORE, INFO, __PRETTY_FUNCTION__ );
 
     Variant variant;
     if (( this->mTopVersion == this->mVersion ) || ( this->mVersion > version )) return variant;
@@ -497,6 +504,8 @@ bool SQLiteVersionedBranch::AbstractVersionedBranch_isPersistent () const {
     \param      other       The branch to be appended to.
 */
 void SQLiteVersionedBranch::AbstractVersionedBranch_joinBranch ( AbstractVersionedBranch& other ) {
+
+    LGN_LOG_SCOPE ( PDM_FILTER_SQLSTORE, INFO, __PRETTY_FUNCTION__ );
 
     shared_ptr < SQLitePersistenceProvider > provider = this->mProvider;
     provider->beginTransaction ();
@@ -657,6 +666,8 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_setValueVariant ( size_t ver
     \param      topVersion  Version for new "top" of branch.
 */
 void SQLiteVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVersion ) {
+    
+    LGN_LOG_SCOPE ( PDM_FILTER_SQLSTORE, INFO, __PRETTY_FUNCTION__ );
     
     if ( this->mTopVersion <= topVersion ) return;
     topVersion = topVersion < this->mVersion ? this->mVersion : topVersion;
