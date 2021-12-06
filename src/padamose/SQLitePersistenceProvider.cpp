@@ -148,6 +148,12 @@ void SQLitePersistenceProvider::open ( string filename, SQLiteConfig config ) {
     result = this->mDB.exec ( SQL_STR ( CREATE UNIQUE INDEX IF NOT EXISTS tuplesIndex ON tuples ( key, version, branchID )));
     result.reportWithAssert ();
     
+    result = this->mDB.exec ( SQL_STR ( CREATE INDEX IF NOT EXISTS tuplesBranchIndex ON tuples ( branchID )));
+    result.reportWithAssert ();
+    
+    result = this->mDB.exec ( SQL_STR ( CREATE INDEX IF NOT EXISTS tuplesVersionBranchIndex ON tuples ( version, branchID )));
+    result.reportWithAssert ();
+    
     this->loadFromStore ();
 }
 

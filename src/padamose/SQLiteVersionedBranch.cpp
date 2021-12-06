@@ -269,7 +269,7 @@ shared_ptr < AbstractVersionedBranch > SQLiteVersionedBranch::AbstractVersionedB
         // TODO: this is lazy; requires two calls for every value in layer
         SQLiteResult result = db.exec (
             
-            "SELECT key FROM tuples WHERE branchID IS ?1 AND version IS ?2",
+            "SELECT key FROM tuples INDEXED BY tuplesVersionBranchIndex WHERE branchID IS ?1 AND version IS ?2",
             
             //--------------------------------//
             [ & ]( SQLiteStatement& stmt ) {
@@ -678,7 +678,7 @@ void SQLiteVersionedBranch::AbstractVersionedBranch_truncate ( size_t topVersion
     
     SQLiteResult result = db.exec (
     
-        "DELETE FROM tuples WHERE branchID = ?1 AND version >= ?2",
+        "DELETE FROM tuples INDEXED BY tuplesVersionBranchIndex WHERE branchID = ?1 AND version >= ?2",
         
         //--------------------------------//
         [ & ]( SQLiteStatement& stmt ) {

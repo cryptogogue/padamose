@@ -6,6 +6,7 @@
 
 #include <array>
 #include <assert.h>
+#include <chrono>
 #include <cmath>
 #include <exception>
 #include <fstream>

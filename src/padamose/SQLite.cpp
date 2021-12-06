@@ -267,7 +267,30 @@ SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRow
     SQLiteResult result = this->prepare ( sql, &stmt, onPrepare );
     if ( !result ) return result;
 
-    result = this->innerExec ( stmt, onRow );
+    u64 durationNS = std::chrono::duration_cast < std::chrono::nanoseconds >( std::chrono::high_resolution_clock::now ().time_since_epoch ()).count ();
+    
+//    result = this->innerExec ( stmt, onRow );
+    
+    
+    SQLiteStatement statement ( stmt );
+    int rows = 0;
+    while ( true ) {
+        
+        if ( sqlite3_step ( stmt ) != SQLITE_ROW ) break;
+        
+        if ( onRow ) {
+            onRow ( rows, statement );
+        }
+        rows++;
+    }
+    result = SQLiteResult ( *this, sqlite3_reset ( stmt ) );
+    
+    double duration = ( std::chrono::duration_cast < std::chrono::nanoseconds >( std::chrono::high_resolution_clock::now ().time_since_epoch ()).count () - durationNS ) / 1e9;
+    
+    if ( duration > 0.1 ) {
+        LGN_LOG ( PDM_FILTER_SQLITE, WARNING, "Long exec (%.3fs), %d rows: %s", duration, rows, sql.c_str ());
+    }
+    
     sqlite3_finalize ( stmt );
     
     return result;
@@ -279,24 +302,24 @@ size_t SQLite::getTransactionDepth () const {
     return this->mTransactionDepth;
 }
 
-//----------------------------------------------------------------//
-SQLiteResult SQLite::innerExec ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow ) {
-
-    int rows = 0;
-    
-    SQLiteStatement statement ( stmt );
-    
-    while ( true ) {
-        
-        if ( sqlite3_step ( stmt ) != SQLITE_ROW ) break;
-        
-        if ( onRow ) {
-            onRow ( rows, statement );
-        }
-        rows++;
-    }
-    return SQLiteResult ( *this, sqlite3_reset ( stmt ) );
-}
+////----------------------------------------------------------------//
+//SQLiteResult SQLite::innerExec ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow ) {
+//
+//    int rows = 0;
+//    
+//    SQLiteStatement statement ( stmt );
+//    
+//    while ( true ) {
+//        
+//        if ( sqlite3_step ( stmt ) != SQLITE_ROW ) break;
+//        
+//        if ( onRow ) {
+//            onRow ( rows, statement );
+//        }
+//        rows++;
+//    }
+//    return SQLiteResult ( *this, sqlite3_reset ( stmt ) );
+//}
 
 //----------------------------------------------------------------//
 SQLiteResult SQLite::open ( string filename, SQLiteConfig config ) {
