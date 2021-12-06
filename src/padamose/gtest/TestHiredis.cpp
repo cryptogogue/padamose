@@ -11,8 +11,8 @@ namespace Test {
 //----------------------------------------------------------------//
 TEST ( Hiredis, hello_redis ) {
 
-    RedisServerProc redisServerProc ( "./redis-test", "./redis.conf", "127.0.0.1", 9999 );
-    ASSERT_TRUE ( redisServerProc.getStatus () == RedisServerProc::RUNNING_AS_CHILD );
+//    RedisServerProc redisServerProc ( "./redis-test", "./redis.conf", "127.0.0.1", 9999 );
+//    ASSERT_TRUE ( redisServerProc.getStatus () == RedisServerProc::RUNNING_AS_CHILD );
 
     redisContext* c = NULL;
     redisReply* reply;

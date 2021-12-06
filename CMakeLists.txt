@@ -3,12 +3,12 @@ project ( padamose )
 
 set ( CMAKE_CXX_STANDARD 17 )
 
-set ( REPROC++ ON CACHE BOOL "Build reproc++." FORCE )
+#set ( REPROC++ ON CACHE BOOL "Build reproc++." FORCE )
 
 add_subdirectory ( 3rd-party/googletest EXCLUDE_FROM_ALL )
 add_subdirectory ( 3rd-party/hiredis EXCLUDE_FROM_ALL )
 add_subdirectory ( 3rd-party/lognosis EXCLUDE_FROM_ALL )
-add_subdirectory ( 3rd-party/reproc EXCLUDE_FROM_ALL )
+#add_subdirectory ( 3rd-party/reproc EXCLUDE_FROM_ALL )
 add_subdirectory ( 3rd-party/sqlite-3.34.0 EXCLUDE_FROM_ALL )
 
 add_library ( padamose "" )
@@ -26,8 +26,8 @@ target_include_directories ( padamose
         3rd-party/hiredis/
         3rd-party/lognosis/src/
         3rd-party/lognosis/3rd-party/
-        3rd-party/reproc/reproc/include/
-        3rd-party/reproc/reproc++/include/
+#       3rd-party/reproc/reproc/include/
+#       3rd-party/reproc/reproc++/include/
         3rd-party/sqlite-3.34.0/
 )
 
@@ -47,7 +47,7 @@ target_sources ( padamose
         src/padamose/EphemeralValueStack.cpp
         src/padamose/EphemeralVersionedBranch.cpp
         src/padamose/MutableVersionedCollection.cpp
-        src/padamose/RedisServerProc.cpp
+#       src/padamose/RedisServerProc.cpp
         src/padamose/RedisStringStore.cpp
         src/padamose/SQLite.cpp
         src/padamose/SQLitePersistenceProvider.cpp

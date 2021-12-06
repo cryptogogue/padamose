@@ -20,7 +20,7 @@
 #include <padamose/Exceptions.h>
 #include <padamose/HasVersionedBranch.h>
 #include <padamose/MutableVersionedCollection.h>
-#include <padamose/RedisServerProc.h>
+//#include <padamose/RedisServerProc.h>
 #include <padamose/RedisStringStore.h>
 #include <padamose/StringStoreVersionedBranch.h>
 #include <padamose/SQLite.h>
