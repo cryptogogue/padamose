@@ -3,10 +3,13 @@
 url=https://github.com/google/googletest.git
 [submodule "3rd-party/lognosis"]
 	path = 3rd-party/lognosis
-	url = git@github.com:cryptogogue/lognosis.git
+	url = https://github.com/cryptogogue/lognosis.git
 [submodule "3rd-party/reproc"]
 	path = 3rd-party/reproc
-url=git@github.com:cryptogogue/reproc.git
+url=https://github.com/cryptogogue/reproc.git
 [submodule "3rd-party/hiredis"]
 	path = 3rd-party/hiredis
-url=git@github.com:cryptogogue/hiredis.git
+url=https://github.com/cryptogogue/hiredis.git
+[submodule "3rd-party/rocksdb"]
+	path = 3rd-party/rocksdb
+	url = https://github.com/facebook/rocksdb.git
