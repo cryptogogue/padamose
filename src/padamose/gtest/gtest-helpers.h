@@ -19,4 +19,6 @@ static const char* STR2     = "ghi";
 static const char* STR3     = "jkl";
 static const char* STR4     = "mno";
 
+static const char* ROCKSDB_FILENAME        = "rocksdb-test.db";
+
 #endif
