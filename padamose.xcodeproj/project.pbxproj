@@ -29,6 +29,7 @@
 /* Begin PBXBuildFile section */
 		CD07CDE121A74A2600C9C8DB /* MutableVersionedCollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD07CDDF21A74A2600C9C8DB /* MutableVersionedCollection.cpp */; };
 		CD07CDE221A74A2600C9C8DB /* MutableVersionedCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = CD07CDE021A74A2600C9C8DB /* MutableVersionedCollection.h */; };
+		CD083DE7276174ED000EB11A /* librocksdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD083DE6276174ED000EB11A /* librocksdb.a */; };
 		CD19DEA22592DE330007ACF0 /* sds.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60422667454009B4144 /* sds.c */; };
 		CD19DEA32592DE330007ACF0 /* read.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60222667454009B4144 /* read.c */; };
 		CD19DEA42592DE330007ACF0 /* sslio.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60922667454009B4144 /* sslio.c */; };
@@ -172,7 +173,6 @@
 		CDD6CE2F21A6388600DB7C10 /* VersionedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */; };
 		CDDD756A2760FC6000325205 /* RocksDbStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDDD75682760FC6000325205 /* RocksDbStringStore.h */; };
 		CDDD756B2760FC6000325205 /* RocksDbStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDD75692760FC6000325205 /* RocksDbStringStore.cpp */; };
-		CDDD75732760FDFC00325205 /* librocksdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDD75722760FDFC00325205 /* librocksdb.a */; };
 		CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF2903C224EC3560028719C /* DebugStringStore.h */; };
 		CDF29045224EF0C20028719C /* StringStoreVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */; };
 		CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF903A8219E2D1400C1930B /* Exceptions.h */; };
@@ -282,6 +282,7 @@
 /* Begin PBXFileReference section */
 		CD07CDDF21A74A2600C9C8DB /* MutableVersionedCollection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MutableVersionedCollection.cpp; path = src/padamose/MutableVersionedCollection.cpp; sourceTree = "<group>"; };
 		CD07CDE021A74A2600C9C8DB /* MutableVersionedCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutableVersionedCollection.h; path = src/padamose/MutableVersionedCollection.h; sourceTree = "<group>"; };
+		CD083DE6276174ED000EB11A /* librocksdb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librocksdb.a; path = ../../../../../../../../usr/local/lib/librocksdb.a; sourceTree = "<group>"; };
 		CD19DEB92592DE330007ACF0 /* libsqlite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsqlite.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD19DECD2592F2A40007ACF0 /* SQLiteStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLiteStringStore.cpp; path = src/padamose/SQLiteStringStore.cpp; sourceTree = "<group>"; };
 		CD19DECE2592F2A40007ACF0 /* SQLiteStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLiteStringStore.h; path = src/padamose/SQLiteStringStore.h; sourceTree = "<group>"; };
@@ -416,7 +417,6 @@
 		CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedMap.h; path = src/padamose/VersionedMap.h; sourceTree = "<group>"; };
 		CDDD75682760FC6000325205 /* RocksDbStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RocksDbStringStore.h; path = src/padamose/RocksDbStringStore.h; sourceTree = "<group>"; };
 		CDDD75692760FC6000325205 /* RocksDbStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RocksDbStringStore.cpp; path = src/padamose/RocksDbStringStore.cpp; sourceTree = "<group>"; };
-		CDDD75722760FDFC00325205 /* librocksdb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librocksdb.a; path = ../../../../../../../../../usr/local/Cellar/rocksdb/6.26.1/lib/librocksdb.a; sourceTree = "<group>"; };
 		CDF2903C224EC3560028719C /* DebugStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugStringStore.h; path = src/padamose/DebugStringStore.h; sourceTree = "<group>"; };
 		CDF903A8219E2D1400C1930B /* Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exceptions.h; path = src/padamose/Exceptions.h; sourceTree = "<group>"; };
 		CDF903AA219F99D400C1930B /* gtest-helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtest-helpers.h"; path = "src/padamose/gtest/gtest-helpers.h"; sourceTree = "<group>"; };
@@ -452,8 +452,8 @@
 				CD9FE61F226674F6009B4144 /* libhiredis.a in Frameworks */,
 				CD6C9ACB21C48175009A3801 /* liblognosis.a in Frameworks */,
 				CD4E81D421059435007DA585 /* libpadamose.a in Frameworks */,
+				CD083DE7276174ED000EB11A /* librocksdb.a in Frameworks */,
 				CD19DEEF2593E4B50007ACF0 /* libsqlite.a in Frameworks */,
-				CDDD75732760FDFC00325205 /* librocksdb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +481,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD083DE5276174B9000EB11A /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				CD083DE6276174ED000EB11A /* librocksdb.a */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
 		CD19DE9F2592DCE90007ACF0 /* sqlite */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,7 +654,7 @@
 				CD4E816621057ADF007DA585 /* gtest */,
 				CD5C62F320B4F7A70038EE98 /* src */,
 				CD9345C32093EB140077BAD4 /* Products */,
-				CDDD75712760FDF000325205 /* libs */,
+				CD083DE5276174B9000EB11A /* lib */,
 				CDED584020BA2008003A2969 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -845,14 +853,6 @@
 				CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */,
 			);
 			name = collection;
-			sourceTree = "<group>";
-		};
-		CDDD75712760FDF000325205 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				CDDD75722760FDFC00325205 /* librocksdb.a */,
-			);
-			path = libs;
 			sourceTree = "<group>";
 		};
 		CDED581320BA1EF7003A2969 /* 3rd-party */ = {
