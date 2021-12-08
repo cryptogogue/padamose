@@ -1,27 +1,29 @@
 // Copyright (c) 2017-2018, Cryptogogue Inc. All Rights Reserved.
 // http://cryptogogue.com
 
-#ifndef PADAMOSE_DEBUGSTRINGSTORE_H
-#define PADAMOSE_DEBUGSTRINGSTORE_H
+#ifndef PADAMOSE_ROCKSDBSTRINGSTORE_H
+#define PADAMOSE_ROCKSDBSTRINGSTORE_H
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractStringStore.h>
 #include <rocksdb/db.h>
 #include <rocksdb/utilities/transaction_db.h>
+#include "rocksdb/utilities/transaction.h"
 
 namespace Padamose {
 
 //================================================================//
-// DebugStringStore
+// RocksDbStringStore
 //================================================================//
 // TODO: doxygen
 class RocksDbStringStore :
     public AbstractStringStore {
 protected:
 
-    rocksdb::TransactionDB* db;
-    rocksdb::Options mOptions;
-    rocksdb::TransactionDBOptions mTxnDbOptions;
+    rocksdb::TransactionDB* mDB{};
+    rocksdb::Options mOptions{};
+    rocksdb::TransactionDBOptions mTxnDbOptions{};
+    vector< rocksdb::Transaction* > transactions{};
 
     //----------------------------------------------------------------//
     void            AbstractPersistenceProvider_beginTransaction        () override;
@@ -34,9 +36,16 @@ protected:
 public:
 
     //----------------------------------------------------------------//
-    RocksDbStringStore        ( string prefix = "" );
-    void open(const string& filename, rocksdb::Options options = {}, const rocksdb::TransactionDBOptions& txnDbOptions = {});
+    RocksDbStringStore();
+    void open(const string& filename, const string &configPath);
+    rocksdb::Transaction * getLatestTransaction() const;
     virtual         ~RocksDbStringStore       ();
+    //----------------------------------------------------------------//
+    static shared_ptr < RocksDbStringStore > make (const string &filename, const string &configPath) {
+        shared_ptr < RocksDbStringStore > store = make_shared < RocksDbStringStore >();
+        store->open ( filename, configPath);
+        return store;
+    }
 };
 
 } // namespace Padamose
