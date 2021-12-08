@@ -15,7 +15,7 @@ namespace Padamose {
 void VersionedStoreLock::lock ( const AbstractHasVersionedBranch& other ) {
 
 
-    LGN_LOG_SCOPE ( PDM_FILTER_LOCK, INFO, __PRETTY_FUNCTION__ );
+    LGN_LOG_SCOPE ( PDM_FILTER_LOCK, INFO, "%s", __PRETTY_FUNCTION__ );
 
     this->unlock ();
 
@@ -30,7 +30,7 @@ void VersionedStoreLock::lock ( const AbstractHasVersionedBranch& other ) {
 //----------------------------------------------------------------//
 void VersionedStoreLock::unlock () {
     
-    LGN_LOG_SCOPE ( PDM_FILTER_LOCK, INFO, __PRETTY_FUNCTION__ );
+    LGN_LOG_SCOPE ( PDM_FILTER_LOCK, INFO, "%s", __PRETTY_FUNCTION__ );
     
     if ( this->mSourceBranch ) {
         this->mSourceBranch->unlock ();

@@ -259,7 +259,7 @@ SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare ) {
 //----------------------------------------------------------------//
 SQLiteResult SQLite::exec ( string sql, SQLPrepareCallbackFunc onPrepare, SQLRowCallbackFunc onRow ) {
     
-    LGN_LOG_SCOPE ( PDM_FILTER_SQLITE, INFO, __PRETTY_FUNCTION__ );
+    LGN_LOG_SCOPE ( PDM_FILTER_SQLITE, INFO, "%s", __PRETTY_FUNCTION__ );
     LGN_LOG ( PDM_FILTER_SQLITE, INFO, "%s", sql.c_str ());
     
     sqlite3_stmt* stmt;

@@ -3,12 +3,9 @@ project ( padamose )
 
 set ( CMAKE_CXX_STANDARD 17 )
 
-#set ( REPROC++ ON CACHE BOOL "Build reproc++." FORCE )
-
 add_subdirectory ( 3rd-party/googletest EXCLUDE_FROM_ALL )
 add_subdirectory ( 3rd-party/hiredis EXCLUDE_FROM_ALL )
 add_subdirectory ( 3rd-party/lognosis EXCLUDE_FROM_ALL )
-#add_subdirectory ( 3rd-party/reproc EXCLUDE_FROM_ALL )
 add_subdirectory ( 3rd-party/sqlite-3.34.0 EXCLUDE_FROM_ALL )
 
 add_library ( padamose "" )
@@ -24,10 +21,11 @@ target_include_directories ( padamose
         3rd-party/hiredis/
         3rd-party/lognosis/src/
         3rd-party/lognosis/3rd-party/
-#       3rd-party/reproc/reproc/include/
-#       3rd-party/reproc/reproc++/include/
         3rd-party/sqlite-3.34.0/
-        3rd-party/rocksdb/include/
+
+        # neither of these *should* be necessary; not going to troubleshoot it now
+        /usr/local/include/
+        /usr/include/
 )
 
 target_sources ( padamose
@@ -46,7 +44,6 @@ target_sources ( padamose
         src/padamose/EphemeralValueStack.cpp
         src/padamose/EphemeralVersionedBranch.cpp
         src/padamose/MutableVersionedCollection.cpp
-#       src/padamose/RedisServerProc.cpp
         src/padamose/RedisStringStore.cpp
         src/padamose/RocksDbStringStore.cpp
         src/padamose/SQLite.cpp
@@ -61,7 +58,3 @@ target_sources ( padamose
         src/padamose/VersionedStoreIterator.cpp
         src/padamose/VersionedStoreLock.cpp
 )
-
-
-#install ( TARGETS padamose EXPORT libpadamose ARCHIVE DESTINATION lib)
-#install ( DIRECTORY src/padamose/ DESTINATION include/padamose FILES_MATCHING PATTERN "*.h" )

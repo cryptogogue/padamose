@@ -6,9 +6,10 @@
 
 #include <padamose/padamose-common.h>
 #include <padamose/AbstractStringStore.h>
+
 #include <rocksdb/db.h>
 #include <rocksdb/utilities/transaction_db.h>
-#include "rocksdb/utilities/transaction.h"
+#include <rocksdb/utilities/transaction.h>
 
 namespace Padamose {
 

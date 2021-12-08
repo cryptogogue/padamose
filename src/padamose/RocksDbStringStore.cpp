@@ -3,9 +3,10 @@
 
 #include <padamose/RocksDbStringStore.h>
 
+using namespace rocksdb;
+
 namespace Padamose {
 
-    using namespace ROCKSDB_NAMESPACE;
 //================================================================//
 // RocksDbStringStore
 //================================================================//

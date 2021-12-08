@@ -10,6 +10,3 @@ url=https://github.com/cryptogogue/reproc.git
 [submodule "3rd-party/hiredis"]
 	path = 3rd-party/hiredis
     url=https://github.com/cryptogogue/hiredis.git
-[submodule "3rd-party/rocksdb"]
-	path = 3rd-party/rocksdb
-	url = https://github.com/facebook/rocksdb.git
