@@ -171,6 +171,8 @@
 		CDD6CE2A21A61EB900DB7C10 /* VersionedCollectionIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */; };
 		CDD6CE2E21A6388600DB7C10 /* VersionedMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */; };
 		CDD6CE2F21A6388600DB7C10 /* VersionedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */; };
+		CDDD756A2760FC6000325205 /* RocksDbStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDDD75682760FC6000325205 /* RocksDbStringStore.h */; };
+		CDDD756B2760FC6000325205 /* RocksDbStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDD75692760FC6000325205 /* RocksDbStringStore.cpp */; };
 		CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF2903C224EC3560028719C /* DebugStringStore.h */; };
 		CDF29045224EF0C20028719C /* StringStoreVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */; };
 		CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF903A8219E2D1400C1930B /* Exceptions.h */; };
@@ -419,6 +421,8 @@
 		CDD6CE2821A61EB900DB7C10 /* VersionedCollectionIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedCollectionIterator.h; path = src/padamose/VersionedCollectionIterator.h; sourceTree = "<group>"; };
 		CDD6CE2C21A6388600DB7C10 /* VersionedMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VersionedMap.cpp; path = src/padamose/VersionedMap.cpp; sourceTree = "<group>"; };
 		CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedMap.h; path = src/padamose/VersionedMap.h; sourceTree = "<group>"; };
+		CDDD75682760FC6000325205 /* RocksDbStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RocksDbStringStore.h; path = src/padamose/RocksDbStringStore.h; sourceTree = "<group>"; };
+		CDDD75692760FC6000325205 /* RocksDbStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RocksDbStringStore.cpp; path = src/padamose/RocksDbStringStore.cpp; sourceTree = "<group>"; };
 		CDF2903C224EC3560028719C /* DebugStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugStringStore.h; path = src/padamose/DebugStringStore.h; sourceTree = "<group>"; };
 		CDF903A8219E2D1400C1930B /* Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exceptions.h; path = src/padamose/Exceptions.h; sourceTree = "<group>"; };
 		CDF903AA219F99D400C1930B /* gtest-helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtest-helpers.h"; path = "src/padamose/gtest/gtest-helpers.h"; sourceTree = "<group>"; };
@@ -765,6 +769,8 @@
 				CDF2903C224EC3560028719C /* DebugStringStore.h */,
 				CD9FE682226838EC009B4144 /* RedisStringStore.cpp */,
 				CD9FE683226838EC009B4144 /* RedisStringStore.h */,
+				CDDD75692760FC6000325205 /* RocksDbStringStore.cpp */,
+				CDDD75682760FC6000325205 /* RocksDbStringStore.h */,
 				CD19DECD2592F2A40007ACF0 /* SQLiteStringStore.cpp */,
 				CD19DECE2592F2A40007ACF0 /* SQLiteStringStore.h */,
 				CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */,
@@ -922,6 +928,7 @@
 				CDB4058E223ED67A00200C78 /* padamose.h in Headers */,
 				CDA06FFF2159A79C003FA0C3 /* EphemeralValueStack.h in Headers */,
 				CD9B810821AA35E30039B645 /* BaseVersionedCollectionIterator.h in Headers */,
+				CDDD756A2760FC6000325205 /* RocksDbStringStore.h in Headers */,
 				CD19DEE325930C820007ACF0 /* SQLite.h in Headers */,
 				CDF903AE21A0A70B00C1930B /* VersionedList.h in Headers */,
 				CD9FE69222697F87009B4144 /* RedisServerProc.h in Headers */,
@@ -1259,6 +1266,7 @@
 				CD85B1CF228F3091000C2A54 /* Variant.cpp in Sources */,
 				CDAC9F632625AAE000DCA201 /* BranchInspector.cpp in Sources */,
 				CDAC9F49262449D900DCA201 /* SQLitePersistenceProvider.cpp in Sources */,
+				CDDD756B2760FC6000325205 /* RocksDbStringStore.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
