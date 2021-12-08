@@ -46,7 +46,7 @@ public:
         shared_ptr < AbstractStringStore > make () const override {
             if ( !this->mRocksDbStringStore ) {
                 this->mRocksDbStringStore = make_shared < RocksDbStringStore >();
-                this->mRocksDbStringStore->open(ROCKSDB_FILENAME);
+                this->mRocksDbStringStore->open(ROCKSDB_FILENAME,"");
             }
             return this->mRocksDbStringStore;
         }

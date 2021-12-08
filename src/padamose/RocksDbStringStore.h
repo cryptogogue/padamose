@@ -39,6 +39,7 @@ public:
     RocksDbStringStore();
     void open(const string& filename, const string &configPath);
     rocksdb::Transaction * getLatestTransaction() const;
+    bool hasTransaction() const;
     virtual         ~RocksDbStringStore       ();
     //----------------------------------------------------------------//
     static shared_ptr < RocksDbStringStore > make (const string &filename, const string &configPath) {

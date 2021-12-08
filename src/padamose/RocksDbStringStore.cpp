@@ -31,7 +31,7 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
     void RocksDbStringStore::AbstractPersistenceProvider_beginTransaction() {
-        assert ( this->mDB );
+        assert (this->mDB);
         rocksdb::Transaction *txn = mDB->BeginTransaction(rocksdb::WriteOptions(), rocksdb::TransactionOptions());
         transactions.push_back(txn);
     }
@@ -48,16 +48,30 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
     void RocksDbStringStore::AbstractStringStore_eraseString(string key) {
-        auto s = getLatestTransaction()->Delete(key);
-        assert(s.ok());
+
+        rocksdb::Status status;
+
+        if (hasTransaction()) {
+            status = getLatestTransaction()->Delete(key);
+        } else {
+            status = mDB->Delete(rocksdb::WriteOptions(), key);
+        }
+
+        assert(status.ok());
     }
 
 //----------------------------------------------------------------//
     string RocksDbStringStore::AbstractStringStore_getString(string key) const {
-        assert ( this->mDB );
+        assert (this->mDB);
         std::string value;
-        rocksdb::Status s = mDB->Get(rocksdb::ReadOptions(), key, &value);
-        if (s.ok()) {
+        rocksdb::Status status;
+        if (hasTransaction()) {
+            status = getLatestTransaction()->Get(rocksdb::ReadOptions(), key, &value);
+        } else {
+            status = mDB->Get(rocksdb::ReadOptions(), key, &value);
+        }
+
+        if (status.ok()) {
             return value;
         }
 
@@ -66,16 +80,28 @@ namespace Padamose {
 
 //----------------------------------------------------------------//
     bool RocksDbStringStore::AbstractStringStore_hasString(string key) const {
-        assert ( this->mDB );
+        assert (this->mDB);
         std::string value;
-        auto s = mDB->Get(rocksdb::ReadOptions(), key, &value);
-        return !s.IsNotFound();
+        rocksdb::Status status;
+        if (hasTransaction()) {
+            status = getLatestTransaction()->Get(rocksdb::ReadOptions(), key, &value);
+        } else {
+            status = mDB->Get(rocksdb::ReadOptions(), key, &value);
+        }
+        return !status.IsNotFound();
     }
 
 //----------------------------------------------------------------//
     void RocksDbStringStore::AbstractStringStore_setString(string key, string value) {
-        auto s = getLatestTransaction()->Put(key, value);
-        assert(s.ok());
+        rocksdb::Status status;
+        if (hasTransaction()) {
+            status = getLatestTransaction()->Put(key, value);
+            assert(status.ok());
+        } else {
+            assert(this->mDB);
+            status = mDB->Put(rocksdb::WriteOptions(), key, value);
+            assert(status.ok());
+        }
     }
 
     void
@@ -83,7 +109,7 @@ namespace Padamose {
         assert(!filename.empty());
         if (!mDB) {
             mOptions.create_if_missing = true;
-            if(!configPath.empty()) {
+            if (!configPath.empty()) {
                 //TODO: load config here based on config path
             }
             Status status = TransactionDB::Open(mOptions, mTxnDbOptions, filename, &mDB);
@@ -95,6 +121,10 @@ namespace Padamose {
     rocksdb::Transaction *RocksDbStringStore::getLatestTransaction() const {
         assert(transactions.size() > 0);
         return transactions.back();
+    }
+
+    bool RocksDbStringStore::hasTransaction() const {
+        return !transactions.empty();
     }
 
 } // namespace Padamose
