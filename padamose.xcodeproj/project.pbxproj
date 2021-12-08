@@ -138,7 +138,6 @@
 		CD9FE67C22669EC2009B4144 /* error.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE67922669EC2009B4144 /* error.hpp */; };
 		CD9FE67D22669EC2009B4144 /* reproc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE67A22669EC2009B4144 /* reproc.hpp */; };
 		CD9FE67E22669EC2009B4144 /* sink.hpp in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE67B22669EC2009B4144 /* sink.hpp */; };
-		CD9FE6812266A01B009B4144 /* libreproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9FE63B22669323009B4144 /* libreproc.a */; };
 		CD9FE684226838EC009B4144 /* RedisStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE682226838EC009B4144 /* RedisStringStore.cpp */; };
 		CD9FE685226838EC009B4144 /* RedisStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CD9FE683226838EC009B4144 /* RedisStringStore.h */; };
 		CD9FE69122697F87009B4144 /* RedisServerProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE68F22697F87009B4144 /* RedisServerProc.cpp */; };
@@ -276,13 +275,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = CD4E817521059316007DA585;
 			remoteInfo = "lib-lognosis";
-		};
-		CD9FE67F2266A011009B4144 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CD9345BA2093EB140077BAD4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CD9FE62222669323009B4144;
-			remoteInfo = "lib-reproc";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -458,7 +450,6 @@
 				CD9FE61F226674F6009B4144 /* libhiredis.a in Frameworks */,
 				CD6C9ACB21C48175009A3801 /* liblognosis.a in Frameworks */,
 				CD4E81D421059435007DA585 /* libpadamose.a in Frameworks */,
-				CD9FE6812266A01B009B4144 /* libreproc.a in Frameworks */,
 				CD19DEEF2593E4B50007ACF0 /* libsqlite.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1037,7 +1028,6 @@
 				CD9FE61E226674EB009B4144 /* PBXTargetDependency */,
 				CD6C9ACA21C4816D009A3801 /* PBXTargetDependency */,
 				CD4E81D32105942B007DA585 /* PBXTargetDependency */,
-				CD9FE6802266A011009B4144 /* PBXTargetDependency */,
 				CD19DECB2592DEAE0007ACF0 /* PBXTargetDependency */,
 			);
 			name = "padamose-gtest";
@@ -1365,11 +1355,6 @@
 			isa = PBXTargetDependency;
 			name = "lib-lognosis";
 			targetProxy = CD9FE64022669352009B4144 /* PBXContainerItemProxy */;
-		};
-		CD9FE6802266A011009B4144 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CD9FE62222669323009B4144 /* lib-reproc */;
-			targetProxy = CD9FE67F2266A011009B4144 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

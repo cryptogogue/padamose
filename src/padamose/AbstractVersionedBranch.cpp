@@ -61,7 +61,7 @@ void AbstractVersionedBranch::eraseClient ( AbstractVersionedBranchClient& clien
 */
 size_t AbstractVersionedBranch::findImmutableTop ( const AbstractVersionedBranchClient* ignore ) const {
 
-    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, "EphemeralVersionedBranch::findImmutableTop ()" );
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, __PRETTY_FUNCTION__ );
 
     size_t immutableTop = this->getVersionDependency ();
 
@@ -87,6 +87,8 @@ size_t AbstractVersionedBranch::findImmutableTop ( const AbstractVersionedBranch
 //----------------------------------------------------------------//
 // TODO: doxygen
 shared_ptr < AbstractVersionedBranch > AbstractVersionedBranch::fork ( AbstractVersionedBranchClient& client, size_t baseVersion ) {
+
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, __PRETTY_FUNCTION__ );
 
     shared_ptr < AbstractVersionedBranch > child = this->AbstractVersionedBranch_fork ( baseVersion );
     
@@ -210,6 +212,9 @@ bool AbstractVersionedBranch::isPersistent () const {
     appends the contents of the client to the given branch.
 */
 void AbstractVersionedBranch::joinBranch ( AbstractVersionedBranch& branch ) {
+
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, __PRETTY_FUNCTION__ );
+    
     this->AbstractVersionedBranch_joinBranch ( branch );
 }
 
@@ -260,7 +265,6 @@ void AbstractVersionedBranch::optimize () {
     if ( this->mSourceBranch ) {
         this->mSourceBranch->optimize ();
     }
-
     this->optimizeInner ();
 }
 
@@ -348,6 +352,8 @@ void AbstractVersionedBranch::optimizeInner () {
 // TODO: doxygen
 void AbstractVersionedBranch::persistSelf ( AbstractPersistenceProvider& provider ) {
     
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, __PRETTY_FUNCTION__ );
+    
     if ( this->isPersistent ()) return;
     
     if ( this->mSourceBranch ) {
@@ -379,6 +385,8 @@ void AbstractVersionedBranch::setValueVariant ( size_t version, string key, cons
 // TODO: doxygen
 void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other ) {
 
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, __PRETTY_FUNCTION__ );
+
     shared_ptr < AbstractVersionedBranch > pinThis = this->shared_from_this ();
 
     // copy the clients
@@ -397,6 +405,8 @@ void AbstractVersionedBranch::transferClients ( AbstractVersionedBranch& other )
 //----------------------------------------------------------------//
 // TODO: doxygen
 void AbstractVersionedBranch::truncate ( size_t topVersion ) {
+
+    LGN_LOG_SCOPE ( PDM_FILTER_ROOT, INFO, __PRETTY_FUNCTION__ );
 
     if ( this->isLocked ()) return;
     this->AbstractVersionedBranch_truncate ( topVersion );

@@ -136,7 +136,7 @@ protected:
     size_t                  mTransactionDepth;
 
     //----------------------------------------------------------------//
-    SQLiteResult            innerExec               ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow );
+//    SQLiteResult            innerExec               ( sqlite3_stmt* stmt, SQLRowCallbackFunc onRow );
     SQLiteResult            prepare                 ( string sql, sqlite3_stmt** stmt, SQLPrepareCallbackFunc onPrepare );
 
 public:

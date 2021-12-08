@@ -19,8 +19,8 @@ static const string STR4    = "mno";
 //----------------------------------------------------------------//
 TEST ( RedisPersistence, test_redis_persistence ) {
 
-    RedisServerProc redisServerProc ( "./redis-test", "./redis.conf", "127.0.0.1", 9999 );
-    ASSERT_TRUE ( redisServerProc.getStatus () == RedisServerProc::RUNNING_AS_CHILD );
+//    RedisServerProc redisServerProc ( "./redis-test", "./redis.conf", "127.0.0.1", 9999 );
+//    ASSERT_TRUE ( redisServerProc.getStatus () == RedisServerProc::RUNNING_AS_CHILD );
 
     shared_ptr < RedisStringStore > stringStore = redisServerProc.makeStringStore ();
     shared_ptr < AbstractStringStore > provider = make_shared < AbstractStringStore >( stringStore );
