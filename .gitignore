@@ -11,3 +11,4 @@ Makefile
 *.a
 cmake-build-debug
 .idea
+rocksdb-test.db

@@ -172,6 +172,7 @@
 		CDD6CE2F21A6388600DB7C10 /* VersionedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */; };
 		CDDD756A2760FC6000325205 /* RocksDbStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDDD75682760FC6000325205 /* RocksDbStringStore.h */; };
 		CDDD756B2760FC6000325205 /* RocksDbStringStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDD75692760FC6000325205 /* RocksDbStringStore.cpp */; };
+		CDDD75732760FDFC00325205 /* librocksdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDD75722760FDFC00325205 /* librocksdb.a */; };
 		CDF2903E224EC3560028719C /* DebugStringStore.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF2903C224EC3560028719C /* DebugStringStore.h */; };
 		CDF29045224EF0C20028719C /* StringStoreVersionedBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDB40593223EE36C00200C78 /* StringStoreVersionedBranch.cpp */; };
 		CDF903A9219E2D1400C1930B /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF903A8219E2D1400C1930B /* Exceptions.h */; };
@@ -415,6 +416,7 @@
 		CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionedMap.h; path = src/padamose/VersionedMap.h; sourceTree = "<group>"; };
 		CDDD75682760FC6000325205 /* RocksDbStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RocksDbStringStore.h; path = src/padamose/RocksDbStringStore.h; sourceTree = "<group>"; };
 		CDDD75692760FC6000325205 /* RocksDbStringStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RocksDbStringStore.cpp; path = src/padamose/RocksDbStringStore.cpp; sourceTree = "<group>"; };
+		CDDD75722760FDFC00325205 /* librocksdb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librocksdb.a; path = ../../../../../../../../../usr/local/Cellar/rocksdb/6.26.1/lib/librocksdb.a; sourceTree = "<group>"; };
 		CDF2903C224EC3560028719C /* DebugStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugStringStore.h; path = src/padamose/DebugStringStore.h; sourceTree = "<group>"; };
 		CDF903A8219E2D1400C1930B /* Exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exceptions.h; path = src/padamose/Exceptions.h; sourceTree = "<group>"; };
 		CDF903AA219F99D400C1930B /* gtest-helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtest-helpers.h"; path = "src/padamose/gtest/gtest-helpers.h"; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				CD6C9ACB21C48175009A3801 /* liblognosis.a in Frameworks */,
 				CD4E81D421059435007DA585 /* libpadamose.a in Frameworks */,
 				CD19DEEF2593E4B50007ACF0 /* libsqlite.a in Frameworks */,
+				CDDD75732760FDFC00325205 /* librocksdb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +646,7 @@
 				CD4E816621057ADF007DA585 /* gtest */,
 				CD5C62F320B4F7A70038EE98 /* src */,
 				CD9345C32093EB140077BAD4 /* Products */,
+				CDDD75712760FDF000325205 /* libs */,
 				CDED584020BA2008003A2969 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -841,6 +845,14 @@
 				CDD6CE2D21A6388600DB7C10 /* VersionedMap.h */,
 			);
 			name = collection;
+			sourceTree = "<group>";
+		};
+		CDDD75712760FDF000325205 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				CDDD75722760FDFC00325205 /* librocksdb.a */,
+			);
+			path = libs;
 			sourceTree = "<group>";
 		};
 		CDED581320BA1EF7003A2969 /* 3rd-party */ = {
@@ -1584,6 +1596,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					src,
+					/usr/local/opt/rocksdb/include,
 					"3rd-party/googletest/googletest/include",
 					"3rd-party/hiredis",
 					"3rd-party/lognosis/src",
@@ -1593,7 +1606,7 @@
 					"3rd-party/reproc/reproc++/include",
 					"3rd-party/sqlite-3.34.0",
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = /usr/local/opt/rocksdb/lib;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -1650,6 +1663,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					src,
+					/usr/local/opt/rocksdb/include,
 					"3rd-party/googletest/googletest/include",
 					"3rd-party/hiredis",
 					"3rd-party/lognosis/src",
@@ -1659,7 +1673,7 @@
 					"3rd-party/reproc/reproc++/include",
 					"3rd-party/sqlite-3.34.0",
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = /usr/local/opt/rocksdb/lib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
