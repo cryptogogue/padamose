@@ -7,6 +7,7 @@
 #include <padamose/gtest/util.h>
 #include <padamose/padamose.h>
 
+
 namespace Padamose {
 namespace Test {
 
@@ -29,6 +30,27 @@ public:
         return this->mDebugStringStore;
     }
 };
+
+//================================================================//
+// RocksDBStringStoreFactory
+//================================================================//
+    class RocksDBStringStoreFactory :
+            public AbstractFactory < AbstractStringStore > {
+    private:
+
+        mutable shared_ptr < RocksDbStringStore > mRocksDbStringStore;
+
+    public:
+
+        //----------------------------------------------------------------//
+        shared_ptr < AbstractStringStore > make () const override {
+            if ( !this->mRocksDbStringStore ) {
+                this->mRocksDbStringStore = make_shared < RocksDbStringStore >();
+                this->mRocksDbStringStore->open(ROCKSDB_FILENAME,"");
+            }
+            return this->mRocksDbStringStore;
+        }
+    };
 
 //================================================================//
 // SQLiteStringStoreFactory
@@ -55,7 +77,7 @@ class StringStoreTest :
 };
 
 using testing::Types;
-typedef Types < DebugStringStoreFactory, SQLiteStringStoreFactory > Implementations;
+typedef Types < DebugStringStoreFactory, SQLiteStringStoreFactory, RocksDBStringStoreFactory > Implementations;
 TYPED_TEST_SUITE ( StringStoreTest, Implementations );
 
 //----------------------------------------------------------------//

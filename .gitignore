@@ -9,3 +9,5 @@ Makefile
 *.pbxuser
 *.perspectivev3
 *.a
+cmake-build-debug
+.idea
