@@ -45,7 +45,7 @@ target_sources ( padamose
         src/padamose/EphemeralVersionedBranch.cpp
         src/padamose/MutableVersionedCollection.cpp
         src/padamose/RedisStringStore.cpp
-        src/padamose/RocksDbStringStore.cpp
+        #src/padamose/RocksDbStringStore.cpp
         src/padamose/SQLite.cpp
         src/padamose/SQLitePersistenceProvider.cpp
         src/padamose/SQLiteStringStore.cpp

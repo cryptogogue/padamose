@@ -29,7 +29,6 @@
 /* Begin PBXBuildFile section */
 		CD07CDE121A74A2600C9C8DB /* MutableVersionedCollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD07CDDF21A74A2600C9C8DB /* MutableVersionedCollection.cpp */; };
 		CD07CDE221A74A2600C9C8DB /* MutableVersionedCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = CD07CDE021A74A2600C9C8DB /* MutableVersionedCollection.h */; };
-		CD083DE7276174ED000EB11A /* librocksdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD083DE6276174ED000EB11A /* librocksdb.a */; };
 		CD19DEA22592DE330007ACF0 /* sds.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60422667454009B4144 /* sds.c */; };
 		CD19DEA32592DE330007ACF0 /* read.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60222667454009B4144 /* read.c */; };
 		CD19DEA42592DE330007ACF0 /* sslio.c in Sources */ = {isa = PBXBuildFile; fileRef = CD9FE60922667454009B4144 /* sslio.c */; };
@@ -452,7 +451,6 @@
 				CD9FE61F226674F6009B4144 /* libhiredis.a in Frameworks */,
 				CD6C9ACB21C48175009A3801 /* liblognosis.a in Frameworks */,
 				CD4E81D421059435007DA585 /* libpadamose.a in Frameworks */,
-				CD083DE7276174ED000EB11A /* librocksdb.a in Frameworks */,
 				CD19DEEF2593E4B50007ACF0 /* libsqlite.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

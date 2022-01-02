@@ -31,26 +31,30 @@ public:
     }
 };
 
+#ifdef PARADMOSE_WITH_ROCKSDB
+
 //================================================================//
 // RocksDBStringStoreFactory
 //================================================================//
-    class RocksDBStringStoreFactory :
-            public AbstractFactory < AbstractStringStore > {
-    private:
+class RocksDBStringStoreFactory :
+        public AbstractFactory < AbstractStringStore > {
+private:
 
-        mutable shared_ptr < RocksDbStringStore > mRocksDbStringStore;
+    mutable shared_ptr < RocksDbStringStore > mRocksDbStringStore;
 
-    public:
+public:
 
-        //----------------------------------------------------------------//
-        shared_ptr < AbstractStringStore > make () const override {
-            if ( !this->mRocksDbStringStore ) {
-                this->mRocksDbStringStore = make_shared < RocksDbStringStore >();
-                this->mRocksDbStringStore->open(ROCKSDB_FILENAME,"");
-            }
-            return this->mRocksDbStringStore;
+    //----------------------------------------------------------------//
+    shared_ptr < AbstractStringStore > make () const override {
+        if ( !this->mRocksDbStringStore ) {
+            this->mRocksDbStringStore = make_shared < RocksDbStringStore >();
+            this->mRocksDbStringStore->open(ROCKSDB_FILENAME,"");
         }
-    };
+        return this->mRocksDbStringStore;
+    }
+};
+
+#endif
 
 //================================================================//
 // SQLiteStringStoreFactory
@@ -77,7 +81,11 @@ class StringStoreTest :
 };
 
 using testing::Types;
-typedef Types < DebugStringStoreFactory, SQLiteStringStoreFactory, RocksDBStringStoreFactory > Implementations;
+#ifdef PARADMOSE_WITH_ROCKSDB
+    typedef Types < DebugStringStoreFactory, SQLiteStringStoreFactory, RocksDBStringStoreFactory > Implementations;
+#else
+    typedef Types < DebugStringStoreFactory, SQLiteStringStoreFactory > Implementations;
+#endif
 TYPED_TEST_SUITE ( StringStoreTest, Implementations );
 
 //----------------------------------------------------------------//

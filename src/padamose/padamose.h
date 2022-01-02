@@ -22,7 +22,9 @@
 #include <padamose/MutableVersionedCollection.h>
 //#include <padamose/RedisServerProc.h>
 #include <padamose/RedisStringStore.h>
-#include <padamose/RocksDbStringStore.h>
+#ifdef PARADMOSE_WITH_ROCKSDB
+    #include <padamose/RocksDbStringStore.h>
+#endif
 #include <padamose/StringStoreVersionedBranch.h>
 #include <padamose/SQLite.h>
 #include <padamose/SQLitePersistenceProvider.h>
